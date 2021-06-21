@@ -1,0 +1,135 @@
+/*!
+ Custom CSS for OFF THE PORCH
+ Marho
+ */
+html, body, container-fluid, #app{
+  height:100%;
+  width:100%;
+
+}
+.bg{
+  background:url('main.jpg');
+  background-size: cover;
+}
+p,th{
+  color:white;
+}
+th{
+  text-align:center;
+}
+p{
+  margin-bottom:.4rem;
+}
+#main{
+  padding:0 0 0 0;
+}
+#hero-img{
+  z-index:-1;
+}
+.thumbnail {
+    position: relative;
+}
+
+.caption {
+    position: absolute;
+    padding-top: 7vw;
+    left: 0;
+    width: 46%;
+    padding-left: 12%;
+}
+.caption1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    z-index:5;
+}
+.nav-item{
+  color:white !important;
+}
+
+
+.hero-text{
+  font-size:5vw;
+  text-align: center;
+}
+
+.table{
+  width:0px!important;
+}
+.hero-textsub{
+  font-size:2vw;
+  text-align: center;
+
+}
+.hero-textsub1{
+  font-size:1.5vw;
+  text-align: center;
+
+}
+.body-heading{
+  color:black;
+  text-align:center;
+}
+.list-group{
+    max-height: 300px;
+    margin-bottom: 10px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+}
+#icon{
+  width:20%;
+}
+.sub1{
+  padding:50% 0 0 0 !important;
+}
+
+.jumbotron.jumbotron-fluid{
+  margin:0 0 0 0;
+
+}
+.bodynav{
+  color:black;
+}
+.social{
+  width:84%;
+
+}
+.line{
+  width: 20%;
+}
+
+@media only screen and (max-width: 375px) {
+  #col {
+    padding-right:0 !important;
+    padding-left:0 !important;
+  }
+  .hero-text{
+    font-size:4vw;
+  }
+  .hero-textsub{
+    font-size:3vw;
+  }
+  .hero-textsub1{
+    font-size:2.5vw;
+    position:relative;
+    bottom:3vw;
+  }
+  .caption{
+    padding-top:14vw;
+    left:25vw;
+
+  }
+  #icon{
+    width:100%;
+  }
+  #vid{
+    width:100%;
+    height:100%;
+
+  }
+  .soon{
+    font-size:1rem;
+  }
+}

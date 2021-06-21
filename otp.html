@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<head>
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Off The Porch is a Washington DC based Hip Hop Media Company bringing light to DMV Artists. Now we in the game" />
+  <meta name="keywords" content="OFFTHEPORCH, DMV, Bravestarr, Nodis, Bala Ortiz, Jump,off,the,porch" />
+  <meta name="author" content="Marho" />
+  <title>OFF THE PORCH</title>
+
+  <link rel="stylesheet" href="css/user.css">
+  <link rel="stylesheet" href="css/hover.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="app" class="bg">
+
+  <div id="main" class="container-fluid">
+    <div  class="caption1">
+
+      <ul id="top" class="nav justify-content-center">
+        <!--
+      <li class="nav-item">
+        <a v-on:click="pagejump('home')" class="nav-link active text-light" href="#home">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a v-on:click="pagejump('about')" class="nav-link text-light" href="#about">ABOUT</a>
+      </li>
+      <li class="nav-item">
+      -->
+        <a v-on:click="pagejump('artists')" class="hvr-bounce-out nav-link text-light" href="#artists">ARTISTS</a>
+      </li>
+      <li class="nav-item">
+        <a v-on:click="" class="hvr-bounce-out nav-link text-light" href="mailto:realofftheporch@gmail.com" tabindex="-1">PRESS</a>
+      </li>
+      <li class="nav-item">
+        <a v-on:click="pagejump('shop')" class="hvr-bounce-out nav-link text-light" href="#shop" tabindex="-1">SHOP</a>
+      </li>
+    </ul>
+    </div>
+    <div class="thumbnail text-left ">
+        <!--<img id="hero-img" src="imgs/main.jpg" class="img-fluid" alt="OFFTHEPORCH-hero"> -->
+      <div class="caption">
+    <p class="hero-text">OFF THE PORCH</p>
+    <div class="row">
+      <div id="col" class="col hvr-bounce-out"><a href ="https://www.facebook.com/realofftheporch/" target="_blank"><img class="img-fluid" src="imgs/f.png"></a></div>
+      <div id="col" class="col hvr-bounce-out"><a href ="https://twitter.com/realofftheporch" target="_blank"><img class="img-fluid" src="imgs/t.png"></a></div>
+      <div id="col" class="col hvr-bounce-out"><a href ="https://www.instagram.com/realofftheporch/" target="_blank"><img class="img-fluid" src="imgs/in.png"></a></div>
+      <div id="col" class="col hvr-bounce-out"><a href ="https://www.youtube.com/channel/UCkmpcgu3Pg-SZaux05P5bEw" target="_blank"><img class="img-fluid" src="imgs/y.png"></a></div>
+      <div id="col" class="col hvr-bounce-out"><a href ="https://soundcloud.com/off-the-porch" target="_blank"><img class="img-fluid" src="imgs/s.png"></a></div>
+    </div>
+  <p class="hero-textsub">Now We in The Game</p>
+  <p class="hero-textsub1">Washington D.C. Based Hip Hop Media Company</p>
+    </div>
+    </div>
+
+  </div>
+  <div id="app" class="container-fluid sub1">
+    <div v-if="activeheading.about" class="jumbotron jumbotron-fluid">
+
+  <div class="container">
+    <h1 id ="about" class="display-4 body-heading">{{ heading[1] }}</h1>
+    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+  </div>
+</div>
+
+    <div v-if="activeheading.artists" class="jumbotron jumbotron-fluid">
+
+
+  <div class="container">
+    <h1 id ="artists" class="display-4 body-heading">{{ heading[2] }}</h1>
+    <div class="row">
+      <div class="col-4">
+        <div id="v-for-artists" class="list-group">
+          <a v-for="value in artists" v-on:click="artistjump(value.artist)" class="list-group-item list-group-item-action"  v-bind:class="{ active: value.activeartist=='TRUE'}" >{{ value.artist }}</a>
+        </div>
+        <ul class="nav justify-content-center">
+
+        <li class="nav-item">
+          <a v-on:click="pagejump('')" class=" hvr-bounce-out nav-link active bodynav" href="#top">HOME</a>
+        </li>
+        <!--
+        <li class="nav-item">
+          <a v-on:click="pagejump('about')" class="nav-link text-light" href="#about">ABOUT</a>
+        </li>
+              -->
+
+        <li class="nav-item">
+          <a v-on:click="pagejump('')" class="hvr-bounce-out nav-link bodynav" href="mailto:realofftheporch@gmail.com" tabindex="-1">PRESS</a>
+        </li>
+
+      </ul>
+
+      </div>
+    <div id="v-for-artists" class="col-6">
+      <div v-for="value in artists" v-if="value.activeartist =='TRUE'" class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ value.artist }}</h5>
+          <iframe id="vid" v-if="value.otpvideo != '' " width="100%" height="315" v-bind:src="value.otpvideo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div v-else>
+            <h2 class="soon">COMING SOON</h2>
+          </div>
+            <ul class="nav justify-content-center">
+              <li v-if="value.spotify != '' " id="icon" class="hvr-bounce-out nav-item">
+                <a target="_blank" class="nav-link active text-light" v-bind:href="value.spotify"><img src="imgs/spotify.png" alt="spotify" class="img-thumbnail"></a>
+              </li>
+              <li v-if="value.sc != '' " id="icon" class="hvr-bounce-out nav-item">
+                <a target="_blank" class="nav-link text-light" v-bind:href="value.sc"><img src="imgs/sc.png" alt="soundcloud" class="img-thumbnail"></a>
+              </li>
+              <li v-if="value.ig != '' " id="icon" class="hvr-bounce-out nav-item">
+                <a target="_blank" class="nav-link text-light" v-bind:href="value.ig"><img src="imgs/ig.png" alt="instagram" class="img-thumbnail"></a>
+              </li>
+              <li v-if="value.twitter != '' " id="icon" class="hvr-bounce-out nav-item">
+                <a target="_blank" class="nav-link text-light" v-bind:href="value.twitter" tabindex="-1"><img src="imgs/twitter.png" alt="twitter" class="img-thumbnail"></a>
+              </li>
+            <li v-if="value.yt != '' " id="icon" class="hvr-bounce-out nav-item">
+              <a target="_blank" class="nav-link text-light" v-bind:href="value.yt" tabindex="-1"><img src="imgs/yt.png" alt="youtube" class="img-thumbnail"></a>
+            </li>
+            </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div v-if="activeheading.press" class="jumbotron jumbotron-fluid">
+
+  <div class="container">
+    <h1 id ="press" class="display-4 body-heading">{{ heading[3] }}</h1>
+      <div class="row">
+
+      </div>
+  </div>
+    </div>
+    <div v-if="activeheading.shop" class="jumbotron jumbotron-fluid">
+  <div class="container body-heading ">
+    <h1 id ="shop" class="display-4">{{ heading[4] }}</h1>
+      <div class="row">
+        <div class="card" style="width: 18rem;">
+          <img src="imgs/shirts.png" class="card-img-top" alt="juice-wrld-off-the-porch">
+          <div class="card-body">
+            <h5 class="card-title">SOLD OUT</h5>
+          </div>
+          <ul class="nav justify-content-center">
+
+          <li class="nav-item">
+            <a v-on:click="pagejump('')" class="hvr-bounce-out nav-link active bodynav" href="#top">HOME</a>
+          </li>
+          <!--
+          <li class="nav-item">
+            <a v-on:click="pagejump('about')" class="nav-link text-light" href="#about">ABOUT</a>
+          </li>
+          <li class="nav-item">
+          -->
+            <a v-on:click="pagejump('artists')" class="hvr-bounce-out nav-link bodynav" href="#artists">ARTISTS</a>
+          </li>
+          <li class="nav-item">
+            <a v-on:click="pagejump('shop')" class="hvr-bounce-out nav-link bodynav" href="mailto:realofftheporch@gmail.com" tabindex="-1">PRESS</a>
+          </li>
+        </ul>
+        </div>
+      </div>
+  </div>
+</div>
+    <div v-if="activeheading.home" class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 id ="home" class="display-4 body-heading">{{ heading[0] }}</h1>
+      <div class="row">
+
+      </div>
+  </div>
+    </div>
+
+
+
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="js/mainvue.js"></script>
+
+</body>
+
+
+<footer>
+
+</footer>
