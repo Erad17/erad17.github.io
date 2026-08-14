@@ -1,0 +1,5484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: white;
+      /* Ensure the iframe has a white background */
+    }
+  </style>
+</head>
+
+<body>
+  <!DOCTYPE html>
+  <html lang="en" data-theme="light">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noai, noimageai">
+    <title>Joey Zaza's — The Boss Sandwich · Perth CBD</title>
+    <meta name="description"
+      content="Joey Zaza's — New York-style sandwiches, Nonna's 80-year-old meatballs and Blacklist coffee at 45 St Georges Terrace, Perth CBD. Mon–Fri 7am–2pm. Order ahead via Square.">
+    <meta name="theme-color" content="#FFC72C">
+    <link rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23FFC72C'/%3E%3Crect x='4' y='4' width='56' height='56' rx='7' fill='none' stroke='%232B1D12' stroke-width='4'/%3E%3Ctext x='32' y='44' font-family='Arial Black,Arial' font-size='28' font-weight='900' text-anchor='middle' fill='%232B1D12'%3EJZ%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet">
+
+    <style>
+      /* ============================================================
+   JOEY ZAZA'S — DELI DESIGN SYSTEM
+   Brooklyn signage × Nonna's kitchen. Yellow, ink, tomato.
+   ============================================================ */
+      :root {
+        /* -- palette -- */
+        --clr-yellow: #FFC72C;
+        --clr-yellow-deep: #F0B429;
+        --clr-yellow-soft: #FFE9AD;
+        --clr-ink: #2B1D12;
+        --clr-ink-2: #4D3A26;
+        --clr-ink-3: #7A6547;
+        --clr-paper: #F8EFDC;
+        --clr-paper-2: #F1E4C9;
+        --clr-surface: #FFFDF6;
+        --clr-ticket: #FFFDF6;
+        --clr-tomato: #D6402B;
+        --clr-tomato-deep: #B32E1C;
+        --clr-green: #2F7D4F;
+        --clr-green-deep: #1E5B33;
+        --clr-danger: #B32E1C;
+        --clr-ok: #1E5B33;
+        --clr-river: #A9CBD8;
+        --clr-line: rgba(43, 29, 18, .22);
+        --clr-line-strong: rgba(43, 29, 18, .55);
+        --clr-shadow: #2B1D12;
+        --clr-dot: rgba(43, 29, 18, .16);
+        --clr-checker: rgba(214, 64, 43, .85);
+        --clr-board: #20150C;
+        /* -- type -- */
+        --font-display: 'Anton', Impact, sans-serif;
+        --font-body: 'Karla', 'Helvetica Neue', sans-serif;
+        --font-mono: 'Space Mono', 'Courier New', monospace;
+        --font-hand: 'Caveat', cursive;
+        --fs-hero: clamp(3.4rem, 9vw + .5rem, 7.6rem);
+        --fs-mega: clamp(2.6rem, 6vw + .5rem, 5.4rem);
+        --fs-h1: clamp(2.1rem, 4vw + .6rem, 3.9rem);
+        --fs-h2: clamp(1.55rem, 2vw + .6rem, 2.4rem);
+        --fs-h3: clamp(1.15rem, .8vw + .8rem, 1.45rem);
+        --fs-body: clamp(1rem, .25vw + .95rem, 1.125rem);
+        --fs-small: clamp(.82rem, .15vw + .78rem, .92rem);
+        --fs-mono-s: clamp(.72rem, .12vw + .68rem, .82rem);
+        --fs-badge: clamp(.62rem, .1vw + .58rem, .72rem);
+        --fs-ticker: clamp(1.05rem, 1.2vw + .6rem, 1.55rem);
+        --fs-ticket: clamp(.84rem, .15vw + .8rem, .95rem);
+        /* -- space & shape -- */
+        --sp-1: .5rem;
+        --sp-2: 1rem;
+        --sp-3: 1.5rem;
+        --sp-4: 2.25rem;
+        --sp-5: 3.5rem;
+        --sp-6: 5.5rem;
+        --space-section: clamp(3.5rem, 7vw, 6.5rem);
+        --radius-s: 4px;
+        --radius-m: 8px;
+        --radius-l: 14px;
+        --border-w: 3px;
+        --header-h: 74px;
+        /* -- motion -- */
+        --dur-1: .25s;
+        --dur-2: .35s;
+        --dur-3: .6s;
+        --ease: cubic-bezier(.22, .9, .3, 1);
+        --ease-bounce: cubic-bezier(.34, 1.56, .64, 1);
+        --shadow-hard: 5px 5px 0 var(--clr-shadow);
+        --shadow-hard-l: 9px 9px 0 var(--clr-shadow);
+      }
+
+      [data-theme="dark"] {
+        --clr-ink: #F3E7D3;
+        --clr-ink-2: #D9C6A6;
+        --clr-ink-3: #B49B78;
+        --clr-paper: #17110A;
+        --clr-paper-2: #1F1710;
+        --clr-surface: #251B11;
+        --clr-tomato: #E4553C;
+        --clr-tomato-deep: #C13E27;
+        --clr-green: #57B47F;
+        --clr-green-deep: #7CCB9E;
+        --clr-danger: #F08C75;
+        --clr-ok: #7CCB9E;
+        --clr-river: #28455233;
+        --clr-line: rgba(243, 231, 211, .18);
+        --clr-line-strong: rgba(243, 231, 211, .5);
+        --clr-shadow: #000000;
+        --clr-dot: rgba(255, 199, 44, .13);
+        --clr-checker: rgba(228, 85, 60, .8);
+        --clr-yellow-soft: #3A2C12;
+      }
+
+      /* ---------- base ---------- */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0
+      }
+
+      [hidden] {
+        display: none !important
+      }
+
+      html {
+        scroll-behavior: smooth
+      }
+
+      html.no-scroll {
+        overflow: hidden
+      }
+
+      body {
+        font-family: var(--font-body);
+        font-size: var(--fs-body);
+        line-height: 1.6;
+        color: var(--clr-ink);
+        background: var(--clr-paper);
+        -webkit-font-smoothing: antialiased;
+        transition: background var(--dur-2) var(--ease), color var(--dur-2) var(--ease);
+      }
+
+      /* butcher-paper grain over everything */
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 120;
+        pointer-events: none;
+        opacity: .05;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+        mix-blend-mode: multiply;
+      }
+
+      ::selection {
+        background: var(--clr-yellow);
+        color: #2B1D12
+      }
+
+      img,
+      svg {
+        display: block;
+        max-width: 100%
+      }
+
+      a {
+        color: inherit
+      }
+
+      button {
+        font: inherit;
+        color: inherit;
+        background: none;
+        border: none;
+        cursor: pointer
+      }
+
+      :focus-visible {
+        outline: 3px solid var(--clr-tomato);
+        outline-offset: 3px;
+        border-radius: 2px
+      }
+
+      .view-title:focus {
+        outline: none
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0
+      }
+
+      .skip-link {
+        position: fixed;
+        top: -100px;
+        left: 1rem;
+        z-index: 200;
+        background: var(--clr-ink);
+        color: var(--clr-paper);
+        padding: .7rem 1.2rem;
+        font-weight: 700;
+        border-radius: 0 0 var(--radius-s) var(--radius-s);
+        transition: top var(--dur-1) var(--ease)
+      }
+
+      .skip-link:focus {
+        top: 0
+      }
+
+      .wrap {
+        width: min(1180px, 100% - 2.4rem);
+        margin-inline: auto
+      }
+
+      .mono {
+        font-family: var(--font-mono)
+      }
+
+      .hand {
+        font-family: var(--font-hand)
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        line-height: 1.02;
+        letter-spacing: .01em;
+        text-transform: uppercase
+      }
+
+      /* dotted price leader */
+      .leader {
+        display: flex;
+        align-items: baseline;
+        gap: .6rem;
+        min-width: 0
+      }
+
+      .leader>.dots {
+        flex: 1 1 auto;
+        min-width: 1.2rem;
+        border-bottom: .16em dotted var(--clr-line-strong);
+        transform: translateY(-.25em)
+      }
+
+      /* checkered deli strip */
+      .checker {
+        height: 16px;
+        background: conic-gradient(var(--clr-checker) 25%, transparent 0 50%, var(--clr-checker) 0 75%, transparent 0) 0 0/16px 16px
+      }
+
+      /* rubber stamp */
+      .stamp {
+        display: inline-block;
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        color: var(--clr-tomato-deep);
+        border: .14em solid currentColor;
+        padding: .28em .6em .2em;
+        line-height: 1;
+        border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+        transform: rotate(-4deg);
+      }
+
+      .stamp--green {
+        color: var(--clr-green-deep)
+      }
+
+      .stamp--ink {
+        color: var(--clr-ink)
+      }
+
+      .stamp--sm {
+        font-size: var(--fs-badge)
+      }
+
+      /* dietary badges */
+      .dbadge {
+        display: inline-block;
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: var(--fs-badge);
+        letter-spacing: .08em;
+        padding: .3rem .5rem .24rem;
+        border: 2px solid currentColor;
+        border-radius: 3px;
+        transform: rotate(-2deg);
+        line-height: 1
+      }
+
+      .dbadge.gf {
+        color: #7A4E00
+      }
+
+      .dbadge.v {
+        color: #1C6B3C
+      }
+
+      .dbadge.vg {
+        color: #0F5230
+      }
+
+      .dbadge.df {
+        color: #1D4FA3
+      }
+
+      .dbadge.halal {
+        color: #5B3E96
+      }
+
+      [data-theme="dark"] .dbadge.gf {
+        color: #E3B34C
+      }
+
+      [data-theme="dark"] .dbadge.v {
+        color: #6FCF97
+      }
+
+      [data-theme="dark"] .dbadge.vg {
+        color: #4FB87F
+      }
+
+      [data-theme="dark"] .dbadge.df {
+        color: #8FB0F2
+      }
+
+      [data-theme="dark"] .dbadge.halal {
+        color: #BFA3F0
+      }
+
+      .on-ticket .dbadge.gf {
+        color: #7A4E00
+      }
+
+      .on-ticket .dbadge.v {
+        color: #1C6B3C
+      }
+
+      .on-ticket .dbadge.vg {
+        color: #0F5230
+      }
+
+      .on-ticket .dbadge.df {
+        color: #1D4FA3
+      }
+
+      .on-ticket .dbadge.halal {
+        color: #5B3E96
+      }
+
+      @keyframes stampIn {
+        0% {
+          opacity: 0;
+          transform: scale(1.9) rotate(-16deg)
+        }
+
+        60% {
+          opacity: 1;
+          transform: scale(.9) rotate(-6deg)
+        }
+
+        100% {
+          transform: scale(1) rotate(-4deg)
+        }
+      }
+
+      .stamp-in {
+        animation: stampIn .35s var(--ease) both
+      }
+
+      /* buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .55rem;
+        font: 700 var(--fs-small)/1 var(--font-body);
+        text-transform: uppercase;
+        letter-spacing: .09em;
+        padding: .95rem 1.5rem;
+        border: var(--border-w) solid var(--clr-ink);
+        border-radius: 6px;
+        background: var(--clr-surface);
+        color: var(--clr-ink);
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 4px 4px 0 var(--clr-shadow);
+        transition: transform var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease), background var(--dur-1) var(--ease), color var(--dur-1) var(--ease);
+      }
+
+      .btn:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 7px 7px 0 var(--clr-shadow)
+      }
+
+      .btn:active {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 var(--clr-shadow)
+      }
+
+      .btn--tomato {
+        background: var(--clr-tomato-deep);
+        color: #FFF6E8
+      }
+
+      .btn--tomato:hover {
+        background: var(--clr-tomato)
+      }
+
+      .btn--ink {
+        background: var(--clr-ink);
+        color: var(--clr-paper)
+      }
+
+      .btn--yellow {
+        background: var(--clr-yellow);
+        color: #2B1D12
+      }
+
+      .btn--ghost {
+        background: transparent;
+        box-shadow: none;
+        border-style: dashed
+      }
+
+      .btn--ghost:hover {
+        background: var(--clr-yellow-soft);
+        box-shadow: 4px 4px 0 var(--clr-shadow);
+        border-style: solid
+      }
+
+      .btn--block {
+        width: 100%
+      }
+
+      .btn[disabled] {
+        opacity: .45;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: 4px 4px 0 var(--clr-shadow)
+      }
+
+      .btn .arr {
+        transition: transform var(--dur-1) var(--ease)
+      }
+
+      .btn:hover .arr {
+        transform: translateX(4px)
+      }
+
+      /* chips */
+      .chip {
+        font: 700 var(--fs-small)/1 var(--font-body);
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        padding: .55rem 1rem;
+        border: 2.5px solid var(--clr-line-strong);
+        border-radius: 999px;
+        color: var(--clr-ink-2);
+        transition: all var(--dur-1) var(--ease);
+      }
+
+      .chip:hover {
+        border-color: var(--clr-ink);
+        color: var(--clr-ink);
+        transform: translateY(-2px)
+      }
+
+      .chip[aria-pressed="true"] {
+        background: var(--clr-yellow);
+        border-color: var(--clr-ink);
+        color: #2B1D12;
+        box-shadow: 3px 3px 0 var(--clr-shadow)
+      }
+
+      /* scroll-reveal */
+      [data-reveal] {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity .55s var(--ease), transform .55s var(--ease);
+        transition-delay: var(--rd, 0ms)
+      }
+
+      [data-reveal].revealed {
+        opacity: 1;
+        transform: none
+      }
+
+      /* ============ HEADER ============ */
+      .topline {
+        background: var(--clr-ink);
+        color: var(--clr-paper);
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono-s);
+        letter-spacing: .06em
+      }
+
+      .topline .wrap {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: .42rem 0
+      }
+
+      .topline span:nth-child(2) {
+        display: none
+      }
+
+      @media(min-width:700px) {
+        .topline span:nth-child(2) {
+          display: inline
+        }
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        background: var(--clr-yellow);
+        border-bottom: var(--border-w) solid #2B1D12;
+        transition: box-shadow var(--dur-2) var(--ease);
+      }
+
+      .site-header.scrolled {
+        box-shadow: 0 6px 0 rgba(43, 29, 18, .14)
+      }
+
+      .site-header .wrap {
+        display: flex;
+        align-items: center;
+        gap: .8rem;
+        height: var(--header-h)
+      }
+
+      .brand {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+        text-decoration: none;
+        color: #2B1D12;
+        margin-right: auto
+      }
+
+      .brand__name {
+        font-family: var(--font-display);
+        font-size: clamp(1.35rem, 1vw + 1rem, 1.8rem);
+        letter-spacing: .02em
+      }
+
+      .brand__name em {
+        font-style: normal;
+        color: var(--clr-tomato-deep)
+      }
+
+      .brand__tag {
+        font-family: var(--font-mono);
+        font-size: clamp(.55rem, .1vw + .5rem, .64rem);
+        letter-spacing: .22em;
+        margin-top: .2rem;
+        color: #4D3A26
+      }
+
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: .45rem;
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: var(--fs-mono-s);
+        letter-spacing: .05em;
+        border: 2.5px solid #2B1D12;
+        border-radius: 999px;
+        padding: .4rem .8rem;
+        background: var(--clr-surface);
+        color: #2B1D12;
+        white-space: nowrap
+      }
+
+      .status-pill .dot {
+        width: .6em;
+        height: .6em;
+        border-radius: 50%;
+        background: var(--clr-green);
+        animation: blink 2.2s ease-in-out infinite
+      }
+
+      .status-pill.closed .dot {
+        background: var(--clr-tomato);
+        animation: none
+      }
+
+      @keyframes blink {
+
+        0%,
+        100% {
+          opacity: 1
+        }
+
+        50% {
+          opacity: .35
+        }
+      }
+
+      @media(max-width:820px) {
+        .status-pill {
+          display: none
+        }
+      }
+
+      .icon-btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
+        border: var(--border-w) solid #2B1D12;
+        border-radius: 8px;
+        background: var(--clr-surface);
+        color: #2B1D12;
+        box-shadow: 3px 3px 0 #2B1D12;
+        transition: transform var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease), background var(--dur-1) var(--ease);
+      }
+
+      .icon-btn:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 #2B1D12
+      }
+
+      .icon-btn:active {
+        transform: translate(1px, 1px);
+        box-shadow: 1px 1px 0 #2B1D12
+      }
+
+      .icon-btn svg {
+        width: 22px;
+        height: 22px
+      }
+
+      [data-theme="light"] .icon-moon {
+        display: none
+      }
+
+      [data-theme="dark"] .icon-sun {
+        display: none
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -9px;
+        right: -9px;
+        min-width: 22px;
+        height: 22px;
+        padding: 0 4px;
+        border-radius: 999px;
+        background: var(--clr-tomato-deep);
+        color: #FFF6E8;
+        border: 2px solid #2B1D12;
+        font: 700 .68rem/18px var(--font-mono);
+        text-align: center
+      }
+
+      .menu-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: .6rem;
+        height: 46px;
+        padding: 0 1.1rem;
+        background: #2B1D12;
+        color: var(--clr-yellow);
+        border: var(--border-w) solid #2B1D12;
+        border-radius: 8px;
+        font: 700 var(--fs-small)/1 var(--font-body);
+        letter-spacing: .14em;
+        box-shadow: 3px 3px 0 rgba(43, 29, 18, .35);
+        transition: transform var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease), background var(--dur-1) var(--ease);
+      }
+
+      .menu-btn:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 rgba(43, 29, 18, .35);
+        background: #3d2b1b
+      }
+
+      .menu-btn .bars {
+        display: flex;
+        flex-direction: column;
+        gap: 4px
+      }
+
+      .menu-btn .bars i {
+        display: block;
+        width: 18px;
+        height: 2.5px;
+        background: var(--clr-yellow);
+        transition: transform var(--dur-2) var(--ease)
+      }
+
+      .menu-btn:hover .bars i:nth-child(1) {
+        transform: translateX(-3px)
+      }
+
+      .menu-btn:hover .bars i:nth-child(3) {
+        transform: translateX(3px)
+      }
+
+      /* ============ FULL-SCREEN MENU-BOARD NAV ============ */
+      .overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        background: var(--clr-board);
+        color: #F3E7D3;
+        overflow-y: auto;
+        transform: translateY(-102%);
+        transition: transform .45s var(--ease-bounce);
+        visibility: hidden
+      }
+
+      .overlay.open {
+        transform: none;
+        visibility: visible
+      }
+
+      .overlay::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: .07;
+        background-image: radial-gradient(rgba(255, 199, 44, .5) 1px, transparent 1.4px);
+        background-size: 18px 18px
+      }
+
+      .overlay__panel {
+        position: relative;
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        width: min(980px, 100% - 2.4rem);
+        margin-inline: auto;
+        padding: 1.4rem 0 2.5rem
+      }
+
+      .overlay__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-bottom: 1.2rem;
+        border-bottom: 3px dashed rgba(243, 231, 211, .3)
+      }
+
+      .overlay__brand {
+        font-family: var(--font-display);
+        font-size: clamp(1.4rem, 2vw + .6rem, 2rem);
+        color: var(--clr-yellow);
+        letter-spacing: .03em
+      }
+
+      .overlay__close {
+        font: 700 var(--fs-small)/1 var(--font-body);
+        letter-spacing: .14em;
+        color: #F3E7D3;
+        border: 2.5px solid rgba(243, 231, 211, .5);
+        border-radius: 6px;
+        padding: .7rem 1rem;
+        transition: all var(--dur-1) var(--ease)
+      }
+
+      .overlay__close:hover {
+        background: var(--clr-tomato);
+        border-color: var(--clr-tomato);
+        color: #FFF6E8;
+        transform: rotate(-2deg)
+      }
+
+      .overlay__note {
+        margin: 1.6rem 0 .6rem;
+        color: rgba(243, 231, 211, .6);
+        font-size: var(--fs-mono-s);
+        letter-spacing: .2em
+      }
+
+      .ov-row {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: baseline;
+        column-gap: .9rem;
+        row-gap: .15rem;
+        padding: 1.05rem .4rem;
+        border-bottom: 2px dotted rgba(243, 231, 211, .25);
+        text-decoration: none;
+        position: relative;
+        transition: transform var(--dur-2) var(--ease), background var(--dur-2) var(--ease);
+        opacity: 0;
+        transform: translateY(14px)
+      }
+
+      .overlay.open .ov-row {
+        animation: rowIn .5s var(--ease) both
+      }
+
+      .overlay.open .ov-row:nth-child(1) {
+        animation-delay: .10s
+      }
+
+      .overlay.open .ov-row:nth-child(2) {
+        animation-delay: .16s
+      }
+
+      .overlay.open .ov-row:nth-child(3) {
+        animation-delay: .22s
+      }
+
+      .overlay.open .ov-row:nth-child(4) {
+        animation-delay: .28s
+      }
+
+      .overlay.open .ov-row:nth-child(5) {
+        animation-delay: .34s
+      }
+
+      .overlay.open .ov-row:nth-child(6) {
+        animation-delay: .40s
+      }
+
+      @keyframes rowIn {
+        to {
+          opacity: 1;
+          transform: none
+        }
+      }
+
+      .ov-row:hover,
+      .ov-row:focus-visible {
+        transform: translateX(10px);
+        background: rgba(255, 199, 44, .06)
+      }
+
+      .ov-no {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: var(--fs-mono-s);
+        color: var(--clr-tomato);
+        letter-spacing: .1em
+      }
+
+      .ov-name {
+        font-family: var(--font-display);
+        font-size: clamp(1.5rem, 3.4vw + .4rem, 2.5rem);
+        color: var(--clr-yellow);
+        letter-spacing: .02em;
+        line-height: 1;
+        transition: color var(--dur-1) var(--ease)
+      }
+
+      .ov-row:hover .ov-name {
+        color: #FFD968
+      }
+
+      .ov-desc {
+        grid-column: 2;
+        font-size: var(--fs-small);
+        color: rgba(243, 231, 211, .65);
+        font-style: italic
+      }
+
+      .ov-here {
+        position: absolute;
+        right: .4rem;
+        top: 50%;
+        translate: 0 -50%;
+        font-family: var(--font-display);
+        font-size: var(--fs-badge);
+        letter-spacing: .12em;
+        color: var(--clr-tomato);
+        border: 2px solid currentColor;
+        border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+        padding: .3em .6em .2em;
+        transform: rotate(6deg) scale(0);
+        transition: transform var(--dur-2) var(--ease-bounce)
+      }
+
+      .ov-row.is-active .ov-here {
+        transform: rotate(6deg) scale(1)
+      }
+
+      .ov-row.is-active .ov-name {
+        color: var(--clr-tomato)
+      }
+
+      .overlay__foot {
+        margin-top: auto;
+        padding-top: 1.6rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: .6rem 1.6rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono-s);
+        letter-spacing: .12em;
+        color: rgba(243, 231, 211, .6)
+      }
+
+      .overlay__foot a {
+        color: var(--clr-yellow);
+        text-decoration: none;
+        border-bottom: 2px dotted var(--clr-yellow)
+      }
+
+      .overlay__foot a:hover {
+        color: #FFD968
+      }
+
+      /* ============ CART POPOVER ============ */
+      .cart-pop {
+        position: fixed;
+        z-index: 80;
+        top: calc(var(--header-h) + 14px);
+        right: 1rem;
+        width: min(390px, calc(100vw - 2rem));
+        background: var(--clr-ticket);
+        color: #2B1D12;
+        border: 3px solid #2B1D12;
+        border-radius: 8px;
+        box-shadow: 8px 8px 0 rgba(43, 29, 18, .85);
+        animation: popIn .3s var(--ease-bounce) both
+      }
+
+      @keyframes popIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px) scale(.97)
+        }
+
+        to {
+          opacity: 1;
+          transform: none
+        }
+      }
+
+      .cart-pop__head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: .8rem 1rem;
+        border-bottom: 2px dashed rgba(43, 29, 18, .4);
+        font-weight: 700;
+        font-size: var(--fs-mono-s);
+        letter-spacing: .16em
+      }
+
+      .cart-pop__head button {
+        font-size: 1rem;
+        line-height: 1;
+        padding: .3rem .5rem;
+        border-radius: 4px;
+        transition: background var(--dur-1)
+      }
+
+      .cart-pop__head button:hover {
+        background: rgba(43, 29, 18, .1)
+      }
+
+      .cart-pop__body {
+        padding: 1rem
+      }
+
+      .cart-line {
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        padding: .55rem 0;
+        border-bottom: 2px dotted rgba(43, 29, 18, .3);
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono-s)
+      }
+
+      .cart-line .cl-name {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: 700
+      }
+
+      .qty-btn {
+        width: 26px;
+        height: 26px;
+        border: 2px solid #2B1D12;
+        border-radius: 4px;
+        font-weight: 700;
+        line-height: 1;
+        display: grid;
+        place-items: center;
+        transition: all var(--dur-1)
+      }
+
+      .qty-btn:hover {
+        background: var(--clr-yellow)
+      }
+
+      .cart-line .cl-rm {
+        color: #B32E1C;
+        font-weight: 700;
+        padding: .2rem .4rem;
+        border-radius: 4px
+      }
+
+      .cart-line .cl-rm:hover {
+        background: rgba(214, 64, 43, .14)
+      }
+
+      .cart-total {
+        display: flex;
+        justify-content: space-between;
+        font-family: var(--font-mono);
+        font-weight: 700;
+        padding: .8rem 0 .2rem;
+        font-size: var(--fs-small)
+      }
+
+      .cart-note {
+        font-size: clamp(.7rem, .1vw+.66rem, .78rem);
+        color: #6B573F;
+        font-style: italic;
+        margin-bottom: .8rem
+      }
+
+      .cart-empty {
+        text-align: center;
+        padding: 1.4rem 0;
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono-s);
+        color: #6B573F
+      }
+
+      .cart-empty .stamp {
+        margin-bottom: .8rem
+      }
+
+      .cart-loading,
+      .cart-success {
+        text-align: center;
+        padding: 1.6rem .6rem
+      }
+
+      .spinner {
+        width: 34px;
+        height: 34px;
+        margin: 0 auto 1rem;
+        border: 3.5px solid #2B1D12;
+        border-top-color: transparent;
+        border-radius: 6px;
+        animation: spin 1s linear infinite
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg)
+        }
+      }
+
+      .cart-success .stamp {
+        font-size: clamp(1.2rem, .5vw+1rem, 1.6rem);
+        animation: stampIn .4s var(--ease) both
+      }
+
+      .cart-success p {
+        font-size: var(--fs-small);
+        margin-top: .9rem;
+        color: #4D3A26
+      }
+
+      .cart-success .mono {
+        display: block;
+        margin-top: .4rem;
+        font-size: var(--fs-mono-s);
+        color: #6B573F
+      }
+
+      /* ============ TOASTS ============ */
+      .toasts {
+        position: fixed;
+        z-index: 100;
+        left: 1rem;
+        bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: .6rem;
+        max-width: min(360px, calc(100vw - 2rem))
+      }
+
+      .toast {
+        background: var(--clr-ticket);
+        color: #2B1D12;
+        border: 2.5px solid #2B1D12;
+        border-left-width: 9px;
+        border-radius: 6px;
+        padding: .8rem 1rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono-s);
+        font-weight: 700;
+        box-shadow: 5px 5px 0 rgba(43, 29, 18, .7);
+        animation: toastIn .35s var(--ease-bounce) both
+      }
+
+      .toast--success {
+        border-left-color: #1E5B33
+      }
+
+      .toast--error {
+        border-left-color: #B32E1C
+      }
+
+      .toast--info {
+        border-left-color: #2B1D12
+      }
+
+      .toast.out {
+        animation: toastOut .3s var(--ease) both
+      }
+
+      @keyframes toastIn {
+        from {
+          opacity: 0;
+          transform: translateX(-24px)
+        }
+
+        to {
+          opacity: 1;
+          transform: none
+        }
+      }
+
+      @keyframes toastOut {
+        to {
+          opacity: 0;
+          transform: translateY(10px)
+        }
+      }
+
+      /* ============ VIEWS / ROUTER ============ */
+      .view {
+        display: none
+      }
+
+      .view.active {
+        display: block;
+        animation: viewIn .45s var(--ease) both
+      }
+
+      @keyframes viewIn {
+        from {
+          opacity: 0;
+          transform: translateY(16px)
+        }
+
+        to {
+          opacity: 1;
+          transform: none
+        }
+      }
+
+      .view-head {
+        padding: var(--space-section) 0 clamp(1.6rem, 3vw, 2.4rem)
+      }
+
+      .kicker {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: var(--fs-mono-s);
+        letter-spacing: .24em;
+        color: var(--clr-tomato-deep);
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: .8rem;
+        margin-bottom: 1rem
+      }
+
+      .kicker::after {
+        content: "";
+        height: 2px;
+        width: 56px;
+        background: var(--clr-tomato-deep)
+      }
+
+      .view-sub {
+        max-width: 56ch;
+        color: var(--clr-ink-2);
+        font-size: clamp(1.02rem, .3vw+.95rem, 1.2rem)
+      }
+
+      /* ============ HOME / THE COUNTER ============ */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        border-bottom: var(--border-w) solid var(--clr-ink)
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background-image: radial-gradient(var(--clr-dot) 1.6px, transparent 1.7px);
+        background-size: 15px 15px;
+        -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 90%);
+        mask-image: linear-gradient(to bottom, #000 30%, transparent 90%)
+      }
+
+      .hero .wrap {
+        position: relative;
+        display: grid;
+        gap: 2.5rem;
+        padding: clamp(2.6rem, 6vw, 4.6rem) 0 clamp(3rem, 6vw, 4.8rem)
+      }
+
+      .hero-wrap {
+        container-type: inline-size
+      }
+
+      @container (min-width:900px) {
+        .hero .wrap {
+          grid-template-columns: 1.12fr .88fr;
+          align-items: center
+        }
+      }
+
+      .hero-kicker {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: var(--fs-mono-s);
+        letter-spacing: .18em;
+        color: var(--clr-ink-2);
+        display: inline-flex;
+        align-items: center;
+        gap: .6rem;
+        border: 2px solid var(--clr-line-strong);
+        border-radius: 999px;
+        padding: .45rem 1rem;
+        background: var(--clr-surface);
+        margin-bottom: 1.4rem
+      }
+
+      .hero-kicker .dot {
+        width: .55em;
+        height: .55em;
+        border-radius: 50%;
+        background: var(--clr-tomato);
+        animation: blink 1.8s infinite
+      }
+
+      .hero-title {
+        font-size: var(--fs-hero);
+        letter-spacing: .005em;
+        margin-bottom: 1.2rem
+      }
+
+      .ht-line {
+        display: block;
+        line-height: .92
+      }
+
+      .ht-a {
+        color: var(--clr-ink);
+        animation: slam .55s var(--ease-bounce) both
+      }
+
+      @supports (-webkit-text-stroke:3px black) {
+        .ht-a {
+          color: transparent;
+          -webkit-text-stroke: clamp(2px, .28vw, 4px) var(--clr-ink)
+        }
+      }
+
+      .ht-b {
+        color: var(--clr-ink);
+        animation: slam .55s var(--ease-bounce) .12s both;
+        transform-origin: left
+      }
+
+      .ht-c {
+        color: var(--clr-tomato-deep);
+        animation: slam .55s var(--ease-bounce) .24s both
+      }
+
+      .ht-c .tom {
+        color: var(--clr-ink)
+      }
+
+      @keyframes slam {
+        0% {
+          opacity: 0;
+          transform: translateY(-34px) rotate(-2.5deg) scale(1.06)
+        }
+
+        70% {
+          opacity: 1;
+          transform: translateY(3px) rotate(.4deg) scale(.99)
+        }
+
+        100% {
+          opacity: 1;
+          transform: none
+        }
+      }
+
+      .hero-sub {
+        max-width: 46ch;
+        color: var(--clr-ink-2);
+        font-size: clamp(1.05rem, .35vw+.95rem, 1.25rem);
+        margin-bottom: 1.8rem
+      }
+
+      .hero-sub strong {
+        color: var(--clr-ink)
+      }
+
+      .hero-ctas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .9rem;
+        margin-bottom: 1.4rem
+      }
+
+      .hero-trust {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: .7rem 1.1rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono-s);
+        letter-spacing: .06em;
+        color: var(--clr-ink-2)
+      }
+
+      .hero-trust .stars {
+        color: var(--clr-tomato-deep);
+        font-weight: 700
+      }
+
+      .hero-trust .mini {
+        border: 2px solid currentColor;
+        border-radius: 3px;
+        padding: .18rem .4rem;
+        font-weight: 700;
+        transform: rotate(-3deg)
+      }
+
+      /* specials ticket */
+      .hero-right {
+        position: relative;
+        display: flex;
+        justify-content: center
+      }
+
+      .specials {
+        width: min(360px, 100%);
+        animation: bob 5.5s ease-in-out infinite alternate
+      }
+
+      @keyframes bob {
+        from {
+          transform: translateY(0) rotate(-1deg)
+        }
+
+        to {
+          transform: translateY(-9px) rotate(-1deg)
+        }
+      }
+
+      .spin-badge {
+        position: absolute;
+        width: clamp(88px, 9vw, 118px);
+        top: -26px;
+        right: max(0px, 8%);
+        z-index: 2;
+        filter: drop-shadow(3px 3px 0 rgba(43, 29, 18, .5))
+      }
+
+      .spin-badge .ring {
+        animation: spin 24s linear infinite;
+        transform-origin: 60px 60px
+      }
+
+      .spin-badge text {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: 10.5px;
+        letter-spacing: 2.4px;
+        fill: #2B1D12
+      }
+
+      .spin-badge .mid {
+        font-family: var(--font-display);
+        font-size: 30px;
+        fill: #B32E1C
+      }
+
+      /* marquee ticker */
+      .ticker {
+        overflow: hidden;
+        background: var(--clr-ink);
+        color: var(--clr-yellow);
+        border-bottom: var(--border-w) solid var(--clr-ink);
+        padding: .65rem 0
+      }
+
+      .ticker__track {
+        display: flex;
+        width: max-content;
+        animation: tick 32s linear infinite
+      }
+
+      .ticker:hover .ticker__track,
+      .ticker:focus-within .ticker__track {
+        animation-play-state: paused
+      }
+
+      .ticker__group {
+        display: flex;
+        flex-shrink: 0
+      }
+
+      .ticker__group span {
+        font-family: var(--font-display);
+        font-size: var(--fs-ticker);
+        letter-spacing: .06em;
+        white-space: nowrap;
+        padding: 0 1.1rem;
+        text-transform: uppercase
+      }
+
+      .ticker__group span i {
+        font-style: normal;
+        color: var(--clr-tomato)
+      }
+
+      @keyframes tick {
+        to {
+          transform: translateX(-50%)
+        }
+      }
+
+      /* 60-second flow */
+      .flow-sec {
+        padding: var(--space-section) 0
+      }
+
+      .flow {
+        display: grid;
+        gap: 1.6rem;
+        margin-top: 2.4rem;
+        position: relative
+      }
+
+      .flow-wrap {
+        container-type: inline-size
+      }
+
+      @container (min-width:820px) {
+        .flow {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2.2rem
+        }
+
+        .flow-step:nth-child(2) {
+          transform: translateY(26px)
+        }
+
+        .flow-step:nth-child(3) {
+          transform: translateY(52px)
+        }
+      }
+
+      .flow-step {
+        position: relative;
+        background: var(--clr-surface);
+        border: var(--border-w) solid var(--clr-ink);
+        border-radius: var(--radius-m);
+        padding: 1.6rem 1.4rem 1.4rem;
+        box-shadow: var(--shadow-hard);
+        transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease)
+      }
+
+      .flow-step:hover {
+        transform: translate(-3px, -3px) rotate(-.5deg);
+        box-shadow: var(--shadow-hard-l)
+      }
+
+      @container (min-width:820px) {
+        .flow-step:hover {
+          transform: translate(-3px, -3px) rotate(-.5deg)
+        }
+
+        .flow-step:nth-child(2):hover {
+          transform: translate(-3px, 23px) rotate(.5deg)
+        }
+
+        .flow-step:nth-child(3):hover {
+          transform: translate(-3px, 49px) rotate(-.5deg)
+        }
+      }
+
+      .flow-step::after {
+        content: "→";
+        position: absolute;
+        right: -1.5rem;
+        top: 40%;
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        color: var(--clr-tomato);
+        display: none
+      }
+
+      @container (min-width:820px) {
+        .flow-step:not(:last-child)::after {
+          display: block
+        }
+      }
+
+      .flow-no {
+        display: inline-grid;
+        place-items: center;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--clr-yellow);
+        border: var(--border-w) solid var(--clr-ink);
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: var(--fs-small);
+        margin-bottom: 1rem;
+        box-shadow: 3px 3px 0 var(--clr-shadow)
+      }
+
+      .flow-step h3 {
+        font-size: var(--fs-h3);
+        margin-bottom: .5rem
+      }
+
+      .flow-step p {
+        font-size: var(--fs-small);
+        color: var(--clr-ink-2)
+      }
+
+      /* press clippings */
+      .press-sec {
+        background: var(--clr-paper-2);
+        border-block: var(--border-w) solid var(--clr-ink);
+        padding: var(--space-section) 0;
+        position: relative;
+        overflow: hidden
+      }
+
+      .press-sec::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(var(--clr-dot) 1.3px, transparent 1.4px);
+        background-size: 13px 13px;
+        opacity: .5;
+        pointer-events: none
+      }
+
+      .press-grid {
+        display: grid;
+        gap: 1.8rem;
+        margin-top: 2.4rem
+      }
+
+      .press-wrap {
+        container-type: inline-size;
+        position: relative
+      }
+
+      @container (min-width:760px) {
+        .press-grid {
+          grid-template-columns: repeat(3, 1fr)
+        }
+
+        .press-card:nth-child(2) {
+          transform: rotate(1.4deg) translateY(14px)
+        }
+      }
+
+      .press-card {
+        position: relative;
+        background: var(--clr-surface);
+        border: 2.5px solid var(--clr-ink);
+        border-radius: 6px;
+        padding: 2rem 1.5rem 1.5rem;
+        box-shadow: var(--shadow-hard);
+        transform: rotate(-1.2deg);
+        transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease)
+      }
+
+      .press-card:nth-child(3) {
+        transform: rotate(1deg)
+      }
+
+      .press-card:hover {
+        transform: rotate(0) translateY(-5px);
+        box-shadow: var(--shadow-hard-l);
+        z-index: 2
+      }
+
+      .press-card::before {
+        content: "";
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        translate: -50% 0;
+        width: 86px;
+        height: 24px;
+        background: var(--clr-yellow-soft);
+        border: 1.5px solid rgba(43, 29, 18, .25);
+        transform: rotate(-2deg);
+        opacity: .9
+      }
+
+      .press-card .stamp {
+        font-size: clamp(.95rem, .2vw+.85rem, 1.15rem);
+        margin-bottom: 1.1rem
+      }
+
+      .press-card blockquote {
+        font-size: clamp(1.05rem, .3vw+.95rem, 1.25rem);
+        font-style: italic;
+        font-weight: 600;
+        line-height: 1.45;
+        margin-bottom: 1rem
+      }
+
+      .press-card cite {
+        font-family: var(--font-mono);
+        font-style: normal;
+        font-size: var(--fs-mono-s);
+        letter-spacing: .14em;
+        color: var(--clr-ink-3)
+      }
+
+      /* bestsellers preview */
+      .bests-sec {
+        padding: var(--space-section) 0
+      }
+
+      .bests-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: end;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.8rem
+      }
+
+      .bests {
+        display: grid;
+        gap: 1.2rem
+      }
+
+      .bests-wrap {
+        container-type: inline-size
+      }
+
+      @container (min-width:700px) {
+        .bests {
+          grid-template-columns: repeat(3, 1fr)
+        }
+      }
+
+      .best-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: var(--clr-surface);
+        border: var(--border-w) solid var(--clr-ink);
+        border-radius: var(--radius-m);
+        padding: 1rem 1.2rem;
+        text-decoration: none;
+        box-shadow: 4px 4px 0 var(--clr-shadow);
+        transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease)
+      }
+
+      .best-row:hover {
+        transform: translate(-3px, -3px) rotate(-.6deg);
+        box-shadow: 8px 8px 0 var(--clr-shadow)
+      }
+
+      .best-no {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: var(--fs-mono-s);
+        color: var(--clr-tomato-deep)
+      }
+
+      .best-row h3 {
+        font-size: clamp(1rem, .2vw+.9rem, 1.2rem)
+      }
+
+      .best-row .dots {
+        border-color: var(--clr-line)
+      }
+
+      .best-price {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: var(--fs-small)
+      }
+
+      /* CTA band */
+      .cta-band {
+        background: var(--clr-ink);
+        color: var(--clr-paper);
+        padding: var(--space-section) 0;
+        text-align: left;
+        position: relative;
+        overflow: hidden
+      }
+
+      .cta-band::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(rgba(255, 199, 44, .14) 1.5px, transparent 1.6px);
+        background-size: 16px 16px;
+        pointer-events: none
+      }
+
+      .cta-band .wrap {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1.6rem 3rem
+      }
+
+      .cta-band h2 {
+        font-size: var(--fs-mega);
+        color: var(--clr-yellow);
+        line-height: .95
+      }
+
+      .cta-band h2 span {
+        color: var(--clr-tomato)
+      }
+
+      .cta-band p {
+        max-width: 38ch;
+        color: rgba(248, 239, 220, .75)
+      }
+
+      .cta-band .btn {
+        border-color: var(--clr-yellow)
+      }
+
+      .cta-band .btn--yellow {
+        box-shadow: 5px 5px 0 rgba(0, 0, 0, .6)
+      }
+
+      .cta-band .btn--ghost {
+        color: var(--clr-paper);
+        border-color: rgba(248, 239, 220, .5)
+      }
+
+      .cta-band .btn--ghost:hover {
+        background: rgba(255, 199, 44, .14);
+        box-shadow: 4px 4px 0 rgba(0, 0, 0, .6)
+      }
+
+      /* ============ MENU BOARD ============ */
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .8rem;
+        align-items: center;
+        background: var(--clr-surface);
+        border: var(--border-w) solid var(--clr-ink);
+        border-radius: var(--radius-m);
+        padding: 1rem;
+        box-shadow: var(--shadow-hard);
+        margin-bottom: 1.4rem
+      }
+
+      .toolbar .search {
+        flex: 1 1 220px;
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        border: 2.5px solid var(--clr-line-strong);
+        border-radius: 6px;
+        padding: .6rem .9rem;
+        background: var(--clr-paper);
+        transition: border-color var(--dur-1)
+      }
+
+      .toolbar .search:focus-within {
+        border-color: var(--clr-ink)
+      }
+
+      .toolbar .search input {
+        flex: 1;
+        border: none;
+        background: none;
+        font: 500 var(--fs-small) var(--font-body);
+        color: var(--clr-ink);
+        min-width: 0
+      }
+
+      .toolbar .search input:focus {
+        outline: none
+      }
+
+      .toolbar select {
+        border: 2.5px solid var(--clr-line-strong);
+        border-radius: 6px;
+        background: var(--clr-paper);
+        color: var(--clr-ink);
+        font: 700 var(--fs-small) var(--font-body);
+        padding: .65rem .8rem;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        cursor: pointer;
+        transition: border-color var(--dur-1)
+      }
+
+      .toolbar select:hover {
+        border-color: var(--clr-ink)
+      }
+
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .55rem;
+        width: 100%
+      }
+
+      .menu-count {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono-s);
+        letter-spacing: .14em;
+        color: var(--clr-ink-3);
+        margin: 0 0 1.2rem;
+        text-transform: uppercase
+      }
+
+      .menu-grid {
+        container-type: inline-size;
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: 1fr
+      }
+
+      @container (min-width:620px) {
+        .menu-grid {
+          grid-template-columns: repeat(2, 1fr)
+        }
+      }
+
+      @container (min-width:960px) {
+        .menu-grid {
+          grid-template-columns: repeat(3, 1fr)
+        }
+      }
+
+      .menu-card {
+        background: var(--clr-surface);
+        border: var(--border-w) solid var(--clr-ink);
+        border-radius: var(--radius-m);
+        box-shadow: var(--shadow-hard);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease)
+      }
+
+      .menu-card:hover {
+        transform: translate(-3px, -3px) rotate(-.4deg);
+        box-shadow: var(--shadow-hard-l)
+      }
+
+      .mc-art {
+        height: 16px;
+        background: repeating-linear-gradient(-55deg, var(--art-a) 0 12px, var(--art-b) 12px 24px);
+        border-bottom: var(--border-w) solid var(--clr-ink)
+      }
+
+      .mc-body {
+        padding: 1.2rem 1.2rem 1.1rem;
+        display: flex;
+        flex-direction: column;
+        gap: .55rem;
+        flex: 1
+      }
+
+      .mc-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: .6rem
+      }
+
+      .mc-no {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: var(--fs-mono-s);
+        color: var(--clr-tomato-deep);
+        letter-spacing: .1em
+      }
+
+      .mc-tag {
+        font-family: var(--font-display);
+        font-size: var(--fs-badge);
+        letter-spacing: .12em;
+        color: var(--clr-green-deep);
+        border: 2px solid currentColor;
+        border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+        padding: .22em .55em .14em;
+        transform: rotate(3deg)
+      }
+
+      .mc-tag--red {
+        color: var(--clr-tomato-deep)
+      }
+
+      .mc-title-row {
+        display: flex;
+        align-items: baseline;
+        gap: .6rem
+      }
+
+      .mc-title-row h3 {
+        font-size: var(--fs-h3);
+        letter-spacing: .015em
+      }
+
+      .mc-price {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: clamp(.95rem, .2vw+.85rem, 1.1rem);
+        white-space: nowrap
+      }
+
+      .mc-cat {
+        font-family: var(--font-mono);
+        font-size: clamp(.62rem, .1vw+.58rem, .7rem);
+        letter-spacing: .2em;
+        color: var(--clr-ink-3);
+        text-transform: uppercase
+      }
+
+      .mc-desc {
+        font-size: var(--fs-small);
+        color: var(--clr-ink-2);
+        flex: 1
+      }
+
+      .mc-feat {
+        font-size: clamp(.78rem, .12vw+.74rem, .86rem);
+        font-style: italic;
+        font-weight: 600;
+        color: var(--clr-tomato-deep)
+      }
+
+      .mc-foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: .6rem;
+        border-top: 2px dotted var(--clr-line);
+        padding-top: .85rem;
+        margin-top: .3rem
+      }
+
+      .mc-badges {
+        display: flex;
+        gap: .35rem;
+        flex-wrap: wrap
+      }
+
+      .add-btn {
+        font: 700 var(--fs-mono-s)/1 var(--font-mono);
+        letter-spacing: .06em;
+        background: var(--clr-yellow);
+        color: #2B1D12;
+        border: 2.5px solid #2B1D12;
+        border-radius: 6px;
+        padding: .6rem .9rem;
+        box-shadow: 3px 3px 0 var(--clr-shadow);
+        transition: all var(--dur-1) var(--ease);
+        white-space: nowrap
+      }
+
+      .add-btn:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 var(--clr-shadow);
+        background: #FFD968
+      }
+
+      .add-btn:active {
+        transform: translate(1px, 1px);
+        box-shadow: 1px 1px 0 var(--clr-shadow)
+      }
+
+      .add-btn.added {
+        background: var(--clr-green);
+        color: #FFF6E8
+      }
+
+      /* skeleton */
+      .sk-card {
+        border: var(--border-w) solid var(--clr-line);
+        border-radius: var(--radius-m);
+        overflow: hidden;
+        background: var(--clr-surface)
+      }
+
+      .sk {
+        height: 14px;
+        border-radius: 4px;
+        margin: .7rem 1rem;
+        background: linear-gradient(90deg, var(--clr-paper-2) 25%, var(--clr-line) 50%, var(--clr-paper-2) 75%);
+        background-size: 200% 100%;
+        animation: shimmer 1.3s linear infinite
+      }
+
+      .sk--art {
+        height: 16px;
+        margin: 0;
+        border-radius: 0
+      }
+
+      @keyframes shimmer {
+        to {
+          background-position: -200% 0
+        }
+      }
+
+      /* empty state */
+      .empty {
+        grid-column: 1/-1;
+        text-align: center;
+        padding: 3.5rem 1rem;
+        border: 3px dashed var(--clr-line-strong);
+        border-radius: var(--radius-m)
+      }
+
+      .empty .stamp {
+        font-size: clamp(1.4rem, .5vw+1.1rem, 2rem);
+        margin-bottom: 1rem
+      }
+
+      .empty p {
+        color: var(--clr-ink-2);
+        margin-bottom: 1.4rem
+      }
+
+      .menu-note {
+        margin-top: 1.6rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono-s);
+        letter-spacing: .05em;
+        color: var(--clr-ink-3);
+        display: flex;
+        flex-wrap: wrap;
+        gap: .4rem 1.4rem
+      }
+
+      /* ============ BUILD-A-BOSS ============ */
+      .build-wrap {
+        container-type: inline-size;
+        padding-bottom: var(--space-section)
+      }
+
+      .build-grid {
+        display: grid;
+        gap: 2rem
+      }
+
+      @container (min-width:920px) {
+        .build-grid {
+          grid-template-columns: 1.02fr .98fr;
+          align-items: start
+        }
+      }
+
+      .panel {
+        background: var(--clr-surface);
+        border: var(--border-w) solid var(--clr-ink);
+        border-radius: var(--radius-m);
+        box-shadow: var(--shadow-hard);
+        padding: 1.5rem
+      }
+
+      .step-label {
+        display: flex;
+        align-items: center;
+        gap: .7rem;
+        font-family: var(--font-display);
+        font-size: var(--fs-h3);
+        letter-spacing: .03em;
+        text-transform: uppercase;
+        margin-bottom: 1rem
+      }
+
+      .step-label .n {
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: var(--clr-tomato-deep);
+        color: #FFF6E8;
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono-s);
+        flex-shrink: 0
+      }
+
+      .bread-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: .7rem;
+        margin-bottom: 1.8rem
+      }
+
+      .bread-opt input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none
+      }
+
+      .bread-opt span {
+        display: flex;
+        flex-direction: column;
+        gap: .15rem;
+        border: 2.5px solid var(--clr-line-strong);
+        border-radius: 6px;
+        padding: .75rem .9rem;
+        cursor: pointer;
+        transition: all var(--dur-1) var(--ease);
+        background: var(--clr-paper)
+      }
+
+      .bread-opt span:hover {
+        border-color: var(--clr-ink);
+        transform: translateY(-2px)
+      }
+
+      .bread-opt b {
+        font-size: var(--fs-small);
+        text-transform: uppercase;
+        letter-spacing: .05em
+      }
+
+      .bread-opt i {
+        font-style: normal;
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono-s);
+        color: var(--clr-ink-3)
+      }
+
+      .bread-opt input:checked+span {
+        background: var(--clr-yellow);
+        border-color: var(--clr-ink);
+        box-shadow: 3px 3px 0 var(--clr-shadow)
+      }
+
+      .bread-opt input:focus-visible+span {
+        outline: 3px solid var(--clr-tomato);
+        outline-offset: 2px
+      }
+
+      .fill-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: .7rem
+      }
+
+      .fill-opt {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: .8rem;
+        text-align: left;
+        border: 2.5px solid var(--clr-line-strong);
+        border-radius: 6px;
+        padding: .8rem .9rem;
+        background: var(--clr-paper);
+        transition: all var(--dur-1) var(--ease)
+      }
+
+      .fill-opt:hover {
+        border-color: var(--clr-ink);
+        transform: translateX(4px)
+      }
+
+      .fill-opt .swatch {
+        width: 34px;
+        height: 22px;
+        border: 2px solid var(--clr-ink);
+        border-radius: 8px;
+        flex-shrink: 0;
+        background: var(--sw, #C97F28)
+      }
+
+      .fill-opt .fo-main {
+        flex: 1;
+        min-width: 0
+      }
+
+      .fill-opt b {
+        display: block;
+        font-size: var(--fs-small);
+        text-transform: uppercase;
+        letter-spacing: .04em
+      }
+
+      .fill-opt i {
+        font-style: normal;
+        font-family: var(--font-mono);
+        font-size: clamp(.62rem, .1vw+.58rem, .7rem);
+        color: var(--clr-ink-3)
+      }
+
+      .fill-opt .fo-badges {
+        display: flex;
+        gap: .3rem;
+        flex-wrap: wrap
+      }
+
+      .fill-opt .fo-in {
+        position: absolute;
+        top: -10px;
+        right: -6px;
+        font-family: var(--font-display);
+        font-size: var(--fs-badge);
+        letter-spacing: .1em;
+        background: var(--clr-tomato-deep);
+        color: #FFF6E8;
+        border: 2px solid var(--clr-ink);
+        border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+        padding: .25em .55em .15em;
+        transform: rotate(8deg) scale(0);
+        transition: transform var(--dur-2) var(--ease-bounce)
+      }
+
+      .fill-opt[aria-pressed="true"] {
+        border-color: var(--clr-ink);
+        background: var(--clr-yellow-soft);
+        box-shadow: 3px 3px 0 var(--clr-shadow)
+      }
+
+      .fill-opt[aria-pressed="true"] .fo-in {
+        transform: rotate(8deg) scale(1)
+      }
+
+      .fill-opt .order-no {
+        position: absolute;
+        left: -9px;
+        top: -9px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--clr-ink);
+        color: var(--clr-yellow);
+        font: 700 .7rem/20px var(--font-mono);
+        text-align: center;
+        transform: scale(0);
+        transition: transform var(--dur-2) var(--ease-bounce)
+      }
+
+      .fill-opt[aria-pressed="true"] .order-no {
+        transform: scale(1)
+      }
+
+      .build-counter {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: var(--fs-mono-s);
+        letter-spacing: .16em;
+        color: var(--clr-ink-3);
+        margin: 1rem 0 .4rem
+      }
+
+      .build-error {
+        color: var(--clr-danger);
+        font-weight: 700;
+        font-size: var(--fs-small);
+        margin-top: .6rem
+      }
+
+      .shake {
+        animation: shake .4s var(--ease)
+      }
+
+      @keyframes shake {
+
+        10%,
+        90% {
+          transform: translateX(-2px)
+        }
+
+        20%,
+        80% {
+          transform: translateX(4px)
+        }
+
+        30%,
+        50%,
+        70% {
+          transform: translateX(-6px)
+        }
+
+        40%,
+        60% {
+          transform: translateX(6px)
+        }
+      }
+
+      /* the glass counter */
+      .stage {
+        position: relative;
+        background: var(--clr-paper-2);
+        border: var(--border-w) solid var(--clr-ink);
+        border-radius: var(--radius-l);
+        padding: 2.6rem 1rem 1.6rem;
+        box-shadow: var(--shadow-hard);
+        overflow: hidden
+      }
+
+      .stage::before {
+        content: "THE GLASS COUNTER";
+        position: absolute;
+        top: .7rem;
+        left: 50%;
+        translate: -50% 0;
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: clamp(.58rem, .1vw+.54rem, .66rem);
+        letter-spacing: .34em;
+        color: var(--clr-ink-3)
+      }
+
+      .stage::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(115deg, rgba(255, 255, 255, .16) 0 12%, transparent 12.5% 100%);
+        pointer-events: none
+      }
+
+      .stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        min-height: 238px
+      }
+
+      .sl {
+        position: relative;
+        height: 26px;
+        border: 2.5px solid #2B1D12;
+        margin-bottom: -3px;
+        z-index: 2;
+        transition: width var(--dur-2) var(--ease)
+      }
+
+      .sl.drop {
+        animation: dropIn .5s var(--ease-bounce) both
+      }
+
+      @keyframes dropIn {
+        0% {
+          transform: translateY(-80px) scaleY(.6);
+          opacity: 0
+        }
+
+        62% {
+          transform: translateY(5px) scaleY(1.08);
+          opacity: 1
+        }
+
+        100% {
+          transform: none;
+          opacity: 1
+        }
+      }
+
+      .sl-top {
+        height: 46px;
+        border-radius: 70px 70px 12px 12px;
+        z-index: 6
+      }
+
+      .sl-white {
+        background: linear-gradient(#F6DFA9, #E9C77F)
+      }
+
+      .sl-wholemeal {
+        background: linear-gradient(#CE9F63, #B5854B)
+      }
+
+      .sl-bagel {
+        background: linear-gradient(#DCA55F, #C68C45)
+      }
+
+      .sl-bagel.sl-top::after {
+        content: "";
+        position: absolute;
+        inset: 8px 14px 14px;
+        background: radial-gradient(circle 2.4px at 12px 8px, #FFF6E0 97%, transparent) 0 0/26px 18px;
+        opacity: .9
+      }
+
+      .sl-gf {
+        background: linear-gradient(#EBD3A6, #D9BC85)
+      }
+
+      .sl-gf::after {
+        content: "";
+        position: absolute;
+        inset: 4px 10px;
+        background: radial-gradient(circle 1.7px at 9px 7px, #8A6A35 97%, transparent) 0 0/17px 13px;
+        opacity: .75
+      }
+
+      .sl-bottom {
+        height: 24px;
+        border-radius: 8px 8px 16px 16px;
+        z-index: 1
+      }
+
+      .sl-parma {
+        height: 30px;
+        border-radius: 16px;
+        background: linear-gradient(#E8A23F, #C97F28);
+        z-index: 5
+      }
+
+      .sl-parma::after {
+        content: "";
+        position: absolute;
+        left: 8%;
+        right: 8%;
+        bottom: -9px;
+        height: 10px;
+        background: radial-gradient(circle 7px at 9px 0, #F6C453 96%, transparent) 0 0/20px 10px repeat-x
+      }
+
+      .sl-crackle {
+        height: 30px;
+        background: #B4622D;
+        border: none;
+        z-index: 5;
+        clip-path: polygon(0 42%, 5% 12%, 12% 46%, 20% 6%, 29% 40%, 38% 10%, 47% 44%, 55% 5%, 64% 38%, 73% 12%, 82% 46%, 90% 8%, 100% 40%, 100% 100%, 0 100%)
+      }
+
+      .sl-meatballs {
+        height: 28px;
+        border-radius: 8px;
+        z-index: 5;
+        background: radial-gradient(circle 9px at 13px 13px, #5E3117 96%, transparent) 0 0/27px 24px repeat-x, linear-gradient(#8A4B26, #7A4020)
+      }
+
+      .sl-conti {
+        height: 24px;
+        border-radius: 12px;
+        z-index: 5;
+        background: repeating-linear-gradient(100deg, #E8A7A0 0 9px, #F7D6CE 9px 13px, #C96F62 13px 22px)
+      }
+
+      .sl-melt {
+        height: 28px;
+        border-radius: 12px;
+        z-index: 5;
+        background: radial-gradient(circle 5px at 11px 9px, #FDF6E3 96%, transparent) 0 0/23px 17px, linear-gradient(#7FB069, #5E8C4A)
+      }
+
+      .sl-melt::after {
+        content: "";
+        position: absolute;
+        left: 6%;
+        right: 6%;
+        bottom: -8px;
+        height: 9px;
+        background: radial-gradient(circle 6px at 8px 0, #6E8C4A 96%, transparent) 0 0/18px 9px repeat-x
+      }
+
+      .sl-vegan {
+        height: 28px;
+        border-radius: 12px;
+        z-index: 5;
+        background: linear-gradient(#8AA84E, #6E8B3A);
+        box-shadow: inset 0 -7px 0 #C6402C
+      }
+
+      .sl-plate {
+        width: 76%;
+        height: 13px;
+        border-radius: 50%;
+        background: var(--clr-ink);
+        opacity: .16;
+        filter: blur(1.5px);
+        margin-top: 8px
+      }
+
+      .stage-badges {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: .5rem;
+        margin-top: 1.1rem;
+        min-height: 30px;
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono-s);
+        letter-spacing: .12em;
+        color: var(--clr-ink-3)
+      }
+
+      /* deli ticket */
+      .printer {
+        width: 86%;
+        height: 15px;
+        margin: 2.2rem auto 0;
+        background: var(--clr-ink);
+        border-radius: 5px;
+        box-shadow: inset 0 -5px 0 rgba(0, 0, 0, .45)
+      }
+
+      .ticket {
+        position: relative;
+        background: var(--clr-ticket);
+        color: #2B1D12;
+        font-family: var(--font-mono);
+        font-size: var(--fs-ticket);
+        padding: 1.3rem 1.2rem 1.5rem;
+        width: min(400px, 100%);
+        margin: -4px auto 0;
+        box-shadow: 6px 6px 0 var(--clr-shadow);
+        border-radius: 2px
+      }
+
+      .ticket::before,
+      .ticket::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 11px;
+        background: conic-gradient(from 135deg at 50% 0, var(--clr-ticket) 90deg, #0000 0) 0 0/22px 11px repeat-x
+      }
+
+      .ticket::before {
+        top: 100%
+      }
+
+      .ticket::after {
+        bottom: 100%;
+        transform: scaleY(-1)
+      }
+
+      .ticket.printing {
+        animation: printOut .55s var(--ease) both
+      }
+
+      @keyframes printOut {
+        from {
+          transform: translateY(-26px);
+          opacity: 0;
+          clip-path: inset(0 0 100% 0)
+        }
+
+        to {
+          transform: none;
+          opacity: 1;
+          clip-path: inset(0 0 0 0)
+        }
+      }
+
+      .t-head {
+        text-align: center;
+        font-weight: 700;
+        letter-spacing: .14em
+      }
+
+      .t-head small {
+        display: block;
+        font-weight: 400;
+        font-size: .72em;
+        letter-spacing: .2em;
+        color: #6B573F;
+        margin-top: .2rem
+      }
+
+      .t-rule {
+        border-top: 2px dashed rgba(43, 29, 18, .4);
+        margin: .7rem 0
+      }
+
+      .t-row {
+        display: flex;
+        align-items: baseline;
+        gap: .5rem;
+        padding: .14rem 0
+      }
+
+      .t-row .dots {
+        flex: 1;
+        border-bottom: 2px dotted rgba(43, 29, 18, .45);
+        transform: translateY(-3px)
+      }
+
+      .t-row strong {
+        white-space: nowrap
+      }
+
+      .t-total {
+        font-weight: 700;
+        font-size: 1.12em
+      }
+
+      .t-total .dots {
+        border-bottom-width: 3px
+      }
+
+      .t-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .4rem;
+        padding: .3rem 0
+      }
+
+      .t-note {
+        text-align: center;
+        font-size: .78em;
+        letter-spacing: .1em;
+        color: #6B573F;
+        margin-top: .5rem
+      }
+
+      .t-bar {
+        height: 34px;
+        margin-top: .9rem;
+        background: repeating-linear-gradient(90deg, #2B1D12 0 2px, #0000 2px 5px, #2B1D12 5px 6px, #0000 6px 10px, #2B1D12 10px 13px, #0000 13px 15px)
+      }
+
+      .t-bar-no {
+        text-align: center;
+        font-size: .72em;
+        letter-spacing: .4em;
+        color: #4D3A26;
+        margin-top: .3rem
+      }
+
+      .build-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .8rem;
+        margin-top: 1.6rem
+      }
+
+      .build-cta .btn--tomato {
+        flex: 1 1 240px
+      }
+
+      /* ============ PLATTER MATH ============ */
+      .cat-wrap {
+        container-type: inline-size;
+        padding-bottom: var(--space-section)
+      }
+
+      .cat-grid {
+        display: grid;
+        gap: 2rem;
+        margin-bottom: 2.6rem
+      }
+
+      @container (min-width:920px) {
+        .cat-grid {
+          grid-template-columns: 1.08fr .92fr;
+          align-items: start
+        }
+      }
+
+      .calc-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: .8rem;
+        margin-bottom: 1.4rem
+      }
+
+      .cutoff {
+        display: inline-flex;
+        align-items: center;
+        gap: .55rem;
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: var(--fs-mono-s);
+        letter-spacing: .06em;
+        background: var(--clr-ink);
+        color: var(--clr-yellow);
+        border-radius: 6px;
+        padding: .5rem .8rem
+      }
+
+      .cutoff b {
+        color: #FFD968;
+        font-variant-numeric: tabular-nums
+      }
+
+      .stepper {
+        display: inline-flex;
+        align-items: center;
+        gap: 0;
+        border: var(--border-w) solid var(--clr-ink);
+        border-radius: 8px;
+        overflow: hidden;
+        background: var(--clr-paper)
+      }
+
+      .stepper button {
+        width: 48px;
+        height: 48px;
+        font: 700 1.2rem/1 var(--font-mono);
+        background: var(--clr-yellow);
+        color: #2B1D12;
+        transition: background var(--dur-1)
+      }
+
+      .stepper button:hover {
+        background: #FFD968
+      }
+
+      .stepper input {
+        width: 74px;
+        height: 48px;
+        border: none;
+        background: var(--clr-surface);
+        text-align: center;
+        font: 700 1.05rem var(--font-mono);
+        color: var(--clr-ink)
+      }
+
+      .stepper input:focus {
+        outline: none;
+        background: var(--clr-yellow-soft)
+      }
+
+      .calc-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: .8rem;
+        margin-bottom: 1.3rem
+      }
+
+      .calc-row>label,
+      .calc-row>.lbl {
+        font: 700 var(--fs-small) var(--font-body);
+        text-transform: uppercase;
+        letter-spacing: .08em
+      }
+
+      .calc-row select {
+        border: 2.5px solid var(--clr-line-strong);
+        border-radius: 6px;
+        background: var(--clr-paper);
+        color: var(--clr-ink);
+        font: 600 var(--fs-small) var(--font-body);
+        padding: .6rem .8rem;
+        min-width: 230px;
+        cursor: pointer
+      }
+
+      .calc-fills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .55rem;
+        margin: .4rem 0 1.4rem
+      }
+
+      .calc-out {
+        border-top: 3px solid var(--clr-ink);
+        padding-top: 1.1rem
+      }
+
+      .out-line {
+        display: flex;
+        align-items: baseline;
+        gap: .6rem;
+        padding: .3rem 0;
+        font-size: var(--fs-small)
+      }
+
+      .out-line .dots {
+        flex: 1;
+        border-bottom: 2px dotted var(--clr-line-strong);
+        transform: translateY(-3px)
+      }
+
+      .out-line .val {
+        font-family: var(--font-mono);
+        font-weight: 700
+      }
+
+      .out-big {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: var(--clr-yellow);
+        border: var(--border-w) solid var(--clr-ink);
+        border-radius: var(--radius-m);
+        padding: 1rem 1.2rem;
+        margin: 1rem 0;
+        box-shadow: 4px 4px 0 var(--clr-shadow)
+      }
+
+      .out-big .num {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 2vw+1.6rem, 3.4rem);
+        line-height: 1;
+        color: #2B1D12
+      }
+
+      .out-big .cap {
+        font: 700 var(--fs-mono-s) var(--font-mono);
+        letter-spacing: .14em;
+        color: #4D3A26;
+        text-transform: uppercase
+      }
+
+      .out-total {
+        font-size: 1.05rem
+      }
+
+      .out-total .val {
+        font-size: clamp(1.2rem, .3vw+1.1rem, 1.45rem);
+        color: var(--clr-tomato-deep)
+      }
+
+      .calc-note {
+        font-size: clamp(.74rem, .1vw+.7rem, .82rem);
+        font-style: italic;
+        color: var(--clr-ink-3);
+        margin-top: .9rem
+      }
+
+      /* quote form */
+      .form-card {
+        background: var(--clr-surface);
+        border: var(--border-w) solid var(--clr-ink);
+        border-radius: var(--radius-m);
+        box-shadow: var(--shadow-hard);
+        padding: clamp(1.4rem, 3vw, 2.2rem)
+      }
+
+      .form-card.flash {
+        animation: flash 1s var(--ease)
+      }
+
+      @keyframes flash {
+
+        0%,
+        100% {
+          box-shadow: var(--shadow-hard)
+        }
+
+        30% {
+          box-shadow: 0 0 0 6px var(--clr-yellow), var(--shadow-hard)
+        }
+      }
+
+      .form-grid {
+        container-type: inline-size;
+        display: grid;
+        gap: 1.1rem
+      }
+
+      @container (min-width:680px) {
+        .form-grid {
+          grid-template-columns: 1fr 1fr
+        }
+
+        .form-grid .span2 {
+          grid-column: 1/-1
+        }
+      }
+
+      .field label {
+        display: block;
+        font: 700 var(--fs-mono-s) var(--font-body);
+        text-transform: uppercase;
+        letter-spacing: .1em;
+        margin-bottom: .4rem;
+        color: var(--clr-ink-2)
+      }
+
+      .field label b {
+        color: var(--clr-tomato-deep)
+      }
+
+      .field input,
+      .field select,
+      .field textarea {
+        width: 100%;
+        border: 2.5px solid var(--clr-line-strong);
+        border-radius: 6px;
+        background: var(--clr-paper);
+        color: var(--clr-ink);
+        padding: .75rem .9rem;
+        font: 500 var(--fs-small) var(--font-body);
+        transition: border-color var(--dur-1), box-shadow var(--dur-1), background var(--dur-1)
+      }
+
+      .field input:hover,
+      .field select:hover,
+      .field textarea:hover {
+        border-color: var(--clr-ink)
+      }
+
+      .field input:focus-visible,
+      .field select:focus-visible,
+      .field textarea:focus-visible {
+        outline: none;
+        border-color: var(--clr-ink);
+        box-shadow: 3px 3px 0 var(--clr-shadow)
+      }
+
+      .field textarea {
+        resize: vertical;
+        min-height: 96px
+      }
+
+      .field.invalid input,
+      .field.invalid select,
+      .field.invalid textarea {
+        border-color: var(--clr-danger);
+        background: rgba(214, 64, 43, .06)
+      }
+
+      .err {
+        color: var(--clr-danger);
+        font: 700 clamp(.72rem, .1vw+.68rem, .8rem) var(--font-body);
+        margin-top: .35rem
+      }
+
+      .check-row {
+        display: flex;
+        gap: .7rem;
+        align-items: flex-start
+      }
+
+      .check-row input {
+        width: 20px;
+        height: 20px;
+        accent-color: var(--clr-tomato-deep);
+        margin-top: .15rem;
+        flex-shrink: 0
+      }
+
+      .check-row label {
+        font-size: var(--fs-small);
+        text-transform: none;
+        letter-spacing: 0;
+        font-weight: 500;
+        color: var(--clr-ink-2)
+      }
+
+      .diet-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .5rem .9rem
+      }
+
+      .build-summary {
+        border: 2.5px dashed var(--clr-line-strong);
+        border-radius: 6px;
+        background: var(--clr-paper);
+        padding: .8rem 1rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono-s);
+        color: var(--clr-ink-2)
+      }
+
+      .build-summary b {
+        color: var(--clr-ink)
+      }
+
+      .form-foot {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1.4rem
+      }
+
+      .form-alt {
+        font-size: var(--fs-small);
+        color: var(--clr-ink-3)
+      }
+
+      .form-alt a {
+        color: var(--clr-tomato-deep);
+        font-weight: 700
+      }
+
+      /* success ticket */
+      .success-ticket {
+        max-width: 460px
+      }
+
+      .success-ticket .stamp {
+        font-size: clamp(1.3rem, .4vw+1.1rem, 1.7rem);
+        margin-bottom: .9rem
+      }
+
+      .success-ticket p {
+        font-size: var(--fs-small);
+        color: #4D3A26
+      }
+
+      .success-ticket .t-row {
+        color: #2B1D12
+      }
+
+      /* ============ NONNA'S LEDGER ============ */
+      .story-sec {
+        padding-bottom: var(--space-section)
+      }
+
+      .ledger {
+        position: relative;
+        margin-top: 2.6rem;
+        padding-left: clamp(2rem, 5vw, 3.2rem)
+      }
+
+      .ledger::before {
+        content: "";
+        position: absolute;
+        left: .72rem;
+        top: 8px;
+        bottom: 8px;
+        border-left: 4px dotted var(--clr-tomato-deep)
+      }
+
+      .led-item {
+        position: relative;
+        margin-bottom: clamp(2.4rem, 5vw, 3.6rem);
+        max-width: 640px
+      }
+
+      .led-item:nth-child(even) {
+        margin-left: auto
+      }
+
+      .led-item::before {
+        content: "";
+        position: absolute;
+        left: calc(-1 * clamp(2rem, 5vw, 3.2rem) + .22rem);
+        top: 10px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--clr-yellow);
+        border: 4px solid var(--clr-tomato-deep)
+      }
+
+      .led-year {
+        display: inline-block;
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: var(--fs-mono-s);
+        letter-spacing: .2em;
+        background: var(--clr-ink);
+        color: var(--clr-yellow);
+        padding: .35rem .8rem;
+        border-radius: 4px;
+        margin-bottom: .9rem;
+        transform: rotate(-1.5deg)
+      }
+
+      .led-item h3 {
+        font-size: var(--fs-h2);
+        margin-bottom: .9rem
+      }
+
+      .artifact {
+        border-radius: 6px;
+        transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease)
+      }
+
+      .artifact:hover {
+        transform: rotate(0) translateY(-4px) !important
+      }
+
+      .art-recipe {
+        background: #FFFDF6;
+        color: #2B1D12;
+        border: 2px solid rgba(43, 29, 18, .35);
+        border-top: 7px solid #B32E1C;
+        padding: 1.4rem 1.4rem 1.4rem 3rem;
+        box-shadow: var(--shadow-hard);
+        transform: rotate(-1.2deg);
+        position: relative;
+        background-image: repeating-linear-gradient(#0000 0 27px, rgba(43, 108, 180, .16) 27px 28px);
+        box-shadow: var(--shadow-hard), inset 2.4rem 0 0 -2.25rem rgba(214, 64, 43, .4)
+      }
+
+      .art-recipe h4 {
+        font-family: var(--font-hand);
+        font-size: clamp(1.5rem, .5vw+1.2rem, 1.9rem);
+        color: #B32E1C;
+        margin-bottom: .5rem;
+        line-height: 1.1
+      }
+
+      .art-recipe p {
+        font-family: var(--font-hand);
+        font-size: clamp(1.15rem, .3vw+1rem, 1.35rem);
+        line-height: 1.5;
+        color: #3d2b1b
+      }
+
+      .art-recipe .stamp {
+        position: absolute;
+        top: -16px;
+        right: 14px;
+        background: #FFFDF6;
+        font-size: var(--fs-badge)
+      }
+
+      .art-polaroid {
+        background: #FFFDF6;
+        padding: .9rem .9rem 1rem;
+        box-shadow: var(--shadow-hard);
+        transform: rotate(1.4deg);
+        border: 2px solid rgba(43, 29, 18, .25)
+      }
+
+      .pol-photo {
+        height: 190px;
+        border: 2px solid #2B1D12;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(#F1E4C9 0 58%, #D9C6A6 58%)
+      }
+
+      .pol-photo .storefront {
+        position: absolute;
+        left: 18%;
+        right: 18%;
+        top: 16%;
+        bottom: 0;
+        background: var(--clr-yellow);
+        border: 3px solid #2B1D12;
+        border-bottom: none;
+        display: grid;
+        place-items: center
+      }
+
+      .pol-photo .storefront::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 20px;
+        background: conic-gradient(#B32E1C 25%, #FFFDF6 0 50%, #B32E1C 0 75%, #FFFDF6 0) 0 0/14px 14px
+      }
+
+      .pol-photo .storefront b {
+        font-family: var(--font-display);
+        font-size: clamp(.8rem, .2vw+.7rem, 1rem);
+        color: #2B1D12;
+        letter-spacing: .05em;
+        margin-top: 14px
+      }
+
+      .pol-photo .door {
+        position: absolute;
+        left: 44%;
+        bottom: 0;
+        width: 12%;
+        height: 34%;
+        background: #2B1D12
+      }
+
+      .pol-photo .sun {
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: #FFD968;
+        border: 2px solid #2B1D12
+      }
+
+      .art-polaroid figcaption {
+        font-family: var(--font-hand);
+        font-size: clamp(1.15rem, .3vw+1rem, 1.4rem);
+        color: #3d2b1b;
+        text-align: center;
+        padding-top: .7rem
+      }
+
+      .art-press {
+        background: var(--clr-paper-2);
+        border: 2.5px solid var(--clr-ink);
+        padding: 1.6rem;
+        box-shadow: var(--shadow-hard);
+        transform: rotate(-.8deg);
+        position: relative
+      }
+
+      .art-press .stamp {
+        font-size: clamp(1.1rem, .3vw+1rem, 1.4rem);
+        margin-bottom: 1rem
+      }
+
+      .art-press blockquote {
+        font-size: clamp(1.1rem, .3vw+1rem, 1.3rem);
+        font-style: italic;
+        font-weight: 600;
+        line-height: 1.45;
+        margin-bottom: .8rem
+      }
+
+      .art-press cite {
+        font-family: var(--font-mono);
+        font-style: normal;
+        font-size: var(--fs-mono-s);
+        letter-spacing: .16em;
+        color: var(--clr-ink-3)
+      }
+
+      .art-flagship {
+        background: var(--clr-yellow);
+        color: #2B1D12;
+        border: var(--border-w) solid #2B1D12;
+        padding: 1.8rem;
+        box-shadow: var(--shadow-hard);
+        transform: rotate(.8deg);
+        position: relative;
+        overflow: hidden
+      }
+
+      .art-flagship::after {
+        content: "";
+        position: absolute;
+        right: -30px;
+        bottom: -30px;
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        border: 4px dotted rgba(43, 29, 18, .4)
+      }
+
+      .art-flagship p {
+        font-weight: 600;
+        max-width: 40ch;
+        margin-bottom: 1rem
+      }
+
+      .pin {
+        display: inline-block;
+        position: relative;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #B32E1C;
+        border: 3px solid #2B1D12;
+        margin-right: .5rem;
+        vertical-align: -2px
+      }
+
+      .pin::after {
+        content: "";
+        position: absolute;
+        inset: -9px;
+        border-radius: 50%;
+        border: 2.5px solid rgba(179, 46, 28, .55);
+        animation: pulse 2s var(--ease) infinite
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(.5);
+          opacity: 1
+        }
+
+        100% {
+          transform: scale(1.5);
+          opacity: 0
+        }
+      }
+
+      .story-cta {
+        margin-top: 1rem;
+        text-align: center
+      }
+
+      /* ============ FIND US ============ */
+      .find-wrap {
+        container-type: inline-size;
+        padding-bottom: var(--space-section)
+      }
+
+      .find-grid {
+        display: grid;
+        gap: 1.8rem;
+        margin-bottom: 2.4rem
+      }
+
+      @container (min-width:880px) {
+        .find-grid {
+          grid-template-columns: 1fr 1.15fr
+        }
+      }
+
+      .hours-row {
+        display: flex;
+        align-items: baseline;
+        gap: .7rem;
+        padding: .62rem .5rem;
+        border-bottom: 2px dotted var(--clr-line);
+        font-size: var(--fs-small);
+        transition: background var(--dur-1)
+      }
+
+      .hours-row:hover {
+        background: var(--clr-paper-2)
+      }
+
+      .hours-row .dots {
+        flex: 1;
+        border-bottom: 2px dotted var(--clr-line);
+        transform: translateY(-3px)
+      }
+
+      .hours-row .day {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        letter-spacing: .1em
+      }
+
+      .hours-row .time {
+        font-family: var(--font-mono)
+      }
+
+      .hours-row.today {
+        background: var(--clr-yellow-soft);
+        border-radius: 4px;
+        border-bottom-color: transparent;
+        position: relative
+      }
+
+      .hours-row.today .day::after {
+        content: "← TODAY, BOSS";
+        font-family: var(--font-hand);
+        font-size: clamp(.95rem, .2vw+.85rem, 1.1rem);
+        color: var(--clr-tomato-deep);
+        margin-left: .6rem;
+        letter-spacing: 0;
+        font-weight: 700
+      }
+
+      .contact-line {
+        display: flex;
+        gap: .8rem;
+        align-items: flex-start;
+        padding: .6rem 0;
+        font-size: var(--fs-small)
+      }
+
+      .contact-line .ic {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        color: var(--clr-tomato-deep);
+        flex-shrink: 0;
+        width: 2.4em
+      }
+
+      .contact-line a {
+        font-weight: 700;
+        color: var(--clr-tomato-deep);
+        text-decoration-color: var(--clr-tomato-deep);
+        text-underline-offset: 3px;
+        transition: color var(--dur-1)
+      }
+
+      .contact-line a:hover {
+        color: var(--clr-ink)
+      }
+
+      .socials {
+        display: flex;
+        gap: .6rem;
+        flex-wrap: wrap;
+        margin-top: 1rem
+      }
+
+      .socials a {
+        font: 700 var(--fs-mono-s) var(--font-mono);
+        letter-spacing: .1em;
+        border: 2.5px solid var(--clr-ink);
+        border-radius: 6px;
+        padding: .55rem .9rem;
+        text-decoration: none;
+        box-shadow: 3px 3px 0 var(--clr-shadow);
+        transition: all var(--dur-1) var(--ease)
+      }
+
+      .socials a:hover {
+        background: var(--clr-yellow);
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 var(--clr-shadow)
+      }
+
+      .dir-note {
+        margin-top: 1.2rem;
+        font-family: var(--font-hand);
+        font-size: clamp(1.2rem, .3vw+1.05rem, 1.45rem);
+        color: var(--clr-ink-2);
+        transform: rotate(-1deg)
+      }
+
+      .dir-note b {
+        color: var(--clr-tomato-deep)
+      }
+
+      /* css map */
+      .map {
+        position: relative;
+        aspect-ratio: 5/4;
+        background: var(--clr-paper-2);
+        border: var(--border-w) solid var(--clr-ink);
+        border-radius: var(--radius-m);
+        overflow: hidden;
+        box-shadow: var(--shadow-hard)
+      }
+
+      .map .river {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 16%;
+        background: var(--clr-river);
+        border-top: 3px solid var(--clr-line-strong)
+      }
+
+      .map .river span {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        translate: 0 -50%;
+        font-family: var(--font-mono);
+        font-size: clamp(.55rem, .1vw+.5rem, .64rem);
+        letter-spacing: .3em;
+        color: var(--clr-ink-3)
+      }
+
+      .map .st-h {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 44%;
+        height: 36px;
+        background: var(--clr-surface);
+        border-block: 3px solid var(--clr-line-strong)
+      }
+
+      .map .st-v {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 56%;
+        width: 30px;
+        background: var(--clr-surface);
+        border-inline: 3px solid var(--clr-line-strong)
+      }
+
+      .map .st-label {
+        position: absolute;
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: clamp(.52rem, .1vw+.48rem, .6rem);
+        letter-spacing: .24em;
+        color: var(--clr-ink-3)
+      }
+
+      .map .l1 {
+        top: calc(44% + 9px);
+        left: 1rem
+      }
+
+      .map .l2 {
+        left: calc(56% + 36px);
+        top: 1rem;
+        writing-mode: vertical-rl
+      }
+
+      .map .jz {
+        position: absolute;
+        top: calc(44% - 44px);
+        left: calc(56% - 74px);
+        width: 64px;
+        height: 40px;
+        background: var(--clr-yellow);
+        border: 3px solid var(--clr-ink);
+        box-shadow: 4px 4px 0 var(--clr-shadow);
+        display: grid;
+        place-items: center;
+        font-family: var(--font-display);
+        font-size: clamp(.7rem, .1vw+.65rem, .85rem);
+        color: #2B1D12;
+        animation: jzBounce 3s ease-in-out infinite
+      }
+
+      @keyframes jzBounce {
+
+        0%,
+        100% {
+          transform: translateY(0)
+        }
+
+        50% {
+          transform: translateY(-4px)
+        }
+      }
+
+      .map .jz-pin {
+        position: absolute;
+        top: calc(44% - 78px);
+        left: calc(56% - 51px)
+      }
+
+      .map .legend {
+        position: absolute;
+        left: .8rem;
+        top: .8rem;
+        background: var(--clr-surface);
+        border: 2px solid var(--clr-ink);
+        border-radius: 4px;
+        padding: .4rem .7rem;
+        font-family: var(--font-mono);
+        font-size: clamp(.55rem, .1vw+.5rem, .62rem);
+        letter-spacing: .14em
+      }
+
+      .map .gardens {
+        position: absolute;
+        right: .9rem;
+        bottom: 22%;
+        font-family: var(--font-hand);
+        font-size: clamp(.95rem, .2vw+.85rem, 1.1rem);
+        color: var(--clr-green-deep);
+        transform: rotate(-3deg)
+      }
+
+      /* rewards */
+      .rewards {
+        background: var(--clr-ink);
+        color: var(--clr-paper);
+        border-radius: var(--radius-m);
+        border: var(--border-w) solid var(--clr-ink);
+        padding: clamp(1.6rem, 4vw, 2.6rem);
+        box-shadow: var(--shadow-hard);
+        position: relative;
+        overflow: hidden
+      }
+
+      .rewards::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(rgba(255, 199, 44, .13) 1.5px, transparent 1.6px);
+        background-size: 15px 15px
+      }
+
+      .rewards .wrap-in {
+        position: relative;
+        display: grid;
+        gap: 1.4rem
+      }
+
+      @container (min-width:760px) {
+        .rewards .wrap-in {
+          grid-template-columns: 1.1fr .9fr;
+          align-items: center
+        }
+      }
+
+      .rewards h2 {
+        font-size: var(--fs-h2);
+        color: var(--clr-yellow)
+      }
+
+      .rewards p {
+        color: rgba(248, 239, 220, .75);
+        font-size: var(--fs-small);
+        max-width: 44ch
+      }
+
+      .rw-form {
+        display: flex;
+        gap: .7rem;
+        flex-wrap: wrap
+      }
+
+      .rw-form input {
+        flex: 1 1 220px;
+        border: 3px solid var(--clr-yellow);
+        border-radius: 6px;
+        background: rgba(255, 253, 246, .08);
+        color: var(--clr-paper);
+        padding: .85rem 1rem;
+        font: 500 var(--fs-small) var(--font-body);
+        transition: background var(--dur-1)
+      }
+
+      .rw-form input::placeholder {
+        color: rgba(248, 239, 220, .5)
+      }
+
+      .rw-form input:focus-visible {
+        outline: none;
+        background: rgba(255, 253, 246, .16)
+      }
+
+      .rw-err {
+        color: #F08C75;
+        font-weight: 700;
+        font-size: var(--fs-small);
+        margin-top: .5rem
+      }
+
+      .rw-success {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        color: var(--clr-yellow);
+        font-size: var(--fs-small);
+        letter-spacing: .05em
+      }
+
+      .rw-success .stamp {
+        display: block;
+        margin-bottom: .8rem;
+        color: #FFD968;
+        border-color: #FFD968
+      }
+
+      .delivery-strip {
+        margin-top: 1.6rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono-s);
+        letter-spacing: .08em;
+        color: var(--clr-ink-3);
+        border: 2.5px dashed var(--clr-line-strong);
+        border-radius: 6px;
+        padding: .9rem 1.1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: .3rem 1.4rem
+      }
+
+      /* ============ 404 ============ */
+      .notfound {
+        padding: var(--space-section) 0;
+        text-align: center
+      }
+
+      .notfound .stamp {
+        font-size: clamp(1.2rem, .5vw+1rem, 1.7rem);
+        margin-bottom: 1.6rem
+      }
+
+      .notfound h1 {
+        font-size: var(--fs-mega);
+        margin-bottom: 1rem
+      }
+
+      .notfound h1 span {
+        color: var(--clr-tomato-deep)
+      }
+
+      .notfound p {
+        max-width: 44ch;
+        margin: 0 auto 2rem;
+        color: var(--clr-ink-2)
+      }
+
+      .notfound .btns {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap
+      }
+
+      /* ============ FOOTER ============ */
+      .site-footer {
+        background: var(--clr-ink);
+        color: var(--clr-paper);
+        position: relative
+      }
+
+      .foot-word {
+        overflow: hidden;
+        padding: 2.2rem 0 .6rem;
+        pointer-events: none;
+        user-select: none
+      }
+
+      .foot-word span {
+        display: block;
+        font-family: var(--font-display);
+        font-size: clamp(3.4rem, 11vw, 8.5rem);
+        line-height: .9;
+        letter-spacing: .02em;
+        color: transparent;
+        -webkit-text-stroke: 2px rgba(248, 239, 220, .28);
+        white-space: nowrap;
+        text-align: center
+      }
+
+      .foot-grid {
+        display: grid;
+        gap: 2rem;
+        padding: 1.6rem 0 2.4rem
+      }
+
+      @media(min-width:820px) {
+        .foot-grid {
+          grid-template-columns: 1.4fr 1fr 1fr 1fr
+        }
+      }
+
+      .foot-grid h3 {
+        font-size: clamp(.85rem, .15vw+.8rem, 1rem);
+        letter-spacing: .18em;
+        color: var(--clr-yellow);
+        margin-bottom: .9rem
+      }
+
+      .foot-grid p,
+      .foot-grid li {
+        font-size: var(--fs-small);
+        color: rgba(248, 239, 220, .72);
+        line-height: 1.8
+      }
+
+      .foot-grid ul {
+        list-style: none
+      }
+
+      .foot-grid a {
+        color: rgba(248, 239, 220, .85);
+        text-decoration: none;
+        border-bottom: 2px dotted rgba(255, 199, 44, .45);
+        transition: color var(--dur-1), border-color var(--dur-1)
+      }
+
+      .foot-grid a:hover {
+        color: var(--clr-yellow);
+        border-color: var(--clr-yellow)
+      }
+
+      .foot-brand {
+        font-family: var(--font-display);
+        font-size: clamp(1.5rem, .5vw+1.3rem, 1.9rem);
+        color: var(--clr-yellow);
+        margin-bottom: .6rem
+      }
+
+      .foot-brand em {
+        font-style: normal;
+        color: var(--clr-tomato)
+      }
+
+      .foot-bottom {
+        border-top: 2px dotted rgba(248, 239, 220, .25);
+        padding: 1.2rem 0 1.6rem;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        font-family: var(--font-mono);
+        font-size: clamp(.62rem, .1vw+.58rem, .7rem);
+        letter-spacing: .1em;
+        color: rgba(248, 239, 220, .5)
+      }
+
+      .foot-bottom .ack {
+        max-width: 88ch;
+        line-height: 1.7
+      }
+
+      /* ============ REDUCED MOTION ============ */
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: .01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: .01ms !important
+        }
+
+        .ticker__track {
+          animation: none;
+          flex-wrap: wrap;
+          width: auto
+        }
+
+        [data-reveal] {
+          opacity: 1;
+          transform: none
+        }
+
+        .specials {
+          animation: none
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to the counter</a>
+
+    <!-- ============ TOP LINE ============ -->
+    <div class="topline" role="note">
+      <div class="wrap">
+        <span>MON–FRI · 7AM–2PM · AWST</span>
+        <span>45 ST GEORGES TERRACE · CNR BARRACK ST · PERTH CBD</span>
+        <span>☎ 0491 954 139</span>
+      </div>
+    </div>
+
+    <!-- ============ HEADER (persistent) ============ -->
+    <header class="site-header" id="siteHeader">
+      <div class="wrap">
+        <a class="brand" href="#/" aria-label="Joey Zaza's — home">
+          <span class="brand__name">JOEY ZAZA<em>'S</em></span>
+          <span class="brand__tag">THE BOSS SANDWICH · PERTH CBD</span>
+        </a>
+        <span class="status-pill" id="statusPill" role="status"><span class="dot" aria-hidden="true"></span><span
+            id="statusText">CHECKING THE OVEN…</span></span>
+        <button class="icon-btn" id="themeToggle" type="button" aria-pressed="false"
+          aria-label="Switch to after-hours kitchen mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+            aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path
+              d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M19.4 4.6l-1.8 1.8M6.4 17.6l-1.8 1.8" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z" />
+          </svg>
+        </button>
+        <button class="icon-btn" id="cartBtn" type="button" aria-label="Open your Square order ticket"
+          aria-expanded="false" aria-controls="cartPop">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <path d="M4 8h16l-1.5 12h-13L4 8z" />
+            <path d="M8 8V6a4 4 0 0 1 8 0v2" />
+          </svg>
+          <span class="cart-count" id="cartCount" hidden>0</span>
+        </button>
+        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navOverlay">
+          <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span> MENU
+        </button>
+      </div>
+    </header>
+
+    <!-- ============ FULL-SCREEN MENU-BOARD NAV ============ -->
+    <div class="overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Joey Zaza's menu-board navigation"
+      hidden>
+      <div class="overlay__panel">
+        <div class="overlay__top">
+          <span class="overlay__brand">JOEY ZAZA'S</span>
+          <button class="overlay__close" id="navClose" type="button">CLOSE ✕</button>
+        </div>
+        <p class="overlay__note mono">THE HOUSE MENU — PICK A PAGE, BOSS</p>
+        <nav class="overlay__nav" aria-label="Main navigation">
+          <a class="ov-row" href="#/" data-route="/">
+            <span class="ov-no">No.01</span><span class="ov-name">The Counter</span>
+            <span class="ov-desc">today's specials, the rush, the hits</span><span class="ov-here"
+              aria-hidden="true">HERE</span>
+          </a>
+          <a class="ov-row" href="#/menu" data-route="/menu">
+            <span class="ov-no">No.02</span><span class="ov-name">The Menu Board</span>
+            <span class="ov-desc">boss sandwiches, bagels, melts &amp; coffee</span><span class="ov-here"
+              aria-hidden="true">HERE</span>
+          </a>
+          <a class="ov-row" href="#/build" data-route="/build">
+            <span class="ov-no">No.03</span><span class="ov-name">Build-A-Boss</span>
+            <span class="ov-desc">stack it yourself — three fillings max</span><span class="ov-here"
+              aria-hidden="true">HERE</span>
+          </a>
+          <a class="ov-row" href="#/catering" data-route="/catering">
+            <span class="ov-no">No.04</span><span class="ov-name">Platter Math</span>
+            <span class="ov-desc">catering that does itself</span><span class="ov-here" aria-hidden="true">HERE</span>
+          </a>
+          <a class="ov-row" href="#/story" data-route="/story">
+            <span class="ov-no">No.05</span><span class="ov-name">Nonna's Ledger</span>
+            <span class="ov-desc">eighty years in the making</span><span class="ov-here" aria-hidden="true">HERE</span>
+          </a>
+          <a class="ov-row" href="#/find-us" data-route="/find-us">
+            <span class="ov-no">No.06</span><span class="ov-name">The Yellow Storefront</span>
+            <span class="ov-desc">hours, map &amp; boss rewards</span><span class="ov-here"
+              aria-hidden="true">HERE</span>
+          </a>
+        </nav>
+        <div class="overlay__foot">
+          <span>MON–FRI 7AM–2PM</span>
+          <span>45 ST GEORGES TERRACE, PERTH</span>
+          <a href="tel:0491954139">0491 954 139</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ CART POPOVER ============ -->
+    <div class="cart-pop" id="cartPop" hidden aria-label="Your Square order ticket">
+      <div class="cart-pop__head mono"><span>YOUR SQUARE TICKET</span><button id="cartClose" type="button"
+          aria-label="Close order ticket">✕</button></div>
+      <div class="cart-pop__body">
+        <div id="cartView">
+          <div id="cartLines"></div>
+          <div class="cart-total"><span>TOTAL</span><span id="cartTotal">$0.00</span></div>
+          <p class="cart-note">Pickup at 45 St Georges Terrace. Pay now, grab it, go.</p>
+          <button class="btn btn--tomato btn--block" id="checkoutBtn" type="button">CHECKOUT VIA SQUARE <span
+              class="arr" aria-hidden="true">→</span></button>
+        </div>
+        <div id="cartLoading" class="cart-loading" hidden>
+          <div class="spinner" aria-hidden="true"></div>
+          <p class="mono" style="font-size:var(--fs-mono-s);letter-spacing:.14em">SENDING TO SQUARE…</p>
+        </div>
+        <div id="cartSuccess" class="cart-success" hidden>
+          <span class="stamp">ORDER IN!</span>
+          <p><strong id="successOrderNo">Z-0000</strong> confirmed, Boss.<br>We'll yell your name at the counter.</p>
+          <span class="mono" id="successEta">READY IN ~10 MIN</span>
+          <div style="margin-top:1.2rem"><button class="btn btn--ink" id="successDone" type="button">BACK TO
+              WORK</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ MAIN / SWAPPABLE VIEWS ============ -->
+    <main id="main">
+
+      <!-- ================= HOME ================= -->
+      <section class="view" id="view-home" aria-labelledby="home-title">
+        <div class="hero">
+          <div class="hero-wrap">
+            <div class="wrap">
+              <div>
+                <p class="hero-kicker"><span class="dot" aria-hidden="true"></span> NOW SERVING · 45 ST GEORGES TERRACE
+                  · CNR BARRACK ST</p>
+                <h1 class="hero-title view-title" id="home-title" tabindex="-1">
+                  <span class="ht-line ht-a">MEAN.</span>
+                  <span class="ht-line ht-b">BOSS.</span>
+                  <span class="ht-line ht-c">LUNCH<span class="tom">.</span></span>
+                </h1>
+                <p class="hero-sub">New York-style sandwiches, Nonna's <strong>80-year-old meatballs</strong> and
+                  Blacklist coffee — built at the counter in ninety seconds and back on your desk by 12:30. Step up,
+                  Boss.</p>
+                <div class="hero-ctas">
+                  <a class="btn btn--tomato" href="#/build">BUILD YOUR BOSS <span class="arr"
+                      aria-hidden="true">→</span></a>
+                  <a class="btn" href="#/menu">SEE THE MENU BOARD</a>
+                </div>
+                <p class="hero-trust">
+                  <span class="stars" aria-label="Rated 4.9 out of 5">★★★★★ 4.9</span>
+                  <span>2,300+ CBD REGULARS</span>
+                  <span class="mini" aria-label="Featured on SBS">SBS</span>
+                  <span class="mini" aria-label="Featured in WA Today">WA TODAY</span>
+                </p>
+              </div>
+              <div class="hero-right">
+                <svg class="spin-badge" viewBox="0 0 120 120" aria-hidden="true">
+                  <circle cx="60" cy="60" r="58" fill="#FFC72C" stroke="#2B1D12" stroke-width="3" />
+                  <g class="ring">
+                    <defs>
+                      <path id="circPath" d="M60,60 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0" />
+                    </defs>
+                    <text>
+                      <textPath href="#circPath">FRESH DAILY ★ PERTH CBD ★ NONNA'S RECIPE ★ EST. FAMILY ★</textPath>
+                    </text>
+                  </g>
+                  <text class="mid" x="60" y="71" text-anchor="middle">JZ</text>
+                </svg>
+                <div class="specials on-ticket">
+                  <div class="ticket" role="note" aria-label="Today's specials">
+                    <p class="t-head">TODAY'S SPECIALS<small id="specDay">— PERTH TIME —</small></p>
+                    <div class="t-rule"></div>
+                    <div class="t-row"><span>PARMA &amp; POUR</span><span class="dots"></span><strong>$18.00</strong>
+                    </div>
+                    <div class="t-row"><span style="font-size:.82em;color:#6B573F">parma + a pour of red</span></div>
+                    <div class="t-row"><span>MEATBALL DROP</span><span class="dots"></span><strong>$16.00</strong></div>
+                    <div class="t-row"><span style="font-size:.82em;color:#6B573F">winter only. don't ask.</span></div>
+                    <div class="t-row"><span>EARLY BIRD</span><span class="dots"></span><strong>$12.00</strong></div>
+                    <div class="t-row"><span style="font-size:.82em;color:#6B573F">bagel + flat white, pre-8am</span>
+                    </div>
+                    <div class="t-rule"></div>
+                    <p class="t-note">TICKET #<span id="specNo">S-000</span> · SERVING THE CBD SINCE 2020</p>
+                    <div class="t-bar" aria-hidden="true"></div>
+                    <p class="t-bar-no" aria-hidden="true">JOEYZAZAS·PERTH·CBD</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="checker" aria-hidden="true"></div>
+        </div>
+
+        <!-- marquee ticker -->
+        <div class="ticker" aria-label="Sandwich ticker">
+          <div class="ticker__track" id="tickerTrack"></div>
+        </div>
+
+        <!-- the 60-second lunch -->
+        <div class="flow-sec">
+          <div class="wrap">
+            <div class="bests-head" data-reveal>
+              <div>
+                <p class="kicker">THE 60-SECOND LUNCH</p>
+                <h2 style="font-size:var(--fs-h1)">Hungry to ordered,<br>before the kettle boils.</h2>
+              </div>
+              <p class="view-sub">One decisive window: 7am to 2pm. We built the whole site around getting you through it
+                faster than the lift takes to reach the lobby.</p>
+            </div>
+            <div class="flow-wrap">
+              <div class="flow">
+                <article class="flow-step" data-reveal>
+                  <span class="flow-no" aria-hidden="true">01</span>
+                  <h3>Pick your boss</h3>
+                  <p>Work the menu board or stack your own at Build-A-Boss. Sixty seconds, tops — dietary stamps land by
+                    themselves.</p>
+                </article>
+                <article class="flow-step" data-reveal style="--rd:90ms">
+                  <span class="flow-no" aria-hidden="true">02</span>
+                  <h3>We stack it</h3>
+                  <p>Layers drop, the deli ticket prints, your order number lands. Same system as the counter, minus the
+                    queue.</p>
+                </article>
+                <article class="flow-step" data-reveal style="--rd:180ms">
+                  <span class="flow-no" aria-hidden="true">03</span>
+                  <h3>Square does the rest</h3>
+                  <p>Pay online without leaving the site. Grab it at the yellow storefront, back at your desk by 12:30.
+                    Easy, Boss.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- press clippings -->
+        <div class="press-sec">
+          <div class="wrap">
+            <div data-reveal>
+              <p class="kicker">RUBBER-STAMPED BY THE PRESS</p>
+              <h2 style="font-size:var(--fs-h1)">Ink on butcher paper.</h2>
+            </div>
+            <div class="press-wrap">
+              <div class="press-grid">
+                <article class="press-card" data-reveal>
+                  <span class="stamp">SBS</span>
+                  <blockquote>"It's like joining Joe and his family at the dinner table."</blockquote>
+                  <cite>— SBS.COM.AU · JOEY ZAZA'S ON SBS</cite>
+                </article>
+                <article class="press-card" data-reveal style="--rd:100ms">
+                  <span class="stamp">WA TODAY</span>
+                  <blockquote>"Focus on freshness attracted CBD workers from week one."</blockquote>
+                  <cite>— WATODAY.COM.AU · PERTH GOES GANGBUSTERS FOR GOURMET SANDWICHES</cite>
+                </article>
+                <article class="press-card" data-reveal style="--rd:200ms">
+                  <span class="stamp stamp--green">WA GOOD FOOD GUIDE</span>
+                  <blockquote>"Essential sandwiches to wrap your hands and mouth around."</blockquote>
+                  <cite>— WAGOODFOODGUIDE.COM · WA'S BEST SANDWICHES</cite>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- bestsellers -->
+        <div class="bests-sec">
+          <div class="wrap">
+            <div class="bests-head" data-reveal>
+              <div>
+                <p class="kicker">STRAIGHT OFF THE BOARD</p>
+                <h2 style="font-size:var(--fs-h1)">The usual suspects.</h2>
+              </div>
+              <a class="btn btn--ghost" href="#/menu">FULL MENU BOARD <span class="arr" aria-hidden="true">→</span></a>
+            </div>
+            <div class="bests-wrap">
+              <div class="bests">
+                <a class="best-row" href="#/menu" data-reveal><span class="best-no">No.01</span>
+                  <h3>Mean Boss Parma</h3><span class="dots"></span><span class="best-price">$16.50</span>
+                </a>
+                <a class="best-row" href="#/menu" data-reveal style="--rd:90ms"><span class="best-no">No.02</span>
+                  <h3>Razzle Dazzle Pork Crackle</h3><span class="dots"></span><span class="best-price">$17.00</span>
+                </a>
+                <a class="best-row" href="#/menu" data-reveal style="--rd:180ms"><span class="best-no">No.03</span>
+                  <h3>Nonna's Famous Meatballs</h3><span class="dots"></span><span class="best-price">$15.50</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA band -->
+        <div class="cta-band">
+          <div class="checker" style="position:absolute;top:0;left:0;right:0" aria-hidden="true"></div>
+          <div class="wrap">
+            <div data-reveal>
+              <h2>HUNGRY YET,<br><span>BOSS?</span></h2>
+            </div>
+            <p data-reveal style="--rd:100ms">The counter's calling. Order ahead through Square and your lunch is
+              stacked before you hit the pavement.</p>
+            <div data-reveal style="--rd:200ms;display:flex;gap:.9rem;flex-wrap:wrap">
+              <a class="btn btn--yellow" href="#/menu">START A SQUARE ORDER <span class="arr"
+                  aria-hidden="true">→</span></a>
+              <a class="btn btn--ghost" href="#/catering">FEEDING A MEETING?</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= MENU BOARD ================= -->
+      <section class="view" id="view-menu" aria-labelledby="menu-title">
+        <div class="wrap">
+          <div class="view-head">
+            <p class="kicker">No.02 — The Board</p>
+            <h1 class="view-title" id="menu-title" tabindex="-1" style="font-size:var(--fs-h1)">The Menu Board</h1>
+            <p class="view-sub">Every boss, numbered and priced like the real thing. Tap <strong>ADD</strong> and it
+              lands straight on your Square ticket — no app, no detour, no leaving the site.</p>
+          </div>
+
+          <div class="toolbar" role="search" aria-label="Filter the menu board">
+            <div class="search">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
+                aria-hidden="true">
+                <circle cx="10.5" cy="10.5" r="6.5" />
+                <path d="M20 20l-4.8-4.8" />
+              </svg>
+              <label class="sr-only" for="menuSearch">Search the menu</label>
+              <input type="search" id="menuSearch" placeholder="Search the board… try 'parma'">
+            </div>
+            <label class="sr-only" for="menuCat">Filter by category</label>
+            <select id="menuCat">
+              <option value="all">All categories</option>
+              <option>Boss Sandwiches</option>
+              <option>Banh Mi Reimagined</option>
+              <option>Nonna's Classics</option>
+              <option>Conti Rolls</option>
+              <option>Breakfast</option>
+              <option>Melts</option>
+              <option>Bagels</option>
+              <option>Coffee</option>
+              <option>Sides</option>
+            </select>
+            <div class="chip-row" role="group" aria-label="Dietary filters">
+              <button class="chip" type="button" data-diet="all" aria-pressed="true">All</button>
+              <button class="chip" type="button" data-diet="gf" aria-pressed="false">GF</button>
+              <button class="chip" type="button" data-diet="v" aria-pressed="false">Vegetarian</button>
+              <button class="chip" type="button" data-diet="vg" aria-pressed="false">Vegan</button>
+              <button class="chip" type="button" data-diet="df" aria-pressed="false">Dairy-Free</button>
+              <button class="chip" type="button" data-diet="halal" aria-pressed="false">Halal</button>
+            </div>
+          </div>
+
+          <p class="menu-count" id="menuCount" role="status" aria-live="polite">FIRING UP THE GRILL…</p>
+
+          <div id="menuSkeleton" class="menu-grid" aria-hidden="true">
+            <div class="sk-card">
+              <div class="sk sk--art"></div>
+              <div class="sk" style="width:40%"></div>
+              <div class="sk" style="width:85%"></div>
+              <div class="sk" style="width:70%"></div>
+              <div class="sk" style="width:35%;margin-bottom:1.2rem"></div>
+            </div>
+            <div class="sk-card">
+              <div class="sk sk--art"></div>
+              <div class="sk" style="width:55%"></div>
+              <div class="sk" style="width:80%"></div>
+              <div class="sk" style="width:65%"></div>
+              <div class="sk" style="width:30%;margin-bottom:1.2rem"></div>
+            </div>
+            <div class="sk-card">
+              <div class="sk sk--art"></div>
+              <div class="sk" style="width:45%"></div>
+              <div class="sk" style="width:88%"></div>
+              <div class="sk" style="width:60%"></div>
+              <div class="sk" style="width:38%;margin-bottom:1.2rem"></div>
+            </div>
+            <div class="sk-card">
+              <div class="sk sk--art"></div>
+              <div class="sk" style="width:50%"></div>
+              <div class="sk" style="width:75%"></div>
+              <div class="sk" style="width:82%"></div>
+              <div class="sk" style="width:33%;margin-bottom:1.2rem"></div>
+            </div>
+          </div>
+
+          <div id="menuGrid" class="menu-grid"></div>
+
+          <p class="menu-note">
+            <span>GF ROLLS +$3 ON ANY BUILD</span><span>VEGAN BUILDS MARKED VG</span><span>ALLERGIES? TELL US — WE DON'T
+              MESS AROUND WITH CROSS-CONTAMINATION</span>
+          </p>
+        </div>
+        <div style="height:var(--space-section)"></div>
+      </section>
+
+      <!-- ================= BUILD-A-BOSS ================= -->
+      <section class="view" id="view-build" aria-labelledby="build-title">
+        <div class="wrap">
+          <div class="view-head">
+            <p class="kicker">No.03 — The Glass Counter</p>
+            <h1 class="view-title" id="build-title" tabindex="-1" style="font-size:var(--fs-h1)">Build-A-Boss</h1>
+            <p class="view-sub">Step up to the glass. Pick a bread, stack <strong>up to three fillings</strong> — house
+              rule, even the Godfather had limits — and watch the dietary stamps land and the ticket print itself.</p>
+          </div>
+
+          <div class="build-wrap">
+            <div class="build-grid">
+              <!-- controls -->
+              <div class="panel" data-reveal>
+                <p class="step-label"><span class="n" aria-hidden="true">1</span> Pick your bread</p>
+                <div class="bread-row" role="radiogroup" aria-label="Bread choice">
+                  <label class="bread-opt"><input type="radio" name="bread" value="white" checked><span><b>White
+                        Sourdough</b><i>+$0.00 · the classic</i></span></label>
+                  <label class="bread-opt"><input type="radio" name="bread"
+                      value="wholemeal"><span><b>Wholemeal</b><i>+$0.00 · the virtuous</i></span></label>
+                  <label class="bread-opt"><input type="radio" name="bread" value="bagel"><span><b>Bagel</b><i>+$2.00 ·
+                        the ZaZa special</i></span></label>
+                  <label class="bread-opt"><input type="radio" name="bread" value="gf"><span><b>GF Roll</b><i>+$3.00 ·
+                        gluten-free</i></span></label>
+                </div>
+
+                <p class="step-label"><span class="n" aria-hidden="true">2</span> Stack your fillings</p>
+                <div class="fill-grid" id="fillGrid" role="group" aria-label="Filling choices — maximum three"></div>
+                <p class="build-counter" aria-live="polite">FILLINGS: <span id="fillCount">0</span>/3 · FIRST ONE'S THE
+                  MAIN, EXTRAS +$4.50</p>
+                <p class="build-error" id="buildError" role="alert" hidden></p>
+                <div style="margin-top:1.2rem"><button class="btn btn--ghost" id="buildReset" type="button">RESET THE
+                    COUNTER</button></div>
+              </div>
+
+              <!-- visual + ticket -->
+              <div data-reveal style="--rd:120ms">
+                <div class="stage" id="stage" aria-label="Your sandwich, stacked">
+                  <div class="stack" id="stack" aria-hidden="true"></div>
+                </div>
+                <div class="stage-badges" id="buildBadges" aria-live="polite"><span>AUTO-STAMPED:&nbsp;</span><span
+                    style="opacity:.55">— pick fillings to earn your badges —</span></div>
+
+                <div class="printer" aria-hidden="true"></div>
+                <div class="ticket on-ticket" id="buildTicket" aria-live="polite" aria-label="Your deli ticket"></div>
+
+                <div class="build-cta">
+                  <button class="btn btn--tomato" id="buildAdd" type="button">ADD TO SQUARE ORDER · <span
+                      id="buildTotalBtn">$0.00</span> <span class="arr" aria-hidden="true">→</span></button>
+                  <a class="btn" href="#/menu">OR PICK A PRE-MADE BOSS</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PLATTER MATH ================= -->
+      <section class="view" id="view-catering" aria-labelledby="cat-title">
+        <div class="wrap">
+          <div class="view-head">
+            <p class="kicker">No.04 — Catering</p>
+            <h1 class="view-title" id="cat-title" tabindex="-1" style="font-size:var(--fs-h1)">Platter Math</h1>
+            <p class="view-sub">One platter feeds eight bosses. Three fillings per platter. Delivery from the yellow
+              storefront. <strong>You do the guest count — we do the rest.</strong></p>
+          </div>
+
+          <div class="cat-wrap">
+            <div class="cat-grid">
+              <!-- calculator -->
+              <div class="panel" data-reveal>
+                <div class="calc-head">
+                  <p class="step-label" style="margin:0"><span class="n" aria-hidden="true">Σ</span> The calculator</p>
+                  <span class="cutoff" role="timer" aria-label="Time until the 1pm catering cutoff">1PM CUTOFF · <b
+                      id="cutoffTimer">--:--:--</b></span>
+                </div>
+
+                <div class="calc-row">
+                  <label for="guestInput">How many bosses?</label>
+                  <div class="stepper">
+                    <button type="button" id="guestMinus" aria-label="Fewer guests">−</button>
+                    <input type="number" id="guestInput" value="16" min="1" max="400" inputmode="numeric"
+                      aria-describedby="guestHint">
+                    <button type="button" id="guestPlus" aria-label="More guests">+</button>
+                  </div>
+                </div>
+                <p id="guestHint" class="calc-note" style="margin:-.6rem 0 1.2rem">One platter serves 8. We round up —
+                  nobody fights over the last meatball.</p>
+
+                <p class="step-label"><span class="n" aria-hidden="true">F</span> Platter fillings <span
+                    style="font-family:var(--font-mono);font-size:var(--fs-mono-s);color:var(--clr-ink-3)">(MAX
+                    3)</span></p>
+                <div class="calc-fills" id="calcFills" role="group" aria-label="Platter fillings — maximum three"></div>
+                <p class="build-error" id="calcError" role="alert" hidden></p>
+
+                <div class="calc-row" style="margin-top:1.4rem">
+                  <label for="suburbSelect">Delivery suburb</label>
+                  <select id="suburbSelect">
+                    <option value="pickup">Pickup — Perth CBD ($0)</option>
+                    <option value="kingspark">Kings Park · 2km</option>
+                    <option value="eastperth">East Perth · 3km</option>
+                    <option value="highgate">Highgate · 4km</option>
+                    <option value="mountlawley">Mount Lawley · 6km</option>
+                    <option value="subiaco">Subiaco · 7km</option>
+                    <option value="leederville">Leederville · 8km</option>
+                    <option value="other">Other — estimate distance</option>
+                  </select>
+                </div>
+
+                <div class="calc-out" aria-live="polite">
+                  <div class="out-big"><span class="num" id="outPlatters">2</span><span class="cap">PLATTERS<br><span
+                        id="outServes">SERVES 16</span></span></div>
+                  <div class="out-line"><span>PLATTERS × $68.00</span><span class="dots"></span><span class="val"
+                      id="outSubtotal">$136.00</span></div>
+                  <div class="out-line"><span id="outDeliveryLabel">DELIVERY — PICKUP</span><span
+                      class="dots"></span><span class="val" id="outDelivery">$0.00</span></div>
+                  <div class="out-line out-total"><span>ESTIMATED TOTAL</span><span class="dots"></span><span
+                      class="val" id="outTotal">$136.00</span></div>
+                  <p class="calc-note">Delivery $16 within 4km of the CBD, +$1.40/km after. Order by 1pm the day before.
+                  </p>
+                  <div style="margin-top:1.2rem"><button class="btn btn--tomato btn--block" id="loadFormBtn"
+                      type="button">LOAD INTO THE QUOTE FORM <span class="arr" aria-hidden="true">↓</span></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- summary ticket -->
+              <div data-reveal style="--rd:120ms">
+                <div class="printer" style="margin-top:0" aria-hidden="true"></div>
+                <div class="ticket on-ticket" aria-label="Catering summary ticket">
+                  <p class="t-head">CATERING ESTIMATE<small>JOEY ZAZA'S · PLATTER DIVISION</small></p>
+                  <div class="t-rule"></div>
+                  <div class="t-row"><span>GUESTS</span><span class="dots"></span><strong id="tkGuests">16</strong>
+                  </div>
+                  <div class="t-row"><span>PLATTERS (SERVES 8)</span><span class="dots"></span><strong
+                      id="tkPlatters">2</strong></div>
+                  <div class="t-row"><span>FILLINGS</span></div>
+                  <div id="tkFills">
+                    <div class="t-row"><span style="color:#6B573F">— none picked yet —</span></div>
+                  </div>
+                  <div class="t-row"><span>DELIVERY</span><span class="dots"></span><strong id="tkSuburb">PICKUP —
+                      CBD</strong></div>
+                  <div class="t-rule"></div>
+                  <div class="t-row t-total"><span>ESTIMATE</span><span class="dots"></span><strong
+                      id="tkTotal">$136.00</strong></div>
+                  <p class="t-note">ORDER BY 1PM · DAY BEFORE · BOPPLE PRE-ORDERS</p>
+                  <div class="t-bar" aria-hidden="true"></div>
+                  <p class="t-bar-no" aria-hidden="true">PLATTER·MATH·CBD</p>
+                </div>
+                <p class="calc-note" style="margin-top:1.4rem">Race day? Melbourne Cup morning? We've done 200-boss
+                  mornings. <a href="mailto:catering@joeyzazas.com.au"
+                    style="font-weight:700;color:var(--clr-tomato-deep)">Email the crew</a> and Michelle will sort you.
+                </p>
+              </div>
+            </div>
+
+            <!-- quote form -->
+            <div class="form-card" id="formCard" data-reveal>
+              <p class="step-label"><span class="n" aria-hidden="true">✎</span> Get the quote — the paperwork, minimal
+              </p>
+              <form id="quoteForm" novalidate>
+                <div class="form-grid">
+                  <div class="field"><label for="qName">Full name <b aria-hidden="true">*</b></label><input id="qName"
+                      name="fullName" type="text" autocomplete="name" required aria-describedby="err-qName">
+                    <p class="err" id="err-qName" role="alert" hidden></p>
+                  </div>
+                  <div class="field"><label for="qEmail">Email <b aria-hidden="true">*</b></label><input id="qEmail"
+                      name="emailAddress" type="email" autocomplete="email" required aria-describedby="err-qEmail">
+                    <p class="err" id="err-qEmail" role="alert" hidden></p>
+                  </div>
+                  <div class="field"><label for="qPhone">Phone <b aria-hidden="true">*</b></label><input id="qPhone"
+                      name="phoneNumber" type="tel" autocomplete="tel" required aria-describedby="err-qPhone">
+                    <p class="err" id="err-qPhone" role="alert" hidden></p>
+                  </div>
+                  <div class="field"><label for="qEvent">Event type <b aria-hidden="true">*</b></label>
+                    <select id="qEvent" required aria-describedby="err-qEvent">
+                      <option value="">Select one…</option>
+                      <option>Office Meeting</option>
+                      <option>Corporate Event</option>
+                      <option>Private Party</option>
+                      <option>Race Day / Melbourne Cup</option>
+                      <option>Workshop or Conference</option>
+                      <option>Other</option>
+                    </select>
+                    <p class="err" id="err-qEvent" role="alert" hidden></p>
+                  </div>
+                  <div class="field"><label for="qGuests">Guest count <b aria-hidden="true">*</b></label><input
+                      id="qGuests" name="guestCount" type="number" min="1" max="400" required
+                      aria-describedby="err-qGuests">
+                    <p class="err" id="err-qGuests" role="alert" hidden></p>
+                  </div>
+                  <div class="field"><label for="qSuburb">Delivery suburb</label>
+                    <select id="qSuburb">
+                      <option value="pickup">Pickup — Perth CBD</option>
+                      <option value="kingspark">Kings Park</option>
+                      <option value="eastperth">East Perth</option>
+                      <option value="highgate">Highgate</option>
+                      <option value="mountlawley">Mount Lawley</option>
+                      <option value="subiaco">Subiaco</option>
+                      <option value="leederville">Leederville</option>
+                      <option value="other">Other — estimate distance</option>
+                    </select>
+                  </div>
+                  <div class="field"><label for="qDate">Preferred date <span
+                        style="text-transform:none;letter-spacing:0;font-weight:500">(order by 1pm day
+                        before)</span></label><input id="qDate" type="datetime-local"></div>
+                  <div class="field"><label for="qBudget">Budget per person <span
+                        style="text-transform:none;letter-spacing:0;font-weight:500">(optional)</span></label><input
+                      id="qBudget" type="number" min="0" step="0.5" placeholder="$"></div>
+                  <div class="field span2"><label>Dietary needs</label>
+                    <div class="diet-grid">
+                      <span class="check-row"><input type="checkbox" id="dGf" value="Gluten-Free"><label
+                          for="dGf">Gluten-Free</label></span>
+                      <span class="check-row"><input type="checkbox" id="dV" value="Vegetarian"><label
+                          for="dV">Vegetarian</label></span>
+                      <span class="check-row"><input type="checkbox" id="dVg" value="Vegan"><label
+                          for="dVg">Vegan</label></span>
+                      <span class="check-row"><input type="checkbox" id="dDf" value="Dairy-Free"><label
+                          for="dDf">Dairy-Free</label></span>
+                      <span class="check-row"><input type="checkbox" id="dHa" value="Halal"><label
+                          for="dHa">Halal</label></span>
+                    </div>
+                  </div>
+                  <div class="field span2"><label>Your platter build</label>
+                    <div class="build-summary" id="qBuildSummary">Run the calculator above, then hit <b>LOAD INTO THE
+                        QUOTE FORM</b> — your build lands here.</div>
+                  </div>
+                  <div class="field span2"><label for="qNotes">Anything else we should know?</label><textarea
+                      id="qNotes" placeholder="Allergies, timing, the boss's favourite…"></textarea></div>
+                  <div class="field span2 check-row">
+                    <input type="checkbox" id="qConsent" aria-describedby="err-qConsent">
+                    <label for="qConsent">I'm happy for Joey Zaza's to contact me about this quote. No spam, no selling
+                      my number — privacy's the house rule. <b aria-hidden="true"
+                        style="color:var(--clr-tomato-deep)">*</b></label>
+                  </div>
+                  <p class="err span2" id="err-qConsent" role="alert" hidden style="margin-top:-.6rem"></p>
+                </div>
+                <div class="form-foot">
+                  <button class="btn btn--tomato" type="submit">SEND THE QUOTE REQUEST <span class="arr"
+                      aria-hidden="true">→</span></button>
+                  <span class="form-alt">Prefer paper trails? <a
+                      href="mailto:catering@joeyzazas.com.au">catering@joeyzazas.com.au</a></span>
+                </div>
+              </form>
+
+              <div id="quoteSuccess" hidden>
+                <div class="ticket on-ticket success-ticket">
+                  <span class="stamp stamp--green">QUOTE REQUEST IN!</span>
+                  <p class="t-head" style="margin-bottom:.4rem">REFERENCE <span id="quoteRef">PL-0000</span></p>
+                  <div class="t-rule"></div>
+                  <div class="t-row"><span>NAME</span><span class="dots"></span><strong id="qsName">—</strong></div>
+                  <div class="t-row"><span>GUESTS → PLATTERS</span><span class="dots"></span><strong
+                      id="qsPlatters">—</strong></div>
+                  <div class="t-row"><span>DELIVERY</span><span class="dots"></span><strong id="qsSuburb">—</strong>
+                  </div>
+                  <p class="t-note">WE REPLY WITHIN ONE BUSINESS DAY — OR CALL 0491 954 139 IF THE CANAPÉS ARE ON FIRE.
+                  </p>
+                </div>
+                <div style="margin-top:1.4rem"><button class="btn" id="quoteAgain" type="button">START ANOTHER
+                    QUOTE</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= NONNA'S LEDGER ================= -->
+      <section class="view" id="view-story" aria-labelledby="story-title">
+        <div class="wrap">
+          <div class="view-head">
+            <p class="kicker">No.05 — The Family</p>
+            <h1 class="view-title" id="story-title" tabindex="-1" style="font-size:var(--fs-h1)">Nonna's Ledger</h1>
+            <p class="view-sub">Eighty years, one sauce, zero shortcuts. The Joey Zaza's story — from Nonna Roselyn's
+              Sunday table to the brightest corner in the CBD.</p>
+          </div>
+
+          <div class="story-sec">
+            <div class="ledger">
+              <article class="led-item" data-reveal>
+                <span class="led-year">1944 · THE RECIPE</span>
+                <h3>Nonna Roselyn's meatballs</h3>
+                <div class="art-recipe artifact">
+                  <span class="stamp stamp--sm">80 YEARS</span>
+                  <h4>Polpette della Domenica</h4>
+                  <p>Beef only. Breadcrumbs soaked in milk, not water. A pinch of nutmeg nobody talks about. Napoli sugo
+                    — four hours, never three. Serve between bread, like Sunday should be. — R.</p>
+                </div>
+              </article>
+
+              <article class="led-item" data-reveal>
+                <span class="led-year">2003 · THE MEETING</span>
+                <h3>Joey meets ZaZa</h3>
+                <div class="art-polaroid artifact">
+                  <figure style="margin:0">
+                    <div class="pol-photo" role="img" aria-label="Illustration of the Joey Zaza's yellow storefront">
+                      <span class="sun" aria-hidden="true"></span>
+                      <div class="storefront"><b>JOEY ZAZA'S</b><span class="door" aria-hidden="true"></span></div>
+                    </div>
+                    <figcaption>Joe &amp; Michelle — the real Joey and ZaZa. He brought the sandwiches; she brought the
+                      standards.</figcaption>
+                  </figure>
+                </div>
+              </article>
+
+              <article class="led-item" data-reveal>
+                <span class="led-year">2020 · THE LEAP</span>
+                <h3>Opened anyway</h3>
+                <div class="art-press artifact">
+                  <span class="stamp">OPEN ANYWAY</span>
+                  <p style="color:var(--clr-ink-2)">The lease was signed the month the world shut down. Most people
+                    waited. Joe and Michelle rolled the counter in, fired the oven, and started wrapping conti rolls for
+                    whoever was still downtown. The larrikin move that became the brand.</p>
+                </div>
+              </article>
+
+              <article class="led-item" data-reveal>
+                <span class="led-year">2021 · THE TELLIES</span>
+                <h3>SBS comes knocking</h3>
+                <div class="art-press artifact">
+                  <span class="stamp">SBS FEATURED</span>
+                  <blockquote>"It's like joining Joe and his family at the dinner table."</blockquote>
+                  <cite>— SBS.COM.AU</cite>
+                </div>
+              </article>
+
+              <article class="led-item" data-reveal>
+                <span class="led-year">2023 · THE HYPE</span>
+                <h3>Perth goes gangbusters</h3>
+                <div class="art-press artifact">
+                  <span class="stamp">WA TODAY</span>
+                  <blockquote>"Focus on freshness attracted CBD workers from week one."</blockquote>
+                  <cite>— WATODAY.COM.AU · "PERTH GOES GANGBUSTERS FOR GOURMET SANDWICHES WITH BITE"</cite>
+                </div>
+              </article>
+
+              <article class="led-item" data-reveal>
+                <span class="led-year">TODAY · THE FLAGSHIP</span>
+                <h3>The yellow storefront</h3>
+                <div class="art-flagship artifact">
+                  <p><span class="pin" aria-hidden="true"></span><strong>45 St Georges Terrace goes bright
+                      yellow</strong>, and the CBD finds its lunch HQ. Same recipe, same family, same "how ya going,
+                    Boss?" — just louder signage and a faster till.</p>
+                  <a class="btn btn--ink" href="#/menu">TASTE THE ARCHIVE <span class="arr"
+                      aria-hidden="true">→</span></a>
+                </div>
+              </article>
+            </div>
+
+            <div class="story-cta" data-reveal>
+              <p class="hand"
+                style="font-size:clamp(1.4rem,.4vw+1.2rem,1.8rem);color:var(--clr-ink-2);transform:rotate(-1.5deg)">—
+                every sandwich still starts in Nonna's kitchen. —</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= FIND US ================= -->
+      <section class="view" id="view-findus" aria-labelledby="find-title">
+        <div class="wrap">
+          <div class="view-head">
+            <p class="kicker">No.06 — Find Us</p>
+            <h1 class="view-title" id="find-title" tabindex="-1" style="font-size:var(--fs-h1)">The Yellow Storefront
+            </h1>
+            <p class="view-sub">You can't miss us — that's the point. Bright yellow on the corner of St Georges Terrace
+              and Barrack Street, open for the rush and gone by two.</p>
+          </div>
+
+          <div class="find-wrap">
+            <div class="find-grid">
+              <div class="panel" data-reveal>
+                <p class="step-label"><span class="n" aria-hidden="true">⏱</span> Hours <span class="status-pill"
+                    id="statusPill2" style="margin-left:auto"><span class="dot" aria-hidden="true"></span><span
+                      id="statusText2">…</span></span></p>
+                <div id="hoursTable">
+                  <div class="hours-row" data-day="1"><span class="day">MON</span><span class="dots"></span><span
+                      class="time">7:00AM – 2:00PM</span></div>
+                  <div class="hours-row" data-day="2"><span class="day">TUE</span><span class="dots"></span><span
+                      class="time">7:00AM – 2:00PM</span></div>
+                  <div class="hours-row" data-day="3"><span class="day">WED</span><span class="dots"></span><span
+                      class="time">7:00AM – 2:00PM</span></div>
+                  <div class="hours-row" data-day="4"><span class="day">THU</span><span class="dots"></span><span
+                      class="time">7:00AM – 2:00PM</span></div>
+                  <div class="hours-row" data-day="5"><span class="day">FRI</span><span class="dots"></span><span
+                      class="time">7:00AM – 2:00PM</span></div>
+                  <div class="hours-row" data-day="6"><span class="day">SAT</span><span class="dots"></span><span
+                      class="time">CLOSED — GONE FISHING</span></div>
+                  <div class="hours-row" data-day="0"><span class="day">SUN</span><span class="dots"></span><span
+                      class="time">CLOSED — NONNA'S LUNCH</span></div>
+                </div>
+                <div class="t-rule" style="border-color:var(--clr-line)"></div>
+                <div class="contact-line"><span class="ic" aria-hidden="true">ADR</span><span>45 St Georges Terrace (cnr
+                    Barrack Street),<br>Perth City WA 6000</span></div>
+                <div class="contact-line"><span class="ic" aria-hidden="true">TEL</span><a href="tel:0491954139">0491
+                    954 139</a></div>
+                <div class="contact-line"><span class="ic" aria-hidden="true">EML</span><a
+                    href="mailto:catering@joeyzazas.com.au">catering@joeyzazas.com.au</a></div>
+                <div class="socials">
+                  <a href="#/find-us" aria-label="Joey Zaza's on Instagram (demo link)">INSTAGRAM</a>
+                  <a href="#/find-us" aria-label="Joey Zaza's on Facebook (demo link)">FACEBOOK</a>
+                  <a href="#/find-us" aria-label="Joey Zaza's on Threads (demo link)">THREADS</a>
+                </div>
+                <p class="dir-note">↑ look for the bright yellow right by the curb — <b>if you smell Napoli sauce,
+                    you're close.</b></p>
+              </div>
+
+              <div data-reveal style="--rd:120ms">
+                <div class="map" role="img"
+                  aria-label="Stylised map: Joey Zaza's at the corner of St Georges Terrace and Barrack Street, near the Swan River">
+                  <span class="legend">PERTH CBD · NOT TO SCALE</span>
+                  <div class="st-h" aria-hidden="true"></div>
+                  <div class="st-v" aria-hidden="true"></div>
+                  <span class="st-label l1" aria-hidden="true">ST GEORGES TERRACE</span>
+                  <span class="st-label l2" aria-hidden="true">BARRACK ST</span>
+                  <div class="jz" aria-hidden="true">JZ</div>
+                  <span class="jz-pin pin" aria-hidden="true"></span>
+                  <span class="gardens" aria-hidden="true">Supreme Court Gardens ↘</span>
+                  <div class="river" aria-hidden="true"><span>SWAN RIVER · ELIZABETH QUAY</span></div>
+                </div>
+                <div class="delivery-strip">
+                  <span>CATERING DELIVERY $16 WITHIN 4KM</span><span>+$1.40/KM AFTER</span><span>ORDER BY 1PM THE DAY
+                    BEFORE</span><span>PRE-ORDERS VIA BOPPLE</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- boss rewards -->
+            <div class="rewards" data-reveal>
+              <div class="wrap-in">
+                <div>
+                  <h2>BOSS REWARDS</h2>
+                  <p>First round's on us. Menu drops, meatball returns and coffee specials land in your inbox before
+                    they hit the board. One email a week, tops.</p>
+                </div>
+                <div id="rwBox" aria-live="polite">
+                  <form class="rw-form" id="rwForm" novalidate>
+                    <label class="sr-only" for="rwEmail">Email address</label>
+                    <input type="email" id="rwEmail" placeholder="you@work.com.au" autocomplete="email">
+                    <button class="btn btn--yellow" type="submit">JOIN THE FAMILY</button>
+                  </form>
+                  <p class="rw-err" id="rwErr" role="alert" hidden></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 404 ================= -->
+      <section class="view" id="view-404" aria-labelledby="nf-title">
+        <div class="wrap notfound">
+          <span class="stamp">No.404 — SOLD OUT</span>
+          <h1 class="view-title" id="nf-title" tabindex="-1">THIS AISLE'S<br><span>EMPTY, BOSS.</span></h1>
+          <p>Whatever you ordered, it's not on the board. The route's been eaten, the link's gone stale, or someone
+            typed with mayo on their fingers.</p>
+          <div class="btns">
+            <a class="btn btn--tomato" href="#/">BACK TO THE COUNTER <span class="arr" aria-hidden="true">→</span></a>
+            <a class="btn" href="#/menu">SEE THE MENU BOARD</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER (persistent) ============ -->
+    <footer class="site-footer">
+      <div class="checker" aria-hidden="true"></div>
+      <div class="foot-word" aria-hidden="true"><span>JOEY ZAZA'S</span></div>
+      <div class="wrap">
+        <div class="foot-grid">
+          <div>
+            <p class="foot-brand">JOEY ZAZA<em>'S</em></p>
+            <p>Brooklyn deli bravado at Nonna's Sunday table. Owner-operated by Joe &amp; Michelle — fast-paced, high
+              standards, and every customer's a Boss.</p>
+          </div>
+          <div>
+            <h3>VISIT</h3>
+            <ul>
+              <li>45 St Georges Terrace<br>(cnr Barrack Street)<br>Perth City WA 6000</li>
+              <li>Mon–Fri · 7:00am – 2:00pm</li>
+            </ul>
+          </div>
+          <div>
+            <h3>TALK</h3>
+            <ul>
+              <li><a href="tel:0491954139">0491 954 139</a></li>
+              <li><a href="mailto:catering@joeyzazas.com.au">catering@joeyzazas.com.au</a></li>
+              <li><a href="#/find-us">Boss Rewards</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>ORDER</h3>
+            <ul>
+              <li><a href="#/menu">Square Online — pickup</a></li>
+              <li><a href="#/build">Build-A-Boss</a></li>
+              <li><a href="#/catering">Bopple — catering &amp; pre-orders</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="foot-bottom">
+          <span>© <span id="year">2026</span> JOEY ZAZA'S · MADE WITH TOO MUCH NAPOLI SAUCE IN PERTH CBD · ORDERING
+            POWERED BY SQUARE ONLINE</span>
+          <span class="ack">We acknowledge the Whadjuk Noongar people, Traditional Custodians of the land on which we
+            sling sandwiches, and pay respect to Elders past and present.</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- toasts + route announcer -->
+    <div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+    <p class="sr-only" id="routeAnnouncer" role="status" aria-live="polite"></p>
+
+    <script>
+      (function () {
+        'use strict';
+
+        /* ================= HELPERS ================= */
+        const $ = (s, r) => (r || document).querySelector(s);
+        const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+        const money = n => '$' + n.toFixed(2);
+        const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const store = {
+          get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+          set(k, v) { try { localStorage.setItem(k, v); } catch (e) { } }
+        };
+        /* Perth is AWST (UTC+8) year-round — no daylight saving */
+        function perthNow() {
+          const now = new Date();
+          return new Date(now.getTime() + now.getTimezoneOffset() * 60000 + 8 * 3600000);
+        }
+
+        /* ================= DATA ================= */
+        const MENU = [
+          {
+            id: 1, title: 'Mean Boss Parma', cat: 'Boss Sandwiches', price: 16.50, flags: ['halal'], tag: 'BESTSELLER', art: ['#E8A23F', '#C97F28'],
+            desc: 'Crispy chicken fillet, Nonna\u2019s Napoli sauce, melted cheese — built to end arguments about lunch.',
+            feat: 'Star of the Plateful Perth \u201cParma & Pour\u201d special.'
+          },
+          {
+            id: 2, title: 'Razzle Dazzle Pork Crackle', cat: 'Banh Mi Reimagined', price: 17.00, flags: [], tag: 'FAN FAVOURITE', art: ['#B4622D', '#E0A13C'],
+            desc: 'Joey\u2019s take on the banh mi — shatter-crisp pork crackle, pickled slaw, fresh herbs, chilli that behaves.',
+            feat: 'Fan-voted favourite · Vietnamese-Australian fusion.'
+          },
+          {
+            id: 3, title: 'Nonna\u2019s Famous Meatballs', cat: 'Nonna\u2019s Classics', price: 15.50, flags: ['halal'], tag: 'LIMITED DROP', art: ['#6B3A1F', '#8A4B26'],
+            desc: 'An 80-year-old family recipe in Nonna\u2019s secret Napoli sauce, served between bread like Sunday should be.',
+            feat: '80-year-old recipe · returns each winter.'
+          },
+          {
+            id: 4, title: 'Classic Conti', cat: 'Conti Rolls', price: 14.50, flags: ['v', 'vg', 'df'], tag: 'CLASSIC', art: ['#E8A7A0', '#C96F62'],
+            desc: 'The continental roll done properly — cured meats, fresh fillings, soft bread baked daily.',
+            feat: 'Vegetarian + vegan builds available · soft fresh bread daily.'
+          },
+          {
+            id: 5, title: 'Napoli Brekkie Wrap', cat: 'Breakfast', price: 13.50, flags: ['halal'], tag: 'PRE-8AM', art: ['#D6402B', '#E8A23F'],
+            desc: 'Egg, Napoli sauce and fresh fillings wrapped tight — built for the 7am walk to the office.',
+            feat: 'Grab-and-go hero · fridge-ready.'
+          },
+          {
+            id: 6, title: 'Mushroom, Feta & Spinach Melt', cat: 'Melts', price: 14.00, flags: ['v', 'gf'], tag: 'VEG HERO', art: ['#7FB069', '#5E8C4A'],
+            desc: 'Golden melted feta, earthy mushrooms and spinach pressed to order — the vegetarian lunch carnivores steal.',
+            feat: 'Dietary-restriction favourite · GF-friendly on the GF roll.'
+          },
+          {
+            id: 7, title: 'The Vegan Godfather', cat: 'Boss Sandwiches', price: 15.00, flags: ['v', 'vg', 'df'], tag: 'VEGAN', art: ['#8AA84E', '#6E8B3A'],
+            desc: 'Roast vegetables, hummus and pickled slaw with serious intent. An offer your lunchbox can\u2019t refuse.',
+            feat: 'Fully plant-based · no shortcuts, no dairy.'
+          },
+          {
+            id: 8, title: 'ZaZa\u2019s Bagel Stack', cat: 'Bagels', price: 12.50, flags: ['v'], tag: 'NEW', art: ['#DCA55F', '#C68C45'],
+            desc: 'Toasted bagel, whipped ricotta, slow tomatoes and basil — Michelle\u2019s weekend special gone permanent.',
+            feat: 'Weekend special, promoted by popular demand.'
+          },
+          {
+            id: 9, title: 'Everything Bagel & Schmear', cat: 'Bagels', price: 9.50, flags: ['v'], tag: 'CLASSIC', art: ['#C9A227', '#8A6A35'],
+            desc: 'The New York standard — everything seasoning, generous schmear, zero fuss.',
+            feat: 'Blacklist coffee pairing: flat white, obviously.'
+          },
+          {
+            id: 10, title: 'Blacklist Flat White', cat: 'Coffee', price: 5.00, flags: ['v', 'vg', 'df', 'gf'], tag: 'BLACKLIST', art: ['#4A3826', '#6B573F'],
+            desc: 'Blacklist Roasters beans, dialed in every morning. Oat, soy or lactose-free on request.',
+            feat: 'Specialty coffee · dairy-free milks available.'
+          },
+          {
+            id: 11, title: 'Nonna\u2019s Sunday Sugo', cat: 'Nonna\u2019s Classics', price: 12.00, flags: ['halal', 'df'], tag: 'HEAT & EAT', art: ['#B32E1C', '#D6402B'],
+            desc: 'Four hours of Napoli sauce in a jar. Take the recipe home; don\u2019t tell Nonna we sold it.',
+            feat: 'Pantry staple · dairy-free.'
+          },
+          {
+            id: 12, title: 'House Pickles & Olives', cat: 'Sides', price: 6.00, flags: ['v', 'vg', 'df', 'gf'], tag: 'SIDE', art: ['#7FB069', '#4A6B2A'],
+            desc: 'The counter snacks — dill spears and marinated olives, exactly what the doctor ordered.',
+            feat: 'Fully vegan and gluten-free.'
+          }
+        ];
+
+        const BREADS = {
+          white: { name: 'WHITE SOURDOUGH', price: 0, flags: [] },
+          wholemeal: { name: 'WHOLEMEAL', price: 0, flags: [] },
+          bagel: { name: 'BAGEL', price: 2, flags: [] },
+          gf: { name: 'GF ROLL', price: 3, flags: ['gf'] }
+        };
+        const EXTRA_PRICE = 4.50;
+        const FILLINGS = [
+          { id: 'parma', name: 'Mean Boss Parma', main: 12.00, flags: ['halal', 'df'], sw: '#E8A23F' },
+          { id: 'crackle', name: 'Razzle Dazzle Crackle', main: 13.00, flags: [], sw: '#B4622D' },
+          { id: 'meatballs', name: 'Nonna\u2019s Meatballs', main: 11.00, flags: ['halal'], sw: '#6B3A1F' },
+          { id: 'conti', name: 'Classic Conti Meats', main: 10.00, flags: ['df'], sw: '#E8A7A0' },
+          { id: 'melt', name: 'Mushroom Feta Melt', main: 9.50, flags: ['v', 'gf'], sw: '#7FB069' },
+          { id: 'vegan', name: 'The Vegan Godfather', main: 10.50, flags: ['v', 'vg', 'df'], sw: '#8AA84E' }
+        ];
+        const FLAG_LABEL = { gf: 'GF', v: 'VEG', vg: 'VEGAN', df: 'DF', halal: 'HALAL' };
+        const SUBURBS = {
+          pickup: { label: 'PICKUP — CBD', km: 0 }, kingspark: { label: 'KINGS PARK', km: 2 }, eastperth: { label: 'EAST PERTH', km: 3 },
+          highgate: { label: 'HIGHGATE', km: 4 }, mountlawley: { label: 'MOUNT LAWLEY', km: 6 }, subiaco: { label: 'SUBIACO', km: 7 },
+          leederville: { label: 'LEEDERVILLE', km: 8 }, other: { label: 'OTHER (EST.)', km: 10 }
+        };
+        const PLATTER_PRICE = 68, PLATTER_SERVES = 8;
+        const deliveryFee = km => km <= 0 ? 0 : (km <= 4 ? 16 : 16 + (km - 4) * 1.4);
+
+        /* ================= THEME ================= */
+        const themeBtn = $('#themeToggle');
+        function setTheme(t) {
+          document.documentElement.setAttribute('data-theme', t);
+          themeBtn.setAttribute('aria-pressed', String(t === 'dark'));
+          themeBtn.setAttribute('aria-label', t === 'dark' ? 'Switch to day-shift mode' : 'Switch to after-hours kitchen mode');
+          store.set('jz-theme', t);
+        }
+        setTheme(store.get('jz-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+        themeBtn.addEventListener('click', () => {
+          setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        });
+
+        /* ================= TOASTS ================= */
+        const toasts = $('#toasts');
+        function toast(msg, type) {
+          type = type || 'info';
+          const el = document.createElement('div');
+          el.className = 'toast toast--' + type;
+          el.textContent = msg;
+          toasts.appendChild(el);
+          setTimeout(() => { el.classList.add('out'); setTimeout(() => el.remove(), 320); }, 3600);
+        }
+
+        /* ================= CLOCK / STATUS / SPECIALS ================= */
+        function updateStatus() {
+          const p = perthNow(), d = p.getDay(), h = p.getHours() + p.getMinutes() / 60;
+          const open = d >= 1 && d <= 5 && h >= 7 && h < 14;
+          [['#statusPill', '#statusText'], ['#statusPill2', '#statusText2']].forEach(pair => {
+            const pill = $(pair[0]), txt = $(pair[1]);
+            if (!pill) return;
+            pill.classList.toggle('closed', !open);
+            txt.textContent = open ? 'OPEN — CLOSES 2PM' : 'CLOSED — BACK 7AM';
+          });
+          $$('#hoursTable .hours-row').forEach(r => r.classList.toggle('today', Number(r.dataset.day) === d));
+        }
+        function setSpecials() {
+          const p = perthNow();
+          const days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+          const start = new Date(p.getFullYear(), 0, 0);
+          const doy = Math.floor((p - start) / 86400000);
+          $('#specDay').textContent = days[p.getDay()] + ' · PERTH TIME';
+          $('#specNo').textContent = 'S-' + (100 + (doy % 900));
+        }
+        function buildTicker() {
+          const names = ['MEAN BOSS PARMA', 'RAZZLE DAZZLE PORK CRACKLE', 'NONNA\u2019S FAMOUS MEATBALLS', 'CLASSIC CONTI', 'NAPOLI BREKKIE WRAP', 'MUSHROOM FETA MELT', 'FRESH DAILY', 'ORDER BY 1PM FOR CATERING'];
+          const group = '<div class="ticker__group">' + names.map(n => '<span>' + esc(n) + ' <i aria-hidden="true">★</i></span>').join('') + '</div>';
+          $('#tickerTrack').innerHTML = group + '<div class="ticker__group" aria-hidden="true">' + names.map(n => '<span>' + esc(n) + ' <i>★</i></span>').join('') + '</div>';
+        }
+
+        /* ================= ROUTER ================= */
+        const ROUTES = {
+          '/': { view: 'view-home', title: 'The Counter' },
+          '/menu': { view: 'view-menu', title: 'The Menu Board' },
+          '/build': { view: 'view-build', title: 'Build-A-Boss' },
+          '/catering': { view: 'view-catering', title: 'Platter Math' },
+          '/story': { view: 'view-story', title: 'Nonna\u2019s Ledger' },
+          '/find-us': { view: 'view-findus', title: 'Find the Yellow Storefront' }
+        };
+        const announcer = $('#routeAnnouncer');
+        function currentPath() {
+          let h = location.hash.replace(/^#/, '');
+          if (!h) h = '/';
+          if (h.length > 1 && h.charAt(h.length - 1) === '/') h = h.slice(0, -1);
+          return h;
+        }
+        function navigate() {
+          const path = currentPath();
+          const route = ROUTES[path];
+          const viewId = route ? route.view : 'view-404';
+          const title = route ? route.title : 'Not on the board';
+
+          $$('.view').forEach(v => v.classList.remove('active'));
+          const target = document.getElementById(viewId);
+          target.classList.add('active');
+
+          $$('.ov-row').forEach(a => {
+            const on = a.dataset.route === path;
+            a.classList.toggle('is-active', on);
+            if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+          });
+
+          document.title = title + ' — Joey Zaza\u2019s';
+          announcer.textContent = '';
+          setTimeout(() => { announcer.textContent = 'Now serving: ' + title + ' — Joey Zaza\u2019s.'; }, 60);
+
+          closeCart(false);
+          if (overlayOpen) closeOverlay(false);
+
+          window.scrollTo(0, 0);
+          armReveals(target);
+          const heading = target.querySelector('.view-title');
+          if (heading) heading.focus({ preventScroll: true });
+        }
+        window.addEventListener('hashchange', navigate);
+
+        /* ================= OVERLAY MENU (nav) ================= */
+        const overlay = $('#navOverlay'), menuBtn = $('#menuBtn'), navClose = $('#navClose');
+        let overlayOpen = false, lastOverlayFocus = null;
+        function openOverlay() {
+          lastOverlayFocus = document.activeElement;
+          overlayOpen = true;
+          overlay.hidden = false;
+          requestAnimationFrame(() => overlay.classList.add('open'));
+          document.documentElement.classList.add('no-scroll');
+          menuBtn.setAttribute('aria-expanded', 'true');
+          setTimeout(() => navClose.focus(), 80);
+        }
+        function closeOverlay(refocus) {
+          if (!overlayOpen) return;
+          overlayOpen = false;
+          overlay.classList.remove('open');
+          document.documentElement.classList.remove('no-scroll');
+          menuBtn.setAttribute('aria-expanded', 'false');
+          setTimeout(() => { overlay.hidden = true; }, REDUCED ? 0 : 420);
+          if (refocus !== false && lastOverlayFocus) lastOverlayFocus.focus();
+        }
+        menuBtn.addEventListener('click', () => overlayOpen ? closeOverlay() : openOverlay());
+        navClose.addEventListener('click', () => closeOverlay());
+        overlay.addEventListener('click', e => { if (e.target === overlay) closeOverlay(); });
+        overlay.addEventListener('keydown', e => {
+          if (e.key === 'Escape') { e.preventDefault(); closeOverlay(); return; }
+          if (e.key !== 'Tab') return;
+          const f = $$('a[href], button:not([disabled])', overlay).filter(el => el.offsetParent !== null);
+          if (!f.length) return;
+          const first = f[0], last = f[f.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        });
+        $$('.ov-row').forEach(a => a.addEventListener('click', () => closeOverlay(false)));
+
+        /* ================= SCROLL REVEALS ================= */
+        const revealIO = new IntersectionObserver(entries => {
+          entries.forEach(en => {
+            if (en.isIntersecting) { en.target.classList.add('revealed'); revealIO.unobserve(en.target); }
+          });
+        }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+        function armReveals(root) {
+          $$('[data-reveal]', root).forEach(el => {
+            el.classList.remove('revealed');
+            if (REDUCED) { el.classList.add('revealed'); return; }
+            revealIO.observe(el);
+          });
+        }
+
+        /* ================= HEADER SHADOW ================= */
+        window.addEventListener('scroll', () => {
+          $('#siteHeader').classList.toggle('scrolled', window.scrollY > 8);
+        }, { passive: true });
+
+        /* ================= MENU BOARD ================= */
+        const menuGrid = $('#menuGrid'), menuSkeleton = $('#menuSkeleton'), menuCount = $('#menuCount');
+        const menuState = { q: '', diet: 'all', cat: 'all', loaded: false };
+        function badgeHtml(f) { return '<span class="dbadge ' + f + '">' + FLAG_LABEL[f] + '</span>'; }
+        function renderMenu() {
+          const q = menuState.q.trim().toLowerCase();
+          const list = MENU.filter(it => {
+            if (menuState.cat !== 'all' && it.cat !== menuState.cat) return false;
+            if (menuState.diet !== 'all' && it.flags.indexOf(menuState.diet) === -1) return false;
+            if (q && (it.title + ' ' + it.desc + ' ' + it.cat).toLowerCase().indexOf(q) === -1) return false;
+            return true;
+          });
+          menuCount.textContent = 'SHOWING ' + list.length + ' OF ' + MENU.length + ' — FRESH OFF THE BOARD';
+          if (!list.length) {
+            menuGrid.innerHTML =
+              '<div class="empty"><span class="stamp">NOTHING LEFT, BOSS</span>' +
+              '<p>Nothin\u2019 on the board matches that combo. Loosen a filter or two — the kitchen\u2019s still got plenty.</p>' +
+              '<button class="btn" type="button" id="clearFilters">CLEAR THE FILTERS</button></div>';
+            $('#clearFilters').addEventListener('click', () => {
+              menuState.q = ''; menuState.diet = 'all'; menuState.cat = 'all';
+              $('#menuSearch').value = ''; $('#menuCat').value = 'all';
+              $$('.chip-row .chip').forEach(c => c.setAttribute('aria-pressed', String(c.dataset.diet === 'all')));
+              renderMenu();
+            });
+            return;
+          }
+          menuGrid.innerHTML = list.map((it, i) =>
+            '<article class="menu-card" style="--art-a:' + it.art[0] + ';--art-b:' + it.art[1] + '">' +
+            '<div class="mc-art" aria-hidden="true"></div>' +
+            '<div class="mc-body">' +
+            '<div class="mc-top"><span class="mc-no">No.' + String(it.id).padStart(2, '0') + '</span>' +
+            '<span class="mc-tag' + (it.tag === 'LIMITED DROP' || it.tag === 'NEW' ? ' mc-tag--red' : '') + '">' + esc(it.tag) + '</span></div>' +
+            '<div class="mc-title-row"><h3>' + esc(it.title) + '</h3><span class="dots" aria-hidden="true"></span><span class="mc-price">' + money(it.price) + '</span></div>' +
+            '<p class="mc-cat">' + esc(it.cat) + '</p>' +
+            '<p class="mc-desc">' + esc(it.desc) + '</p>' +
+            '<p class="mc-feat">★ ' + esc(it.feat) + '</p>' +
+            '<div class="mc-foot"><span class="mc-badges">' + (it.flags.length ? it.flags.map(badgeHtml).join('') : '<span style="font-family:var(--font-mono);font-size:var(--fs-badge);color:var(--clr-ink-3)">NO BADGES — PURE INDULGENCE</span>') + '</span>' +
+            '<button class="add-btn" type="button" data-add="' + it.id + '" aria-label="Add ' + esc(it.title) + ' to your order, ' + money(it.price) + '">ADD</button></div>' +
+            '</div>' +
+            '</article>'
+          ).join('');
+          $$('.add-btn', menuGrid).forEach(btn => btn.addEventListener('click', () => {
+            const it = MENU.find(m => m.id === Number(btn.dataset.add));
+            addToCart(it.title, it.price);
+            btn.classList.add('added'); btn.textContent = 'ADDED ✓';
+            setTimeout(() => { btn.classList.remove('added'); btn.textContent = 'ADD'; }, 1400);
+          }));
+        }
+        function loadMenu() {
+          if (menuState.loaded) return;
+          setTimeout(() => {
+            menuSkeleton.hidden = true;
+            menuState.loaded = true;
+            renderMenu();
+            toast('Menu board\u2019s up, Boss. Fresh from the kitchen.', 'success');
+          }, REDUCED ? 100 : 750);
+        }
+        let searchT;
+        $('#menuSearch').addEventListener('input', e => {
+          clearTimeout(searchT);
+          searchT = setTimeout(() => { menuState.q = e.target.value; renderMenu(); }, 160);
+        });
+        $('#menuCat').addEventListener('change', e => { menuState.cat = e.target.value; renderMenu(); });
+        $$('.chip-row .chip').forEach(chip => chip.addEventListener('click', () => {
+          $$('.chip-row .chip').forEach(c => c.setAttribute('aria-pressed', 'false'));
+          chip.setAttribute('aria-pressed', 'true');
+          menuState.diet = chip.dataset.diet;
+          renderMenu();
+        }));
+
+        /* ================= BUILD-A-BOSS ================= */
+        const build = { bread: 'white', fillings: [] };
+        const fillGrid = $('#fillGrid'), stack = $('#stack'), buildBadges = $('#buildBadges'),
+          buildTicket = $('#buildTicket'), buildError = $('#buildError'), buildAdd = $('#buildAdd');
+        let lastTicketNo = 'Z-' + (1000 + Math.floor(Math.random() * 9000));
+
+        fillGrid.innerHTML = FILLINGS.map(f =>
+          '<button class="fill-opt" type="button" data-filling="' + f.id + '" aria-pressed="false" style="--sw:' + f.sw + '">' +
+          '<span class="order-no" aria-hidden="true">0</span>' +
+          '<span class="swatch" aria-hidden="true"></span>' +
+          '<span class="fo-main"><b>' + esc(f.name) + '</b><i>MAIN ' + money(f.main) + ' · EXTRA ' + money(EXTRA_PRICE) + '</i></span>' +
+          '<span class="fo-badges">' + (f.flags.length ? f.flags.map(badgeHtml).join('') : '') + '</span>' +
+          '<span class="fo-in" aria-hidden="true">IN!</span>' +
+          '</button>'
+        ).join('');
+
+        function buildFlags() {
+          const bread = BREADS[build.bread];
+          if (!build.fillings.length) return bread.flags.slice();
+          let flags = FILLINGS.find(f => f.id === build.fillings[0]).flags.slice();
+          build.fillings.slice(1).forEach(id => {
+            const ff = FILLINGS.find(f => f.id === id).flags;
+            flags = flags.filter(x => ff.indexOf(x) !== -1);
+          });
+          return flags.concat(bread.flags.filter(x => flags.indexOf(x) === -1));
+        }
+        function buildPrice() {
+          if (!build.fillings.length) return BREADS[build.bread].price;
+          const main = FILLINGS.find(f => f.id === build.fillings[0]).main;
+          return BREADS[build.bread].price + main + (build.fillings.length - 1) * EXTRA_PRICE;
+        }
+        function showBuildError(msg) {
+          buildError.textContent = msg; buildError.hidden = false;
+          $('#stage').classList.remove('shake'); void $('#stage').offsetWidth; $('#stage').classList.add('shake');
+          setTimeout(() => { buildError.hidden = true; }, 3200);
+        }
+        function renderBuild(animateId) {
+          /* buttons */
+          $$('.fill-opt', fillGrid).forEach(btn => {
+            const idx = build.fillings.indexOf(btn.dataset.filling);
+            btn.setAttribute('aria-pressed', String(idx !== -1));
+            $('.order-no', btn).textContent = idx !== -1 ? String(idx + 1) : '0';
+          });
+          $('#fillCount').textContent = build.fillings.length;
+
+          /* stack */
+          const b = build.bread;
+          const widths = [88, 84, 90];
+          let html = '<div class="sl sl-top sl-' + b + '" style="width:92%"></div>';
+          build.fillings.slice().reverse().forEach((id, i) => {
+            const anim = id === animateId ? ' drop' : '';
+            html += '<div class="sl sl-' + id + anim + '" style="width:' + widths[i % 3] + '%"></div>';
+          });
+          html += '<div class="sl sl-bottom sl-' + b + '" style="width:92%"></div><div class="sl-plate" aria-hidden="true"></div>';
+          stack.innerHTML = html;
+
+          /* badges */
+          const flags = buildFlags();
+          buildBadges.innerHTML = '<span>AUTO-STAMPED:&nbsp;</span>' +
+            (flags.length
+              ? flags.map((f, i) => '<span class="dbadge ' + f + ' stamp-in" style="animation-delay:' + (i * 70) + 'ms">' + FLAG_LABEL[f] + '</span>').join('')
+              : '<span style="opacity:.55">— pick fillings to earn your badges —</span>');
+
+          /* ticket */
+          const p = perthNow();
+          const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+          const hh = String(p.getHours()).padStart(2, '0'), mm = String(p.getMinutes()).padStart(2, '0');
+          let rows = '<div class="t-row"><span>1× ' + BREADS[b].name + '</span><span class="dots"></span><strong>' + (BREADS[b].price ? '+' + money(BREADS[b].price) : '$0.00') + '</strong></div>';
+          if (build.fillings.length) {
+            const mainF = FILLINGS.find(f => f.id === build.fillings[0]);
+            rows += '<div class="t-row"><span>' + esc(mainF.name).toUpperCase() + ' (MAIN)</span><span class="dots"></span><strong>' + money(mainF.main) + '</strong></div>';
+            build.fillings.slice(1).forEach(id => {
+              const f = FILLINGS.find(x => x.id === id);
+              rows += '<div class="t-row"><span>+ ' + esc(f.name).toUpperCase() + '</span><span class="dots"></span><strong>' + money(EXTRA_PRICE) + '</strong></div>';
+            });
+          } else {
+            rows += '<div class="t-row"><span style="color:#6B573F">NO FILLINGS YET — THE BREAD\u2019S LONELY, BOSS.</span></div>';
+          }
+          const total = buildPrice();
+          buildTicket.innerHTML =
+            '<p class="t-head">JOEY ZAZA\u2019S · DELI TICKET<small>BUILD-A-BOSS · ' + days[p.getDay()] + ' ' + hh + ':' + mm + ' AWST</small></p>' +
+            '<div class="t-rule"></div>' +
+            '<div class="t-row"><span>TICKET</span><span class="dots"></span><strong>' + lastTicketNo + '</strong></div>' + rows +
+            '<div class="t-badges">' + (flags.length ? flags.map(f => '<span class="dbadge ' + f + '">' + FLAG_LABEL[f] + '</span>').join('') : '<span style="color:#6B573F;font-size:.8em">BADGES PRINT AS YOU STACK</span>') + '</div>' +
+            '<div class="t-rule"></div>' +
+            '<div class="t-row t-total"><span>TOTAL</span><span class="dots"></span><strong>' + money(total) + '</strong></div>' +
+            '<div class="t-row"><span>PREP</span><span class="dots"></span><strong>~4 MIN · SERVES 1 BOSS</strong></div>' +
+            '<p class="t-note">THREE FILLINGS. NO REGRETS.</p>' +
+            '<div class="t-bar" aria-hidden="true"></div><p class="t-bar-no" aria-hidden="true">' + lastTicketNo + '·JZ·CBD</p>';
+          $('#buildTotalBtn').textContent = money(total);
+          buildAdd.disabled = !build.fillings.length;
+        }
+        fillGrid.addEventListener('click', e => {
+          const btn = e.target.closest('.fill-opt');
+          if (!btn) return;
+          const id = btn.dataset.filling;
+          const idx = build.fillings.indexOf(id);
+          if (idx !== -1) { build.fillings.splice(idx, 1); renderBuild(); return; }
+          if (build.fillings.length >= 3) {
+            showBuildError('Easy, Boss — three fillings max. House rule. Even the Godfather had limits.');
+            return;
+          }
+          build.fillings.push(id);
+          renderBuild(id);
+        });
+        $$('input[name="bread"]').forEach(r => r.addEventListener('change', () => { build.bread = r.value; renderBuild(); }));
+        $('#buildReset').addEventListener('click', () => {
+          build.fillings = []; build.bread = 'white';
+          $$('input[name="bread"]').forEach(r => { r.checked = r.value === 'white'; });
+          renderBuild();
+          toast('Counter\u2019s wiped clean, Boss. Fresh start.', 'info');
+        });
+        buildAdd.addEventListener('click', () => {
+          if (!build.fillings.length) {
+            showBuildError('Pick at least one filling before we fire this ticket.');
+            return;
+          }
+          const total = buildPrice();
+          addToCart('Boss Build ' + lastTicketNo + ' (' + BREADS[build.bread].name.toLowerCase() + ')', total);
+          toast('Build ' + lastTicketNo + ' added to your Square order, Boss.', 'success');
+          lastTicketNo = 'Z-' + (1000 + Math.floor(Math.random() * 9000));
+          buildTicket.classList.remove('printing'); void buildTicket.offsetWidth; buildTicket.classList.add('printing');
+          renderBuild();
+        });
+
+        /* ================= CART ================= */
+        const cart = [];
+        const cartBtn = $('#cartBtn'), cartPop = $('#cartPop'), cartCount = $('#cartCount');
+        let cartOpen = false;
+        function addToCart(name, price) {
+          const line = cart.find(l => l.name === name && l.price === price);
+          if (line) line.qty++; else cart.push({ name, price, qty: 1 });
+          renderCart();
+        }
+        function cartTotal() { return cart.reduce((s, l) => s + l.price * l.qty, 0); }
+        function renderCart() {
+          const n = cart.reduce((s, l) => s + l.qty, 0);
+          cartCount.hidden = n === 0;
+          cartCount.textContent = n;
+          const lines = $('#cartLines');
+          if (!cart.length) {
+            lines.innerHTML = '<div class="cart-empty"><span class="stamp stamp--sm">EMPTY TICKET</span><p>Nothing on here yet, Boss.<br>The board\u2019s waiting.</p></div>';
+            $('#checkoutBtn').disabled = true;
+          } else {
+            $('#checkoutBtn').disabled = false;
+            lines.innerHTML = cart.map((l, i) =>
+              '<div class="cart-line"><span class="cl-name">' + esc(l.name) + '</span>' +
+              '<button class="qty-btn" type="button" data-qty="-1" data-i="' + i + '" aria-label="One less ' + esc(l.name) + '">−</button>' +
+              '<span aria-label="Quantity">' + l.qty + '</span>' +
+              '<button class="qty-btn" type="button" data-qty="1" data-i="' + i + '" aria-label="One more ' + esc(l.name) + '">+</button>' +
+              '<span>' + money(l.price * l.qty) + '</span>' +
+              '<button class="cl-rm" type="button" data-rm="' + i + '" aria-label="Remove ' + esc(l.name) + '">✕</button></div>'
+            ).join('');
+          }
+          $('#cartTotal').textContent = money(cartTotal());
+        }
+        $('#cartLines').addEventListener('click', e => {
+          const q = e.target.closest('[data-qty]'), r = e.target.closest('[data-rm]');
+          if (q) {
+            const i = Number(q.dataset.i);
+            cart[i].qty += Number(q.dataset.qty);
+            if (cart[i].qty <= 0) cart.splice(i, 1);
+            renderCart();
+          }
+          if (r) { cart.splice(Number(r.dataset.rm), 1); renderCart(); }
+        });
+        function openCart() {
+          cartOpen = true; cartPop.hidden = false;
+          cartBtn.setAttribute('aria-expanded', 'true');
+          $('#cartView').hidden = false; $('#cartLoading').hidden = true; $('#cartSuccess').hidden = true;
+          renderCart();
+          setTimeout(() => $('#cartClose').focus(), 40);
+        }
+        function closeCart(refocus) {
+          if (!cartOpen) return;
+          cartOpen = false; cartPop.hidden = true;
+          cartBtn.setAttribute('aria-expanded', 'false');
+          if (refocus !== false) cartBtn.focus();
+        }
+        cartBtn.addEventListener('click', () => cartOpen ? closeCart() : openCart());
+        $('#cartClose').addEventListener('click', () => closeCart());
+        document.addEventListener('click', e => {
+          if (cartOpen && !cartPop.contains(e.target) && !cartBtn.contains(e.target)) closeCart(false);
+        });
+        $('#checkoutBtn').addEventListener('click', () => {
+          if (!cart.length) return;
+          $('#cartView').hidden = true; $('#cartLoading').hidden = false;
+          setTimeout(() => {
+            $('#cartLoading').hidden = true; $('#cartSuccess').hidden = false;
+            const orderNo = 'Z-' + (1000 + Math.floor(Math.random() * 9000));
+            $('#successOrderNo').textContent = orderNo;
+            const mins = 8 + Math.floor(Math.random() * 7);
+            $('#successEta').textContent = 'READY IN ~' + mins + ' MIN · PICKUP AT THE COUNTER';
+            cart.length = 0; renderCart();
+            toast('Order ' + orderNo + ' confirmed via Square. See you at the counter, Boss!', 'success');
+          }, REDUCED ? 200 : 1100);
+        });
+        $('#successDone').addEventListener('click', () => closeCart());
+
+        /* ================= PLATTER MATH ================= */
+        const calcState = { guests: 16, fills: [], suburb: 'pickup' };
+        const calcFills = $('#calcFills'), calcError = $('#calcError');
+        calcFills.innerHTML = FILLINGS.map(f =>
+          '<button class="chip" type="button" data-calcfill="' + f.id + '" aria-pressed="false">' + esc(f.name) + '</button>'
+        ).join('');
+        calcFills.addEventListener('click', e => {
+          const btn = e.target.closest('[data-calcfill]');
+          if (!btn) return;
+          const id = btn.dataset.calcfill;
+          const idx = calcState.fills.indexOf(id);
+          if (idx !== -1) { calcState.fills.splice(idx, 1); }
+          else {
+            if (calcState.fills.length >= 3) {
+              calcError.textContent = 'Three fillings per platter, Boss — the kitchen\u2019s arithmetic is non-negotiable.';
+              calcError.hidden = false;
+              setTimeout(() => { calcError.hidden = true; }, 3000);
+              return;
+            }
+            calcState.fills.push(id);
+          }
+          $$('.chip', calcFills).forEach(c => c.setAttribute('aria-pressed', String(calcState.fills.indexOf(c.dataset.calcfill) !== -1)));
+          renderCalc();
+        });
+        function renderCalc() {
+          const g = Math.max(1, Math.min(400, calcState.guests || 1));
+          const platters = Math.ceil(g / PLATTER_SERVES);
+          const sub = SUBURBS[calcState.suburb];
+          const fee = deliveryFee(sub.km);
+          const total = platters * PLATTER_PRICE + fee;
+          $('#outPlatters').textContent = platters;
+          $('#outServes').textContent = 'SERVES ' + (platters * PLATTER_SERVES);
+          $('#outSubtotal').textContent = money(platters * PLATTER_PRICE);
+          $('#outDeliveryLabel').textContent = 'DELIVERY — ' + sub.label + (sub.km ? ' · ' + sub.km + 'KM' : '');
+          $('#outDelivery').textContent = fee ? money(fee) : '$0.00';
+          $('#outTotal').textContent = money(total);
+          $('#tkGuests').textContent = g;
+          $('#tkPlatters').textContent = platters;
+          $('#tkSuburb').textContent = sub.label;
+          $('#tkTotal').textContent = money(total);
+          $('#tkFills').innerHTML = calcState.fills.length
+            ? calcState.fills.map(id => '<div class="t-row"><span>· ' + esc(FILLINGS.find(f => f.id === id).name).toUpperCase() + '</span></div>').join('')
+            : '<div class="t-row"><span style="color:#6B573F">— none picked yet —</span></div>';
+        }
+        $('#guestMinus').addEventListener('click', () => { calcState.guests = Math.max(1, calcState.guests - 1); $('#guestInput').value = calcState.guests; renderCalc(); });
+        $('#guestPlus').addEventListener('click', () => { calcState.guests = Math.min(400, calcState.guests + 1); $('#guestInput').value = calcState.guests; renderCalc(); });
+        $('#guestInput').addEventListener('input', e => { calcState.guests = Number(e.target.value) || 1; renderCalc(); });
+        $('#suburbSelect').addEventListener('change', e => { calcState.suburb = e.target.value; renderCalc(); });
+
+        /* cutoff countdown — next 1pm AWST */
+        function nextCutoff() {
+          const p = perthNow();
+          const t = new Date(p); t.setHours(13, 0, 0, 0);
+          if (p >= t) t.setDate(t.getDate() + 1);
+          return t;
+        }
+        let cutoffTarget = nextCutoff();
+        function tickCutoff() {
+          const now = perthNow();
+          let diff = cutoffTarget - now;
+          if (diff <= 0) { cutoffTarget = nextCutoff(); diff = cutoffTarget - now; }
+          const s = Math.floor(diff / 1000);
+          const hh = String(Math.floor(s / 3600)).padStart(2, '0');
+          const mm = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
+          const ss = String(s % 60).padStart(2, '0');
+          $('#cutoffTimer').textContent = hh + ':' + mm + ':' + ss;
+        }
+        setInterval(tickCutoff, 1000); tickCutoff();
+
+        /* load into quote form */
+        $('#loadFormBtn').addEventListener('click', () => {
+          const g = Math.max(1, calcState.guests || 1);
+          const platters = Math.ceil(g / PLATTER_SERVES);
+          $('#qGuests').value = g;
+          $('#qSuburb').value = calcState.suburb;
+          /* union of dietary flags across chosen fillings */
+          const union = {};
+          calcState.fills.forEach(id => FILLINGS.find(f => f.id === id).flags.forEach(fl => union[fl] = true));
+          $('#dGf').checked = !!union.gf; $('#dV').checked = !!union.v; $('#dVg').checked = !!union.vg;
+          $('#dDf').checked = !!union.df; $('#dHa').checked = !!union.halal;
+          const names = calcState.fills.map(id => FILLINGS.find(f => f.id === id).name);
+          $('#qBuildSummary').innerHTML =
+            '<b>' + platters + ' platter' + (platters > 1 ? 's' : '') + '</b> for <b>' + g + ' guests</b> · ' +
+            (names.length ? esc(names.join(' + ')) : 'fillings TBD — we\u2019ll help you pick') +
+            ' · ' + SUBURBS[calcState.suburb].label + ' · est. <b>' + money(platters * PLATTER_PRICE + deliveryFee(SUBURBS[calcState.suburb].km)) + '</b>';
+          const card = $('#formCard');
+          card.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
+          card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
+          toast('Platter math loaded into the quote form, Boss.', 'success');
+        });
+
+        /* ================= QUOTE FORM ================= */
+        const quoteForm = $('#quoteForm');
+        function setErr(id, msg) {
+          const field = $('#' + id).closest('.field') || $('#err-' + id).parentElement;
+          const err = $('#err-' + id);
+          if (msg) {
+            if (field && field.classList) field.classList.add('invalid');
+            err.textContent = msg; err.hidden = false;
+            $('#' + id).setAttribute('aria-invalid', 'true');
+          } else {
+            if (field && field.classList) field.classList.remove('invalid');
+            err.hidden = true;
+            $('#' + id).removeAttribute('aria-invalid');
+          }
+        }
+        /* min date = tomorrow */
+        (function () {
+          const t = new Date(); t.setDate(t.getDate() + 1);
+          const iso = t.getFullYear() + '-' + String(t.getMonth() + 1).padStart(2, '0') + '-' + String(t.getDate()).padStart(2, '0') + 'T07:00';
+          $('#qDate').min = iso;
+        })();
+        quoteForm.addEventListener('submit', e => {
+          e.preventDefault();
+          let ok = true, firstBad = null;
+          const name = $('#qName').value.trim(), email = $('#qEmail').value.trim(), phone = $('#qPhone').value.trim();
+          if (name.length < 2) { setErr('qName', 'We need a name to yell at the counter, Boss.'); ok = false; firstBad = firstBad || '#qName'; } else setErr('qName');
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setErr('qEmail', 'That email looks off — give it another once-over.'); ok = false; firstBad = firstBad || '#qEmail'; } else setErr('qEmail');
+          if (phone.replace(/\D/g, '').length < 8) { setErr('qPhone', 'A real phone number, so Michelle can call you back.'); ok = false; firstBad = firstBad || '#qPhone'; } else setErr('qPhone');
+          if (!$('#qEvent').value) { setErr('qEvent', 'Pick an event type — helps us plan the platters.'); ok = false; firstBad = firstBad || '#qEvent'; } else setErr('qEvent');
+          const guests = Number($('#qGuests').value);
+          if (!guests || guests < 1) { setErr('qGuests', 'How many mouths are we feeding?'); ok = false; firstBad = firstBad || '#qGuests'; } else setErr('qGuests');
+          if (!$('#qConsent').checked) {
+            const err = $('#err-qConsent'); err.textContent = 'Tick the privacy box so we\u2019re allowed to reply, Boss.'; err.hidden = false;
+            ok = false; firstBad = firstBad || '#qConsent';
+          } else { $('#err-qConsent').hidden = true; }
+          if (!ok) {
+            if (firstBad) $(firstBad).focus();
+            toast('A couple of fields need love before this ticket prints.', 'error');
+            return;
+          }
+          const ref = 'PL-' + (1000 + Math.floor(Math.random() * 9000));
+          $('#quoteRef').textContent = ref;
+          $('#qsName').textContent = name.toUpperCase();
+          $('#qsPlatters').textContent = guests + ' → ' + Math.ceil(guests / PLATTER_SERVES) + ' PLATTERS';
+          $('#qsSuburb').textContent = SUBURBS[$('#qSuburb').value].label;
+          quoteForm.hidden = true;
+          $('#quoteSuccess').hidden = false;
+          $('#quoteSuccess').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'center' });
+          toast('Quote request ' + ref + ' sent. The family\u2019s on it.', 'success');
+        });
+        $('#quoteAgain').addEventListener('click', () => {
+          quoteForm.reset();
+          $$('.field.invalid', quoteForm).forEach(f => f.classList.remove('invalid'));
+          $$('.err', quoteForm).forEach(e => e.hidden = true);
+          $('#qBuildSummary').innerHTML = 'Run the calculator above, then hit <b>LOAD INTO THE QUOTE FORM</b> — your build lands here.';
+          $('#quoteSuccess').hidden = true; quoteForm.hidden = false;
+          $('#qName').focus();
+        });
+
+        /* ================= BOSS REWARDS ================= */
+        $('#rwForm').addEventListener('submit', e => {
+          e.preventDefault();
+          const email = $('#rwEmail').value.trim();
+          const err = $('#rwErr');
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            err.textContent = 'That email won\u2019t survive the pass, Boss — check it and try again.';
+            err.hidden = false;
+            $('#rwEmail').focus();
+            return;
+          }
+          err.hidden = true;
+          $('#rwBox').innerHTML =
+            '<div class="rw-success"><span class="stamp stamp--sm" style="color:#FFD968;border-color:#FFD968">ON THE LIST</span>' +
+            'You\u2019re in the family, Boss. First reward drops Friday — watch the inbox.</div>';
+          toast('Welcome to Boss Rewards. First round\u2019s on us.', 'success');
+        });
+
+        /* ================= GLOBAL KEYBOARD ================= */
+        document.addEventListener('keydown', e => {
+          if (e.key !== 'Escape') return;
+          if (overlayOpen) { closeOverlay(); return; }
+          if (cartOpen) { closeCart(); }
+        });
+
+        /* ================= INIT ================= */
+        $('#year').textContent = new Date().getFullYear();
+        buildTicker();
+        setSpecials();
+        updateStatus();
+        setInterval(updateStatus, 30000);
+        renderBuild();
+        renderCalc();
+        renderCart();
+        loadMenu();
+        navigate();
+      })();
+    </script>
+  </body>
+
+  </html>
+
+  <script>
+
+  </script>
+</body>
+
+</html>

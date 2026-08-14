@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: white;
+      /* Ensure the iframe has a white background */
+    }
+  </style>
+</head>
+
+<body>
+  <!doctype html>
+  <html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CV-2026-01 · Mark E. — Principal Web Architect</title>
+    <style>
+      /* ================= DESIGN TOKENS (tweak here for exact match) ================= */
+      :root {
+        --bg: #f4f6fa;
+        /* page blue-gray        */
+        --ink: #1b222c;
+        /* body text             */
+        --navy: #153a63;
+        /* MARK E. / section hdrs*/
+        --blue: #1e5aa4;
+        /* accents / links       */
+        --amber: #a97e2f;
+        /* top strip             */
+        --gray: #78828f;
+        /* mono labels           */
+        --line: #c9cfd8;
+        /* rules / timeline      */
+        --line2: #dfe4ea;
+        /* light borders         */
+        --black: #14181d;
+        --serif: Georgia, "Times New Roman", serif;
+        --mono: ui-monospace, "DejaVu Sans Mono", Menlo, Consolas, "Courier New", monospace;
+        --sans: "DejaVu Sans", "Helvetica Neue", Arial, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box
+      }
+
+      html {
+        font-size: 18.4px
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact
+      }
+
+      /* ================= APP CHROME (never prints) ================= */
+      .chrome {
+        position: sticky;
+        top: 0;
+        z-index: 9;
+        background: var(--black);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 9px 16px
+      }
+
+      .chrome .brand {
+        font: 700 10.5px var(--mono);
+        letter-spacing: .16em
+      }
+
+      .chrome .links {
+        display: flex;
+        gap: 6px
+      }
+
+      .chrome .links a {
+        color: #fff;
+        text-decoration: none;
+        font: 700 10.5px var(--mono);
+        letter-spacing: .12em;
+        padding: 5px 10px;
+        border: 1px solid transparent
+      }
+
+      .chrome .links a.on {
+        border-color: #fff
+      }
+
+      .chrome .acts {
+        margin-left: auto;
+        display: flex;
+        gap: 8px
+      }
+
+      .btn {
+        display: inline-block;
+        border: 1.5px solid var(--black);
+        background: #fff;
+        color: var(--black);
+        font: 700 10.5px var(--mono);
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        padding: 6px 11px;
+        cursor: pointer;
+        text-decoration: none
+      }
+
+      .btn:hover {
+        background: var(--black);
+        color: #fff
+      }
+
+      .btn:disabled {
+        opacity: .35;
+        pointer-events: none
+      }
+
+      .chrome .btn {
+        border-color: #fff;
+        background: transparent;
+        color: #fff
+      }
+
+      .chrome .btn:hover {
+        background: #fff;
+        color: var(--black)
+      }
+
+      .chrome .btn.primary {
+        background: #fff;
+        color: var(--black)
+      }
+
+      /* ================= SHEET ================= */
+      .sheet {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 26px 30px 12px
+      }
+
+      /* ---- header ---- */
+      .strip {
+        font: 600 13px var(--mono);
+        letter-spacing: .35em;
+        color: var(--amber);
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 16px
+      }
+
+      .strip::after {
+        content: "";
+        width: 64px;
+        height: 2px;
+        background: var(--amber)
+      }
+
+      .head {
+        display: flex;
+        justify-content: space-between;
+        gap: 44px;
+        margin-top: 10px
+      }
+
+      .head .left {
+        flex: 1;
+        min-width: 0
+      }
+
+      h1.word {
+        margin: 0;
+        font-family: var(--sans);
+        font-weight: 800;
+        font-size: 42px;
+        letter-spacing: .01em;
+        color: var(--navy)
+      }
+
+      .roleline {
+        margin-top: 6px;
+        font: 700 19px var(--sans);
+        letter-spacing: .12em
+      }
+
+      .roleline .dark {
+        color: #101418
+      }
+
+      .roleline .acc {
+        color: var(--blue)
+      }
+
+      .summary {
+        margin: 16px 0 0;
+        max-width: 660px;
+        font: 15.5px/1.55 var(--serif);
+        color: #232a33
+      }
+
+      .contacts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px 44px;
+        margin-top: 22px
+      }
+
+      .citem .lbl {
+        display: block;
+        font: 11px var(--mono);
+        letter-spacing: .22em;
+        color: var(--gray);
+        text-transform: uppercase;
+        margin-bottom: 5px
+      }
+
+      .citem .val {
+        font: 700 13.5px var(--mono);
+        color: #101418
+      }
+
+      .citem .val.dot {
+        border-bottom: 1px dotted #9aa3ad;
+        padding-bottom: 1px
+      }
+
+      /* ---- title block ---- */
+      .tblock {
+        flex: none;
+        width: 560px;
+        border: 2px solid var(--black);
+        background: transparent;
+        display: flex;
+        flex-direction: column
+      }
+
+      .tblock table {
+        width: 100%;
+        height: 100%;
+        border-collapse: collapse;
+        table-layout: fixed
+      }
+
+      .tblock td {
+        border: 1px solid var(--line);
+        padding: 7px 12px;
+        vertical-align: top
+      }
+
+      .tblock tr:first-child td {
+        border-top: 0
+      }
+
+      .tblock .k {
+        font: 10.5px var(--mono);
+        letter-spacing: .18em;
+        color: var(--gray);
+        text-transform: uppercase;
+        padding-bottom: 2px
+      }
+
+      .tblock .v {
+        font: 600 12.5px var(--mono);
+        color: #101418
+      }
+
+      .tblock .v.proj {
+        font: 700 12px var(--sans);
+        letter-spacing: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis
+      }
+
+      .tblock td.k {
+        width: 50%
+      }
+
+      .tblock tr.full td {
+        width: 100%;
+        padding: 10px 12px
+      }
+
+      .tblock tr.full .k {
+        display: block;
+        padding-bottom: 4px
+      }
+
+      .tblock tr.full .proj {
+        display: block;
+        font-size: 12px
+      }
+
+      .bigrule {
+        height: 4px;
+        background: var(--black);
+        margin: 26px 0 24px
+      }
+
+      /* ---- section headers ---- */
+      .secwrap {
+        border-bottom: 1px solid var(--line2);
+        padding-bottom: 10px;
+        margin-bottom: 22px
+      }
+
+      .sechead {
+        display: flex;
+        align-items: center;
+        gap: 14px
+      }
+
+      .stamp {
+        font: 600 12px var(--mono);
+        letter-spacing: .08em;
+        color: var(--blue);
+        border: 1.5px solid var(--blue);
+        border-radius: 3px;
+        padding: 3px 9px
+      }
+
+      .sechead h2 {
+        margin: 0;
+        font: 800 17px var(--sans);
+        letter-spacing: .18em;
+        color: var(--navy)
+      }
+
+      .sechead .rule {
+        flex: 1;
+        height: 1px;
+        background: var(--line)
+      }
+
+      section {
+        margin-bottom: 30px
+      }
+
+      /* ---- experience timeline ---- */
+      .timeline {
+        border-left: 2px solid var(--line);
+        margin-left: 7px;
+        padding-left: 36px
+      }
+
+      .entry {
+        position: relative;
+        margin-bottom: 26px
+      }
+
+      .entry::before {
+        content: "";
+        position: absolute;
+        left: -44px;
+        top: 4px;
+        width: 9px;
+        height: 9px;
+        border: 2px solid var(--blue);
+        background: var(--bg);
+        transform: rotate(45deg)
+      }
+
+      .entry h3 {
+        margin: 0;
+        font: 700 16.5px var(--sans);
+        color: #101418
+      }
+
+      .tagline {
+        margin: 4px 0 0;
+        font: italic 14px var(--serif);
+        color: #55606c
+      }
+
+      .company {
+        margin: 4px 0 0;
+        font: 700 14px var(--sans);
+        color: var(--blue)
+      }
+
+      .meta {
+        margin: 7px 0 0;
+        font: 12.5px var(--mono);
+        color: #101418;
+        display: flex;
+        gap: 44px
+      }
+
+      .meta .loc {
+        color: #8a93a0
+      }
+
+      ul.bullets {
+        list-style: none;
+        margin: 10px 0 0;
+        padding: 0
+      }
+
+      ul.bullets li {
+        position: relative;
+        padding-left: 24px;
+        margin: 7px 0;
+        font: 14.5px/1.5 var(--serif);
+        color: var(--ink)
+      }
+
+      ul.bullets li::before {
+        content: "—";
+        position: absolute;
+        left: 0;
+        color: #5a6472
+      }
+
+      .proj {
+        color: var(--blue);
+        font-style: italic
+      }
+
+      /* ---- education ---- */
+      .ecard {
+        border: 1px solid var(--line2);
+        padding: 16px 18px
+      }
+
+      .ecard .top {
+        display: block
+      }
+
+      .ecard h3 {
+        margin: 0;
+        font: 700 15.5px var(--sans);
+        color: #101418
+      }
+
+      .ecard .date {
+        display: block;
+        margin-top: 8px;
+        font: 12.5px var(--mono);
+        color: #8a93a0;
+        white-space: nowrap
+      }
+
+      .ecard .school {
+        margin: 6px 0 0;
+        font: 700 14.5px var(--serif);
+        color: var(--blue)
+      }
+
+      .ecard .note {
+        margin: 6px 0 0;
+        font: italic 13.5px var(--serif);
+        color: #55606c
+      }
+
+      /* ---- skills table ---- */
+      .skills {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--line2)
+      }
+
+      .skills th {
+        font: 11.5px var(--mono);
+        letter-spacing: .18em;
+        color: var(--gray);
+        text-transform: uppercase;
+        text-align: left;
+        padding: 9px 12px;
+        border-bottom: 2.5px solid var(--black)
+      }
+
+      .skills td {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line2);
+        font: 14px var(--serif);
+        color: var(--ink)
+      }
+
+      .skills tr:last-child td {
+        border-bottom: 0
+      }
+
+      .skills td.disc {
+        font: 700 12.5px var(--sans);
+        letter-spacing: .12em;
+        color: var(--navy);
+        width: 150px;
+        border-right: 1px solid var(--line2)
+      }
+
+      /* ---- footer ---- */
+      .foot {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        border-top: 2px solid var(--black);
+        margin-top: 36px;
+        padding: 10px 0 6px;
+        font: 12px var(--mono);
+        color: var(--gray)
+      }
+
+      .foot b {
+        color: #101418
+      }
+
+      .foot .grow {
+        flex: 1
+      }
+
+      .scalebar {
+        display: inline-block;
+        width: 88px;
+        height: 12px;
+        border: 1px solid var(--black);
+        background: repeating-linear-gradient(90deg, var(--black) 0 22px, #fff 22px 44px)
+      }
+
+      .revbox {
+        border: 1.5px solid var(--black);
+        padding: 2px 9px;
+        font-weight: 700;
+        color: #101418
+      }
+
+      .northsvg {
+        display: inline-block;
+        vertical-align: middle
+      }
+
+      /* ================= CONFIG EDITOR ================= */
+      .config {
+        max-width: 920px;
+        margin: 24px auto 90px;
+        padding: 0 18px;
+        display: grid;
+        gap: 18px
+      }
+
+      .panel {
+        background: #fff;
+        border: 2px solid var(--black);
+        padding: 18px
+      }
+
+      .panel h2 {
+        margin: 0 0 14px;
+        font: 700 11px var(--mono);
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        border-bottom: 1.5px solid var(--black);
+        padding-bottom: 8px
+      }
+
+      .panel .hint {
+        font: 12px/1.5 var(--sans);
+        color: #444;
+        margin: 0 0 12px
+      }
+
+      .grid2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 14px
+      }
+
+      .row {
+        display: block;
+        margin-bottom: 10px
+      }
+
+      .lbl {
+        display: block;
+        font: 700 9.5px var(--mono);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        color: #333
+      }
+
+      .inp {
+        width: 100%;
+        border: 1px solid #8a8a86;
+        background: #fff;
+        padding: 7px 9px;
+        font: 13px var(--sans);
+        color: var(--ink)
+      }
+
+      textarea.inp {
+        resize: vertical;
+        line-height: 1.45
+      }
+
+      .inp:focus {
+        outline: 2px solid var(--black);
+        outline-offset: -1px
+      }
+
+      .rcard {
+        border: 1px solid var(--black);
+        background: #fbfcfe;
+        padding: 14px;
+        margin-bottom: 14px
+      }
+
+      .rtools {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px
+      }
+
+      .rtools b {
+        font: 700 10px var(--mono);
+        letter-spacing: .14em;
+        margin-right: auto
+      }
+
+      .brow {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        margin-bottom: 8px
+      }
+
+      .bctl {
+        display: flex;
+        flex-direction: column;
+        gap: 4px
+      }
+
+      .btn.tiny {
+        padding: 3px 7px;
+        font-size: 9.5px
+      }
+
+      .status {
+        font: 700 10px var(--mono);
+        letter-spacing: .1em;
+        margin-left: 10px
+      }
+
+      .btnrow {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 12px
+      }
+
+      .chk {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font: 700 10px var(--mono);
+        letter-spacing: .08em;
+        color: #333
+      }
+
+      /* ================= PRINT ================= */
+      @page {
+        size: letter;
+        margin: 0
+      }
+
+      @media print {
+        html {
+          font-size: 10.5px
+        }
+
+        .chrome,
+        .config {
+          display: none !important
+        }
+
+        .sheet {
+          max-width: none;
+          padding: .3in .35in
+        }
+
+        .entry,
+        .ecard,
+        .skills tr {
+          break-inside: avoid
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="chrome" id="chrome"></nav>
+    <main id="app"></main>
+
+    <script>
+      'use strict';
+      /* =====================================================================
+         CV-2026-01 · DRAWING-SET RESUME + CONFIG SPA
+         Routes: #/resume (print view) · #/config (editor)
+         Content autosaves to localStorage; JSON export/import in panel 08.
+         Bullet markup: wrap project names in *asterisks* → blue italic.
+         ===================================================================== */
+      const KEY = 'cv-2026-01/content/v2';
+
+      const DEFAULT_CONTENT = {
+        doc: { strip: "Drawing Set · Curriculum Vitae" },
+        identity: {
+          name: "MARK E.",
+          roleDark: "PRINCIPAL",
+          roleAccent: "WEB ARCHITECT",
+          summary: "Web Architect with 10 years spanning web development, analytics, digital marketing, and design — grounded in Computer Science (39 credits) and a formal concentration in Human-Computer Interaction. I build WordPress and Drupal systems where accessibility, editorial workflow, and GA4 instrumentation are treated as one drawing set, not four afterthoughts. Django/Wagtail for rapid prototyping and headless CMS architecture."
+        },
+        contacts: [
+          { label: "Location", value: "Ashburn, VA 20147", dotted: false },
+          { label: "Email", value: "studio@marke.dev", dotted: true },
+          { label: "Phone", value: "(703) 555-0184", dotted: true },
+          { label: "Portfolio", value: "[hosted url]", dotted: false }
+        ],
+        titleblock: {
+          project: "Principal Web Architect — Candidate Dossier",
+          drawnBy: "Mark E.", checked: "Self-verified",
+          date: "2026.01", scale: "1 : 1",
+          sheet: "CV-2026-01", revision: "REV A"
+        },
+        sections: {
+          work: { stamp: "A-01", title: "Work Experience" },
+          edu: { stamp: "A-02", title: "Education" },
+          skills: { stamp: "A-03", title: "Skills" }
+        },
+        roles: [
+          {
+            title: "Independent Web Architect",
+            tagline: "Delivering high-fidelity prototypes & CMS integrations via Upwork",
+            company: "", dates: "10/2025 – Present", location: "Remote",
+            bullets: [
+              "Designed and built 10+ fully-operational prototypes across legal, education, healthcare, sports, and architecture verticals — each with multi-step intake workflows, consent-gated submissions, eSignature integration, and industry-specific copywriting.",
+              "Developed a SPA-to-Wagtail CMS conversion pipeline enabling rapid deployment of static HTML prototypes into production Wagtail instances.",
+              "Active ecommerce prototype development targeting Shopify/Liquid integration, extending CMS architecture skills into the commerce platform space.",
+              "Select deliverables: *Sons of Quixote* (legal nonprofit intake + chorus wall), *Dolphin Academic Prep* (6-location tutoring center with FERPA-minded family portal), *WorkStay* (healthcare housing marketplace with proximity ranking), *Pódio Sports* (athlete roster management with multilingual support)."
+            ]
+          },
+          {
+            title: "Web Development Analyst / Web Designer",
+            tagline: "", company: "Casualty Actuarial Society",
+            dates: "11/2021 – 10/25", location: "Arlington, VA",
+            bullets: [
+              "Built high-fidelity prototypes focused on accessibility: ARIA attributes, keyboard navigation, and focus management across Drupal and WordPress properties.",
+              "Managed Drupal and WordPress vendor relationships — liaised with junior developers on execution and led R&D with senior engineers on architecture.",
+              "Spearheaded editorial workflow automation, reducing editorial handling time by 60% per release cycle. Composer-managed Drupal modules; synced WordPress patterns.",
+              "Implemented Google Analytics Dashboard API in WordPress; authored GA4 reports in Google Looker Studio.",
+              "Gained working knowledge of Git, CI/CD, and Docker Compose through Pantheon.io.",
+              "Provided cross-functional support between editorial, marketing, and IT departments."
+            ]
+          },
+          {
+            title: "Webmaster", tagline: "", company: "Special Olympics",
+            dates: "06/2019 – 03/2021", location: "Washington, D.C.",
+            bullets: [
+              "Managed Inclusive Health Center redesign and supported third-party development agency.",
+              "Responsible for regular analytics reporting via Google Analytics and Python.",
+              "Maintained and published content via proprietary CMS."
+            ]
+          },
+          {
+            title: "Web Developer / Digital Marketing Specialist", tagline: "",
+            company: "American Road & Transportation Builders Association (ARTBA)",
+            dates: "06/2017 – 12/2018", location: "Washington, D.C.",
+            bullets: [
+              "Created, designed, and managed WordPress websites leveraging HTML, CSS, and JavaScript.",
+              "Tracked, analyzed, and reported via Google Analytics and Google Tag Manager.",
+              "Managed SaaS tools: MailChimp, Zapier, Eventbrite.",
+              "Liaised with staff and external stakeholders gathering requirements for web projects.",
+              "Managed A/V and PPC campaigns for events and conferences."
+            ]
+          }
+        ],
+        education: [{
+          degree: "B.S. Psychology / Human-Computer Interaction (HCI)",
+          school: "George Mason University",
+          date: "May 2017",
+          note: "Computer Science: 39 credits completed"
+        }],
+        skills: [
+          { disc: "CMS", items: "WordPress (plugin development, Composer), Drupal (module development), Wagtail/Django (rapid prototyping, headless CMS)" },
+          { disc: "Frontend", items: "JavaScript (async), Jinja, Twig, Liquid, Nuxt, Vite" },
+          { disc: "Architecture", items: "MVC/MVT, editorial workflow design, multi-property publishing estates" },
+          { disc: "Analytics", items: "Google Analytics 4, Google Tag Manager, Looker Studio, GA Dashboard API" },
+          { disc: "Design", items: "Adobe Illustrator, Adobe Photoshop, accessibility-first design (WCAG, ARIA, keyboard navigation, focus management)" },
+          { disc: "DevOps", items: "Git, CI/CD, Docker Compose, Pantheon.io" }
+        ],
+        footer: {
+          scaleNote: "SCALE 1:1 ·", scaleBold: "N.T.S.",
+          northLabel: "TRUE NORTH:", northValue: "REMOTE-FIRST · DC METRO",
+          rev: "REV A", sheet: "CV-2026-01",
+          issued: "ISSUED FOR APPLICATION", sheetOf: "SHEET 1 OF 1"
+        }
+      };
+
+      /* ---------- storage ---------- */
+      function load() {
+        try {
+          const raw = localStorage.getItem(KEY);
+          if (raw) { const c = JSON.parse(raw); if (c && Array.isArray(c.roles)) return c; }
+        } catch (e) { }
+        return structuredClone(DEFAULT_CONTENT);
+      }
+      let content = load();
+      let saveTimer;
+      function save() {
+        clearTimeout(saveTimer);
+        saveTimer = setTimeout(() => localStorage.setItem(KEY, JSON.stringify(content)), 150);
+      }
+      const ser = () => JSON.stringify(content, null, 2);
+
+      /* ---------- helpers ---------- */
+      const app = document.getElementById('app');
+      const chromeEl = document.getElementById('chrome');
+      const esc = s => String(s).replace(/[&<>"']/g,
+        c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+      const inline = s => esc(s).replace(/\*([^*]+)\*/g, '<em class="proj">$1</em>');
+
+      function el(tag, attrs = {}, ...kids) {
+        const n = document.createElement(tag);
+        for (const [k, v] of Object.entries(attrs)) {
+          if (k === 'class') n.className = v;
+          else if (k.startsWith('on') && typeof v === 'function') n.addEventListener(k.slice(2), v);
+          else n.setAttribute(k, v);
+        }
+        for (const kid of kids.flat()) {
+          if (kid == null) continue;
+          n.append(kid.nodeType ? kid : document.createTextNode(kid));
+        }
+        return n;
+      }
+      function btn(label, enabled, onclick, cls = 'btn') {
+        const b = el('button', { type: 'button', class: cls, onclick }, label);
+        if (!enabled) b.disabled = true; return b;
+      }
+      function flash(b, msg) {
+        const t = b.textContent; b.textContent = msg;
+        setTimeout(() => b.textContent = t, 1200);
+      }
+
+      /* ---------- router ---------- */
+      function route() {
+        const h = location.hash || '#/resume';
+        renderChrome(h);
+        h.startsWith('#/config') ? mountConfig() : mountResume();
+      }
+      addEventListener('hashchange', route);
+
+      function renderChrome(h) {
+        const on = h.startsWith('#/config');
+        chromeEl.replaceChildren(
+          el('span', { class: 'brand' }, 'CV-2026-01 · DRAWING SET'),
+          el('span', { class: 'links' },
+            el('a', { href: '#/resume', class: on ? '' : 'on' }, 'RESUME'),
+            el('a', { href: '#/config', class: on ? 'on' : '' }, 'CONFIG')),
+          el('span', { class: 'acts' },
+            on ? el('a', { class: 'btn', href: '#/resume' }, 'Open print view')
+              : [el('button', { class: 'btn primary', onclick: () => window.print() }, '⎙ Print / Save as PDF'),
+              el('a', { class: 'btn', href: '#/config' }, 'Edit content')]));
+      }
+
+      /* ================= RESUME VIEW ================= */
+      function secHead(s) {
+        return `<div class="secwrap"><div class="sechead">
+  <span class="stamp">${esc(s.stamp)}</span><h2>${esc(s.title).toUpperCase()}</h2>
+  <span class="rule"></span></div></div>`;
+      }
+
+      function buildResume(c) {
+        const contacts = c.contacts.map(ct => `
+    <div class="citem"><span class="lbl">${esc(ct.label)}</span>
+    <span class="val${ct.dotted ? ' dot' : ''}">${esc(ct.value)}</span></div>`).join('');
+
+        const tb = c.titleblock;
+        const titleblock = `<div class="tblock"><table>
+    <colgroup><col style="width:38%"><col style="width:62%"></colgroup>
+    <tr class="full"><td colspan="2"><span class="k">Project</span><span class="v proj">${esc(tb.project)}</span></td></tr>
+    <tr><td class="k">Drawn by</td><td class="k">Checked</td></tr>
+    <tr><td class="v">${esc(tb.drawnBy)}</td><td class="v">${esc(tb.checked)}</td></tr>
+    <tr><td class="k">Date</td><td class="k">Scale</td></tr>
+    <tr><td class="v">${esc(tb.date)}</td><td class="v">${esc(tb.scale)}</td></tr>
+    <tr><td class="k">Sheet no.</td><td class="k">Revision</td></tr>
+    <tr><td class="v">${esc(tb.sheet)}</td><td class="v">${esc(tb.revision)}</td></tr>
+  </table></div>`;
+
+        const roles = c.roles.map(r => `
+    <article class="entry">
+      <h3>${esc(r.title)}</h3>
+      ${r.tagline ? `<p class="tagline">${esc(r.tagline)}</p>` : ''}
+      ${r.company ? `<p class="company">${esc(r.company)}</p>` : ''}
+      <p class="meta"><span>${esc(r.dates)}</span><span class="loc">${esc(r.location)}</span></p>
+      <ul class="bullets">${r.bullets.filter(b => b.trim())
+            .map(b => `<li>${inline(b)}</li>`).join('')}</ul>
+    </article>`).join('');
+
+        const edu = c.education.map(e => `
+    <div class="ecard"><div class="top"><h3>${esc(e.degree)}</h3></div>
+      <p class="school">${esc(e.school)}</p>
+      <p class="note">${esc(e.note)}</p>
+      <span class="date">${esc(e.date)}</span></div>`).join('');
+
+        const skills = `<table class="skills">
+    <thead><tr><th>Discipline</th><th>Instruments &amp; Methods</th></tr></thead>
+    <tbody>${c.skills.map(s => `<tr><td class="disc">${esc(s.disc).toUpperCase()}</td>
+      <td>${esc(s.items)}</td></tr>`).join('')}</tbody></table>`;
+
+        const f = c.footer;
+        const north = `<svg class="northsvg" width="26" height="26" viewBox="0 0 26 26">
+    <circle cx="13" cy="13" r="12" fill="none" stroke="#153a63" stroke-width="1.5"/>
+    <path d="M13 3 L16.2 15 L13 12.4 L9.8 15 Z" fill="#153a63"/>
+    <text x="13" y="22.5" font-size="6" text-anchor="middle" fill="#153a63"
+          font-family="monospace">N</text></svg>`;
+
+        return `<div class="sheet">
+    <div class="strip">${esc(c.doc.strip)}</div>
+    <div class="head">
+      <div class="left">
+        <h1 class="word">${esc(c.identity.name)}</h1>
+        <div class="roleline"><span class="dark">${esc(c.identity.roleDark)}</span>
+          <span class="acc">${esc(c.identity.roleAccent)}</span></div>
+        <p class="summary">${esc(c.identity.summary)}</p>
+        <div class="contacts">${contacts}</div>
+      </div>
+      ${titleblock}
+    </div>
+    <div class="bigrule"></div>
+    <section>${secHead(c.sections.work)}<div class="timeline">${roles}</div></section>
+    <section>${secHead(c.sections.edu)}${edu}</section>
+    <section>${secHead(c.sections.skills)}${skills}</section>
+    <div class="foot">
+      <span class="scalebar"></span>
+      <span>${esc(f.scaleNote)} <b>${esc(f.scaleBold)}</b></span>
+      <span class="grow"></span>
+      ${north}
+      <span>${esc(f.northLabel)} <b>${esc(f.northValue)}</b></span>
+      <span class="grow"></span>
+      <span class="revbox">${esc(f.rev)}</span>
+      <span><b>${esc(f.sheet)}</b> · ${esc(f.issued)} · ${esc(f.sheetOf)}</span>
+    </div>
+  </div>`;
+      }
+      function mountResume() { app.innerHTML = buildResume(content); }
+
+      /* ================= CONFIG VIEW ================= */
+      function textRow(label, value, onChange, area, rows) {
+        const inp = area
+          ? el('textarea', { class: 'inp', rows: rows || 3, oninput: e => { onChange(e.target.value); save(); } }, value)
+          : el('input', { class: 'inp', type: 'text', value, oninput: e => { onChange(e.target.value); save(); } });
+        return el('label', { class: 'row' }, el('span', { class: 'lbl' }, label), inp);
+      }
+      const panel = (t, ...k) => el('section', { class: 'panel' }, el('h2', {}, t), ...k);
+      const grid2 = (...k) => el('div', { class: 'grid2' }, ...k);
+      function move(arr, i, d) {
+        const j = i + d; if (j < 0 || j >= arr.length) return false;
+        const [x] = arr.splice(i, 1); arr.splice(j, 0, x); return true;
+      }
+
+      function roleCard(r, i, n) {
+        const card = el('div', { class: 'rcard' });
+        card.append(el('div', { class: 'rtools' },
+          el('b', {}, 'DETAIL ' + String(i + 1).padStart(2, '0')),
+          btn('▲', i > 0, () => { if (move(content.roles, i, -1)) { save(); mountConfig(); } }, 'btn tiny'),
+          btn('▼', i < n - 1, () => { if (move(content.roles, i, 1)) { save(); mountConfig(); } }, 'btn tiny'),
+          btn('Remove', true, () => {
+            if (confirm('Remove this detail?')) {
+              content.roles.splice(i, 1); save(); mountConfig();
+            }
+          }, 'btn tiny')));
+        card.append(textRow('Job title', r.title, v => r.title = v));
+        card.append(grid2(
+          textRow('Company (blank = none)', r.company, v => r.company = v),
+          textRow('Tagline (italic, blank = none)', r.tagline, v => r.tagline = v),
+          textRow('Dates', r.dates, v => r.dates = v),
+          textRow('Location', r.location, v => r.location = v)));
+        card.append(el('span', { class: 'lbl' }, 'Bullets — *asterisks* = blue italic project name'));
+        r.bullets.forEach((b, j) => {
+          card.append(el('div', { class: 'brow' },
+            el('textarea', { class: 'inp', rows: 2, oninput: e => { r.bullets[j] = e.target.value; save(); } }, b),
+            el('div', { class: 'bctl' },
+              btn('▲', j > 0, () => { if (move(r.bullets, j, -1)) { save(); mountConfig(); } }, 'btn tiny'),
+              btn('▼', j < r.bullets.length - 1, () => { if (move(r.bullets, j, 1)) { save(); mountConfig(); } }, 'btn tiny'),
+              btn('✕', true, () => { r.bullets.splice(j, 1); save(); mountConfig(); }, 'btn tiny'))));
+        });
+        card.append(btn('+ Add bullet', true, () => { r.bullets.push(''); save(); mountConfig(); }));
+        return card;
+      }
+
+      function buildConfig() {
+        const c = content, root = el('div', { class: 'config' });
+
+        root.append(panel('01 · Strip & Sections',
+          textRow('Top strip label', c.doc.strip, v => c.doc.strip = v),
+          grid2(
+            textRow('Work stamp', c.sections.work.stamp, v => c.sections.work.stamp = v),
+            textRow('Work title', c.sections.work.title, v => c.sections.work.title = v),
+            textRow('Education stamp', c.sections.edu.stamp, v => c.sections.edu.stamp = v),
+            textRow('Education title', c.sections.edu.title, v => c.sections.edu.title = v),
+            textRow('Skills stamp', c.sections.skills.stamp, v => c.sections.skills.stamp = v),
+            textRow('Skills title', c.sections.skills.title, v => c.sections.skills.title = v))));
+
+        root.append(panel('02 · Identity',
+          grid2(
+            textRow('Name', c.identity.name, v => c.identity.name = v),
+            textRow('Role (dark part)', c.identity.roleDark, v => c.identity.roleDark = v),
+            textRow('Role (blue part)', c.identity.roleAccent, v => c.identity.roleAccent = v)),
+          textRow('Summary', c.identity.summary, v => c.identity.summary = v, true, 5)));
+
+        const cp = panel('03 · Contact Row');
+        c.contacts.forEach((ct, i) => {
+          cp.append(el('div', { class: 'rcard' },
+            el('div', { class: 'rtools' },
+              el('b', {}, 'CONTACT ' + String(i + 1).padStart(2, '0')),
+              btn('▲', i > 0, () => { if (move(c.contacts, i, -1)) { save(); mountConfig(); } }, 'btn tiny'),
+              btn('▼', i < c.contacts.length - 1, () => { if (move(c.contacts, i, 1)) { save(); mountConfig(); } }, 'btn tiny'),
+              btn('✕', true, () => { c.contacts.splice(i, 1); save(); mountConfig(); }, 'btn tiny')),
+            grid2(
+              textRow('Label', ct.label, v => ct.label = v),
+              textRow('Value', ct.value, v => ct.value = v)),
+            el('label', { class: 'chk' },
+              (() => {
+                const cb = el('input', { type: 'checkbox' }); cb.checked = !!ct.dotted;
+                cb.addEventListener('change', e => { ct.dotted = e.target.checked; save(); }); return cb;
+              })(),
+              'Dotted underline')));
+        });
+        cp.append(btn('+ Add contact', true, () => {
+          c.contacts.push({ label: 'Label', value: 'Value', dotted: false }); save(); mountConfig();
+        }));
+        root.append(cp);
+
+        root.append(panel('04 · Title Block',
+          textRow('Project', c.titleblock.project, v => c.titleblock.project = v),
+          grid2(
+            textRow('Drawn by', c.titleblock.drawnBy, v => c.titleblock.drawnBy = v),
+            textRow('Checked', c.titleblock.checked, v => c.titleblock.checked = v),
+            textRow('Date', c.titleblock.date, v => c.titleblock.date = v),
+            textRow('Scale', c.titleblock.scale, v => c.titleblock.scale = v),
+            textRow('Sheet no.', c.titleblock.sheet, v => c.titleblock.sheet = v),
+            textRow('Revision', c.titleblock.revision, v => c.titleblock.revision = v))));
+
+        const rp = panel('05 · Work Experience');
+        c.roles.forEach((r, i) => rp.append(roleCard(r, i, c.roles.length)));
+        rp.append(btn('+ Add detail', true, () => {
+          c.roles.push({ title: 'New Role', tagline: '', company: '', dates: '', location: '', bullets: [''] });
+          save(); mountConfig();
+        }));
+        root.append(rp);
+
+        const ep = panel('06 · Education');
+        c.education.forEach((e, i) => {
+          ep.append(el('div', { class: 'rcard' },
+            el('div', { class: 'rtools' }, el('b', {}, 'ENTRY ' + String(i + 1).padStart(2, '0')),
+              btn('✕', true, () => { c.education.splice(i, 1); save(); mountConfig(); }, 'btn tiny')),
+            textRow('Degree', e.degree, v => e.degree = v),
+            grid2(
+              textRow('School', e.school, v => e.school = v),
+              textRow('Date', e.date, v => e.date = v)),
+            textRow('Note (italic)', e.note, v => e.note = v)));
+        });
+        ep.append(btn('+ Add education', true, () => {
+          c.education.push({ degree: '', school: '', date: '', note: '' }); save(); mountConfig();
+        }));
+        root.append(ep);
+
+        const sp = panel('07 · Skills Table');
+        c.skills.forEach((s, i) => {
+          sp.append(el('div', { class: 'brow' },
+            el('div', {},
+              el('input', {
+                class: 'inp', style: 'margin-bottom:6px', value: s.disc,
+                oninput: e => { s.disc = e.target.value; save(); }
+              }),
+              el('textarea', { class: 'inp', rows: 2, oninput: e => { s.items = e.target.value; save(); } }, s.items)),
+            el('div', { class: 'bctl' },
+              btn('▲', i > 0, () => { if (move(c.skills, i, -1)) { save(); mountConfig(); } }, 'btn tiny'),
+              btn('▼', i < c.skills.length - 1, () => { if (move(c.skills, i, 1)) { save(); mountConfig(); } }, 'btn tiny'),
+              btn('✕', true, () => { c.skills.splice(i, 1); save(); mountConfig(); }, 'btn tiny'))));
+        });
+        sp.append(btn('+ Add row', true, () => {
+          c.skills.push({ disc: 'Discipline', items: '' }); save(); mountConfig();
+        }));
+        root.append(sp);
+
+        root.append(panel('08 · Footer',
+          grid2(
+            textRow('Scale note', c.footer.scaleNote, v => c.footer.scaleNote = v),
+            textRow('Scale bold', c.footer.scaleBold, v => c.footer.scaleBold = v),
+            textRow('North label', c.footer.northLabel, v => c.footer.northLabel = v),
+            textRow('North value', c.footer.northValue, v => c.footer.northValue = v),
+            textRow('Revision box', c.footer.rev, v => c.footer.rev = v),
+            textRow('Sheet no.', c.footer.sheet, v => c.footer.sheet = v),
+            textRow('Issued', c.footer.issued, v => c.footer.issued = v),
+            textRow('Sheet of', c.footer.sheetOf, v => c.footer.sheetOf = v))));
+
+        const importTa = el('textarea', {
+          class: 'inp', rows: 8,
+          placeholder: 'Paste content JSON here, then Apply…'
+        });
+        const statusEl = el('span', { class: 'status' });
+        const copyBtn = btn('Copy JSON', true, async () => {
+          try { await navigator.clipboard.writeText(ser()); flash(copyBtn, 'Copied ✓'); }
+          catch (e) { statusEl.textContent = 'COPY FAILED — USE DOWNLOAD'; }
+        });
+        root.append(panel('09 · Data',
+          el('p', { class: 'hint' }, 'Autosaves to this browser (localStorage). Export JSON to back up or move machines.'),
+          el('div', { class: 'btnrow' },
+            btn('Download JSON', true, () => {
+              const a = el('a', {
+                href: URL.createObjectURL(
+                  new Blob([ser()], { type: 'application/json' })), download: 'cv-2026-01.content.json'
+              });
+              a.click(); URL.revokeObjectURL(a.href);
+            }),
+            copyBtn,
+            btn('Reset to CV-2026-01 defaults', true, () => {
+              if (confirm('Discard all edits and restore the original content?')) {
+                content = structuredClone(DEFAULT_CONTENT); save(); mountConfig();
+              }
+            }),
+            statusEl),
+          importTa,
+          el('div', { class: 'btnrow', style: 'margin-top:10px' },
+            btn('Apply imported JSON', true, () => {
+              try {
+                const obj = JSON.parse(importTa.value);
+                if (!obj || !obj.identity || !Array.isArray(obj.roles)) throw new Error('missing identity/roles');
+                for (const k of Object.keys(DEFAULT_CONTENT)) if (!(k in obj)) obj[k] = structuredClone(DEFAULT_CONTENT[k]);
+                content = obj; save(); mountConfig();
+              } catch (e) { alert('Import failed: ' + e.message); }
+            }))));
+        return root;
+      }
+      function mountConfig() { const y = scrollY; app.replaceChildren(buildConfig()); scrollTo(0, y); }
+
+      route();
+    </script>
+  </body>
+
+  </html>
+
+  <script>
+
+  </script>
+</body>
+
+</html>

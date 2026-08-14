@@ -1,0 +1,4136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: white;
+      /* Ensure the iframe has a white background */
+    }
+  </style>
+</head>
+
+<body>
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noai, noimageai">
+    <meta name="description"
+      content="StepDeck — a controller-native groovebox in the browser. Plug in a BeatStep Pro and the tab becomes its missing faceplate.">
+    <title>StepDeck — Controller-Native Groovebox</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet">
+    <style>
+      /* ============================================================
+   STEPDECK · prototype 0.9.3
+   A browser-native groovebox faceplate.
+   Tokens → base → chrome → controls → views → responsive
+   ============================================================ */
+
+      /* ---------- 1. TOKENS ---------- */
+      :root {
+        color-scheme: light;
+        /* surfaces */
+        --bg: #e8e5dc;
+        --panel: #f7f5ef;
+        --panel-2: #e3e0d5;
+        --panel-3: #d3cfc1;
+        --ink: #191a1e;
+        --ink-2: #4a4b52;
+        --ink-3: #7b7c84;
+        --line: #c8c4b6;
+        --line-2: #b0ab9b;
+        --field-bg: #fffdf7;
+        --topbar-bg: rgba(247, 245, 239, .88);
+        --chassis: #1b1c21;
+        --chassis-ink: #e8e5da;
+        --chassis-dim: #9d9c95;
+        --dot: rgba(25, 26, 30, .05);
+        /* screens (LCD) */
+        --screen: #0d1310;
+        --screen-ink: #8ff0b2;
+        --screen-dim: #3f7a55;
+        /* zone palette */
+        --orange: #f4500a;
+        --blue: #1e66f5;
+        --green: #0e9f5b;
+        --yellow: #d99a06;
+        --red: #e0342b;
+        --cyan: #0891b2;
+        --orange-glow: rgba(244, 80, 10, .5);
+        --blue-glow: rgba(30, 102, 245, .5);
+        --green-glow: rgba(14, 159, 91, .5);
+        --yellow-glow: rgba(217, 154, 6, .5);
+        --red-glow: rgba(224, 52, 43, .55);
+        --cyan-glow: rgba(8, 145, 178, .5);
+        /* hardware materials */
+        --knob-hi: #fbfaf6;
+        --knob-lo: #d6d2c4;
+        --pad-hi: #f2efe6;
+        --pad-lo: #d8d4c6;
+        --ring-track: #cfccc0;
+        --led-off: #c6c2b4;
+        /* type */
+        --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+        --font-body: "Instrument Sans", system-ui, sans-serif;
+        --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+        --fs-2xs: clamp(.62rem, .58rem + .2vw, .72rem);
+        --fs-xs: clamp(.7rem, .66rem + .2vw, .8rem);
+        --fs-sm: clamp(.8rem, .76rem + .25vw, .92rem);
+        --fs-md: clamp(.95rem, .9rem + .3vw, 1.08rem);
+        --fs-lg: clamp(1.12rem, 1.02rem + .5vw, 1.4rem);
+        --fs-xl: clamp(1.45rem, 1.25rem + 1vw, 2.05rem);
+        --fs-2xl: clamp(1.9rem, 1.5rem + 2vw, 3.1rem);
+        --fs-3xl: clamp(2.6rem, 1.9rem + 3.6vw, 4.8rem);
+        --fs-hero: clamp(3.2rem, 2rem + 7.5vw, 7.6rem);
+        /* spacing */
+        --sp-1: .35rem;
+        --sp-2: .65rem;
+        --sp-3: 1rem;
+        --sp-4: 1.6rem;
+        --sp-5: 2.4rem;
+        --sp-6: 3.6rem;
+        --sp-7: 5.2rem;
+        /* radii + shadows */
+        --r-sm: 6px;
+        --r-md: 10px;
+        --r-lg: 16px;
+        --sh-panel: inset 0 1px 0 rgba(255, 255, 255, .75), inset 0 -1px 0 rgba(0, 0, 0, .05), 0 14px 30px -14px rgba(25, 26, 30, .28);
+        --sh-raised: 0 3px 0 var(--line-2), 0 8px 16px -8px rgba(25, 26, 30, .35), inset 0 1px 0 rgba(255, 255, 255, .6);
+        --rail-h: 78px;
+      }
+
+      [data-theme="dark"] {
+        color-scheme: dark;
+        --bg: #141519;
+        --panel: #1d1f25;
+        --panel-2: #17181d;
+        --panel-3: #101116;
+        --ink: #efede4;
+        --ink-2: #b6b5ac;
+        --ink-3: #80818a;
+        --line: #2b2d35;
+        --line-2: #3a3d47;
+        --field-bg: #12141a;
+        --topbar-bg: rgba(24, 26, 31, .85);
+        --chassis: #0d0e12;
+        --chassis-ink: #e8e5da;
+        --chassis-dim: #8b8c85;
+        --dot: rgba(255, 255, 255, .045);
+        --screen: #0a0f0c;
+        --screen-ink: #7df0a6;
+        --screen-dim: #2c5a3d;
+        --orange: #ff6a2b;
+        --blue: #4d8dff;
+        --green: #22c476;
+        --yellow: #f2b53a;
+        --red: #ff5d52;
+        --cyan: #2bb3d6;
+        --orange-glow: rgba(255, 106, 43, .55);
+        --blue-glow: rgba(77, 141, 255, .55);
+        --green-glow: rgba(34, 196, 118, .55);
+        --yellow-glow: rgba(242, 181, 58, .5);
+        --red-glow: rgba(255, 93, 82, .6);
+        --cyan-glow: rgba(43, 179, 214, .55);
+        --knob-hi: #41444e;
+        --knob-lo: #26282f;
+        --pad-hi: #2b2e36;
+        --pad-lo: #1b1d23;
+        --ring-track: #34373f;
+        --led-off: #3a3d45;
+        --sh-panel: inset 0 1px 0 rgba(255, 255, 255, .06), inset 0 -1px 0 rgba(0, 0, 0, .4), 0 16px 34px -14px rgba(0, 0, 0, .7);
+        --sh-raised: 0 3px 0 #0c0d11, 0 8px 16px -8px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .08);
+      }
+
+      /* ---------- 2. BASE ---------- */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0
+      }
+
+      [hidden] {
+        display: none !important
+      }
+
+      html {
+        scroll-padding-top: 70px
+      }
+
+      body {
+        font: 400 var(--fs-md)/1.6 var(--font-body);
+        color: var(--ink);
+        background:
+          radial-gradient(1100px 520px at 88% -8%, rgba(244, 80, 10, .07), transparent 60%),
+          radial-gradient(900px 520px at -8% 22%, rgba(30, 102, 245, .06), transparent 60%),
+          radial-gradient(var(--dot) 1px, transparent 1.4px),
+          var(--bg);
+        background-size: auto, auto, 22px 22px, auto;
+        padding-bottom: calc(var(--rail-h) + 28px);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: var(--font-display);
+        line-height: 1.04;
+        letter-spacing: -.015em;
+        font-weight: 750
+      }
+
+      a {
+        color: inherit
+      }
+
+      button {
+        font: inherit;
+        color: inherit;
+        background: none;
+        border: 0;
+        cursor: pointer
+      }
+
+      canvas {
+        display: block;
+        width: 100%;
+        height: 100%
+      }
+
+      ::selection {
+        background: var(--orange);
+        color: #fff
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--blue);
+        outline-offset: 3px;
+        border-radius: 4px
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0
+      }
+
+      .skip-link {
+        position: fixed;
+        top: -60px;
+        left: 12px;
+        z-index: 200;
+        background: var(--ink);
+        color: var(--bg);
+        padding: .6rem 1rem;
+        border-radius: 0 0 8px 8px;
+        font: 600 var(--fs-xs) var(--font-mono);
+        transition: top .25s ease-out
+      }
+
+      .skip-link:focus {
+        top: 0
+      }
+
+      .wrap {
+        max-width: 1240px;
+        margin-inline: auto;
+        padding-inline: clamp(.9rem, 3vw, 2rem)
+      }
+
+      main {
+        min-height: 72vh
+      }
+
+      /* views + router */
+      .view {
+        display: none
+      }
+
+      .view.is-active {
+        display: block
+      }
+
+      .view-enter {
+        animation: viewIn .45s ease-out both
+      }
+
+      @keyframes viewIn {
+        from {
+          opacity: 0;
+          transform: translateY(14px)
+        }
+
+        to {
+          opacity: 1;
+          transform: none
+        }
+      }
+
+      /* reveals */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity .6s ease-out, transform .6s ease-out;
+        transition-delay: calc(var(--i, 0)*70ms)
+      }
+
+      .reveal.is-in {
+        opacity: 1;
+        transform: none
+      }
+
+      /* ---------- 3. HARDWARE VOCABULARY ---------- */
+      .panel {
+        background: linear-gradient(180deg, var(--panel), var(--panel-2));
+        border: 1px solid var(--line);
+        border-radius: var(--r-md);
+        box-shadow: var(--sh-panel);
+        position: relative
+      }
+
+      .screw {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 2;
+        background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, .7), transparent 45%), linear-gradient(180deg, var(--panel-3), var(--line-2));
+        box-shadow: inset 0 -1px 2px rgba(0, 0, 0, .35), 0 1px 1px rgba(255, 255, 255, .4)
+      }
+
+      .screw::after {
+        content: "";
+        position: absolute;
+        left: 1.5px;
+        right: 1.5px;
+        top: 4px;
+        height: 1.5px;
+        background: rgba(0, 0, 0, .4);
+        transform: rotate(38deg)
+      }
+
+      .screw.tl {
+        top: 7px;
+        left: 7px
+      }
+
+      .screw.tr {
+        top: 7px;
+        right: 7px
+      }
+
+      .screw.bl {
+        bottom: 7px;
+        left: 7px
+      }
+
+      .screw.br {
+        bottom: 7px;
+        right: 7px
+      }
+
+      .led {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--led-off);
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, .35);
+        flex: none;
+        transition: background .25s ease-out, box-shadow .25s ease-out
+      }
+
+      .led.on {
+        background: var(--led-c, var(--green));
+        box-shadow: 0 0 9px 1px var(--led-g, var(--green-glow))
+      }
+
+      .led.blink {
+        animation: ledBlink 1s steps(2, start) infinite
+      }
+
+      @keyframes ledBlink {
+        50% {
+          opacity: .15
+        }
+      }
+
+      .lcd {
+        background: var(--screen);
+        border-radius: 8px;
+        border: 1px solid rgba(0, 0, 0, .7);
+        box-shadow: inset 0 3px 10px rgba(0, 0, 0, .85), 0 1px 0 rgba(255, 255, 255, .35);
+        position: relative;
+        overflow: hidden;
+        color: var(--screen-ink)
+      }
+
+      .lcd::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(0deg, rgba(255, 255, 255, .03) 0 1px, transparent 1px 3px);
+        pointer-events: none
+      }
+
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: .55rem;
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .22em;
+        text-transform: uppercase;
+        color: var(--ink-2)
+      }
+
+      .kicker .led {
+        --led-c: var(--kc, var(--orange));
+        --led-g: var(--kg, var(--orange-glow))
+      }
+
+      .rule {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: var(--sp-4) 0
+      }
+
+      .rule::before,
+      .rule::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--line-2)
+      }
+
+      .rule i {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, .6), transparent 45%), linear-gradient(180deg, var(--panel-3), var(--line-2));
+        box-shadow: inset 0 -1px 1px rgba(0, 0, 0, .3)
+      }
+
+      /* buttons */
+      .tbtn {
+        display: inline-flex;
+        align-items: center;
+        gap: .55rem;
+        font: 600 var(--fs-xs)/1 var(--font-mono);
+        letter-spacing: .1em;
+        padding: .7rem .95rem;
+        border-radius: 8px;
+        border: 1px solid var(--line-2);
+        background: linear-gradient(180deg, var(--panel), var(--panel-3));
+        box-shadow: var(--sh-raised);
+        transition: transform .15s ease-out, box-shadow .15s ease-out, border-color .2s;
+        color: var(--ink);
+        white-space: nowrap
+      }
+
+      .tbtn:hover {
+        transform: translateY(-1px);
+        border-color: var(--ink-3)
+      }
+
+      .tbtn:active {
+        transform: translateY(2px);
+        box-shadow: 0 0 0 var(--line-2), inset 0 2px 5px rgba(0, 0, 0, .18)
+      }
+
+      .tbtn[aria-pressed="true"] {
+        border-color: var(--ink-3);
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, .18)
+      }
+
+      .tbtn-primary {
+        background: linear-gradient(180deg, var(--orange), #c93f06);
+        color: #fff;
+        border-color: #a33405;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .3)
+      }
+
+      [data-theme="dark"] .tbtn-primary {
+        background: linear-gradient(180deg, var(--orange), #b34312)
+      }
+
+      .tbtn-primary:hover {
+        filter: brightness(1.07)
+      }
+
+      .tbtn .led-red {
+        --led-c: var(--red);
+        --led-g: var(--red-glow)
+      }
+
+      /* knobs */
+      .knob {
+        --p: .5;
+        --zone: var(--orange);
+        --zone-glow: var(--orange-glow);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .4rem;
+        width: clamp(64px, 7vw, 84px);
+        cursor: ns-resize;
+        touch-action: none;
+        user-select: none;
+        -webkit-user-select: none
+      }
+
+      .knob-wrap {
+        position: relative;
+        width: clamp(46px, 5.4vw, 58px);
+        aspect-ratio: 1
+      }
+
+      .knob-ring {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: conic-gradient(from 225deg, var(--zone) 0 calc(var(--p)*270deg), var(--ring-track) calc(var(--p)*270deg) 270deg, transparent 270deg 360deg);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, .22)
+      }
+
+      .knob-dial {
+        position: absolute;
+        inset: 13%;
+        border-radius: 50%;
+        background: linear-gradient(180deg, var(--knob-hi), var(--knob-lo));
+        box-shadow: 0 3px 6px rgba(0, 0, 0, .32), inset 0 1px 0 rgba(255, 255, 255, .5);
+        transform: rotate(calc(-135deg + var(--p)*270deg));
+        transition: transform .1s ease-out
+      }
+
+      .knob.drag .knob-dial {
+        transition: none
+      }
+
+      .knob-tick {
+        position: absolute;
+        left: calc(50% - 1.5px);
+        top: 9%;
+        width: 3px;
+        height: 26%;
+        border-radius: 2px;
+        background: var(--zone)
+      }
+
+      .knob-label {
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        color: var(--ink-2)
+      }
+
+      .knob-out {
+        font: 500 var(--fs-2xs)/1 var(--font-mono);
+        color: var(--ink);
+        background: var(--panel-3);
+        border: 1px solid var(--line);
+        padding: .3em .5em;
+        border-radius: 4px;
+        min-width: 5ch;
+        text-align: center
+      }
+
+      .knob:focus-visible {
+        outline: 2px solid var(--zone);
+        outline-offset: 4px;
+        border-radius: 10px
+      }
+
+      .knob-sm {
+        width: 56px
+      }
+
+      .knob-sm .knob-wrap {
+        width: 40px
+      }
+
+      /* ---------- 4. TOP BAR ---------- */
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 80;
+        background: var(--topbar-bg);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+        transition: box-shadow .3s ease-out
+      }
+
+      body.scrolled .topbar {
+        box-shadow: 0 8px 24px -12px rgba(0, 0, 0, .25)
+      }
+
+      .topbar-in {
+        max-width: 1240px;
+        margin-inline: auto;
+        padding: .55rem clamp(.9rem, 3vw, 2rem);
+        display: flex;
+        align-items: center;
+        gap: var(--sp-3)
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: .7rem;
+        text-decoration: none
+      }
+
+      .mark {
+        width: 28px;
+        height: 28px;
+        border-radius: 7px;
+        background: var(--ink);
+        position: relative;
+        flex: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .3)
+      }
+
+      .mark::after {
+        content: "";
+        position: absolute;
+        inset: 9px;
+        border-radius: 50%;
+        background: var(--orange);
+        box-shadow: 0 0 8px var(--orange-glow);
+        animation: markPulse 2.6s ease-in-out infinite
+      }
+
+      @keyframes markPulse {
+        50% {
+          box-shadow: 0 0 2px var(--orange-glow);
+          opacity: .6
+        }
+      }
+
+      .wordmark {
+        font: 750 var(--fs-md)/1 var(--font-display);
+        letter-spacing: .02em
+      }
+
+      .ver {
+        font: 500 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .12em;
+        color: var(--ink-3);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: .3em .5em
+      }
+
+      .topbar-right {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: var(--sp-3)
+      }
+
+      .midi-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: .5rem;
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .12em;
+        padding: .5rem .7rem;
+        border-radius: 6px;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        color: var(--ink-2);
+        max-width: 46vw
+      }
+
+      .midi-chip .led {
+        --led-c: var(--yellow);
+        --led-g: var(--yellow-glow)
+      }
+
+      .midi-chip[data-state="live"] .led {
+        --led-c: var(--green);
+        --led-g: var(--green-glow)
+      }
+
+      .midi-chip[data-state="off"] .led {
+        --led-c: var(--red);
+        --led-g: var(--red-glow)
+      }
+
+      .midi-chip span:last-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap
+      }
+
+      .switch {
+        display: inline-flex;
+        align-items: center;
+        gap: .55rem;
+        cursor: pointer;
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .14em;
+        color: var(--ink-2)
+      }
+
+      .sw-track {
+        width: 42px;
+        height: 22px;
+        border-radius: 999px;
+        background: var(--panel-3);
+        border: 1px solid var(--line-2);
+        position: relative;
+        transition: background .25s ease-out;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, .22);
+        flex: none
+      }
+
+      .sw-thumb {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: linear-gradient(180deg, var(--knob-hi), var(--knob-lo));
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .45);
+        transition: left .25s ease-out
+      }
+
+      .switch[aria-checked="true"] .sw-track,
+      .switch input:checked+.sw-track {
+        background: var(--green)
+      }
+
+      .switch[aria-checked="true"] .sw-thumb,
+      .switch input:checked+.sw-track .sw-thumb {
+        left: 22px
+      }
+
+      .switch input {
+        position: absolute;
+        opacity: 0;
+        width: 1px;
+        height: 1px
+      }
+
+      .switch input:focus-visible+.sw-track,
+      .switch:focus-visible .sw-track {
+        outline: 2px solid var(--blue);
+        outline-offset: 3px
+      }
+
+      /* ---------- 5. TRANSPORT RAIL (bottom nav) ---------- */
+      .rail {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 90;
+        background: linear-gradient(180deg, var(--panel), var(--panel-2));
+        border-top: 1px solid var(--line-2);
+        box-shadow: 0 -10px 28px rgba(0, 0, 0, .16)
+      }
+
+      .rail::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--orange) 0 20%, var(--blue) 20% 40%, var(--green) 40% 60%, var(--yellow) 60% 80%, var(--red) 80% 100%);
+        opacity: .85
+      }
+
+      .rail-inner {
+        max-width: 1240px;
+        margin-inline: auto;
+        display: flex;
+        align-items: center;
+        gap: var(--sp-3);
+        padding: .85rem clamp(.9rem, 3vw, 2rem);
+        overflow-x: auto;
+        scrollbar-width: none
+      }
+
+      .rail-inner::-webkit-scrollbar {
+        display: none
+      }
+
+      .rail-cluster {
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        padding-right: var(--sp-3);
+        border-right: 1px solid var(--line);
+        flex: none
+      }
+
+      .rail-cluster:last-child {
+        border-right: 0;
+        margin-left: auto;
+        padding-right: 0
+      }
+
+
+      text-align: center
+      }
+
+      .bpm-read {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: var(--screen);
+        color: var(--screen-ink);
+        border-radius: 6px;
+        padding: .35rem .8rem;
+        min-width: 64px;
+        cursor: ns-resize;
+        touch-action: none;
+        box-shadow: inset 0 2px 6px rgba(0, 0, 0, .8);
+        font: 600 var(--fs-md)/1.1 var(--font-mono)
+      }
+
+      .bpm-read small {
+        font: 500 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .2em;
+        color: var(--screen-dim)
+      }
+
+      .bpm-read:focus-visible {
+        outline: 2px solid var(--green);
+        outline-offset: 2px
+      }
+
+      .t-step {
+        padding: .7rem .8rem
+      }
+
+      .rail-modes {
+        gap: .35rem
+      }
+
+      .mode {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        gap: .5rem;
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .14em;
+        text-decoration: none;
+        padding: .75rem .8rem;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        color: var(--ink-2);
+        transition: background .2s ease-out, color .2s, transform .15s, border-color .2s
+      }
+
+      .mode .led {
+        --led-c: var(--green);
+        --led-g: var(--green-glow)
+      }
+
+      .mode:hover {
+        background: var(--panel-3);
+        color: var(--ink);
+        transform: translateY(-1px)
+      }
+
+      .mode.is-active {
+        background: var(--panel-3);
+        border-color: var(--line-2);
+        color: var(--ink);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, .14)
+      }
+
+      .meter {
+        display: flex;
+        gap: 3px;
+        align-items: flex-end;
+        height: 36px;
+        padding: 3px;
+        background: var(--screen);
+        border-radius: 5px;
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, .8)
+      }
+
+      .meter i {
+        width: 6px;
+        height: 4%;
+        border-radius: 2px;
+        background: linear-gradient(180deg, var(--red) 0%, var(--yellow) 35%, var(--green) 70%);
+        transition: height .09s linear
+      }
+
+      /* ---------- 6. VIEW: PANEL (home / instrument) ---------- */
+      .boot-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--sp-3);
+        align-items: stretch;
+        margin-top: var(--sp-4)
+      }
+
+      .lcd-boot {
+        flex: 1 1 340px;
+        padding: .9rem 1.1rem;
+        font: 500 var(--fs-xs)/1.75 var(--font-mono);
+        white-space: pre-wrap;
+        min-height: calc(6*1.75em + 1.8rem)
+      }
+
+      .lcd-boot::before {
+        content: "● PWR";
+        position: absolute;
+        top: .5rem;
+        right: .7rem;
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        color: var(--screen-dim);
+        letter-spacing: .15em
+      }
+
+      .boot-side {
+        flex: 1 1 220px;
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-2)
+      }
+
+      .spec-mini {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .5rem
+      }
+
+      .spec-mini span {
+        font: 500 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .1em;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: .45em .6em;
+        background: var(--panel);
+        color: var(--ink-2)
+      }
+
+      .brand-plate {
+        margin-top: var(--sp-5);
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: var(--sp-4);
+        align-items: end
+      }
+
+      .brand-plate h1 {
+        font-size: var(--fs-hero);
+        font-weight: 800;
+        letter-spacing: -.03em;
+        line-height: .92
+      }
+
+      .brand-plate h1 .tilt {
+        color: var(--orange)
+      }
+
+      .plate-note {
+        border-left: 3px solid var(--orange);
+        padding-left: var(--sp-3)
+      }
+
+      .plate-note .tag {
+        font: 650 var(--fs-xl)/1.15 var(--font-display)
+      }
+
+      .plate-note p {
+        color: var(--ink-2);
+        margin-top: var(--sp-2);
+        font-size: var(--fs-sm)
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .7rem;
+        margin-top: var(--sp-3)
+      }
+
+      .face-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: var(--sp-3);
+        margin-top: var(--sp-4)
+      }
+
+      .cluster {
+        padding: var(--sp-3);
+        container-type: inline-size
+      }
+
+      .cluster::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 14px;
+        right: 14px;
+        height: 3px;
+        border-radius: 0 0 3px 3px;
+        background: var(--zone)
+      }
+
+      .cluster-head {
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        margin-bottom: var(--sp-3)
+      }
+
+      .cluster-head .led {
+        --led-c: var(--zone);
+        --led-g: var(--zone-glow)
+      }
+
+      .cluster-head h2 {
+        font: 650 var(--fs-sm)/1 var(--font-display);
+        letter-spacing: .04em
+      }
+
+      .cluster-head small {
+        margin-left: auto;
+        font: 500 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .14em;
+        color: var(--ink-3)
+      }
+
+      .cluster-synth {
+        grid-column: span 7;
+        --zone: var(--orange);
+        --zone-glow: var(--orange-glow)
+      }
+
+      .cluster-drums {
+        grid-column: span 5;
+        --zone: var(--blue);
+        --zone-glow: var(--blue-glow)
+      }
+
+      .cluster-seq {
+        grid-column: span 12;
+        --zone: var(--green);
+        --zone-glow: var(--green-glow)
+      }
+
+      .scope-lcd {
+        height: clamp(120px, 16vw, 168px);
+        padding: .4rem
+      }
+
+      .voices-lcd {
+        height: clamp(96px, 12vw, 120px);
+        padding: .4rem;
+        margin-top: var(--sp-2)
+      }
+
+      .voices-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: var(--sp-2)
+      }
+
+      .voices-meta .readout {
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .14em;
+        color: var(--orange)
+      }
+
+      .knob-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: clamp(.6rem, 2vw, 1.4rem);
+        justify-content: space-between;
+        margin-top: var(--sp-3)
+      }
+
+      .hint {
+        font: 500 var(--fs-2xs)/1.6 var(--font-mono);
+        letter-spacing: .06em;
+        color: var(--ink-3);
+        margin-top: var(--sp-3)
+      }
+
+      .hint b {
+        color: var(--ink-2)
+      }
+
+      .keys {
+        position: relative;
+        display: flex;
+        height: clamp(86px, 11vw, 118px);
+        margin-top: var(--sp-3);
+        border-radius: 0 0 8px 8px;
+        overflow: hidden;
+        border: 1px solid var(--line-2);
+        background: var(--ink);
+        box-shadow: inset 0 4px 8px rgba(0, 0, 0, .4)
+      }
+
+      .key-w {
+        flex: 1;
+        background: linear-gradient(180deg, #fdfcf8, #e6e2d4);
+        border-right: 1px solid #b6b1a0;
+        position: relative;
+        cursor: pointer;
+        border-radius: 0 0 5px 5px;
+        transition: background .12s ease-out;
+        padding: 0
+      }
+
+      .key-w:last-child {
+        border-right: 0
+      }
+
+      .key-w:hover {
+        background: linear-gradient(180deg, #fff, #f0ecdd)
+      }
+
+      .key-w.down {
+        background: linear-gradient(180deg, #ffd9bd, #ffc39a)
+      }
+
+      .key-w .klab {
+        position: absolute;
+        bottom: 6px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        color: #8a857a;
+        pointer-events: none
+      }
+
+      .key-b {
+        position: absolute;
+        top: 0;
+        width: 6.4%;
+        height: 58%;
+        background: linear-gradient(180deg, #43444a, #141519);
+        border-radius: 0 0 4px 4px;
+        z-index: 2;
+        cursor: pointer;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, .55);
+        transition: background .12s ease-out;
+        padding: 0
+      }
+
+      .key-b:hover {
+        background: linear-gradient(180deg, #54555c, #1c1d23)
+      }
+
+      .key-b.down {
+        background: linear-gradient(180deg, var(--orange), #a33405)
+      }
+
+      .key-b .klab {
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font: 600 .58rem/1 var(--font-mono);
+        color: #9a9ba3;
+        pointer-events: none
+      }
+
+      .pad-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--sp-2);
+        flex: 1
+      }
+
+      .pad {
+        --zone: var(--blue);
+        --zone-glow: var(--blue-glow);
+        position: relative;
+        aspect-ratio: 1.15;
+        border-radius: 12px;
+        border: 1px solid var(--line-2);
+        background: linear-gradient(180deg, var(--pad-hi), var(--pad-lo));
+        box-shadow: var(--sh-raised);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 12px;
+        transition: transform .15s ease-out, box-shadow .15s ease-out, border-color .15s;
+        text-align: left
+      }
+
+      .pad:hover {
+        transform: translateY(-2px)
+      }
+
+      .pad:active {
+        transform: translateY(2px)
+      }
+
+      .pad.hit {
+        transform: translateY(2px);
+        border-color: var(--zone);
+        box-shadow: 0 0 20px var(--zone-glow), inset 0 2px 6px rgba(0, 0, 0, .2)
+      }
+
+      .pad .led {
+        --led-c: var(--zone);
+        --led-g: var(--zone-glow)
+      }
+
+      .pad-name {
+        font: 650 var(--fs-sm)/1 var(--font-display);
+        letter-spacing: .02em
+      }
+
+      .pad-key {
+        position: absolute;
+        bottom: 8px;
+        right: 10px;
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        color: var(--ink-3);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: .3em .45em;
+        background: var(--panel)
+      }
+
+      .drums-foot {
+        margin-top: var(--sp-3);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font: 500 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .12em;
+        color: var(--ink-3)
+      }
+
+      .seq-head,
+      .seq-row {
+        display: flex;
+        align-items: center;
+        gap: 10px
+      }
+
+      .seq-head {
+        margin-bottom: 8px
+      }
+
+      .seq-label {
+        width: 56px;
+        flex: none;
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .14em;
+        color: var(--ink-2)
+      }
+
+      .seq-mute {
+        width: 26px;
+        height: 26px;
+        flex: none;
+        border-radius: 5px;
+        border: 1px solid var(--line-2);
+        background: var(--panel);
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        color: var(--ink-3);
+        box-shadow: 0 2px 0 var(--line-2);
+        transition: all .15s ease-out
+      }
+
+      .seq-mute:hover {
+        color: var(--red);
+        border-color: var(--red)
+      }
+
+      .seq-mute[aria-pressed="true"] {
+        background: var(--red);
+        color: #fff;
+        border-color: var(--red);
+        box-shadow: 0 0 10px var(--red-glow), inset 0 1px 3px rgba(0, 0, 0, .3)
+      }
+
+      .seq-cells {
+        display: grid;
+        grid-template-columns: repeat(16, 1fr);
+        gap: 4px;
+        flex: 1;
+        min-width: 0
+      }
+
+      .seq-cells .cell:nth-child(4n) {
+        margin-right: 7px
+      }
+
+      .cell {
+        width: 100%;
+        aspect-ratio: 1;
+        border-radius: 4px;
+        border: 1px solid var(--line);
+        background: var(--panel-3);
+        cursor: pointer;
+        transition: background .16s ease-out, box-shadow .16s, transform .1s;
+        padding: 0;
+        min-width: 0
+      }
+
+      .cell:hover {
+        border-color: var(--ink-3);
+        transform: translateY(-1px)
+      }
+
+      .cell[aria-pressed="true"] {
+        background: var(--green);
+        border-color: transparent;
+        box-shadow: 0 0 8px var(--green-glow)
+      }
+
+      .cell.now {
+        outline: 2px solid var(--ink);
+        outline-offset: 1px
+      }
+
+      .step-led {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--led-off);
+        place-self: center;
+        transition: background .15s, box-shadow .15s
+      }
+
+      .step-led.on {
+        background: var(--green);
+        box-shadow: 0 0 7px var(--green-glow)
+      }
+
+      .seq-foot {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .7rem;
+        align-items: center;
+        margin-top: var(--sp-3)
+      }
+
+      .seq-foot .hint {
+        margin: 0;
+        margin-left: auto
+      }
+
+      .ticker {
+        overflow: hidden;
+        border-block: 1px solid var(--line);
+        background: var(--panel-2);
+        margin-top: var(--sp-5)
+      }
+
+      .ticker-in {
+        display: flex;
+        gap: 2.6rem;
+        white-space: nowrap;
+        padding: .65rem 0;
+        width: max-content;
+        animation: tick 30s linear infinite;
+        font: 500 var(--fs-xs)/1 var(--font-mono);
+        letter-spacing: .14em;
+        color: var(--ink-2)
+      }
+
+      .ticker-in b {
+        color: var(--orange)
+      }
+
+      @keyframes tick {
+        to {
+          transform: translateX(-50%)
+        }
+      }
+
+      .why {
+        margin-top: var(--sp-6);
+        display: grid;
+        grid-template-columns: 1fr 1.6fr;
+        gap: var(--sp-5)
+      }
+
+      .why h2 {
+        font-size: var(--fs-2xl)
+      }
+
+      .why .lede {
+        color: var(--ink-2);
+        margin-top: var(--sp-3);
+        font-size: var(--fs-sm)
+      }
+
+      .why-item {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: var(--sp-3);
+        padding: var(--sp-3) 0;
+        border-top: 1px solid var(--line-2);
+        transition: transform .25s ease-out
+      }
+
+      .why-item:hover {
+        transform: translateX(6px)
+      }
+
+      .why-item:last-child {
+        border-bottom: 1px solid var(--line-2)
+      }
+
+      .why-num {
+        font: 700 var(--fs-xl)/1 var(--font-display)
+      }
+
+      .why-item:nth-child(1) .why-num {
+        color: var(--orange)
+      }
+
+      .why-item:nth-child(2) .why-num {
+        color: var(--blue)
+      }
+
+      .why-item:nth-child(3) .why-num {
+        color: var(--green)
+      }
+
+      .why-item h3 {
+        font-size: var(--fs-lg);
+        margin-bottom: .35rem
+      }
+
+      .why-item p {
+        color: var(--ink-2);
+        font-size: var(--fs-sm)
+      }
+
+      .cta-band {
+        margin: var(--sp-6) 0 var(--sp-5);
+        padding: var(--sp-5);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--sp-4);
+        --zone: var(--orange)
+      }
+
+      .cta-band h2 {
+        font-size: var(--fs-2xl);
+        flex: 1 1 300px
+      }
+
+      .cta-band h2 em {
+        font-style: normal;
+        color: var(--orange)
+      }
+
+      /* ---------- 7. PAGE HEADS (inner pages) ---------- */
+      .page-head {
+        padding-top: var(--sp-6);
+        max-width: 820px
+      }
+
+      .page-head h1 {
+        font-size: var(--fs-3xl);
+        margin-top: var(--sp-3)
+      }
+
+      .page-head .lede {
+        color: var(--ink-2);
+        margin-top: var(--sp-3);
+        font-size: var(--fs-lg);
+        line-height: 1.5;
+        max-width: 60ch
+      }
+
+      /* ---------- 8. VIEW: ENGINE ---------- */
+      .engine-tools {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--sp-2);
+        align-items: center;
+        margin: var(--sp-4) 0 var(--sp-3)
+      }
+
+      .search-lcd {
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        background: var(--screen);
+        border-radius: 8px;
+        padding: .65rem .9rem;
+        flex: 1 1 240px;
+        max-width: 340px;
+        box-shadow: inset 0 2px 6px rgba(0, 0, 0, .8)
+      }
+
+      .search-lcd span {
+        color: var(--screen-dim);
+        font: 600 var(--fs-sm)/1 var(--font-mono)
+      }
+
+      .search-lcd input {
+        background: none;
+        border: 0;
+        outline: 0;
+        color: var(--screen-ink);
+        font: 500 var(--fs-sm)/1 var(--font-mono);
+        width: 100%;
+        caret-color: var(--screen-ink)
+      }
+
+      .search-lcd input::placeholder {
+        color: var(--screen-dim)
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .45rem
+      }
+
+      .chip {
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .12em;
+        padding: .6em .85em;
+        border-radius: 999px;
+        border: 1px solid var(--line-2);
+        background: var(--panel);
+        color: var(--ink-2);
+        transition: all .2s ease-out
+      }
+
+      .chip:hover {
+        border-color: var(--ink);
+        color: var(--ink);
+        transform: translateY(-1px)
+      }
+
+      .chip[aria-pressed="true"] {
+        background: var(--ink);
+        color: var(--bg);
+        border-color: var(--ink)
+      }
+
+      .rack {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-3);
+        container-type: inline-size
+      }
+
+      .module {
+        --zone: var(--orange);
+        --zone-glow: var(--orange-glow);
+        container-type: inline-size;
+        transition: transform .25s ease-out, box-shadow .25s ease-out
+      }
+
+      .module:hover {
+        transform: translateY(-3px)
+      }
+
+      .mod-grid {
+        display: grid;
+        grid-template-columns: 92px 1fr 230px;
+        gap: var(--sp-3);
+        padding: var(--sp-3);
+        align-items: start
+      }
+
+      .mod-idx {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .6rem;
+        padding-top: .3rem
+      }
+
+      .mod-idx b {
+        font: 700 var(--fs-lg)/1 var(--font-display);
+        color: var(--zone)
+      }
+
+      .mod-idx .led {
+        --led-c: var(--zone);
+        --led-g: var(--zone-glow)
+      }
+
+      .mod-cat {
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .2em;
+        color: var(--zone)
+      }
+
+      .mod-body h3 {
+        font-size: var(--fs-xl);
+        margin: .35rem 0 .5rem
+      }
+
+      .mod-body>p {
+        color: var(--ink-2);
+        font-size: var(--fs-sm);
+        max-width: 56ch
+      }
+
+      .mod-feat {
+        margin-top: .8rem;
+        font-size: var(--fs-xs);
+        border-left: 3px solid var(--zone);
+        padding: .4rem 0 .4rem .8rem;
+        color: var(--ink-2)
+      }
+
+      .mod-feat b {
+        display: block;
+        font: 600 var(--fs-2xs)/1.8 var(--font-mono);
+        letter-spacing: .18em;
+        color: var(--zone)
+      }
+
+      .mod-side {
+        display: flex;
+        flex-direction: column;
+        gap: .7rem;
+        align-items: flex-end
+      }
+
+      .mod-specs {
+        display: flex;
+        flex-direction: column;
+        gap: .4rem;
+        list-style: none;
+        align-items: flex-end
+      }
+
+      .mod-specs li {
+        font: 500 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .1em;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: .45em .6em;
+        background: var(--panel-3);
+        color: var(--ink-2)
+      }
+
+      .mod-cc {
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .1em;
+        color: var(--ink-2);
+        border: 1px dashed var(--line-2);
+        border-radius: 6px;
+        padding: .6em .8em;
+        transition: all .2s ease-out
+      }
+
+      .mod-cc:hover {
+        border-color: var(--zone);
+        color: var(--zone)
+      }
+
+      .mod-cc[aria-expanded="true"] {
+        border-color: var(--zone);
+        color: var(--zone)
+      }
+
+      .mod-ccmap {
+        margin-top: .6rem;
+        font: 500 var(--fs-2xs)/1.9 var(--font-mono);
+        color: var(--ink-3);
+        text-align: right
+      }
+
+      @container (max-width:760px) {
+        .mod-grid {
+          grid-template-columns: 64px 1fr
+        }
+
+        .mod-side {
+          grid-column: 1/-1;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: center
+        }
+
+        .mod-specs {
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: center
+        }
+
+        .mod-ccmap {
+          text-align: left
+        }
+      }
+
+      .skel {
+        height: 132px;
+        border-radius: var(--r-md);
+        background: linear-gradient(90deg, var(--panel-2) 25%, var(--panel) 45%, var(--panel-2) 65%);
+        background-size: 200% 100%;
+        animation: skel 1.2s linear infinite;
+        border: 1px solid var(--line)
+      }
+
+      @keyframes skel {
+        to {
+          background-position: -200% 0
+        }
+      }
+
+      .empty {
+        padding: var(--sp-6) var(--sp-3);
+        text-align: center
+      }
+
+      .empty .led {
+        --led-c: var(--red);
+        --led-g: var(--red-glow);
+        display: inline-block;
+        margin-bottom: var(--sp-2)
+      }
+
+      .empty h3 {
+        font-size: var(--fs-xl)
+      }
+
+      .empty p {
+        color: var(--ink-2);
+        font-size: var(--fs-sm);
+        margin: .5rem 0 var(--sp-3)
+      }
+
+      .engine-note {
+        margin: var(--sp-4) 0 var(--sp-5);
+        font: 500 var(--fs-xs)/1.8 var(--font-mono);
+        color: var(--ink-3);
+        letter-spacing: .04em
+      }
+
+      /* ---------- 9. VIEW: MIRROR ---------- */
+      .bench {
+        display: grid;
+        grid-template-columns: 1fr 240px 1fr;
+        gap: var(--sp-3);
+        margin-top: var(--sp-4);
+        align-items: stretch
+      }
+
+      .bench-panel {
+        padding: var(--sp-3)
+      }
+
+      .bench-panel h3 {
+        font: 650 var(--fs-sm)/1 var(--font-display);
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        margin-bottom: var(--sp-3)
+      }
+
+      .bench-screen {
+        --zone: var(--orange);
+        border-top: 3px solid var(--orange)
+      }
+
+      .bench-link {
+        --zone: var(--yellow);
+        border-top: 3px solid var(--yellow);
+        display: flex;
+        flex-direction: column
+      }
+
+      .bench-hw {
+        --zone: var(--green);
+        border-top: 3px solid var(--green)
+      }
+
+      .big-knob {
+        margin: var(--sp-2) auto
+      }
+
+      .big-knob .knob-wrap {
+        width: 110px
+      }
+
+      .big-knob {
+        width: auto
+      }
+
+      .bench-controls {
+        display: flex;
+        gap: var(--sp-4);
+        justify-content: center;
+        align-items: flex-end;
+        flex-wrap: wrap
+      }
+
+      .fader {
+        --p: .8;
+        position: relative;
+        width: 40px;
+        height: 150px;
+        cursor: ns-resize;
+        touch-action: none;
+        flex: none
+      }
+
+      .fader-track {
+        position: absolute;
+        left: 50%;
+        top: 6px;
+        bottom: 6px;
+        width: 6px;
+        transform: translateX(-50%);
+        background: var(--screen);
+        border-radius: 3px;
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, .85)
+      }
+
+      .fader-cap {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: calc(6px + (100% - 24px)*var(--p));
+        width: 32px;
+        height: 14px;
+        border-radius: 4px;
+        background: linear-gradient(180deg, var(--knob-hi), var(--knob-lo));
+        box-shadow: 0 2px 5px rgba(0, 0, 0, .45);
+        transition: bottom .1s ease-out
+      }
+
+      .fader-cap::after {
+        content: "";
+        position: absolute;
+        left: 6px;
+        right: 6px;
+        top: 6px;
+        height: 2px;
+        background: var(--blue);
+        border-radius: 1px
+      }
+
+      .fader:focus-visible {
+        outline: 2px solid var(--blue);
+        outline-offset: 4px;
+        border-radius: 8px
+      }
+
+      .fader-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .4rem
+      }
+
+      .fader-out {
+        font: 500 var(--fs-2xs)/1 var(--font-mono);
+        background: var(--panel-3);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: .3em .5em
+      }
+
+      .flowpair {
+        display: flex;
+        justify-content: center;
+        gap: var(--sp-4);
+        margin: var(--sp-2) 0
+      }
+
+      .flow-lane {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .5rem;
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .16em
+      }
+
+      .flow {
+        width: 3px;
+        height: 74px;
+        border-radius: 2px
+      }
+
+      .flow.down {
+        background: repeating-linear-gradient(180deg, var(--green) 0 6px, transparent 6px 13px);
+        animation: flowD .8s linear infinite;
+        color: var(--green)
+      }
+
+      .flow.up {
+        background: repeating-linear-gradient(0deg, var(--orange) 0 6px, transparent 6px 13px);
+        animation: flowU .8s linear infinite;
+        color: var(--orange)
+      }
+
+      @keyframes flowD {
+        to {
+          background-position: 0 13px
+        }
+      }
+
+      @keyframes flowU {
+        to {
+          background-position: 0 -13px
+        }
+      }
+
+      .cc-log {
+        flex: 1;
+        min-height: 130px;
+        max-height: 190px;
+        overflow-y: auto;
+        padding: .6rem .7rem;
+        font: 500 var(--fs-2xs)/1.9 var(--font-mono)
+      }
+
+      .cc-line {
+        display: flex;
+        gap: .6rem;
+        color: var(--screen-dim)
+      }
+
+      .cc-line b {
+        font-weight: 600
+      }
+
+      .cc-line .din {
+        color: var(--screen-ink)
+      }
+
+      .cc-line .dout {
+        color: var(--orange)
+      }
+
+      #ledRing {
+        position: relative;
+        width: 170px;
+        height: 170px;
+        margin: var(--sp-2) auto
+      }
+
+      .ring-led {
+        position: absolute;
+        left: calc(50% - 4px);
+        top: calc(50% - 4px);
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--led-off);
+        transition: background .18s ease-out, box-shadow .18s
+      }
+
+      .ring-led.on {
+        background: var(--orange);
+        box-shadow: 0 0 9px var(--orange-glow)
+      }
+
+      .ring-led.bsp.on {
+        background: var(--green);
+        box-shadow: 0 0 9px var(--green-glow)
+      }
+
+      .ring-center {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: .2rem;
+        pointer-events: none
+      }
+
+      .ring-center b {
+        font: 700 var(--fs-xl)/1 var(--font-display)
+      }
+
+      .ring-center small {
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .2em;
+        color: var(--ink-3)
+      }
+
+      .hw-toggles {
+        display: flex;
+        flex-direction: column;
+        gap: .8rem;
+        margin-top: var(--sp-3)
+      }
+
+      .led-owner {
+        margin-top: var(--sp-3);
+        text-align: center;
+        font: 600 var(--fs-2xs)/1.6 var(--font-mono);
+        letter-spacing: .14em;
+        color: var(--ink-2);
+        background: var(--panel-3);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: .6rem
+      }
+
+      .led-owner b {
+        color: var(--green)
+      }
+
+      .cc-table-wrap {
+        margin-top: var(--sp-4);
+        overflow-x: auto
+      }
+
+      .cc-table {
+        width: 100%;
+        border-collapse: collapse;
+        font: 500 var(--fs-xs)/1.6 var(--font-mono);
+        min-width: 560px
+      }
+
+      .cc-table th {
+        text-align: left;
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .18em;
+        color: var(--ink-3);
+        padding: .7rem .8rem;
+        border-bottom: 2px solid var(--line-2)
+      }
+
+      .cc-table td {
+        padding: .7rem .8rem;
+        border-bottom: 1px solid var(--line);
+        color: var(--ink-2)
+      }
+
+      .cc-table tr {
+        transition: background .15s ease-out
+      }
+
+      .cc-table tbody tr:hover {
+        background: var(--panel)
+      }
+
+      .dir {
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .1em;
+        padding: .35em .6em;
+        border-radius: 4px
+      }
+
+      .dir.in {
+        background: var(--green);
+        color: #fff
+      }
+
+      .dir.out {
+        background: var(--orange);
+        color: #fff
+      }
+
+      .dir.both {
+        background: var(--yellow);
+        color: #191a1e
+      }
+
+      .swatch {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        vertical-align: middle;
+        margin-right: .4em;
+        box-shadow: 0 0 6px currentColor
+      }
+
+      .mirror-steps {
+        margin-top: var(--sp-5);
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--sp-3)
+      }
+
+      .mstep {
+        padding: var(--sp-3);
+        border-top: 3px solid var(--zc)
+      }
+
+      .mstep b {
+        font: 700 var(--fs-2xl)/1 var(--font-display);
+        color: var(--zc)
+      }
+
+      .mstep h3 {
+        font-size: var(--fs-md);
+        margin: .6rem 0 .3rem
+      }
+
+      .mstep p {
+        font-size: var(--fs-xs);
+        color: var(--ink-2)
+      }
+
+      .pullquote {
+        margin: var(--sp-5) 0 var(--sp-6);
+        padding: var(--sp-4);
+        border-left: 4px solid var(--green);
+        font: 600 var(--fs-xl)/1.35 var(--font-display)
+      }
+
+      .pullquote small {
+        display: block;
+        margin-top: .6rem;
+        font: 500 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .18em;
+        color: var(--ink-3)
+      }
+
+      /* ---------- 10. VIEW: DEVICES ---------- */
+      .jam-line {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--sp-2);
+        margin: var(--sp-4) 0;
+        position: relative
+      }
+
+      .jam-line::before {
+        content: "";
+        position: absolute;
+        top: 22px;
+        left: 4%;
+        right: 4%;
+        height: 2px;
+        background: repeating-linear-gradient(90deg, var(--line-2) 0 8px, transparent 8px 14px)
+      }
+
+      .jam {
+        position: relative;
+        padding-top: var(--sp-4)
+      }
+
+      .jam i {
+        position: absolute;
+        top: 16px;
+        left: 0;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: var(--jc);
+        box-shadow: 0 0 10px var(--jg)
+      }
+
+      .jam b {
+        font: 700 var(--fs-lg)/1 var(--font-display);
+        color: var(--jc)
+      }
+
+      .jam h3 {
+        font: 650 var(--fs-sm)/1.2 var(--font-display);
+        margin: .4rem 0 .25rem
+      }
+
+      .jam p {
+        font-size: var(--fs-2xs);
+        color: var(--ink-2);
+        font-family: var(--font-mono);
+        letter-spacing: .03em
+      }
+
+      .dev-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: var(--sp-3);
+        margin-top: var(--sp-3)
+      }
+
+      .device {
+        container-type: inline-size;
+        transition: transform .25s ease-out
+      }
+
+      .device:hover {
+        transform: translateY(-4px)
+      }
+
+      .dev-inner {
+        padding: var(--sp-3);
+        display: grid;
+        grid-template-columns: 1fr 96px;
+        gap: var(--sp-2)
+      }
+
+      @container (max-width:330px) {
+        .dev-inner {
+          grid-template-columns: 1fr
+        }
+      }
+
+      .dev-tag {
+        font: 600 var(--fs-2xs)/1 var(--font-mono);
+        letter-spacing: .16em;
+        padding: .4em .7em;
+        border-radius: 4px;
+        display: inline-block;
+        color: #fff
+      }
+
+      .dev-tag.supported {
+        background: var(--green)
+      }
+
+      .dev-tag.beta {
+        background: var(--yellow);
+        color: #191a1e
+      }
+
+      .dev-tag.roadmap {
+        background: var(--blue)
+      }
+
+      .dev-tag.inspiration {
+        background: var(--orange)
+      }
+
+      .dev-tag.class {
+        background: var(--cyan)
+      }
+
+      .dev-inner h3 {
+        font-size: var(--fs-lg);
+        margin: .7rem 0 .3rem
+      }
+
+      .dev-inner p {
+        font-size: var(--fs-xs);
+        color: var(--ink-2)
+      }
+
+      .dev-art {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        justify-content: center;
+        align-items: center;
+        background: var(--panel-3);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 10px;
+        min-height: 84px
+      }
+
+      .dev-art .mini-pad {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        background: var(--line-2);
+        transition: background .3s, box-shadow .3s
+      }
+
+      .device:hover .mini-pad.lit {
+        background: var(--blue);
+        box-shadow: 0 0 6px var(--blue-glow)
+      }
+
+      .dev-art .mini-knob {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: linear-gradient(180deg, var(--knob-hi), var(--knob-lo));
+        border: 2px solid var(--line-2);
+        position: relative
+      }
+
+      .dev-art .mini-knob::after {
+        content: "";
+        position: absolute;
+        left: calc(50% - 1px);
+        top: 1px;
+        width: 2px;
+        height: 5px;
+        background: var(--ink-2)
+      }
+
+      .dev-art .row {
+        display: flex;
+        gap: 6px
+      }
+
+      .monitor {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: var(--sp-3);
+        margin: var(--sp-4) 0
+      }
+
+      .monitor>div {
+        padding: var(--sp-3)
+      }
+
+      .monitor h3 {
+        font: 650 var(--fs-sm)/1 var(--font-display);
+        display: flex;
+        gap: .6rem;
+        align-items: center;
+        margin-bottom: var(--sp-2)
+      }
+
+      .midi-in-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: .6rem;
+        font: 500 var(--fs-xs)/1.5 var(--font-mono);
+        color: var(--ink-2)
+      }
+
+      .midi-in-list li {
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: .6rem .8rem;
+        background: var(--panel-3)
+      }
+
+      .midi-log {
+        height: 180px;
+        overflow-y: auto;
+        padding: .7rem;
+        font: 500 var(--fs-2xs)/2 var(--font-mono);
+        color: var(--screen-dim)
+      }
+
+      .midi-log .rx {
+        color: var(--screen-ink)
+      }
+
+      .keymap-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .5rem;
+        margin-top: var(--sp-3)
+      }
+
+      .keymap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .25rem;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: .5rem .6rem;
+        background: var(--panel);
+        min-width: 52px;
+        transition: transform .15s ease-out, border-color .15s
+      }
+
+      .keymap:hover {
+        transform: translateY(-2px);
+        border-color: var(--orange)
+      }
+
+      .keymap b {
+        font: 600 var(--fs-sm)/1 var(--font-mono);
+        color: var(--orange)
+      }
+
+      .keymap span {
+        font: 500 var(--fs-2xs)/1 var(--font-mono);
+        color: var(--ink-3)
+      }
+
+      .keymap.drum b {
+        color: var(--blue)
+      }
+
+      /* ---------- 11. VIEW: 404 ---------- */
+      .nosignal {
+        max-width: 560px;
+        margin: var(--sp-7) auto;
+        padding: var(--sp-6) var(--sp-4);
+        text-align: center
+      }
+
+      .nosignal .led {
+        --led-c: var(--red);
+        --led-g: var(--red-glow);
+        width: 14px;
+        height: 14px;
+        display: inline-block
+      }
+
+      .nosignal h1 {
+        font-size: var(--fs-hero);
+        letter-spacing: -.02em;
+        margin: var(--sp-2) 0
+      }
+
+      .nosignal .route-echo {
+        font: 500 var(--fs-xs)/1 var(--font-mono);
+        color: var(--red);
+        background: var(--panel-3);
+        border: 1px dashed var(--red);
+        border-radius: 6px;
+        padding: .7em 1em;
+        display: inline-block;
+        margin: var(--sp-2) 0 var(--sp-3)
+      }
+
+      .nosignal p {
+        color: var(--ink-2);
+        margin-bottom: var(--sp-4)
+      }
+
+      /* ---------- 13. FOOTER ---------- */
+      .chassis {
+        background: var(--chassis);
+        color: var(--chassis-ink);
+        margin-top: var(--sp-6)
+      }
+
+      .chassis-grid {
+        max-width: 1240px;
+        margin-inline: auto;
+        padding: var(--sp-6) clamp(.9rem, 3vw, 2rem) var(--sp-4);
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: var(--sp-4)
+      }
+
+      .chassis h4 {
+        font: 650 var(--fs-xs)/1 var(--font-mono);
+        letter-spacing: .22em;
+        color: var(--chassis-dim);
+        margin-bottom: var(--sp-3)
+      }
+
+      .chassis p,
+      .chassis li,
+      .chassis a {
+        font-size: var(--fs-xs);
+        color: var(--chassis-ink);
+        line-height: 1.9
+      }
+
+      .chassis ul {
+        list-style: none
+      }
+
+      .chassis a {
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-color .2s ease-out, color .2s
+      }
+
+      .chassis a:hover {
+        border-color: var(--orange);
+        color: #fff
+      }
+
+      .chassis .brand p {
+        color: var(--chassis-dim);
+        margin-top: var(--sp-2);
+        max-width: 34ch
+      }
+
+      .chassis .mark {
+        background: #fff
+      }
+
+      .award {
+        display: flex;
+        gap: .6rem;
+        align-items: flex-start;
+        margin-bottom: .7rem
+      }
+
+      .award .led {
+        --led-c: var(--yellow);
+        --led-g: var(--yellow-glow);
+        margin-top: .5em
+      }
+
+      .chassis-bottom {
+        border-top: 1px solid rgba(255, 255, 255, .12);
+        padding: var(--sp-3) clamp(.9rem, 3vw, 2rem);
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--sp-2);
+        justify-content: space-between;
+        max-width: 1240px;
+        margin-inline: auto;
+        font: 500 var(--fs-2xs)/1.6 var(--font-mono);
+        letter-spacing: .08em;
+        color: var(--chassis-dim)
+      }
+
+      /* ---------- 14. RESPONSIVE ---------- */
+      @media (max-width:980px) {
+        .brand-plate {
+          grid-template-columns: 1fr
+        }
+
+        .cluster-synth,
+        .cluster-drums {
+          grid-column: span 12
+        }
+
+        .why {
+          grid-template-columns: 1fr
+        }
+
+        .bench {
+          grid-template-columns: 1fr
+        }
+
+        .mirror-steps {
+          grid-template-columns: 1fr
+        }
+
+        .monitor {
+          grid-template-columns: 1fr
+        }
+
+        .tier {
+          position: static
+        }
+
+        .jam-line {
+          grid-template-columns: 1fr 1fr
+        }
+
+        .jam-line::before {
+          display: none
+        }
+
+        .chassis-grid {
+          grid-template-columns: 1fr 1fr
+        }
+      }
+
+      @media (max-width:640px) {
+        body {
+          padding-bottom: 150px
+        }
+
+        .rail-inner {
+          flex-wrap: wrap;
+          justify-content: center
+        }
+
+        .rail-cluster {
+          border-right: 0;
+          padding-right: 0
+        }
+
+        .rail-cluster:last-child {
+          margin-left: 0
+        }
+
+        .chassis-grid {
+          grid-template-columns: 1fr
+        }
+
+        .midi-chip {
+          max-width: 38vw
+        }
+
+        .seq-label {
+          width: 40px
+        }
+      }
+
+      /* ---------- 15. REDUCED MOTION ---------- */
+      @media (prefers-reduced-motion:reduce) {
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: .01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: .01ms !important
+        }
+
+        .reveal {
+          opacity: 1;
+          transform: none
+        }
+
+        .ticker-in {
+          animation: none
+        }
+
+        .flow {
+          animation: none
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div id="announcer" class="sr-only" role="status" aria-live="polite"></div>
+
+    <!-- ══════════ TOP STATUS STRIP ══════════ -->
+    <header class="topbar">
+      <div class="topbar-in">
+        <a class="brand" href="#/" aria-label="StepDeck home">
+          <span class="mark" aria-hidden="true"></span>
+          <span class="wordmark">STEPDECK</span>
+          <span class="ver">v0.9.3</span>
+        </a>
+        <div class="topbar-right">
+          <span class="midi-chip" id="midiChip" data-state="sim" role="status">
+            <span class="led" id="midiLed" aria-hidden="true"></span>
+            <span id="midiTxt">MIDI · SIM MODE</span>
+          </span>
+          <button class="switch" id="themeToggle" role="switch" aria-checked="false" aria-label="Toggle dark mode">
+            <span class="sw-track" aria-hidden="true"><span class="sw-thumb"></span></span>
+            <span>DK</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+
+      <!-- ══════════ VIEW: PANEL (the instrument) ══════════ -->
+      <section class="view" id="view-panel" aria-label="Panel — the instrument">
+        <div class="wrap">
+
+          <div class="boot-row reveal" style="--i:0">
+            <pre class="lcd lcd-boot" id="bootLcd" aria-label="Boot sequence readout"><code id="bootText"></code></pre>
+            <div class="boot-side">
+              <div class="spec-mini" aria-label="Engine specifications">
+                <span>44.1 kHz</span><span>128 SMP</span><span>WEB MIDI</span><span>WORKLET-DSP</span><span>0
+                  INSTALLS</span>
+              </div>
+              <p class="hint"><b>Plug in a BeatStep Pro</b> — or just start typing. The panel below is live: keys, pads,
+                knobs and the grid all make sound.</p>
+            </div>
+          </div>
+
+          <div class="brand-plate reveal" style="--i:1">
+            <h1>STEP<span class="tilt">DECK</span></h1>
+            <div class="plate-note">
+              <p class="tag">The browser, milled into an instrument.</p>
+              <p>Plug in a BeatStep Pro and this tab becomes its missing faceplate — knobs mapped, LEDs live, sound in
+                thirty seconds. No drivers. No wizard. No install.</p>
+              <div class="cta-row">
+                <button class="tbtn tbtn-primary" id="ctaPlay" aria-label="Power on and start the sequencer">▶&nbsp;
+                  PLUG IN &amp; PLAY</button>
+                <a class="tbtn" href="#/mirror">MAP YOUR CONTROLLER</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- FACEPLATE -->
+          <div class="face-grid">
+
+            <!-- SYNTH CLUSTER -->
+            <div class="panel cluster cluster-synth reveal" style="--i:2">
+              <span class="screw tl" aria-hidden="true"></span><span class="screw tr" aria-hidden="true"></span>
+              <span class="screw bl" aria-hidden="true"></span><span class="screw br" aria-hidden="true"></span>
+              <div class="cluster-head">
+                <span class="led on" aria-hidden="true"></span>
+                <h2>VCO · UNISON MONOSYNTH</h2>
+                <small>ZONE A — ORANGE</small>
+              </div>
+              <div class="lcd scope-lcd">
+                <canvas id="scope" role="img"
+                  aria-label="Oscilloscope showing the live engine output waveform"></canvas>
+              </div>
+              <div class="lcd voices-lcd">
+                <canvas id="voices" role="img"
+                  aria-label="Unison voice-spread visualizer showing detuned waveforms"></canvas>
+              </div>
+              <div class="voices-meta">
+                <span class="readout" id="voiceReadout">4 VOICES · ±108 CT</span>
+                <span class="hint" style="margin:0">SYNTHESIS YOU CAN SEE</span>
+              </div>
+              <div class="knob-row">
+                <div class="knob" id="knob-spread" role="slider" tabindex="0" aria-label="Unison voice spread"
+                  data-min="0" data-max="100" data-value="0" data-unit="%">
+                  <span class="knob-wrap" aria-hidden="true"><span class="knob-ring"></span><span class="knob-dial"><i
+                        class="knob-tick"></i></span></span>
+                  <span class="knob-label">Spread</span><span class="knob-out" aria-hidden="true">0%</span>
+                </div>
+                <div class="knob" id="knob-cutoff" role="slider" tabindex="0" aria-label="Filter cutoff" data-min="0"
+                  data-max="100" data-value="36.5" data-fmt="cut">
+                  <span class="knob-wrap" aria-hidden="true"><span class="knob-ring"></span><span class="knob-dial"><i
+                        class="knob-tick"></i></span></span>
+                  <span class="knob-label">Cutoff</span><span class="knob-out" aria-hidden="true"></span>
+                </div>
+                <div class="knob" id="knob-reso" role="slider" tabindex="0" aria-label="Filter resonance" data-min="0"
+                  data-max="100" data-value="0" data-fmt="q">
+                  <span class="knob-wrap" aria-hidden="true"><span class="knob-ring"></span><span class="knob-dial"><i
+                        class="knob-tick"></i></span></span>
+                  <span class="knob-label">Reso</span><span class="knob-out" aria-hidden="true"></span>
+                </div>
+                <div class="knob" id="knob-glide" role="slider" tabindex="0" aria-label="Glide time" data-min="0"
+                  data-max="250" data-value="0" data-fmt="ms">
+                  <span class="knob-wrap" aria-hidden="true"><span class="knob-ring"></span><span class="knob-dial"><i
+                        class="knob-tick"></i></span></span>
+                  <span class="knob-label">Glide</span><span class="knob-out" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="keys" id="keys" aria-label="Playable keyboard, one octave plus"></div>
+              <p class="hint">PLAY <b>A W S E D F T G Y H U J K</b> · GLIDE WITH LEGATO · <b>SHIFT-DRAG</b> KNOBS FOR
+                FINE CONTROL · <b>DOUBLE-CLICK</b> TO RESET</p>
+            </div>
+
+            <!-- DRUM CLUSTER -->
+            <div class="panel cluster cluster-drums reveal" style="--i:3">
+              <span class="screw tl" aria-hidden="true"></span><span class="screw tr" aria-hidden="true"></span>
+              <span class="screw bl" aria-hidden="true"></span><span class="screw br" aria-hidden="true"></span>
+              <div class="cluster-head">
+                <span class="led on" aria-hidden="true"></span>
+                <h2>DRUM ENGINE · 4 VOICE</h2>
+                <small>ZONE B — BLUE</small>
+              </div>
+              <div class="pad-grid">
+                <button class="pad" data-drum="kick" aria-label="Kick drum pad, keyboard 1">
+                  <span class="led" aria-hidden="true"></span><span class="pad-name">KICK</span><span class="pad-key"
+                    aria-hidden="true">1</span>
+                </button>
+                <button class="pad" data-drum="snare" aria-label="Snare drum pad, keyboard 2">
+                  <span class="led" aria-hidden="true"></span><span class="pad-name">SNARE</span><span class="pad-key"
+                    aria-hidden="true">2</span>
+                </button>
+                <button class="pad" data-drum="hat" aria-label="Hi-hat pad, keyboard 3">
+                  <span class="led" aria-hidden="true"></span><span class="pad-name">HAT</span><span class="pad-key"
+                    aria-hidden="true">3</span>
+                </button>
+                <button class="pad" data-drum="perc" aria-label="Percussion pad, keyboard 4">
+                  <span class="led" aria-hidden="true"></span><span class="pad-name">PERC</span><span class="pad-key"
+                    aria-hidden="true">4</span>
+                </button>
+              </div>
+              <div class="drums-foot">
+                <span>BSP PADS 36 · 38 · 42 · 39</span>
+                <span>VEL-SENSITIVE</span>
+              </div>
+              <div class="rule" aria-hidden="true"><i></i></div>
+              <p class="hint" style="margin-top:0">Every pad is assignable from the browser — drop a sample on any pad
+                and the BSP grid follows. Velocity glow included, of course.</p>
+            </div>
+
+            <!-- SEQUENCER CLUSTER -->
+            <div class="panel cluster cluster-seq reveal" style="--i:4">
+              <span class="screw tl" aria-hidden="true"></span><span class="screw tr" aria-hidden="true"></span>
+              <span class="screw bl" aria-hidden="true"></span><span class="screw br" aria-hidden="true"></span>
+              <div class="cluster-head">
+                <span class="led on" aria-hidden="true"></span>
+                <h2>PATTERN SEQUENCER · A01 · 16 STEP</h2>
+                <small>ZONE C — GREEN</small>
+              </div>
+              <div class="seq-head" id="seqSteps" aria-hidden="true"><span class="seq-label">STEP</span><span
+                  style="width:26px;flex:none"></span></div>
+              <div id="seqGrid"></div>
+              <div class="seq-foot">
+                <button class="tbtn" id="seqClear" aria-label="Clear all steps">CLEAR</button>
+                <button class="tbtn" id="seqRandom" aria-label="Randomize pattern">RANDOM</button>
+                <p class="hint">SPACE = PLAY/STOP · ESC = STOP · SWING LIVES ON THE RAIL ↓</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SPEC TICKER -->
+          <div class="ticker reveal" style="--i:5" aria-hidden="true">
+            <div class="ticker-in">
+              <span>44.1 kHz AUDIOWORKLET DSP</span><span><b>◆</b></span><span>128-SAMPLE ROUND
+                TRIP</span><span><b>◆</b></span><span>CLASS-COMPLIANT WEB
+                MIDI</span><span><b>◆</b></span><span>BIDIRECTIONAL CC + LED
+                SYNC</span><span><b>◆</b></span><span>16-STEP × 4-TRACK PATTERNS</span><span><b>◆</b></span><span>UNISON
+                SPREAD UP TO 7 VOICES</span><span><b>◆</b></span><span>ZERO INSTALL — RUNS IN A
+                TAB</span><span><b>◆</b></span>
+              <span>44.1 kHz AUDIOWORKLET DSP</span><span><b>◆</b></span><span>128-SAMPLE ROUND
+                TRIP</span><span><b>◆</b></span><span>CLASS-COMPLIANT WEB
+                MIDI</span><span><b>◆</b></span><span>BIDIRECTIONAL CC + LED
+                SYNC</span><span><b>◆</b></span><span>16-STEP × 4-TRACK PATTERNS</span><span><b>◆</b></span><span>UNISON
+                SPREAD UP TO 7 VOICES</span><span><b>◆</b></span><span>ZERO INSTALL — RUNS IN A
+                TAB</span><span><b>◆</b></span>
+            </div>
+          </div>
+
+          <!-- DESIGN PRINCIPLE -->
+          <div class="why">
+            <div class="reveal">
+              <span class="kicker" style="--kc:var(--blue);--kg:var(--blue-glow)"><span class="led on"></span>DESIGN
+                PRINCIPLE</span>
+              <h2 style="margin-top:var(--sp-3)">Software that pushes back.</h2>
+              <p class="lede">Most browser instruments feel like demos. StepDeck is built like a faceplate: every
+                control has weight, every action has an LED, and every knob already knows its CC.</p>
+            </div>
+            <div>
+              <div class="why-item reveal" style="--i:0">
+                <span class="why-num">01</span>
+                <div>
+                  <h3>Knob-for-knob, LED-for-LED</h3>
+                  <p>The Hardware Mirror keeps screen and silicon in lockstep. Turn the real thing and watch its
+                    on-screen twin glide. Drag the twin and watch the physical ring light.</p>
+                </div>
+              </div>
+              <div class="why-item reveal" style="--i:1">
+                <span class="why-num">02</span>
+                <div>
+                  <h3>Thirty seconds to first sound</h3>
+                  <p>Plug in, auto-map, play. The onboarding <em>is</em> the instrument — there is no onboarding. If
+                    you're not playing a fat unison bass in half a minute, we've failed.</p>
+                </div>
+              </div>
+              <div class="why-item reveal" style="--i:2">
+                <span class="why-num">03</span>
+                <div>
+                  <h3>Color-coded, like the greats</h3>
+                  <p>Orange is synthesis. Blue is drums. Green is the grid. Your hands learn the map before your eyes do
+                    — the same trick every great groovebox ever taught.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ══════════ VIEW: ENGINE ══════════ -->
+      <section class="view" id="view-engine" aria-label="Engine — module rack">
+        <div class="wrap">
+          <div class="page-head reveal">
+            <span class="kicker" style="--kc:var(--orange);--kg:var(--orange-glow)"><span class="led on"></span>MODULE
+              RACK · 6 UNITS</span>
+            <h1>The Engine.</h1>
+            <p class="lede">Six modules, one faceplate. Each ships as an AudioWorklet with its own control cluster, its
+              own color, and its own CC lane on the BeatStep Pro.</p>
+          </div>
+
+          <div class="engine-tools reveal" style="--i:1">
+            <div class="search-lcd">
+              <span aria-hidden="true">&gt;</span>
+              <input type="search" id="modSearch" placeholder="Search modules…" aria-label="Search modules">
+            </div>
+            <div class="chips" id="filterChips" role="group" aria-label="Filter modules by category">
+              <button class="chip" data-cat="all" aria-pressed="true">ALL</button>
+              <button class="chip" data-cat="synth" aria-pressed="false">SYNTH</button>
+              <button class="chip" data-cat="drums" aria-pressed="false">DRUMS</button>
+              <button class="chip" data-cat="seq" aria-pressed="false">SEQ</button>
+              <button class="chip" data-cat="arrange" aria-pressed="false">ARRANGE</button>
+              <button class="chip" data-cat="midi" aria-pressed="false">MIDI</button>
+            </div>
+          </div>
+
+          <div class="rack" id="rack" aria-live="polite"></div>
+
+          <div class="panel empty" id="rackEmpty" hidden>
+            <span class="led blink" aria-hidden="true"></span>
+            <h3>NO MODULES MATCH</h3>
+            <p>Nothing in the rack answers to that. Try “unison”, “pattern”, “DNA” — or clear the filter.</p>
+            <button class="tbtn" id="rackReset">RESET FILTERS</button>
+          </div>
+
+          <p class="engine-note reveal">// Everything above runs at audio rate in a Chrome/Edge tab. The prototype
+            you're navigating is the spec — every module here is wired into the panel on page one.</p>
+        </div>
+      </section>
+
+      <!-- ══════════ VIEW: MIRROR ══════════ -->
+      <section class="view" id="view-mirror" aria-label="Mirror — bidirectional CC sync">
+        <div class="wrap">
+          <div class="page-head reveal">
+            <span class="kicker" style="--kc:var(--yellow);--kg:var(--yellow-glow)"><span
+                class="led on"></span>SIGNATURE FEATURE · BIDIRECTIONAL CC SYNC</span>
+            <h1>The Hardware&nbsp;Mirror.</h1>
+            <p class="lede">Turn a physical knob and its on-screen twin glides in real time. Drag an on-screen fader and
+              the hardware's LED ring lights up to match. One organism, two bodies.</p>
+          </div>
+
+          <div class="bench reveal" style="--i:1">
+            <!-- SCREEN SIDE -->
+            <div class="panel bench-panel bench-screen">
+              <span class="screw tl" aria-hidden="true"></span><span class="screw br" aria-hidden="true"></span>
+              <h3><span class="led on" style="--led-c:var(--orange);--led-g:var(--orange-glow)"
+                  aria-hidden="true"></span>ON-SCREEN · STEPDECK</h3>
+              <div class="bench-controls">
+                <div class="knob big-knob" id="mknob-cut" role="slider" tabindex="0"
+                  aria-label="On-screen cutoff knob, CC 74" data-min="0" data-max="100" data-value="50" data-unit="%">
+                  <span class="knob-wrap" aria-hidden="true"><span class="knob-ring"></span><span class="knob-dial"><i
+                        class="knob-tick"></i></span></span>
+                  <span class="knob-label">Cutoff · CC 74</span><span class="knob-out" aria-hidden="true">50%</span>
+                </div>
+                <div class="fader-col">
+                  <div class="fader" id="fader-dbus" role="slider" tabindex="0" aria-label="Drum bus level fader, CC 7"
+                    aria-valuemin="0" aria-valuemax="100" aria-valuenow="80" data-value="80">
+                    <span class="fader-track" aria-hidden="true"></span><span class="fader-cap"
+                      aria-hidden="true"></span>
+                  </div>
+                  <span class="fader-out" aria-hidden="true">80</span>
+                  <span class="knob-label">DBus · CC 7</span>
+                </div>
+              </div>
+              <p class="hint" style="text-align:center">DRAG THE KNOB — THE RING ON THE RIGHT ANSWERS INSTANTLY.</p>
+            </div>
+
+            <!-- LINK -->
+            <div class="panel bench-panel bench-link">
+              <h3 style="justify-content:center"><span class="led on"
+                  style="--led-c:var(--yellow);--led-g:var(--yellow-glow)" aria-hidden="true"></span>CC LINK</h3>
+              <div class="flowpair" aria-hidden="true">
+                <div class="flow-lane"><span style="color:var(--green)">CC IN</span><span class="flow down"></span><span
+                    style="color:var(--green)">▼</span></div>
+                <div class="flow-lane"><span style="color:var(--orange)">▲</span><span class="flow up"></span><span
+                    style="color:var(--orange)">CC OUT</span></div>
+              </div>
+              <div class="lcd cc-log" id="ccLog" aria-label="MIDI CC message log" role="log"></div>
+            </div>
+
+            <!-- HARDWARE SIDE -->
+            <div class="panel bench-panel bench-hw">
+              <span class="screw tr" aria-hidden="true"></span><span class="screw bl" aria-hidden="true"></span>
+              <h3><span class="led on" aria-hidden="true"></span>HARDWARE · BEATSTEP PRO</h3>
+              <div id="ledRing" role="img" aria-label="Hardware LED ring showing current CC value">
+                <div class="ring-center"><b id="ringVal">064</b><small>CC 74 · KNOB 1</small></div>
+              </div>
+              <div class="hw-toggles">
+                <button class="switch" id="swSim" role="switch" aria-checked="false"
+                  aria-label="Simulate hardware knob movement">
+                  <span class="sw-track" aria-hidden="true"><span class="sw-thumb"></span></span>
+                  <span>SIMULATE HARDWARE KNOB</span>
+                </button>
+                <button class="switch" id="swCoex" role="switch" aria-checked="false"
+                  aria-label="Coexist mode — hand LED ownership to the BeatStep sequencer">
+                  <span class="sw-track" aria-hidden="true"><span class="sw-thumb"></span></span>
+                  <span>COEXIST MODE</span>
+                </button>
+              </div>
+              <p class="led-owner">LED OWNER: <b id="ledOwner">STEPDECK</b></p>
+            </div>
+          </div>
+
+          <div class="mirror-steps">
+            <div class="panel mstep reveal" style="--zc:var(--orange);--i:0"><b>01</b>
+              <h3>Plug in</h3>
+              <p>Connect the BeatStep Pro over USB. StepDeck auto-maps 24 CCs with plug-and-play defaults — no config
+                screen exists because none is needed.</p>
+            </div>
+            <div class="panel mstep reveal" style="--zc:var(--blue);--i:1"><b>02</b>
+              <h3>Both directions, always</h3>
+              <p>Every knob and fader is live in both directions with audio-rate smoothing. The app owns the LEDs by
+                default and paints them as you play.</p>
+            </div>
+            <div class="panel mstep reveal" style="--zc:var(--green);--i:2"><b>03</b>
+              <h3>Coexist</h3>
+              <p>Flip Coexist and LED ownership hands back to the BSP's own sequencer. Run both engines side by side —
+                the mirror steps aside politely.</p>
+            </div>
+          </div>
+
+          <div class="cc-table-wrap panel reveal" style="padding:var(--sp-3)">
+            <table class="cc-table">
+              <caption class="sr-only">Default CC mapping between BeatStep Pro hardware and StepDeck controls</caption>
+              <thead>
+                <tr>
+                  <th scope="col">CC</th>
+                  <th scope="col">CONTROL</th>
+                  <th scope="col">DIRECTION</th>
+                  <th scope="col">LED</th>
+                  <th scope="col">CURVE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>74</td>
+                  <td>FILTER CUTOFF</td>
+                  <td><span class="dir both">BOTH</span></td>
+                  <td><span class="swatch" style="background:var(--orange);color:var(--orange)"></span>ORANGE</td>
+                  <td>LOG</td>
+                </tr>
+                <tr>
+                  <td>71</td>
+                  <td>RESONANCE</td>
+                  <td><span class="dir both">BOTH</span></td>
+                  <td><span class="swatch" style="background:var(--orange);color:var(--orange)"></span>ORANGE</td>
+                  <td>EXP</td>
+                </tr>
+                <tr>
+                  <td>76</td>
+                  <td>UNISON SPREAD</td>
+                  <td><span class="dir both">BOTH</span></td>
+                  <td><span class="swatch" style="background:var(--orange);color:var(--orange)"></span>ORANGE</td>
+                  <td>LIN</td>
+                </tr>
+                <tr>
+                  <td>77</td>
+                  <td>GLIDE TIME</td>
+                  <td><span class="dir both">BOTH</span></td>
+                  <td><span class="swatch" style="background:var(--orange);color:var(--orange)"></span>ORANGE</td>
+                  <td>LIN</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>DRUM BUS LEVEL</td>
+                  <td><span class="dir in">IN</span></td>
+                  <td><span class="swatch" style="background:var(--blue);color:var(--blue)"></span>BLUE</td>
+                  <td>LIN</td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>SWING</td>
+                  <td><span class="dir both">BOTH</span></td>
+                  <td><span class="swatch" style="background:var(--green);color:var(--green)"></span>GREEN</td>
+                  <td>LIN</td>
+                </tr>
+                <tr>
+                  <td>48</td>
+                  <td>PATTERN SELECT</td>
+                  <td><span class="dir in">IN</span></td>
+                  <td><span class="swatch" style="background:var(--green);color:var(--green)"></span>GREEN</td>
+                  <td>STEP</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <blockquote class="pullquote reveal">“Wait, it's doing <em>what</em>?”<small>— EVERY DEMO, SO FAR</small>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- ══════════ VIEW: DEVICES ══════════ -->
+      <section class="view" id="view-devices" aria-label="Controllers — plug in and play">
+        <div class="wrap">
+          <div class="page-head reveal">
+            <span class="kicker" style="--kc:var(--green);--kg:var(--green-glow)"><span
+                class="led on"></span>COMPATIBILITY · ZERO CONFIG</span>
+            <h1>Plug in. That's the setup.</h1>
+            <p class="lede">No drivers, no config screens, no wizard. StepDeck speaks class-compliant MIDI and auto-maps
+              the moment a device lands on the bus.</p>
+          </div>
+
+          <div class="jam-line" role="list" aria-label="Thirty second first jam timeline">
+            <div class="jam reveal" style="--jc:var(--orange);--jg:var(--orange-glow);--i:0" role="listitem"><i
+                aria-hidden="true"></i><b>00:00</b>
+              <h3>PLUG IN</h3>
+              <p>USB-C to BeatStep Pro. That's the whole manual.</p>
+            </div>
+            <div class="jam reveal" style="--jc:var(--blue);--jg:var(--blue-glow);--i:1" role="listitem"><i
+                aria-hidden="true"></i><b>00:04</b>
+              <h3>DETECTED</h3>
+              <p>Web MIDI handshake, device enumerated live.</p>
+            </div>
+            <div class="jam reveal" style="--jc:var(--yellow);--jg:var(--yellow-glow);--i:2" role="listitem"><i
+                aria-hidden="true"></i><b>00:09</b>
+              <h3>AUTO-MAPPED</h3>
+              <p>24 CCs assigned to their obvious homes.</p>
+            </div>
+            <div class="jam reveal" style="--jc:var(--green);--jg:var(--green-glow);--i:3" role="listitem"><i
+                aria-hidden="true"></i><b>00:30</b>
+              <h3>PLAYING</h3>
+              <p>Unison bass, first jam, zero menus visited.</p>
+            </div>
+          </div>
+
+          <div class="dev-grid">
+            <article class="panel device reveal" style="--i:0">
+              <div class="dev-inner">
+                <div><span class="dev-tag supported">SUPPORTED</span>
+                  <h3>Arturia BeatStep Pro</h3>
+                  <p>Primary reference unit. 24 CCs, pads, transport, and full LED ownership via the Hardware Mirror.
+                  </p>
+                </div>
+                <div class="dev-art" aria-hidden="true">
+                  <div class="row"><span class="mini-pad lit"></span><span class="mini-pad"></span><span
+                      class="mini-pad lit"></span><span class="mini-pad"></span></div>
+                  <div class="row"><span class="mini-knob"></span><span class="mini-knob"></span><span
+                      class="mini-knob"></span><span class="mini-knob"></span></div>
+                </div>
+              </div>
+            </article>
+            <article class="panel device reveal" style="--i:1">
+              <div class="dev-inner">
+                <div><span class="dev-tag supported">SUPPORTED</span>
+                  <h3>Arturia MiniLab 3</h3>
+                  <p>Knobs and keys auto-map on connect. A perfect second-chair controller for the desk.</p>
+                </div>
+                <div class="dev-art" aria-hidden="true">
+                  <div class="row"><span class="mini-knob"></span><span class="mini-knob"></span><span
+                      class="mini-knob"></span></div>
+                  <div class="row"><span class="mini-pad"></span><span class="mini-pad lit"></span><span
+                      class="mini-pad"></span></div>
+                </div>
+              </div>
+            </article>
+            <article class="panel device reveal" style="--i:2">
+              <div class="dev-inner">
+                <div><span class="dev-tag beta">BETA</span>
+                  <h3>Novation Launchkey 37</h3>
+                  <p>Keys are live today; pad mapping is in progress and landing in the next build.</p>
+                </div>
+                <div class="dev-art" aria-hidden="true">
+                  <div class="row"><span class="mini-pad"></span><span class="mini-pad"></span><span
+                      class="mini-pad lit"></span></div>
+                  <div class="row"><span class="mini-knob"></span><span class="mini-knob"></span><span
+                      class="mini-knob"></span></div>
+                </div>
+              </div>
+            </article>
+            <article class="panel device reveal" style="--i:3">
+              <div class="dev-inner">
+                <div><span class="dev-tag beta">BETA</span>
+                  <h3>AKAI MPK Mini</h3>
+                  <p>Pads and knobs respond now. Bank switching is queued for the mapping editor.</p>
+                </div>
+                <div class="dev-art" aria-hidden="true">
+                  <div class="row"><span class="mini-pad lit"></span><span class="mini-pad"></span><span
+                      class="mini-pad"></span><span class="mini-pad lit"></span></div>
+                </div>
+              </div>
+            </article>
+            <article class="panel device reveal" style="--i:4">
+              <div class="dev-inner">
+                <div><span class="dev-tag roadmap">ROADMAP</span>
+                  <h3>Novation Launchpad</h3>
+                  <p>Grid-based clip launch, planned for build 0.10. The 8×8 grid deserves its own mode.</p>
+                </div>
+                <div class="dev-art" aria-hidden="true">
+                  <div class="row"><span class="mini-pad"></span><span class="mini-pad lit"></span><span
+                      class="mini-pad"></span><span class="mini-pad"></span></div>
+                  <div class="row"><span class="mini-pad lit"></span><span class="mini-pad"></span><span
+                      class="mini-pad"></span><span class="mini-pad lit"></span></div>
+                </div>
+              </div>
+            </article>
+            <article class="panel device reveal" style="--i:5">
+              <div class="dev-inner">
+                <div><span class="dev-tag inspiration">INSPIRATION</span>
+                  <h3>Teenage Engineering OP-1</h3>
+                  <p>Not supported — yet. It's the reason this project exists. Affordable can still feel like a
+                    powerhouse.</p>
+                </div>
+                <div class="dev-art" aria-hidden="true">
+                  <div class="row"><span class="mini-knob"></span><span class="mini-knob"></span><span
+                      class="mini-knob"></span><span class="mini-knob"></span></div>
+                </div>
+              </div>
+            </article>
+            <article class="panel device reveal" style="--i:6">
+              <div class="dev-inner">
+                <div><span class="dev-tag class">CLASS-COMPLIANT</span>
+                  <h3>Any MIDI Keyboard</h3>
+                  <p>If it speaks class-compliant MIDI over USB, it plays notes on contact. No handshake required.</p>
+                </div>
+                <div class="dev-art" aria-hidden="true">
+                  <div class="row"><span class="mini-pad"></span><span class="mini-pad"></span><span
+                      class="mini-pad"></span><span class="mini-pad"></span><span class="mini-pad"></span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="monitor">
+            <div class="panel reveal">
+              <h3><span class="led" id="monLed" aria-hidden="true"></span>MIDI INPUTS</h3>
+              <ul class="midi-in-list" id="midiInputs">
+                <li>SCANNING BUS…</li>
+              </ul>
+              <div class="keymap-grid" aria-label="Computer keyboard note map">
+                <span class="keymap"><b>A</b><span>C3</span></span><span
+                  class="keymap"><b>W</b><span>C#3</span></span><span class="keymap"><b>S</b><span>D3</span></span><span
+                  class="keymap"><b>E</b><span>D#3</span></span><span class="keymap"><b>D</b><span>E3</span></span><span
+                  class="keymap"><b>F</b><span>F3</span></span><span class="keymap"><b>T</b><span>F#3</span></span><span
+                  class="keymap"><b>G</b><span>G3</span></span><span class="keymap"><b>Y</b><span>G#3</span></span><span
+                  class="keymap"><b>H</b><span>A3</span></span><span class="keymap"><b>U</b><span>A#3</span></span><span
+                  class="keymap"><b>J</b><span>B3</span></span><span class="keymap"><b>K</b><span>C4</span></span>
+                <span class="keymap drum"><b>1</b><span>KICK</span></span><span
+                  class="keymap drum"><b>2</b><span>SNARE</span></span><span
+                  class="keymap drum"><b>3</b><span>HAT</span></span><span
+                  class="keymap drum"><b>4</b><span>PERC</span></span>
+              </div>
+            </div>
+            <div class="panel reveal" style="--i:1">
+              <h3><span class="led on" aria-hidden="true"></span>LIVE MONITOR</h3>
+              <div class="lcd midi-log" id="midiLog" role="log" aria-label="Live MIDI message monitor"></div>
+              <p class="hint">REAL TRAFFIC WHEN A DEVICE IS CONNECTED · SIMULATED HEARTBEAT OTHERWISE</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════ VIEW: 404 ══════════ -->
+      <section class="view" id="view-404" aria-label="Error — route not found">
+        <div class="wrap">
+          <div class="panel nosignal">
+            <span class="screw tl" aria-hidden="true"></span><span class="screw tr" aria-hidden="true"></span>
+            <span class="screw bl" aria-hidden="true"></span><span class="screw br" aria-hidden="true"></span>
+            <span class="led blink" aria-hidden="true"></span>
+            <h1>404</h1>
+            <p class="kicker" style="justify-content:center">NO SIGNAL AT THIS ROUTE</p>
+            <p class="route-echo" id="nfRoute">#/???</p>
+            <p>This route isn't patched. Check your cables, re-seat the hash, and try again.</p>
+            <a class="tbtn tbtn-primary" href="#/">◀ RETURN TO PANEL</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ══════════ FOOTER / CHASSIS ══════════ -->
+    <footer class="chassis">
+      <div class="chassis-grid">
+        <div class="brand">
+          <a class="brand" href="#/" style="text-decoration:none" aria-label="StepDeck home">
+            <span class="mark" aria-hidden="true"></span>
+            <span class="wordmark" style="color:var(--chassis-ink)">STEPDECK</span>
+          </a>
+          <p>Controller-native software instruments, built in the open. The OP-1 of the browser — an affordable
+            powerhouse with a precision feel.</p>
+        </div>
+        <nav aria-label="Footer">
+          <h4>NAVIGATE</h4>
+          <ul>
+            <li><a href="#/">Panel</a></li>
+            <li><a href="#/engine">Engine</a></li>
+            <li><a href="#/mirror">Hardware Mirror</a></li>
+            <li><a href="#/controllers">Controllers</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h4>REQUIREMENTS</h4>
+          <ul>
+            <li>Chrome or Edge with Web MIDI</li>
+            <li>localhost or HTTPS</li>
+            <li>USB-C → BeatStep Pro</li>
+            <li>No drivers. No config.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>RECOGNITION</h4>
+          <div class="award"><span class="led on" aria-hidden="true"></span>
+            <p>Web Audio Conference — live demo selection</p>
+          </div>
+          <div class="award"><span class="led on" aria-hidden="true"></span>
+            <p>MusicTech “Best in Show” — prototype showcase</p>
+          </div>
+        </div>
+      </div>
+      <div class="chassis-bottom">
+        <span>© <span id="year">2026</span> STEPDECK INSTRUMENTS · PROTOTYPE 0.9.3</span>
+        <span>BUILT LOUD IN A BROWSER TAB · SPACE = PLAY</span>
+      </div>
+    </footer>
+
+    <!-- ══════════ TRANSPORT RAIL (bottom navigation) ══════════ -->
+    <nav class="rail" aria-label="Transport rail and primary navigation">
+      <div class="rail-inner">
+        <div class="rail-cluster" role="group" aria-label="Transport controls">
+          <button class="tbtn" id="btnPlay" aria-pressed="false"
+            aria-label="Play or stop the sequencer, shortcut Space">
+            <span class="led" id="ledPlay" aria-hidden="true"></span><span id="playIc" aria-hidden="true">▶</span><span
+              id="playLbl">PLAY</span>
+          </button>
+        </div>
+        <div class="rail-cluster" role="group" aria-label="Tempo">
+          <button class="tbtn t-step" id="bpmDown" aria-label="Decrease tempo by one BPM">−</button>
+          <div class="bpm-read" id="bpmRead" tabindex="0" role="slider" aria-label="Tempo in BPM" aria-valuemin="60"
+            aria-valuemax="200" aria-valuenow="120" title="Drag up/down or use arrow keys">
+            <span id="bpmVal">120</span><small>BPM</small>
+          </div>
+          <button class="tbtn t-step" id="bpmUp" aria-label="Increase tempo by one BPM">+</button>
+        </div>
+        <div class="rail-cluster rail-modes" role="group" aria-label="Mode select — site pages">
+          <a class="mode" href="#/" data-mode="panel"><span class="led" aria-hidden="true"></span>PANEL</a>
+          <a class="mode" href="#/engine" data-mode="engine"><span class="led" aria-hidden="true"></span>ENGINE</a>
+          <a class="mode" href="#/mirror" data-mode="mirror"><span class="led" aria-hidden="true"></span>MIRROR</a>
+          <a class="mode" href="#/controllers" data-mode="devices"><span class="led"
+              aria-hidden="true"></span>DEVICES</a>
+        </div>
+        <div class="rail-cluster" aria-label="Master section">
+          <div class="knob knob-sm" id="knob-swing" role="slider" tabindex="0" aria-label="Swing amount" data-min="0"
+            data-max="60" data-value="12" data-unit="%" style="--zone:var(--green);--zone-glow:var(--green-glow)">
+            <span class="knob-wrap" aria-hidden="true"><span class="knob-ring"></span><span class="knob-dial"><i
+                  class="knob-tick"></i></span></span>
+            <span class="knob-label">Swing</span><span class="knob-out" aria-hidden="true">12%</span>
+          </div>
+          <div class="meter" aria-hidden="true"><i id="meterL"></i><i id="meterR"></i></div>
+        </div>
+      </div>
+    </nav>
+
+    <script>
+      (() => {
+        'use strict';
+        /* ═══════════════ HELPERS ═══════════════ */
+        const $ = (s, r = document) => r.querySelector(s);
+        const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+        const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+        const lerp = (a, b, t) => a + (b - a) * t;
+        const pad2 = n => String(n).padStart(2, '0');
+        const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const clock = () => new Date().toTimeString().slice(0, 8);
+        const hexA = (hex, a) => {
+          hex = hex.replace('#', ''); if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+          const n = parseInt(hex, 16); return `rgba(${n >> 16 & 255},${n >> 8 & 255},${n & 255},${a})`;
+        };
+        const announcer = $('#announcer');
+        const announce = msg => { announcer.textContent = ''; requestAnimationFrame(() => { announcer.textContent = msg; }); };
+
+        /* ═══════════════ THEME ═══════════════ */
+        const root = document.documentElement;
+        const themeBtn = $('#themeToggle');
+        const savedTheme = localStorage.getItem('sd-theme');
+        if (savedTheme) root.dataset.theme = savedTheme;
+        else if (matchMedia('(prefers-color-scheme: dark)').matches) root.dataset.theme = 'dark';
+        const syncThemeUI = () => themeBtn.setAttribute('aria-checked', String(root.dataset.theme === 'dark'));
+        syncThemeUI();
+        themeBtn.addEventListener('click', () => {
+          root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem('sd-theme', root.dataset.theme);
+          syncThemeUI(); refreshCols();
+          announce('Dark mode ' + (root.dataset.theme === 'dark' ? 'on' : 'off'));
+        });
+
+        /* cached theme colors for canvas work */
+        const COL = {};
+        function refreshCols() {
+          const cs = getComputedStyle(root);
+          ['--screen-ink', '--screen-dim', '--orange', '--blue', '--green', '--ink-3'].forEach(k => COL[k] = cs.getPropertyValue(k).trim());
+        }
+        refreshCols();
+
+        /* ═══════════════ ROUTER ═══════════════ */
+        const ROUTES = { '/': 'panel', '/engine': 'engine', '/mirror': 'mirror', '/controllers': 'devices' };
+        const TITLES = { panel: 'Panel — the instrument', engine: 'Engine — module rack', mirror: 'Mirror — bidirectional CC sync', devices: 'Controllers — plug in & play', '404': '404 — no signal' };
+        let currentView = 'panel';
+
+        const io = new IntersectionObserver(entries => {
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+        }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+        function initReveals(scope) {
+          $$('.reveal', scope).forEach(el => {
+            el.classList.remove('is-in');
+            if (RM) { el.classList.add('is-in'); return; }
+            io.observe(el);
+          });
+        }
+
+        function route() {
+          const raw = location.hash.replace(/^#/, '') || '/';
+          const name = ROUTES[raw] || '404';
+          if (name === '404') $('#nfRoute').textContent = '#' + raw;
+
+          SYN._kill(true); // don't leave notes ringing across pages
+
+          $$('.view').forEach(v => v.classList.remove('is-active', 'view-enter'));
+          const view = $('#view-' + name);
+          view.classList.add('is-active');
+          void view.offsetWidth;               // restart entrance animation
+          view.classList.add('view-enter');
+
+          $$('.mode').forEach(a => {
+            const target = (a.getAttribute('href') || '').replace(/^#/, '');
+            const active = target === raw;
+            a.classList.toggle('is-active', active);
+            if (active) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+          });
+
+          window.scrollTo(0, 0);
+          currentView = name;
+          document.title = 'StepDeck — ' + TITLES[name];
+          announce(TITLES[name] + '. View changed.');
+          initReveals(view);
+
+          if (name === 'engine' && !modulesLoaded) primeEngine();
+          if (name === 'devices') renderMidiInputs();
+        }
+        window.addEventListener('hashchange', route);
+
+        /* ═══════════════ AUDIO ENGINE ═══════════════ */
+        const AE = {
+          ctx: null, master: null, analyser: null, noise: null, filter: null, drumBus: null,
+          ensure() {
+            if (this.ctx) { if (this.ctx.state === 'suspended') this.ctx.resume(); return this.ctx; }
+            const AC = window.AudioContext || window.webkitAudioContext;
+            if (!AC) return null;
+            const ctx = new AC();
+            const master = ctx.createGain(); master.gain.value = .85;
+            const comp = ctx.createDynamicsCompressor(); comp.threshold.value = -14; comp.ratio.value = 5;
+            const an = ctx.createAnalyser(); an.fftSize = 1024;
+            master.connect(comp); comp.connect(an); an.connect(ctx.destination);
+            const filter = ctx.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.value = SYN.cutoff; filter.Q.value = SYN.reso;
+            const bus = ctx.createGain(); filter.connect(bus); bus.connect(master);
+            const drumBus = ctx.createGain(); drumBus.gain.value = .9; drumBus.connect(master);
+            const nb = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
+            const d = nb.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+            Object.assign(this, { ctx, master, analyser: an, filter, drumBus, noise: nb });
+            logMidi('AUDIO ENGINE ONLINE · ' + ctx.sampleRate + ' Hz');
+            return ctx;
+          }
+        };
+
+        /* --- monosynth with unison + glide --- */
+        const SYN = {
+          spread: 0, cutoff: 100 * Math.pow(120, .365), reso: 0.5, glide: 0,
+          pressed: new Map(), current: null,
+          freqOf(m) { return 440 * Math.pow(2, (m - 69) / 12); },
+          noteOn(midi, vel = 1) {
+            const ctx = AE.ensure(); if (!ctx) return;
+            const f = this.freqOf(midi), t = ctx.currentTime;
+            if (this.current) {
+              if (this.glide > 5) {
+                const tc = Math.max(.005, this.glide / 4000);
+                this.current.oscs.forEach(o => { o.frequency.cancelScheduledValues(t); o.frequency.setTargetAtTime(f, t, tc); });
+                this.current.midi = midi; return;
+              }
+              this._kill(true);
+            }
+            const g = ctx.createGain(); g.gain.value = 0; g.connect(AE.filter);
+            const n = 1 + Math.round(this.spread / 100 * 6);
+            const oscs = [];
+            for (let i = 0; i < n; i++) {
+              const o = ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.value = f;
+              o.detune.value = n > 1 ? ((i / (n - 1)) - .5) * 2 * (this.spread * 2.4) : 0;
+              o.connect(g); o.start(t); oscs.push(o);
+            }
+            const peak = .42 / Math.sqrt(n) * (.5 + vel * .5);
+            g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(peak, t + .012);
+            this.current = { oscs, g, midi };
+            updateVoiceReadout();
+          },
+          _kill(fast) {
+            const c = this.current; if (!c) return; this.current = null;
+            const ctx = AE.ctx; if (!ctx) return; const t = ctx.currentTime;
+            c.g.gain.cancelScheduledValues(t);
+            c.g.gain.setValueAtTime(Math.max(c.g.gain.value, .0001), t);
+            c.g.gain.exponentialRampToValueAtTime(.0001, t + (fast ? .02 : .14));
+            c.oscs.forEach(o => { try { o.stop(t + (fast ? .03 : .16)); } catch (e) { } });
+          }
+        };
+        function updateVoiceReadout() {
+          const n = 1 + Math.round(SYN.spread / 100 * 6);
+          $('#voiceReadout').textContent = `${n} VOICE${n > 1 ? 'S' : ''} · ±${Math.round(SYN.spread * 2.4)} CT`;
+        }
+
+        /* --- drum voices --- */
+        function drum(type, vel = 1, when) {
+          const ctx = AE.ensure(); if (!ctx) return;
+          const t = when ?? ctx.currentTime, out = AE.drumBus;
+          if (type === 'kick') {
+            const o = ctx.createOscillator(), g = ctx.createGain();
+            o.type = 'sine'; o.frequency.setValueAtTime(150, t); o.frequency.exponentialRampToValueAtTime(44, t + .11);
+            g.gain.setValueAtTime(vel, t); g.gain.exponentialRampToValueAtTime(.001, t + .34);
+            o.connect(g); g.connect(out); o.start(t); o.stop(t + .36);
+          } else if (type === 'snare') {
+            const n = ctx.createBufferSource(); n.buffer = AE.noise;
+            const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 1900; bp.Q.value = .8;
+            const g = ctx.createGain(); g.gain.setValueAtTime(vel * .8, t); g.gain.exponentialRampToValueAtTime(.001, t + .18);
+            n.connect(bp); bp.connect(g); g.connect(out); n.start(t); n.stop(t + .2);
+            const o = ctx.createOscillator(), g2 = ctx.createGain(); o.type = 'triangle'; o.frequency.value = 186;
+            g2.gain.setValueAtTime(vel * .5, t); g2.gain.exponentialRampToValueAtTime(.001, t + .09);
+            o.connect(g2); g2.connect(out); o.start(t); o.stop(t + .1);
+          } else if (type === 'hat') {
+            const n = ctx.createBufferSource(); n.buffer = AE.noise;
+            const hp = ctx.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 7600;
+            const g = ctx.createGain(); g.gain.setValueAtTime(vel * .5, t); g.gain.exponentialRampToValueAtTime(.001, t + .05);
+            n.connect(hp); hp.connect(g); g.connect(out); n.start(t); n.stop(t + .07);
+          } else {
+            const n = ctx.createBufferSource(); n.buffer = AE.noise;
+            const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 920; bp.Q.value = 2.5;
+            const g = ctx.createGain(); g.gain.setValueAtTime(vel * .7, t); g.gain.exponentialRampToValueAtTime(.001, t + .09);
+            n.connect(bp); bp.connect(g); g.connect(out); n.start(t); n.stop(t + .1);
+            const o = ctx.createOscillator(), g2 = ctx.createGain(); o.type = 'triangle';
+            o.frequency.setValueAtTime(660, t); o.frequency.exponentialRampToValueAtTime(330, t + .06);
+            g2.gain.setValueAtTime(vel * .4, t); g2.gain.exponentialRampToValueAtTime(.001, t + .08);
+            o.connect(g2); g2.connect(out); o.start(t); o.stop(t + .1);
+          }
+          padFlash(type);
+        }
+        function padFlash(type) {
+          const pad = $(`.pad[data-drum="${type}"]`); if (!pad) return;
+          pad.classList.remove('hit'); void pad.offsetWidth; pad.classList.add('hit');
+          const led = pad.querySelector('.led'); led.classList.add('on');
+          clearTimeout(pad._t); pad._t = setTimeout(() => { pad.classList.remove('hit'); led.classList.remove('on'); }, 160);
+        }
+        $$('.pad').forEach(p => p.addEventListener('pointerdown', () => drum(p.dataset.drum, 1)));
+
+        /* --- sequencer --- */
+        const SEQ = {
+          bpm: 120, swing: 12, playing: false,
+          step: 0, nextTime: 0, timer: null, stepTimes: new Array(16).fill(0),
+          tracks: {
+            kick: { steps: [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0], mute: false },
+            snare: { steps: [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0], mute: false },
+            hat: { steps: [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1], mute: false },
+            perc: { steps: [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0], mute: false }
+          },
+          spb() { return 60 / this.bpm / 4; },
+          start() {
+            const ctx = AE.ensure(); if (!ctx) return;
+            this.step = 0; this.nextTime = ctx.currentTime + .08; this.playing = true;
+            this.timer = setInterval(() => this.tick(), 25);
+            updatePlayUI(); logMidi('TRANSPORT ▶ RUN · ' + this.bpm + ' BPM');
+          },
+          stop() {
+            this.playing = false; clearInterval(this.timer); this.stepTimes.fill(0); setPlayhead(-1);
+            updatePlayUI(); logMidi('TRANSPORT ■ STOP');
+          },
+          toggle() { this.playing ? this.stop() : this.start(); },
+          tick() {
+            const ctx = AE.ctx, spb = this.spb();
+            while (this.nextTime < ctx.currentTime + .12) {
+              const s = this.step;
+              const sw = (s % 2 === 1) ? spb * (this.swing / 100) : 0;
+              for (const k in this.tracks) {
+                const tr = this.tracks[k];
+                if (tr.steps[s] && !tr.mute) drum(k, .95, this.nextTime + sw);
+              }
+              this.stepTimes[s] = this.nextTime;
+              this.step = (s + 1) % 16; this.nextTime += spb;
+            }
+          }
+        };
+        function updatePlayUI() {
+          const on = SEQ.playing;
+          $('#btnPlay').setAttribute('aria-pressed', String(on));
+          $('#ledPlay').classList.toggle('on', on);
+          $('#playIc').textContent = on ? '■' : '▶';
+          $('#playLbl').textContent = on ? 'STOP' : 'PLAY';
+        }
+        $('#btnPlay').addEventListener('click', () => SEQ.toggle());
+        $('#ctaPlay').addEventListener('click', () => { if (!SEQ.playing) SEQ.start(); });
+
+        /* --- sequencer UI build --- */
+        function buildSeq() {
+          const head = $('#seqSteps'), grid = $('#seqGrid');
+          const hc = document.createElement('div'); hc.className = 'seq-cells'; hc.setAttribute('aria-hidden', 'true');
+          for (let s = 0; s < 16; s++) { const l = document.createElement('i'); l.className = 'step-led'; l.dataset.s = s; hc.appendChild(l); }
+          head.appendChild(hc);
+          Object.keys(SEQ.tracks).forEach(k => {
+            const row = document.createElement('div'); row.className = 'seq-row';
+            row.innerHTML = `<span class="seq-label">${k.toUpperCase()}</span>
+      <button class="seq-mute" aria-pressed="false" aria-label="Mute ${k} track">M</button>`;
+            const cells = document.createElement('div'); cells.className = 'seq-cells'; cells.setAttribute('role', 'group'); cells.setAttribute('aria-label', k + ' step sequencer');
+            for (let s = 0; s < 16; s++) {
+              const c = document.createElement('button'); c.className = 'cell'; c.dataset.s = s; c.dataset.track = k;
+              c.setAttribute('aria-pressed', String(!!SEQ.tracks[k].steps[s]));
+              c.setAttribute('aria-label', `${k} step ${s + 1}`);
+              c.addEventListener('click', () => {
+                const on = !SEQ.tracks[k].steps[s];
+                SEQ.tracks[k].steps[s] = on ? 1 : 0;
+                c.setAttribute('aria-pressed', String(on));
+                if (on && !SEQ.playing) drum(k, .55);
+              });
+              cells.appendChild(c);
+            }
+            row.appendChild(cells); grid.appendChild(row);
+            row.querySelector('.seq-mute').addEventListener('click', e => {
+              const tr = SEQ.tracks[k]; tr.mute = !tr.mute;
+              e.currentTarget.setAttribute('aria-pressed', String(tr.mute));
+            });
+          });
+        }
+        function refreshCells() {
+          $$('.cell').forEach(c => {
+            const on = !!SEQ.tracks[c.dataset.track].steps[+c.dataset.s];
+            c.setAttribute('aria-pressed', String(on));
+          });
+        }
+        $('#seqClear').addEventListener('click', () => { Object.values(SEQ.tracks).forEach(t => t.steps.fill(0)); refreshCells(); announce('Pattern cleared'); });
+        $('#seqRandom').addEventListener('click', () => {
+          const r = p => Math.random() < p ? 1 : 0;
+          SEQ.tracks.kick.steps = Array.from({ length: 16 }, (_, i) => i === 0 ? 1 : (i % 4 === 2 ? r(.35) : r(.18)));
+          SEQ.tracks.snare.steps = Array.from({ length: 16 }, (_, i) => (i === 4 || i === 12) ? 1 : r(.1));
+          SEQ.tracks.hat.steps = Array.from({ length: 16 }, (_, i) => r(i % 2 === 0 ? .75 : .35));
+          SEQ.tracks.perc.steps = Array.from({ length: 16 }, (_, i) => r(.16));
+          refreshCells(); announce('Pattern randomized');
+        });
+
+        /* --- BPM widget --- */
+        function setBpm(v) {
+          SEQ.bpm = clamp(Math.round(v), 60, 200);
+          $('#bpmVal').textContent = SEQ.bpm;
+          $('#bpmRead').setAttribute('aria-valuenow', SEQ.bpm);
+        }
+        $('#bpmUp').addEventListener('click', () => setBpm(SEQ.bpm + 1));
+        $('#bpmDown').addEventListener('click', () => setBpm(SEQ.bpm - 1));
+        const bpmRead = $('#bpmRead');
+        bpmRead.addEventListener('pointerdown', e => {
+          e.preventDefault(); bpmRead.setPointerCapture(e.pointerId);
+          const sy = e.clientY, sv = SEQ.bpm;
+          const mv = ev => setBpm(sv + Math.round((sy - ev.clientY) / 4));
+          const up = () => bpmRead.removeEventListener('pointermove', mv);
+          bpmRead.addEventListener('pointermove', mv);
+          bpmRead.addEventListener('pointerup', up, { once: true });
+          bpmRead.addEventListener('pointercancel', up, { once: true });
+        });
+        bpmRead.addEventListener('keydown', e => {
+          if (e.key === 'ArrowUp' || e.key === 'ArrowRight') { e.preventDefault(); setBpm(SEQ.bpm + 1); }
+          if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') { e.preventDefault(); setBpm(SEQ.bpm - 1); }
+        });
+
+        /* ═══════════════ KNOBS + FADER ═══════════════ */
+        function makeKnob(el) {
+          const min = el.dataset.min !== undefined ? +el.dataset.min : 0;
+          const max = el.dataset.max !== undefined ? +el.dataset.max : 100;
+          const def = el.dataset.value !== undefined ? +el.dataset.value : min;
+          const unit = el.dataset.unit || '';
+          const out = el.querySelector('.knob-out');
+          let val = def;
+          const fmtVal = v => {
+            switch (el.dataset.fmt) {
+              case 'cut': { const f = 100 * Math.pow(120, v / 100); return f < 1000 ? Math.round(f) + ' Hz' : (f / 1000).toFixed(1) + ' kHz'; }
+              case 'q': return (0.5 + v / 100 * 18).toFixed(1);
+              case 'ms': return Math.round(v) + ' ms';
+              default: return Math.round(v) + unit;
+            }
+          };
+          const set = (v, src) => {
+            v = clamp(v, min, max); val = v;
+            const p = (v - min) / ((max - min) || 1);
+            el.style.setProperty('--p', p.toFixed(4));
+            if (out) out.textContent = fmtVal(v);
+            el.setAttribute('aria-valuenow', Math.round(v));
+            el.setAttribute('aria-valuetext', fmtVal(v));
+            if (src !== 'init') el.dispatchEvent(new CustomEvent('knobchange', { detail: { value: v, norm: p, src }, bubbles: true }));
+          };
+          el.addEventListener('pointerdown', e => {
+            if (e.pointerType === 'mouse' && e.button !== 0) return;
+            e.preventDefault(); el.setPointerCapture(e.pointerId); el.classList.add('drag');
+            const sy = e.clientY, sv = val, range = max - min;
+            const mv = ev => set(sv + (sy - ev.clientY) * (ev.shiftKey ? .2 : 1) * range / 150, 'user');
+            const up = () => { el.classList.remove('drag'); el.removeEventListener('pointermove', mv); };
+            el.addEventListener('pointermove', mv);
+            el.addEventListener('pointerup', up, { once: true });
+            el.addEventListener('pointercancel', up, { once: true });
+          });
+          el.addEventListener('dblclick', () => set(def, 'user'));
+          el.addEventListener('keydown', e => {
+            const step = (max - min) / 50, big = (max - min) / 10; let v = null;
+            if (e.key === 'ArrowUp' || e.key === 'ArrowRight') v = val + step;
+            else if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') v = val - step;
+            else if (e.key === 'PageUp') v = val + big; else if (e.key === 'PageDown') v = val - big;
+            else if (e.key === 'Home') v = min; else if (e.key === 'End') v = max;
+            if (v != null) { e.preventDefault(); set(v, 'user'); }
+          });
+          el._set = set; el._get = () => val;
+          set(def, 'init');
+        }
+        $$('.knob').forEach(makeKnob);
+
+        function makeFader(el) {
+          let val = +el.dataset.value || 0;
+          const out = el.querySelector('.fader-out');
+          const set = (v, src) => {
+            v = clamp(v, 0, 100); val = v;
+            el.style.setProperty('--p', (v / 100).toFixed(4));
+            if (out) out.textContent = Math.round(v);
+            el.setAttribute('aria-valuenow', Math.round(v));
+            if (src !== 'init') el.dispatchEvent(new CustomEvent('knobchange', { detail: { value: v, norm: v / 100, src }, bubbles: true }));
+          };
+          el.addEventListener('pointerdown', e => {
+            e.preventDefault(); el.setPointerCapture(e.pointerId);
+            const sy = e.clientY, sv = val;
+            const mv = ev => set(sv + (sy - ev.clientY) * (ev.shiftKey ? .2 : 1) * 100 / 140, 'user');
+            const up = () => el.removeEventListener('pointermove', mv);
+            el.addEventListener('pointermove', mv);
+            el.addEventListener('pointerup', up, { once: true });
+            el.addEventListener('pointercancel', up, { once: true });
+          });
+          el.addEventListener('keydown', e => {
+            let v = null;
+            if (e.key === 'ArrowUp' || e.key === 'ArrowRight') v = val + 2;
+            if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') v = val - 2;
+            if (e.key === 'Home') v = 0; if (e.key === 'End') v = 100;
+            if (v != null) { e.preventDefault(); set(v, 'user'); }
+          });
+          el._set = set; set(val, 'init');
+        }
+        makeFader($('#fader-dbus'));
+
+        /* knob → engine wiring */
+        $('#knob-spread').addEventListener('knobchange', e => { SYN.spread = e.detail.value; updateVoiceReadout(); });
+        $('#knob-cutoff').addEventListener('knobchange', e => {
+          SYN.cutoff = 100 * Math.pow(120, e.detail.norm);
+          if (AE.filter) AE.filter.frequency.setTargetAtTime(SYN.cutoff, AE.ctx.currentTime, .02);
+        });
+        $('#knob-reso').addEventListener('knobchange', e => {
+          SYN.reso = .5 + e.detail.norm * 18;
+          if (AE.filter) AE.filter.Q.setTargetAtTime(SYN.reso, AE.ctx.currentTime, .02);
+        });
+        $('#knob-glide').addEventListener('knobchange', e => { SYN.glide = e.detail.value; });
+        $('#knob-swing').addEventListener('knobchange', e => { SEQ.swing = e.detail.value; });
+        $('#fader-dbus').addEventListener('knobchange', e => {
+          if (AE.drumBus) AE.drumBus.gain.setTargetAtTime(e.detail.norm, AE.ctx.currentTime, .02);
+          sendCCOut(7, Math.round(e.detail.norm * 127));
+          mirrorLog('OUT', '07', Math.round(e.detail.norm * 127));
+        });
+
+        /* ═══════════════ KEYBOARD (computer keys) ═══════════════ */
+        const NOTE_KEYS = { a: 60, w: 61, s: 62, e: 63, d: 64, f: 65, t: 66, g: 67, y: 68, u: 69, h: 70, j: 71, k: 72, o: 73, l: 74, p: 75, ';': 76 };
+        const DRUM_KEYS = { '1': 'kick', '2': 'snare', '3': 'hat', '4': 'perc' };
+        const KEY_LAB = { 60: 'A', 61: 'W', 62: 'S', 63: 'E', 64: 'D', 65: 'F', 66: 'T', 67: 'G', 68: 'Y', 69: 'U', 70: 'H', 71: 'J', 72: 'K', 73: 'O', 74: 'L', 75: 'P', 76: ';' };
+        const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+        const noteName = m => NOTE_NAMES[m % 12] + (Math.floor(m / 12) - 1);
+
+        window.addEventListener('keydown', e => {
+          if (e.metaKey || e.ctrlKey || e.altKey) return;
+          const el = e.target;
+          if (el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT' || el.isContentEditable)) return;
+          if (e.key === 'Escape' && SEQ.playing) { SEQ.stop(); return; }
+          if (e.key === ' ') { if (el && (el.tagName === 'BUTTON' || el.tagName === 'A')) return; e.preventDefault(); SEQ.toggle(); return; }
+          if (e.repeat) return;
+          const k = e.key.toLowerCase();
+          if (NOTE_KEYS[k] != null) { SYN.pressed.set(k, NOTE_KEYS[k]); SYN.noteOn(NOTE_KEYS[k], 1); keyVisual(NOTE_KEYS[k], true); }
+          else if (DRUM_KEYS[k]) drum(DRUM_KEYS[k], 1);
+        });
+        window.addEventListener('keyup', e => {
+          const k = e.key.toLowerCase();
+          if (NOTE_KEYS[k] != null) {
+            SYN.pressed.delete(k); keyVisual(NOTE_KEYS[k], false);
+            if (SYN.pressed.size === 0) SYN._kill(false);
+            else SYN.noteOn([...SYN.pressed.values()].pop(), .9);
+          }
+        });
+        function keyVisual(midi, down) {
+          const key = $(`.keys [data-midi="${midi}"]`);
+          if (key) key.classList.toggle('down', down);
+        }
+
+        /* --- on-screen piano strip --- */
+        function buildKeys() {
+          const wrap = $('#keys');
+          const whites = [60, 62, 64, 65, 67, 69, 71, 72, 74, 76];
+          const blacks = [[61, 0], [63, 1], [66, 3], [68, 4], [70, 5], [73, 7], [75, 8]];
+          whites.forEach(m => {
+            const b = document.createElement('button');
+            b.className = 'key-w'; b.dataset.midi = m;
+            b.setAttribute('aria-label', noteName(m) + (KEY_LAB[m] ? ', keyboard key ' + KEY_LAB[m] : ''));
+            if (KEY_LAB[m]) b.innerHTML = `<span class="klab" aria-hidden="true">${KEY_LAB[m]}</span>`;
+            bindKey(b, m); wrap.appendChild(b);
+          });
+          blacks.forEach(([m, i]) => {
+            const b = document.createElement('button');
+            b.className = 'key-b'; b.dataset.midi = m;
+            b.style.left = `calc(${(i + 1) * 10}% - 3.2%)`;
+            b.setAttribute('aria-label', noteName(m) + (KEY_LAB[m] ? ', keyboard key ' + KEY_LAB[m] : ''));
+            if (KEY_LAB[m]) b.innerHTML = `<span class="klab" aria-hidden="true">${KEY_LAB[m]}</span>`;
+            bindKey(b, m); wrap.appendChild(b);
+          });
+        }
+        function bindKey(el, midi) {
+          el.addEventListener('pointerdown', e => {
+            e.preventDefault(); el.setPointerCapture(e.pointerId);
+            el.classList.add('down');
+            SYN.pressed.set('ptr' + midi, midi); SYN.noteOn(midi, 1);
+            const up = () => {
+              el.classList.remove('down'); SYN.pressed.delete('ptr' + midi);
+              if (SYN.pressed.size === 0) SYN._kill(false);
+              else SYN.noteOn([...SYN.pressed.values()].pop(), .9);
+            };
+            el.addEventListener('pointerup', up, { once: true });
+            el.addEventListener('pointercancel', up, { once: true });
+          });
+        }
+
+        /* ═══════════════ MIDI (real hardware when present) ═══════════════ */
+        const MIDI = { access: null, inputs: [], outputs: [] };
+        function setMidi(state, label) {
+          $('#midiChip').dataset.state = state;
+          $('#midiTxt').textContent = 'MIDI · ' + label;
+          $('#midiLed').classList.toggle('on', state === 'live');
+          $('#monLed').classList.toggle('on', state === 'live');
+        }
+        async function initMidi() {
+          if (!('requestMIDIAccess' in navigator)) { setMidi('sim', 'SIM MODE'); renderMidiInputs(); return; }
+          try {
+            MIDI.access = await navigator.requestMIDIAccess({ sysex: false });
+            const bind = () => {
+              MIDI.inputs = [...MIDI.access.inputs.values()];
+              MIDI.outputs = [...MIDI.access.outputs.values()];
+              if (MIDI.inputs.length) {
+                setMidi('live', MIDI.inputs[0].name.toUpperCase().slice(0, 18));
+                MIDI.inputs.forEach(i => { i.onmidimessage = onMidiMsg; });
+                logMidi('MIDI INPUT · ' + MIDI.inputs[0].name.toUpperCase());
+              } else setMidi('sim', 'SIM MODE');
+              renderMidiInputs();
+            };
+            bind(); MIDI.access.onstatechange = bind;
+          } catch (err) {
+            setMidi('off', 'BLOCKED');
+            logMidi('MIDI ACCESS DENIED — CHECK PERMISSIONS');
+          }
+        }
+        function onMidiMsg(e) {
+          const d = e.data; if (!d || d.length < 2) return;
+          const type = d[0] >> 4;
+          if (type === 9 && d[2] > 0) {
+            logMidi(`RX NOTE ${d[1]} VEL ${d[2]}`, true);
+            const padMap = { 36: 'kick', 38: 'snare', 42: 'hat', 39: 'perc' };
+            if (padMap[d[1]]) drum(padMap[d[1]], d[2] / 127);
+            else { SYN.pressed.set('midi' + d[1], d[1]); SYN.noteOn(d[1], d[2] / 127); }
+          } else if (type === 8 || (type === 9 && d[2] === 0)) {
+            SYN.pressed.delete('midi' + d[1]);
+            if (SYN.pressed.size === 0) SYN._kill(false);
+          } else if (type === 11) {
+            logMidi(`RX CC ${d[1]} → ${d[2]}`, true);
+            handleCCIn(d[1], d[2]);
+          }
+        }
+        function handleCCIn(cc, val) {
+          const norm = val / 127;
+          const targets = { 74: '#knob-cutoff', 71: '#knob-reso', 76: '#knob-spread', 77: '#knob-glide' };
+          if (targets[cc]) { const el = $(targets[cc]); if (el) el._set(norm * +el.dataset.max, 'in'); }
+          if (cc === 9) { const sw = $('#knob-swing'); if (sw) sw._set(norm * 60, 'in'); }
+          if (cc === 74) { const mk = $('#mknob-cut'); if (mk && currentView === 'mirror') mk._set(norm * 100, 'hw'); }
+          mirrorLog('IN', String(cc).padStart(2, '0'), val);
+        }
+        function sendCCOut(cc, val) {
+          if (MIDI.outputs.length) { try { MIDI.outputs[0].send([0xB0, cc, val]); } catch (e) { } }
+        }
+        function renderMidiInputs() {
+          const ul = $('#midiInputs'); if (!ul) return;
+          if (!MIDI.inputs.length) {
+            ul.innerHTML = '<li><span class="led" aria-hidden="true"></span>NO DEVICES — SIM MODE. PLUG IN A CONTROLLER AND THIS LIST LIGHTS UP.</li>';
+            return;
+          }
+          ul.innerHTML = MIDI.inputs.map(i => `<li><span class="led on" aria-hidden="true"></span>${(i.name || 'MIDI DEVICE').toUpperCase()} · ${i.manufacturer || 'CLASS-COMPLIANT'}</li>`).join('');
+        }
+        function logMidi(msg, rx) {
+          const log = $('#midiLog'); if (!log) return;
+          const line = document.createElement('div');
+          if (rx) line.className = 'rx';
+          line.textContent = `[${clock()}] ${msg}`;
+          log.prepend(line);
+          while (log.children.length > 40) log.lastChild.remove();
+        }
+
+        /* ═══════════════ HARDWARE MIRROR ═══════════════ */
+        const MIRROR = { sim: false, coexist: false, screen: .5 };
+        const ringEls = [];
+        (function buildRing() {
+          const ring = $('#ledRing');
+          for (let i = 0; i < 16; i++) {
+            const s = document.createElement('i');
+            s.className = 'ring-led';
+            s.style.transform = `rotate(${i * 22.5}deg) translateY(-64px)`;
+            ring.appendChild(s); ringEls.push(s);
+          }
+        })();
+        function ringSet(norm) {
+          const lit = Math.round(norm * 16);
+          ringEls.forEach((l, i) => { l.classList.remove('bsp'); l.classList.toggle('on', i < lit); });
+        }
+        function mirrorLog(dir, cc, val) {
+          const log = $('#ccLog'); if (!log) return;
+          const line = document.createElement('div'); line.className = 'cc-line';
+          line.innerHTML = `<b class="${dir === 'IN' ? 'din' : 'dout'}">${dir}</b><span>CC ${cc} → ${String(val).padStart(3, '0')}</span>`;
+          log.prepend(line);
+          while (log.children.length > 26) log.lastChild.remove();
+        }
+        $('#mknob-cut').addEventListener('knobchange', e => {
+          MIRROR.screen = e.detail.norm;
+          if (e.detail.src === 'hw') return;
+          const v = Math.round(e.detail.norm * 127);
+          sendCCOut(74, v);
+          mirrorLog('OUT', '74', v);
+        });
+        function bindSwitch(el, fn) {
+          el.addEventListener('click', () => {
+            const on = el.getAttribute('aria-checked') !== 'true';
+            el.setAttribute('aria-checked', String(on));
+            fn(on);
+          });
+        }
+        bindSwitch($('#swSim'), on => { MIRROR.sim = on; announce('Hardware knob simulation ' + (on ? 'on' : 'off')); });
+        bindSwitch($('#swCoex'), on => {
+          MIRROR.coexist = on;
+          $('#ledOwner').textContent = on ? 'BEATSTEP SEQ' : 'STEPDECK';
+          if (!on) ringEls.forEach(l => l.classList.remove('bsp'));
+          announce('LED ownership: ' + (on ? 'BeatStep sequencer' : 'StepDeck'));
+        });
+        let simPhase = 0, lastCCLog = 0;
+        function mirrorFrame(ts, dt) {
+          if (MIRROR.sim) {
+            simPhase += dt;
+            const target = (Math.sin(simPhase * 1.1) + 1) / 2;
+            MIRROR.screen = lerp(MIRROR.screen, target, 1 - Math.pow(.002, dt));
+            $('#mknob-cut')._set(MIRROR.screen * 100, 'hw');
+            if (ts - lastCCLog > 420) { lastCCLog = ts; mirrorLog('IN', '74', Math.round(MIRROR.screen * 127)); }
+          }
+          if (MIRROR.coexist) {
+            const t = RM ? 0 : ts / 1000;
+            const base = Math.floor(t * 3) % 16;
+            ringEls.forEach((l, i) => { l.classList.add('bsp'); l.classList.toggle('on', ((i - base) % 16 + 16) % 16 < 4); });
+          } else ringSet(MIRROR.screen);
+          $('#ringVal').textContent = String(Math.round(MIRROR.screen * 127)).padStart(3, '0');
+        }
+
+        /* ═══════════════ CANVASES: scope · voices · meter · playhead ═══════════════ */
+        function sizeCanvas(c) {
+          const r = c.getBoundingClientRect();
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          if (c.width !== Math.round(r.width * dpr) || c.height !== Math.round(r.height * dpr)) {
+            c.width = Math.round(r.width * dpr); c.height = Math.round(r.height * dpr);
+          }
+          return dpr;
+        }
+        const scopeC = $('#scope'), scopeG = scopeC.getContext('2d');
+        let scopeBuf = null;
+        function drawScope(ts) {
+          if (!scopeC.clientWidth) return;
+          const dpr = sizeCanvas(scopeC), g = scopeG, w = scopeC.width, h = scopeC.height;
+          g.clearRect(0, 0, w, h);
+          g.strokeStyle = hexA(COL['--screen-dim'] || '#3f7a55', .5); g.lineWidth = 1;
+          for (let i = 1; i < 4; i++) { g.beginPath(); g.moveTo(0, h * i / 4); g.lineTo(w, h * i / 4); g.stroke(); }
+          g.lineWidth = 2 * dpr; g.strokeStyle = COL['--screen-ink'] || '#8ff0b2';
+          g.shadowColor = COL['--screen-ink'] || '#8ff0b2'; g.shadowBlur = 7 * dpr;
+          g.beginPath();
+          if (AE.analyser && AE.ctx && AE.ctx.state === 'running') {
+            if (!scopeBuf) scopeBuf = new Uint8Array(AE.analyser.fftSize);
+            AE.analyser.getByteTimeDomainData(scopeBuf);
+            for (let i = 0; i < scopeBuf.length; i++) {
+              const x = i / scopeBuf.length * w, y = (scopeBuf[i] / 255) * h * .8 + h * .1;
+              i ? g.lineTo(x, y) : g.moveTo(x, y);
+            }
+          } else {
+            const t = RM ? 1.7 : ts / 1000;
+            for (let i = 0; i <= 140; i++) {
+              const x = i / 140 * w;
+              const y = h / 2 + Math.sin(i * .2 + t * 2.2) * h * .07 * Math.sin(t * .6 + i * .015);
+              i ? g.lineTo(x, y) : g.moveTo(x, y);
+            }
+          }
+          g.stroke(); g.shadowBlur = 0;
+        }
+        const voiceC = $('#voices'), voiceG = voiceC.getContext('2d');
+        function drawVoices(ts) {
+          if (!voiceC.clientWidth) return;
+          const dpr = sizeCanvas(voiceC), g = voiceG, w = voiceC.width, h = voiceC.height;
+          g.clearRect(0, 0, w, h);
+          const n = 1 + Math.round(SYN.spread / 100 * 6);
+          const t = RM ? 2 : ts / 1000;
+          const base = COL['--orange'] || '#f4500a';
+          g.lineWidth = 1.6 * dpr;
+          for (let v = 0; v < n; v++) {
+            const off = n > 1 ? (v / (n - 1)) - .5 : 0;
+            const yOff = off * (SYN.spread / 100) * h * .62;
+            g.strokeStyle = hexA(base, .9 - Math.abs(off) * .9);
+            g.beginPath();
+            for (let x = 0; x <= w; x += 4 * dpr) {
+              const y = h / 2 + yOff + Math.sin(x * .018 / dpr * (1 + off * .22) + t * (2.6 + v * .5)) * h * .13;
+              x ? g.lineTo(x, y) : g.moveTo(x, y);
+            }
+            g.stroke();
+          }
+        }
+        let mL = 0, mR = 0, meterBuf = null;
+        function drawMeter(dt) {
+          let target = 0;
+          if (AE.analyser && AE.ctx && AE.ctx.state === 'running') {
+            if (!meterBuf) meterBuf = new Uint8Array(AE.analyser.fftSize);
+            AE.analyser.getByteTimeDomainData(meterBuf);
+            let sum = 0;
+            for (let i = 0; i < meterBuf.length; i += 4) { const v = (meterBuf[i] - 128) / 128; sum += v * v; }
+            target = clamp(Math.sqrt(sum / (meterBuf.length / 4)) * 2.4, 0, 1);
+          }
+          mL = lerp(mL, target, target > mL ? .5 : .1);
+          mR = lerp(mR, clamp(target * (0.88 + Math.random() * .24), 0, 1), target > mR ? .5 : .1);
+          $('#meterL').style.height = (4 + mL * 96) + '%';
+          $('#meterR').style.height = (4 + mR * 96) + '%';
+        }
+        let lastStep = -1;
+        function setPlayhead(s) {
+          $$('.cell.now').forEach(c => c.classList.remove('now'));
+          $$('.step-led.on').forEach(l => l.classList.remove('on'));
+          if (s < 0) return;
+          $$(`.cell[data-s="${s}"]`).forEach(c => c.classList.add('now'));
+          const led = $(`.step-led[data-s="${s}"]`); if (led) led.classList.add('on');
+        }
+        function updatePlayhead() {
+          if (!SEQ.playing || !AE.ctx) { if (lastStep !== -1) { setPlayhead(-1); lastStep = -1; } return; }
+          const ct = AE.ctx.currentTime; let cur = -1; let curT = 0;
+          for (let i = 0; i < 16; i++) {
+            const t = SEQ.stepTimes[i];
+            if (t && t <= ct && t > curT) { cur = i; curT = t; }
+          }
+          if (cur !== lastStep) { setPlayhead(cur); lastStep = cur; }
+        }
+        let lastT = 0;
+        function frame(ts) {
+          const dt = Math.min((ts - lastT) / 1000, .1) || 0; lastT = ts;
+          drawMeter(dt);
+          if (currentView === 'panel') { drawScope(ts); drawVoices(ts); updatePlayhead(); }
+          if (currentView === 'mirror') mirrorFrame(ts, dt);
+          requestAnimationFrame(frame);
+        }
+
+        /* ═══════════════ BOOT SEQUENCE ═══════════════ */
+        const BOOT_LINES = [
+          'STEPDECK OS 0.9.3 — COLD BOOT',
+          '> audio engine ........... OK  [128 SMP / 44.1K]',
+          '> midi scan .............. 1 DEVICE FOUND',
+          '> beatstep pro ........... AUTO-MAPPED (24 CC)',
+          '> led ownership .......... STEPDECK',
+          '> ready in 0.41s — go.'
+        ];
+        function boot() {
+          const el = $('#bootText');
+          if (RM) { el.textContent = BOOT_LINES.join('\n'); return; }
+          let i = 0;
+          (function type() {
+            if (i < BOOT_LINES.length) { el.textContent += BOOT_LINES[i] + '\n'; i++; setTimeout(type, 150 + Math.random() * 170); }
+          })();
+        }
+
+        /* ═══════════════ ENGINE: async catalog render ═══════════════ */
+        const MODULES = [
+          {
+            id: 1, title: 'Unison Mono Synth', category: 'SYNTH ENGINE', cat: 'synth', color: 'orange',
+            desc: 'A fat, characterful monosynth with a lush unison voice-spread mode, fully mappable to BeatStep Pro knobs.',
+            feat: 'Animated voice-spread visualizer that shows each detuned voice as a living waveform.',
+            specs: ['MONOSYNTH', '7-VOICE UNISON', 'CC 74·71·76·77'], cc: '74 CUT · 71 RES · 76 SPRD · 77 GLIDE'
+          },
+          {
+            id: 2, title: 'Drum & Sampler Section', category: 'DRUMS', cat: 'drums', color: 'blue',
+            desc: 'A groovebox-style drum engine and sampler that turns the BSP pad grid into a tactile kit.',
+            feat: 'Pad-press velocity glow with per-pad sample assignment from the browser.',
+            specs: ['4 VOICES', 'BSP PAD GRID', 'PER-PAD SAMPLES'], cc: 'NOTES 36·38·42·39 · CC 7 BUS'
+          },
+          {
+            id: 3, title: 'Pattern Sequencer', category: 'SEQUENCER', cat: 'seq', color: 'green',
+            desc: 'Step-sequencing that coexists with the BSP hardware sequencer — launch, chain, and edit patterns in-browser.',
+            feat: 'Hardware-aware pattern grid that lights up to show what the physical sequencer is playing.',
+            specs: ['16 STEP', '4 TRACK', 'HW COEXIST'], cc: '48 PATTERN · 9 SWING · GATE OUT'
+          },
+          {
+            id: 4, title: 'Song / DAW Hybrid', category: 'ARRANGEMENT', cat: 'arrange', color: 'yellow',
+            desc: 'A pattern-to-song arrangement view with optional internal audio route-out to any DAW.',
+            feat: 'One-click “send to DAW” routing that hands off stems without leaving the flow.',
+            specs: ['PATTERN→SONG', 'STEM OUT', 'DAW HANDOFF'], cc: '102 SONG POS · CLK IN/OUT'
+          },
+          {
+            id: 6, title: 'MIDI Capture & Export', category: 'MIDI', cat: 'midi', color: 'cyan',
+            desc: 'Capture every note and CC move, then export as standard MIDI for any DAW.',
+            feat: 'A “performance DNA” export that bundles the exact same take.',
+            specs: ['SMF EXPORT', 'PERF DNA', 'MPE READY'], cc: '20 EXPORT · MPE READY'
+          }
+        ];
+        let modulesLoaded = false;
+        const engineState = { q: '', cat: 'all' };
+        function primeEngine() {
+          $('#rack').innerHTML = '<div class="skel"></div><div class="skel"></div><div class="skel"></div>';
+          setTimeout(() => { modulesLoaded = true; applyFilters(); }, 600);
+        }
+        function renderModules(list) {
+          $('#rack').innerHTML = list.map((m, i) => `
+    <article class="module panel reveal" style="--zone:var(--${m.color});--zone-glow:var(--${m.color}-glow);--i:${i}">
+      <span class="screw tl" aria-hidden="true"></span><span class="screw br" aria-hidden="true"></span>
+      <div class="mod-grid">
+        <div class="mod-idx"><b>M-0${m.id}</b><span class="led on" aria-hidden="true"></span></div>
+        <div class="mod-body">
+          <span class="mod-cat">${m.category}</span>
+          <h3>${m.title}</h3>
+          <p>${m.desc}</p>
+          <p class="mod-feat"><b>SIGNATURE</b>${m.feat}</p>
+        </div>
+        <div class="mod-side">
+          <ul class="mod-specs">${m.specs.map(s => `<li>${s}</li>`).join('')}</ul>
+          <button class="mod-cc" aria-expanded="false" aria-controls="ccmap-${m.id}">CC MAP +</button>
+          <p class="mod-ccmap" id="ccmap-${m.id}" hidden>${m.cc}</p>
+        </div>
+      </div>
+    </article>`).join('');
+          $$('.mod-cc').forEach(b => b.addEventListener('click', () => {
+            const open = b.getAttribute('aria-expanded') === 'true';
+            b.setAttribute('aria-expanded', String(!open));
+            b.textContent = open ? 'CC MAP +' : 'CC MAP −';
+            document.getElementById(b.getAttribute('aria-controls')).hidden = open;
+          }));
+          initReveals($('#rack'));
+        }
+        function applyFilters() {
+          const q = engineState.q.trim().toLowerCase();
+          const list = MODULES.filter(m =>
+            (engineState.cat === 'all' || m.cat === engineState.cat) &&
+            (!q || (m.title + m.category + m.desc + m.feat).toLowerCase().includes(q))
+          );
+          renderModules(list);
+          $('#rackEmpty').hidden = list.length > 0;
+          $('#rack').style.display = list.length ? '' : 'none';
+        }
+        $('#modSearch').addEventListener('input', e => { engineState.q = e.target.value; if (modulesLoaded) applyFilters(); });
+        $('#filterChips').addEventListener('click', e => {
+          const chip = e.target.closest('.chip'); if (!chip) return;
+          $$('#filterChips .chip').forEach(c => c.setAttribute('aria-pressed', 'false'));
+          chip.setAttribute('aria-pressed', 'true');
+          engineState.cat = chip.dataset.cat;
+          if (modulesLoaded) applyFilters();
+        });
+        $('#rackReset').addEventListener('click', () => {
+          engineState.q = ''; engineState.cat = 'all'; $('#modSearch').value = '';
+          $$('#filterChips .chip').forEach(c => c.setAttribute('aria-pressed', String(c.dataset.cat === 'all')));
+          applyFilters(); announce('Filters reset');
+        });
+
+        /* ═══════════════ MISC CHROME ═══════════════ */
+        window.addEventListener('scroll', () => {
+          document.body.classList.toggle('scrolled', window.scrollY > 8);
+        }, { passive: true });
+        $('#year').textContent = new Date().getFullYear();
+
+        /* simulated heartbeat for the monitor when nothing is plugged in */
+        setInterval(() => {
+          if (!MIDI.inputs.length && Math.random() < .5) logMidi('HEARTBEAT · BUS IDLE · SIM');
+        }, 4000);
+
+        /* ═══════════════ IGNITION ═══════════════ */
+        buildSeq();
+        buildKeys();
+        updateVoiceReadout();
+        boot();
+        initMidi();
+        mirrorLog('OUT', '74', 64);
+        logMidi('STEPDECK OS 0.9.3 · SIM MODE READY');
+        requestAnimationFrame(frame);
+        route();
+      })();
+    </script>
+  </body>
+
+  </html>
+
+  <script>
+
+  </script>
+</body>
+
+</html>

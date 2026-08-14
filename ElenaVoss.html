@@ -1,0 +1,3138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: white;
+      /* Ensure the iframe has a white background */
+    }
+  </style>
+</head>
+
+<body>
+  <!DOCTYPE html>
+  <html lang="en" data-theme="light">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noai, noimageai">
+    <title>Elena Voss — Contemporary Fine Art</title>
+    <meta name="description"
+      content="Original contemporary paintings and museum-quality Giclée prints by Elena Voss. Available for private acquisition and commission.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap"
+      rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <style>
+      /* ============================================
+   CSS CUSTOM PROPERTIES (25+)
+   ============================================ */
+      :root {
+        /* Color System - Light Mode */
+        --color-bg-primary: #FAFAF8;
+        --color-bg-secondary: #F2F1EE;
+        --color-bg-tertiary: #E8E7E3;
+        --color-bg-card: #FFFFFF;
+        --color-text-primary: #1A1A1A;
+        --color-text-secondary: #4A4A4A;
+        --color-text-muted: #888888;
+        --color-text-inverse: #FAFAF8;
+        --color-accent-gold: #C9A96E;
+        --color-accent-gold-hover: #B8944D;
+        --color-accent-gold-subtle: rgba(201, 169, 110, 0.12);
+        --color-border: rgba(0, 0, 0, 0.08);
+        --color-border-strong: rgba(0, 0, 0, 0.15);
+        --color-overlay: rgba(0, 0, 0, 0.85);
+        --color-overlay-light: rgba(0, 0, 0, 0.4);
+        --color-nav-bg: rgba(250, 250, 248, 0.92);
+        --color-shadow: rgba(0, 0, 0, 0.06);
+        --color-shadow-heavy: rgba(0, 0, 0, 0.12);
+
+        /* Typography */
+        --font-headline: 'Cormorant Garamond', Georgia, serif;
+        --font-body: 'Outfit', system-ui, sans-serif;
+        --font-meta: 'Outfit', system-ui, sans-serif;
+
+        /* Font Sizes (fluid) */
+        --fs-display: clamp(3rem, 8vw, 7rem);
+        --fs-h1: clamp(2.25rem, 5vw, 4.5rem);
+        --fs-h2: clamp(1.75rem, 3.5vw, 3rem);
+        --fs-h3: clamp(1.25rem, 2vw, 1.75rem);
+        --fs-body: clamp(0.95rem, 1.1vw, 1.1rem);
+        --fs-small: clamp(0.8rem, 0.9vw, 0.9rem);
+        --fs-meta: clamp(0.7rem, 0.8vw, 0.8rem);
+        --fs-nav: clamp(0.8rem, 0.85vw, 0.85rem);
+
+        /* Spacing */
+        --space-xs: clamp(0.5rem, 1vw, 0.75rem);
+        --space-sm: clamp(0.75rem, 1.5vw, 1rem);
+        --space-md: clamp(1.5rem, 3vw, 2.5rem);
+        --space-lg: clamp(3rem, 5vw, 5rem);
+        --space-xl: clamp(5rem, 8vw, 8rem);
+        --space-2xl: clamp(8rem, 12vw, 12rem);
+
+        /* Layout */
+        --container-max: 1440px;
+        --container-narrow: 900px;
+        --container-padding: clamp(1.25rem, 4vw, 3rem);
+        --nav-height: 72px;
+        --modal-z: 9999;
+
+        /* Transitions */
+        --transition-fast: 200ms ease-out;
+        --transition-base: 300ms ease-out;
+        --transition-slow: 500ms ease-out;
+        --transition-spring: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+        /* Border Radius */
+        --radius-sm: 4px;
+        --radius-md: 8px;
+        --radius-lg: 16px;
+
+        /* Scale Wall */
+        --scale-wall-height: 420px;
+        --figure-height: 340px;
+      }
+
+      /* Dark Mode */
+      [data-theme="dark"] {
+        --color-bg-primary: #0A0A0A;
+        --color-bg-secondary: #141414;
+        --color-bg-tertiary: #1E1E1E;
+        --color-bg-card: #181818;
+        --color-text-primary: #E8E8E8;
+        --color-text-secondary: #B0B0B0;
+        --color-text-muted: #707070;
+        --color-text-inverse: #0A0A0A;
+        --color-border: rgba(255, 255, 255, 0.08);
+        --color-border-strong: rgba(255, 255, 255, 0.15);
+        --color-overlay: rgba(0, 0, 0, 0.92);
+        --color-overlay-light: rgba(0, 0, 0, 0.6);
+        --color-nav-bg: rgba(10, 10, 10, 0.92);
+        --color-shadow: rgba(0, 0, 0, 0.3);
+        --color-shadow-heavy: rgba(0, 0, 0, 0.5);
+      }
+
+      /* ============================================
+   RESET & BASE
+   ============================================ */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        font-family: var(--font-body);
+        font-size: var(--fs-body);
+        font-weight: 300;
+        line-height: 1.7;
+        color: var(--color-text-primary);
+        background-color: var(--color-bg-primary);
+        overflow-x: hidden;
+        transition: background-color var(--transition-slow), color var(--transition-slow);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body.modal-open {
+        overflow: hidden;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        background: none;
+        color: inherit;
+      }
+
+      ul,
+      ol {
+        list-style: none;
+      }
+
+      /* ============================================
+   SCROLL PROGRESS INDICATOR
+   ============================================ */
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 2px;
+        background: var(--color-accent-gold);
+        z-index: 10001;
+        transition: width 50ms linear;
+      }
+
+      /* ============================================
+   NAVIGATION
+   ============================================ */
+      .site-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--nav-height);
+        background: var(--color-nav-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--color-border);
+        z-index: 10000;
+        transition: background-color var(--transition-slow), border-color var(--transition-slow);
+      }
+
+      .nav-inner {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 var(--container-padding);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-brand {
+        font-family: var(--font-headline);
+        font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        color: var(--color-text-primary);
+        transition: color var(--transition-base);
+      }
+
+      .nav-brand:hover {
+        color: var(--color-accent-gold);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: clamp(1.5rem, 3vw, 2.5rem);
+      }
+
+      .nav-link {
+        font-family: var(--font-meta);
+        font-size: var(--fs-nav);
+        font-weight: 400;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--color-text-secondary);
+        transition: color var(--transition-base);
+        position: relative;
+        padding: 0.25rem 0;
+      }
+
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--color-accent-gold);
+        transition: width var(--transition-base);
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--color-text-primary);
+      }
+
+      .nav-link.active::after,
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .nav-link:focus-visible {
+        outline: 2px solid var(--color-accent-gold);
+        outline-offset: 4px;
+        border-radius: 2px;
+      }
+
+      /* Dark Mode Toggle */
+      .theme-toggle {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color var(--transition-base);
+        color: var(--color-text-secondary);
+      }
+
+      .theme-toggle:hover {
+        background: var(--color-accent-gold-subtle);
+        color: var(--color-accent-gold);
+      }
+
+      .theme-toggle:focus-visible {
+        outline: 2px solid var(--color-accent-gold);
+        outline-offset: 2px;
+      }
+
+      .theme-toggle svg {
+        width: 18px;
+        height: 18px;
+        transition: transform var(--transition-spring);
+      }
+
+      .theme-toggle:hover svg {
+        transform: rotate(15deg);
+      }
+
+      /* Mobile Menu */
+      .nav-mobile-toggle {
+        display: none;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--radius-sm);
+      }
+
+      .nav-mobile-toggle:focus-visible {
+        outline: 2px solid var(--color-accent-gold);
+        outline-offset: 2px;
+      }
+
+      .nav-mobile-toggle span {
+        display: block;
+        width: 20px;
+        height: 1.5px;
+        background: var(--color-text-primary);
+        position: relative;
+        transition: background-color var(--transition-base);
+      }
+
+      .nav-mobile-toggle span::before,
+      .nav-mobile-toggle span::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        left: 0;
+        transition: transform var(--transition-base);
+      }
+
+      .nav-mobile-toggle span::before {
+        top: -6px;
+      }
+
+      .nav-mobile-toggle span::after {
+        top: 6px;
+      }
+
+      .nav-mobile-toggle[aria-expanded="true"] span {
+        background: transparent;
+      }
+
+      .nav-mobile-toggle[aria-expanded="true"] span::before {
+        transform: translateY(6px) rotate(45deg);
+        background: var(--color-text-primary);
+      }
+
+      .nav-mobile-toggle[aria-expanded="true"] span::after {
+        transform: translateY(-6px) rotate(-45deg);
+        background: var(--color-text-primary);
+      }
+
+      @media (max-width: 767px) {
+        .nav-mobile-toggle {
+          display: flex;
+        }
+
+        .nav-links {
+          position: fixed;
+          top: var(--nav-height);
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: var(--color-bg-primary);
+          flex-direction: column;
+          justify-content: center;
+          gap: 2.5rem;
+          transform: translateX(100%);
+          transition: transform var(--transition-base);
+          z-index: 9999;
+        }
+
+        .nav-links.open {
+          transform: translateX(0);
+        }
+
+        .nav-link {
+          font-size: clamp(1.2rem, 4vw, 1.5rem);
+        }
+      }
+
+      /* ============================================
+   VIEWS (SPA Router)
+   ============================================ */
+      .view {
+        display: none;
+        opacity: 0;
+        min-height: 100vh;
+        padding-top: var(--nav-height);
+      }
+
+      .view.active {
+        display: block;
+        animation: viewFadeIn 500ms ease-out forwards;
+      }
+
+      @keyframes viewFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .view.active {
+          animation: none;
+          opacity: 1;
+        }
+      }
+
+      /* ============================================
+   CONTAINER UTILITY
+   ============================================ */
+      .container {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 var(--container-padding);
+      }
+
+      .container--narrow {
+        max-width: var(--container-narrow);
+      }
+
+      /* ============================================
+   HOME VIEW
+   ============================================ */
+      /* Hero */
+      .hero {
+        position: relative;
+        width: 100%;
+        height: clamp(70vh, 90vh, 100vh);
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+        overflow: hidden;
+        margin-top: calc(-1 * var(--nav-height));
+      }
+
+      .hero-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 30%;
+        filter: brightness(0.7);
+        transition: filter var(--transition-slow);
+      }
+
+      [data-theme="dark"] .hero-image {
+        filter: brightness(0.5);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: var(--space-xl) var(--container-padding);
+        max-width: 800px;
+      }
+
+      .hero-eyebrow {
+        font-family: var(--font-meta);
+        font-size: var(--fs-meta);
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--color-accent-gold);
+        margin-bottom: var(--space-sm);
+        opacity: 0;
+        transform: translateY(20px);
+        animation: heroFadeUp 800ms ease-out 300ms forwards;
+      }
+
+      .hero-title {
+        font-family: var(--font-headline);
+        font-size: var(--fs-display);
+        font-weight: 300;
+        line-height: 1.05;
+        color: #FFFFFF;
+        margin-bottom: var(--space-md);
+        opacity: 0;
+        transform: translateY(30px);
+        animation: heroFadeUp 800ms ease-out 500ms forwards;
+      }
+
+      .hero-subtitle {
+        font-family: var(--font-body);
+        font-size: var(--fs-body);
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 500px;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: heroFadeUp 800ms ease-out 700ms forwards;
+      }
+
+      @keyframes heroFadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+
+        .hero-eyebrow,
+        .hero-title,
+        .hero-subtitle {
+          animation: none;
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* Scale Wall */
+      .scale-wall {
+        position: relative;
+        width: 100%;
+        height: var(--scale-wall-height);
+        overflow: hidden;
+        background: var(--color-bg-secondary);
+        border-top: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .scale-wall-track {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        display: flex;
+        gap: clamp(2rem, 4vw, 4rem);
+        will-change: transform;
+        white-space: nowrap;
+      }
+
+      .scale-wall-painting {
+        flex-shrink: 0;
+        height: clamp(200px, 28vw, 320px);
+        width: auto;
+        max-width: 500px;
+        object-fit: contain;
+        box-shadow: 0 8px 32px var(--color-shadow-heavy);
+        border-radius: 2px;
+      }
+
+      /* Reduced Motion Fallback */
+      @media (prefers-reduced-motion: reduce) {
+        .scale-wall-track {
+          animation: none !important;
+          position: relative;
+          top: auto;
+          transform: none;
+          overflow-x: auto;
+          padding: var(--space-md) var(--container-padding);
+          justify-content: flex-start;
+        }
+      }
+
+      /* Featured Section */
+      .section-featured {
+        padding: var(--space-2xl) 0;
+      }
+
+      .section-header {
+        margin-bottom: var(--space-xl);
+      }
+
+      .section-eyebrow {
+        font-family: var(--font-meta);
+        font-size: var(--fs-meta);
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--color-accent-gold);
+        margin-bottom: var(--space-xs);
+      }
+
+      .section-title {
+        font-family: var(--font-headline);
+        font-size: var(--fs-h1);
+        font-weight: 300;
+        line-height: 1.15;
+        color: var(--color-text-primary);
+      }
+
+      .section-description {
+        font-size: var(--fs-body);
+        color: var(--color-text-secondary);
+        max-width: 600px;
+        margin-top: var(--space-sm);
+      }
+
+      /* Featured Grid */
+      .featured-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+        gap: var(--space-lg);
+      }
+
+      .featured-card {
+        container-type: inline-size;
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 600ms ease-out, transform 600ms ease-out;
+      }
+
+      .featured-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .featured-card-image {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
+        background: var(--color-bg-secondary);
+        margin-bottom: var(--space-sm);
+      }
+
+      .featured-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 800ms ease-out;
+      }
+
+      .featured-card:hover .featured-card-image img {
+        transform: scale(1.03);
+      }
+
+      .featured-card-title {
+        font-family: var(--font-headline);
+        font-size: var(--fs-h3);
+        font-weight: 400;
+        margin-bottom: 0.25rem;
+      }
+
+      .featured-card-meta {
+        font-family: var(--font-meta);
+        font-size: var(--fs-meta);
+        color: var(--color-text-muted);
+        letter-spacing: 0.03em;
+      }
+
+      .featured-card-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: var(--space-xs);
+        font-family: var(--font-meta);
+        font-size: var(--fs-small);
+        font-weight: 500;
+        color: var(--color-accent-gold);
+        letter-spacing: 0.03em;
+        transition: gap var(--transition-base);
+      }
+
+      .featured-card-link:hover {
+        gap: 0.85rem;
+      }
+
+      .featured-card-link:focus-visible {
+        outline: 2px solid var(--color-accent-gold);
+        outline-offset: 4px;
+        border-radius: 2px;
+      }
+
+      @container (max-width: 300px) {
+        .featured-card-title {
+          font-size: clamp(1rem, 5cqi, 1.25rem);
+        }
+      }
+
+      /* Trust Signals */
+      .section-trust {
+        padding: var(--space-xl) 0;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+        gap: var(--space-md);
+      }
+
+      .trust-item {
+        text-align: center;
+        padding: var(--space-md);
+      }
+
+      .trust-icon {
+        width: 32px;
+        height: 32px;
+        margin: 0 auto var(--space-xs);
+        color: var(--color-accent-gold);
+      }
+
+      .trust-label {
+        font-family: var(--font-meta);
+        font-size: var(--fs-small);
+        color: var(--color-text-secondary);
+        line-height: 1.5;
+      }
+
+      /* ============================================
+   GALLERY VIEW
+   ============================================ */
+      .gallery-hero {
+        padding: var(--space-xl) 0 var(--space-md);
+      }
+
+      .gallery-hero-title {
+        font-family: var(--font-headline);
+        font-size: var(--fs-h1);
+        font-weight: 300;
+      }
+
+      .gallery-hero-subtitle {
+        font-family: var(--font-body);
+        font-size: var(--fs-body);
+        color: var(--color-text-secondary);
+        margin-top: var(--space-xs);
+        max-width: 600px;
+      }
+
+      /* Gallery Filter */
+      .gallery-filter {
+        display: flex;
+        gap: var(--space-xs);
+        flex-wrap: wrap;
+        padding: var(--space-md) 0;
+        border-bottom: 1px solid var(--color-border);
+        margin-bottom: var(--space-lg);
+      }
+
+      .filter-btn {
+        font-family: var(--font-meta);
+        font-size: var(--fs-meta);
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.6rem 1.2rem;
+        border: 1px solid var(--color-border);
+        border-radius: 100px;
+        color: var(--color-text-secondary);
+        transition: all var(--transition-base);
+      }
+
+      .filter-btn:hover {
+        border-color: var(--color-text-muted);
+        color: var(--color-text-primary);
+      }
+
+      .filter-btn.active {
+        background: var(--color-text-primary);
+        color: var(--color-text-inverse);
+        border-color: var(--color-text-primary);
+      }
+
+      .filter-btn:focus-visible {
+        outline: 2px solid var(--color-accent-gold);
+        outline-offset: 2px;
+      }
+
+      /* Artwork Cards (Stacked Cinematic) */
+      .artwork-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2xl);
+        padding-bottom: var(--space-2xl);
+      }
+
+      .artwork-card {
+        container-type: inline-size;
+        opacity: 0;
+        transform: translateY(60px);
+        transition: opacity 700ms ease-out, transform 700ms ease-out;
+      }
+
+      .artwork-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .artwork-card-inner {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+      }
+
+      @container (min-width: 800px) {
+        .artwork-card-inner {
+          grid-template-columns: 1.4fr 1fr;
+          gap: var(--space-lg);
+          align-items: center;
+        }
+
+        .artwork-card:nth-child(even) .artwork-card-inner {
+          grid-template-columns: 1fr 1.4fr;
+        }
+
+        .artwork-card:nth-child(even) .artwork-card-image {
+          order: 2;
+        }
+      }
+
+      .artwork-card-image {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        background: var(--color-bg-secondary);
+        cursor: pointer;
+      }
+
+      .artwork-card-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 600ms ease-out;
+      }
+
+      .artwork-card-image:hover img {
+        transform: scale(1.02);
+      }
+
+      .artwork-card-image::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: 1px solid var(--color-border);
+        pointer-events: none;
+      }
+
+      .artwork-card-info {
+        padding: var(--space-sm) 0;
+      }
+
+      .artwork-card-number {
+        font-family: var(--font-meta);
+        font-size: var(--fs-meta);
+        color: var(--color-text-muted);
+        letter-spacing: 0.1em;
+        margin-bottom: var(--space-xs);
+      }
+
+      .artwork-card-title {
+        font-family: var(--font-headline);
+        font-size: var(--fs-h2);
+        font-weight: 300;
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+      }
+
+      .artwork-card-details {
+        font-family: var(--font-meta);
+        font-size: var(--fs-small);
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-sm);
+        line-height: 1.8;
+      }
+
+      .artwork-card-details span {
+        display: block;
+      }
+
+      .artwork-card-status {
+        display: inline-block;
+        font-family: var(--font-meta);
+        font-size: var(--fs-meta);
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.35rem 0.85rem;
+        border-radius: 100px;
+        margin-bottom: var(--space-sm);
+      }
+
+      .artwork-card-status--available {
+        background: rgba(76, 175, 80, 0.1);
+        color: #4CAF50;
+      }
+
+      .artwork-card-status--sold {
+        background: rgba(200, 200, 200, 0.15);
+        color: var(--color-text-muted);
+      }
+
+      .artwork-card-status--inquiry {
+        background: var(--color-accent-gold-subtle);
+        color: var(--color-accent-gold);
+      }
+
+      .artwork-card-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: var(--font-meta);
+        font-size: var(--fs-small);
+        font-weight: 500;
+        color: var(--color-text-primary);
+        padding: 0.85rem 1.5rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-sm);
+        transition: all var(--transition-base);
+        letter-spacing: 0.03em;
+      }
+
+      .artwork-card-cta:hover {
+        background: var(--color-text-primary);
+        color: var(--color-text-inverse);
+        border-color: var(--color-text-primary);
+      }
+
+      .artwork-card-cta:focus-visible {
+        outline: 2px solid var(--color-accent-gold);
+        outline-offset: 3px;
+      }
+
+      .artwork-card-cta svg {
+        width: 14px;
+        height: 14px;
+        transition: transform var(--transition-base);
+      }
+
+      .artwork-card-cta:hover svg {
+        transform: translateX(3px);
+      }
+
+      /* Empty State */
+      .gallery-empty {
+        text-align: center;
+        padding: var(--space-2xl) 0;
+      }
+
+      .gallery-empty-icon {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto var(--space-sm);
+        color: var(--color-text-muted);
+        opacity: 0.5;
+      }
+
+      .gallery-empty-text {
+        font-family: var(--font-headline);
+        font-size: var(--fs-h3);
+        color: var(--color-text-muted);
+      }
+
+      /* ============================================
+   ABOUT VIEW
+   ============================================ */
+      .about-hero {
+        padding: var(--space-xl) 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+        align-items: center;
+      }
+
+      @media (min-width: 768px) {
+        .about-hero {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .about-portrait {
+        width: 100%;
+        max-width: 500px;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        filter: grayscale(20%);
+      }
+
+      .about-intro-title {
+        font-family: var(--font-headline);
+        font-size: var(--fs-h1);
+        font-weight: 300;
+        line-height: 1.15;
+        margin-bottom: var(--space-sm);
+      }
+
+      .about-intro-text {
+        font-size: var(--fs-body);
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+        margin-bottom: var(--space-sm);
+      }
+
+      /* Artist Statement */
+      .section-statement {
+        padding: var(--space-2xl) 0;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .statement-quote {
+        font-family: var(--font-headline);
+        font-size: var(--fs-h2);
+        font-weight: 300;
+        font-style: italic;
+        line-height: 1.4;
+        color: var(--color-text-primary);
+        max-width: 800px;
+        position: relative;
+        padding-left: var(--space-md);
+        border-left: 2px solid var(--color-accent-gold);
+      }
+
+      /* Timeline / CV */
+      .section-cv {
+        padding: var(--space-xl) 0;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .cv-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+
+      @media (min-width: 768px) {
+        .cv-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .cv-column-title {
+        font-family: var(--font-headline);
+        font-size: var(--fs-h3);
+        font-weight: 400;
+        margin-bottom: var(--space-sm);
+        padding-bottom: var(--space-xs);
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .cv-item {
+        padding: var(--space-xs) 0;
+        border-bottom: 1px solid var(--color-border);
+        opacity: 0;
+        transform: translateY(15px);
+        transition: opacity 400ms ease-out, transform 400ms ease-out;
+      }
+
+      .cv-item.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .cv-item-year {
+        font-family: var(--font-meta);
+        font-size: var(--fs-meta);
+        color: var(--color-accent-gold);
+        letter-spacing: 0.05em;
+      }
+
+      .cv-item-title {
+        font-family: var(--font-body);
+        font-size: var(--fs-small);
+        font-weight: 400;
+        margin-top: 0.15rem;
+      }
+
+      .cv-item-venue {
+        font-family: var(--font-meta);
+        font-size: var(--fs-meta);
+        color: var(--color-text-muted);
+      }
+
+      /* Press */
+      .section-press {
+        padding: var(--space-xl) 0;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .press-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+        gap: var(--space-md);
+      }
+
+      .press-item {
+        padding: var(--space-md);
+        background: var(--color-bg-secondary);
+        border-radius: var(--radius-md);
+        text-align: center;
+        transition: transform var(--transition-base), box-shadow var(--transition-base);
+      }
+
+      .press-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px var(--color-shadow);
+      }
+
+      .press-item-name {
+        font-family: var(--font-headline);
+        font-size: var(--fs-h3);
+        font-weight: 400;
+        font-style: italic;
+        margin-bottom: 0.25rem;
+      }
+
+      .press-item-quote {
+        font-family: var(--font-body);
+        font-size: var(--fs-small);
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+      }
+
+      /* ============================================
+   CONTACT VIEW
+   ============================================ */
+      .contact-section {
+        padding: var(--space-xl) 0 var(--space-2xl);
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+
+      @media (min-width: 768px) {
+        .contact-section {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .contact-info-title {
+        font-family: var(--font-headline);
+        font-size: var(--fs-h1);
+        font-weight: 300;
+        line-height: 1.15;
+        margin-bottom: var(--space-sm);
+      }
+
+      .contact-info-text {
+        font-size: var(--fs-body);
+        color: var(--color-text-secondary);
+        margin-bottom: var(--space-md);
+        line-height: 1.8;
+      }
+
+      .contact-details {
+        margin-top: var(--space-md);
+      }
+
+      .contact-detail-item {
+        padding: var(--space-sm) 0;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .contact-detail-label {
+        font-family: var(--font-meta);
+        font-size: var(--fs-meta);
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-text-muted);
+        margin-bottom: 0.25rem;
+      }
+
+      .contact-detail-value {
+        font-family: var(--font-body);
+        font-size: var(--fs-body);
+        color: var(--color-text-primary);
+      }
+
+      .contact-detail-value a {
+        color: var(--color-accent-gold);
+        transition: color var(--transition-base);
+      }
+
+      .contact-detail-value a:hover {
+        color: var(--color-accent-gold-hover);
+      }
+
+      /* Form */
+      .inquiry-form {
+        background: var(--color-bg-card);
+        padding: var(--space-lg);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+      }
+
+      .form-group {
+        margin-bottom: var(--space-sm);
+      }
+
+      .form-label {
+        display: block;
+        font-family: var(--font-meta);
+        font-size: var(--fs-meta);
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--color-text-secondary);
+        margin-bottom: 0.5rem;
+      }
+
+      .form-input,
+      .form-select,
+      .form-textarea {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        font-family: var(--font-body);
+        font-size: var(--fs-body);
+        font-weight: 300;
+        color: var(--color-text-primary);
+        background: var(--color-bg-primary);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-sm);
+        transition: border-color var(--transition-base), box-shadow var(--transition-base);
+        appearance: none;
+      }
+
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        outline: none;
+        border-color: var(--color-accent-gold);
+        box-shadow: 0 0 0 3px var(--color-accent-gold-subtle);
+      }
+
+      .form-input.error,
+      .form-select.error,
+      .form-textarea.error {
+        border-color: #D32F2F;
+        box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+      }
+
+      .form-error {
+        font-family: var(--font-meta);
+        font-size: var(--fs-meta);
+        color: #D32F2F;
+        margin-top: 0.35rem;
+        display: none;
+      }
+
+      .form-error.visible {
+        display: block;
+      }
+
+      .form-textarea {
+        min-height: 140px;
+        resize: vertical;
+      }
+
+      .form-select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        padding-right: 2.5rem;
+      }
+
+      .form-submit {
+        width: 100%;
+        padding: 1rem 2rem;
+        font-family: var(--font-meta);
+        font-size: var(--fs-small);
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-text-inverse);
+        background: var(--color-text-primary);
+        border: none;
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        transition: all var(--transition-base);
+        margin-top: var(--space-sm);
+      }
+
+      .form-submit:hover {
+        background: var(--color-accent-gold);
+      }
+
+      .form-submit:focus-visible {
+        outline: 2px solid var(--color-accent-gold);
+        outline-offset: 3px;
+      }
+
+      .form-submit:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .form-submit.loading {
+        position: relative;
+        color: transparent;
+      }
+
+      .form-submit.loading::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 18px;
+        height: 18px;
+        margin: -9px 0 0 -9px;
+        border: 2px solid transparent;
+        border-top-color: var(--color-text-inverse);
+        border-radius: 50%;
+        animation: spin 600ms linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Form Success State */
+      .form-success {
+        display: none;
+        text-align: center;
+        padding: var(--space-xl) var(--space-md);
+      }
+
+      .form-success.visible {
+        display: block;
+      }
+
+      .form-success-icon {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto var(--space-sm);
+        color: #4CAF50;
+      }
+
+      .form-success-title {
+        font-family: var(--font-headline);
+        font-size: var(--fs-h3);
+        font-weight: 400;
+        margin-bottom: 0.5rem;
+      }
+
+      .form-success-text {
+        font-size: var(--fs-body);
+        color: var(--color-text-secondary);
+      }
+
+      /* ============================================
+   ARTWORK MODAL
+   ============================================ */
+      .artwork-modal {
+        position: fixed;
+        inset: 0;
+        z-index: var(--modal-z);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: var(--space-sm);
+      }
+
+      .artwork-modal.open {
+        display: flex;
+      }
+
+      .artwork-modal-backdrop {
+        position: absolute;
+        inset: 0;
+        background: var(--color-overlay);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        animation: backdropFade 300ms ease-out;
+      }
+
+      @keyframes backdropFade {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      .artwork-modal-content {
+        position: relative;
+        width: 100%;
+        max-width: 1200px;
+        max-height: 90vh;
+        background: var(--color-bg-primary);
+        border-radius: var(--radius-md);
+        overflow-y: auto;
+        animation: modalSlideUp 400ms ease-out;
+        box-shadow: 0 32px 64px rgba(0, 0, 0, 0.3);
+      }
+
+      @keyframes modalSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px) scale(0.97);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .artwork-modal-backdrop {
+          animation: none;
+        }
+
+        .artwork-modal-content {
+          animation: none;
+        }
+      }
+
+      .modal-close {
+        position: absolute;
+        top: var(--space-sm);
+        right: var(--space-sm);
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--color-bg-secondary);
+        z-index: 10;
+        transition: background-color var(--transition-base), transform var(--transition-base);
+      }
+
+      .modal-close:hover {
+        background: var(--color-bg-tertiary);
+        transform: rotate(90deg);
+      }
+
+      .modal-close:focus-visible {
+        outline: 2px solid var(--color-accent-gold);
+        outline-offset: 2px;
+      }
+
+      .modal-close svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .modal-body {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+        padding: var(--space-lg);
+      }
+
+      @media (min-width: 768px) {
+        .modal-body {
+          grid-template-columns: 1.5fr 1fr;
+        }
+      }
+
+      .modal-main-image {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        background: var(--color-bg-secondary);
+        border-radius: var(--radius-sm);
+      }
+
+      .modal-main-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: opacity 300ms ease-out;
+      }
+
+      .modal-main-image img.loading {
+        opacity: 0.3;
+      }
+
+      /* Zoom Controls */
+      .zoom-controls {
+        position: absolute;
+        bottom: var(--space-xs);
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--color-overlay);
+        padding: 0.4rem 0.8rem;
+        border-radius: 100px;
+        opacity: 0;
+        transition: opacity var(--transition-base);
+      }
+
+      .modal-main-image:hover .zoom-controls {
+        opacity: 1;
+      }
+
+      .zoom-slider {
+        width: 100px;
+        height: 3px;
+        -webkit-appearance: none;
+        appearance: none;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 100px;
+        outline: none;
+      }
+
+      .zoom-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 12px;
+        height: 12px;
+        background: #FFFFFF;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .zoom-slider::-moz-range-thumb {
+        width: 12px;
+        height: 12px;
+        background: #FFFFFF;
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
+      }
+
+      .zoom-label {
+        font-family: var(--font-meta);
+        font-size: 0.65rem;
+        color: rgba(255, 255, 255, 0.7);
+        min-width: 28px;
+        text-align: center;
+      }
+
+      /* Modal Thumbnails */
+      .modal-thumbs {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: var(--space-xs);
+        flex-wrap: wrap;
+      }
+
+      .modal-thumb {
+        width: 64px;
+        height: 48px;
+        overflow: hidden;
+        border-radius: var(--radius-sm);
+        border: 2px solid transparent;
+        cursor: pointer;
+        opacity: 0.6;
+        transition: all var(--transition-base);
+        background: var(--color-bg-secondary);
+      }
+
+      .modal-thumb:hover {
+        opacity: 0.9;
+      }
+
+      .modal-thumb.active {
+        border-color: var(--color-accent-gold);
+        opacity: 1;
+      }
+
+      .modal-thumb:focus-visible {
+        outline: 2px solid var(--color-accent-gold);
+        outline-offset: 2px;
+      }
+
+      .modal-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Modal Info Panel */
+      .modal-info {
+        padding: var(--space-sm) 0;
+      }
+
+      .modal-info-title {
+        font-family: var(--font-headline);
+        font-size: var(--fs-h2);
+        font-weight: 300;
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+      }
+
+      .modal-info-meta {
+        font-family: var(--font-meta);
+        font-size: var(--fs-small);
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-sm);
+        line-height: 1.8;
+      }
+
+      .modal-info-description {
+        font-size: var(--fs-body);
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+        margin-bottom: var(--space-sm);
+      }
+
+      .modal-info-story {
+        font-family: var(--font-headline);
+        font-size: clamp(1rem, 1.3vw, 1.15rem);
+        font-style: italic;
+        color: var(--color-text-secondary);
+        line-height: 1.7;
+        padding: var(--space-sm);
+        border-left: 2px solid var(--color-accent-gold);
+        margin-bottom: var(--space-md);
+      }
+
+      .modal-cta-group {
+        display: flex;
+        gap: var(--space-xs);
+        flex-wrap: wrap;
+      }
+
+      .modal-cta {
+        padding: 0.85rem 1.5rem;
+        font-family: var(--font-meta);
+        font-size: var(--fs-small);
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        border-radius: var(--radius-sm);
+        transition: all var(--transition-base);
+      }
+
+      .modal-cta--primary {
+        background: var(--color-accent-gold);
+        color: #FFFFFF;
+      }
+
+      .modal-cta--primary:hover {
+        background: var(--color-accent-gold-hover);
+      }
+
+      .modal-cta--secondary {
+        border: 1px solid var(--color-border-strong);
+        color: var(--color-text-primary);
+      }
+
+      .modal-cta--secondary:hover {
+        background: var(--color-bg-secondary);
+      }
+
+      .modal-cta:focus-visible {
+        outline: 2px solid var(--color-accent-gold);
+        outline-offset: 3px;
+      }
+
+      /* ============================================
+   FOOTER
+   ============================================ */
+      .site-footer {
+        border-top: 1px solid var(--color-border);
+        padding: var(--space-xl) 0 var(--space-md);
+        background: var(--color-bg-secondary);
+      }
+
+      .footer-inner {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+
+      @media (min-width: 768px) {
+        .footer-inner {
+          grid-template-columns: 2fr 1fr 1fr;
+        }
+      }
+
+      .footer-brand-name {
+        font-family: var(--font-headline);
+        font-size: var(--fs-h3);
+        font-weight: 400;
+        margin-bottom: var(--space-xs);
+      }
+
+      .footer-brand-text {
+        font-size: var(--fs-small);
+        color: var(--color-text-muted);
+        max-width: 360px;
+        line-height: 1.7;
+      }
+
+      .footer-col-title {
+        font-family: var(--font-meta);
+        font-size: var(--fs-meta);
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-xs);
+      }
+
+      .footer-links li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-links a {
+        font-size: var(--fs-small);
+        color: var(--color-text-secondary);
+        transition: color var(--transition-base);
+      }
+
+      .footer-links a:hover {
+        color: var(--color-accent-gold);
+      }
+
+      .footer-links a:focus-visible {
+        outline: 2px solid var(--color-accent-gold);
+        outline-offset: 2px;
+        border-radius: 2px;
+      }
+
+      .footer-bottom {
+        margin-top: var(--space-lg);
+        padding-top: var(--space-sm);
+        border-top: 1px solid var(--color-border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--space-xs);
+      }
+
+      .footer-copyright {
+        font-family: var(--font-meta);
+        font-size: var(--fs-meta);
+        color: var(--color-text-muted);
+      }
+
+      .footer-social {
+        display: flex;
+        gap: var(--space-sm);
+      }
+
+      .footer-social a {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: var(--color-text-muted);
+        transition: all var(--transition-base);
+      }
+
+      .footer-social a:hover {
+        color: var(--color-accent-gold);
+        background: var(--color-accent-gold-subtle);
+      }
+
+      .footer-social a:focus-visible {
+        outline: 2px solid var(--color-accent-gold);
+        outline-offset: 2px;
+      }
+
+      .footer-social svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      /* ============================================
+   404 VIEW
+   ============================================ */
+      .view-404 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 60vh;
+        padding: var(--space-xl) var(--container-padding);
+      }
+
+      .view-404-number {
+        font-family: var(--font-headline);
+        font-size: clamp(6rem, 15vw, 12rem);
+        font-weight: 300;
+        color: var(--color-text-muted);
+        opacity: 0.3;
+        line-height: 1;
+      }
+
+      .view-404-title {
+        font-family: var(--font-headline);
+        font-size: var(--fs-h2);
+        font-weight: 300;
+        margin-bottom: var(--space-xs);
+      }
+
+      .view-404-text {
+        font-size: var(--fs-body);
+        color: var(--color-text-secondary);
+        margin-bottom: var(--space-md);
+      }
+
+      .view-404-link {
+        font-family: var(--font-meta);
+        font-size: var(--fs-small);
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-accent-gold);
+        padding: 0.85rem 1.75rem;
+        border: 1px solid var(--color-accent-gold);
+        border-radius: var(--radius-sm);
+        transition: all var(--transition-base);
+      }
+
+      .view-404-link:hover {
+        background: var(--color-accent-gold);
+        color: #FFFFFF;
+      }
+
+      .view-404-link:focus-visible {
+        outline: 2px solid var(--color-accent-gold);
+        outline-offset: 3px;
+      }
+
+      /* ============================================
+   ARIA LIVE REGION (screen reader)
+   ============================================ */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* ============================================
+   REDUCED MOTION
+   ============================================ */
+      @media (prefers-reduced-motion: reduce) {
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+
+        .featured-card,
+        .artwork-card,
+        .cv-item {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <!-- ARIA Live Region for route announcements -->
+    <div id="ariaLive" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- ============================================
+       NAVIGATION
+       ============================================ -->
+    <header class="site-nav" role="banner">
+      <div class="nav-inner">
+        <a href="#/" class="nav-brand" aria-label="Elena Voss — Home">Elena Voss</a>
+
+        <button class="nav-mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
+          aria-controls="navLinks">
+          <span></span>
+        </button>
+
+        <nav class="nav-links" id="navLinks" role="navigation" aria-label="Main navigation">
+          <a href="#/" class="nav-link active" data-route="/">Home</a>
+          <a href="#/gallery" class="nav-link" data-route="/gallery">Gallery</a>
+          <a href="#/about" class="nav-link" data-route="/about">About</a>
+          <a href="#/contact" class="nav-link" data-route="/contact">Contact</a>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+              style="display:none;">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ============================================
+       VIEW: HOME
+       ============================================ -->
+    <main id="view-home" class="view active" role="main" aria-label="Home page">
+      <!-- Hero -->
+      <section class="hero" aria-label="Artist introduction">
+        <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=1920&q=80"
+          alt="Abstract contemporary painting with rich earth tones and bold gestural marks" class="hero-image"
+          loading="eager">
+        <div class="hero-content">
+          <p class="hero-eyebrow">Contemporary Fine Art</p>
+          <h1 class="hero-title">Elena Voss</h1>
+          <p class="hero-subtitle">Original paintings exploring the tension between memory and landscape. Museum-quality
+            works for private acquisition.</p>
+        </div>
+      </section>
+
+      <!-- Scale Wall -->
+      <section class="scale-wall" aria-label="Scale reference — paintings shown relative to human figure">
+        <div class="scale-wall-track" id="scaleWallTrack">
+          <!-- Paintings populated by JS -->
+        </div>
+      </section>
+
+      <!-- Featured Works -->
+      <section class="section-featured container" aria-label="Featured works">
+        <div class="section-header">
+          <p class="section-eyebrow">Selected Works</p>
+          <h2 class="section-title">Recent Acquisitions</h2>
+          <p class="section-description">A curated selection from the 2024 studio season. Each painting is a singular
+            exploration of light, terrain, and emotional resonance.</p>
+        </div>
+        <div class="featured-grid" id="featuredGrid">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- Trust Signals -->
+      <section class="section-trust container" aria-label="Gallery credentials">
+        <div class="trust-grid">
+          <div class="trust-item">
+            <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            <p class="trust-label">Certificate of Authenticity with every original</p>
+          </div>
+          <div class="trust-item">
+            <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              aria-hidden="true">
+              <rect x="1" y="3" width="15" height="13" rx="2" />
+              <polygon points="16 8 20 5 20 16 16 13 16 8" />
+            </svg>
+            <p class="trust-label">White-glove crated shipping, fully insured worldwide</p>
+          </div>
+          <div class="trust-item">
+            <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              aria-hidden="true">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+              <line x1="9" y1="9" x2="9.01" y2="9" />
+              <line x1="15" y1="9" x2="15.01" y2="9" />
+            </svg>
+            <p class="trust-label">Works held in private collections across 14 countries</p>
+          </div>
+          <div class="trust-item">
+            <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              aria-hidden="true">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+            <p class="trust-label">Museum-quality Giclée prints available in limited editions</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================
+       VIEW: GALLERY
+       ============================================ -->
+    <main id="view-gallery" class="view" role="main" aria-label="Gallery page">
+      <div class="container">
+        <div class="gallery-hero">
+          <h1 class="gallery-hero-title">The Collection</h1>
+          <p class="gallery-hero-subtitle">Complete catalog of original works and available editions. Click any painting
+            to explore in detail.</p>
+        </div>
+
+        <div class="gallery-filter" role="toolbar" aria-label="Filter artworks">
+          <button class="filter-btn active" data-filter="all" aria-pressed="true">All Works</button>
+          <button class="filter-btn" data-filter="available" aria-pressed="false">Available</button>
+          <button class="filter-btn" data-filter="landscape" aria-pressed="false">Landscape</button>
+          <button class="filter-btn" data-filter="abstract" aria-pressed="false">Abstract</button>
+          <button class="filter-btn" data-filter="figurative" aria-pressed="false">Figurative</button>
+        </div>
+
+        <div class="artwork-list" id="artworkList">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="gallery-empty" id="galleryEmpty" style="display:none;" role="status">
+          <svg class="gallery-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <path d="M21 15l-5-5L5 21" />
+          </svg>
+          <p class="gallery-empty-text">No works match this filter. Try another category.</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- ============================================
+       VIEW: ABOUT
+       ============================================ -->
+    <main id="view-about" class="view" role="main" aria-label="About the artist">
+      <div class="container">
+        <div class="about-hero">
+          <div>
+            <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&q=80"
+              alt="Elena Voss in her studio, working on a large-scale canvas" class="about-portrait">
+          </div>
+          <div class="about-intro">
+            <h1 class="about-intro-title">About the Artist</h1>
+            <p class="about-intro-text">Elena Voss (b. 1978, Santa Fe, NM) is a contemporary American painter whose work
+              navigates the liminal space between abstraction and observed landscape. Working primarily in oil on linen,
+              her paintings evoke geological time — layered surfaces that suggest erosion, memory, and the quiet
+              violence of natural processes.</p>
+            <p class="about-intro-text">Trained at the Rhode Island School of Design (MFA, 2004) and the Skowhegan
+              School of Painting & Sculpture, Voss has exhibited internationally at institutions including the Denver
+              Art Museum, the Norton Museum of Art, and the Ogunquit Museum of American Art.</p>
+            <p class="about-intro-text">She maintains studios in Hudson Valley, New York, and Marfa, Texas, where the
+              vast desert landscape continues to inform her evolving practice.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Artist Statement -->
+      <section class="section-statement container" aria-label="Artist statement">
+        <p class="section-eyebrow">Artist Statement</p>
+        <blockquote class="statement-quote">
+          "I paint the space between what I see and what I remember. Each canvas begins with an observation — a
+          ridgeline at dusk, the way ochre bleeds into shadow — but the finished work belongs to neither place nor
+          moment. It is a record of attention itself, a topography of looking."
+        </blockquote>
+      </section>
+
+      <!-- CV / Exhibition History -->
+      <section class="section-cv container" aria-label="Exhibition history and education">
+        <p class="section-eyebrow">Curriculum Vitae</p>
+        <h2 class="section-title" style="margin-bottom: var(--space-lg);">Exhibitions & Education</h2>
+        <div class="cv-grid">
+          <div>
+            <h3 class="cv-column-title">Selected Solo Exhibitions</h3>
+            <div class="cv-item">
+              <span class="cv-item-year">2024</span>
+              <p class="cv-item-title">Strata: New Paintings</p>
+              <span class="cv-item-venue">LewAllen Galleries, Santa Fe</span>
+            </div>
+            <div class="cv-item">
+              <span class="cv-item-year">2023</span>
+              <p class="cv-item-title">The Weight of Light</p>
+              <span class="cv-item-venue">Denise Bibro Fine Art, New York</span>
+            </div>
+            <div class="cv-item">
+              <span class="cv-item-year">2022</span>
+              <p class="cv-item-title">Geological Time</p>
+              <span class="cv-item-venue">Norton Museum of Art, West Palm Beach</span>
+            </div>
+            <div class="cv-item">
+              <span class="cv-item-year">2021</span>
+              <p class="cv-item-title">Erosion / Accumulation</p>
+              <span class="cv-item-venue">Robisch Gallery, Denver</span>
+            </div>
+            <div class="cv-item">
+              <span class="cv-item-year">2019</span>
+              <p class="cv-item-title">Terrain of Memory</p>
+              <span class="cv-item-venue">Ogunquit Museum of American Art, Maine</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="cv-column-title">Education & Residencies</h3>
+            <div class="cv-item">
+              <span class="cv-item-year">2004</span>
+              <p class="cv-item-title">MFA, Painting</p>
+              <span class="cv-item-venue">Rhode Island School of Design</span>
+            </div>
+            <div class="cv-item">
+              <span class="cv-item-year">2003</span>
+              <p class="cv-item-title">Skowhegan School of Painting & Sculpture</p>
+              <span class="cv-item-venue">Skowhegan, Maine</span>
+            </div>
+            <div class="cv-item">
+              <span class="cv-item-year">2000</span>
+              <p class="cv-item-title">BFA, Studio Art</p>
+              <span class="cv-item-venue">University of New Mexico</span>
+            </div>
+            <div class="cv-item">
+              <span class="cv-item-year">2018</span>
+              <p class="cv-item-title">Chinati Foundation Residency</p>
+              <span class="cv-item-venue">Marfa, Texas</span>
+            </div>
+            <div class="cv-item">
+              <span class="cv-item-year">2016</span>
+              <p class="cv-item-title">MacDowell Colony Fellowship</p>
+              <span class="cv-item-venue">Peterborough, New Hampshire</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Press -->
+      <section class="section-press container" aria-label="Press and publications">
+        <p class="section-eyebrow">Press</p>
+        <h2 class="section-title" style="margin-bottom: var(--space-lg);">Selected Coverage</h2>
+        <div class="press-grid">
+          <div class="press-item">
+            <p class="press-item-name">Artforum</p>
+            <p class="press-item-quote">"Voss commands a painterly intelligence that rewards sustained looking — her
+              surfaces are archaeological, revealing new strata with each encounter."</p>
+          </div>
+          <div class="press-item">
+            <p class="press-item-name">Hyperallergic</p>
+            <p class="press-item-quote">"These paintings don't depict landscape so much as they perform it. Voss's
+              brushwork carries the kinetic energy of weather systems."</p>
+          </div>
+          <div class="press-item">
+            <p class="press-item-name">The New York Times</p>
+            <p class="press-item-quote">"A masterclass in restraint. Voss knows when to let the linen breathe, and her
+              silences are as eloquent as her gestures."</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================
+       VIEW: CONTACT
+       ============================================ -->
+    <main id="view-contact" class="view" role="main" aria-label="Contact and inquiry page">
+      <div class="container">
+        <div class="contact-section">
+          <div class="contact-info">
+            <h1 class="contact-info-title">Inquire About a Work</h1>
+            <p class="contact-info-text">Whether you're interested in acquiring an original painting, commissioning a
+              new work, or exploring limited-edition Giclée prints, I welcome your inquiry. All correspondence is
+              handled personally.</p>
+            <p class="contact-info-text">For gallery representatives, museum curators, or art advisors, please indicate
+              your institutional affiliation in your message.</p>
+
+            <div class="contact-details">
+              <div class="contact-detail-item">
+                <p class="contact-detail-label">Studio</p>
+                <p class="contact-detail-value">Hudson Valley, New York</p>
+              </div>
+              <div class="contact-detail-item">
+                <p class="contact-detail-label">Email</p>
+                <p class="contact-detail-value"><a href="mailto:studio@elenavoss.com">studio@elenavoss.com</a></p>
+              </div>
+              <div class="contact-detail-item">
+                <p class="contact-detail-label">Gallery Representation</p>
+                <p class="contact-detail-value">LewAllen Galleries, Santa Fe<br>Denise Bibro Fine Art, New York</p>
+              </div>
+              <div class="contact-detail-item">
+                <p class="contact-detail-label">Response Time</p>
+                <p class="contact-detail-value">Within 24 hours, Monday–Friday</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <form class="inquiry-form" id="inquiryForm" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="formName">Your Name *</label>
+                <input class="form-input" type="text" id="formName" name="full_name" required autocomplete="name"
+                  aria-required="true">
+                <p class="form-error" id="errorName" role="alert">Please enter your name.</p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="formEmail">Email Address *</label>
+                <input class="form-input" type="email" id="formEmail" name="email" required autocomplete="email"
+                  aria-required="true">
+                <p class="form-error" id="errorEmail" role="alert">Please enter a valid email address.</p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="formPhone">Phone (optional)</label>
+                <input class="form-input" type="tel" id="formPhone" name="phone" autocomplete="tel">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="formType">Inquiry Type *</label>
+                <select class="form-select" id="formType" name="inquiry_type" required aria-required="true">
+                  <option value="">Select an option</option>
+                  <option value="purchase">Purchase Original</option>
+                  <option value="giclee">Giclée Print</option>
+                  <option value="commission">Commission</option>
+                  <option value="general">General Inquiry</option>
+                </select>
+                <p class="form-error" id="errorType" role="alert">Please select an inquiry type.</p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="formMessage">Message</label>
+                <textarea class="form-textarea" id="formMessage" name="message"
+                  placeholder="Tell me about your interest, the space you have in mind, or any questions..."></textarea>
+              </div>
+              <input type="hidden" id="formArtwork" name="artwork_interest" value="">
+              <button type="submit" class="form-submit" id="formSubmit" aria-label="Submit inquiry">Submit
+                Inquiry</button>
+            </form>
+
+            <div class="form-success" id="formSuccess" role="status">
+              <svg class="form-success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                aria-hidden="true">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <h3 class="form-success-title">Inquiry Received</h3>
+              <p class="form-success-text">Thank you for your interest. I will respond within 24 hours.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ============================================
+       VIEW: 404
+       ============================================ -->
+    <main id="view-404" class="view" role="main" aria-label="Page not found">
+      <div class="view-404">
+        <p class="view-404-number" aria-hidden="true">404</p>
+        <h1 class="view-404-title">Page Not Found</h1>
+        <p class="view-404-text">The page you're looking for doesn't exist or has been moved.</p>
+        <a href="#/" class="view-404-link">Return to Gallery</a>
+      </div>
+    </main>
+
+    <!-- ============================================
+       ARTWORK MODAL OVERLAY
+       ============================================ -->
+    <div class="artwork-modal" id="artworkModal" role="dialog" aria-modal="true" aria-label="Artwork details"
+      aria-hidden="true">
+      <div class="artwork-modal-backdrop" id="modalBackdrop"></div>
+      <div class="artwork-modal-content" id="modalContent" tabindex="-1">
+        <button class="modal-close" id="modalClose" aria-label="Close artwork details">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+        <div class="modal-body">
+          <div>
+            <div class="modal-main-image" id="modalMainImage">
+              <img src="" alt="" id="modalDisplayImg">
+              <div class="zoom-controls" id="zoomControls" style="display:none;">
+                <span class="zoom-label" id="zoomLabel">1×</span>
+                <input type="range" class="zoom-slider" id="zoomSlider" min="1" max="3" step="0.1" value="1"
+                  aria-label="Zoom level">
+              </div>
+            </div>
+            <div class="modal-thumbs" id="modalThumbs" role="tablist" aria-label="Artwork views">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+          <div class="modal-info">
+            <h2 class="modal-info-title" id="modalTitle"></h2>
+            <div class="modal-info-meta" id="modalMeta"></div>
+            <p class="modal-info-description" id="modalDescription"></p>
+            <blockquote class="modal-info-story" id="modalStory"></blockquote>
+            <div class="modal-cta-group">
+              <button class="modal-cta modal-cta--primary" id="modalInquire"
+                aria-label="Inquire about this artwork">Inquire</button>
+              <button class="modal-cta modal-cta--secondary" id="modalBack"
+                aria-label="Close and return to gallery">Back to Gallery</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================
+       FOOTER (persistent)
+       ============================================ -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-inner">
+          <div>
+            <p class="footer-brand-name">Elena Voss</p>
+            <p class="footer-brand-text">Contemporary fine art — original paintings and museum-quality Giclée prints.
+              Available for private acquisition, institutional loan, and commission.</p>
+          </div>
+          <div>
+            <p class="footer-col-title">Navigate</p>
+            <ul class="footer-links">
+              <li><a href="#/">Home</a></li>
+              <li><a href="#/gallery">Gallery</a></li>
+              <li><a href="#/about">About</a></li>
+              <li><a href="#/contact">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="footer-col-title">Information</p>
+            <ul class="footer-links">
+              <li><a href="#/contact">Shipping & Handling</a></li>
+              <li><a href="#/contact">Commissions</a></li>
+              <li><a href="#/gallery">Available Works</a></li>
+              <li><a href="#/about">Press Kit</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-copyright">&copy; 2026 Elena Voss Studio. All rights reserved.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
+            </a>
+            <a href="#" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      /* ============================================
+         ARTWORK DATA (structured scaffold)
+         ============================================ */
+      const ARTWORKS = [
+        {
+          id: 'artwork-001',
+          title: 'Strata No. 7 — Ochre Meridian',
+          year: '2024',
+          medium: 'Oil on Belgian linen',
+          dimensions: { inches: '60 × 72 in', cm: '152.4 × 182.9 cm' },
+          category: 'landscape',
+          price_status: 'available',
+          hero_image: {
+            url: 'https://images.unsplash.com/photo-1549490349-8643362247b5?w=1200&q=80',
+            alt: 'Large-scale abstract landscape painting in ochre, burnt sienna, and muted gold tones with horizontal geological striations',
+            width: 1200, height: 1000
+          },
+          modal_assets: {
+            description: 'A monumental horizontal composition that maps the intersection of desert light and geological formation. Layers of translucent oil glaze build a luminous depth that shifts with ambient lighting conditions throughout the day.',
+            story: 'Painted during a three-month residency in Marfa, Texas. The title references the meridian line where the Chihuahuan desert floor meets the Davis Mountains — a boundary that appears solid from a distance but dissolves into atmospheric haze upon approach.',
+            in_room_image: { url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&q=80', alt: 'Painting displayed on white wall in modern living space' },
+            giclee_scale_image: { url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80', alt: 'Print size reference against furniture' },
+            detail_image: { url: 'https://images.unsplash.com/photo-1549490349-8643362247b5?w=2400&q=90', alt: 'High-resolution detail showing brushwork texture', zoom_levels: 3 }
+          },
+          giclee_prints: { available: true, sizes: ['Small (18×22")', 'Medium (30×36")', 'Large (40×48")'] }
+        },
+        {
+          id: 'artwork-002',
+          title: 'Nocturne for Dry River',
+          year: '2024',
+          medium: 'Oil and cold wax on panel',
+          dimensions: { inches: '48 × 48 in', cm: '121.9 × 121.9 cm' },
+          category: 'abstract',
+          price_status: 'available',
+          hero_image: {
+            url: 'https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=1200&q=80',
+            alt: 'Dark abstract painting in deep indigo, charcoal, and subtle silver with luminous undertones',
+            width: 1200, height: 1200
+          },
+          modal_assets: {
+            description: 'An immersive square-format work exploring the visual memory of water in arid landscapes. The surface alternates between matte and satin finishes, creating a subtle play of reflected light that suggests moonlight on dry riverbeds.',
+            story: 'Inspired by night walks along the Rio Grande during a period of drought. The painting records not the river as it is, but the river as the land remembers it — channels of luminosity pressed into darkness.',
+            in_room_image: { url: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80', alt: 'Painting in dining room setting' },
+            giclee_scale_image: { url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80', alt: 'Print size reference' },
+            detail_image: { url: 'https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=2400&q=90', alt: 'Surface texture detail', zoom_levels: 3 }
+          },
+          giclee_prints: { available: true, sizes: ['Small (20×20")', 'Medium (30×30")', 'Large (40×40")'] }
+        },
+        {
+          id: 'artwork-003',
+          title: 'Erosion Study XIV — Red Earth',
+          year: '2023',
+          medium: 'Oil on linen',
+          dimensions: { inches: '36 × 48 in', cm: '91.4 × 121.9 cm' },
+          category: 'landscape',
+          price_status: 'sold',
+          hero_image: {
+            url: 'https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?w=1200&q=80',
+            alt: 'Abstract landscape painting in terra cotta, rust, and cream with flowing organic forms suggesting erosion patterns',
+            width: 1200, height: 900
+          },
+          modal_assets: {
+            description: 'Part of the ongoing Erosion Study series, this work examines the sculptural action of wind and water on sandstone formations. The palette is drawn directly from the Chinle Formation visible across the Colorado Plateau.',
+            story: 'The fourteenth in a series begun in 2019. Each study begins with plein air sketches made at specific geological sites, then evolves in the studio through a process of building up and scraping away — mimicking the erosive forces depicted.',
+            in_room_image: { url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&q=80', alt: 'Painting in office setting' },
+            giclee_scale_image: { url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80', alt: 'Print sizes' },
+            detail_image: { url: 'https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?w=2400&q=90', alt: 'Brushwork detail', zoom_levels: 3 }
+          },
+          giclee_prints: { available: true, sizes: ['Small (18×24")', 'Medium (24×32")', 'Large (36×48")'] }
+        },
+        {
+          id: 'artwork-004',
+          title: 'Threshold (Standing Figure)',
+          year: '2023',
+          medium: 'Oil and graphite on linen',
+          dimensions: { inches: '72 × 48 in', cm: '182.9 × 121.9 cm' },
+          category: 'figurative',
+          price_status: 'inquiry',
+          hero_image: {
+            url: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200&q=80',
+            alt: 'Tall vertical painting with abstracted human figure emerging from muted grey and pale blue washes',
+            width: 800, height: 1200
+          },
+          modal_assets: {
+            description: 'A life-scale vertical composition where the human figure exists as a presence rather than a portrait — suggested through gesture, proportion, and the tension between painted and raw linen surfaces.',
+            story: 'This painting emerged from a period of studying Paleolithic cave paintings and their radical economy of means. The figure here is neither male nor female, young nor old — it is simply present, occupying the threshold between visibility and dissolution.',
+            in_room_image: { url: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80', alt: 'Large painting in hallway' },
+            giclee_scale_image: { url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80', alt: 'Scale reference' },
+            detail_image: { url: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=2400&q=90', alt: 'Figure detail', zoom_levels: 3 }
+          },
+          giclee_prints: { available: false, sizes: [] }
+        },
+        {
+          id: 'artwork-005',
+          title: 'White on White — After Snow',
+          year: '2024',
+          medium: 'Oil and titanium white on canvas',
+          dimensions: { inches: '54 × 54 in', cm: '137.2 × 137.2 cm' },
+          category: 'abstract',
+          price_status: 'available',
+          hero_image: {
+            url: 'https://images.unsplash.com/photo-1551913902-c92207136625?w=1200&q=80',
+            alt: 'Minimalist white-on-white abstract painting with subtle textural variations and barely perceptible tonal shifts',
+            width: 1200, height: 1200
+          },
+          modal_assets: {
+            description: 'An exercise in perceptual acuity — the painting rewards extended looking by gradually revealing an architecture of subtle ridges, incised lines, and warm-cool shifts within an apparently monochrome field.',
+            story: 'Painted over six months in the Hudson Valley studio during an unusually severe winter. Each day\'s light changed the painting\'s apparent color temperature, and Voss adjusted the surface to hold that ambiguity — neither warm nor cool, but oscillating between.',
+            in_room_image: { url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&q=80', alt: 'White painting in minimalist interior' },
+            giclee_scale_image: { url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80', alt: 'Print sizes' },
+            detail_image: { url: 'https://images.unsplash.com/photo-1551913902-c92207136625?w=2400&q=90', alt: 'Surface texture detail', zoom_levels: 3 }
+          },
+          giclee_prints: { available: true, sizes: ['Small (20×20")', 'Medium (30×30")'] }
+        },
+        {
+          id: 'artwork-006',
+          title: 'Pastoral with Burning Edge',
+          year: '2022',
+          medium: 'Oil on linen',
+          dimensions: { inches: '40 × 60 in', cm: '101.6 × 152.4 cm' },
+          category: 'landscape',
+          price_status: 'available',
+          hero_image: {
+            url: 'https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?w=1200&q=80',
+            alt: 'Abstract landscape with pastoral greens meeting fiery orange and crimson at the lower edge, suggesting wildfire',
+            width: 1200, height: 800
+          },
+          modal_assets: {
+            description: 'A panoramic work addressing the contemporary American West — the tension between pastoral ideal and environmental crisis. The pastoral upper field dissolves into a zone of combustion at the canvas edge.',
+            story: 'Completed during the 2022 fire season in New Mexico. Voss worked with the studio windows open, and the smell of distant smoke became an involuntary part of the painting\'s making — present in the urgency of certain brushmarks that she chose to preserve.',
+            in_room_image: { url: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80', alt: 'Painting above sofa' },
+            giclee_scale_image: { url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80', alt: 'Print reference' },
+            detail_image: { url: 'https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?w=2400&q=90', alt: 'Detail of fire edge', zoom_levels: 3 }
+          },
+          giclee_prints: { available: true, sizes: ['Small (16×24")', 'Medium (24×36")', 'Large (32×48")'] }
+        }
+      ];
+
+      /* ============================================
+         APP STATE
+         ============================================ */
+      const state = {
+        currentRoute: '/',
+        currentFilter: 'all',
+        modalOpen: false,
+        currentArtwork: null,
+        gsapInitialized: false,
+        observers: []
+      };
+
+      /* ============================================
+         ROUTER
+         ============================================ */
+      const routes = {
+        '/': 'view-home',
+        '/gallery': 'view-gallery',
+        '/about': 'view-about',
+        '/contact': 'view-contact'
+      };
+
+      const routeTitles = {
+        '/': 'Elena Voss — Contemporary Fine Art',
+        '/gallery': 'Gallery — Elena Voss',
+        '/about': 'About — Elena Voss',
+        '/contact': 'Contact — Elena Voss'
+      };
+
+      function navigateTo(hash) {
+        const route = hash.replace('#', '') || '/';
+        const viewId = routes[route];
+
+        // Hide all views
+        document.querySelectorAll('.view').forEach(v => {
+          v.classList.remove('active');
+        });
+
+        // Show target view or 404
+        const targetView = viewId ? document.getElementById(viewId) : document.getElementById('view-404');
+        targetView.classList.add('active');
+
+        // Update nav active state
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.toggle('active', link.dataset.route === route);
+        });
+
+        // Update document title
+        document.title = routeTitles[route] || '404 — Page Not Found';
+
+        // ARIA announcement
+        const ariaLive = document.getElementById('ariaLive');
+        const pageTitle = targetView.getAttribute('aria-label') || 'Page not found';
+        ariaLive.textContent = `Navigated to ${pageTitle}`;
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'instant' });
+
+        // Close mobile menu
+        document.getElementById('navLinks').classList.remove('open');
+        document.querySelector('.nav-mobile-toggle').setAttribute('aria-expanded', 'false');
+
+        // Re-initialize observers
+        state.currentRoute = route;
+        cleanupObservers();
+        requestAnimationFrame(() => {
+          initIntersectionObservers();
+          if (route === '/' && !state.gsapInitialized) {
+            initScaleWall();
+          }
+        });
+      }
+
+      function initRouter() {
+        window.addEventListener('hashchange', () => navigateTo(location.hash));
+        // Initial route
+        navigateTo(location.hash || '#/');
+      }
+
+      /* ============================================
+         THEME TOGGLE
+         ============================================ */
+      function initTheme() {
+        const saved = localStorage.getItem('elena-voss-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = saved || (prefersDark ? 'dark' : 'light');
+        applyTheme(theme);
+
+        document.getElementById('themeToggle').addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-theme');
+          const next = current === 'dark' ? 'light' : 'dark';
+          applyTheme(next);
+          localStorage.setItem('elena-voss-theme', next);
+        });
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        const sunIcon = document.querySelector('.icon-sun');
+        const moonIcon = document.querySelector('.icon-moon');
+        if (theme === 'dark') {
+          sunIcon.style.display = 'none';
+          moonIcon.style.display = 'block';
+        } else {
+          sunIcon.style.display = 'block';
+          moonIcon.style.display = 'none';
+        }
+      }
+
+      /* ============================================
+         SCALE WALL (GSAP Conveyor)
+         ============================================ */
+      function initScaleWall() {
+        if (typeof gsap === 'undefined') return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        const track = document.getElementById('scaleWallTrack');
+        track.innerHTML = '';
+
+        // Populate paintings for conveyor (duplicate for seamless loop)
+        const paintings = ARTWORKS.map(a => a.hero_image);
+        const allPaintings = [...paintings, ...paintings, ...paintings]; // 3x for seamless
+
+        allPaintings.forEach((img, i) => {
+          const el = document.createElement('img');
+          el.src = img.url;
+          el.alt = img.alt;
+          el.className = 'scale-wall-painting';
+          el.loading = i < 6 ? 'eager' : 'lazy';
+          track.appendChild(el);
+        });
+
+        // Wait for images to load before calculating
+        setTimeout(() => {
+          const trackWidth = track.scrollWidth / 3;
+          state.gsapInitialized = true;
+
+          gsap.to(track, {
+            x: -trackWidth,
+            duration: 40,
+            ease: 'none',
+            repeat: -1,
+            modifiers: {
+              x: gsap.utils.unitize(x => parseFloat(x) % trackWidth)
+            }
+          });
+        }, 500);
+
+        // Pause on tab blur
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) {
+            gsap.globalTimeline.pause();
+          } else {
+            gsap.globalTimeline.resume();
+          }
+        });
+      }
+
+      /* ============================================
+         RENDER FEATURED GRID (Home)
+         ============================================ */
+      function renderFeatured() {
+        const grid = document.getElementById('featuredGrid');
+        const featured = ARTWORKS.slice(0, 3);
+
+        grid.innerHTML = featured.map((art, i) => `
+    <article class="featured-card" data-artwork-id="${art.id}" style="transition-delay: ${i * 100}ms;">
+      <div class="featured-card-image">
+        <img src="${art.hero_image.url}" alt="${art.hero_image.alt}" loading="lazy">
+      </div>
+      <h3 class="featured-card-title">${art.title}</h3>
+      <p class="featured-card-meta">${art.medium} — ${art.dimensions.inches}</p>
+      <a href="#/gallery" class="featured-card-link" aria-label="View ${art.title} in gallery">
+        View in Gallery
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </article>
+  `).join('');
+      }
+
+      /* ============================================
+         RENDER GALLERY (Full List)
+         ============================================ */
+      function renderGallery(filter = 'all') {
+        const list = document.getElementById('artworkList');
+        const emptyState = document.getElementById('galleryEmpty');
+
+        let filtered = ARTWORKS;
+        if (filter === 'available') {
+          filtered = ARTWORKS.filter(a => a.price_status === 'available');
+        } else if (filter !== 'all') {
+          filtered = ARTWORKS.filter(a => a.category === filter);
+        }
+
+        if (filtered.length === 0) {
+          list.innerHTML = '';
+          emptyState.style.display = 'block';
+          return;
+        }
+
+        emptyState.style.display = 'none';
+
+        list.innerHTML = filtered.map((art, i) => `
+    <article class="artwork-card" data-artwork-id="${art.id}" data-category="${art.category}" data-status="${art.price_status}" style="transition-delay: ${i * 80}ms;">
+      <div class="artwork-card-inner">
+        <div class="artwork-card-image" role="button" tabindex="0" aria-label="View details of ${art.title}" data-artwork-id="${art.id}">
+          <img src="${art.hero_image.url}" alt="${art.hero_image.alt}" loading="lazy" width="${art.hero_image.width}" height="${art.hero_image.height}">
+        </div>
+        <div class="artwork-card-info">
+          <p class="artwork-card-number">${String(i + 1).padStart(2, '0')} / ${String(filtered.length).padStart(2, '0')}</p>
+          <h2 class="artwork-card-title">${art.title}</h2>
+          <div class="artwork-card-details">
+            <span>${art.medium}</span>
+            <span>${art.dimensions.inches} (${art.dimensions.cm})</span>
+            <span>${art.year}</span>
+          </div>
+          <span class="artwork-card-status artwork-card-status--${art.price_status}">
+            ${art.price_status === 'available' ? 'Available' : art.price_status === 'sold' ? 'Sold' : 'Inquire'}
+          </span>
+          <br>
+          <button class="artwork-card-cta" data-artwork-id="${art.id}" aria-label="More about ${art.title}">
+            More about this piece
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+
+        // Re-init observers after render
+        cleanupObservers();
+        requestAnimationFrame(initIntersectionObservers);
+      }
+
+      /* ============================================
+         GALLERY FILTERS
+         ============================================ */
+      function initFilters() {
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => {
+              b.classList.remove('active');
+              b.setAttribute('aria-pressed', 'false');
+            });
+            btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
+            state.currentFilter = btn.dataset.filter;
+            renderGallery(btn.dataset.filter);
+          });
+        });
+      }
+
+      /* ============================================
+         ARTWORK MODAL
+         ============================================ */
+      function openModal(artworkId) {
+        const artwork = ARTWORKS.find(a => a.id === artworkId);
+        if (!artwork) return;
+
+        state.currentArtwork = artwork;
+        state.modalOpen = true;
+
+        const modal = document.getElementById('artworkModal');
+        const content = document.getElementById('modalContent');
+
+        // Populate content
+        document.getElementById('modalTitle').textContent = artwork.title;
+        document.getElementById('modalMeta').innerHTML = `
+    <span>${artwork.medium}</span><br>
+    <span>${artwork.dimensions.inches} (${artwork.dimensions.cm})</span><br>
+    <span>${artwork.year}</span><br>
+    <span>${artwork.giclee_prints.available ? 'Giclée prints available: ' + artwork.giclee_prints.sizes.join(', ') : 'No prints available'}</span>
+  `;
+        document.getElementById('modalDescription').textContent = artwork.modal_assets.description;
+        document.getElementById('modalStory').textContent = artwork.modal_assets.story;
+
+        // Main image
+        const mainImg = document.getElementById('modalDisplayImg');
+        mainImg.src = artwork.hero_image.url;
+        mainImg.alt = artwork.hero_image.alt;
+        mainImg.style.transform = 'scale(1) translate(0, 0)';
+        document.getElementById('zoomSlider').value = 1;
+        document.getElementById('zoomLabel').textContent = '1×';
+
+        // Thumbnails
+        const thumbsContainer = document.getElementById('modalThumbs');
+        const thumbs = [
+          { label: 'Main View', url: artwork.hero_image.url, alt: artwork.hero_image.alt, type: 'main' },
+          { label: 'In Room', url: artwork.modal_assets.in_room_image.url, alt: artwork.modal_assets.in_room_image.alt, type: 'room' },
+          { label: 'Giclée Scale', url: artwork.modal_assets.giclee_scale_image.url, alt: artwork.modal_assets.giclee_scale_image.alt, type: 'scale' },
+          { label: 'Detail', url: artwork.modal_assets.detail_image.url, alt: artwork.modal_assets.detail_image.alt, type: 'detail' }
+        ];
+
+        thumbsContainer.innerHTML = thumbs.map((t, i) => `
+    <button class="modal-thumb ${i === 0 ? 'active' : ''}" role="tab" aria-selected="${i === 0}" aria-label="${t.label}" data-url="${t.url}" data-alt="${t.alt}" data-type="${t.type}" tabindex="${i === 0 ? 0 : -1}">
+      <img src="${t.url}" alt="${t.alt}" loading="lazy">
+    </button>
+  `).join('');
+
+        // Show/hide zoom controls
+        document.getElementById('zoomControls').style.display = 'block';
+
+        // Open modal
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+
+        // Focus management
+        content.focus();
+
+        // Preload images
+        thumbs.forEach(t => {
+          const img = new Image();
+          img.src = t.url;
+        });
+      }
+
+      function closeModal() {
+        const modal = document.getElementById('artworkModal');
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+        state.modalOpen = false;
+        state.currentArtwork = null;
+
+        // Reset zoom
+        document.getElementById('modalDisplayImg').style.transform = 'scale(1) translate(0, 0)';
+      }
+
+      function initModal() {
+        const modal = document.getElementById('artworkModal');
+
+        // Close triggers
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+        document.getElementById('modalBackdrop').addEventListener('click', closeModal);
+        document.getElementById('modalBack').addEventListener('click', closeModal);
+
+        // Inquire button
+        document.getElementById('modalInquire').addEventListener('click', () => {
+          const artworkTitle = state.currentArtwork ? state.currentArtwork.title : '';
+          closeModal();
+          // Navigate to contact with pre-filled artwork
+          location.hash = '#/contact';
+          setTimeout(() => {
+            document.getElementById('formArtwork').value = artworkTitle;
+            document.getElementById('formType').value = 'purchase';
+          }, 100);
+        });
+
+        // Thumbnail switching
+        modal.addEventListener('click', (e) => {
+          const thumb = e.target.closest('.modal-thumb');
+          if (!thumb) return;
+
+          // Update active state
+          modal.querySelectorAll('.modal-thumb').forEach(t => {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+            t.tabIndex = -1;
+          });
+          thumb.classList.add('active');
+          thumb.setAttribute('aria-selected', 'true');
+          thumb.tabIndex = 0;
+
+          // Swap image with preload
+          const mainImg = document.getElementById('modalDisplayImg');
+          mainImg.classList.add('loading');
+
+          const newImg = new Image();
+          newImg.onload = () => {
+            mainImg.src = thumb.dataset.url;
+            mainImg.alt = thumb.dataset.alt;
+            mainImg.classList.remove('loading');
+          };
+          newImg.src = thumb.dataset.url;
+
+          // Show zoom only for detail view
+          const isDetail = thumb.dataset.type === 'detail';
+          document.getElementById('zoomControls').style.display = isDetail ? 'block' : 'none';
+          if (!isDetail) {
+            mainImg.style.transform = 'scale(1) translate(0, 0)';
+            document.getElementById('zoomSlider').value = 1;
+          }
+        });
+
+        // Keyboard navigation for thumbnails
+        modal.addEventListener('keydown', (e) => {
+          if (!state.modalOpen) return;
+          const thumbs = Array.from(modal.querySelectorAll('.modal-thumb'));
+          const current = thumbs.findIndex(t => t.classList.contains('active'));
+
+          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            const next = (current + 1) % thumbs.length;
+            thumbs[next].click();
+            thumbs[next].focus();
+          } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            const prev = (current - 1 + thumbs.length) % thumbs.length;
+            thumbs[prev].click();
+            thumbs[prev].focus();
+          }
+        });
+
+        // Zoom slider
+        document.getElementById('zoomSlider').addEventListener('input', (e) => {
+          const scale = parseFloat(e.target.value);
+          const mainImg = document.getElementById('modalDisplayImg');
+          document.getElementById('zoomLabel').textContent = `${scale.toFixed(1)}×`;
+          mainImg.style.transform = `scale(${scale})`;
+          mainImg.style.transformOrigin = 'center center';
+          mainImg.style.cursor = scale > 1 ? 'grab' : 'default';
+        });
+
+        // Escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && state.modalOpen) {
+            closeModal();
+          }
+        });
+
+        // Focus trap
+        modal.addEventListener('keydown', (e) => {
+          if (e.key !== 'Tab' || !state.modalOpen) return;
+
+          const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        });
+
+        // Delegate artwork card clicks
+        document.addEventListener('click', (e) => {
+          const cta = e.target.closest('[data-artwork-id]');
+          if (cta && (cta.classList.contains('artwork-card-cta') || cta.classList.contains('artwork-card-image') || cta.classList.contains('featured-card-image'))) {
+            openModal(cta.dataset.artworkId);
+          }
+        });
+
+        // Keyboard enter on artwork card images
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            const card = e.target.closest('.artwork-card-image[data-artwork-id]');
+            if (card) openModal(card.dataset.artworkId);
+          }
+        });
+      }
+
+      /* ============================================
+         INTERSECTION OBSERVERS
+         ============================================ */
+      function cleanupObservers() {
+        state.observers.forEach(obs => obs.disconnect());
+        state.observers = [];
+      }
+
+      function initIntersectionObservers() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          // Make everything visible immediately
+          document.querySelectorAll('.featured-card, .artwork-card, .cv-item').forEach(el => {
+            el.classList.add('visible');
+          });
+          return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.featured-card, .artwork-card, .cv-item').forEach(el => {
+          if (!el.classList.contains('visible')) {
+            observer.observe(el);
+          }
+        });
+
+        state.observers.push(observer);
+      }
+
+      /* ============================================
+         SCROLL PROGRESS
+         ============================================ */
+      function initScrollProgress() {
+        const bar = document.getElementById('scrollProgress');
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            requestAnimationFrame(() => {
+              const scrollTop = window.scrollY;
+              const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+              const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+              bar.style.width = progress + '%';
+              ticking = false;
+            });
+            ticking = true;
+          }
+        });
+      }
+
+      /* ============================================
+         CONTACT FORM
+         ============================================ */
+      function initForm() {
+        const form = document.getElementById('inquiryForm');
+        const submitBtn = document.getElementById('formSubmit');
+        const successMsg = document.getElementById('formSuccess');
+
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          // Reset errors
+          form.querySelectorAll('.form-error').forEach(el => el.classList.remove('visible'));
+          form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+
+          let isValid = true;
+
+          // Validate name
+          const name = document.getElementById('formName');
+          if (!name.value.trim()) {
+            name.classList.add('error');
+            document.getElementById('errorName').classList.add('visible');
+            isValid = false;
+          }
+
+          // Validate email
+          const email = document.getElementById('formEmail');
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email.value)) {
+            email.classList.add('error');
+            document.getElementById('errorEmail').classList.add('visible');
+            isValid = false;
+          }
+
+          // Validate inquiry type
+          const type = document.getElementById('formType');
+          if (!type.value) {
+            type.classList.add('error');
+            document.getElementById('errorType').classList.add('visible');
+            isValid = false;
+          }
+
+          if (!isValid) {
+            // Focus first error
+            const firstError = form.querySelector('.error');
+            if (firstError) firstError.focus();
+            return;
+          }
+
+          // Simulate submission
+          submitBtn.classList.add('loading');
+          submitBtn.disabled = true;
+
+          setTimeout(() => {
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+            form.style.display = 'none';
+            successMsg.classList.add('visible');
+          }, 1500);
+        });
+
+        // Real-time validation feedback
+        form.querySelectorAll('.form-input, .form-select').forEach(input => {
+          input.addEventListener('blur', () => {
+            if (input.hasAttribute('required') && !input.value.trim()) {
+              input.classList.add('error');
+            } else {
+              input.classList.remove('error');
+            }
+          });
+
+          input.addEventListener('input', () => {
+            input.classList.remove('error');
+            const errorEl = input.parentElement.querySelector('.form-error');
+            if (errorEl) errorEl.classList.remove('visible');
+          });
+        });
+      }
+
+      /* ============================================
+         MOBILE NAVIGATION
+         ============================================ */
+      function initMobileNav() {
+        const toggle = document.querySelector('.nav-mobile-toggle');
+        const links = document.getElementById('navLinks');
+
+        toggle.addEventListener('click', () => {
+          const isOpen = links.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close on link click
+        links.querySelectorAll('.nav-link').forEach(link => {
+          link.addEventListener('click', () => {
+            links.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      /* ============================================
+         INITIALIZATION
+         ============================================ */
+      document.addEventListener('DOMContentLoaded', () => {
+        initTheme();
+        renderFeatured();
+        renderGallery();
+        initFilters();
+        initModal();
+        initForm();
+        initMobileNav();
+        initScrollProgress();
+        initRouter();
+      });
+    </script>
+  </body>
+
+  </html>
+
+  <script>
+
+  </script>
+</body>
+
+</html>

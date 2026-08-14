@@ -1,0 +1,5350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: white;
+      /* Ensure the iframe has a white background */
+    }
+  </style>
+</head>
+
+<body>
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noai, noimageai">
+    <meta name="description"
+      content="Alpine Volt Fleet — premium e-bike rentals & sales at the trailhead of Slovenia's Koroška region. Matched to the mountain, charged overnight.">
+    <meta name="theme-color" content="#0e241c">
+    <title>Trailhead · Alpine Volt Fleet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet">
+    <style>
+      /* ============================================================
+   ALPINE VOLT FLEET — single-file SPA
+   Palette: deep forest / limestone / copper-sunset
+   Type: Anton (display) · Instrument Sans (body) · IBM Plex Mono (data)
+   ============================================================ */
+      :root {
+        /* color — light */
+        --bg: #f1ecdf;
+        --card: #f7f3e8;
+        --paper: #faf6ec;
+        --ink: #1b2a22;
+        --ink-soft: #43574c;
+        --moss: #6b7f72;
+        --limestone: #f1ecdf;
+        --limestone-2: #e6dfcc;
+        --forest: #16382b;
+        --forest-deep: #0e241c;
+        --forest-ink: #0a1a14;
+        --copper: #b3541f;
+        --copper-deep: #93431a;
+        --copper-bright: #e0813f;
+        --copper-tint: rgba(179, 84, 31, .09);
+        --sun: #c08a2a;
+        --river: #3e7f8c;
+        --danger: #a83a28;
+        --ok: #4f8f6a;
+        --warn: #c08a2a;
+        --bad: #c05a2a;
+        --line: rgba(27, 42, 34, .16);
+        --line-strong: rgba(27, 42, 34, .34);
+        --topo-line: rgba(22, 56, 43, .09);
+        --header-bg: rgba(241, 236, 223, .88);
+        --shadow-1: 0 2px 12px rgba(14, 36, 28, .08);
+        --shadow-2: 0 18px 44px rgba(14, 36, 28, .18);
+        /* type */
+        --font-display: 'Anton', Impact, sans-serif;
+        --font-body: 'Instrument Sans', system-ui, sans-serif;
+        --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+        --fs-hero: clamp(2.9rem, 9.5vw, 7.4rem);
+        --fs-h1: clamp(2.3rem, 5.6vw, 4.6rem);
+        --fs-h2: clamp(1.65rem, 3.4vw, 2.7rem);
+        --fs-h3: clamp(1.15rem, 1.9vw, 1.45rem);
+        --fs-body: clamp(.96rem, .6vw + .8rem, 1.08rem);
+        --fs-small: clamp(.82rem, .4vw + .72rem, .92rem);
+        --fs-mono: clamp(.72rem, .35vw + .64rem, .82rem);
+        --fs-tiny: clamp(.64rem, .3vw + .58rem, .72rem);
+        /* space / shape / motion */
+        --sp-section: clamp(4rem, 9vw, 7.5rem);
+        --wrap: 1180px;
+        --r-sm: 4px;
+        --r-md: 8px;
+        --r-pill: 999px;
+        --ease: cubic-bezier(.22, .7, .25, 1);
+        --t-fast: .25s;
+        --t-med: .35s;
+      }
+
+      [data-theme="dark"] {
+        --bg: #0b1410;
+        --card: #12211a;
+        --paper: #152720;
+        --ink: #ece7d9;
+        --ink-soft: #b7c2b6;
+        --moss: #8aa093;
+        --limestone-2: #1a2c23;
+        --copper: #d97a3d;
+        --copper-deep: #c96a2f;
+        --copper-bright: #ef9553;
+        --copper-tint: rgba(224, 129, 63, .13);
+        --sun: #d9a441;
+        --river: #63a7b3;
+        --danger: #e08a76;
+        --ok: #7fbf97;
+        --warn: #d9a441;
+        --bad: #ef9553;
+        --line: rgba(236, 231, 217, .14);
+        --line-strong: rgba(236, 231, 217, .32);
+        --topo-line: rgba(236, 231, 217, .06);
+        --header-bg: rgba(11, 20, 16, .86);
+        --shadow-1: 0 2px 12px rgba(0, 0, 0, .3);
+        --shadow-2: 0 18px 44px rgba(0, 0, 0, .5);
+      }
+
+      /* ---------- base ---------- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box
+      }
+
+      html {
+        scroll-behavior: smooth
+      }
+
+      body {
+        font-family: var(--font-body);
+        font-size: var(--fs-body);
+        line-height: 1.65;
+        color: var(--ink);
+        background: var(--bg);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden
+      }
+
+      img,
+      svg {
+        display: block;
+        max-width: 100%
+      }
+
+      a {
+        color: inherit
+      }
+
+      button {
+        font: inherit;
+        color: inherit;
+        background: none;
+        border: none;
+        cursor: pointer
+      }
+
+      ::selection {
+        background: var(--copper);
+        color: var(--limestone)
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--copper-bright);
+        outline-offset: 3px;
+        border-radius: 2px
+      }
+
+      .view:focus,
+      main:focus {
+        outline: none
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0
+      }
+
+      .skip-link {
+        position: fixed;
+        top: -60px;
+        left: 1rem;
+        z-index: 200;
+        background: var(--copper-deep);
+        color: var(--limestone);
+        padding: .7em 1.2em;
+        border-radius: var(--r-sm);
+        font-weight: 600;
+        transition: top var(--t-fast) var(--ease)
+      }
+
+      .skip-link:focus {
+        top: 1rem
+      }
+
+      .wrap {
+        width: min(var(--wrap), 92vw);
+        margin-inline: auto
+      }
+
+      .mono {
+        font-family: var(--font-mono)
+      }
+
+      .kicker {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: .22em;
+        text-transform: uppercase;
+        color: var(--copper);
+        display: flex;
+        align-items: center;
+        gap: .8em
+      }
+
+      .kicker::before {
+        content: "";
+        width: 2.2em;
+        height: 1px;
+        background: var(--copper)
+      }
+
+      .h-display {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        line-height: .95;
+        letter-spacing: .012em;
+        font-weight: 400
+      }
+
+      .lede {
+        font-size: clamp(1.02rem, .8vw + .85rem, 1.22rem);
+        color: var(--ink-soft);
+        max-width: 56ch
+      }
+
+      .section {
+        padding-block: var(--sp-section);
+        position: relative
+      }
+
+      .topo,
+      .topo-inv {
+        position: relative
+      }
+
+      .topo::before,
+      .topo-inv::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          repeating-radial-gradient(circle at 12% 18%, transparent 0 58px, var(--tl) 58px 59px),
+          repeating-radial-gradient(circle at 88% 74%, transparent 0 84px, var(--tl) 84px 85px)
+      }
+
+      .topo {
+        --tl: var(--topo-line)
+      }
+
+      .topo-inv {
+        --tl: rgba(241, 236, 223, .05)
+      }
+
+      .band-dark {
+        background: var(--forest-deep);
+        color: var(--limestone)
+      }
+
+      .band-dark .kicker {
+        color: var(--copper-bright)
+      }
+
+      .band-dark .kicker::before {
+        background: var(--copper-bright)
+      }
+
+      .band-dark .lede {
+        color: rgba(241, 236, 223, .72)
+      }
+
+      /* ---------- buttons / chips ---------- */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .6em;
+        font: 600 var(--fs-small)/1 var(--font-body);
+        letter-spacing: .05em;
+        text-transform: uppercase;
+        padding: 1em 1.55em;
+        border-radius: var(--r-sm);
+        border: 1.5px solid transparent;
+        text-decoration: none;
+        position: relative;
+        transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), background var(--t-fast), color var(--t-fast), border-color var(--t-fast)
+      }
+
+      .btn .arr {
+        transition: transform var(--t-fast) var(--ease)
+      }
+
+      .btn:hover .arr {
+        transform: translateX(4px)
+      }
+
+      .btn:active {
+        transform: translateY(0) scale(.98)
+      }
+
+      .btn[disabled] {
+        opacity: .5;
+        cursor: not-allowed;
+        transform: none !important;
+        box-shadow: none !important
+      }
+
+      .btn-primary {
+        background: var(--copper-deep);
+        color: #f6f1e4
+      }
+
+      .btn-primary:hover {
+        background: var(--copper);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(147, 67, 26, .35)
+      }
+
+      .btn-ghost {
+        border-color: var(--line-strong);
+        color: inherit
+      }
+
+      .btn-ghost:hover {
+        border-color: var(--ink);
+        transform: translateY(-2px);
+        background: var(--copper-tint)
+      }
+
+      .btn-light {
+        background: var(--limestone);
+        color: var(--forest-ink)
+      }
+
+      .btn-light:hover {
+        background: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 26px rgba(0, 0, 0, .3)
+      }
+
+      .btn-sm {
+        padding: .72em 1.1em;
+        font-size: var(--fs-tiny)
+      }
+
+      .btn.loading .btn-label {
+        opacity: 0
+      }
+
+      .btn.loading::after {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        border: 2.5px solid rgba(246, 241, 228, .35);
+        border-top-color: #f6f1e4;
+        border-radius: 50%;
+        animation: spin .7s linear infinite
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg)
+        }
+      }
+
+      .chip {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        padding: .55em 1.1em;
+        border: 1.5px solid var(--line-strong);
+        border-radius: var(--r-pill);
+        transition: all var(--t-fast) var(--ease);
+        color: var(--ink-soft)
+      }
+
+      .chip:hover {
+        border-color: var(--copper);
+        color: var(--copper);
+        transform: translateY(-1px)
+      }
+
+      .chip[aria-pressed="true"] {
+        background: var(--forest);
+        border-color: var(--forest);
+        color: var(--limestone)
+      }
+
+      .tag {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--copper);
+        display: inline-flex;
+        align-items: center;
+        gap: .5em
+      }
+
+      .tag::before {
+        content: "⚡"
+      }
+
+      /* ---------- header ---------- */
+      .site-header {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 90;
+        color: var(--limestone);
+        border-bottom: 1px solid transparent;
+        transition: background var(--t-med), color var(--t-med), border-color var(--t-med), backdrop-filter var(--t-med)
+      }
+
+      .site-header.solid {
+        background: var(--header-bg);
+        backdrop-filter: blur(12px);
+        color: var(--ink);
+        border-color: var(--line)
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        padding: .85rem 0
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: .7rem;
+        text-decoration: none
+      }
+
+      .brand-mark {
+        width: 36px;
+        height: 36px;
+        flex: none
+      }
+
+      .brand-word {
+        line-height: 1
+      }
+
+      .brand-word b {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: clamp(.95rem, .5vw + .8rem, 1.15rem);
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        display: block
+      }
+
+      .brand-word span {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .42em;
+        text-transform: uppercase;
+        color: var(--copper-bright)
+      }
+
+      .nav {
+        margin-left: auto;
+        display: none;
+        align-items: center;
+        gap: 1.6rem
+      }
+
+      @media(min-width:1020px) {
+        .nav {
+          display: flex
+        }
+      }
+
+      .nav-link {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        text-decoration: none;
+        opacity: .82;
+        position: relative;
+        padding: .45em .1em;
+        transition: opacity var(--t-fast)
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 100%;
+        background: var(--copper-bright);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform .3s var(--ease)
+      }
+
+      .nav-link:hover {
+        opacity: 1
+      }
+
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        transform: scaleX(1)
+      }
+
+      .nav-link.active {
+        opacity: 1
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: .7rem;
+        margin-left: auto
+      }
+
+      @media(min-width:1020px) {
+        .header-actions {
+          margin-left: 0
+        }
+      }
+
+      .icon-btn {
+        width: 40px;
+        height: 40px;
+        display: grid;
+        place-items: center;
+        border: 1.5px solid var(--line-strong);
+        border-radius: var(--r-pill);
+        transition: all var(--t-fast) var(--ease)
+      }
+
+      .icon-btn:hover {
+        border-color: var(--copper);
+        color: var(--copper);
+        transform: translateY(-2px)
+      }
+
+      .icon-btn svg {
+        width: 18px;
+        height: 18px
+      }
+
+      [data-theme="light"] .ic-moon {
+        display: none
+      }
+
+      [data-theme="dark"] .ic-sun {
+        display: none
+      }
+
+      .header-cta {
+        white-space: nowrap
+      }
+
+      @media(max-width:640px) {
+        .header-cta {
+          display: none
+        }
+      }
+
+      .burger {
+        display: grid;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        place-items: center;
+        border: 1.5px solid var(--line-strong);
+        border-radius: var(--r-pill)
+      }
+
+      @media(min-width:1020px) {
+        .burger {
+          display: none
+        }
+      }
+
+      .burger span {
+        display: block;
+        width: 16px;
+        height: 2px;
+        background: currentColor;
+        transition: transform .3s var(--ease), opacity .3s
+      }
+
+      .burger[aria-expanded="true"] span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg)
+      }
+
+      .burger[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0
+      }
+
+      .burger[aria-expanded="true"] span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg)
+      }
+
+      /* ---------- drawer ---------- */
+      .scrim {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 26, 20, .55);
+        backdrop-filter: blur(3px);
+        z-index: 95;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--t-med)
+      }
+
+      .scrim.open {
+        opacity: 1;
+        pointer-events: auto
+      }
+
+      .drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: min(360px, 88vw);
+        background: var(--forest-ink);
+        color: var(--limestone);
+        z-index: 100;
+        transform: translateX(102%);
+        transition: transform .4s var(--ease);
+        display: flex;
+        flex-direction: column;
+        padding: 1.4rem 1.8rem 2.4rem;
+        overflow-y: auto
+      }
+
+      .drawer.open {
+        transform: none
+      }
+
+      .drawer-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2.4rem
+      }
+
+      .drawer-nav {
+        display: flex;
+        flex-direction: column;
+        gap: .2rem
+      }
+
+      .dlink {
+        font-family: var(--font-display);
+        font-size: clamp(1.7rem, 6vw, 2.3rem);
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: .35em 0;
+        border-bottom: 1px solid rgba(241, 236, 223, .12);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        opacity: 0;
+        transform: translateX(24px);
+        transition: opacity .4s var(--ease), transform .4s var(--ease), color var(--t-fast), padding-left var(--t-fast)
+      }
+
+      .drawer.open .dlink {
+        opacity: 1;
+        transform: none
+      }
+
+      .dlink:hover,
+      .dlink.active {
+        color: var(--copper-bright);
+        padding-left: .4em
+      }
+
+      .dlink .mono {
+        font-size: var(--fs-tiny);
+        color: var(--moss)
+      }
+
+      .drawer-foot {
+        margin-top: auto;
+        padding-top: 2rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        color: rgba(241, 236, 223, .6);
+        line-height: 2
+      }
+
+      /* ---------- views / router ---------- */
+      .view {
+        display: none
+      }
+
+      .view.active {
+        display: block;
+        animation: viewIn .5s var(--ease) both
+      }
+
+      @keyframes viewIn {
+        from {
+          opacity: 0;
+          transform: translateY(16px)
+        }
+
+        to {
+          opacity: 1;
+          transform: none
+        }
+      }
+
+      /* ---------- reveal ---------- */
+      .reveal {
+        opacity: 0;
+        transform: translateY(26px);
+        transition: opacity .7s var(--ease), transform .7s var(--ease);
+        transition-delay: var(--d, 0s)
+      }
+
+      .reveal.in {
+        opacity: 1;
+        transform: none
+      }
+
+      .reveal[data-rv="fade"] {
+        transform: none
+      }
+
+      .reveal[data-rv="left"] {
+        transform: translateX(-30px)
+      }
+
+      .reveal[data-rv="scale"] {
+        transform: scale(.94)
+      }
+
+      /* ---------- HERO ---------- */
+      .hero {
+        position: relative;
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        background: var(--forest-ink)
+      }
+
+      .hero-scene {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%
+      }
+
+      .hero-topo {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          repeating-radial-gradient(circle at 18% 24%, transparent 0 52px, rgba(241, 236, 223, .05) 52px 53px),
+          repeating-radial-gradient(circle at 84% 70%, transparent 0 78px, rgba(241, 236, 223, .05) 78px 79px);
+        -webkit-mask-image: linear-gradient(to top, #000 12%, transparent 72%);
+        mask-image: linear-gradient(to top, #000 12%, transparent 72%)
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        background: linear-gradient(180deg, rgba(10, 26, 20, .42), transparent 32%, transparent 52%, rgba(10, 26, 20, .62))
+      }
+
+      .mist-drift {
+        animation: mist 26s ease-in-out infinite alternate
+      }
+
+      @keyframes mist {
+        from {
+          transform: translateX(-34px)
+        }
+
+        to {
+          transform: translateX(34px)
+        }
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 3;
+        width: min(var(--wrap), 92vw);
+        margin-inline: auto;
+        padding: 9rem 0 12rem;
+        color: var(--limestone)
+      }
+
+      .hero-meta {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: .24em;
+        text-transform: uppercase;
+        color: rgba(241, 236, 223, .72);
+        display: flex;
+        flex-wrap: wrap;
+        gap: .6em 1.6em;
+        margin-bottom: 1.6rem
+      }
+
+      .hero-meta i {
+        color: var(--copper-bright);
+        font-style: normal
+      }
+
+      .hero-title {
+        font-family: var(--font-display);
+        font-size: var(--fs-hero);
+        line-height: .92;
+        text-transform: uppercase;
+        font-weight: 400
+      }
+
+      .hero-line {
+        display: block;
+        overflow: hidden;
+        padding-bottom: .06em
+      }
+
+      .hero-line>span {
+        display: inline-block;
+        transform: translateY(112%);
+        transition: transform 1s var(--ease)
+      }
+
+      .hero-go .hero-line:nth-child(1)>span {
+        transition-delay: .15s
+      }
+
+      .hero-go .hero-line:nth-child(2)>span {
+        transition-delay: .3s
+      }
+
+      .hero-go .hero-line:nth-child(3)>span {
+        transition-delay: .45s
+      }
+
+      .hero-go .hero-line>span {
+        transform: none
+      }
+
+      .hero-line.outline>span {
+        color: transparent;
+        -webkit-text-stroke: 2px rgba(241, 236, 223, .85)
+      }
+
+      .hero-line.accent>span {
+        color: var(--copper-bright)
+      }
+
+      .hero-sub {
+        max-width: 44ch;
+        margin-top: 1.6rem;
+        color: rgba(241, 236, 223, .82);
+        font-size: clamp(1rem, .7vw + .85rem, 1.18rem);
+        opacity: 0;
+        transform: translateY(14px);
+        transition: opacity .8s var(--ease) .7s, transform .8s var(--ease) .7s
+      }
+
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .9rem;
+        margin-top: 2.2rem;
+        opacity: 0;
+        transform: translateY(14px);
+        transition: opacity .8s var(--ease) .85s, transform .8s var(--ease) .85s
+      }
+
+      .hero-go .hero-sub,
+      .hero-go .hero-cta {
+        opacity: 1;
+        transform: none
+      }
+
+      .hero-rail {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%) rotate(180deg);
+        writing-mode: vertical-rl;
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .4em;
+        text-transform: uppercase;
+        color: rgba(241, 236, 223, .5);
+        z-index: 3
+      }
+
+      @media(max-width:900px) {
+        .hero-rail {
+          display: none
+        }
+      }
+
+      .scroll-cue {
+        position: absolute;
+        left: 4vw;
+        bottom: 5.5rem;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .6rem;
+        color: rgba(241, 236, 223, .6);
+        height: 11vh
+      }
+
+      .scroll-cue small {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .3em;
+        writing-mode: vertical-rl
+      }
+
+      .scroll-cue i {
+        width: 1px;
+        height: 36px;
+        background: rgba(241, 236, 223, .25);
+        position: relative;
+        overflow: hidden
+      }
+
+      @media(max-height:700px) {
+        .scroll-cue {
+          display: none
+        }
+      }
+
+      .scroll-cue i::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: -40%;
+        width: 100%;
+        height: 40%;
+        background: var(--copper-bright);
+        animation: cue 2s var(--ease) infinite
+      }
+
+      @keyframes cue {
+        to {
+          top: 110%
+        }
+      }
+
+      .hero-elev {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 3.4rem;
+        z-index: 3;
+        pointer-events: none
+      }
+
+      .hero-elev svg {
+        width: 100%;
+        height: auto
+      }
+
+      .elev-line {
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+        transition: stroke-dashoffset 2.8s ease-out 1.1s
+      }
+
+      .hero-go .elev-line {
+        stroke-dashoffset: 0
+      }
+
+      .elev-txt {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        fill: rgba(241, 236, 223, .6);
+        letter-spacing: .12em
+      }
+
+      /* ---------- ticker ---------- */
+      .ticker {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 4;
+        background: var(--forest-ink);
+        border-top: 1px solid rgba(241, 236, 223, .14);
+        overflow: hidden;
+        color: var(--limestone)
+      }
+
+      .tick-track {
+        display: flex;
+        width: max-content;
+        animation: tick 42s linear infinite
+      }
+
+      .ticker:hover .tick-track,
+      .ticker:focus-within .tick-track {
+        animation-play-state: paused
+      }
+
+      @keyframes tick {
+        to {
+          transform: translateX(-50%)
+        }
+      }
+
+      .tick-half {
+        display: flex;
+        align-items: center;
+        gap: 2.6rem;
+        padding: .72rem 1.3rem .72rem 1.3rem;
+        white-space: nowrap
+      }
+
+      .tick-item {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .08em;
+        display: inline-flex;
+        align-items: center;
+        gap: .7em;
+        color: rgba(241, 236, 223, .85)
+      }
+
+      .tick-item b {
+        color: var(--limestone);
+        font-weight: 500
+      }
+
+      .tick-sep {
+        color: var(--copper-bright);
+        font-size: .7em
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex: none;
+        display: inline-block
+      }
+
+      .dot-ok {
+        background: var(--ok)
+      }
+
+      .dot-damp {
+        background: var(--river)
+      }
+
+      .dot-mud {
+        background: var(--sun)
+      }
+
+      .dot-snow {
+        background: #bcd6e4
+      }
+
+      .tick-live {
+        color: var(--copper-bright);
+        display: inline-flex;
+        align-items: center;
+        gap: .6em
+      }
+
+      .tick-live::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--copper-bright);
+        animation: pulse 1.6s ease-in-out infinite
+      }
+
+      @keyframes pulse {
+        50% {
+          opacity: .25
+        }
+      }
+
+      /* ---------- home sections ---------- */
+      .split {
+        display: grid;
+        gap: 2.6rem
+      }
+
+      @media(min-width:920px) {
+        .split {
+          grid-template-columns: 1.08fr .92fr;
+          gap: 4rem;
+          align-items: start
+        }
+
+        .split .sticky {
+          position: sticky;
+          top: 6.5rem
+        }
+      }
+
+      .split h2 {
+        font-size: var(--fs-h1);
+        margin: .5em 0 .5em
+      }
+
+      .dropcap::first-letter {
+        font-family: var(--font-display);
+        font-size: 3.4em;
+        float: left;
+        line-height: .82;
+        padding: .06em .12em 0 0;
+        color: var(--copper)
+      }
+
+      .stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.2rem 3.2rem;
+        margin-top: 2.4rem
+      }
+
+      .stat b {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: var(--fs-h1);
+        display: block;
+        line-height: 1;
+        color: var(--ink)
+      }
+
+      .stat b em {
+        font-style: normal;
+        color: var(--copper)
+      }
+
+      .stat span {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--moss)
+      }
+
+      .sec-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 1.2rem;
+        margin-bottom: 2.4rem
+      }
+
+      .sec-head h2 {
+        font-size: var(--fs-h2);
+        margin-top: .4em
+      }
+
+      .sec-link {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: var(--copper);
+        display: inline-flex;
+        gap: .6em;
+        align-items: center;
+        transition: gap var(--t-fast) var(--ease)
+      }
+
+      .sec-link:hover {
+        gap: 1.1em
+      }
+
+      /* carousel */
+      .car-ctrl {
+        display: flex;
+        gap: .6rem
+      }
+
+      .car-track {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: min(80vw, 330px);
+        gap: 1.4rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: .4rem .2rem 1.4rem;
+        scrollbar-width: thin;
+        scrollbar-color: var(--copper) transparent
+      }
+
+      .car-track>* {
+        scroll-snap-align: start
+      }
+
+      /* ---------- bike cards ---------- */
+      .bike-card {
+        container-type: inline-size;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--r-md);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s
+      }
+
+      .bike-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-2);
+        border-color: var(--copper)
+      }
+
+      .bc-art {
+        position: relative;
+        background: var(--limestone-2);
+        color: var(--forest);
+        padding: 1.2rem 1rem .4rem;
+        overflow: hidden
+      }
+
+      [data-theme="dark"] .bc-art {
+        color: var(--limestone)
+      }
+
+      .bc-art::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-radial-gradient(circle at 80% 10%, transparent 0 44px, var(--topo-line) 44px 45px)
+      }
+
+      .bc-art svg {
+        position: relative;
+        width: 100%;
+        height: auto;
+        transition: transform .5s var(--ease)
+      }
+
+      .bike-card:hover .bc-art svg {
+        transform: translateX(6px)
+      }
+
+      .bike-card:hover .spokes {
+        animation: spin 1.3s linear infinite;
+        transform-box: fill-box;
+        transform-origin: center
+      }
+
+      .bc-cat {
+        position: absolute;
+        top: .8rem;
+        left: .8rem;
+        z-index: 2;
+        background: var(--forest);
+        color: var(--limestone);
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        padding: .4em .9em;
+        border-radius: var(--r-pill)
+      }
+
+      .bc-sale {
+        background: var(--copper-deep)
+      }
+
+      .bc-body {
+        padding: 1.2rem 1.2rem 1.3rem;
+        display: flex;
+        flex-direction: column;
+        gap: .7rem;
+        flex: 1
+      }
+
+      .bc-name {
+        font-family: var(--font-display);
+        font-size: var(--fs-h3);
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: .02em
+      }
+
+      .bc-desc {
+        font-size: var(--fs-small);
+        color: var(--ink-soft);
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden
+      }
+
+      .bc-specs {
+        display: grid;
+        gap: .6rem;
+        border-top: 1px solid var(--line);
+        padding-top: .9rem;
+        margin-top: auto
+      }
+
+      @container (min-width:300px) {
+        .bc-specs {
+          grid-template-columns: repeat(3, 1fr);
+          gap: .8rem
+        }
+      }
+
+      .bc-spec small {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--moss);
+        display: block
+      }
+
+      .bc-spec b {
+        font-size: var(--fs-small);
+        font-weight: 600
+      }
+
+      .bc-spec .rate {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: clamp(1.1rem, 1vw + .9rem, 1.35rem);
+        color: var(--copper-deep)
+      }
+
+      [data-theme="dark"] .bc-spec .rate {
+        color: var(--copper-bright)
+      }
+
+      .batt {
+        height: 5px;
+        background: var(--line);
+        border-radius: var(--r-pill);
+        overflow: hidden;
+        margin-top: .35em
+      }
+
+      .batt i {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: var(--ok);
+        border-radius: var(--r-pill);
+        transition: width 1.1s var(--ease) .3s
+      }
+
+      .reveal.in .batt i {
+        width: var(--batt)
+      }
+
+      .bc-actions {
+        display: flex;
+        gap: .6rem;
+        margin-top: .4rem
+      }
+
+      .bc-actions .btn {
+        flex: 1
+      }
+
+      /* empty state */
+      .empty {
+        border: 1.5px dashed var(--line-strong);
+        border-radius: var(--r-md);
+        padding: 3.2rem 1.6rem;
+        text-align: center;
+        display: none
+      }
+
+      .empty.show {
+        display: block;
+        animation: viewIn .4s var(--ease)
+      }
+
+      .empty svg {
+        width: 52px;
+        margin: 0 auto 1rem;
+        color: var(--moss)
+      }
+
+      .empty h3 {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: var(--fs-h3)
+      }
+
+      .empty p {
+        color: var(--ink-soft);
+        font-size: var(--fs-small);
+        margin: .5rem 0 1.2rem
+      }
+
+      /* ---------- modal ---------- */
+      .modal-root {
+        position: fixed;
+        inset: 0;
+        z-index: 110;
+        display: grid;
+        place-items: center;
+        padding: 1rem;
+        background: rgba(10, 26, 20, .6);
+        backdrop-filter: blur(4px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--t-med)
+      }
+
+      .modal-root.open {
+        opacity: 1;
+        pointer-events: auto
+      }
+
+      .modal {
+        width: min(780px, 100%);
+        max-height: 88vh;
+        overflow-y: auto;
+        background: var(--card);
+        border-radius: var(--r-md);
+        border: 1px solid var(--line);
+        transform: translateY(18px) scale(.97);
+        transition: transform .4s var(--ease)
+      }
+
+      .modal-root.open .modal {
+        transform: none
+      }
+
+      .modal-art {
+        background: var(--limestone-2);
+        color: var(--forest);
+        padding: 2rem 2rem 1rem;
+        position: relative
+      }
+
+      [data-theme="dark"] .modal-art {
+        color: var(--limestone)
+      }
+
+      .modal-x {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: var(--card);
+        border: 1.5px solid var(--line-strong);
+        display: grid;
+        place-items: center;
+        transition: all var(--t-fast) var(--ease);
+        z-index: 2
+      }
+
+      .modal-x:hover {
+        border-color: var(--copper);
+        color: var(--copper);
+        transform: rotate(90deg)
+      }
+
+      .modal-body {
+        padding: 1.6rem 2rem 2rem
+      }
+
+      .modal-body h3 {
+        font-family: var(--font-display);
+        font-size: var(--fs-h2);
+        text-transform: uppercase;
+        font-weight: 400
+      }
+
+      .mspec {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .1rem 2rem;
+        margin: 1.2rem 0;
+        font-family: var(--font-mono);
+        font-size: var(--fs-small)
+      }
+
+      .mspec div {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: .55rem 0;
+        border-bottom: 1px solid var(--line)
+      }
+
+      .mspec dt {
+        color: var(--moss)
+      }
+
+      .mspec dd {
+        font-weight: 500
+      }
+
+      .modal-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .7rem;
+        margin-top: 1.4rem
+      }
+
+      /* ---------- fleet page ---------- */
+      .page-head {
+        padding-top: 9rem;
+        padding-bottom: 2.6rem
+      }
+
+      .page-head h1 {
+        font-size: var(--fs-h1);
+        margin: .35em 0 .4em
+      }
+
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        margin-bottom: 2rem
+      }
+
+      .search-box {
+        position: relative;
+        flex: 1 1 240px;
+        max-width: 340px
+      }
+
+      .search-box input {
+        width: 100%;
+        padding: .85em 2.6em .85em 2.6em;
+        border: 1.5px solid var(--line-strong);
+        border-radius: var(--r-pill);
+        background: var(--card);
+        color: var(--ink);
+        font: inherit;
+        font-size: var(--fs-small);
+        transition: border-color var(--t-fast), box-shadow var(--t-fast)
+      }
+
+      .search-box input:focus {
+        outline: none;
+        border-color: var(--copper);
+        box-shadow: 0 0 0 3px var(--copper-tint)
+      }
+
+      .search-box svg {
+        position: absolute;
+        left: 1em;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 15px;
+        color: var(--moss)
+      }
+
+      .search-clear {
+        position: absolute;
+        right: .6em;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        display: none;
+        place-items: center;
+        color: var(--moss)
+      }
+
+      .search-clear.show {
+        display: grid
+      }
+
+      .search-clear:hover {
+        color: var(--danger);
+        background: var(--line)
+      }
+
+      .count-read {
+        margin-left: auto;
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--moss)
+      }
+
+      .fleet-grid {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr))
+      }
+
+      /* ---------- ride match ---------- */
+      .match-grid {
+        display: grid;
+        gap: 2.4rem
+      }
+
+      @media(min-width:960px) {
+        .match-grid {
+          grid-template-columns: 230px 1fr;
+          gap: 3.4rem
+        }
+      }
+
+      .mrail {
+        display: flex;
+        gap: 1.4rem
+      }
+
+      @media(min-width:960px) {
+        .mrail {
+          flex-direction: column;
+          position: sticky;
+          top: 6.5rem;
+          gap: 0
+        }
+      }
+
+      .mrail-item {
+        display: flex;
+        align-items: center;
+        gap: .8rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--moss);
+        position: relative;
+        padding-bottom: 1.6rem;
+        transition: color var(--t-fast)
+      }
+
+      @media(max-width:959px) {
+        .mrail-item {
+          padding-bottom: 0;
+          flex-direction: column;
+          gap: .4rem;
+          flex: 1;
+          text-align: center
+        }
+      }
+
+      .mrail-item::before {
+        content: attr(data-n);
+        width: 30px;
+        height: 30px;
+        flex: none;
+        display: grid;
+        place-items: center;
+        border: 1.5px solid var(--line-strong);
+        border-radius: 50%;
+        font-size: var(--fs-tiny);
+        transition: all var(--t-fast)
+      }
+
+      .mrail-item::after {
+        content: "";
+        position: absolute;
+        left: 14px;
+        top: 34px;
+        bottom: 2px;
+        width: 1.5px;
+        background: var(--line)
+      }
+
+      @media(max-width:959px) {
+        .mrail-item::after {
+          display: none
+        }
+      }
+
+      .mrail-item:last-child::after {
+        display: none
+      }
+
+      .mrail-item.cur {
+        color: var(--ink);
+        font-weight: 500
+      }
+
+      .mrail-item.cur::before {
+        border-color: var(--copper);
+        color: var(--copper);
+        box-shadow: 0 0 0 4px var(--copper-tint)
+      }
+
+      .mrail-item.done {
+        color: var(--ink-soft)
+      }
+
+      .mrail-item.done::before {
+        content: "✓";
+        background: var(--forest);
+        border-color: var(--forest);
+        color: var(--limestone)
+      }
+
+      .step-card {
+        container-type: inline-size;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--r-md);
+        padding: clamp(1.4rem, 4vw, 2.6rem);
+        position: relative;
+        overflow: hidden
+      }
+
+      .step-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: var(--copper);
+        width: var(--prog, 25%);
+        transition: width .5s var(--ease)
+      }
+
+      .step-kicker {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        color: var(--copper)
+      }
+
+      .step-card h2 {
+        font-family: var(--font-display);
+        font-size: var(--fs-h2);
+        text-transform: uppercase;
+        font-weight: 400;
+        margin: .35em 0 .8em
+      }
+
+      .opts {
+        display: grid;
+        gap: .9rem;
+        grid-template-columns: 1fr 1fr
+      }
+
+      @media(max-width:620px) {
+        .opts {
+          grid-template-columns: 1fr
+        }
+      }
+
+      .opt {
+        border: 1.5px solid var(--line-strong);
+        border-radius: var(--r-md);
+        padding: 1rem 1.1rem;
+        display: flex;
+        gap: .9rem;
+        align-items: flex-start;
+        cursor: pointer;
+        transition: all var(--t-fast) var(--ease);
+        position: relative
+      }
+
+      .opt input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none
+      }
+
+      .opt:hover {
+        border-color: var(--copper);
+        transform: translateY(-2px)
+      }
+
+      .opt.sel {
+        border-color: var(--copper);
+        background: var(--copper-tint);
+        box-shadow: inset 0 0 0 1px var(--copper)
+      }
+
+      .opt:focus-within {
+        outline: 2px solid var(--copper-bright);
+        outline-offset: 3px
+      }
+
+      .opt-ic {
+        width: 34px;
+        height: 34px;
+        flex: none;
+        color: var(--copper)
+      }
+
+      .opt b {
+        display: block;
+        font-size: var(--fs-small);
+        font-weight: 600
+      }
+
+      .opt small {
+        color: var(--ink-soft);
+        font-size: var(--fs-tiny);
+        font-family: var(--font-mono);
+        letter-spacing: .04em
+      }
+
+      .range-wrap {
+        padding: 1rem 0 .4rem
+      }
+
+      .range-out {
+        font-family: var(--font-display);
+        font-size: var(--fs-h1);
+        line-height: 1;
+        color: var(--copper-deep)
+      }
+
+      [data-theme="dark"] .range-out {
+        color: var(--copper-bright)
+      }
+
+      .range-out small {
+        font-size: .4em;
+        color: var(--moss);
+        font-family: var(--font-mono);
+        letter-spacing: .1em
+      }
+
+      input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 4px;
+        background: var(--line-strong);
+        border-radius: var(--r-pill);
+        margin: 1.6rem 0 .8rem;
+        cursor: pointer
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--copper-deep);
+        border: 3px solid var(--card);
+        box-shadow: 0 0 0 1.5px var(--copper-deep), 0 3px 8px rgba(0, 0, 0, .25);
+        transition: transform var(--t-fast) var(--ease)
+      }
+
+      input[type="range"]::-webkit-slider-thumb:hover {
+        transform: scale(1.15)
+      }
+
+      input[type="range"]::-moz-range-thumb {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--copper-deep);
+        border: 3px solid var(--card);
+        box-shadow: 0 0 0 1.5px var(--copper-deep)
+      }
+
+      .range-ticks {
+        display: flex;
+        justify-content: space-between;
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        color: var(--moss)
+      }
+
+      .stepper {
+        display: inline-flex;
+        align-items: center;
+        gap: 1.2rem;
+        border: 1.5px solid var(--line-strong);
+        border-radius: var(--r-md);
+        padding: .5rem .8rem
+      }
+
+      .step-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--r-sm);
+        border: 1.5px solid var(--line-strong);
+        font-size: 1.3rem;
+        line-height: 1;
+        display: grid;
+        place-items: center;
+        transition: all var(--t-fast) var(--ease)
+      }
+
+      .step-btn:hover:not([disabled]) {
+        border-color: var(--copper);
+        color: var(--copper);
+        transform: translateY(-2px)
+      }
+
+      .step-btn[disabled] {
+        opacity: .35;
+        cursor: not-allowed
+      }
+
+      .stepper output {
+        font-family: var(--font-display);
+        font-size: var(--fs-h2);
+        min-width: 1.4ch;
+        text-align: center
+      }
+
+      .step-nav {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 2rem;
+        flex-wrap: wrap
+      }
+
+      .step-hint {
+        font-size: var(--fs-small);
+        color: var(--ink-soft);
+        margin-top: 1rem;
+        min-height: 1.5em;
+        transition: color var(--t-fast)
+      }
+
+      .step-hint.hot {
+        color: var(--copper)
+      }
+
+      /* result */
+      .mres-head {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 1rem;
+        margin-bottom: 1.4rem
+      }
+
+      .mres-sum {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--moss)
+      }
+
+      .route-box {
+        background: var(--forest-deep);
+        color: var(--limestone);
+        border-radius: var(--r-md);
+        padding: 1.4rem;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 1.6rem
+      }
+
+      .route-box::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-radial-gradient(circle at 85% 15%, transparent 0 46px, rgba(241, 236, 223, .05) 46px 47px)
+      }
+
+      .route-box svg {
+        position: relative;
+        width: 100%;
+        height: auto
+      }
+
+      .route-draw {
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+        transition: stroke-dashoffset 1.6s var(--ease) .2s
+      }
+
+      .reveal.in .route-draw {
+        stroke-dashoffset: 0
+      }
+
+      .batt-hud {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+        position: relative
+      }
+
+      .batt-big {
+        font-family: var(--font-display);
+        font-size: var(--fs-h2);
+        color: var(--copper-bright)
+      }
+
+      .batt-big small {
+        font-size: .45em;
+        font-family: var(--font-mono);
+        color: rgba(241, 236, 223, .65);
+        letter-spacing: .1em
+      }
+
+      .hud-bar {
+        flex: 1;
+        min-width: 180px;
+        height: 10px;
+        border: 1px solid rgba(241, 236, 223, .3);
+        border-radius: var(--r-pill);
+        padding: 2px
+      }
+
+      .hud-bar i {
+        display: block;
+        height: 100%;
+        border-radius: var(--r-pill);
+        background: var(--ok);
+        width: var(--fill, 80%);
+        transition: width .8s var(--ease), background var(--t-fast)
+      }
+
+      .hud-bar i.warn {
+        background: var(--warn)
+      }
+
+      .hud-bar i.bad {
+        background: var(--bad)
+      }
+
+      .mres-grid {
+        display: grid;
+        gap: 1.2rem;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))
+      }
+
+      .mres-card {
+        border: 1.5px solid var(--line);
+        border-radius: var(--r-md);
+        background: var(--card);
+        padding: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        gap: .8rem;
+        transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s
+      }
+
+      .mres-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-2);
+        border-color: var(--copper)
+      }
+
+      .mres-card.top {
+        border-color: var(--copper);
+        box-shadow: 0 0 0 1px var(--copper)
+      }
+
+      .ring-wrap {
+        position: relative;
+        width: 64px;
+        height: 64px;
+        flex: none
+      }
+
+      .ring-wrap svg {
+        transform: rotate(-90deg)
+      }
+
+      .ring-bg {
+        fill: none;
+        stroke: var(--line);
+        stroke-width: 5
+      }
+
+      .ring-fg {
+        fill: none;
+        stroke: var(--copper);
+        stroke-width: 5;
+        stroke-linecap: round;
+        stroke-dasharray: 163.4;
+        transition: stroke-dashoffset 1.2s var(--ease) .3s
+      }
+
+      .ring-wrap b {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        font-family: var(--font-display);
+        font-size: var(--fs-small);
+        font-weight: 400
+      }
+
+      .mres-top {
+        display: flex;
+        gap: 1rem;
+        align-items: center
+      }
+
+      .mres-art {
+        color: var(--forest);
+        margin: -.4rem 0 -.8rem
+      }
+
+      [data-theme="dark"] .mres-art {
+        color: var(--limestone)
+      }
+
+      .mres-why {
+        list-style: none;
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        color: var(--ink-soft);
+        display: grid;
+        gap: .35rem
+      }
+
+      .mres-why li::before {
+        content: "✓ ";
+        color: var(--ok)
+      }
+
+      /* ---------- trails / range lab ---------- */
+      .lab {
+        container-type: inline-size;
+        background: var(--forest-deep);
+        color: var(--limestone);
+        border-radius: var(--r-md);
+        padding: clamp(1.4rem, 3.5vw, 2.6rem);
+        position: relative;
+        overflow: hidden
+      }
+
+      .lab::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-radial-gradient(circle at 8% 85%, transparent 0 52px, rgba(241, 236, 223, .05) 52px 53px)
+      }
+
+      .lab-grid {
+        position: relative;
+        display: grid;
+        gap: 2rem
+      }
+
+      @container (min-width:760px) {
+        .lab-grid {
+          grid-template-columns: 300px 1fr;
+          gap: 2.6rem
+        }
+      }
+
+      .lab h3 {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: var(--fs-h3);
+        margin-bottom: .9rem
+      }
+
+      .lab-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .5rem;
+        margin-bottom: 1.6rem
+      }
+
+      .lab-chip {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .08em;
+        padding: .55em 1em;
+        border: 1.5px solid rgba(241, 236, 223, .3);
+        border-radius: var(--r-pill);
+        color: rgba(241, 236, 223, .8);
+        transition: all var(--t-fast) var(--ease)
+      }
+
+      .lab-chip:hover {
+        border-color: var(--copper-bright);
+        color: var(--copper-bright)
+      }
+
+      .lab-chip[aria-pressed="true"] {
+        background: var(--copper-bright);
+        border-color: var(--copper-bright);
+        color: var(--forest-ink);
+        font-weight: 500
+      }
+
+      .seg {
+        display: inline-flex;
+        border: 1.5px solid rgba(241, 236, 223, .3);
+        border-radius: var(--r-md);
+        overflow: hidden;
+        margin-bottom: 1.6rem
+      }
+
+      .seg label {
+        padding: .6em 1.1em;
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        color: rgba(241, 236, 223, .75);
+        transition: all var(--t-fast);
+        border-right: 1.5px solid rgba(241, 236, 223, .2)
+      }
+
+      .seg label:last-child {
+        border-right: none
+      }
+
+      .seg input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none
+      }
+
+      .seg label:hover {
+        color: var(--copper-bright)
+      }
+
+      .seg label.sel {
+        background: var(--limestone);
+        color: var(--forest-ink);
+        font-weight: 500
+      }
+
+      .seg label:focus-within {
+        outline: 2px solid var(--copper-bright);
+        outline-offset: -3px
+      }
+
+      .lab .range-out {
+        color: var(--copper-bright)
+      }
+
+      .lab .range-out small {
+        color: rgba(241, 236, 223, .55)
+      }
+
+      .lab input[type="range"] {
+        background: rgba(241, 236, 223, .25)
+      }
+
+      .lab input[type="range"]::-webkit-slider-thumb {
+        border-color: var(--forest-deep);
+        box-shadow: 0 0 0 1.5px var(--copper-bright)
+      }
+
+      .lab .range-ticks {
+        color: rgba(241, 236, 223, .5)
+      }
+
+      .lab-viz svg {
+        width: 100%;
+        height: auto
+      }
+
+      #labDot {
+        transition: transform .4s var(--ease)
+      }
+
+      #labProg {
+        transition: stroke-dasharray .4s var(--ease)
+      }
+
+      .lab-hud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 2rem;
+        align-items: center;
+        margin-top: .6rem
+      }
+
+      .lab-batt {
+        display: flex;
+        align-items: center;
+        gap: .7rem
+      }
+
+      .lab-batt-shell {
+        width: 92px;
+        height: 26px;
+        border: 2px solid rgba(241, 236, 223, .6);
+        border-radius: 5px;
+        padding: 3px;
+        position: relative
+      }
+
+      .lab-batt-shell::after {
+        content: "";
+        position: absolute;
+        right: -6px;
+        top: 7px;
+        width: 4px;
+        height: 8px;
+        background: rgba(241, 236, 223, .6);
+        border-radius: 0 2px 2px 0
+      }
+
+      .lab-batt-shell i {
+        display: block;
+        height: 100%;
+        background: var(--ok);
+        border-radius: 2px;
+        width: var(--fill, 80%);
+        transition: width .5s var(--ease), background var(--t-fast)
+      }
+
+      .lab-batt-shell i.warn {
+        background: var(--warn)
+      }
+
+      .lab-batt-shell i.bad {
+        background: var(--bad)
+      }
+
+      .lab-pct {
+        font-family: var(--font-display);
+        font-size: var(--fs-h3)
+      }
+
+      .lab-msg {
+        flex: 1 1 260px;
+        font-size: var(--fs-small);
+        padding: .8em 1.1em;
+        border-radius: var(--r-sm);
+        border-left: 3px solid var(--ok);
+        background: rgba(127, 191, 151, .1);
+        transition: all var(--t-med)
+      }
+
+      .lab-msg.warn {
+        border-color: var(--warn);
+        background: rgba(217, 164, 65, .1)
+      }
+
+      .lab-msg.bad {
+        border-color: var(--bad);
+        background: rgba(239, 149, 83, .12)
+      }
+
+      .lab-msg button {
+        color: var(--copper-bright);
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 3px
+      }
+
+      .trail-list {
+        display: grid;
+        gap: 0;
+        margin-top: 3rem;
+        border-top: 1px solid var(--line)
+      }
+
+      .trail-item {
+        container-type: inline-size
+      }
+
+      .trow {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: .4rem 1.6rem;
+        align-items: center;
+        padding: 1.5rem .6rem;
+        border-bottom: 1px solid var(--line);
+        text-decoration: none;
+        transition: background var(--t-fast), padding-left var(--t-fast) var(--ease)
+      }
+
+      .trow:hover {
+        background: var(--copper-tint);
+        padding-left: 1.2rem
+      }
+
+      @container (min-width:640px) {
+        .trow {
+          grid-template-columns: auto 1fr 170px auto;
+          gap: 1.8rem
+        }
+      }
+
+      .t-idx {
+        font-family: var(--font-display);
+        font-size: var(--fs-h2);
+        color: var(--moss);
+        opacity: .55
+      }
+
+      .t-main h3 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        text-transform: uppercase;
+        font-size: var(--fs-h3);
+        letter-spacing: .02em
+      }
+
+      .t-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .4rem 1.2rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .08em;
+        color: var(--moss);
+        margin-top: .4rem;
+        text-transform: uppercase
+      }
+
+      .t-desc {
+        grid-column: 2/-1;
+        font-size: var(--fs-small);
+        color: var(--ink-soft);
+        max-width: 64ch
+      }
+
+      @container (min-width:640px) {
+        .t-desc {
+          grid-column: 2/3
+        }
+      }
+
+      .t-spark {
+        display: none
+      }
+
+      @container (min-width:640px) {
+        .t-spark {
+          display: block
+        }
+      }
+
+      .t-spark polyline {
+        fill: none;
+        stroke: var(--copper);
+        stroke-width: 2;
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+        transition: stroke-dashoffset 1.2s var(--ease) .2s
+      }
+
+      .reveal.in .t-spark polyline,
+      .trow:hover .t-spark polyline {
+        stroke-dashoffset: 0
+      }
+
+      .diff {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        padding: .4em .9em;
+        border-radius: var(--r-pill);
+        display: inline-flex;
+        align-items: center;
+        gap: .5em;
+        border: 1px solid currentColor
+      }
+
+      .diff::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: currentColor
+      }
+
+      .diff-easy {
+        color: var(--ok)
+      }
+
+      .diff-moderate {
+        color: var(--warn)
+      }
+
+      .diff-hard {
+        color: var(--bad)
+      }
+
+      .t-cta {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--copper);
+        white-space: nowrap;
+        display: inline-flex;
+        gap: .5em;
+        align-items: center
+      }
+
+      .trow:hover .t-cta {
+        gap: 1em
+      }
+
+      .t-cta {
+        transition: gap var(--t-fast) var(--ease)
+      }
+
+      /* ---------- booking ---------- */
+      .book-grid {
+        container-type: inline-size;
+        display: grid;
+        gap: 2rem
+      }
+
+      @container (min-width:880px) {
+        .book-grid {
+          grid-template-columns: 1.15fr .85fr;
+          align-items: start;
+          gap: 2.6rem
+        }
+      }
+
+      .prefill-banner {
+        display: none;
+        align-items: center;
+        gap: 1rem;
+        background: var(--copper-tint);
+        border: 1px solid var(--copper);
+        border-left: 4px solid var(--copper);
+        border-radius: var(--r-sm);
+        padding: .9rem 1.1rem;
+        margin-bottom: 1.6rem;
+        font-size: var(--fs-small)
+      }
+
+      .prefill-banner.show {
+        display: flex;
+        animation: viewIn .4s var(--ease)
+      }
+
+      .prefill-banner .mono {
+        font-size: var(--fs-tiny);
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--copper)
+      }
+
+      .prefill-banner button {
+        margin-left: auto;
+        width: 30px;
+        height: 30px;
+        flex: none;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: var(--moss)
+      }
+
+      .prefill-banner button:hover {
+        background: var(--line);
+        color: var(--danger)
+      }
+
+      .bk-steps {
+        display: flex;
+        gap: .4rem;
+        align-items: center;
+        margin-bottom: 1.8rem
+      }
+
+      .bk-node {
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--moss)
+      }
+
+      .bk-node i {
+        width: 26px;
+        height: 26px;
+        border: 1.5px solid var(--line-strong);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-style: normal;
+        transition: all var(--t-fast)
+      }
+
+      .bk-node.cur {
+        color: var(--ink)
+      }
+
+      .bk-node.cur i {
+        border-color: var(--copper);
+        color: var(--copper);
+        box-shadow: 0 0 0 4px var(--copper-tint)
+      }
+
+      .bk-node.done {
+        color: var(--ink-soft)
+      }
+
+      .bk-node.done i {
+        background: var(--forest);
+        border-color: var(--forest);
+        color: var(--limestone)
+      }
+
+      .bk-line {
+        flex: 1;
+        height: 1.5px;
+        background: var(--line);
+        min-width: 14px
+      }
+
+      .form-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--r-md);
+        padding: clamp(1.4rem, 3.5vw, 2.4rem)
+      }
+
+      fieldset {
+        border: none
+      }
+
+      fieldset+fieldset {
+        margin-top: 1.8rem
+      }
+
+      legend {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        color: var(--copper);
+        margin-bottom: 1.1rem;
+        padding-bottom: .5rem;
+        border-bottom: 1px solid var(--line);
+        width: 100%
+      }
+
+      .fld {
+        margin-bottom: 1.1rem
+      }
+
+      .fld label {
+        display: block;
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        margin-bottom: .45rem
+      }
+
+      .fld label em {
+        color: var(--copper);
+        font-style: normal
+      }
+
+      .fld input,
+      .fld select,
+      .fld textarea {
+        width: 100%;
+        padding: .85em 1em;
+        border: 1.5px solid var(--line-strong);
+        border-radius: var(--r-sm);
+        background: var(--paper);
+        color: var(--ink);
+        font: inherit;
+        font-size: var(--fs-small);
+        transition: border-color var(--t-fast), box-shadow var(--t-fast)
+      }
+
+      .fld textarea {
+        min-height: 96px;
+        resize: vertical
+      }
+
+      .fld input:focus,
+      .fld select:focus,
+      .fld textarea:focus {
+        outline: none;
+        border-color: var(--copper);
+        box-shadow: 0 0 0 3px var(--copper-tint)
+      }
+
+      .fld.invalid input,
+      .fld.invalid select,
+      .fld.invalid textarea {
+        border-color: var(--danger);
+        box-shadow: 0 0 0 3px rgba(168, 58, 40, .12)
+      }
+
+      .ferr {
+        display: none;
+        font-size: var(--fs-tiny);
+        color: var(--danger);
+        margin-top: .35rem;
+        font-family: var(--font-mono)
+      }
+
+      .fld.invalid .ferr {
+        display: block;
+        animation: viewIn .3s var(--ease)
+      }
+
+      .fld-row {
+        display: grid;
+        gap: 0 1.1rem;
+        grid-template-columns: 1fr 1fr
+      }
+
+      @media(max-width:520px) {
+        .fld-row {
+          grid-template-columns: 1fr
+        }
+      }
+
+      .switch-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: .9rem 1rem;
+        border: 1.5px solid var(--line);
+        border-radius: var(--r-sm);
+        cursor: pointer;
+        transition: border-color var(--t-fast), background var(--t-fast)
+      }
+
+      .switch-row:hover {
+        border-color: var(--copper)
+      }
+
+      .switch {
+        position: relative;
+        width: 46px;
+        height: 26px;
+        flex: none
+      }
+
+      .switch input {
+        position: absolute;
+        opacity: 0;
+        inset: 0;
+        cursor: pointer;
+        z-index: 2
+      }
+
+      .switch i {
+        position: absolute;
+        inset: 0;
+        background: var(--line-strong);
+        border-radius: var(--r-pill);
+        transition: background var(--t-fast)
+      }
+
+      .switch i::after {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--card);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+        transition: transform var(--t-fast) var(--ease)
+      }
+
+      .switch input:checked+i {
+        background: var(--ok)
+      }
+
+      .switch input:checked+i::after {
+        transform: translateX(20px)
+      }
+
+      .switch input:focus-visible+i {
+        outline: 2px solid var(--copper-bright);
+        outline-offset: 2px
+      }
+
+      .switch-txt b {
+        font-size: var(--fs-small);
+        display: block
+      }
+
+      .switch-txt small {
+        color: var(--moss);
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny)
+      }
+
+      .consent {
+        display: flex;
+        gap: .8rem;
+        align-items: flex-start;
+        font-size: var(--fs-small);
+        color: var(--ink-soft);
+        cursor: pointer
+      }
+
+      .consent input {
+        width: 18px;
+        height: 18px;
+        margin-top: .2em;
+        accent-color: var(--copper-deep);
+        flex: none;
+        cursor: pointer
+      }
+
+      .summary {
+        container-type: inline-size;
+        background: var(--forest-deep);
+        color: var(--limestone);
+        border-radius: var(--r-md);
+        padding: 1.6rem;
+        position: relative;
+        overflow: hidden
+      }
+
+      @container (min-width:880px) {
+        .summary {
+          position: sticky;
+          top: 5.5rem
+        }
+      }
+
+      .summary::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-radial-gradient(circle at 90% 10%, transparent 0 48px, rgba(241, 236, 223, .05) 48px 49px)
+      }
+
+      .summary>* {
+        position: relative
+      }
+
+      .summary h3 {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .24em;
+        text-transform: uppercase;
+        color: var(--copper-bright);
+        margin-bottom: 1.1rem
+      }
+
+      .sum-bike {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        border-bottom: 1px solid rgba(241, 236, 223, .15);
+        padding-bottom: 1rem;
+        margin-bottom: 1rem
+      }
+
+      .sum-bike svg {
+        width: 110px;
+        flex: none;
+        color: var(--limestone)
+      }
+
+      .sum-bike b {
+        font-family: var(--font-display);
+        font-weight: 400;
+        text-transform: uppercase;
+        font-size: var(--fs-h3);
+        display: block
+      }
+
+      .sum-bike small {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        color: rgba(241, 236, 223, .6);
+        letter-spacing: .08em
+      }
+
+      .sum-line {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-small);
+        padding: .42rem 0;
+        color: rgba(241, 236, 223, .85)
+      }
+
+      .sum-line.total {
+        border-top: 1px solid rgba(241, 236, 223, .2);
+        margin-top: .6rem;
+        padding-top: .9rem;
+        align-items: baseline
+      }
+
+      .sum-line.total b {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: var(--fs-h2);
+        color: var(--copper-bright)
+      }
+
+      .sum-note {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        color: rgba(241, 236, 223, .5);
+        margin-top: 1rem;
+        line-height: 1.7
+      }
+
+      .bk-success {
+        display: none;
+        text-align: left;
+        padding: .5rem 0
+      }
+
+      .bk-success.show {
+        display: block;
+        animation: viewIn .5s var(--ease)
+      }
+
+      .check-ring {
+        width: 74px;
+        height: 74px;
+        margin-bottom: 1.2rem
+      }
+
+      .check-ring circle {
+        fill: none;
+        stroke: var(--ok);
+        stroke-width: 3;
+        stroke-dasharray: 220;
+        stroke-dashoffset: 220;
+        animation: draw 1s var(--ease) forwards
+      }
+
+      .check-ring path {
+        fill: none;
+        stroke: var(--ok);
+        stroke-width: 4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 60;
+        stroke-dashoffset: 60;
+        animation: draw .6s var(--ease) .7s forwards
+      }
+
+      @keyframes draw {
+        to {
+          stroke-dashoffset: 0
+        }
+      }
+
+      .bk-success h2 {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: var(--fs-h2)
+      }
+
+      .ref-code {
+        font-family: var(--font-mono);
+        font-size: var(--fs-small);
+        letter-spacing: .18em;
+        color: var(--copper);
+        background: var(--copper-tint);
+        display: inline-block;
+        padding: .5em 1em;
+        border-radius: var(--r-sm);
+        margin: .8rem 0 1.2rem
+      }
+
+      .next-steps {
+        list-style: none;
+        counter-reset: ns;
+        display: grid;
+        gap: .7rem;
+        margin: 1.2rem 0 1.6rem
+      }
+
+      .next-steps li {
+        counter-increment: ns;
+        display: flex;
+        gap: 1rem;
+        font-size: var(--fs-small);
+        color: var(--ink-soft)
+      }
+
+      .next-steps li::before {
+        content: counter(ns, decimal-leading-zero);
+        font-family: var(--font-mono);
+        color: var(--copper);
+        font-size: var(--fs-tiny);
+        padding-top: .25em
+      }
+
+      /* ---------- own it ---------- */
+      #view-own {
+        background: var(--forest-ink);
+        color: var(--limestone)
+      }
+
+      #view-own::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto;
+        height: 70vh;
+        background: radial-gradient(60% 80% at 85% 0%, rgba(224, 129, 63, .16), transparent 70%);
+        pointer-events: none
+      }
+
+      .own-grid {
+        display: grid;
+        gap: 2.6rem
+      }
+
+      @media(min-width:960px) {
+        .own-grid {
+          grid-template-columns: 1.05fr .95fr;
+          gap: 3.6rem;
+          align-items: center
+        }
+      }
+
+      .own-art {
+        border: 1px solid rgba(241, 236, 223, .16);
+        border-radius: var(--r-md);
+        padding: 2.4rem 1.6rem 1.4rem;
+        position: relative;
+        overflow: hidden;
+        background: rgba(241, 236, 223, .03)
+      }
+
+      .own-art::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-radial-gradient(circle at 15% 80%, transparent 0 50px, rgba(241, 236, 223, .045) 50px 51px)
+      }
+
+      .own-art svg {
+        position: relative;
+        transition: transform .6s var(--ease);
+        color: var(--limestone)
+      }
+
+      .own-art[data-angle="cockpit"] svg {
+        transform: scale(1.7) translate(-24%, -16%)
+      }
+
+      .own-art[data-angle="motor"] svg {
+        transform: scale(1.9) translate(-10%, 6%)
+      }
+
+      .own-art[data-angle="action"] svg {
+        transform: rotate(-5deg) scale(1.06)
+      }
+
+      .own-num {
+        position: absolute;
+        top: 1.1rem;
+        left: 1.2rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .24em;
+        color: var(--copper-bright);
+        text-transform: uppercase
+      }
+
+      .angles {
+        position: relative;
+        display: flex;
+        gap: .5rem;
+        justify-content: center;
+        margin-top: 1.4rem;
+        flex-wrap: wrap
+      }
+
+      .angle-btn {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        padding: .55em 1em;
+        border: 1.5px solid rgba(241, 236, 223, .28);
+        border-radius: var(--r-pill);
+        color: rgba(241, 236, 223, .75);
+        transition: all var(--t-fast) var(--ease)
+      }
+
+      .angle-btn:hover {
+        border-color: var(--copper-bright);
+        color: var(--copper-bright)
+      }
+
+      .angle-btn[aria-pressed="true"] {
+        background: var(--copper-bright);
+        border-color: var(--copper-bright);
+        color: var(--forest-ink)
+      }
+
+      .own-spec {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .1rem 2rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-small);
+        margin: 1.4rem 0
+      }
+
+      .own-spec div {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: .6rem 0;
+        border-bottom: 1px solid rgba(241, 236, 223, .14)
+      }
+
+      .own-spec dt {
+        color: rgba(241, 236, 223, .55)
+      }
+
+      .own-spec dd {
+        font-weight: 500;
+        text-align: right
+      }
+
+      .own-price {
+        display: flex;
+        align-items: baseline;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        margin: 1.4rem 0
+      }
+
+      .own-price b {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: var(--fs-h1);
+        color: var(--copper-bright)
+      }
+
+      .own-price small {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        color: rgba(241, 236, 223, .6);
+        letter-spacing: .1em;
+        text-transform: uppercase
+      }
+
+      .units {
+        display: flex;
+        gap: .45rem;
+        margin: .4rem 0 1.6rem
+      }
+
+      .units i {
+        width: 14px;
+        height: 22px;
+        border: 1.5px solid rgba(241, 236, 223, .35);
+        border-radius: 2px;
+        transition: background var(--t-fast)
+      }
+
+      .units i.sold {
+        background: var(--copper-bright);
+        border-color: var(--copper-bright)
+      }
+
+      .units-label {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: rgba(241, 236, 223, .6);
+        margin-bottom: .5rem
+      }
+
+      .own-form-card {
+        background: var(--limestone);
+        color: var(--ink);
+        border-radius: var(--r-md);
+        padding: clamp(1.4rem, 3.5vw, 2.4rem);
+        margin-top: 3.4rem;
+        max-width: 760px
+      }
+
+      .own-form-card h3 {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: var(--fs-h2)
+      }
+
+      .contact-pills {
+        display: flex;
+        gap: .5rem;
+        flex-wrap: wrap
+      }
+
+      .cp {
+        position: relative
+      }
+
+      .cp input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none
+      }
+
+      .cp span {
+        display: inline-block;
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        padding: .6em 1.1em;
+        border: 1.5px solid var(--line-strong);
+        border-radius: var(--r-pill);
+        cursor: pointer;
+        transition: all var(--t-fast) var(--ease)
+      }
+
+      .cp span:hover {
+        border-color: var(--copper);
+        color: var(--copper)
+      }
+
+      .cp input:checked+span {
+        background: var(--forest);
+        border-color: var(--forest);
+        color: var(--limestone)
+      }
+
+      .cp input:focus-visible+span {
+        outline: 2px solid var(--copper-bright);
+        outline-offset: 2px
+      }
+
+      /* ---------- basecamp ---------- */
+      .quote {
+        font-family: var(--font-display);
+        font-weight: 400;
+        text-transform: uppercase;
+        font-size: clamp(1.5rem, 3vw, 2.3rem);
+        line-height: 1.15;
+        position: relative;
+        padding-top: 1.4rem
+      }
+
+      .quote::before {
+        content: "“";
+        position: absolute;
+        top: -1.4rem;
+        left: -.15em;
+        font-size: 2.4em;
+        color: var(--copper);
+        line-height: 1
+      }
+
+      .sig {
+        font-family: var(--font-mono);
+        font-size: var(--fs-small);
+        color: var(--copper);
+        margin-top: 1.2rem;
+        letter-spacing: .06em
+      }
+
+      .tl {
+        border-left: 2px solid var(--line);
+        padding-left: 2rem;
+        display: grid;
+        gap: 1.8rem;
+        margin-top: 2rem
+      }
+
+      .tl-item {
+        position: relative
+      }
+
+      .tl-item::before {
+        content: "";
+        position: absolute;
+        left: calc(-2rem - 7px);
+        top: .4em;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 3px solid var(--copper)
+      }
+
+      .tl-item b {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: var(--fs-h3);
+        color: var(--copper-deep);
+        letter-spacing: .04em
+      }
+
+      [data-theme="dark"] .tl-item b {
+        color: var(--copper-bright)
+      }
+
+      .tl-item p {
+        font-size: var(--fs-small);
+        color: var(--ink-soft)
+      }
+
+      .awards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.1rem 2.6rem;
+        border-block: 1px solid var(--line);
+        padding: 1.7rem 0;
+        align-items: center
+      }
+
+      .award {
+        display: flex;
+        align-items: center;
+        gap: .8rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--ink-soft)
+      }
+
+      .award svg {
+        width: 26px;
+        height: 26px;
+        color: var(--copper);
+        flex: none
+      }
+
+      .visit-grid {
+        display: grid;
+        gap: 1.6rem
+      }
+
+      @media(min-width:900px) {
+        .visit-grid {
+          grid-template-columns: 1fr 1.1fr
+        }
+      }
+
+      .info-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--r-md);
+        padding: 1.8rem
+      }
+
+      .info-card h3 {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: var(--fs-h3);
+        margin-bottom: 1.1rem
+      }
+
+      .hours-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: .7rem 0;
+        border-bottom: 1px solid var(--line);
+        font-family: var(--font-mono);
+        font-size: var(--fs-small)
+      }
+
+      .hours-row:last-of-type {
+        border: none
+      }
+
+      .hours-row b {
+        font-weight: 500
+      }
+
+      .addr {
+        font-style: normal;
+        line-height: 1.9;
+        font-size: var(--fs-small);
+        color: var(--ink-soft)
+      }
+
+      .addr b {
+        color: var(--ink)
+      }
+
+      .map-panel {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: var(--r-md);
+        padding: 1rem;
+        overflow: hidden
+      }
+
+      .map-panel svg {
+        width: 100%;
+        height: auto
+      }
+
+      .contact-btns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .7rem;
+        margin-top: 1.2rem
+      }
+
+      .faq {
+        margin-top: 2.4rem;
+        border-top: 1px solid var(--line)
+      }
+
+      .faq-item {
+        border-bottom: 1px solid var(--line)
+      }
+
+      .faq-q {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1.4rem;
+        padding: 1.25rem .2rem;
+        text-align: left;
+        font-weight: 600;
+        font-size: var(--fs-body);
+        transition: color var(--t-fast), padding-left var(--t-fast) var(--ease)
+      }
+
+      .faq-q:hover {
+        color: var(--copper);
+        padding-left: .6rem
+      }
+
+      .faq-q svg {
+        width: 16px;
+        height: 16px;
+        flex: none;
+        transition: transform .35s var(--ease);
+        color: var(--copper)
+      }
+
+      .faq-item.open .faq-q svg {
+        transform: rotate(45deg)
+      }
+
+      .faq-a {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows .4s var(--ease)
+      }
+
+      .faq-item.open .faq-a {
+        grid-template-rows: 1fr
+      }
+
+      .faq-a>div {
+        overflow: hidden
+      }
+
+      .faq-a p {
+        font-size: var(--fs-small);
+        color: var(--ink-soft);
+        padding: 0 .2rem 1.3rem;
+        max-width: 70ch
+      }
+
+      /* ---------- 404 ---------- */
+      .notfound {
+        min-height: 82vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 8rem 1rem 5rem;
+        background: var(--forest-deep);
+        color: var(--limestone);
+        position: relative;
+        overflow: hidden
+      }
+
+      .notfound::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-radial-gradient(circle at 50% 120%, transparent 0 60px, rgba(241, 236, 223, .05) 60px 61px)
+      }
+
+      .compass {
+        width: 110px;
+        margin-bottom: 1.6rem;
+        position: relative
+      }
+
+      .compass .needle {
+        animation: wobble 5s ease-in-out infinite alternate;
+        transform-origin: 50px 50px
+      }
+
+      @keyframes wobble {
+        from {
+          transform: rotate(-14deg)
+        }
+
+        to {
+          transform: rotate(16deg)
+        }
+      }
+
+      .notfound h1 {
+        font-size: var(--fs-h1);
+        position: relative
+      }
+
+      .notfound p {
+        color: rgba(241, 236, 223, .7);
+        max-width: 44ch;
+        margin: 1rem auto 2rem;
+        position: relative
+      }
+
+      /* ---------- footer ---------- */
+      .site-footer {
+        background: var(--forest-ink);
+        color: var(--limestone);
+        padding: 4.5rem 0 2rem;
+        position: relative;
+        overflow: hidden
+      }
+
+      .foot-word {
+        font-family: var(--font-display);
+        font-size: clamp(2.6rem, 9vw, 6.5rem);
+        text-transform: uppercase;
+        line-height: .9;
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(241, 236, 223, .22);
+        white-space: nowrap;
+        margin-bottom: 3rem;
+        user-select: none
+      }
+
+      .foot-grid {
+        display: grid;
+        gap: 2.4rem;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        padding-bottom: 2.6rem;
+        border-bottom: 1px solid rgba(241, 236, 223, .12)
+      }
+
+      .foot-grid h4 {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .24em;
+        text-transform: uppercase;
+        color: var(--copper-bright);
+        margin-bottom: 1rem
+      }
+
+      .foot-grid p,
+      .foot-grid address {
+        font-size: var(--fs-small);
+        color: rgba(241, 236, 223, .68);
+        font-style: normal;
+        line-height: 1.9
+      }
+
+      .foot-links {
+        list-style: none;
+        display: grid;
+        gap: .5rem
+      }
+
+      .foot-links a {
+        text-decoration: none;
+        font-size: var(--fs-small);
+        color: rgba(241, 236, 223, .75);
+        transition: color var(--t-fast), padding-left var(--t-fast) var(--ease)
+      }
+
+      .foot-links a:hover {
+        color: var(--copper-bright);
+        padding-left: .4em
+      }
+
+      .foot-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .5rem;
+        margin-top: 1rem
+      }
+
+      .foot-badges span {
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .08em;
+        border: 1px solid rgba(241, 236, 223, .25);
+        border-radius: var(--r-pill);
+        padding: .4em .9em;
+        color: rgba(241, 236, 223, .6)
+      }
+
+      .foot-bottom {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 1.6rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-tiny);
+        letter-spacing: .08em;
+        color: rgba(241, 236, 223, .45)
+      }
+
+      .to-top {
+        width: 44px;
+        height: 44px;
+        border: 1.5px solid rgba(241, 236, 223, .3);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: var(--limestone);
+        transition: all var(--t-fast) var(--ease)
+      }
+
+      .to-top:hover {
+        border-color: var(--copper-bright);
+        color: var(--copper-bright);
+        transform: translateY(-4px)
+      }
+
+      /* ---------- reduced motion ---------- */
+      @media (prefers-reduced-motion: reduce) {
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: .01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: .01ms !important;
+          scroll-behavior: auto !important
+        }
+
+        .reveal {
+          opacity: 1;
+          transform: none
+        }
+
+        .hero-line>span {
+          transform: none
+        }
+
+        .hero-sub,
+        .hero-cta {
+          opacity: 1;
+          transform: none
+        }
+
+        .elev-line,
+        .route-draw,
+        .t-spark polyline {
+          stroke-dashoffset: 0
+        }
+
+        .tick-track {
+          animation: none
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="sr-only" role="status" aria-live="polite" id="announcer"></div>
+
+    <!-- ================= HEADER ================= -->
+    <header class="site-header" id="siteHeader">
+      <div class="wrap header-inner">
+        <a class="brand" href="#/" aria-label="Alpine Volt Fleet — home">
+          <svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true">
+            <path d="M3 29 L13 8 L20 21 L25 13 L33 29 Z" fill="none" stroke="currentColor" stroke-width="2.4"
+              stroke-linejoin="round" />
+            <path d="M19 4 L12 18 h5 L14 30 L24 15 h-5 L22 4 Z" fill="var(--copper-bright)" />
+          </svg>
+          <span class="brand-word"><b>Alpine Volt</b><span>Fleet</span></span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a class="nav-link" data-route="/" href="#/">Trailhead</a>
+          <a class="nav-link" data-route="/fleet" href="#/fleet">The Fleet</a>
+          <a class="nav-link" data-route="/match" href="#/match">Ride Match</a>
+          <a class="nav-link" data-route="/trails" href="#/trails">Trails</a>
+          <a class="nav-link" data-route="/own" href="#/own">Own It</a>
+          <a class="nav-link" data-route="/basecamp" href="#/basecamp">Basecamp</a>
+        </nav>
+        <div class="header-actions">
+          <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode" aria-pressed="false">
+            <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4.5" />
+              <path
+                d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M19.4 4.6l-1.8 1.8M6.4 17.6l-1.8 1.8" />
+            </svg>
+            <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 13.2A8.8 8.8 0 1 1 10.8 3a7 7 0 0 0 10.2 10.2Z" />
+            </svg>
+          </button>
+          <a class="btn btn-primary btn-sm header-cta" href="#/reserve">Book a Ride <span class="arr"
+              aria-hidden="true">→</span></a>
+          <button class="burger" id="navToggle" aria-label="Open menu" aria-expanded="false"
+            aria-controls="drawer"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </header>
+
+    <!-- off-canvas drawer -->
+    <div class="scrim" id="scrim" aria-hidden="true"></div>
+    <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="drawer-top">
+        <span class="mono" style="font-size:var(--fs-tiny);letter-spacing:.3em;color:var(--copper-bright)">TRAIL
+          MENU</span>
+        <button class="icon-btn" id="drawerClose" aria-label="Close menu" style="border-color:rgba(241,236,223,.3)"><svg
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            aria-hidden="true">
+            <path d="M5 5l14 14M19 5L5 19" />
+          </svg></button>
+      </div>
+      <nav class="drawer-nav" aria-label="Drawer">
+        <a class="dlink" data-route="/" href="#/" style="transition-delay:.05s">Trailhead <span
+            class="mono">01</span></a>
+        <a class="dlink" data-route="/fleet" href="#/fleet" style="transition-delay:.1s">The Fleet <span
+            class="mono">02</span></a>
+        <a class="dlink" data-route="/match" href="#/match" style="transition-delay:.15s">Ride Match <span
+            class="mono">03</span></a>
+        <a class="dlink" data-route="/trails" href="#/trails" style="transition-delay:.2s">Trails <span
+            class="mono">04</span></a>
+        <a class="dlink" data-route="/reserve" href="#/reserve" style="transition-delay:.25s">Reserve <span
+            class="mono">05</span></a>
+        <a class="dlink" data-route="/own" href="#/own" style="transition-delay:.3s">Own It <span
+            class="mono">06</span></a>
+        <a class="dlink" data-route="/basecamp" href="#/basecamp" style="transition-delay:.35s">Basecamp <span
+            class="mono">07</span></a>
+      </nav>
+      <div class="drawer-foot">
+        Šentjanž pri Dravogradu 42<br>2370 Dravograd, Slovenia<br>
+        <a href="tel:+38628700000" style="color:var(--copper-bright)">+386 (0)2 87 00 000</a>
+      </div>
+    </aside>
+
+    <main id="main" tabindex="-1">
+
+      <!-- ================= HOME / TRAILHEAD ================= -->
+      <section class="view" id="view-home" tabindex="-1" aria-labelledby="vh-title">
+        <div class="hero" id="hero">
+          <svg class="hero-scene" viewBox="0 0 1440 810" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#0c1f18" />
+                <stop offset=".48" stop-color="#23503c" />
+                <stop offset=".74" stop-color="#a5793f" />
+                <stop offset=".9" stop-color="#e5b877" />
+              </linearGradient>
+              <radialGradient id="sunGlow">
+                <stop offset="0" stop-color="#f6d38b" stop-opacity=".85" />
+                <stop offset="1" stop-color="#f6d38b" stop-opacity="0" />
+              </radialGradient>
+              <filter id="mistBlur">
+                <feGaussianBlur stdDeviation="16" />
+              </filter>
+            </defs>
+            <rect width="1440" height="810" fill="url(#sky)" />
+            <g class="plx" data-speed=".26">
+              <circle cx="990" cy="555" r="170" fill="url(#sunGlow)" />
+              <circle cx="990" cy="555" r="46" fill="#f2cd88" />
+            </g>
+            <g class="plx" data-speed=".2">
+              <path d="M0 600 L180 468 320 558 520 428 700 545 900 438 1080 540 1250 462 1440 552 V810 H0 Z"
+                fill="#3c6b54" opacity=".5" />
+            </g>
+            <g class="plx" data-speed=".13">
+              <path d="M0 652 L150 545 340 625 560 498 760 615 980 518 1180 610 1330 548 1440 598 V810 H0 Z"
+                fill="#24503c" opacity=".88" />
+            </g>
+            <g class="plx" data-speed=".17">
+              <g class="mist-drift">
+                <ellipse cx="480" cy="648" rx="430" ry="30" fill="#e9e2cf" opacity=".17" filter="url(#mistBlur)" />
+                <ellipse cx="1080" cy="676" rx="360" ry="24" fill="#e9e2cf" opacity=".12" filter="url(#mistBlur)" />
+              </g>
+            </g>
+            <g class="plx" data-speed=".06">
+              <path d="M0 722 L200 618 420 700 640 588 860 690 1100 598 1300 680 1440 638 V810 H0 Z" fill="#0e241c" />
+            </g>
+            <rect y="766" width="1440" height="44" fill="#0a1a14" />
+            <path d="M60 782 h180 M420 792 h240 M840 780 h150 M1120 794 h220" stroke="#d9c9a0" stroke-width="1.5"
+              opacity=".14" />
+          </svg>
+          <div class="hero-topo" aria-hidden="true"></div>
+
+          <div class="hero-inner">
+            <p class="hero-meta"><i>●</i> Šentjanž pri Dravogradu <span>46.58°N · 15.02°E</span> <span>392 m</span>
+              <span id="heroTime">07:40 CET</span>
+            </p>
+            <h1 class="hero-title" id="vh-title">
+              <span class="hero-line"><span>Karawanken up.</span></span>
+              <span class="hero-line outline"><span>Drava down.</span></span>
+              <span class="hero-line accent"><span>You, electric.</span></span>
+            </h1>
+            <p class="hero-sub">Premium e-bike rentals &amp; sales at the trailhead of Slovenia's Koroška region —
+              eighteen machines, charged overnight, matched to you like a guide matches a route to the weather.</p>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#/match">Match Me to a Bike <span class="arr"
+                  aria-hidden="true">→</span></a>
+              <a class="btn btn-ghost" href="#/fleet"
+                style="border-color:rgba(241,236,223,.4);color:var(--limestone)">Browse the Fleet</a>
+            </div>
+          </div>
+
+          <div class="scroll-cue" aria-hidden="true"><small>SCROLL</small><i></i></div>
+          <p class="hero-rail" aria-hidden="true">KOROŠKA · SLOVENIJA · EST. 2019</p>
+
+          <div class="hero-elev" aria-hidden="true">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <line x1="0" y1="104" x2="1200" y2="104" stroke="rgba(241,236,223,.2)" stroke-width="1" />
+              <path class="elev-line" pathLength="1"
+                d="M0 96 L90 88 170 92 260 70 340 78 430 46 520 60 610 34 700 52 790 26 880 44 970 20 1060 38 1140 30 1200 34"
+                fill="none" stroke="var(--copper-bright)" stroke-width="2.5" stroke-linejoin="round" />
+              <circle cx="430" cy="46" r="3.5" fill="var(--copper-bright)" />
+              <circle cx="970" cy="20" r="3.5" fill="var(--copper-bright)" />
+              <text class="elev-txt" x="14" y="118">0 KM · 392 M</text>
+              <text class="elev-txt" x="400" y="36">10 KM · 758 M</text>
+              <text class="elev-txt" x="930" y="12">30 KM · 1 240 M</text>
+              <text class="elev-txt" x="1120" y="118">40 KM</text>
+            </svg>
+          </div>
+
+          <div class="ticker" role="region" aria-label="Current trail conditions">
+            <div class="tick-track" id="tickTrack"><!-- rendered by JS --></div>
+          </div>
+        </div>
+
+        <!-- field notes -->
+        <div class="section topo">
+          <div class="wrap split">
+            <div class="sticky reveal">
+              <p class="kicker">Field Notes · Koroška, Slovenia</p>
+              <h2 class="h-display">A valley that rides back.</h2>
+              <a class="sec-link" href="#/basecamp">Meet the crew <span aria-hidden="true">→</span></a>
+            </div>
+            <div>
+              <p class="dropcap reveal" style="--d:.1s">The Drava carved this valley; the Karawanken guard it; and
+                somewhere between the two, an electric motor makes the whole thing feel personal. We keep our fleet at a
+                trailhead five minutes off Route 430 — tuned every morning, charged to 100% overnight, and handed over
+                with a chalkboard briefing on today's surface conditions.</p>
+              <p class="reveal" style="--d:.2s;margin-top:1.1rem;color:var(--ink-soft)">No queues, no plastic tourism.
+                Just Luka, a map with too many pencil lines on it, and the best gravel in the Eastern Alps. Most riders
+                come for a loop; most come back the next day for a bigger one.</p>
+              <div class="stats">
+                <div class="stat reveal" style="--d:.15s"><b>240<em>+</em></b><span>km marked trails</span></div>
+                <div class="stat reveal" style="--d:.25s"><b>18</b><span>e-bikes, tuned daily</span></div>
+                <div class="stat reveal" style="--d:.35s"><b>1 699<em>m</em></b><span>highest rideable point</span>
+                </div>
+                <div class="stat reveal" style="--d:.45s"><b>96<em>%</em></b><span>return with charge to spare</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- fleet teaser carousel -->
+        <div class="section" style="padding-top:0">
+          <div class="wrap">
+            <div class="sec-head reveal">
+              <div>
+                <p class="kicker">The Machines</p>
+                <h2 class="h-display">Freshly charged.</h2>
+              </div>
+              <div class="car-ctrl">
+                <button class="icon-btn" id="carPrev" aria-label="Scroll fleet left"><svg viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <path d="M15 5l-7 7 7 7" />
+                  </svg></button>
+                <button class="icon-btn" id="carNext" aria-label="Scroll fleet right"><svg viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <path d="M9 5l7 7-7 7" />
+                  </svg></button>
+              </div>
+            </div>
+            <div class="car-track reveal" id="carTrack" data-rv="fade" tabindex="0"
+              aria-label="Fleet carousel — scroll horizontally"></div>
+            <div style="text-align:right;margin-top:.6rem"><a class="sec-link" href="#/fleet">Full fleet &amp; filters
+                <span aria-hidden="true">→</span></a></div>
+          </div>
+        </div>
+
+        <!-- ride match band -->
+        <div class="section band-dark topo-inv" style="overflow:hidden">
+          <div class="wrap split">
+            <div class="reveal">
+              <p class="kicker">Signature Tool</p>
+              <h2 class="h-display" style="font-size:var(--fs-h1);margin:.4em 0 .5em">Four questions.<br>One perfect
+                bike.</h2>
+              <p class="lede">Tell us how you ride and where you want to hurt a little. Ride Match reads our fleet the
+                way a trail guide reads weather — then hands you the right machine with the battery math already done.
+              </p>
+              <ol class="mono"
+                style="list-style:none;display:grid;gap:.5rem;margin:1.6rem 0 2rem;font-size:var(--fs-tiny);letter-spacing:.16em;text-transform:uppercase;color:rgba(241,236,223,.65)">
+                <li><span style="color:var(--copper-bright)">01</span> — Experience</li>
+                <li><span style="color:var(--copper-bright)">02</span> — Terrain</li>
+                <li><span style="color:var(--copper-bright)">03</span> — Distance</li>
+                <li><span style="color:var(--copper-bright)">04</span> — Crew size</li>
+              </ol>
+              <a class="btn btn-light" href="#/match">Match Me to a Bike <span class="arr"
+                  aria-hidden="true">→</span></a>
+            </div>
+            <div class="reveal" data-rv="scale" style="--d:.15s;align-self:center">
+              <svg viewBox="0 0 520 300" role="img" aria-label="Animated topographic route preview">
+                <g fill="none" stroke="rgba(241,236,223,.12)">
+                  <ellipse cx="400" cy="80" rx="150" ry="60" />
+                  <ellipse cx="400" cy="80" rx="110" ry="42" />
+                  <ellipse cx="400" cy="80" rx="70" ry="26" />
+                  <ellipse cx="120" cy="240" rx="130" ry="48" />
+                  <ellipse cx="120" cy="240" rx="88" ry="30" />
+                </g>
+                <path d="M20 260 C90 240 120 180 190 170 S300 210 350 140 430 110 500 60" fill="none"
+                  stroke="var(--copper-bright)" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 12"
+                  style="animation:dashMarch 6s linear infinite" />
+                <circle cx="20" cy="260" r="6" fill="var(--limestone)" />
+                <circle cx="500" cy="60" r="6" fill="var(--copper-bright)" />
+                <text x="36" y="270" class="elev-txt">BASECAMP · 392 M</text><text x="392" y="46" class="elev-txt">RIDGE
+                  · 1 240 M</text>
+              </svg>
+              <style>
+                @keyframes dashMarch {
+                  to {
+                    stroke-dashoffset: -220
+                  }
+                }
+              </style>
+            </div>
+          </div>
+        </div>
+
+        <!-- trails teaser -->
+        <div class="section">
+          <div class="wrap">
+            <div class="sec-head reveal">
+              <div>
+                <p class="kicker">Today's Signature Routes</p>
+                <h2 class="h-display">Pick a line.</h2>
+              </div>
+              <a class="sec-link" href="#/trails">All trails &amp; range lab <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="trail-list" id="homeTrailList" style="border-top:1px solid var(--line)"></div>
+          </div>
+        </div>
+
+        <!-- awards -->
+        <div class="section" style="padding-top:0">
+          <div class="wrap">
+            <h2 class="sr-only">Certifications and partners</h2>
+            <div class="awards reveal" data-rv="fade">
+              <span class="award"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                  aria-hidden="true">
+                  <path d="M12 3l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 8.7l5.4-.8Z" />
+                </svg>Slovenia Green Tourism Certified</span>
+              <span class="award"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                  aria-hidden="true">
+                  <circle cx="12" cy="12" r="8" />
+                  <path d="M13 7l-3 5h4l-3 5" />
+                </svg>Bosch eBike Systems Partner</span>
+              <span class="award"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                  aria-hidden="true">
+                  <path d="M3 19L9 8l4 6 3-4 5 9Z" />
+                </svg>Koroška Bike Trail Network — Founding Member</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- visit mini -->
+        <div class="section" style="padding-top:0">
+          <div class="wrap reveal">
+            <div class="info-card topo"
+              style="display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:center">
+              <div>
+                <p class="kicker">The Trailhead</p>
+                <h2 class="h-display" style="font-size:var(--fs-h2);margin-top:.4em">Find the barn with the lightning
+                  bolt.</h2>
+                <p style="font-size:var(--fs-small);color:var(--ink-soft);margin-top:.8rem">5 min off Route 430 · free
+                  parking at the trailhead lot · coffee's on.</p>
+              </div>
+              <div>
+                <div class="hours-row"><span>Apr – Oct</span><b>Mon–Sun · 08:00–19:00</b></div>
+                <div class="hours-row"><span>Nov – Mar</span><b>Fri–Sun · 09:00–16:00</b></div>
+                <div class="contact-btns">
+                  <a class="btn btn-ghost btn-sm" href="https://maps.google.com/?q=Šentjanž+pri+Dravogradu+42"
+                    target="_blank" rel="noopener">Get Directions <span class="arr" aria-hidden="true">↗</span></a>
+                  <a class="btn btn-primary btn-sm" href="tel:+38628700000">Call Basecamp</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= FLEET ================= -->
+      <section class="view" id="view-fleet" tabindex="-1" aria-labelledby="vf-title">
+        <div class="wrap page-head">
+          <p class="kicker reveal">Rentals &amp; Sales · 18 Bikes on Site</p>
+          <h1 class="h-display reveal" id="vf-title" style="--d:.08s">The Fleet.</h1>
+          <p class="lede reveal" style="--d:.16s">Six machines, one obsession. Every bike is serviced after every rental
+            and charged to 100% before it meets you. Filter by how you ride — or search by obsession.</p>
+        </div>
+        <div class="wrap" style="padding-bottom:var(--sp-section)">
+          <div class="toolbar reveal" data-rv="fade">
+            <div class="search-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                aria-hidden="true">
+                <circle cx="11" cy="11" r="7" />
+                <path d="M20 20l-3.5-3.5" />
+              </svg>
+              <input type="search" id="bikeSearch" placeholder="Search bikes… try 'gravel' or 'kids'"
+                aria-label="Search the fleet">
+              <button class="search-clear" id="searchClear" aria-label="Clear search">✕</button>
+            </div>
+            <div id="chipRow" role="group" aria-label="Filter by category"
+              style="display:flex;flex-wrap:wrap;gap:.5rem"></div>
+            <span class="count-read" id="bikeCount" aria-live="polite"></span>
+          </div>
+          <div class="fleet-grid" id="fleetGrid"></div>
+          <div class="empty" id="emptyBox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              aria-hidden="true">
+              <circle cx="6" cy="17" r="3.5" />
+              <circle cx="18" cy="17" r="3.5" />
+              <path d="M6 17h6l3-6h3M9 8h4" />
+            </svg>
+            <h3>No bikes on this trail</h3>
+            <p>Nothing matches that search. Try "gravel", "kids", or clear the filters to see the whole fleet.</p>
+            <button class="btn btn-ghost btn-sm" id="emptyClear">Clear Search &amp; Filters</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= RIDE MATCH ================= -->
+      <section class="view" id="view-match" tabindex="-1" aria-labelledby="vm-title">
+        <div class="wrap page-head">
+          <p class="kicker reveal">Ride Match™ · The Recommender</p>
+          <h1 class="h-display reveal" id="vm-title" style="--d:.08s">Matched to the mountain.</h1>
+          <p class="lede reveal" style="--d:.16s">Four questions stand between you and the right machine. Answer
+            honestly — the battery math doesn't care about your ego, and neither do we.</p>
+        </div>
+        <div class="wrap" style="padding-bottom:var(--sp-section)">
+          <div class="match-grid">
+            <ol class="mrail reveal" id="matchRail" data-rv="left" aria-label="Ride Match progress"></ol>
+            <div id="matchStage" class="reveal" data-rv="fade" style="--d:.1s" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TRAILS ================= -->
+      <section class="view" id="view-trails" tabindex="-1" aria-labelledby="vt-title">
+        <div class="wrap page-head">
+          <p class="kicker reveal">Koroška Trail Network · Updated Daily 07:40</p>
+          <h1 class="h-display reveal" id="vt-title" style="--d:.08s">Know before you go.</h1>
+          <p class="lede reveal" style="--d:.16s">Conditions from the trailhead, elevation from the ridge, and one
+            honest question answered below: <em>will I make it back?</em></p>
+        </div>
+        <div class="wrap" style="padding-bottom:var(--sp-section)">
+          <div class="lab reveal" data-rv="scale">
+            <p class="kicker" style="color:var(--copper-bright);margin-bottom:1.4rem">Range Lab · Live Battery
+              Visualizer</p>
+            <div class="lab-grid">
+              <div>
+                <h3>1 · Your bike</h3>
+                <div class="lab-chips" id="labChips" role="group" aria-label="Choose a bike"></div>
+                <h3>2 · Terrain difficulty</h3>
+                <div class="seg" id="labDiff" role="radiogroup" aria-label="Terrain difficulty">
+                  <label class="sel"><input type="radio" name="labdiff" value="easy" checked>Easy</label>
+                  <label><input type="radio" name="labdiff" value="moderate">Moderate</label>
+                  <label><input type="radio" name="labdiff" value="hard">Hard</label>
+                </div>
+                <h3>3 · Distance</h3>
+                <div class="range-wrap">
+                  <p class="range-out"><span id="labKmOut">45</span> <small>KM ROUND TRIP</small></p>
+                  <input type="range" id="labKm" min="10" max="120" step="5" value="45"
+                    aria-label="Distance in kilometres">
+                  <div class="range-ticks"><span>10</span><span>65</span><span>120 km</span></div>
+                </div>
+              </div>
+              <div class="lab-viz">
+                <svg viewBox="0 0 640 240" role="img" aria-label="Trail route with battery usage preview">
+                  <line x1="0" y1="212" x2="640" y2="212" stroke="rgba(241,236,223,.2)" stroke-width="1" />
+                  <path id="labArea"
+                    d="M0 170 C70 150 110 108 170 100 S260 140 320 84 400 128 460 60 540 108 600 46 640 66 L640 212 L0 212 Z"
+                    fill="rgba(241,236,223,.07)" />
+                  <path id="labRoute"
+                    d="M0 170 C70 150 110 108 170 100 S260 140 320 84 400 128 460 60 540 108 600 46 640 66" fill="none"
+                    stroke="rgba(241,236,223,.35)" stroke-width="2.5" />
+                  <path id="labProg"
+                    d="M0 170 C70 150 110 108 170 100 S260 140 320 84 400 128 460 60 540 108 600 46 640 66" fill="none"
+                    stroke="var(--copper-bright)" stroke-width="3.5" stroke-linecap="round" />
+                  <g id="labDot">
+                    <circle r="8" fill="var(--copper-bright)" />
+                    <circle r="3.5" fill="var(--forest-ink)" />
+                  </g>
+                  <text x="10" y="230" class="elev-txt">TRAILHEAD · 392 M</text>
+                  <text x="540" y="34" class="elev-txt">TURNAROUND</text>
+                </svg>
+                <div class="lab-hud">
+                  <div class="lab-batt">
+                    <span class="lab-batt-shell" aria-hidden="true"><i id="labBattFill"></i></span>
+                    <span class="lab-pct" id="labBattPct">62%</span>
+                  </div>
+                  <p class="lab-msg" id="labMsg" aria-live="polite"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trail-list" id="trailList"></div>
+        </div>
+      </section>
+
+      <!-- ================= RESERVE ================= -->
+      <section class="view" id="view-reserve" tabindex="-1" aria-labelledby="vr-title">
+        <div class="wrap page-head">
+          <p class="kicker reveal">Booking · We Reply Within 2 Hours (08:00–19:00)</p>
+          <h1 class="h-display reveal" id="vr-title" style="--d:.08s">Reserve the ride.</h1>
+          <p class="lede reveal" style="--d:.16s">Sixty seconds from here to a bike with your name on it. No payment now
+            — we confirm by email, you pay at the trailhead.</p>
+        </div>
+        <div class="wrap" style="padding-bottom:var(--sp-section)">
+          <div class="prefill-banner" id="bkBanner" role="status">
+            <span class="mono">RIDE MATCH APPLIED</span>
+            <span id="bkBannerTxt"></span>
+            <button id="bkBannerX" aria-label="Dismiss pre-filled ride">✕</button>
+          </div>
+          <div class="book-grid">
+            <div>
+              <div class="bk-steps" aria-hidden="true">
+                <span class="bk-node cur" id="bkN1"><i>1</i>Ride</span><span class="bk-line"></span>
+                <span class="bk-node" id="bkN2"><i>2</i>Rider</span><span class="bk-line"></span>
+                <span class="bk-node" id="bkN3"><i>3</i>Confirmed</span>
+              </div>
+              <div class="form-card reveal" data-rv="fade">
+                <form id="bookForm" novalidate>
+                  <fieldset id="bkStep1">
+                    <legend>01 — The Ride</legend>
+                    <div class="fld"><label for="f-bike">Bike <em>*</em></label>
+                      <select id="f-bike" required>
+                        <option value="">Select a bike…</option>
+                      </select>
+                      <p class="ferr">Choose a bike from the fleet.</p>
+                    </div>
+                    <div class="fld-row">
+                      <div class="fld"><label for="f-start">Start date <em>*</em></label><input type="date" id="f-start"
+                          required>
+                        <p class="ferr">Pick a start date (today or later).</p>
+                      </div>
+                      <div class="fld"><label for="f-end">End date <em>*</em></label><input type="date" id="f-end"
+                          required>
+                        <p class="ferr">End date must be on or after the start.</p>
+                      </div>
+                    </div>
+                    <div class="fld-row">
+                      <div class="fld"><label for="f-time">Pickup time <em>*</em></label>
+                        <select id="f-time" required>
+                          <option value="">Select…</option>
+                          <option>08:00</option>
+                          <option>09:00</option>
+                          <option>10:00</option>
+                          <option>11:00</option>
+                          <option>13:00</option>
+                          <option>14:00</option>
+                        </select>
+                        <p class="ferr">Choose a pickup slot.</p>
+                      </div>
+                      <div class="fld"><label for="f-exp">Rider experience <em>*</em></label>
+                        <select id="f-exp" required>
+                          <option value="">Select…</option>
+                          <option value="beginner">Beginner — first e-bike day</option>
+                          <option value="intermediate">Intermediate — rides monthly</option>
+                          <option value="advanced">Advanced — climbs for fun</option>
+                        </select>
+                        <p class="ferr">Tell us your experience level.</p>
+                      </div>
+                    </div>
+                    <div class="fld"><label id="grpLbl">Group size (bikes needed) <em>*</em></label>
+                      <div class="stepper" data-min="1" data-max="8" data-out="f-group" aria-labelledby="grpLbl">
+                        <button type="button" class="step-btn" data-dir="-1" aria-label="Fewer riders">−</button>
+                        <output id="f-group">1</output>
+                        <button type="button" class="step-btn" data-dir="1" aria-label="More riders">+</button>
+                      </div>
+                      <p class="step-hint" id="grpHint">Solo ride — the valley to yourself.</p>
+                    </div>
+                    <label class="switch-row" for="f-ins">
+                      <span class="switch"><input type="checkbox" id="f-ins"><i></i></span>
+                      <span class="switch-txt"><b>Damage &amp; theft cover</b><small>€8 / DAY PER BIKE · ZERO
+                          EXCESS</small></span>
+                    </label>
+                    <div class="step-nav"><span></span><button type="button" class="btn btn-primary"
+                        id="toStep2">Continue to Rider <span class="arr" aria-hidden="true">→</span></button></div>
+                  </fieldset>
+                  <fieldset id="bkStep2" hidden>
+                    <legend>02 — The Rider</legend>
+                    <div class="fld"><label for="f-name">Full name <em>*</em></label><input type="text" id="f-name"
+                        autocomplete="name" placeholder="Ana Kovač">
+                      <p class="ferr">Please enter your name.</p>
+                    </div>
+                    <div class="fld-row">
+                      <div class="fld"><label for="f-email">Email <em>*</em></label><input type="email" id="f-email"
+                          autocomplete="email" placeholder="ana@example.com">
+                        <p class="ferr">That email doesn't look right.</p>
+                      </div>
+                      <div class="fld"><label for="f-phone">Phone <em>*</em></label><input type="tel" id="f-phone"
+                          autocomplete="tel" placeholder="+386 40 123 456">
+                        <p class="ferr">Enter a phone number (incl. country code).</p>
+                      </div>
+                    </div>
+                    <div class="fld"><label for="f-notes">Planned route <span
+                          style="color:var(--moss)">(optional)</span></label><textarea id="f-notes"
+                        placeholder="Tell us about your planned route — we'll flag surfaces and charging points."></textarea>
+                    </div>
+                    <div class="fld" id="consentFld">
+                      <label class="consent" for="f-consent"><input type="checkbox" id="f-consent"><span>I agree to the
+                          rental terms and understand a €50 refundable deposit is collected at pickup. <em
+                            style="color:var(--copper);font-style:normal">*</em></span></label>
+                      <p class="ferr">Please accept the terms to continue.</p>
+                    </div>
+                    <div class="step-nav">
+                      <button type="button" class="btn btn-ghost" id="toStep1"><span class="arr"
+                          style="transform:scaleX(-1)" aria-hidden="true">→</span> Back</button>
+                      <button type="submit" class="btn btn-primary" id="submitBtn"><span class="btn-label">Send
+                          Reservation Request <span class="arr" aria-hidden="true">→</span></span></button>
+                    </div>
+                  </fieldset>
+                </form>
+                <div class="bk-success" id="bkSuccess" role="status">
+                  <svg class="check-ring" viewBox="0 0 74 74" aria-hidden="true">
+                    <circle cx="37" cy="37" r="34" />
+                    <path d="M23 38l10 10 19-21" />
+                  </svg>
+                  <h2>Request received.</h2>
+                  <p class="ref-code" id="refCode">AVF-XXX-00</p>
+                  <p style="color:var(--ink-soft);font-size:var(--fs-small)" id="bkRecap"></p>
+                  <ol class="next-steps">
+                    <li>We confirm availability by email within 2 hours (08:00–19:00).</li>
+                    <li>Bring photo ID and the €50 per-bike deposit (card or cash).</li>
+                    <li>Helmets are fitted free — coffee's on while you clip in.</li>
+                  </ol>
+                  <div style="display:flex;gap:.7rem;flex-wrap:wrap">
+                    <a class="btn btn-primary btn-sm" href="#/trails">Explore the Trails</a>
+                    <button class="btn btn-ghost btn-sm" id="bkAgain">Plan Another Ride</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <aside class="summary reveal" data-rv="right" aria-label="Booking summary">
+              <h3>Your Ride — Live Estimate</h3>
+              <div class="sum-bike">
+                <div id="sumArt" aria-hidden="true"></div>
+                <div><b id="sumName">No bike selected</b><small id="sumMeta">Pick a machine to begin</small></div>
+              </div>
+              <div id="sumLines">
+                <div class="sum-line"><span>Select bike &amp; dates</span><span>—</span></div>
+              </div>
+              <p class="sum-note">Rates include helmet, lock, charger and a route briefing. Prototype build — no payment
+                is processed.</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= OWN IT ================= -->
+      <section class="view" id="view-own" tabindex="-1" aria-labelledby="vo-title">
+        <div class="wrap page-head">
+          <p class="kicker reveal">Limited Series · Hand-Numbered · Koroška Paint</p>
+          <h1 class="h-display reveal" id="vo-title" style="--d:.08s">Own the <span
+              style="color:var(--copper-bright)">Summit Pro.</span></h1>
+        </div>
+        <div class="wrap" style="padding-bottom:var(--sp-section)">
+          <div class="own-grid">
+            <div class="reveal" data-rv="scale">
+              <div class="own-art" id="ownArt" data-angle="side"><span class="own-num">Nº 05 / 12 · DRINA GREEN</span>
+                <div id="ownArtSvg"></div>
+              </div>
+              <div class="angles" role="group" aria-label="View angle">
+                <button class="angle-btn" data-angle="side" aria-pressed="true">Side</button>
+                <button class="angle-btn" data-angle="cockpit" aria-pressed="false">Cockpit</button>
+                <button class="angle-btn" data-angle="motor" aria-pressed="false">Motor Detail</button>
+                <button class="angle-btn" data-angle="action" aria-pressed="false">On Trail</button>
+              </div>
+            </div>
+            <div class="reveal" style="--d:.12s">
+              <p class="lede" style="max-width:48ch">Twelve frames. Full carbon, Fox Factory, wireless everything — and
+                a lifetime warranty on the frame because we ride what we sell. Four are already spoken for.</p>
+              <dl class="own-spec">
+                <div>
+                  <dt>Motor</dt>
+                  <dd>250W Bosch CX Race</dd>
+                </div>
+                <div>
+                  <dt>Battery</dt>
+                  <dd>110 km range</dd>
+                </div>
+                <div>
+                  <dt>Groupset</dt>
+                  <dd>SRAM XX1 Eagle AXS</dd>
+                </div>
+                <div>
+                  <dt>Suspension</dt>
+                  <dd>Fox Factory 150 mm</dd>
+                </div>
+                <div>
+                  <dt>Frame</dt>
+                  <dd>Full carbon, 19.4 kg</dd>
+                </div>
+                <div>
+                  <dt>Warranty</dt>
+                  <dd>Lifetime frame</dd>
+                </div>
+              </dl>
+              <div class="own-price"><b>€7,200</b><small>incl. VAT · custom paint · lifetime frame warranty</small>
+              </div>
+              <p class="units-label">8 of 12 remaining</p>
+              <div class="units" role="img" aria-label="12 units total, 4 sold">
+                <i class="sold"></i><i class="sold"></i><i class="sold"></i><i
+                  class="sold"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+              <a class="btn btn-light" href="#ownForm">Enquire About Nº 05 <span class="arr"
+                  aria-hidden="true">→</span></a>
+              <p class="mono"
+                style="font-size:var(--fs-tiny);color:rgba(241,236,223,.55);margin-top:1.2rem;letter-spacing:.08em">TRY
+                BEFORE YOU BUY — EVERY RENTAL INCLUDES A FREE SUMMIT PRO TEST LOOP.</p>
+            </div>
+          </div>
+
+          <div class="own-form-card reveal" id="ownForm">
+            <p class="kicker">Purchase Enquiry</p>
+            <h3 style="margin:.3em 0 1.2em">Talk to Luka about the Pro.</h3>
+            <form id="ownFormEl" novalidate>
+              <div class="fld"><label for="o-name">Full name <em>*</em></label><input type="text" id="o-name"
+                  autocomplete="name">
+                <p class="ferr">Please enter your name.</p>
+              </div>
+              <div class="fld-row">
+                <div class="fld"><label for="o-email">Email <em>*</em></label><input type="email" id="o-email"
+                    autocomplete="email">
+                  <p class="ferr">That email doesn't look right.</p>
+                </div>
+                <div class="fld"><label for="o-phone">Phone <em>*</em></label><input type="tel" id="o-phone"
+                    autocomplete="tel" placeholder="+386 …">
+                  <p class="ferr">Enter a phone number.</p>
+                </div>
+              </div>
+              <div class="fld"><label for="o-model">Interested model <em>*</em></label>
+                <select id="o-model">
+                  <option value="6">Summit Pro — Limited Series (€7,200)</option>
+                </select>
+                <p class="ferr">Select a model.</p>
+              </div>
+              <div class="fld"><label id="ocLbl">Preferred contact <em>*</em></label>
+                <div class="contact-pills" role="radiogroup" aria-labelledby="ocLbl">
+                  <label class="cp"><input type="radio" name="ocontact" value="email" checked><span>Email</span></label>
+                  <label class="cp"><input type="radio" name="ocontact" value="phone"><span>Phone</span></label>
+                  <label class="cp"><input type="radio" name="ocontact" value="video"><span>Video Call</span></label>
+                </div>
+              </div>
+              <div class="fld"><label for="o-msg">What would you like to know? <em>*</em></label><textarea id="o-msg"
+                  placeholder="Sizing, delivery to Austria/Italy, spec questions, test ride…"></textarea>
+                <p class="ferr">Tell us a little about what you need.</p>
+              </div>
+              <div class="fld" id="oConsentFld">
+                <label class="consent" for="o-consent"><input type="checkbox" id="o-consent"><span>I agree to be
+                    contacted about this enquiry and accept the privacy policy. <em
+                      style="color:var(--copper);font-style:normal">*</em></span></label>
+                <p class="ferr">Please accept the privacy policy.</p>
+              </div>
+              <button type="submit" class="btn btn-primary" id="ownSubmit"><span class="btn-label">Send Enquiry <span
+                    class="arr" aria-hidden="true">→</span></span></button>
+            </form>
+            <div class="bk-success" id="ownSuccess" role="status">
+              <svg class="check-ring" viewBox="0 0 74 74" aria-hidden="true">
+                <circle cx="37" cy="37" r="34" />
+                <path d="M23 38l10 10 19-21" />
+              </svg>
+              <h2>Enquiry sent.</h2>
+              <p style="color:var(--ink-soft);font-size:var(--fs-small);margin-top:.6rem">Luka will reply within one
+                business day — usually with a video of the exact frame you're asking about.</p>
+              <button class="btn btn-ghost btn-sm" id="ownAgain" style="margin-top:1.2rem">Send Another Enquiry</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= BASECAMP ================= -->
+      <section class="view" id="view-basecamp" tabindex="-1" aria-labelledby="vb-title">
+        <div class="wrap page-head">
+          <p class="kicker reveal">Šentjanž pri Dravogradu 42 · Koroška</p>
+          <h1 class="h-display reveal" id="vb-title" style="--d:.08s">The Basecamp.</h1>
+        </div>
+        <div class="wrap" style="padding-bottom:var(--sp-section)">
+          <div class="split">
+            <div class="sticky reveal">
+              <blockquote class="quote">People ask which bike is best. Wrong question. The right question is: which
+                valley do you want to see by lunch?</blockquote>
+              <p class="sig">— Luka · Fleet Manager &amp; Trail Guide</p>
+            </div>
+            <div>
+              <p class="reveal" style="--d:.1s">Alpine Volt Fleet started in 2019 with four Drava Cruisers in a hay barn
+                and a hand-painted sign. The barn got a roof repair; the idea didn't change: small fleet, big valley,
+                zero rush.</p>
+              <p class="reveal" style="--d:.18s" style="margin-top:1rem;color:var(--ink-soft)">Today we're a founding
+                member of the Koroška Bike Trail Network, a Bosch service partner, and the reason a surprising number of
+                people in three countries now own e-bikes they first rode here.</p>
+              <div class="tl reveal" style="--d:.24s">
+                <div class="tl-item"><b>2019</b>
+                  <p>Four Cruisers, one barn, a chalkboard for conditions. First season: 212 riders.</p>
+                </div>
+                <div class="tl-item"><b>2021</b>
+                  <p>Bosch eBike Systems partnership — on-site diagnostics and genuine parts.</p>
+                </div>
+                <div class="tl-item"><b>2023</b>
+                  <p>Cargo fleet arrives. School runs, picnics and two-kid hauls become electric.</p>
+                </div>
+                <div class="tl-item"><b>2024</b>
+                  <p>Founding member of the Koroška Bike Trail Network — 240 km signed and mapped.</p>
+                </div>
+                <div class="tl-item"><b>2025</b>
+                  <p>Summit Pro limited series: twelve hand-numbered frames, Koroška paint.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:3.4rem">
+            <h2 class="sr-only">Certifications</h2>
+            <div class="awards reveal" data-rv="fade">
+              <span class="award"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                  aria-hidden="true">
+                  <path d="M12 3l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 8.7l5.4-.8Z" />
+                </svg>Slovenia Green Tourism Certified</span>
+              <span class="award"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                  aria-hidden="true">
+                  <circle cx="12" cy="12" r="8" />
+                  <path d="M13 7l-3 5h4l-3 5" />
+                </svg>Bosch eBike Systems Partner</span>
+              <span class="award"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                  aria-hidden="true">
+                  <path d="M3 19L9 8l4 6 3-4 5 9Z" />
+                </svg>Koroška Bike Trail Network — Founding Member</span>
+            </div>
+          </div>
+
+          <div class="visit-grid" style="margin-top:3.4rem">
+            <div class="info-card topo reveal">
+              <h3>Hours &amp; Contact</h3>
+              <div class="hours-row"><span>Apr – Oct</span><b>Mon–Sun · 08:00–19:00</b></div>
+              <div class="hours-row"><span>Nov – Mar</span><b>Fri–Sun · 09:00–16:00</b></div>
+              <div class="hours-row"><span>Primary contact</span><b>Luka — Fleet Manager</b></div>
+              <address class="addr" style="margin-top:1.2rem"><b>Alpine Volt Fleet</b><br>Šentjanž pri Dravogradu
+                42<br>2370 Dravograd, Slovenia<br>ride@alpinevoltfleet.si</address>
+              <div class="contact-btns">
+                <a class="btn btn-primary btn-sm" href="tel:+38628700000">+386 (0)2 87 00 000</a>
+                <a class="btn btn-ghost btn-sm" href="mailto:ride@alpinevoltfleet.si">Email Us</a>
+              </div>
+            </div>
+            <div class="map-panel reveal" style="--d:.12s">
+              <svg viewBox="0 0 460 300" role="img"
+                aria-label="Stylized trailhead map: the Drava river, Route 430, parking and the Alpine Volt Fleet basecamp">
+                <rect width="460" height="300" fill="none" />
+                <g fill="none" stroke="var(--topo-line)" stroke-width="1">
+                  <ellipse cx="90" cy="60" rx="120" ry="52" />
+                  <ellipse cx="90" cy="60" rx="80" ry="32" />
+                  <ellipse cx="390" cy="250" rx="110" ry="46" />
+                </g>
+                <path d="M-10 210 C80 190 140 230 230 214 S380 170 470 190" fill="none" stroke="var(--river)"
+                  stroke-width="14" opacity=".55" stroke-linecap="round" />
+                <text x="30" y="246" font-family="IBM Plex Mono" font-size="11" fill="var(--river)"
+                  letter-spacing="3">DRAVA →</text>
+                <path d="M60 -10 C90 80 150 140 250 170 S400 220 470 230" fill="none" stroke="var(--ink-soft)"
+                  stroke-width="2.5" stroke-dasharray="8 7" />
+                <text x="330" y="200" font-family="IBM Plex Mono" font-size="11" fill="var(--ink-soft)"
+                  letter-spacing="2">R430</text>
+                <rect x="238" y="128" width="26" height="26" rx="4" fill="var(--forest)" /><text x="251" y="146"
+                  text-anchor="middle" font-family="IBM Plex Mono" font-size="13" fill="var(--limestone)"
+                  font-weight="600">P</text>
+                <text x="272" y="140" font-family="IBM Plex Mono" font-size="10" fill="var(--ink-soft)">FREE
+                  PARKING</text>
+                <path d="M150 96 l7 14 h-14 Z" fill="var(--copper)" />
+                <circle cx="150" cy="88" r="5" fill="var(--copper)" />
+                <text x="96" y="76" font-family="IBM Plex Mono" font-size="11" fill="var(--copper)" font-weight="600">⚡
+                  ALPINE VOLT FLEET</text>
+                <path d="M150 110 C170 130 200 138 238 140" fill="none" stroke="var(--copper)" stroke-width="2"
+                  stroke-dasharray="3 5" />
+                <g transform="translate(414,40)">
+                  <circle r="18" fill="none" stroke="var(--ink-soft)" stroke-width="1.5" />
+                  <path d="M0 -12 L4 4 L0 1 L-4 4 Z" fill="var(--copper)" /><text y="-24" text-anchor="middle"
+                    font-family="IBM Plex Mono" font-size="10" fill="var(--ink-soft)">N</text>
+                </g>
+                <line x1="20" y1="278" x2="90" y2="278" stroke="var(--ink-soft)" stroke-width="2" /><text x="96" y="282"
+                  font-family="IBM Plex Mono" font-size="10" fill="var(--ink-soft)">1 KM</text>
+              </svg>
+              <p class="mono" style="font-size:var(--fs-tiny);color:var(--moss);letter-spacing:.08em;margin-top:.6rem">5
+                MIN OFF ROUTE 430 · FREE PARKING AT THE TRAILHEAD LOT · FOLLOW THE LIGHTNING BOLTS.</p>
+            </div>
+          </div>
+
+          <div class="faq reveal" style="margin-top:3.6rem">
+            <h2 class="h-display" style="font-size:var(--fs-h2);margin-bottom:1rem">Trailhead FAQ.</h2>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false">Do I need to book in advance?<svg
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                  aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" />
+                </svg></button>
+              <div class="faq-a">
+                <div>
+                  <p>July and August, yes — the fleet sells out most mornings. The rest of the season, a day's notice is
+                    usually plenty. Walk-ins are welcome in shoulder season, but the good sizes go first.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false">Are helmets and gear included?<svg
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                  aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" />
+                </svg></button>
+              <div class="faq-a">
+                <div>
+                  <p>Helmets (XS–XXL), locks, chargers and a route briefing are included with every rental. Gloves are
+                    €5, and we stock rain shells you can borrow if the Karawanken change their mind mid-ride.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false">What happens if the battery dies
+                mid-ride?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                  stroke-linecap="round" aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" />
+                </svg></button>
+              <div class="faq-a">
+                <div>
+                  <p>Almost nobody runs flat — the Range Lab above exists precisely for that. If it happens anyway,
+                    switch to Eco and pedal (they're still good bikes), then call the trailhead number on your rental
+                    card and we'll come get you. Rescue is free within our trail network.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false">Can I bring kids?<svg viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" />
+                </svg></button>
+              <div class="faq-a">
+                <div>
+                  <p>The Cargo Hauler carries two child seats under the rain canopy, and we have tag-along trailers for
+                    the Drava Cruiser. Kids under 12 ride free on the river path route card.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item"><button class="faq-q" aria-expanded="false">What's the cancellation policy?<svg
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                  aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" />
+                </svg></button>
+              <div class="faq-a">
+                <div>
+                  <p>Free cancellation up to 24 hours before pickup. If we cancel for weather — which happens maybe
+                    twice a season — you get a full refund or a rain-check with a free upgrade.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 404 ================= -->
+      <section class="view" id="view-404" tabindex="-1" aria-labelledby="v4-title">
+        <div class="notfound">
+          <svg class="compass" viewBox="0 0 100 100" aria-hidden="true">
+            <circle cx="50" cy="50" r="44" fill="none" stroke="rgba(241,236,223,.3)" stroke-width="2" />
+            <circle cx="50" cy="50" r="36" fill="none" stroke="rgba(241,236,223,.15)" stroke-width="1"
+              stroke-dasharray="2 6" />
+            <g class="needle">
+              <path d="M50 16 L57 50 L50 46 L43 50 Z" fill="var(--copper-bright)" />
+              <path d="M50 84 L43 50 L50 54 L57 50 Z" fill="rgba(241,236,223,.4)" />
+            </g>
+            <circle cx="50" cy="50" r="3.5" fill="var(--limestone)" />
+          </svg>
+          <p class="kicker" style="justify-content:center;color:var(--copper-bright)">Error 404 · Off the Network</p>
+          <h1 class="h-display" id="v4-title">Trail ends here.</h1>
+          <p>This switchback doesn't exist on our map. Even Luka hasn't ridden it — and he's had six seasons to try. The
+            trailhead, however, is exactly where you left it.</p>
+          <a class="btn btn-light" href="#/">Back to the Trailhead <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+      <div class="wrap">
+        <p class="foot-word" aria-hidden="true">Alpine Volt Fleet</p>
+        <div class="foot-grid">
+          <div>
+            <h4>The Digital Trailhead</h4>
+            <p>E-bike rentals &amp; sales at the confluence of the Drava and the Karawanken — the front door to cycling
+              in Slovenia's Koroška region.</p>
+            <div class="foot-badges"><span>SLO GREEN</span><span>BOSCH PARTNER</span><span>KTN MEMBER</span></div>
+          </div>
+          <nav aria-label="Footer">
+            <h4>Explore</h4>
+            <ul class="foot-links">
+              <li><a href="#/fleet">The Fleet</a></li>
+              <li><a href="#/match">Ride Match</a></li>
+              <li><a href="#/trails">Trails &amp; Range Lab</a></li>
+              <li><a href="#/reserve">Reserve a Ride</a></li>
+              <li><a href="#/own">Summit Pro — Own It</a></li>
+            </ul>
+          </nav>
+          <div>
+            <h4>Visit</h4>
+            <address>Šentjanž pri Dravogradu 42<br>2370 Dravograd, Slovenia<br><br>Apr–Oct · 08:00–19:00
+              daily<br>Nov–Mar · Fri–Sun 09:00–16:00</address>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <ul class="foot-links">
+              <li><a href="tel:+38628700000">+386 (0)2 87 00 000</a></li>
+              <li><a href="mailto:ride@alpinevoltfleet.si">ride@alpinevoltfleet.si</a></li>
+              <li><a href="#/basecamp">Directions &amp; FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="foot-bottom">
+          <span>© <span id="yearNow">2026</span> ALPINE VOLT FLEET · PROTOTYPE BUILD — SINGLE-FILE SPA</span>
+          <span>MIST OFF THE DRAVA · CHARGED OVERNIGHT</span>
+          <button class="to-top" id="toTop" aria-label="Back to top"><svg width="16" height="16" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+              <path d="M12 19V5M5 12l7-7 7 7" />
+            </svg></button>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ================= BIKE MODAL ================= -->
+    <div class="modal-root" id="bikeModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal">
+        <div class="modal-art"><button class="modal-x" id="modalClose" aria-label="Close details"><svg width="16"
+              height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+              stroke-linecap="round" aria-hidden="true">
+              <path d="M5 5l14 14M19 5L5 19" />
+            </svg></button>
+          <div id="modalArt"></div>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        'use strict';
+        /* ================= helpers / data ================= */
+        const $ = (s, c = document) => c.querySelector(s), $$ = (s, c = document) => [...c.querySelectorAll(s)];
+        const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const euro = n => '€' + n.toLocaleString('en-IE');
+
+        const FLEET = [
+          { id: 1, title: 'Drava Cruiser', category: 'city', cat: 'City', description: 'Upright comfort for river paths and village hops. Step-through frame, integrated lights, and a battery that outlasts your longest Sunday.', feature: 'Child seat compatible', range: 80, motor: '250W Bosch Active', rate: 45 },
+          { id: 2, title: 'Karawanken Climber', category: 'mountain', cat: 'Mountain', description: 'Full-suspension eMTB built for singletrack and alpine gravel. 120 mm of travel, a dropper post, and a motor that laughs at 18% grades.', feature: 'Fox 36 fork + Shimano XT groupset', range: 100, motor: '250W Bosch CX', rate: 75 },
+          { id: 3, title: 'Valley Explorer', category: 'trekking', cat: 'Trekking', description: 'The do-everything trekking rig. Comfortable geometry, rack-ready, and stable under load — our pick for multi-day Drava itineraries.', feature: 'Pannier rack + GPS mount included', range: 120, motor: '250W Shimano EP8', rate: 55 },
+          { id: 4, title: 'Gravel Ghost', category: 'gravel', cat: 'Gravel', description: 'Drop-bar e-gravel for riders who want speed and range. Carbon fork, 700×40c tires, and wireless shifting that disappears under you.', feature: 'SRAM Rival AXS wireless shifting', range: 90, motor: '250W Mahle X35', rate: 65 },
+          { id: 5, title: 'Cargo Hauler', category: 'cargo', cat: 'Cargo', description: 'Electric cargo bike for families and gear. 200 kg payload, dual child seats, and a rain canopy option for classic alpine drizzle.', feature: 'Dual child seats + rain cover', range: 60, motor: '250W Bosch Cargo Line', rate: 60 },
+          { id: 6, title: 'Summit Pro', category: 'sale', cat: 'Limited Series', description: 'Limited-edition full-carbon eMTB — twelve units, hand-numbered. SRAM XX1 Eagle AXS, Fox Factory suspension, custom Koroška paint.', feature: 'Custom paint + lifetime frame warranty', range: 110, motor: '250W Bosch CX Race', price: 7200 }
+        ];
+        const TRAILS = [
+          { id: 'drava', name: 'Drava River Path', loop: '40 km loop', km: 40, gain: 180, surface: 'Gravel · tarmac', time: '2.5 h', diff: 'easy', terrain: 'river', desc: 'Flat and fast under dawn mist — ride the river past Radlje ob Dravi and back before the valley wakes. Our classic first ride.' },
+          { id: 'karawanken', name: 'Karawanken Ridge', loop: '62 km point-to-point', km: 62, gain: 1450, surface: 'Alpine gravel', time: '4.5 h', diff: 'hard', terrain: 'alpine', desc: 'A proper alpine day: switchbacks above the tree line, ridge views into Austria, and a long gravel descent earned the hard way.' },
+          { id: 'urslja', name: 'Uršlja Gora Loop', loop: '34 km loop', km: 34, gain: 820, surface: 'Forest road · singletrack', time: '3 h', diff: 'moderate', terrain: 'forest', desc: 'Climb through beech forest to the summit plateau — 1,699 m of “how is the battery still at 40%?” disbelief.' },
+          { id: 'pohorje', name: 'Pohorje Forest Singletrack', loop: '28 km loop', km: 28, gain: 640, surface: 'Singletrack', time: '2.5 h', diff: 'moderate', terrain: 'forest', desc: 'Flowy spruce-forest singletrack with loamy berms. The Climber\u2019s playground — and the fastest way to burn a morning.' },
+          { id: 'village', name: 'Village Hop to Radlje', loop: '24 km out-and-back', km: 24, gain: 210, surface: 'Tarmac · quiet lanes', time: '1.5 h', diff: 'easy', terrain: 'village', desc: 'Cafés, vineyards and church spires at walking pace. The Cargo Hauler\u2019s natural habitat — kids, picnic, zero stress.' }
+        ];
+        const CONDITIONS = [
+          { route: 'Drava River Path', surface: 'Dry', temp: 14, wind: '6 km/h NW' },
+          { route: 'Karawanken Ridge', surface: 'Mud patches', temp: 9, wind: '18 km/h N' },
+          { route: 'Uršlja Gora Loop', surface: 'Damp', temp: 11, wind: '9 km/h W' },
+          { route: 'Pohorje Singletrack', surface: 'Dry', temp: 12, wind: '4 km/h SW' },
+          { route: 'Village Hop', surface: 'Dry', temp: 15, wind: '7 km/h NW' }
+        ];
+        const ROUTE_PATHS = {
+          river: 'M0 150 C80 142 140 158 220 150 S380 140 460 150 560 160 640 148',
+          village: 'M0 150 C60 126 120 160 200 138 S340 160 420 128 560 154 640 134',
+          forest: 'M0 152 C50 118 100 162 160 126 S260 160 320 110 420 158 480 116 580 152 640 122',
+          alpine: 'M0 158 C60 140 90 94 150 86 S230 132 280 68 360 120 420 44 500 98 560 32 640 68'
+        };
+        const TERRAIN = { river: { label: 'River path', mult: 1.0, cats: ['city', 'trekking', 'cargo'] }, village: { label: 'Village hop', mult: 1.1, cats: ['city', 'cargo', 'trekking'] }, forest: { label: 'Forest singletrack', mult: 1.35, cats: ['mountain', 'trekking'] }, alpine: { label: 'Alpine gravel', mult: 1.6, cats: ['gravel', 'mountain'] } };
+        const EXP = { casual: { label: 'Casual cruiser', boost: ['city', 'cargo'], reason: 'Relaxed geometry, zero fuss' }, weekend: { label: 'Weekend wanderer', boost: ['trekking', 'city'], reason: 'Comfort for longer days' }, confident: { label: 'Confident explorer', boost: ['trekking', 'gravel'], reason: 'Responsive when you push' }, seasoned: { label: 'Seasoned climber', boost: ['mountain', 'gravel'], reason: 'Climbs as hard as you do' } };
+        const DIFF_MULT = { easy: 1.0, moderate: 1.3, hard: 1.6 };
+        const bikeById = id => FLEET.find(b => b.id === +id);
+        const rentals = () => FLEET.filter(b => b.category !== 'sale');
+
+        /* ================= bike illustration ================= */
+        function bikeArt(b) {
+          const c = b.category, A = 'var(--copper-bright)';
+          const knobby = (c === 'mountain' || c === 'gravel' || c === 'sale');
+          const wheel = cx => `<g><g class="spokes"><circle cx="${cx}" cy="150" r="40" fill="none" stroke="currentColor" stroke-width="5"${knobby ? ' stroke-dasharray="5 6"' : ''}/><circle cx="${cx}" cy="150" r="29" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".4"/><line x1="${cx - 26}" y1="150" x2="${cx + 26}" y2="150" stroke="currentColor" stroke-width="1.4" opacity=".45"/><line x1="${cx}" y1="124" x2="${cx}" y2="176" stroke="currentColor" stroke-width="1.4" opacity=".45"/><line x1="${cx - 18}" y1="132" x2="${cx + 18}" y2="168" stroke="currentColor" stroke-width="1.4" opacity=".45"/></g><circle cx="${cx}" cy="150" r="4.5" fill="currentColor"/></g>`;
+          let extra = '';
+          if (c === 'trekking') extra += `<path d="M84 96 L140 92" stroke="currentColor" stroke-width="4"/><path d="M96 96 L80 146" stroke="currentColor" stroke-width="2.5" opacity=".7"/><rect x="86" y="102" width="30" height="28" rx="4" fill="none" stroke="currentColor" stroke-width="2" opacity=".6"/>`;
+          if (c === 'city' || c === 'cargo') extra += `<path d="M42 134 A42 42 0 0 1 114 130" fill="none" stroke="currentColor" stroke-width="4" opacity=".85"/><circle cx="252" cy="94" r="4" fill="${A}"/>`;
+          if (c === 'city') extra += `<path d="M222 132 A42 42 0 0 1 294 132" fill="none" stroke="currentColor" stroke-width="4" opacity=".85"/>`;
+          if (c === 'cargo') extra += `<rect x="168" y="92" width="60" height="42" rx="4" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="186" cy="84" r="7" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="210" cy="84" r="7" fill="none" stroke="currentColor" stroke-width="3"/><path d="M42 134 A42 42 0 0 1 114 130" fill="none" stroke="currentColor" stroke-width="4" opacity=".85"/>`;
+          if (c === 'sale') extra += `<path d="M238 92 L262 148" stroke="currentColor" stroke-width="2.5" opacity=".6"/><rect x="148" y="46" width="50" height="19" rx="3" fill="${A}"/><text x="173" y="60" text-anchor="middle" font-size="11" font-family="IBM Plex Mono, monospace" fill="#0e241c" font-weight="600">1/12</text>`;
+          const DT = { mountain: 'M158 150 L232 86', gravel: 'M158 150 L232 86', trekking: 'M158 150 L232 88', city: 'M158 150 Q198 130 234 98', cargo: 'M158 150 L200 118', sale: 'M158 150 L232 86' }[c];
+          const TT = { mountain: 'M133 84 L230 88', gravel: 'M133 86 L230 88', trekking: 'M131 82 L230 88', city: 'M138 102 Q188 116 230 96', cargo: '', sale: 'M133 84 L230 88' }[c];
+          const HB = { mountain: 'M232 86 L226 70 M210 68 L244 66', gravel: 'M232 86 L226 70 M212 68 h24 c12 1 12 16 0 17', trekking: 'M232 88 L226 70 M210 68 L244 66', city: 'M234 98 L226 62 M208 58 Q226 50 246 60', cargo: 'M222 96 L214 74 M198 72 L232 70', sale: 'M232 86 L226 70 M210 68 L244 66' }[c];
+          const FK = (c === 'cargo') ? 'M222 96 L258 150' : 'M232 86 L258 150';
+          const BT = { mountain: 'M180 128 L216 96', gravel: 'M180 128 L216 96', trekking: 'M180 128 L216 98', city: 'M186 130 L220 104', cargo: 'M172 134 L200 114', sale: 'M178 130 L218 94' }[c];
+          return `<svg class="bike-art" viewBox="0 0 340 210" role="img" aria-label="${b.title} e-bike illustration" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <ellipse cx="168" cy="193" rx="128" ry="6" fill="currentColor" opacity=".07"/>
+  <line x1="16" y1="193" x2="324" y2="193" stroke="currentColor" stroke-width="1.5" opacity=".16"/>
+  ${wheel(78)}${wheel(258)}${extra}
+  <g stroke="currentColor" stroke-width="5">
+    <path d="M78 150 L158 150"/><path d="M158 150 L132 78"/><path d="${DT}"/>${TT ? `<path d="${TT}"/>` : ''}
+    <path d="${FK}"/><path d="M132 78 L126 62"/><path d="M110 60 Q126 53 142 60" stroke-width="6"/><path d="${HB}"/><path d="M158 150 L174 164" stroke-width="4"/><path d="M168 166 h14" stroke-width="4"/>
+  </g>
+  <circle cx="158" cy="150" r="12" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="158" cy="150" r="5" fill="${A}"/>
+  <path d="${BT}" stroke="${A}" stroke-width="11"/>
+  </svg>`;
+        }
+
+        /* ================= theme ================= */
+        const root = document.documentElement;
+        function setTheme(t) { root.setAttribute('data-theme', t); $('#themeToggle').setAttribute('aria-pressed', t === 'dark'); try { localStorage.setItem('avf-theme', t) } catch (e) { } }
+        setTheme((() => { try { return localStorage.getItem('avf-theme') } catch (e) { return null } })() || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+        $('#themeToggle').addEventListener('click', () => setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
+
+        /* ================= reveal observer ================= */
+        const io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } }) }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+        function resetReveals(scope) { $$('.reveal', scope).forEach(el => { el.classList.remove('in'); io.observe(el) }) }
+
+        /* ================= router ================= */
+        const ROUTES = { '/': { view: 'view-home', title: 'Trailhead' }, '/fleet': { view: 'view-fleet', title: 'The Fleet' }, '/match': { view: 'view-match', title: 'Ride Match' }, '/trails': { view: 'view-trails', title: 'Trails' }, '/reserve': { view: 'view-reserve', title: 'Reserve' }, '/own': { view: 'view-own', title: 'Own It' }, '/basecamp': { view: 'view-basecamp', title: 'Basecamp' } };
+        let currentRoute = null;
+        const announcer = $('#announcer');
+        function announce(msg) { announcer.textContent = ''; setTimeout(() => { announcer.textContent = msg }, 60) }
+        function parseHash() { const h = location.hash.replace(/^#/, '') || '/'; return h }
+        function navigate() {
+          const path = parseHash(), r = ROUTES[path];
+          const viewId = r ? r.view : 'view-404', title = r ? r.title : 'Off the Map';
+          $$('.view').forEach(v => v.classList.remove('active'));
+          const view = document.getElementById(viewId);
+          view.classList.add('active');
+          currentRoute = r ? path : '*';
+          $$('[data-route]').forEach(a => { const on = a.dataset.route === path; a.classList.toggle('active', on); on ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current') });
+          document.title = `${title} · Alpine Volt Fleet`;
+          try { window.scrollTo({ top: 0, left: 0, behavior: 'instant' }) } catch (e) { window.scrollTo(0, 0) }
+          view.focus({ preventScroll: true });
+          announce(`${title} — Alpine Volt Fleet`);
+          closeDrawer();
+          resetReveals(view);
+          onHeaderScroll();
+          if (path === '/') heroIntro();
+          if (path === '/match') enterMatch();
+          if (path === '/reserve') enterReserve();
+        }
+        window.addEventListener('hashchange', navigate);
+
+        /* ================= header / parallax ================= */
+        const header = $('#siteHeader');
+        function onHeaderScroll() { header.classList.toggle('solid', scrollY > 36 || currentRoute !== '/') }
+        let plxTicking = false;
+        function onScroll() {
+          if (plxTicking) return; plxTicking = true;
+          requestAnimationFrame(() => {
+            onHeaderScroll();
+            if (currentRoute === '/' && !RM) { const y = scrollY; $$('.plx').forEach(g => g.setAttribute('transform', `translate(0,${(y * +g.dataset.speed).toFixed(1)})`)) }
+            plxTicking = false;
+          });
+        }
+        addEventListener('scroll', onScroll, { passive: true });
+        function heroIntro() {
+          const hero = $('#hero'); hero.classList.remove('hero-go');
+          if (RM) { hero.classList.add('hero-go'); return }
+          requestAnimationFrame(() => requestAnimationFrame(() => hero.classList.add('hero-go')));
+        }
+
+        /* ================= drawer ================= */
+        const drawer = $('#drawer'), scrim = $('#scrim'), navToggle = $('#navToggle');
+        let lastFocus = null;
+        function openDrawer() { lastFocus = document.activeElement; drawer.classList.add('open'); scrim.classList.add('open'); navToggle.setAttribute('aria-expanded', 'true'); document.documentElement.style.overflow = 'hidden'; setTimeout(() => $('.dlink', drawer).focus(), 120) }
+        function closeDrawer() { if (!drawer.classList.contains('open')) return; drawer.classList.remove('open'); scrim.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); document.documentElement.style.overflow = ''; if (lastFocus) lastFocus.focus() }
+        navToggle.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
+        $('#drawerClose').addEventListener('click', closeDrawer);
+        scrim.addEventListener('click', closeDrawer);
+        drawer.addEventListener('keydown', e => {
+          if (e.key === 'Escape') closeDrawer();
+          if (e.key === 'Tab') {
+            const f = $$('a,button', drawer).filter(el => !el.disabled); const first = f[0], last = f[f.length - 1];
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus() }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus() }
+          }
+        });
+
+        /* ================= ticker ================= */
+        (function () {
+          const now = new Date(), hh = String(now.getHours()).padStart(2, '0'), mm = String(now.getMinutes()).padStart(2, '0');
+          $('#heroTime').textContent = `${hh}:${mm} CET`;
+          const dot = s => s === 'Dry' ? 'ok' : s === 'Damp' ? 'damp' : s.includes('Mud') ? 'mud' : 'snow';
+          const item = c => `<span class="tick-item"><i class="dot dot-${dot(c.surface)}"></i>${c.route} <b>${c.surface}</b> · ${c.temp}°C · ${c.wind}</span><span class="tick-sep" aria-hidden="true">◆</span>`;
+          const half = `<div class="tick-half"><span class="tick-item tick-live">LIVE · TRAILHEAD ${hh}:${mm}</span><span class="tick-sep" aria-hidden="true">◆</span>${CONDITIONS.map(item).join('')}</div>`;
+          $('#tickTrack').innerHTML = half + half.replace('<div class="tick-half"', '<div class="tick-half" aria-hidden="true"');
+        })();
+
+        /* ================= bike cards / fleet ================= */
+        function bikeCardHTML(b, i) {
+          const sale = b.category === 'sale';
+          const priceLine = sale ? `<b class="rate">${euro(b.price)}</b>` : `<b class="rate">${euro(b.rate)}<small style="font-family:var(--font-mono);font-size:.55em;color:var(--moss)">/DAY</small></b>`;
+          return `<article class="bike-card reveal" style="--d:${(i % 6) * .07}s">
+    <div class="bc-art"><span class="bc-cat${sale ? ' bc-sale' : ''}">${b.cat}</span>${bikeArt(b)}</div>
+    <div class="bc-body">
+      <h3 class="bc-name">${b.title}</h3>
+      <p class="bc-desc">${b.description}</p>
+      <p class="tag">${b.feature}</p>
+      <div class="bc-specs">
+        <div class="bc-spec"><small>Range</small><b>${b.range} km</b><span class="batt" aria-hidden="true"><i style="--batt:${Math.round(b.range / 120 * 100)}%"></i></span></div>
+        <div class="bc-spec"><small>Motor</small><b>${b.motor}</b></div>
+        <div class="bc-spec"><small>${sale ? 'Price' : 'Rate'}</small>${priceLine}</div>
+      </div>
+      <div class="bc-actions">
+        <button class="btn btn-ghost btn-sm" data-details="${b.id}">Details</button>
+        ${sale ? `<a class="btn btn-primary btn-sm" href="#/own">Enquire</a>` : `<button class="btn btn-primary btn-sm" data-reserve="${b.id}">Reserve</button>`}
+      </div>
+    </div></article>`;
+        }
+        const CATS = [['all', 'All'], ['city', 'City'], ['mountain', 'Mountain'], ['trekking', 'Trekking'], ['gravel', 'Gravel'], ['cargo', 'Cargo']];
+        const fleetState = { cat: 'all', q: '' };
+        function renderChips() {
+          $('#chipRow').innerHTML = CATS.map(([v, l]) => `<button class="chip" data-cat="${v}" aria-pressed="${fleetState.cat === v}">${l}</button>`).join('');
+        }
+        function renderFleet() {
+          const q = fleetState.q.toLowerCase();
+          const list = FLEET.filter(b => (fleetState.cat === 'all' || b.category === fleetState.cat) && (!q || (b.title + b.feature + b.description + b.cat).toLowerCase().includes(q)));
+          $('#fleetGrid').innerHTML = list.map(bikeCardHTML).join('');
+          $('#bikeCount').textContent = `Showing ${list.length} of ${FLEET.length}`;
+          $('#emptyBox').classList.toggle('show', !list.length);
+          $('#searchClear').classList.toggle('show', !!fleetState.q);
+          resetReveals($('#fleetGrid'));
+        }
+        renderChips(); renderFleet();
+        $('#chipRow').addEventListener('click', e => { const b = e.target.closest('[data-cat]'); if (!b) return; fleetState.cat = b.dataset.cat; renderChips(); renderFleet() });
+        let sT; $('#bikeSearch').addEventListener('input', e => { clearTimeout(sT); sT = setTimeout(() => { fleetState.q = e.target.value.trim(); renderFleet() }, 180) });
+        $('#searchClear').addEventListener('click', () => { $('#bikeSearch').value = ''; fleetState.q = ''; renderFleet(); $('#bikeSearch').focus() });
+        $('#emptyClear').addEventListener('click', () => { $('#bikeSearch').value = ''; fleetState.q = ''; fleetState.cat = 'all'; renderChips(); renderFleet() });
+
+        /* carousel */
+        const carTrack = $('#carTrack');
+        carTrack.innerHTML = rentals().map(bikeCardHTML).join('');
+        function carBtns() { const max = carTrack.scrollWidth - carTrack.clientWidth - 8; $('#carPrev').disabled = carTrack.scrollLeft < 8; $('#carNext').disabled = carTrack.scrollLeft > max }
+        $('#carPrev').addEventListener('click', () => carTrack.scrollBy({ left: -350, behavior: RM ? 'auto' : 'smooth' }));
+        $('#carNext').addEventListener('click', () => carTrack.scrollBy({ left: 350, behavior: RM ? 'auto' : 'smooth' }));
+        carTrack.addEventListener('scroll', carBtns, { passive: true }); addEventListener('resize', carBtns); carBtns();
+
+        /* home trail teaser */
+        $('#homeTrailList').innerHTML = TRAILS.slice(0, 3).map((t, i) => trailRowHTML(t, i, true)).join('');
+
+        /* ================= modal ================= */
+        const modalRoot = $('#bikeModal'); let modalOpener = null;
+        function openModal(id) {
+          const b = bikeById(id); if (!b) return;
+          modalOpener = document.activeElement;
+          $('#modalArt').innerHTML = bikeArt(b);
+          const sale = b.category === 'sale';
+          $('#modalBody').innerHTML = `
+    <span class="bc-cat${sale ? ' bc-sale' : ''}" style="position:static;display:inline-block;margin-bottom:.8rem">${b.cat}</span>
+    <h3 id="modalTitle">${b.title}</h3>
+    <p style="color:var(--ink-soft);margin-top:.6rem">${b.description}</p>
+    <p class="tag" style="margin-top:.8rem">${b.feature}</p>
+    <dl class="mspec">
+      <div><dt>Battery range</dt><dd>${b.range} km</dd></div><div><dt>Motor</dt><dd>${b.motor}</dd></div>
+      <div><dt>${sale ? 'Price' : 'Daily rate'}</dt><dd>${sale ? euro(b.price) : euro(b.rate) + ' / day'}</dd></div>
+      <div><dt>Category</dt><dd>${b.cat}</dd></div>
+    </dl>
+    <div class="modal-cta">
+      ${sale ? `<a class="btn btn-primary" href="#/own" id="modalGo">Enquire About the Pro <span class="arr" aria-hidden="true">→</span></a>` : `<button class="btn btn-primary" data-reserve="${b.id}">Reserve This Bike <span class="arr" aria-hidden="true">→</span></button>`}
+      <button class="btn btn-ghost" id="modalClose2">Close</button>
+    </div>`;
+          modalRoot.classList.add('open'); document.documentElement.style.overflow = 'hidden';
+          setTimeout(() => $('#modalClose').focus(), 80);
+        }
+        function closeModal() { modalRoot.classList.remove('open'); document.documentElement.style.overflow = ''; if (modalOpener) modalOpener.focus() }
+        $('#modalClose').addEventListener('click', closeModal);
+        modalRoot.addEventListener('click', e => { if (e.target === modalRoot) closeModal(); if (e.target.closest('#modalClose2')) closeModal(); if (e.target.closest('#modalGo')) closeModal() });
+        modalRoot.addEventListener('keydown', e => {
+          if (e.key === 'Escape') closeModal();
+          if (e.key === 'Tab') {
+            const f = $$('a[href],button:not([disabled])', modalRoot); const first = f[0], last = f[f.length - 1];
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus() }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus() }
+          }
+        });
+        /* global card actions (grid, carousel, modal, match results) */
+        document.addEventListener('click', e => {
+          const d = e.target.closest('[data-details]'); if (d) { openModal(d.dataset.details); return }
+          const r = e.target.closest('[data-reserve]'); if (r) { setPrefill({ bikeId: +r.dataset.reserve }, `The Fleet — ${bikeById(r.dataset.reserve).title}`); closeModal(); location.hash = '#/reserve' }
+        });
+
+        /* ================= steppers ================= */
+        $$('.stepper').forEach(st => {
+          const out = $('#' + st.dataset.out), min = +st.dataset.min, max = +st.dataset.max;
+          st.addEventListener('click', e => {
+            const btn = e.target.closest('.step-btn'); if (!btn) return;
+            let v = Math.min(max, Math.max(min, (+out.textContent) + (+btn.dataset.dir)));
+            out.textContent = v;
+            $$('button', st).forEach(b => b.disabled = false);
+            if (v === min) st.querySelector('[data-dir="-1"]').disabled = true;
+            if (v === max) st.querySelector('[data-dir="1"]').disabled = true;
+            if (st.dataset.out === 'f-group') { updateSummary(); groupHint(v) }
+          });
+        });
+        function groupHint(v) {
+          const h = $('#grpHint');
+          if (v >= 4) { h.textContent = 'Big crew — we\u2019ll stage the bikes together and brief the whole group.'; h.classList.add('hot') }
+          else if (v > 1) { h.textContent = 'Nice — we\u2019ll match a riding order so nobody gets dropped.'; h.classList.remove('hot') }
+          else { h.textContent = 'Solo ride — the valley to yourself.'; h.classList.remove('hot') }
+        }
+
+        /* ================= RIDE MATCH ================= */
+        const match = { step: 0, exp: null, terrain: null, distance: 40, group: 1, done: false };
+        let matchPrefill = null;
+        const RAIL = ['Experience', 'Terrain', 'Distance', 'Crew'];
+        function renderRail() {
+          $('#matchRail').innerHTML = RAIL.map((l, i) => {
+            const cls = match.done && i < 4 ? 'done' : (i === match.step ? 'cur' : (i < match.step ? 'done' : ''));
+            return `<li class="mrail-item ${cls}" data-n="${String(i + 1).padStart(2, '0')}">${l}</li>`;
+          }).join('') + (match.done ? '<li class="mrail-item done" data-n="✓">Result</li>' : '');
+        }
+        const OPT_ICONS = {
+          casual: '<rect x="5" y="18" width="4" height="6" rx="1"/><rect x="12" y="14" width="4" height="10" rx="1" opacity=".55"/><rect x="19" y="10" width="4" height="14" rx="1" opacity=".3"/>',
+          weekend: '<rect x="5" y="15" width="4" height="9" rx="1"/><rect x="12" y="11" width="4" height="13" rx="1"/><rect x="19" y="8" width="4" height="16" rx="1" opacity=".45"/>',
+          confident: '<rect x="5" y="12" width="4" height="12" rx="1"/><rect x="12" y="8" width="4" height="16" rx="1"/><rect x="19" y="6" width="4" height="18" rx="1"/>',
+          seasoned: '<rect x="5" y="9" width="4" height="15" rx="1"/><rect x="12" y="6" width="4" height="18" rx="1"/><rect x="19" y="3" width="4" height="21" rx="1"/>',
+          river: '<path d="M3 10c3-3 6 3 9 0s6 3 9 0M3 17c3-3 6 3 9 0s6 3 9 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+          village: '<path d="M4 21V12l5-4 5 4v9M14 21v-7l4-3 4 3v7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>',
+          forest: '<path d="M8 21L4 14h3L4 8l4-5 4 5-3 6h3zM18 21l-3-6h2l-3-5 3-4 3 4-3 5h2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>',
+          alpine: '<path d="M2 21L9 7l4 7 3-4 6 11z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>'
+        };
+        const STEP_META = [
+          { k: 'Step 01 / 04', t: 'How do you ride?', hint: 'No wrong answers — the Karawanken keep score anyway.' },
+          { k: 'Step 02 / 04', t: 'Pick your ground.', hint: 'This decides tire, travel and how much motor you\u2019ll want.' },
+          { k: 'Step 03 / 04', t: 'How far is the day?', hint: 'We\u2019ll run the battery math against real elevation.' },
+          { k: 'Step 04 / 04', t: 'Who\u2019s coming along?', hint: 'Groups of 4+ unlock the cargo option on mellow terrain.' }
+        ];
+        function renderStep() {
+          match.done = false; renderRail();
+          const m = STEP_META[match.step], stage = $('#matchStage');
+          let body = '';
+          if (match.step === 0) body = `<div class="opts">${Object.entries(EXP).map(([v, e]) => `
+    <label class="opt${match.exp === v ? ' sel' : ''}"><input type="radio" name="mexp" value="${v}" ${match.exp === v ? 'checked' : ''}>
+    <svg class="opt-ic" viewBox="0 0 28 28" fill="currentColor" aria-hidden="true">${OPT_ICONS[v]}</svg>
+    <span><b>${e.label}</b><small>${e.reason.toUpperCase()}</small></span></label>`).join('')}</div>`;
+          if (match.step === 1) body = `<div class="opts">${Object.entries(TERRAIN).map(([v, t]) => `
+    <label class="opt${match.terrain === v ? ' sel' : ''}"><input type="radio" name="mterrain" value="${v}" ${match.terrain === v ? 'checked' : ''}>
+    <svg class="opt-ic" viewBox="0 0 28 28" aria-hidden="true">${OPT_ICONS[v]}</svg>
+    <span><b>${t.label}</b><small>DRAIN FACTOR ×${t.mult.toFixed(2)}</small></span></label>`).join('')}</div>`;
+          if (match.step === 2) body = `<div class="range-wrap">
+    <p class="range-out"><span id="mkmOut">${match.distance}</span> <small>KM, ROUND TRIP</small></p>
+    <input type="range" id="mkm" min="10" max="100" step="5" value="${match.distance}" aria-label="Distance in kilometres">
+    <div class="range-ticks"><span>10</span><span>55</span><span>100 km</span></div></div>`;
+          if (match.step === 3) body = `<div>
+    <div class="stepper" data-min="1" data-max="8" data-out="mgroup" aria-label="Group size">
+      <button type="button" class="step-btn" data-dir="-1" aria-label="Fewer riders" ${match.group <= 1 ? 'disabled' : ''}>−</button>
+      <output id="mgroup">${match.group}</output>
+      <button type="button" class="step-btn" data-dir="1" aria-label="More riders" ${match.group >= 8 ? 'disabled' : ''}>+</button>
+    </div>
+    <p class="step-hint${match.group >= 4 ? ' hot' : ''}" id="mgrpHint">${match.group >= 4 ? 'Big crew — cargo option unlocked for mellow terrain.' : 'Tell us how many saddles to warm.'}</p></div>`;
+          stage.innerHTML = `<div class="step-card" style="--prog:${(match.step + 1) * 25}%">
+    <p class="step-kicker">${m.k}</p><h2>${m.t}</h2>${body}
+    <p class="step-hint" id="mHint">${m.hint}</p>
+    <div class="step-nav">
+      ${match.step > 0 ? '<button class="btn btn-ghost" id="mBack"><span class="arr" style="transform:scaleX(-1)" aria-hidden="true">→</span> Back</button>' : '<span></span>'}
+      <button class="btn btn-primary" id="mNext">${match.step === 3 ? 'See My Match ⚡' : 'Continue'} <span class="arr" aria-hidden="true">→</span></button>
+    </div></div>`;
+          /* bind */
+          const bindRadios = (name, key) => $$(`input[name="${name}"]`, stage).forEach(r => r.addEventListener('change', () => {
+            match[key] = r.value; $$('.opt', stage).forEach(o => o.classList.toggle('sel', o.contains(o.querySelector('input:checked'))));
+            $('#mHint').textContent = 'Locked in. ' + ($('#mHint').dataset.base || m.hint);
+          }));
+          bindRadios('mexp', 'exp'); bindRadios('mterrain', 'terrain');
+          const km = $('#mkm'); if (km) km.addEventListener('input', () => { match.distance = +km.value; $('#mkmOut').textContent = km.value });
+          const st = $('.stepper', stage);
+          if (st) {
+            const out = $('#mgroup'); st.addEventListener('click', e => {
+              const b = e.target.closest('.step-btn'); if (!b) return;
+              match.group = Math.min(8, Math.max(1, match.group + +b.dataset.dir)); out.textContent = match.group;
+              $$('button', st).forEach(x => x.disabled = false);
+              if (match.group === 1) st.querySelector('[data-dir="-1"]').disabled = true;
+              if (match.group === 8) st.querySelector('[data-dir="1"]').disabled = true;
+              const h = $('#mgrpHint'); if (match.group >= 4) { h.textContent = 'Big crew — cargo option unlocked for mellow terrain.'; h.classList.add('hot') } else { h.textContent = 'Tell us how many saddles to warm.'; h.classList.remove('hot') }
+            });
+          }
+          const back = $('#mBack'); if (back) back.addEventListener('click', () => { match.step--; renderStep() });
+          $('#mNext').addEventListener('click', () => {
+            if (match.step === 0 && !match.exp) { flashHint('Pick an experience level first.'); return }
+            if (match.step === 1 && !match.terrain) { flashHint('Pick a terrain — the map is right there.'); return }
+            if (match.step < 3) { match.step++; renderStep() } else renderResult();
+          });
+        }
+        function flashHint(msg) { const h = $('#mHint'); if (!h) return; h.textContent = msg; h.classList.add('hot'); setTimeout(() => h.classList.remove('hot'), 1600) }
+        function enterMatch() {
+          if (matchPrefill) {
+            if (matchPrefill.terrain) match.terrain = matchPrefill.terrain;
+            if (matchPrefill.distance) match.distance = Math.min(100, Math.max(10, Math.round(matchPrefill.distance / 5) * 5));
+            matchPrefill = null; match.step = 2; match.done = false;
+            announce('Trail pre-selected — distance step ready.');
+          }
+          renderRail(); if (!$('#matchStage').innerHTML || match.step === 0) renderStep(); else renderStep();
+        }
+        function scoreBikes() {
+          const t = TERRAIN[match.terrain], e = EXP[match.exp];
+          return rentals().map(b => {
+            let s = 42, why = [];
+            const ti = t.cats.indexOf(b.category);
+            if (ti > -1) { s += [26, 18, 10][ti]; why.push(ti === 0 ? `Built for ${t.label.toLowerCase()}` : `Happy on ${t.label.toLowerCase()}`) }
+            if (e.boost.includes(b.category)) { s += 14; why.push(e.reason) }
+            const use = (match.distance * t.mult) / b.range;
+            if (use <= .75) { s += 18; why.push(`Battery headroom — ~${Math.round(use * 100)}% used`) }
+            else if (use <= 1) { s += 8; why.push(`Fits the distance at ~${Math.round(use * 100)}% battery`) }
+            else { s -= 20; why.push('Tight on battery for this distance') }
+            if (match.group >= 4 && b.category === 'cargo' && (match.terrain === 'river' || match.terrain === 'village')) { s += 12; why.push('Carries crew & gear') }
+            return { b, score: Math.max(38, Math.min(98, Math.round(s))), why: why.slice(0, 2), use };
+          }).sort((a, b) => b.score - a.score).slice(0, 3);
+        }
+        function countUp(el, to, suffix) {
+          if (RM) { el.textContent = to + suffix; return }
+          const t0 = performance.now(), dur = 700;
+          (function tick(t) {
+            const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(to * e) + suffix; if (p < 1) requestAnimationFrame(tick)
+          })(t0);
+        }
+        function renderResult() {
+          match.done = true; renderRail();
+          const res = scoreBikes(), t = TERRAIN[match.terrain];
+          const usePct = Math.min(160, Math.round(res[0].use * 100));
+          const p = ROUTE_PATHS[match.terrain];
+          const stage = $('#matchStage');
+          stage.innerHTML = `<div class="step-card" style="--prog:100%">
+    <div class="mres-head"><div><p class="step-kicker">Your Match · Battery Math Included</p>
+    <h2 style="margin-bottom:0">Ride ready.</h2></div>
+    <p class="mres-sum">${EXP[match.exp].label} · ${t.label} · ${match.distance} km · ${match.group} rider${match.group > 1 ? 's' : ''}</p></div>
+    <div class="route-box reveal">
+      <svg viewBox="0 0 640 200" role="img" aria-label="Route preview for ${t.label}">
+        <path d="${p} L640 200 L0 200 Z" fill="rgba(224,129,63,.12)"/>
+        <path class="route-draw" pathLength="1" d="${p}" fill="none" stroke="var(--copper-bright)" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="8" cy="${p.match(/\d+/)[0]}" r="0" fill="none"/>
+        <text x="12" y="188" class="elev-txt">0 KM</text>
+        <text x="${640 / 2 - 20}" y="188" class="elev-txt">${match.distance / 2} KM</text>
+        <text x="586" y="188" class="elev-txt">${match.distance} KM</text>
+      </svg>
+      <div class="batt-hud">
+        <p class="batt-big"><span id="mresPct">0</span><small>% EST. BATTERY · ${res[0].b.title.toUpperCase()}</small></p>
+        <span class="hud-bar"><i class="${usePct > 100 ? 'bad' : usePct > 75 ? 'warn' : ''}" style="--fill:${Math.min(100, usePct)}%"></i></span>
+      </div>
+    </div>
+    <div class="mres-grid">${res.map((r, i) => `
+      <article class="mres-card reveal${i === 0 ? ' top' : ''}" style="--d:${i * .12}s">
+        <div class="mres-top"><span class="ring-wrap"><svg viewBox="0 0 64 64" aria-hidden="true"><circle class="ring-bg" cx="32" cy="32" r="26"/><circle class="ring-fg" cx="32" cy="32" r="26" style="stroke-dashoffset:${163.4 - 163.4 * r.score / 100}"/></svg><b>${r.score}%</b></span>
+        <div><h3 class="bc-name" style="font-size:var(--fs-body)">${r.b.title}</h3><span class="mono" style="font-size:var(--fs-tiny);color:var(--moss)">${r.b.range} KM · ${euro(r.b.rate)}/DAY</span></div></div>
+        <div class="mres-art" aria-hidden="true">${bikeArt(r.b)}</div>
+        <ul class="mres-why">${r.why.map(w => `<li>${w}</li>`).join('')}</ul>
+        <div class="bc-actions"><button class="btn btn-ghost btn-sm" data-details="${r.b.id}">Details</button>
+        <button class="btn btn-primary btn-sm mres-btn" data-id="${r.b.id}">Reserve This Ride</button></div>
+      </article>`).join('')}
+    </div>
+    <div class="step-nav">
+      <button class="btn btn-ghost" id="mRestart">↺ Start Over</button>
+      <button class="btn btn-ghost" id="mAdjust">Adjust Distance</button>
+    </div></div>`;
+          resetReveals(stage);
+          countUp($('#mresPct'), usePct, '');
+          $$('.mres-btn', stage).forEach(b => b.addEventListener('click', () => {
+            const expMap = { casual: 'beginner', weekend: 'intermediate', confident: 'intermediate', seasoned: 'advanced' };
+            setPrefill({ bikeId: +b.dataset.id, experience: expMap[match.exp], group: match.group, notes: `Ride Match: ${t.label}, ~${match.distance} km, ${match.group} rider(s).` }, `Ride Match — ${t.label} · ~${match.distance} km`);
+            location.hash = '#/reserve';
+          }));
+          $('#mRestart').addEventListener('click', () => { Object.assign(match, { step: 0, exp: null, terrain: null, distance: 40, group: 1, done: false }); renderStep() });
+          $('#mAdjust').addEventListener('click', () => { match.step = 2; match.done = false; renderStep() });
+          announce(`Match complete. Top pick: ${res[0].b.title}, ${res[0].score} percent match.`);
+        }
+
+        /* ================= trail rows + range lab ================= */
+        function sparkPoints(seed, gain, w = 150, h = 40) {
+          let s = seed; const rnd = () => ((s = (s * 9301 + 49297) % 233280) / 233280);
+          const n = 18; let pts = [];
+          for (let i = 0; i <= n; i++) {
+            const t = i / n, climb = Math.sin(t * Math.PI) * (gain / 1500) * (h * .72), noise = (rnd() - .5) * 7;
+            pts.push(`${(t * w).toFixed(1)},${(h - 5 - climb + noise).toFixed(1)}`)
+          }
+          return pts.join(' ');
+        }
+        function trailRowHTML(t, i, teaser) {
+          const seed = [...t.id].reduce((a, c) => a + c.charCodeAt(0), 0);
+          return `<div class="trail-item reveal" style="--d:${i * .08}s">
+    <a class="trow" href="${teaser ? '#/trails' : '#/match'}" data-plan="${teaser ? '' : t.id}">
+      <span class="t-idx" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
+      <span class="t-main"><h3>${t.name}</h3>
+        <span class="t-meta"><span>${t.loop}</span><span>▲ ${t.gain.toLocaleString('en-IE')} m</span><span>${t.surface}</span><span>~${t.time}</span>
+        <span class="diff diff-${t.diff}">${t.diff}</span></span></span>
+      <svg class="t-spark" viewBox="0 0 150 44" aria-hidden="true"><polyline pathLength="1" points="${sparkPoints(seed, t.gain)}"/></svg>
+      <span class="t-cta">${teaser ? 'View trail' : 'Plan this ride'} <span aria-hidden="true">→</span></span>
+      <p class="t-desc">${t.desc}</p>
+    </a></div>`;
+        }
+        $('#trailList').innerHTML = TRAILS.map((t, i) => trailRowHTML(t, i, false)).join('');
+        document.addEventListener('click', e => {
+          const a = e.target.closest('[data-plan]');
+          if (a && a.dataset.plan) {
+            const t = TRAILS.find(x => x.id === a.dataset.plan);
+            if (t) { matchPrefill = { terrain: t.terrain, distance: t.km } }
+          }
+        });
+        /* lab */
+        const lab = { bikeId: 2, diff: 'moderate', km: 45 };
+        function renderLabChips() {
+          $('#labChips').innerHTML = rentals().map(b => `<button class="lab-chip" data-bike="${b.id}" aria-pressed="${b.id === lab.bikeId}">${b.title} · ${b.range}km</button>`).join('');
+        }
+        renderLabChips();
+        $('#labChips').addEventListener('click', e => { const b = e.target.closest('[data-bike]'); if (!b) return; lab.bikeId = +b.dataset.bike; renderLabChips(); updateLab() });
+        $('#labDiff').addEventListener('change', e => { if (e.target.name === 'labdiff') { lab.diff = e.target.value; $$('#labDiff label').forEach(l => l.classList.toggle('sel', l.contains(l.querySelector('input:checked')))); updateLab() } });
+        $('#labKm').addEventListener('input', e => { lab.km = +e.target.value; $('#labKmOut').textContent = lab.km; updateLab() });
+        const labRoute = $('#labRoute'), labProg = $('#labProg'), labDot = $('#labDot');
+        let labLen = 0;
+        function updateLab() {
+          const b = bikeById(lab.bikeId), mult = DIFF_MULT[lab.diff];
+          const need = lab.km * mult, use = Math.round(need / b.range * 100), remain = Math.round(b.range - need);
+          if (!labLen) labLen = labRoute.getTotalLength();
+          const frac = Math.min(1, lab.km / 120);
+          labProg.style.strokeDasharray = `${(labLen * frac).toFixed(1)} ${labLen.toFixed(1)}`;
+          const pt = labRoute.getPointAtLength(labLen * frac);
+          labDot.style.transform = `translate(${pt.x}px,${pt.y}px)`;
+          const fill = $('#labBattFill'), pct = Math.max(0, 100 - use);
+          fill.style.setProperty('--fill', pct + '%');
+          fill.className = use > 100 ? 'bad' : use > 75 ? 'warn' : '';
+          $('#labBattPct').textContent = Math.max(0, 100 - use) + '%';
+          const msg = $('#labMsg'); msg.classList.remove('warn', 'bad');
+          if (use <= 70) { msg.innerHTML = `Comfortable — you'd return with <b>~${pct}%</b> battery and ${Math.max(0, remain)} km of headroom. Ride it like you stole it.` }
+          else if (use <= 100) { msg.classList.add('warn'); msg.innerHTML = `Doable but honest — <b>~${pct}%</b> left at the door. Stay in Eco on the climbs and you're fine.` }
+          else {
+            msg.classList.add('bad'); const maxKm = Math.floor(b.range / mult);
+            msg.innerHTML = `Beyond this bike's range on that terrain. Shorten to <b>~${maxKm} km</b>, ease the difficulty, or <button type="button" id="labSuggest">switch to the Valley Explorer (120 km)</button>.`
+          }
+          const sug = $('#labSuggest'); if (sug) sug.addEventListener('click', () => { lab.bikeId = 3; renderLabChips(); updateLab() });
+        }
+        requestAnimationFrame(updateLab);
+
+        /* ================= booking ================= */
+        let prefill = null;
+        function setPrefill(obj, source) { prefill = { ...obj, source } }
+        const todayISO = new Date().toISOString().slice(0, 10);
+        $('#f-start').min = todayISO; $('#f-end').min = todayISO;
+        $('#f-bike').innerHTML = '<option value="">Select a bike…</option>' + rentals().map(b => `<option value="${b.id}">${b.title} — ${euro(b.rate)}/day · ${b.range} km</option>`).join('');
+        function enterReserve() {
+          if (!prefill) return;
+          const p = prefill; prefill = null;
+          if (p.bikeId) $('#f-bike').value = p.bikeId;
+          if (p.experience) $('#f-exp').value = p.experience;
+          if (p.group) $('#f-group').textContent = Math.min(8, Math.max(1, p.group));
+          if (p.notes) $('#f-notes').value = p.notes;
+          if (p.source) { $('#bkBannerTxt').textContent = p.source; $('#bkBanner').classList.add('show') }
+          updateSummary(); groupHint(+$('#f-group').textContent);
+        }
+        $('#bkBannerX').addEventListener('click', () => $('#bkBanner').classList.remove('show'));
+        ['f-bike', 'f-start', 'f-end', 'f-time', 'f-exp', 'f-ins'].forEach(id => $('#' + id).addEventListener('change', updateSummary));
+        $('#f-start').addEventListener('change', e => { $('#f-end').min = e.target.value || todayISO; updateSummary() });
+        function bookingCalc() {
+          const bikeId = +$('#f-bike').value, s = $('#f-start').value, e = $('#f-end').value;
+          if (!bikeId || !s || !e) return null;
+          const start = new Date(s), end = new Date(e); if (end < start) return null;
+          const days = Math.max(1, Math.round((end - start) / 864e5));
+          const bikes = Math.min(8, Math.max(1, +$('#f-group').textContent));
+          const b = bikeById(bikeId), rate = b.rate;
+          const ins = $('#f-ins').checked ? 8 * days * bikes : 0;
+          return { b, days, bikes, rate, ins, total: days * rate * bikes + ins, start: s, end: e };
+        }
+        function updateSummary() {
+          const c = bookingCalc(), art = $('#sumArt'), name = $('#sumName'), meta = $('#sumMeta'), lines = $('#sumLines');
+          if (!c) {
+            const b = bikeById(+$('#f-bike').value);
+            art.innerHTML = b ? bikeArt(b) : '';
+            name.textContent = b ? b.title : 'No bike selected';
+            meta.textContent = b ? `${b.range} km range · ${b.motor}` : 'Pick a machine to begin';
+            lines.innerHTML = '<div class="sum-line"><span>Select dates &amp; times</span><span>—</span></div>';
+            return;
+          }
+          art.innerHTML = bikeArt(c.b); name.textContent = c.b.title;
+          meta.textContent = `${c.b.range} km range · ${c.b.motor}`;
+          const fmt = d => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+          lines.innerHTML = `
+    <div class="sum-line"><span>${fmt(c.start)} → ${fmt(c.end)} · ${c.days} day${c.days > 1 ? 's' : ''}</span><span></span></div>
+    <div class="sum-line"><span>${euro(c.rate)} × ${c.days}d × ${c.bikes} bike${c.bikes > 1 ? 's' : ''}</span><span>${euro(c.rate * c.days * c.bikes)}</span></div>
+    ${c.ins ? `<div class="sum-line"><span>Damage &amp; theft cover</span><span>${euro(c.ins)}</span></div>` : ''}
+    <div class="sum-line total"><span>Estimated total</span><b>${euro(c.total)}</b></div>`;
+        }
+        updateSummary();
+        /* steps + validation */
+        function setInvalid(id, bad) { const f = $('#' + id).closest('.fld'); f.classList.toggle('invalid', bad); $('#' + id).setAttribute('aria-invalid', bad ? 'true' : 'false'); return !bad }
+        function validStep1() {
+          let ok = true, first = null;
+          const chk = (id, cond) => { const good = setInvalid(id, !cond); if (!good && !first) first = id; ok = ok && good };
+          chk('f-bike', !!$('#f-bike').value);
+          const s = $('#f-start').value, e = $('#f-end').value;
+          chk('f-start', !!s && s >= todayISO);
+          chk('f-end', !!e && !!s && e >= s);
+          chk('f-time', !!$('#f-time').value);
+          chk('f-exp', !!$('#f-exp').value);
+          if (first) $('#' + first).focus();
+          return ok;
+        }
+        function validStep2() {
+          let ok = true, first = null;
+          const chk = (id, cond) => { const good = setInvalid(id, !cond); if (!good && !first) first = id; ok = ok && good };
+          chk('f-name', $('#f-name').value.trim().length >= 2);
+          chk('f-email', /^\S+@\S+\.\S+$/.test($('#f-email').value.trim()));
+          chk('f-phone', /^[+()\-\s\d]{7,}$/.test($('#f-phone').value.trim()));
+          const cf = $('#consentFld'); const cOk = $('#f-consent').checked; cf.classList.toggle('invalid', !cOk); if (!cOk && !first) first = 'f-consent'; ok = ok && cOk;
+          if (first) $('#' + first).focus();
+          return ok;
+        }
+        $('#toStep2').addEventListener('click', () => {
+          if (!validStep1()) return;
+          $('#bkStep1').hidden = true; $('#bkStep2').hidden = false;
+          $('#bkN1').className = 'bk-node done'; $('#bkN1').querySelector('i').textContent = '✓'; $('#bkN2').className = 'bk-node cur';
+          $('#f-name').focus();
+          try { window.scrollTo({ top: $('#bookForm').offsetTop - 120, behavior: RM ? 'auto' : 'smooth' }) } catch (e) { }
+        });
+        $('#toStep1').addEventListener('click', () => {
+          $('#bkStep2').hidden = true; $('#bkStep1').hidden = false;
+          $('#bkN1').className = 'bk-node cur'; $('#bkN1').querySelector('i').textContent = '1'; $('#bkN2').className = 'bk-node';
+        });
+        $('#bookForm').addEventListener('submit', e => {
+          e.preventDefault();
+          if (!validStep2()) return;
+          const btn = $('#submitBtn'); btn.classList.add('loading'); btn.disabled = true;
+          setTimeout(() => {
+            btn.classList.remove('loading'); btn.disabled = false;
+            const c = bookingCalc();
+            const ref = 'AVF-' + Math.random().toString(36).slice(2, 6).toUpperCase() + '-' + String($('#f-bike').value).padStart(2, '0');
+            $('#refCode').textContent = ref;
+            $('#bkRecap').textContent = c ? `${c.b.title} · ${c.days} day${c.days > 1 ? 's' : ''} · ${c.bikes} bike${c.bikes > 1 ? 's' : ''} · est. ${euro(c.total)} — confirmation heading to ${$('#f-email').value.trim()}.` : '';
+            $('#bookForm').style.display = 'none'; $('#bkSuccess').classList.add('show');
+            $('#bkN2').className = 'bk-node done'; $('#bkN2').querySelector('i').textContent = '✓'; $('#bkN3').className = 'bk-node cur';
+            announce('Reservation request received. Reference ' + ref);
+          }, 900);
+        });
+        $('#bkAgain').addEventListener('click', () => {
+          $('#bookForm').reset(); $('#f-group').textContent = '1';
+          $('#bookForm').style.display = ''; $('#bkSuccess').classList.remove('show');
+          $('#bkStep2').hidden = true; $('#bkStep1').hidden = false;
+          $('#bkN1').className = 'bk-node cur'; $('#bkN1').querySelector('i').textContent = '1';
+          $('#bkN2').className = 'bk-node'; $('#bkN2').querySelector('i').textContent = '2';
+          $('#bkN3').className = 'bk-node';
+          $$('.fld.invalid').forEach(f => f.classList.remove('invalid'));
+          updateSummary(); groupHint(1);
+        });
+
+        /* ================= own-it form + angles ================= */
+        $('#ownArtSvg').innerHTML = bikeArt(bikeById(6));
+        $$('.angle-btn').forEach(b => b.addEventListener('click', () => {
+          $$('.angle-btn').forEach(x => x.setAttribute('aria-pressed', 'false'));
+          b.setAttribute('aria-pressed', 'true');
+          $('#ownArt').dataset.angle = b.dataset.angle;
+        }));
+        $('#ownFormEl').addEventListener('submit', e => {
+          e.preventDefault();
+          let ok = true, first = null;
+          const chk = (id, cond) => { const f = $('#' + id).closest('.fld'); f.classList.toggle('invalid', !cond); $('#' + id).setAttribute('aria-invalid', cond ? 'false' : 'true'); if (!cond && !first) first = id; ok = ok && cond };
+          chk('o-name', $('#o-name').value.trim().length >= 2);
+          chk('o-email', /^\S+@\S+\.\S+$/.test($('#o-email').value.trim()));
+          chk('o-phone', /^[+()\-\s\d]{7,}$/.test($('#o-phone').value.trim()));
+          chk('o-msg', $('#o-msg').value.trim().length >= 5);
+          const cFld = $('#oConsentFld'), cOk = $('#o-consent').checked; cFld.classList.toggle('invalid', !cOk); if (!cOk && !first) first = 'o-consent'; ok = ok && cOk;
+          if (!ok) { if (first) $('#' + first).focus(); return }
+          const btn = $('#ownSubmit'); btn.classList.add('loading'); btn.disabled = true;
+          setTimeout(() => {
+            btn.classList.remove('loading'); btn.disabled = false;
+            $('#ownFormEl').style.display = 'none'; $('#ownSuccess').classList.add('show');
+            announce('Purchase enquiry sent.');
+          }, 900);
+        });
+        $('#ownAgain').addEventListener('click', () => {
+          $('#ownFormEl').reset(); $('#ownFormEl').style.display = ''; $('#ownSuccess').classList.remove('show');
+          $$('#ownFormEl .fld.invalid').forEach(f => f.classList.remove('invalid'));
+        });
+
+        /* ================= FAQ / misc ================= */
+        $$('.faq-q').forEach(q => q.addEventListener('click', () => {
+          const item = q.closest('.faq-item'), open = item.classList.toggle('open');
+          q.setAttribute('aria-expanded', open);
+        }));
+        $('#toTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: RM ? 'auto' : 'smooth' }));
+        $('#yearNow').textContent = new Date().getFullYear();
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeDrawer() } });
+
+        /* ================= init ================= */
+        navigate();
+      })();
+    </script>
+  </body>
+
+  </html>
+
+  <script>
+
+  </script>
+</body>
+
+</html>

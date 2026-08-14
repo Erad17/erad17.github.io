@@ -1,0 +1,3787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: white;
+      /* Ensure the iframe has a white background */
+    }
+  </style>
+</head>
+
+<body>
+  <!DOCTYPE html>
+  <html lang="en" data-theme="velvet">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noai, noimageai">
+    <meta name="description"
+      content="Label Noir — a Parisian atelier engineering websites the way a house cuts cloth. Haute couture web engineering, by appointment only.">
+    <title>La Maison — Label Noir</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Italiana&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet">
+
+    <style>
+      /* ============================================================
+   LABEL NOIR — Haute Couture Web Engineering
+   Velvet & chalk plates, hairline grids, one gold thread.
+   ============================================================ */
+
+      /* ---------- 1. TOKENS ---------- */
+      :root {
+        /* palette */
+        --velvet: #0B0B0B;
+        --chalk: #FAFAFA;
+        --gold-deep: #7A5C1E;
+        --gold: #B08D3E;
+        --gold-hi: #E3C87E;
+
+        /* typography */
+        --font-display: 'Italiana', 'Didot', 'Bodoni MT', serif;
+        --font-body: 'EB Garamond', Georgia, serif;
+        --font-mono: 'Space Mono', 'Courier New', monospace;
+
+        --fs-hero: clamp(3.6rem, 1.1rem + 10.5vw, 10.5rem);
+        --fs-h1: clamp(2.7rem, 1.5rem + 4.6vw, 5.6rem);
+        --fs-h2: clamp(1.9rem, 1.25rem + 2.5vw, 3.3rem);
+        --fs-h3: clamp(1.25rem, 1.05rem + .9vw, 1.7rem);
+        --fs-lead: clamp(1.15rem, 1rem + .8vw, 1.55rem);
+        --fs-body: clamp(1.02rem, .96rem + .3vw, 1.19rem);
+        --fs-mono: clamp(.66rem, .6rem + .28vw, .78rem);
+        --fs-micro: clamp(.56rem, .53rem + .18vw, .66rem);
+
+        --ls-mono: .18em;
+        --ls-wider: .34em;
+
+        /* spacing */
+        --sp-1: .5rem;
+        --sp-2: 1rem;
+        --sp-3: 1.75rem;
+        --sp-4: 3rem;
+        --sp-5: 5rem;
+        --sp-6: 8rem;
+        --gutter: clamp(1.25rem, 4vw, 4rem);
+        --maxw: 82rem;
+        --header-h: 4.4rem;
+
+        /* motion */
+        --dur-fast: .25s;
+        --dur-base: .35s;
+        --dur-slow: .6s;
+        --ease-out: cubic-bezier(.22, .61, .21, 1);
+        --ease-inout: cubic-bezier(.65, 0, .35, 1);
+
+        --grain: .07;
+        --plate-pad: clamp(1.25rem, 3vw, 2.5rem);
+      }
+
+      /* Velvet plate (default) */
+      [data-theme="velvet"] {
+        --paper: var(--velvet);
+        --ink: var(--chalk);
+        --hairline: #1C1C1C;
+        --hairline-strong: #3A3A3A;
+        --muted: #A9A49B;
+        --accent: #C9A961;
+        --plate-bg: #151515;
+        --plate-edge: #262626;
+      }
+
+      /* Chalk plate */
+      [data-theme="chalk"] {
+        --paper: var(--chalk);
+        --ink: var(--velvet);
+        --hairline: #DCD9D2;
+        --hairline-strong: #B9B5AC;
+        --muted: #55524C;
+        --accent: #8A6A2B;
+        --plate-bg: #ECEAE5;
+        --plate-edge: #D3CFC7;
+        --grain: .05;
+      }
+
+      /* ---------- 2. RESET / BASE ---------- */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--font-body);
+        font-size: var(--fs-body);
+        line-height: 1.65;
+        transition: background var(--dur-slow) var(--ease-inout), color var(--dur-slow) var(--ease-inout);
+        overflow-x: hidden;
+      }
+
+      img,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      button {
+        font: inherit;
+        color: inherit;
+        background: none;
+        border: 0;
+        cursor: pointer;
+      }
+
+      ul,
+      ol {
+        list-style: none;
+      }
+
+      address {
+        font-style: normal;
+      }
+
+      ::selection {
+        background: var(--accent);
+        color: var(--paper);
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+
+      :focus:not(:focus-visible) {
+        outline: none;
+      }
+
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: color-mix(in oklab, var(--ink) 35%, transparent) transparent;
+      }
+
+      body.no-scroll {
+        overflow: hidden;
+      }
+
+      /* ---------- 3. UTILITIES ---------- */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .skip-link {
+        position: fixed;
+        top: -4rem;
+        left: var(--gutter);
+        z-index: 3000;
+        background: var(--ink);
+        color: var(--paper);
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: var(--ls-mono);
+        padding: .7rem 1.2rem;
+        text-decoration: none;
+        transition: top var(--dur-fast) var(--ease-out);
+      }
+
+      .skip-link:focus {
+        top: .75rem;
+      }
+
+      .wrap {
+        max-width: var(--maxw);
+        margin-inline: auto;
+        padding-inline: var(--gutter);
+      }
+
+      .mono {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+      }
+
+      .kicker {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: var(--ls-wider);
+        text-transform: uppercase;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .kicker::after {
+        content: "";
+        height: 1px;
+        flex: 0 0 3rem;
+        background: var(--hairline-strong);
+      }
+
+      .section {
+        padding-block: var(--sp-5) var(--sp-6);
+        position: relative;
+      }
+
+      .link-cta {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: .7em;
+        padding-bottom: .45em;
+        position: relative;
+        transition: color var(--dur-fast) var(--ease-out);
+      }
+
+      .link-cta::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 1px;
+        width: 100%;
+        background: currentColor;
+        transform-origin: left;
+        transition: transform var(--dur-base) var(--ease-out);
+      }
+
+      .link-cta .arr {
+        transition: transform var(--dur-base) var(--ease-out);
+      }
+
+      .link-cta:hover {
+        color: var(--accent);
+      }
+
+      .link-cta:hover::after {
+        transform: scaleX(.55);
+      }
+
+      .link-cta:hover .arr {
+        transform: translateX(.45em);
+      }
+
+      /* Inverted plates — chalk & velvet swap without warning */
+      .plate-inverse {
+        background: var(--ink);
+        color: var(--paper);
+        --hairline: color-mix(in oklab, var(--paper) 20%, transparent);
+        --hairline-strong: color-mix(in oklab, var(--paper) 42%, transparent);
+        --muted: color-mix(in oklab, var(--paper) 62%, transparent);
+        --accent: #8A6A2B;
+      }
+
+      [data-theme="chalk"] .plate-inverse {
+        --accent: #D9BE7A;
+      }
+
+      .plate-velvet {
+        background: var(--velvet);
+        color: var(--chalk);
+        --hairline: #1C1C1C;
+        --hairline-strong: #3A3A3A;
+        --muted: #A9A49B;
+        --accent: var(--gold-hi);
+      }
+
+      /* ---------- 4. ATMOSPHERE — grain, gold progress thread, the cachet ---------- */
+      .grain {
+        position: fixed;
+        inset: -60%;
+        width: 220%;
+        height: 220%;
+        pointer-events: none;
+        z-index: 2600;
+        opacity: var(--grain);
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>");
+        animation: grainShift 1.1s steps(5) infinite;
+      }
+
+      @keyframes grainShift {
+
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+
+        20% {
+          transform: translate(-1.4%, 1%);
+        }
+
+        40% {
+          transform: translate(1%, -1.4%);
+        }
+
+        60% {
+          transform: translate(-1%, -.8%);
+        }
+
+        80% {
+          transform: translate(1.3%, .9%);
+        }
+      }
+
+      .progress-ribbon {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        z-index: 2500;
+        pointer-events: none;
+      }
+
+      .progress-ribbon__fill {
+        display: block;
+        height: 100%;
+        width: 100%;
+        transform: scaleX(0);
+        transform-origin: left;
+        background: linear-gradient(90deg, var(--gold-deep), var(--gold) 30%, var(--gold-hi) 50%, var(--gold) 70%, var(--gold-deep));
+        background-size: 200% 100%;
+        animation: goldSheen 7s linear infinite;
+      }
+
+      @keyframes goldSheen {
+        from {
+          background-position: 0% 0;
+        }
+
+        to {
+          background-position: 200% 0;
+        }
+      }
+
+      /* Decorative per-route threads */
+      .thread {
+        position: absolute;
+        pointer-events: none;
+        z-index: 0;
+        overflow: visible;
+      }
+
+      .thread .draw {
+        fill: none;
+        stroke: url(#goldGrad);
+        stroke-width: 2;
+        stroke-linecap: round;
+      }
+
+      .thread .halo {
+        fill: none;
+        stroke: url(#goldGrad);
+        stroke-width: 7;
+        stroke-linecap: round;
+        opacity: .14;
+      }
+
+      /* The cachet — the maison's seal, stamped in gold */
+      .seal {
+        color: var(--accent);
+        transform: scale(1.4) rotate(-8deg);
+        opacity: 0;
+        transform-origin: center;
+        transition: transform .55s cubic-bezier(.34, 1.56, .5, 1), opacity .4s var(--ease-out);
+      }
+
+      .seal.is-sealed {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+      }
+
+      .foot-seal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      /* ---------- 5. HEADER / NAV / CURTAIN ---------- */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 1200;
+        background: var(--paper);
+        border-bottom: 1px solid var(--hairline);
+        transition: background var(--dur-slow) var(--ease-inout), border-color var(--dur-base) var(--ease-out);
+      }
+
+      .site-header.is-scrolled {
+        border-bottom-color: var(--hairline-strong);
+      }
+
+      .header-inner {
+        max-width: var(--maxw);
+        margin-inline: auto;
+        padding-inline: var(--gutter);
+        height: var(--header-h);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--sp-3);
+      }
+
+      .wordmark {
+        font-family: var(--font-display);
+        font-size: clamp(1.35rem, 1.1rem + 1vw, 1.7rem);
+        letter-spacing: .06em;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: color var(--dur-fast) var(--ease-out);
+      }
+
+      .wordmark:hover {
+        color: var(--accent);
+      }
+
+      .wm-dot {
+        color: var(--accent);
+        padding-inline: .06em;
+      }
+
+      .wm-reg {
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        vertical-align: super;
+        letter-spacing: 0;
+        color: var(--muted);
+        margin-left: .2em;
+      }
+
+      .main-nav {
+        display: flex;
+        gap: clamp(1rem, 2.4vw, 2.4rem);
+      }
+
+      .main-nav a {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        text-decoration: none;
+        color: var(--muted);
+        position: relative;
+        padding-block: .4em;
+        transition: color var(--dur-fast) var(--ease-out);
+      }
+
+      .main-nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background: var(--accent);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform var(--dur-base) var(--ease-out);
+      }
+
+      .main-nav a:hover {
+        color: var(--ink);
+      }
+
+      .main-nav a:hover::after,
+      .main-nav a.is-active::after {
+        transform: scaleX(1);
+      }
+
+      .main-nav a.is-active {
+        color: var(--ink);
+      }
+
+      .header-tools {
+        display: flex;
+        align-items: center;
+        gap: 1.1rem;
+      }
+
+      .invert-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: .6em;
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        color: var(--muted);
+        padding: .5em .2em;
+        transition: color var(--dur-fast) var(--ease-out);
+      }
+
+      .invert-btn:hover {
+        color: var(--ink);
+      }
+
+      .invert-swatch {
+        width: .85em;
+        height: .85em;
+        border: 1px solid currentColor;
+        display: inline-block;
+        background: linear-gradient(to right, currentColor 50%, transparent 50%);
+        transition: transform var(--dur-base) var(--ease-out);
+      }
+
+      .invert-btn:hover .invert-swatch {
+        transform: rotate(180deg);
+      }
+
+      .menu-btn {
+        display: none;
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        padding: .6em .2em;
+        transition: color var(--dur-fast) var(--ease-out);
+      }
+
+      .menu-btn:hover {
+        color: var(--accent);
+      }
+
+      /* Full-screen curtain menu — the plate inverts */
+      .curtain {
+        position: fixed;
+        inset: 0;
+        z-index: 2400;
+        background: var(--ink);
+        color: var(--paper);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: calc(var(--header-h) + 2rem) var(--gutter) 2.5rem;
+        transform: translateY(-102%);
+        transition: transform .55s var(--ease-inout), visibility 0s .55s;
+        visibility: hidden;
+      }
+
+      .curtain.is-open {
+        transform: translateY(0);
+        visibility: visible;
+        transition: transform .55s var(--ease-inout);
+      }
+
+      .curtain-nav {
+        display: flex;
+        flex-direction: column;
+        gap: .2em;
+      }
+
+      .curtain-nav a {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 8vw, 4.2rem);
+        line-height: 1.12;
+        text-decoration: none;
+        display: flex;
+        align-items: baseline;
+        gap: .6em;
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity .4s var(--ease-out), transform .4s var(--ease-out), color var(--dur-fast) var(--ease-out);
+      }
+
+      .curtain.is-open .curtain-nav a {
+        opacity: 1;
+        transform: none;
+      }
+
+      .curtain.is-open .curtain-nav a:nth-child(1) {
+        transition-delay: .12s;
+      }
+
+      .curtain.is-open .curtain-nav a:nth-child(2) {
+        transition-delay: .18s;
+      }
+
+      .curtain.is-open .curtain-nav a:nth-child(3) {
+        transition-delay: .24s;
+      }
+
+      .curtain.is-open .curtain-nav a:nth-child(4) {
+        transition-delay: .30s;
+      }
+
+      .curtain-nav a:hover {
+        color: var(--gold-deep);
+      }
+
+      [data-theme="chalk"] .curtain-nav a:hover {
+        color: var(--gold-hi);
+      }
+
+      .curtain-num {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: var(--ls-mono);
+        color: var(--gold-deep);
+      }
+
+      [data-theme="chalk"] .curtain-num {
+        color: var(--gold-hi);
+      }
+
+      .curtain-foot {
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        color: color-mix(in oklab, var(--paper) 60%, transparent);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 2.5rem;
+      }
+
+      /* ---------- 6. VIEWS & REVEALS ---------- */
+      main {
+        display: block;
+      }
+
+      .view {
+        display: none;
+      }
+
+      .view.is-active {
+        display: block;
+        animation: viewIn .55s var(--ease-out) both;
+      }
+
+      @keyframes viewIn {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity .65s var(--ease-out), transform .65s var(--ease-out);
+        transition-delay: var(--d, 0ms);
+      }
+
+      .reveal.is-in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ---------- 7. PAGE HEADS (shared by inner pages) ---------- */
+      .page-head {
+        padding: calc(var(--sp-4) + 1rem) 0 var(--sp-4);
+        border-bottom: 1px solid var(--hairline);
+        position: relative;
+      }
+
+      .page-head h1 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: var(--fs-h1);
+        line-height: .95;
+        letter-spacing: .01em;
+        margin-top: 1.2rem;
+      }
+
+      .page-intro {
+        font-style: italic;
+        font-size: var(--fs-lead);
+        line-height: 1.5;
+        color: var(--muted);
+        max-width: 44ch;
+        margin-top: 1.4rem;
+      }
+
+      /* ============================================================
+   8. LA MAISON — cover plate
+   ============================================================ */
+      .masthead {
+        position: relative;
+        padding-bottom: var(--sp-4);
+      }
+
+      .masthead .thread {
+        top: 6rem;
+        left: -2%;
+        width: 104%;
+        height: auto;
+        opacity: .8;
+      }
+
+      .mast-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        padding: 1.1rem var(--gutter);
+        max-width: var(--maxw);
+        margin-inline: auto;
+        border-bottom: 1px solid var(--hairline);
+        color: var(--muted);
+        position: relative;
+        z-index: 1;
+      }
+
+      .mast-grid {
+        max-width: var(--maxw);
+        margin-inline: auto;
+        padding-inline: var(--gutter);
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: clamp(1rem, 3vw, 3rem);
+        align-items: start;
+        position: relative;
+        z-index: 1;
+        padding-top: clamp(2.5rem, 6vh, 4.5rem);
+      }
+
+      .mast-vertical {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        color: var(--muted);
+        letter-spacing: var(--ls-wider);
+        border-left: 1px solid var(--hairline);
+        padding-left: 1rem;
+        min-height: 22rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        text-transform: uppercase;
+      }
+
+      .mast-title {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: var(--fs-hero);
+        line-height: .86;
+        letter-spacing: .005em;
+      }
+
+      .mast-title .line {
+        display: block;
+      }
+
+      .mast-title .line-2 {
+        padding-left: clamp(1.5rem, 8vw, 7rem);
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        gap: .18em;
+      }
+
+      .noir-plate {
+        background: var(--ink);
+        color: var(--paper);
+        padding: 0 .16em .04em;
+        display: inline-block;
+        transition: background var(--dur-slow) var(--ease-inout), color var(--dur-slow) var(--ease-inout);
+      }
+
+      .mast-seal {
+        width: clamp(4.2rem, 8vw, 6.4rem);
+        height: auto;
+        margin-top: .4em;
+        flex: none;
+      }
+
+      .mast-sub {
+        display: flex;
+        gap: 1.2rem;
+        align-items: baseline;
+        margin-top: 1.1rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .standfirst {
+        font-style: italic;
+        font-size: var(--fs-lead);
+        line-height: 1.55;
+        max-width: 46ch;
+        margin-top: 2.2rem;
+      }
+
+      .standfirst strong {
+        font-style: normal;
+        font-weight: 500;
+      }
+
+      .mast-ctas {
+        display: flex;
+        gap: 2.5rem;
+        flex-wrap: wrap;
+        margin-top: 2.6rem;
+      }
+
+      .mast-side {
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        color: var(--muted);
+        text-align: right;
+        line-height: 2.2;
+        border-right: 1px solid var(--hairline);
+        padding-right: 1rem;
+      }
+
+      .mast-side b {
+        color: var(--ink);
+        font-weight: 400;
+      }
+
+      .mast-foot {
+        max-width: var(--maxw);
+        margin: clamp(2.5rem, 6vh, 4.5rem) auto 0;
+        padding: 1rem var(--gutter);
+        border-top: 1px solid var(--hairline);
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        color: var(--muted);
+        position: relative;
+        z-index: 1;
+      }
+
+      .mast-foot a {
+        color: var(--accent);
+        text-decoration: none;
+        border-bottom: 1px solid currentColor;
+        transition: opacity var(--dur-fast) var(--ease-out);
+      }
+
+      .mast-foot a:hover {
+        opacity: .65;
+      }
+
+      /* Manifesto */
+      .manifesto .wrap {
+        display: grid;
+        grid-template-columns: 1.25fr .75fr;
+        gap: clamp(2rem, 6vw, 6rem);
+        position: relative;
+        z-index: 1;
+      }
+
+      .manifesto h2 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: var(--fs-h2);
+        line-height: 1.02;
+        margin: 1.4rem 0 1.8rem;
+      }
+
+      .manifesto p+p {
+        margin-top: 1.2rem;
+      }
+
+      .dropcap::first-letter {
+        font-family: var(--font-display);
+        float: left;
+        font-size: clamp(3.4rem, 3rem + 2vw, 5rem);
+        line-height: .78;
+        padding: .06em .12em 0 0;
+        color: var(--accent);
+      }
+
+      .manifesto-aside {
+        border-left: 1px solid var(--hairline-strong);
+        padding-left: clamp(1.5rem, 3vw, 2.5rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 2.5rem;
+      }
+
+      .manifesto blockquote {
+        font-family: var(--font-display);
+        font-size: var(--fs-h3);
+        line-height: 1.3;
+      }
+
+      .manifesto cite {
+        display: block;
+        margin-top: 1rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        font-style: normal;
+        opacity: .65;
+      }
+
+      .measurements {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        border-top: 1px solid var(--hairline-strong);
+      }
+
+      .measurements li {
+        padding: .9rem .2rem;
+        border-bottom: 1px solid var(--hairline-strong);
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        opacity: .85;
+      }
+
+      .measurements li:nth-child(odd) {
+        border-right: 1px solid var(--hairline-strong);
+        padding-right: 1rem;
+      }
+
+      .measurements li:nth-child(even) {
+        padding-left: 1rem;
+      }
+
+      .measurements b {
+        display: block;
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: var(--fs-h3);
+        letter-spacing: 0;
+      }
+
+      /* Awards ticker */
+      .ticker {
+        border-block: 1px solid var(--hairline);
+        overflow: hidden;
+        background: var(--paper);
+      }
+
+      .ticker-track {
+        display: flex;
+        width: max-content;
+        animation: tickerMove 38s linear infinite;
+      }
+
+      .ticker:hover .ticker-track {
+        animation-play-state: paused;
+      }
+
+      @keyframes tickerMove {
+        from {
+          transform: translateX(0);
+        }
+
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      .ticker-group {
+        display: flex;
+        align-items: center;
+        padding-block: .85rem;
+      }
+
+      .tick {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        white-space: nowrap;
+        padding-inline: 1.6rem;
+        color: var(--muted);
+      }
+
+      .tick b {
+        color: var(--ink);
+        font-weight: 400;
+      }
+
+      .tick-dot {
+        color: var(--accent);
+        font-size: var(--fs-mono);
+      }
+
+      /* Index of the house */
+      .index-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-bottom: 2.2rem;
+      }
+
+      .index h2 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: var(--fs-h2);
+        line-height: 1;
+        margin-top: 1.2rem;
+      }
+
+      .index-list {
+        border-top: 1px solid var(--hairline-strong);
+        counter-reset: craft;
+      }
+
+      .index-list a {
+        display: grid;
+        grid-template-columns: 4.5rem 1fr auto 2.5rem;
+        align-items: baseline;
+        gap: 1.2rem;
+        padding: 1.15rem .8rem;
+        text-decoration: none;
+        border-bottom: 1px solid var(--hairline-strong);
+        transition: background .12s linear, color .12s linear, padding-left var(--dur-base) var(--ease-out);
+      }
+
+      .index-list a:hover,
+      .index-list a:focus-visible {
+        background: var(--ink);
+        color: var(--paper);
+        padding-left: 1.4rem;
+      }
+
+      .idx-num {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: var(--ls-mono);
+        opacity: .65;
+      }
+
+      .idx-title {
+        font-family: var(--font-display);
+        font-size: var(--fs-h3);
+        line-height: 1.1;
+      }
+
+      .idx-cat {
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        opacity: .65;
+      }
+
+      .idx-arr {
+        justify-self: end;
+        transition: transform var(--dur-base) var(--ease-out);
+      }
+
+      .index-list a:hover .idx-arr {
+        transform: translateX(.4em);
+      }
+
+      /* Materials — INCI */
+      .materials {
+        border-block: 1px solid var(--hairline);
+      }
+
+      .materials .wrap {
+        position: relative;
+        z-index: 1;
+      }
+
+      .materials h2 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: var(--fs-h2);
+        margin: 1.4rem 0 2.4rem;
+        line-height: 1.02;
+      }
+
+      .inci {
+        border: 1px solid var(--hairline-strong);
+        padding: var(--plate-pad);
+        max-width: 56rem;
+      }
+
+      .inci-line {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        line-height: 2.1;
+      }
+
+      .inci-line b {
+        font-weight: 700;
+      }
+
+      .inci hr {
+        border: 0;
+        border-top: 1px solid var(--hairline);
+        margin: 1.4rem 0;
+      }
+
+      .inci-note {
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        line-height: 1.9;
+        color: var(--muted);
+        max-width: 60ch;
+      }
+
+      .inci-batch {
+        margin-top: 1.6rem;
+        padding-top: 1rem;
+        border-top: 1px dashed var(--hairline-strong);
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      /* Season teaser */
+      .teaser-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr .9fr;
+        gap: 1.5rem;
+        margin-top: 2.4rem;
+        align-items: stretch;
+      }
+
+      .teaser-cta {
+        border: 1px solid var(--hairline-strong);
+        padding: var(--plate-pad);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 2rem;
+        transition: background .12s linear, color .12s linear;
+      }
+
+      .teaser-cta:hover {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .teaser-cta p {
+        font-style: italic;
+        font-size: var(--fs-lead);
+        line-height: 1.45;
+      }
+
+      /* ============================================================
+   9. THE COLLECTION — runway lookbook
+   ============================================================ */
+      .runway {
+        padding-block: var(--sp-4);
+        position: relative;
+      }
+
+      .runway .thread {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 9rem;
+        opacity: .7;
+      }
+
+      .runway-controls {
+        max-width: var(--maxw);
+        margin-inline: auto;
+        padding-inline: var(--gutter);
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        margin-bottom: 1.6rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .runway-hint {
+        color: var(--muted);
+      }
+
+      .runway-count {
+        margin-left: auto;
+        font-family: var(--font-display);
+        font-size: var(--fs-h3);
+        letter-spacing: .05em;
+      }
+
+      .rbtn {
+        width: 2.9rem;
+        height: 2.9rem;
+        border: 1px solid var(--hairline-strong);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        line-height: 1;
+        transition: background .12s linear, color .12s linear, opacity var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+      }
+
+      .rbtn:hover:not(:disabled) {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .rbtn:active:not(:disabled) {
+        transform: scale(.94);
+      }
+
+      .rbtn:disabled {
+        opacity: .3;
+        cursor: default;
+      }
+
+      .runway-track {
+        display: flex;
+        gap: clamp(1rem, 2.5vw, 2rem);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: .5rem var(--gutter) 1.5rem;
+        cursor: grab;
+        user-select: none;
+        scrollbar-width: none;
+      }
+
+      .runway-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      .runway-track.is-dragging {
+        cursor: grabbing;
+        scroll-snap-type: none;
+      }
+
+      .plate {
+        flex: 0 0 clamp(17rem, 62vw, 26rem);
+        scroll-snap-align: center;
+        container: plate / inline-size;
+        position: relative;
+      }
+
+      .plate-art {
+        border: 1px solid var(--plate-edge);
+        background: var(--plate-bg);
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 4/5.2;
+        transition: border-color var(--dur-base) var(--ease-out);
+      }
+
+      .plate-art svg {
+        width: 100%;
+        height: 100%;
+        transform: scale(1.02);
+        transition: transform .8s var(--ease-out);
+      }
+
+      .plate:hover .plate-art {
+        border-color: var(--hairline-strong);
+      }
+
+      .plate:hover .plate-art svg {
+        transform: scale(1.06);
+      }
+
+      .plate-art::after {
+        /* grain on every plate */
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: .5;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23p)' opacity='0.5'/></svg>");
+      }
+
+      .plate figcaption {
+        margin-top: .9rem;
+        display: grid;
+        gap: .3rem;
+      }
+
+      .plate .cap-no {
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      .plate .cap-title {
+        font-family: var(--font-display);
+        font-size: var(--fs-h3);
+        line-height: 1.1;
+      }
+
+      .plate .cap-house {
+        font-style: italic;
+        color: var(--muted);
+      }
+
+      .plate .cap-meta {
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: .35rem;
+      }
+
+      @container plate (min-width: 24rem) {
+        .plate figcaption {
+          grid-template-columns: 1fr auto;
+          align-items: end;
+          column-gap: 1rem;
+        }
+
+        .plate .cap-meta {
+          grid-column: 1 / -1;
+        }
+      }
+
+      .runway-progress {
+        max-width: var(--maxw);
+        margin: 1rem auto 0;
+        padding-inline: var(--gutter);
+        height: 1px;
+        background: var(--hairline);
+        position: relative;
+      }
+
+      .runway-progress span {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 14%;
+        background: var(--accent);
+        transition: width var(--dur-base) var(--ease-out);
+      }
+
+      /* Archive index */
+      .archive {
+        padding-block: var(--sp-4) var(--sp-6);
+      }
+
+      .archive-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.8rem;
+      }
+
+      .archive h2 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: var(--fs-h2);
+        margin-top: 1.2rem;
+        line-height: 1;
+      }
+
+      .chips {
+        display: flex;
+        gap: .4rem 1.4rem;
+        flex-wrap: wrap;
+      }
+
+      .chip {
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        color: var(--muted);
+        padding: .55em .1em;
+        position: relative;
+        transition: color var(--dur-fast) var(--ease-out);
+      }
+
+      .chip::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background: var(--accent);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform var(--dur-base) var(--ease-out);
+      }
+
+      .chip:hover {
+        color: var(--ink);
+      }
+
+      .chip.is-active {
+        color: var(--ink);
+      }
+
+      .chip.is-active::after {
+        transform: scaleX(1);
+      }
+
+      .chip sup {
+        color: var(--accent);
+      }
+
+      .archive-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .archive-table th {
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 400;
+        text-align: left;
+        padding: .7rem .8rem;
+        border-bottom: 1px solid var(--hairline-strong);
+      }
+
+      .archive-row td {
+        padding: 1rem .8rem;
+        border-bottom: 1px solid var(--hairline);
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        transition: background .12s linear, color .12s linear;
+      }
+
+      .archive-row:hover td {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .archive-row .t-title {
+        font-family: var(--font-display);
+        font-size: var(--fs-h3);
+        letter-spacing: 0;
+        text-transform: none;
+      }
+
+      .archive-row .t-award {
+        color: var(--accent);
+      }
+
+      .archive-row.is-hidden {
+        display: none;
+      }
+
+      .archive-meta {
+        margin-top: 1rem;
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .empty {
+        border: 1px dashed var(--hairline-strong);
+        padding: var(--sp-4) var(--plate-pad);
+        text-align: left;
+        margin-top: 1.5rem;
+      }
+
+      .empty h3 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: var(--fs-h3);
+        margin-bottom: .6rem;
+      }
+
+      .empty p {
+        font-style: italic;
+        color: var(--muted);
+        max-width: 46ch;
+      }
+
+      .empty button {
+        margin-top: 1.4rem;
+      }
+
+      /* ============================================================
+   10. THE ATELIER — pattern book ledger
+   ============================================================ */
+      .atelier-head {
+        position: relative;
+      }
+
+      .atelier-head .thread {
+        top: 0;
+        right: -1rem;
+        width: 9rem;
+        height: 100%;
+        opacity: .7;
+      }
+
+      .ledger {
+        border-top: 1px solid var(--hairline-strong);
+        margin-top: var(--sp-4);
+        position: relative;
+        z-index: 1;
+      }
+
+      .ledger-row {
+        border-bottom: 1px solid var(--hairline-strong);
+        container: craftrow / inline-size;
+      }
+
+      .row-toggle {
+        width: 100%;
+        text-align: left;
+        display: grid;
+        grid-template-columns: 5.5rem 1fr auto 3rem;
+        align-items: baseline;
+        gap: 1.2rem;
+        padding: 1.5rem .8rem;
+        transition: background .12s linear, color .12s linear, padding-left var(--dur-base) var(--ease-out);
+      }
+
+      .row-toggle:hover,
+      .ledger-row:focus-within .row-toggle {
+        background: var(--ink);
+        color: var(--paper);
+        padding-left: 1.4rem;
+      }
+
+      .ledger-row.is-open .row-toggle {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .row-num {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: var(--ls-mono);
+        opacity: .7;
+      }
+
+      .row-title {
+        font-family: var(--font-display);
+        font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.4rem);
+        line-height: 1.05;
+      }
+
+      .row-cat {
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        opacity: .7;
+      }
+
+      .row-mark {
+        justify-self: end;
+        font-family: var(--font-mono);
+        font-size: 1.1rem;
+        line-height: 1;
+        transition: transform var(--dur-base) var(--ease-out);
+      }
+
+      .ledger-row.is-open .row-mark {
+        transform: rotate(45deg);
+      }
+
+      @container craftrow (max-width: 42rem) {
+        .row-toggle {
+          grid-template-columns: 4rem 1fr 2.2rem;
+        }
+
+        .row-cat {
+          grid-column: 2;
+          margin-top: .3rem;
+        }
+      }
+
+      .row-panel {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows .45s var(--ease-inout);
+      }
+
+      .ledger-row.is-open .row-panel {
+        grid-template-rows: 1fr;
+      }
+
+      .row-inner {
+        overflow: hidden;
+      }
+
+      .row-body {
+        padding: .4rem .8rem 2rem;
+        max-width: 62ch;
+      }
+
+      .row-desc {
+        font-size: var(--fs-lead);
+        font-style: italic;
+        line-height: 1.55;
+      }
+
+      .row-feature,
+      .row-spec {
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        margin-top: 1.2rem;
+        line-height: 1.9;
+        color: var(--muted);
+      }
+
+      .row-feature b,
+      .row-spec b {
+        color: var(--accent);
+        font-weight: 400;
+      }
+
+      /* Fittings */
+      .fittings {
+        margin-top: var(--sp-5);
+      }
+
+      .fittings h2 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: var(--fs-h2);
+        margin: 1.2rem 0 2.4rem;
+        line-height: 1;
+      }
+
+      .fittings-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-top: 1px solid var(--hairline-strong);
+      }
+
+      .fitting {
+        padding: 1.8rem 1.6rem 2.2rem 0;
+        border-bottom: 1px solid var(--hairline-strong);
+        position: relative;
+        transition: padding-left var(--dur-base) var(--ease-out);
+      }
+
+      .fitting+.fitting {
+        border-left: 1px solid var(--hairline-strong);
+        padding-left: 1.6rem;
+      }
+
+      .fitting:hover {
+        padding-left: .6rem;
+      }
+
+      .fitting+.fitting:hover {
+        padding-left: 2.2rem;
+      }
+
+      .fitting i {
+        font-family: var(--font-display);
+        font-style: normal;
+        font-size: var(--fs-h2);
+        display: block;
+        color: var(--accent);
+        line-height: 1;
+      }
+
+      .fitting h3 {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        font-weight: 400;
+        margin: 1rem 0 .8rem;
+      }
+
+      .fitting p {
+        color: var(--muted);
+        font-size: var(--fs-body);
+      }
+
+      .atelier-cta {
+        margin-top: var(--sp-5);
+        border: 1px solid var(--hairline-strong);
+        padding: var(--sp-4) var(--plate-pad);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        flex-wrap: wrap;
+        transition: background .12s linear, color .12s linear;
+      }
+
+      .atelier-cta:hover {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .atelier-cta p {
+        font-family: var(--font-display);
+        font-size: var(--fs-h3);
+        line-height: 1.25;
+        max-width: 34ch;
+      }
+
+      /* ============================================================
+   11. THE BOOKING SALON — the ledger
+   ============================================================ */
+      .salon-grid {
+        display: grid;
+        grid-template-columns: 1.35fr .65fr;
+        gap: clamp(2.5rem, 6vw, 6rem);
+        padding-block: var(--sp-4) var(--sp-6);
+        align-items: start;
+      }
+
+      .salon-form-wrap {
+        position: relative;
+      }
+
+      .salon-form-wrap .thread {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 10rem;
+        opacity: .85;
+      }
+
+      .salon-form-wrap .seal-wrap {
+        position: absolute;
+        top: 1.1rem;
+        right: .5rem;
+        width: clamp(5rem, 9vw, 6.6rem);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      #booking-form {
+        position: relative;
+        z-index: 1;
+        padding-top: 9.5rem;
+      }
+
+      .field {
+        margin-bottom: 2.6rem;
+        container: fieldbox / inline-size;
+      }
+
+      .field label,
+      .field legend {
+        display: block;
+        font-size: var(--fs-lead);
+        font-style: italic;
+        line-height: 1.45;
+        margin-bottom: .4rem;
+      }
+
+      .field label em,
+      .field legend em {
+        color: var(--muted);
+      }
+
+      .field input[type="text"],
+      .field input[type="email"],
+      .field textarea,
+      .field select {
+        width: 100%;
+        background: transparent;
+        border: 0;
+        border-bottom: 1px solid var(--hairline-strong);
+        color: var(--ink);
+        font-family: var(--font-body);
+        font-size: clamp(1.15rem, 1rem + .6vw, 1.4rem);
+        padding: .45rem .1rem .6rem;
+        border-radius: 0;
+        transition: border-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+      }
+
+      .field textarea {
+        resize: vertical;
+        min-height: 6.5rem;
+        line-height: 1.6;
+      }
+
+      .field input:focus,
+      .field textarea:focus,
+      .field select:focus {
+        outline: none;
+        border-bottom-color: var(--accent);
+        box-shadow: 0 1px 0 0 var(--accent);
+      }
+
+      .field input[aria-invalid="true"],
+      .field textarea[aria-invalid="true"] {
+        border-bottom-color: var(--accent);
+      }
+
+      .select-wrap {
+        position: relative;
+      }
+
+      .select-wrap::after {
+        content: "↓";
+        position: absolute;
+        right: .4rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        color: var(--muted);
+        pointer-events: none;
+      }
+
+      .field select {
+        appearance: none;
+        -webkit-appearance: none;
+        cursor: pointer;
+      }
+
+      .field-error {
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-top: .6rem;
+        line-height: 1.7;
+      }
+
+      .craft-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: .4rem 1.5rem;
+        margin-top: .8rem;
+      }
+
+      @container fieldbox (min-width: 40rem) {
+        .craft-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .craft-check {
+        display: flex;
+        align-items: center;
+        gap: .8em;
+        cursor: pointer;
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        color: var(--muted);
+        padding: .6em .1em;
+        transition: color var(--dur-fast) var(--ease-out);
+      }
+
+      .craft-check:hover {
+        color: var(--ink);
+      }
+
+      .craft-check input {
+        appearance: none;
+        -webkit-appearance: none;
+        width: .95rem;
+        height: .95rem;
+        flex: none;
+        border: 1px solid var(--hairline-strong);
+        display: inline-grid;
+        place-content: center;
+        cursor: pointer;
+        transition: background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+      }
+
+      .craft-check input::before {
+        content: "";
+        width: .45rem;
+        height: .45rem;
+        background: var(--paper);
+        transform: scale(0);
+        transition: transform var(--dur-fast) var(--ease-out);
+      }
+
+      .craft-check input:checked {
+        background: var(--ink);
+        border-color: var(--ink);
+      }
+
+      .craft-check input:checked::before {
+        transform: scale(1);
+      }
+
+      .consent {
+        display: flex;
+        gap: 1em;
+        align-items: flex-start;
+        cursor: pointer;
+        font-size: var(--fs-body);
+        line-height: 1.6;
+      }
+
+      .consent input {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 1.05rem;
+        height: 1.05rem;
+        flex: none;
+        margin-top: .3em;
+        border: 1px solid var(--hairline-strong);
+        display: inline-grid;
+        place-content: center;
+        cursor: pointer;
+        transition: background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+      }
+
+      .consent input::before {
+        content: "";
+        width: .5rem;
+        height: .5rem;
+        background: var(--paper);
+        transform: scale(0);
+        transition: transform var(--dur-fast) var(--ease-out);
+      }
+
+      .consent input:checked {
+        background: var(--ink);
+        border-color: var(--ink);
+      }
+
+      .consent input:checked::before {
+        transform: scale(1);
+      }
+
+      .form-actions {
+        display: flex;
+        align-items: center;
+        gap: 1.8rem;
+        flex-wrap: wrap;
+        margin-top: 3rem;
+      }
+
+      .submit-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: .8em;
+        background: var(--ink);
+        color: var(--paper);
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        padding: 1.05em 1.9em;
+        transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+      }
+
+      .submit-btn:hover:not(:disabled) {
+        background: var(--accent);
+        color: var(--paper);
+      }
+
+      .submit-btn:active:not(:disabled) {
+        transform: scale(.97);
+      }
+
+      .submit-btn:disabled {
+        opacity: .7;
+        cursor: wait;
+      }
+
+      .submit-btn .btn-arr {
+        transition: transform var(--dur-base) var(--ease-out);
+      }
+
+      .submit-btn:hover:not(:disabled) .btn-arr {
+        transform: translateX(.4em);
+      }
+
+      .submit-btn.is-loading .btn-arr {
+        display: none;
+      }
+
+      .submit-btn.is-loading::after {
+        content: "";
+        width: .85em;
+        height: .85em;
+        border: 1px solid currentColor;
+        border-right-color: transparent;
+        border-radius: 50%;
+        animation: spin .7s linear infinite;
+        margin-left: .2em;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .form-note {
+        color: var(--muted);
+      }
+
+      /* Success plate */
+      .form-success {
+        position: relative;
+        border: 1px solid var(--hairline-strong);
+        padding: var(--sp-4) var(--plate-pad);
+        margin-top: 2rem;
+      }
+
+      .form-success:focus {
+        outline: none;
+      }
+
+      .stamp {
+        position: absolute;
+        top: 1.4rem;
+        right: 1.4rem;
+        transform: rotate(8deg);
+        border: 2px solid var(--accent);
+        color: var(--accent);
+        outline: 1px solid var(--accent);
+        outline-offset: 3px;
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: var(--ls-wider);
+        text-transform: uppercase;
+        text-align: center;
+        padding: .7em 1em;
+        line-height: 1.8;
+        animation: stampIn .45s cubic-bezier(.34, 1.56, .5, 1) .25s both;
+      }
+
+      @keyframes stampIn {
+        from {
+          transform: rotate(8deg) scale(1.8);
+          opacity: 0;
+        }
+
+        to {
+          transform: rotate(8deg) scale(1);
+          opacity: 1;
+        }
+      }
+
+      .success-title {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: var(--fs-h1);
+        line-height: .95;
+        margin: 1rem 0 1.4rem;
+      }
+
+      .form-success p {
+        max-width: 52ch;
+      }
+
+      .success-ref {
+        margin-top: 1.6rem;
+        color: var(--muted);
+      }
+
+      .link-btn {
+        margin-top: 2rem;
+        display: inline-flex;
+        gap: .7em;
+        align-items: center;
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        border-bottom: 1px solid currentColor;
+        padding-bottom: .4em;
+        transition: color var(--dur-fast) var(--ease-out);
+      }
+
+      .link-btn:hover {
+        color: var(--accent);
+      }
+
+      /* Carte de visite */
+      .carte {
+        border: 1px solid var(--hairline-strong);
+        padding: var(--plate-pad);
+        position: sticky;
+        top: calc(var(--header-h) + 1.5rem);
+      }
+
+      .carte h2 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: var(--fs-h3);
+        margin: 1.2rem 0 1.6rem;
+      }
+
+      .carte dl {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: .9rem 1.4rem;
+      }
+
+      .carte dt {
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+        color: var(--muted);
+        padding-top: .25em;
+      }
+
+      .carte dd {
+        font-size: var(--fs-body);
+        line-height: 1.55;
+      }
+
+      .carte a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 1px solid var(--hairline-strong);
+        transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+      }
+
+      .carte a:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+      .carte-note {
+        margin-top: 1.8rem;
+        padding-top: 1.2rem;
+        border-top: 1px dashed var(--hairline-strong);
+        font-style: italic;
+        color: var(--muted);
+      }
+
+      /* ============================================================
+   12. L'INTROUVABLE — 404
+   ============================================================ */
+      .notfound {
+        padding: calc(var(--sp-6) + 2rem) 0 var(--sp-6);
+        text-align: left;
+        position: relative;
+      }
+
+      .notfound .nf-no {
+        font-family: var(--font-display);
+        font-size: clamp(6rem, 4rem + 16vw, 16rem);
+        line-height: .85;
+        color: transparent;
+        -webkit-text-stroke: 1px var(--hairline-strong);
+      }
+
+      .notfound h1 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: var(--fs-h1);
+        margin: 1.5rem 0 1rem;
+      }
+
+      .notfound p {
+        font-style: italic;
+        color: var(--muted);
+        max-width: 48ch;
+        font-size: var(--fs-lead);
+      }
+
+      .notfound .link-cta {
+        margin-top: 2.4rem;
+      }
+
+      /* ============================================================
+   13. FOOTER
+   ============================================================ */
+      .site-footer {
+        border-top: 1px solid var(--hairline-strong);
+        margin-top: var(--sp-4);
+      }
+
+      .foot-grid {
+        display: grid;
+        grid-template-columns: 1.4fr .7fr 1fr .9fr;
+        gap: 2.5rem;
+        padding-block: var(--sp-5) var(--sp-4);
+      }
+
+      .foot-seal {
+        width: 3.4rem;
+        margin-bottom: 1.2rem;
+      }
+
+      .foot-wordmark {
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 1.4rem + 1.6vw, 2.6rem);
+        letter-spacing: .05em;
+        line-height: 1;
+      }
+
+      .foot-brand p+p {
+        margin-top: 1rem;
+        font-style: italic;
+        color: var(--muted);
+        max-width: 26ch;
+      }
+
+      .foot-kicker {
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: var(--ls-wider);
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 1.2rem;
+      }
+
+      .foot-nav a {
+        display: block;
+        text-decoration: none;
+        color: var(--muted);
+        padding: .32em 0;
+        font-size: var(--fs-body);
+        transition: color var(--dur-fast) var(--ease-out), padding-left var(--dur-base) var(--ease-out);
+      }
+
+      .foot-nav a:hover {
+        color: var(--accent);
+        padding-left: .5em;
+      }
+
+      .site-footer address {
+        color: var(--muted);
+        line-height: 1.9;
+      }
+
+      .site-footer address a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 1px solid var(--hairline);
+        transition: color var(--dur-fast) var(--ease-out);
+      }
+
+      .site-footer address a:hover {
+        color: var(--accent);
+      }
+
+      .foot-hours {
+        color: var(--muted);
+        line-height: 1.9;
+      }
+
+      .foot-bottom {
+        border-top: 1px solid var(--hairline);
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        padding-block: 1.2rem;
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        letter-spacing: var(--ls-mono);
+        text-transform: uppercase;
+      }
+
+      /* ============================================================
+   14. RESPONSIVE
+   ============================================================ */
+      @media (max-width: 64rem) {
+        .manifesto .wrap {
+          grid-template-columns: 1fr;
+        }
+
+        .manifesto-aside {
+          border-left: 0;
+          border-top: 1px solid var(--hairline-strong);
+          padding-left: 0;
+          padding-top: 2.5rem;
+        }
+
+        .teaser-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .teaser-cta {
+          grid-column: 1 / -1;
+        }
+
+        .salon-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .carte {
+          position: static;
+        }
+
+        .foot-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .fittings-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .fitting+.fitting {
+          border-left: 0;
+          padding-left: 0;
+        }
+      }
+
+      @media (max-width: 52rem) {
+        .main-nav {
+          display: none;
+        }
+
+        .menu-btn {
+          display: inline-block;
+        }
+
+        .mast-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .mast-vertical,
+        .mast-side {
+          display: none;
+        }
+
+        .teaser-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .foot-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .archive-table .col-house {
+          display: none;
+        }
+      }
+
+      /* ============================================================
+   15. REDUCED MOTION
+   ============================================================ */
+      @media (prefers-reduced-motion: reduce) {
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: .01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: .01ms !important;
+        }
+
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+
+        .ticker {
+          overflow-x: auto;
+        }
+
+        .ticker-track {
+          animation: none !important;
+        }
+
+        .grain {
+          animation: none !important;
+        }
+
+        .progress-ribbon__fill {
+          animation: none !important;
+        }
+
+        .seal {
+          transform: none;
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+
+  <body data-route="home">
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Shared defs: the gold thread gradient + the cachet (maison's seal) -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#7A5C1E" />
+          <stop offset=".3" stop-color="#B08D3E" />
+          <stop offset=".5" stop-color="#E8CE8C" />
+          <stop offset=".7" stop-color="#B08D3E" />
+          <stop offset="1" stop-color="#7A5C1E" />
+        </linearGradient>
+        <symbol id="seal-sym" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="57" fill="none" stroke="currentColor" stroke-width="1.6" />
+          <circle cx="60" cy="60" r="50" fill="none" stroke="currentColor" stroke-width=".7" opacity=".55" />
+          <path id="seal-arc" d="M60,60 m-43.5,0 a43.5,43.5 0 1,1 87,0 a43.5,43.5 0 1,1 -87,0" fill="none" />
+          <text font-family="'Space Mono',monospace" font-size="7.2" letter-spacing="2.6" fill="currentColor"
+            opacity=".85">
+            <textPath href="#seal-arc">LABEL NOIR · PARIS · MMXII · ATELIER ·</textPath>
+          </text>
+          <circle cx="30" cy="60" r="1.3" fill="currentColor" opacity=".7" />
+          <circle cx="90" cy="60" r="1.3" fill="currentColor" opacity=".7" />
+          <text x="60" y="74" text-anchor="middle" font-family="'Italiana',serif" font-size="40"
+            fill="currentColor">LN</text>
+        </symbol>
+      </defs>
+    </svg>
+
+    <div class="grain" aria-hidden="true"></div>
+    <div class="progress-ribbon" aria-hidden="true"><span class="progress-ribbon__fill" id="progress-fill"></span></div>
+    <p id="route-announcer" class="sr-only" role="status" aria-live="polite"></p>
+
+    <!-- ============ HEADER (persistent) ============ -->
+    <header class="site-header" id="site-header">
+      <div class="header-inner">
+        <a class="wordmark" href="#/" aria-label="Label Noir — La Maison">LABEL<span class="wm-dot">·</span>NOIR<span
+            class="wm-reg">®</span></a>
+        <nav class="main-nav" aria-label="Primary">
+          <a href="#/" data-route="/">01 · La Maison</a>
+          <a href="#/collection" data-route="/collection">02 · The Collection</a>
+          <a href="#/atelier" data-route="/atelier">03 · The Atelier</a>
+          <a href="#/salon" data-route="/salon">04 · The Salon</a>
+        </nav>
+        <div class="header-tools">
+          <button class="invert-btn" id="theme-toggle" aria-pressed="false"
+            aria-label="Invert the plate — currently velvet (dark)">
+            <span class="invert-swatch" aria-hidden="true"></span>
+            <span id="theme-label">Velvet</span>
+          </button>
+          <button class="menu-btn" id="menu-toggle" aria-expanded="false" aria-controls="curtain"
+            aria-label="Open menu">Menu</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Full-screen curtain menu -->
+    <div class="curtain" id="curtain" aria-hidden="true">
+      <nav class="curtain-nav" aria-label="Curtain menu">
+        <a href="#/" data-route="/"><span class="curtain-num">01</span> La Maison</a>
+        <a href="#/collection" data-route="/collection"><span class="curtain-num">02</span> The Collection</a>
+        <a href="#/atelier" data-route="/atelier"><span class="curtain-num">03</span> The Atelier</a>
+        <a href="#/salon" data-route="/salon"><span class="curtain-num">04</span> The Salon</a>
+      </nav>
+      <div class="curtain-foot">
+        <span>12 Rue de la Verrerie, Paris 4e</span>
+        <span>atelier@labelnoir.studio</span>
+        <span>Mon–Fri · 10:00–18:00 CET</span>
+      </div>
+    </div>
+
+    <main id="main" tabindex="-1">
+
+      <!-- ============================================================
+       VIEW — LA MAISON (cover plate)
+       ============================================================ -->
+      <section class="view" id="view-home" data-title="La Maison" aria-label="La Maison">
+
+        <div class="masthead">
+          <svg class="thread" viewBox="0 0 1440 520" preserveAspectRatio="none" aria-hidden="true">
+            <path class="halo" d="M-40,470 C240,380 380,110 720,150 C1020,185 1120,430 1480,320" />
+            <path class="draw" d="M-40,470 C240,380 380,110 720,150 C1020,185 1120,430 1480,320" />
+          </svg>
+
+          <p class="mast-top mono">
+            <span>Édition No. 01</span>
+            <span>Paris · 48.8566° N, 2.3522° E</span>
+            <span>Automne 2026</span>
+          </p>
+
+          <div class="mast-grid">
+            <p class="mast-vertical reveal" style="--d:80ms">Haute Couture — Web Engineering</p>
+
+            <div class="mast-main">
+              <h1 class="mast-title">
+                <span class="line line-1 reveal" style="--d:0ms">LABEL</span>
+                <span class="line line-2 reveal" style="--d:120ms">
+                  <span class="noir-plate">NOIR</span>
+                  <svg class="seal mast-seal" viewBox="0 0 120 120" aria-hidden="true">
+                    <use href="#seal-sym" />
+                  </svg>
+                </span>
+              </h1>
+              <p class="mast-sub reveal" style="--d:220ms">
+                <span>Est. MMXII</span><span>Season XIV</span><span>Cut &amp; sewn in Paris</span>
+              </p>
+              <p class="standfirst reveal" style="--d:300ms">
+                A Parisian atelier engineering websites the way a house cuts cloth —
+                <strong>measured, lined, and finished by hand.</strong> Six crafts. One thread.
+                No templates, ever.
+              </p>
+              <div class="mast-ctas reveal" style="--d:400ms">
+                <a class="link-cta" href="#/collection">View the Collection <span class="arr"
+                    aria-hidden="true">→</span></a>
+                <a class="link-cta" href="#/salon">Request an Appointment <span class="arr"
+                    aria-hidden="true">→</span></a>
+              </div>
+            </div>
+
+            <aside class="mast-side reveal" style="--d:200ms" aria-label="House particulars">
+              <b>The house receives</b><br>
+              Mon–Fri<br>10:00–18:00 CET<br><br>
+              <b>By appointment</b><br>
+              only — ring the<br>unmarked black<br>doorbell
+            </aside>
+          </div>
+
+          <p class="mast-foot mono">
+            <span>The house does not advertise. It is simply remembered.</span>
+            <a href="#/salon">Commission the studio</a>
+          </p>
+        </div>
+
+        <!-- Manifesto — inverted plate -->
+        <section class="section plate-inverse manifesto" aria-label="Manifesto">
+          <div class="wrap">
+            <div class="reveal">
+              <p class="kicker">The House — Manifesto</p>
+              <h2>Seams you never see.</h2>
+              <p class="dropcap">Label Noir keeps unusual hours and exacting standards. We are a small
+                atelier of engineers and art directors who believe a website, like a jacket, should be
+                judged by its seams — the ones you never see. Every build is cut to order, basted in
+                motion, and pressed until the layout holds its shape under any light, on any screen,
+                over any connection.</p>
+              <p>We work in seasons, not sprints. Each commission receives a pattern book, a motion
+                budget, and a principal who answers correspondence personally. What it does not receive
+                is a theme, a template, or a tracking pixel.</p>
+            </div>
+            <aside class="manifesto-aside reveal" style="--d:150ms">
+              <blockquote>
+                “Most of the internet is prêt-à-porter. We decline the comparison.”
+                <cite>— The House, Season IX</cite>
+              </blockquote>
+              <ul class="measurements" aria-label="House measurements">
+                <li><b>06</b> Crafts</li>
+                <li><b>14</b> Seasons</li>
+                <li><b>03</b> Awards</li>
+                <li><b>00</b> Templates</li>
+                <li><b>60</b> FPS, held</li>
+                <li><b>01</b> Thread</li>
+              </ul>
+            </aside>
+          </div>
+        </section>
+
+        <!-- Awards ticker -->
+        <div class="ticker" aria-label="Awards and distinctions">
+          <div class="ticker-track">
+            <div class="ticker-group">
+              <span class="tick"><b>Awwwards</b> — Site of the Day · Maison Verlaine</span><span class="tick-dot"
+                aria-hidden="true">✦</span>
+              <span class="tick"><b>FWA</b> — of the Month · Archive No. 9</span><span class="tick-dot"
+                aria-hidden="true">✦</span>
+              <span class="tick"><b>CSSDA</b> — Best UI Design · Édition Spéciale</span><span class="tick-dot"
+                aria-hidden="true">✦</span>
+            </div>
+            <div class="ticker-group" aria-hidden="true">
+              <span class="tick"><b>Awwwards</b> — Site of the Day · Maison Verlaine</span><span
+                class="tick-dot">✦</span>
+              <span class="tick"><b>FWA</b> — of the Month · Archive No. 9</span><span class="tick-dot">✦</span>
+              <span class="tick"><b>CSSDA</b> — Best UI Design · Édition Spéciale</span><span class="tick-dot">✦</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Index of the house -->
+        <section class="section index" aria-label="Index of the house">
+          <div class="wrap">
+            <div class="index-head reveal">
+              <div>
+                <p class="kicker">The Pattern Book — Contents</p>
+                <h2>Index of the House</h2>
+              </div>
+              <a class="link-cta" href="#/atelier">Full specifications <span class="arr" aria-hidden="true">→</span></a>
+            </div>
+            <ol class="index-list reveal" style="--d:120ms">
+              <li><a href="#/atelier"><span class="idx-num">No. 01</span><span class="idx-title">Front-End
+                    Engineering</span><span class="idx-cat">The Construction</span><span class="idx-arr"
+                    aria-hidden="true">→</span></a></li>
+              <li><a href="#/atelier"><span class="idx-num">No. 02</span><span class="idx-title">Creative
+                    Direction</span><span class="idx-cat">The Vision</span><span class="idx-arr"
+                    aria-hidden="true">→</span></a></li>
+              <li><a href="#/atelier"><span class="idx-num">No. 03</span><span class="idx-title">Design
+                    Systems</span><span class="idx-cat">The Pattern Book</span><span class="idx-arr"
+                    aria-hidden="true">→</span></a></li>
+              <li><a href="#/atelier"><span class="idx-num">No. 04</span><span class="idx-title">Motion &amp;
+                    Interaction</span><span class="idx-cat">The Drape</span><span class="idx-arr"
+                    aria-hidden="true">→</span></a></li>
+              <li><a href="#/atelier"><span class="idx-num">No. 05</span><span class="idx-title">WebGL &amp; Shader
+                    Surfaces</span><span class="idx-cat">The Fabric</span><span class="idx-arr"
+                    aria-hidden="true">→</span></a></li>
+              <li><a href="#/atelier"><span class="idx-num">No. 06</span><span class="idx-title">Performance
+                    Tailoring</span><span class="idx-cat">The Fit</span><span class="idx-arr"
+                    aria-hidden="true">→</span></a></li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- Materials — INCI plate (always velvet) -->
+        <section class="section plate-velvet materials" aria-label="The materials">
+          <div class="wrap">
+            <p class="kicker reveal">The Materials — INCI</p>
+            <h2 class="reveal" style="--d:100ms">Contents of the house.</h2>
+            <div class="inci reveal" style="--d:200ms">
+              <p class="inci-line"><b>React</b> (18%) · <b>Next.js</b> (14%) · <b>TypeScript</b> (12%) ·
+                <b>WebGL / GLSL</b> (9%) · <b>GSAP</b> (7%) · <b>Tailwind</b> (5%) ·
+                <b>AVIF pigments</b> (3%) · <b>HTTP/3</b> (trace)
+              </p>
+              <hr>
+              <p class="inci-note">May contain: dry wit, long silences, hand-set kerning.
+                Not tested on animals — tested on a mid-tier Android over a three-bar connection,
+                which is rather more demanding.</p>
+              <p class="inci-batch">Batch No. LN-2026-014 · Dist. Label Noir, 12 Rue de la Verrerie, Paris 4e</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Season teaser -->
+        <section class="section teaser" aria-label="Current season">
+          <div class="wrap">
+            <p class="kicker reveal">Current Season — Two Plates</p>
+            <div class="teaser-grid">
+              <figure class="plate reveal" style="--d:100ms">
+                <div class="plate-art">
+                  <svg viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice" role="img"
+                    aria-label="Grayscale study of silk drape — Maison Verlaine">
+                    <rect width="400" height="520" fill="var(--plate-bg)" />
+                    <g fill="none" stroke="var(--ink)">
+                      <path d="M40,-20 C110,140 10,260 80,540" stroke-width="1.6" opacity=".75" />
+                      <path d="M90,-20 C160,150 60,270 130,540" stroke-width="1.1" opacity=".5" />
+                      <path d="M150,-20 C220,160 120,280 190,540" stroke-width="2" opacity=".85" />
+                      <path d="M210,-20 C280,150 180,270 250,540" stroke-width="1" opacity=".4" />
+                      <path d="M270,-20 C340,160 240,280 310,540" stroke-width="1.5" opacity=".65" />
+                      <path d="M330,-20 C400,150 300,270 370,540" stroke-width="1" opacity=".35" />
+                    </g>
+                  </svg>
+                </div>
+                <figcaption>
+                  <span class="cap-no">[Collection No. 01]</span>
+                  <strong class="cap-title">Maison Verlaine</strong>
+                  <em class="cap-house">Silk Commerce</em>
+                  <span class="cap-meta">Release: Fall 2026 · SOTD</span>
+                </figcaption>
+              </figure>
+              <figure class="plate reveal" style="--d:200ms">
+                <div class="plate-art">
+                  <svg viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice" role="img"
+                    aria-label="Halftone moon study — Archive No. 9">
+                    <rect width="400" height="520" fill="var(--plate-bg)" />
+                    <defs>
+                      <pattern id="ht-home" width="18" height="18" patternUnits="userSpaceOnUse">
+                        <circle cx="9" cy="9" r="2.6" fill="var(--ink)" opacity=".55" />
+                      </pattern>
+                    </defs>
+                    <rect width="400" height="520" fill="url(#ht-home)" />
+                    <circle cx="200" cy="230" r="130" fill="var(--plate-bg)" />
+                    <circle cx="200" cy="230" r="130" fill="none" stroke="var(--ink)" stroke-width="1.6" opacity=".8" />
+                    <circle cx="200" cy="230" r="96" fill="none" stroke="var(--ink)" stroke-width=".8" opacity=".45"
+                      stroke-dasharray="3 6" />
+                    <line x1="40" y1="430" x2="360" y2="430" stroke="var(--ink)" stroke-width="1" opacity=".6" />
+                  </svg>
+                </div>
+                <figcaption>
+                  <span class="cap-no">[Collection No. 02]</span>
+                  <strong class="cap-title">Archive No. 9</strong>
+                  <em class="cap-house">Maison de Parfum</em>
+                  <span class="cap-meta">Release: Spring 2026 · FWA</span>
+                </figcaption>
+              </figure>
+              <div class="teaser-cta reveal" style="--d:300ms">
+                <p>Seven plates, shown as they left the fitting room — grayscale, unretouched, grain intact.</p>
+                <a class="link-cta" href="#/collection">Enter the runway <span class="arr"
+                    aria-hidden="true">→</span></a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- ============================================================
+       VIEW — THE COLLECTION (runway lookbook)
+       ============================================================ -->
+      <section class="view" id="view-collection" data-title="The Collection" aria-label="The Collection">
+        <header class="page-head wrap">
+          <p class="kicker reveal">Plates — Shown as Fitted</p>
+          <h1 class="reveal" style="--d:100ms">The Collection</h1>
+          <p class="page-intro reveal" style="--d:200ms">Seven plates from the current and past seasons.
+            Drag, or let the runway come to you. Each piece entered once and did not return.</p>
+        </header>
+
+        <section class="runway" aria-label="The runway lookbook">
+          <svg class="thread" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
+            <path class="halo" d="M-40,130 C220,30 440,160 720,85 C1000,10 1220,140 1480,60" />
+            <path class="draw" d="M-40,130 C220,30 440,160 720,85 C1000,10 1220,140 1480,60" />
+          </svg>
+
+          <div class="runway-controls">
+            <button class="rbtn" id="runway-prev" aria-label="Previous plate">←</button>
+            <button class="rbtn" id="runway-next" aria-label="Next plate">→</button>
+            <span class="mono runway-hint">Drag — or use the arrows</span>
+            <span class="runway-count" aria-hidden="true"><span id="runway-now">01</span> / <span
+                id="runway-total">07</span></span>
+          </div>
+
+          <div class="runway-track" id="runway-track" tabindex="0" role="group"
+            aria-label="Lookbook plates — scrolls horizontally">
+
+            <figure class="plate">
+              <div class="plate-art">
+                <svg viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice" role="img"
+                  aria-label="Grayscale silk drape study — Maison Verlaine">
+                  <rect width="400" height="520" fill="var(--plate-bg)" />
+                  <g fill="none" stroke="var(--ink)">
+                    <path d="M40,-20 C110,140 10,260 80,540" stroke-width="1.6" opacity=".75" />
+                    <path d="M90,-20 C160,150 60,270 130,540" stroke-width="1.1" opacity=".5" />
+                    <path d="M150,-20 C220,160 120,280 190,540" stroke-width="2" opacity=".85" />
+                    <path d="M210,-20 C280,150 180,270 250,540" stroke-width="1" opacity=".4" />
+                    <path d="M270,-20 C340,160 240,280 310,540" stroke-width="1.5" opacity=".65" />
+                    <path d="M330,-20 C400,150 300,270 370,540" stroke-width="1" opacity=".35" />
+                  </g>
+                </svg>
+              </div>
+              <figcaption>
+                <span class="cap-no">[Collection No. 01]</span>
+                <strong class="cap-title">Maison Verlaine</strong>
+                <em class="cap-house">Silk Commerce</em>
+                <span class="cap-meta">Release: Fall 2026 · Awwwards SOTD</span>
+              </figcaption>
+            </figure>
+
+            <figure class="plate">
+              <div class="plate-art">
+                <svg viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice" role="img"
+                  aria-label="Halftone moon study — Archive No. 9, a perfume house">
+                  <rect width="400" height="520" fill="var(--plate-bg)" />
+                  <defs>
+                    <pattern id="ht-2" width="18" height="18" patternUnits="userSpaceOnUse">
+                      <circle cx="9" cy="9" r="2.6" fill="var(--ink)" opacity=".55" />
+                    </pattern>
+                  </defs>
+                  <rect width="400" height="520" fill="url(#ht-2)" />
+                  <circle cx="200" cy="230" r="130" fill="var(--plate-bg)" />
+                  <circle cx="200" cy="230" r="130" fill="none" stroke="var(--ink)" stroke-width="1.6" opacity=".8" />
+                  <circle cx="200" cy="230" r="96" fill="none" stroke="var(--ink)" stroke-width=".8" opacity=".45"
+                    stroke-dasharray="3 6" />
+                  <line x1="40" y1="430" x2="360" y2="430" stroke="var(--ink)" stroke-width="1" opacity=".6" />
+                </svg>
+              </div>
+              <figcaption>
+                <span class="cap-no">[Collection No. 02]</span>
+                <strong class="cap-title">Archive No. 9</strong>
+                <em class="cap-house">Maison de Parfum</em>
+                <span class="cap-meta">Release: Spring 2026 · FWA of the Month</span>
+              </figcaption>
+            </figure>
+
+            <figure class="plate">
+              <div class="plate-art">
+                <svg viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice" role="img"
+                  aria-label="Title page with a large É — Édition Spéciale, bibliophilie">
+                  <rect width="400" height="520" fill="var(--plate-bg)" />
+                  <rect x="24" y="24" width="352" height="472" fill="none" stroke="var(--ink)" stroke-width="1"
+                    opacity=".5" />
+                  <text x="200" y="330" text-anchor="middle" font-family="Italiana, serif" font-size="300"
+                    fill="var(--ink)" opacity=".85">É</text>
+                  <line x1="70" y1="400" x2="330" y2="400" stroke="var(--ink)" stroke-width="1" opacity=".6" />
+                  <line x1="110" y1="430" x2="290" y2="430" stroke="var(--ink)" stroke-width=".7" opacity=".4" />
+                </svg>
+              </div>
+              <figcaption>
+                <span class="cap-no">[Collection No. 03]</span>
+                <strong class="cap-title">Édition Spéciale</strong>
+                <em class="cap-house">Bibliophilie</em>
+                <span class="cap-meta">Release: Winter 2025 · CSSDA Best UI</span>
+              </figcaption>
+            </figure>
+
+            <figure class="plate">
+              <div class="plate-art">
+                <svg viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice" role="img"
+                  aria-label="Empty stage with a single spotlight — Théâtre du Vide">
+                  <rect width="400" height="520" fill="var(--plate-bg)" />
+                  <polygon points="200,40 120,420 280,420" fill="var(--ink)" opacity=".08" />
+                  <line x1="200" y1="40" x2="200" y2="60" stroke="var(--ink)" stroke-width="1.4" opacity=".7" />
+                  <line x1="40" y1="420" x2="360" y2="420" stroke="var(--ink)" stroke-width="1.2" opacity=".7" />
+                  <rect x="190" y="380" width="20" height="40" fill="var(--ink)" opacity=".75" />
+                  <circle cx="200" cy="368" r="9" fill="var(--ink)" opacity=".75" />
+                </svg>
+              </div>
+              <figcaption>
+                <span class="cap-no">[Collection No. 04]</span>
+                <strong class="cap-title">Théâtre du Vide</strong>
+                <em class="cap-house">Performance</em>
+                <span class="cap-meta">Release: Fall 2025</span>
+              </figcaption>
+            </figure>
+
+            <figure class="plate">
+              <div class="plate-art">
+                <svg viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice" role="img"
+                  aria-label="Watch face with hands at ten past ten — L'Heure Bleue, horlogerie">
+                  <rect width="400" height="520" fill="var(--plate-bg)" />
+                  <circle cx="200" cy="260" r="150" fill="none" stroke="var(--ink)" stroke-width="1.6" opacity=".85" />
+                  <circle cx="200" cy="260" r="128" fill="none" stroke="var(--ink)" stroke-width=".8" opacity=".5"
+                    stroke-dasharray="2 11.4" />
+                  <line x1="200" y1="260" x2="130" y2="190" stroke="var(--ink)" stroke-width="3" opacity=".85" />
+                  <line x1="200" y1="260" x2="280" y2="200" stroke="var(--ink)" stroke-width="2" opacity=".7" />
+                  <circle cx="200" cy="260" r="5" fill="var(--ink)" />
+                </svg>
+              </div>
+              <figcaption>
+                <span class="cap-no">[Collection No. 05]</span>
+                <strong class="cap-title">L'Heure Bleue</strong>
+                <em class="cap-house">Horlogerie</em>
+                <span class="cap-meta">Release: Spring 2025</span>
+              </figcaption>
+            </figure>
+
+            <figure class="plate">
+              <div class="plate-art">
+                <svg viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice" role="img"
+                  aria-label="Vinyl record grooves — Velours Noir, pressage vinyle">
+                  <rect width="400" height="520" fill="var(--plate-bg)" />
+                  <g fill="none" stroke="var(--ink)">
+                    <circle cx="200" cy="260" r="170" opacity=".7" stroke-width="1.2" />
+                    <circle cx="200" cy="260" r="140" opacity=".5" stroke-width=".9" />
+                    <circle cx="200" cy="260" r="112" opacity=".65" stroke-width="1.1" />
+                    <circle cx="200" cy="260" r="86" opacity=".45" stroke-width=".8" />
+                  </g>
+                  <rect x="168" y="228" width="64" height="64" fill="var(--ink)" opacity=".8" />
+                  <circle cx="200" cy="260" r="6" fill="var(--plate-bg)" />
+                </svg>
+              </div>
+              <figcaption>
+                <span class="cap-no">[Collection No. 06]</span>
+                <strong class="cap-title">Velours Noir</strong>
+                <em class="cap-house">Pressage Vinyle</em>
+                <span class="cap-meta">Release: Winter 2024</span>
+              </figcaption>
+            </figure>
+
+            <figure class="plate">
+              <div class="plate-art">
+                <svg viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice" role="img"
+                  aria-label="Fine grid with crosshair and dashed circle — Couture Mathématique">
+                  <rect width="400" height="520" fill="var(--plate-bg)" />
+                  <defs>
+                    <pattern id="grid-7" width="26" height="26" patternUnits="userSpaceOnUse">
+                      <path d="M26 0 H0 V26" fill="none" stroke="var(--ink)" stroke-width=".5" opacity=".3" />
+                    </pattern>
+                  </defs>
+                  <rect width="400" height="520" fill="url(#grid-7)" />
+                  <circle cx="200" cy="260" r="120" fill="none" stroke="var(--ink)" stroke-width="1.2" opacity=".7"
+                    stroke-dasharray="5 7" />
+                  <line x1="60" y1="260" x2="340" y2="260" stroke="var(--ink)" stroke-width="1" opacity=".6" />
+                  <line x1="200" y1="120" x2="200" y2="400" stroke="var(--ink)" stroke-width="1" opacity=".6" />
+                  <rect x="192" y="252" width="16" height="16" fill="var(--ink)" opacity=".85" />
+                </svg>
+              </div>
+              <figcaption>
+                <span class="cap-no">[Collection No. 07]</span>
+                <strong class="cap-title">Couture Mathématique</strong>
+                <em class="cap-house">Journal</em>
+                <span class="cap-meta">Release: Fall 2024</span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="runway-progress" aria-hidden="true"><span id="runway-bar"></span></div>
+        </section>
+
+        <!-- Archive index -->
+        <section class="archive wrap" aria-label="Archive index">
+          <div class="archive-head reveal">
+            <div>
+              <p class="kicker">The Ledger — Every Plate Since MMXXIV</p>
+              <h2>Archive Index</h2>
+            </div>
+            <div class="chips" role="group" aria-label="Filter archive plates">
+              <button class="chip is-active" data-filter="all" aria-pressed="true">All Plates</button>
+              <button class="chip" data-filter="2026" aria-pressed="false">2026</button>
+              <button class="chip" data-filter="2025" aria-pressed="false">2025</button>
+              <button class="chip" data-filter="2024" aria-pressed="false">2024</button>
+              <button class="chip" data-filter="fitting" aria-pressed="false">In Fitting <sup>0</sup></button>
+            </div>
+          </div>
+
+          <table class="archive-table reveal" style="--d:120ms">
+            <caption class="sr-only">Archive of plates with season and distinction</caption>
+            <thead>
+              <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Plate</th>
+                <th scope="col" class="col-house">House</th>
+                <th scope="col">Season</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody id="archive-body">
+              <tr class="archive-row" data-year="2026" data-status="shown">
+                <td>01</td>
+                <td class="t-title">Maison Verlaine</td>
+                <td class="col-house">Silk Commerce</td>
+                <td>Fall 2026</td>
+                <td class="t-award">SOTD</td>
+              </tr>
+              <tr class="archive-row" data-year="2026" data-status="shown">
+                <td>02</td>
+                <td class="t-title">Archive No. 9</td>
+                <td class="col-house">Maison de Parfum</td>
+                <td>Spring 2026</td>
+                <td class="t-award">FWA</td>
+              </tr>
+              <tr class="archive-row" data-year="2025" data-status="shown">
+                <td>03</td>
+                <td class="t-title">Édition Spéciale</td>
+                <td class="col-house">Bibliophilie</td>
+                <td>Winter 2025</td>
+                <td class="t-award">CSSDA</td>
+              </tr>
+              <tr class="archive-row" data-year="2025" data-status="shown">
+                <td>04</td>
+                <td class="t-title">Théâtre du Vide</td>
+                <td class="col-house">Performance</td>
+                <td>Fall 2025</td>
+                <td>Shown</td>
+              </tr>
+              <tr class="archive-row" data-year="2025" data-status="shown">
+                <td>05</td>
+                <td class="t-title">L'Heure Bleue</td>
+                <td class="col-house">Horlogerie</td>
+                <td>Spring 2025</td>
+                <td>Shown</td>
+              </tr>
+              <tr class="archive-row" data-year="2024" data-status="shown">
+                <td>06</td>
+                <td class="t-title">Velours Noir</td>
+                <td class="col-house">Pressage Vinyle</td>
+                <td>Winter 2024</td>
+                <td>Shown</td>
+              </tr>
+              <tr class="archive-row" data-year="2024" data-status="shown">
+                <td>07</td>
+                <td class="t-title">Couture Mathématique</td>
+                <td class="col-house">Journal</td>
+                <td>Fall 2024</td>
+                <td>Shown</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="archive-meta"><span id="archive-count">07</span> plates on display</p>
+
+          <div class="empty" id="archive-empty" hidden>
+            <h3>The fitting room is empty.</h3>
+            <p>Nothing is in fitting at present. The models are resting between seasons,
+              and the rails have been covered in cloth. Do check back at the next showing.</p>
+            <button class="link-btn" id="archive-clear">Return to all plates →</button>
+          </div>
+        </section>
+      </section>
+
+      <!-- ============================================================
+       VIEW — THE ATELIER (pattern book ledger)
+       ============================================================ -->
+      <section class="view" id="view-atelier" data-title="The Atelier" aria-label="The Atelier">
+        <header class="page-head wrap atelier-head">
+          <svg class="thread" viewBox="0 0 200 900" preserveAspectRatio="none" aria-hidden="true">
+            <path class="halo" d="M100,-20 C40,160 170,300 100,450 C40,600 160,760 100,920" />
+            <path class="draw" d="M100,-20 C40,160 170,300 100,450 C40,600 160,760 100,920" />
+          </svg>
+          <p class="kicker reveal">The Pattern Book — Six Crafts</p>
+          <h1 class="reveal" style="--d:100ms">The Atelier</h1>
+          <p class="page-intro reveal" style="--d:200ms">Six crafts, practiced in-house and cut to order.
+            Each is documented in the pattern book; none is sold off the rack. Open a row for its specification.</p>
+        </header>
+
+        <ol class="ledger wrap">
+          <li class="ledger-row reveal">
+            <button class="row-toggle" aria-expanded="false" aria-controls="craft-1" id="craft-btn-1">
+              <span class="row-num">No. 01</span>
+              <span class="row-title">Front-End Engineering</span>
+              <span class="row-cat">The Construction</span>
+              <span class="row-mark" aria-hidden="true">+</span>
+            </button>
+            <div class="row-panel" id="craft-1" role="region" aria-labelledby="craft-btn-1">
+              <div class="row-inner">
+                <div class="row-body">
+                  <p class="row-desc">Bespoke Next.js and React builds engineered like tailored garments —
+                    seamed, lined, and finished to zero-CLS perfection.</p>
+                  <p class="row-feature"><b>Signature —</b> Hardware-accelerated motion budget enforced on every route.
+                  </p>
+                  <p class="row-spec"><b>Delivered as —</b> Next.js build · zero CLS · Lighthouse ≥ 95.</p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="ledger-row reveal" style="--d:60ms">
+            <button class="row-toggle" aria-expanded="false" aria-controls="craft-2" id="craft-btn-2">
+              <span class="row-num">No. 02</span>
+              <span class="row-title">Creative Direction</span>
+              <span class="row-cat">The Vision</span>
+              <span class="row-mark" aria-hidden="true">+</span>
+            </button>
+            <div class="row-panel" id="craft-2" role="region" aria-labelledby="craft-btn-2">
+              <div class="row-inner">
+                <div class="row-body">
+                  <p class="row-desc">Editorial art direction for digital launches — casting typography,
+                    pacing reveals, and setting the season's visual grammar.</p>
+                  <p class="row-feature"><b>Signature —</b> Moodboard-to-manifesto pipeline delivered as a living style
+                    plate.</p>
+                  <p class="row-spec"><b>Delivered as —</b> Living style plate · casting sheet · seasonal grammar.</p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="ledger-row reveal" style="--d:120ms">
+            <button class="row-toggle" aria-expanded="false" aria-controls="craft-3" id="craft-btn-3">
+              <span class="row-num">No. 03</span>
+              <span class="row-title">Design Systems</span>
+              <span class="row-cat">The Pattern Book</span>
+              <span class="row-mark" aria-hidden="true">+</span>
+            </button>
+            <div class="row-panel" id="craft-3" role="region" aria-labelledby="craft-btn-3">
+              <div class="row-inner">
+                <div class="row-body">
+                  <p class="row-desc">Tokenized component libraries cut like sewing patterns — every spacing
+                    value, serif scale, and inversion rule documented and reusable.</p>
+                  <p class="row-feature"><b>Signature —</b> Ink/paper inversion engine baked directly into the token
+                    layer.</p>
+                  <p class="row-spec"><b>Delivered as —</b> Token library · inversion engine · usage doctrine.</p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="ledger-row reveal" style="--d:180ms">
+            <button class="row-toggle" aria-expanded="false" aria-controls="craft-4" id="craft-btn-4">
+              <span class="row-num">No. 04</span>
+              <span class="row-title">Motion &amp; Interaction</span>
+              <span class="row-cat">The Drape</span>
+              <span class="row-mark" aria-hidden="true">+</span>
+            </button>
+            <div class="row-panel" id="craft-4" role="region" aria-labelledby="craft-btn-4">
+              <div class="row-inner">
+                <div class="row-body">
+                  <p class="row-desc">GSAP-choreographed scroll narratives, liquid fades, and hover states
+                    that behave like fabric under the hand.</p>
+                  <p class="row-feature"><b>Signature —</b> Scroll-driven SVG ribbon pathing as the signature house
+                    motif.</p>
+                  <p class="row-spec"><b>Delivered as —</b> GSAP choreography · ribbon pathing · 60fps budget.</p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="ledger-row reveal" style="--d:240ms">
+            <button class="row-toggle" aria-expanded="false" aria-controls="craft-5" id="craft-btn-5">
+              <span class="row-num">No. 05</span>
+              <span class="row-title">WebGL &amp; Shader Surfaces</span>
+              <span class="row-cat">The Fabric</span>
+              <span class="row-mark" aria-hidden="true">+</span>
+            </button>
+            <div class="row-panel" id="craft-5" role="region" aria-labelledby="craft-btn-5">
+              <div class="row-inner">
+                <div class="row-body">
+                  <p class="row-desc">Grain fields, liquid textures, and light-on-satin shader studies
+                    rendered at a steady 60fps.</p>
+                  <p class="row-feature"><b>Signature —</b> GPU-safe grain composite that never taxes integrated
+                    graphics.</p>
+                  <p class="row-spec"><b>Delivered as —</b> GLSL surfaces · grain composite · GPU-safe compositing.</p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="ledger-row reveal" style="--d:300ms">
+            <button class="row-toggle" aria-expanded="false" aria-controls="craft-6" id="craft-btn-6">
+              <span class="row-num">No. 06</span>
+              <span class="row-title">Performance Tailoring</span>
+              <span class="row-cat">The Fit</span>
+              <span class="row-mark" aria-hidden="true">+</span>
+            </button>
+            <div class="row-panel" id="craft-6" role="region" aria-labelledby="craft-btn-6">
+              <div class="row-inner">
+                <div class="row-body">
+                  <p class="row-desc">Audits and refits for existing sites — trimming bundle weight,
+                    pre-processing AVIF imagery, and pressing layout shifts flat.</p>
+                  <p class="row-feature"><b>Signature —</b> Sub-second LCP guaranteed on mid-tier mobile hardware.</p>
+                  <p class="row-spec"><b>Delivered as —</b> Audit report · AVIF pipeline · sub-second LCP.</p>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ol>
+
+        <section class="fittings wrap" aria-label="Three fittings">
+          <p class="kicker reveal">Method — Three Fittings</p>
+          <h2 class="reveal" style="--d:100ms">How a commission is cut.</h2>
+          <div class="fittings-grid reveal" style="--d:180ms">
+            <div class="fitting">
+              <i>I.</i>
+              <h3>Measure</h3>
+              <p>A fortnight of questions, audits, and chalk marks. We leave with your dimensions,
+                not your deposit.</p>
+            </div>
+            <div class="fitting">
+              <i>II.</i>
+              <h3>Baste</h3>
+              <p>The first fitting: loose seams, honest motion, everything provisional so that
+                everything can still move.</p>
+            </div>
+            <div class="fitting">
+              <i>III.</i>
+              <h3>Finish</h3>
+              <p>Buttonholes, press, final reveal. Delivered with documentation and a standing
+                invitation back to the salon.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="wrap" aria-label="Commission">
+          <div class="atelier-cta reveal">
+            <p>Nothing here is sold off the rack. Bring us the difficult thing.</p>
+            <a class="link-cta" href="#/salon">Commission the Studio <span class="arr" aria-hidden="true">→</span></a>
+          </div>
+        </section>
+      </section>
+
+      <!-- ============================================================
+       VIEW — THE BOOKING SALON (the ledger)
+       ============================================================ -->
+      <section class="view" id="view-salon" data-title="The Booking Salon" aria-label="The Booking Salon">
+        <header class="page-head wrap">
+          <p class="kicker reveal">By Appointment Only</p>
+          <h1 class="reveal" style="--d:100ms">The Booking Salon</h1>
+          <p class="page-intro reveal" style="--d:200ms">The house receives by appointment. Fill in the
+            lines below — the principal reads every entry personally and replies within two working days.</p>
+        </header>
+
+        <div class="salon-grid wrap">
+          <div class="salon-form-wrap">
+            <svg class="thread" viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true">
+              <path class="halo" d="M-20,165 C130,155 190,45 330,66 C430,81 505,66 620,30" />
+              <path class="draw" d="M-20,165 C130,155 190,45 330,66 C430,81 505,66 620,30" />
+            </svg>
+            <div class="seal-wrap" aria-hidden="true">
+              <svg class="seal" viewBox="0 0 120 120">
+                <use href="#seal-sym" />
+              </svg>
+            </div>
+
+            <form id="booking-form" novalidate>
+              <div class="field">
+                <label for="f-name">Your name, <em>as it should appear in the ledger</em></label>
+                <input type="text" id="f-name" name="clientName" autocomplete="name" required
+                  aria-describedby="err-name">
+                <p class="field-error" id="err-name" hidden>A name is required for the ledger.</p>
+              </div>
+
+              <div class="field">
+                <label for="f-email">An address <em>where our letters may reach you</em></label>
+                <input type="email" id="f-email" name="contactEmail" autocomplete="email" required
+                  aria-describedby="err-email">
+                <p class="field-error" id="err-email" hidden>That address will not survive the post. Check the format.
+                </p>
+              </div>
+
+              <div class="field">
+                <label for="f-vision">What are we making, <em>and why must it exist?</em></label>
+                <textarea id="f-vision" name="brandVision" rows="4" required aria-describedby="err-vision"></textarea>
+                <p class="field-error" id="err-vision" hidden>Tell us a little more — a sentence at least. Why must it
+                  exist?</p>
+              </div>
+
+              <div class="field">
+                <label for="f-invest">The anticipated investment</label>
+                <div class="select-wrap">
+                  <select id="f-invest" name="anticipatedInvestment">
+                    <option value="" selected>— choose a range —</option>
+                    <option value="10-25">€10k – €25k</option>
+                    <option value="25-50">€25k – €50k</option>
+                    <option value="50-100">€50k – €100k</option>
+                    <option value="100+">€100k+</option>
+                    <option value="discuss">Prefer to discuss</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="f-timeline">The timeline <em>— the house works in seasons</em></label>
+                <div class="select-wrap">
+                  <select id="f-timeline" name="timeline">
+                    <option value="" selected>— choose a season —</option>
+                    <option value="now">Immediately</option>
+                    <option value="0-3">This season (0–3 months)</option>
+                    <option value="3-6">Next season (3–6 months)</option>
+                    <option value="2027">2027 and beyond</option>
+                  </select>
+                </div>
+              </div>
+
+              <fieldset class="field">
+                <legend>The crafts you require <em>— mark all that apply</em></legend>
+                <div class="craft-grid">
+                  <label class="craft-check"><input type="checkbox" name="desiredCraft" value="1"> 01 ·
+                    Construction</label>
+                  <label class="craft-check"><input type="checkbox" name="desiredCraft" value="2"> 02 · The
+                    Vision</label>
+                  <label class="craft-check"><input type="checkbox" name="desiredCraft" value="3"> 03 · Pattern
+                    Book</label>
+                  <label class="craft-check"><input type="checkbox" name="desiredCraft" value="4"> 04 · The
+                    Drape</label>
+                  <label class="craft-check"><input type="checkbox" name="desiredCraft" value="5"> 05 · The
+                    Fabric</label>
+                  <label class="craft-check"><input type="checkbox" name="desiredCraft" value="6"> 06 · The Fit</label>
+                </div>
+              </fieldset>
+
+              <div class="field">
+                <label for="f-notes">Anything else the fitter should know <em>(optional)</em></label>
+                <textarea id="f-notes" name="additionalNotes" rows="3"></textarea>
+              </div>
+
+              <div class="field">
+                <label class="consent" for="f-consent">
+                  <input type="checkbox" id="f-consent" name="consentPrivacy" required aria-describedby="err-consent">
+                  <span>I consent to the house keeping these particulars private — <em>never sold, never shared, deleted
+                      on request.</em></span>
+                </label>
+                <p class="field-error" id="err-consent" hidden>The house cannot proceed without your consent.</p>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="submit-btn" id="submit-btn">
+                  <span class="btn-label">Request an Appointment</span>
+                  <span class="btn-arr" aria-hidden="true">→</span>
+                </button>
+                <p class="mono form-note">Replies within two working days · Nothing is shared</p>
+              </div>
+            </form>
+
+            <div class="form-success" id="form-success" hidden tabindex="-1" role="status">
+              <p class="stamp" aria-hidden="true">Enregistré<br>LN · Paris</p>
+              <p class="kicker">Entry Inscribed</p>
+              <h2 class="success-title">Enregistré.</h2>
+              <p>Your entry has been written into the ledger, <span id="succ-name">friend of the house</span>.
+                The principal reads every line personally; expect a reply within two working days,
+                on paper-white pixels.</p>
+              <p class="mono success-ref">Reference — <span id="succ-ref">LN-2026-000</span> · Keep it for the fitting.
+              </p>
+              <button class="link-btn" id="success-reset" type="button">Make another entry →</button>
+            </div>
+          </div>
+
+          <aside class="carte reveal" style="--d:150ms" aria-label="Carte de visite">
+            <p class="kicker">Carte de Visite</p>
+            <h2>The House</h2>
+            <dl>
+              <dt>Address</dt>
+              <dd>12 Rue de la Verrerie<br>75004 Paris, France</dd>
+              <dt>Téléphone</dt>
+              <dd><a href="tel:+33142771820">+33 1 42 77 18 20</a></dd>
+              <dt>Letters</dt>
+              <dd><a href="mailto:atelier@labelnoir.studio">atelier@labelnoir.studio</a></dd>
+              <dt>Hours</dt>
+              <dd>Mon–Fri, 10:00–18:00 CET<br>Studio visits by appointment only</dd>
+              <dt>Métro</dt>
+              <dd>Hôtel de Ville — lines 1, 11</dd>
+            </dl>
+            <p class="carte-note">Two minutes from Hôtel de Ville. Ring the unmarked black doorbell;
+              if it does not ring back, you have the wrong door.</p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============================================================
+       VIEW — L'INTROUVABLE (404)
+       ============================================================ -->
+      <section class="view" id="view-404" data-title="L'Introuvable" aria-label="Page not found">
+        <div class="wrap notfound">
+          <p class="kicker reveal">Error — Plate Not Found</p>
+          <p class="nf-no reveal" style="--d:100ms" aria-hidden="true">N°404</p>
+          <h1 class="reveal" style="--d:180ms">L'Introuvable.</h1>
+          <p class="reveal" style="--d:260ms">The plate you requested is not in this archive. It may have
+            been cut in the final fitting, or it never left the sketchbook. Either way, it is not for showing.</p>
+          <a class="link-cta reveal" style="--d:340ms" href="#/">Return to La Maison <span class="arr"
+              aria-hidden="true">→</span></a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER (persistent) ============ -->
+    <footer class="site-footer">
+      <div class="foot-grid wrap">
+        <div class="foot-brand">
+          <svg class="seal foot-seal" viewBox="0 0 120 120" aria-hidden="true">
+            <use href="#seal-sym" />
+          </svg>
+          <p class="foot-wordmark">LABEL NOIR<span class="wm-dot">.</span></p>
+          <p>Haute couture for the web, cut and sewn in Paris.</p>
+        </div>
+        <nav class="foot-nav" aria-label="Footer">
+          <p class="foot-kicker">Maison</p>
+          <a href="#/">La Maison</a>
+          <a href="#/collection">The Collection</a>
+          <a href="#/atelier">The Atelier</a>
+          <a href="#/salon">The Booking Salon</a>
+        </nav>
+        <div>
+          <p class="foot-kicker">Correspondence</p>
+          <address>
+            12 Rue de la Verrerie, 75004 Paris<br>
+            <a href="tel:+33142771820">+33 1 42 77 18 20</a><br>
+            <a href="mailto:atelier@labelnoir.studio">atelier@labelnoir.studio</a>
+          </address>
+        </div>
+        <div>
+          <p class="foot-kicker">Hours</p>
+          <p class="foot-hours">Mon–Fri, 10:00–18:00 CET<br>Studio visits by appointment only.<br>Ring the unmarked
+            black doorbell.</p>
+        </div>
+      </div>
+      <div class="foot-bottom wrap">
+        <span>© MMXXVI Label Noir — Cut &amp; sewn in Paris</span>
+        <span>No cookies. No tracking. Only thread.</span>
+      </div>
+    </footer>
+
+    <noscript>
+      <p style="padding:2rem;font-family:monospace">This atelier requires JavaScript to change plates. Kindly enable it,
+        or write to atelier@labelnoir.studio.</p>
+    </noscript>
+
+    <script>
+      (function () {
+        'use strict';
+
+        /* ---------- helpers ---------- */
+        const $ = (s, c) => (c || document).querySelector(s);
+        const $$ = (s, c) => Array.prototype.slice.call((c || document).querySelectorAll(s));
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        /* ============================================================
+           THEME — velvet / chalk inversion, persisted
+           ============================================================ */
+        const root = document.documentElement;
+        const themeBtn = $('#theme-toggle');
+        const themeLabel = $('#theme-label');
+
+        function applyTheme(theme, persist) {
+          root.dataset.theme = theme;
+          const isVelvet = theme === 'velvet';
+          themeLabel.textContent = isVelvet ? 'Velvet' : 'Chalk';
+          themeBtn.setAttribute('aria-pressed', String(!isVelvet));
+          themeBtn.setAttribute('aria-label', 'Invert the plate — currently ' + theme + (isVelvet ? ' (dark)' : ' (light)'));
+          if (persist) {
+            try { localStorage.setItem('labelnoir-theme', theme); } catch (e) { /* private mode */ }
+          }
+        }
+        let saved = null;
+        try { saved = localStorage.getItem('labelnoir-theme'); } catch (e) { }
+        applyTheme(saved === 'chalk' ? 'chalk' : 'velvet', false);
+
+        themeBtn.addEventListener('click', function () {
+          applyTheme(root.dataset.theme === 'velvet' ? 'chalk' : 'velvet', true);
+        });
+
+        /* ============================================================
+           ROUTER — vanilla hash router
+           ============================================================ */
+        const routes = {
+          '/': { id: 'view-home', title: 'La Maison' },
+          '/collection': { id: 'view-collection', title: 'The Collection' },
+          '/atelier': { id: 'view-atelier', title: 'The Atelier' },
+          '/salon': { id: 'view-salon', title: 'The Booking Salon' }
+        };
+        const announcer = $('#route-announcer');
+        const mainEl = $('#main');
+
+        function currentPath() {
+          const h = location.hash.replace(/^#/, '');
+          return h === '' ? '/' : h;
+        }
+
+        function resetReveals(view) {
+          if (reduced.matches) return;
+          $$('.reveal.is-in', view).forEach(el => el.classList.remove('is-in'));
+          $$('.thread .draw, .thread .halo', view).forEach(p => {
+            p.style.transition = 'none';
+            p.style.strokeDasharray = 'none';
+            p.style.strokeDashoffset = '0';
+          });
+          $$('.seal', view).forEach(s => s.classList.remove('is-sealed'));
+        }
+
+        function navigate() {
+          const path = currentPath();
+          const route = routes[path];
+          const view = document.getElementById(route ? route.id : 'view-404');
+          const title = route ? route.title : 'L\u2019Introuvable';
+
+          /* swap views */
+          $$('.view').forEach(v => { if (v !== view) { v.classList.remove('is-active'); resetReveals(v); } });
+          view.classList.remove('is-active');
+          void view.offsetWidth;               /* restart entry animation */
+          view.classList.add('is-active');
+
+          /* nav active states */
+          $$('.main-nav a, .curtain-nav a').forEach(a => {
+            const active = !!route && a.dataset.route === path;
+            a.classList.toggle('is-active', active);
+            if (active) a.setAttribute('aria-current', 'page');
+            else a.removeAttribute('aria-current');
+          });
+
+          document.body.dataset.route = view.id.replace('view-', '');
+          window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+          document.title = title + ' \u2014 Label Noir';
+          announcer.textContent = title + '. Label Noir \u2014 haute couture web engineering, Paris.';
+          mainEl.focus({ preventScroll: true });
+
+          initReveals(view);
+          drawThreads(view);
+          requestAnimationFrame(updateProgress);
+          if (view.id === 'view-collection') requestAnimationFrame(runwaySync);
+          closeCurtain();
+        }
+
+        window.addEventListener('hashchange', navigate);
+
+        /* ============================================================
+           SCROLL REVEALS — re-armed on every view change
+           ============================================================ */
+        const io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-in');
+              io.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+        function initReveals(view) {
+          $$('.reveal:not(.is-in)', view).forEach(el => io.observe(el));
+        }
+
+        /* ============================================================
+           THE GOLD THREAD — per-route draw + seals + global progress
+           ============================================================ */
+        function drawThreads(view) {
+          $$('.thread .draw', view).forEach(function (path) {
+            let L;
+            try { L = path.getTotalLength(); } catch (e) { return; }
+            path.style.transition = 'none';
+            path.style.strokeDasharray = L + ' ' + L;
+            path.style.strokeDashoffset = reduced.matches ? '0' : String(L);
+            path.getBoundingClientRect(); /* commit */
+            requestAnimationFrame(function () {
+              path.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.65,0,.35,1) .25s';
+              path.style.strokeDashoffset = '0';
+            });
+          });
+          $$('.seal', view).forEach(function (seal) {
+            if (reduced.matches) { seal.classList.add('is-sealed'); }
+            else { setTimeout(function () { seal.classList.add('is-sealed'); }, 1500); }
+          });
+        }
+
+        const progressFill = $('#progress-fill');
+        function updateProgress() {
+          const doc = document.documentElement;
+          const max = doc.scrollHeight - window.innerHeight;
+          const p = max > 0 ? Math.min(1, Math.max(0, doc.scrollTop / max)) : 0;
+          progressFill.style.transform = 'scaleX(' + p + ')';
+        }
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        window.addEventListener('resize', updateProgress, { passive: true });
+
+        /* header solidifies on scroll */
+        const header = $('#site-header');
+        window.addEventListener('scroll', function () {
+          header.classList.toggle('is-scrolled', window.scrollY > 6);
+        }, { passive: true });
+
+        /* ============================================================
+           CURTAIN MENU — focus-managed overlay
+           ============================================================ */
+        const curtain = $('#curtain');
+        const menuBtn = $('#menu-toggle');
+        let lastFocus = null;
+
+        function curtainFocusables() {
+          return $$('a[href], button', curtain).filter(el => el.offsetParent !== null);
+        }
+        function openCurtain() {
+          lastFocus = document.activeElement;
+          curtain.classList.add('is-open');
+          curtain.setAttribute('aria-hidden', 'false');
+          menuBtn.setAttribute('aria-expanded', 'true');
+          menuBtn.textContent = 'Close';
+          document.body.classList.add('no-scroll');
+          document.addEventListener('keydown', onCurtainKey);
+          const first = curtainFocusables()[0];
+          if (first) first.focus();
+        }
+        function closeCurtain() {
+          if (!curtain.classList.contains('is-open')) return;
+          curtain.classList.remove('is-open');
+          curtain.setAttribute('aria-hidden', 'true');
+          menuBtn.setAttribute('aria-expanded', 'false');
+          menuBtn.textContent = 'Menu';
+          document.body.classList.remove('no-scroll');
+          document.removeEventListener('keydown', onCurtainKey);
+          if (lastFocus && lastFocus.focus) lastFocus.focus();
+        }
+        function onCurtainKey(e) {
+          if (e.key === 'Escape') { closeCurtain(); return; }
+          if (e.key !== 'Tab') return;
+          const f = curtainFocusables();
+          if (!f.length) return;
+          const first = f[0], last = f[f.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+        menuBtn.addEventListener('click', function () {
+          curtain.classList.contains('is-open') ? closeCurtain() : openCurtain();
+        });
+
+        /* ============================================================
+           THE RUNWAY LOOKBOOK — drag, snap, arrows, progress
+           ============================================================ */
+        const track = $('#runway-track');
+        const prevBtn = $('#runway-prev');
+        const nextBtn = $('#runway-next');
+        const nowEl = $('#runway-now');
+        const totalEl = $('#runway-total');
+        const barEl = $('#runway-bar');
+        const plates = $$('.plate', track);
+        totalEl.textContent = String(plates.length).padStart(2, '0');
+
+        let dragging = false, dragStartX = 0, dragStartL = 0, rafPending = false;
+
+        function plateStep() {
+          if (!plates.length) return 300;
+          const style = getComputedStyle(track);
+          const gap = parseFloat(style.columnGap) || 24;
+          return plates[0].offsetWidth + gap;
+        }
+
+        function runwaySync() {
+          if (!track) return;
+          const max = track.scrollWidth - track.clientWidth;
+          const p = max > 0 ? track.scrollLeft / max : 0;
+          barEl.style.width = Math.max(8, p * 100) + '%';
+          const idx = Math.min(plates.length, Math.round(track.scrollLeft / plateStep()) + 1);
+          nowEl.textContent = String(idx).padStart(2, '0');
+          prevBtn.disabled = track.scrollLeft <= 4;
+          nextBtn.disabled = track.scrollLeft >= max - 4;
+        }
+
+        track.addEventListener('scroll', function () {
+          if (rafPending) return;
+          rafPending = true;
+          requestAnimationFrame(function () { rafPending = false; runwaySync(); });
+        }, { passive: true });
+
+        track.addEventListener('pointerdown', function (e) {
+          if (e.pointerType === 'mouse' && e.button !== 0) return;
+          dragging = true;
+          dragStartX = e.clientX;
+          dragStartL = track.scrollLeft;
+          track.classList.add('is-dragging');
+          track.setPointerCapture(e.pointerId);
+        });
+        track.addEventListener('pointermove', function (e) {
+          if (!dragging) return;
+          track.scrollLeft = dragStartL - (e.clientX - dragStartX);
+        });
+        function endDrag() { dragging = false; track.classList.remove('is-dragging'); }
+        track.addEventListener('pointerup', endDrag);
+        track.addEventListener('pointercancel', endDrag);
+        track.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowRight') { e.preventDefault(); track.scrollBy({ left: plateStep(), behavior: reduced.matches ? 'auto' : 'smooth' }); }
+          if (e.key === 'ArrowLeft') { e.preventDefault(); track.scrollBy({ left: -plateStep(), behavior: reduced.matches ? 'auto' : 'smooth' }); }
+        });
+
+        prevBtn.addEventListener('click', function () {
+          track.scrollBy({ left: -plateStep(), behavior: reduced.matches ? 'auto' : 'smooth' });
+        });
+        nextBtn.addEventListener('click', function () {
+          track.scrollBy({ left: plateStep(), behavior: reduced.matches ? 'auto' : 'smooth' });
+        });
+        window.addEventListener('resize', function () { requestAnimationFrame(runwaySync); }, { passive: true });
+
+        /* ============================================================
+           ARCHIVE FILTER — with empty state
+           ============================================================ */
+        const chips = $$('.chip');
+        const rows = $$('.archive-row');
+        const emptyEl = $('#archive-empty');
+        const countEl = $('#archive-count');
+
+        function applyFilter(filter) {
+          chips.forEach(function (ch) {
+            const active = ch.dataset.filter === filter;
+            ch.classList.toggle('is-active', active);
+            ch.setAttribute('aria-pressed', String(active));
+          });
+          let visible = 0;
+          rows.forEach(function (r) {
+            const show = filter === 'all' ||
+              (filter === 'fitting' ? r.dataset.status === 'fitting' : r.dataset.year === filter);
+            r.classList.toggle('is-hidden', !show);
+            if (show) visible++;
+          });
+          countEl.textContent = String(visible).padStart(2, '0');
+          emptyEl.hidden = visible > 0;
+        }
+        chips.forEach(function (ch) {
+          ch.addEventListener('click', function () { applyFilter(ch.dataset.filter); });
+        });
+        $('#archive-clear').addEventListener('click', function () { applyFilter('all'); });
+
+        /* ============================================================
+           PATTERN BOOK LEDGER — accordion rows
+           ============================================================ */
+        $$('.row-toggle').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            const row = btn.closest('.ledger-row');
+            const open = row.classList.toggle('is-open');
+            btn.setAttribute('aria-expanded', String(open));
+          });
+        });
+
+        /* ============================================================
+           THE BOOKING SALON — progressive validation + ledger entry
+           ============================================================ */
+        const form = $('#booking-form');
+        const submitBtn = $('#submit-btn');
+        const submitLabel = $('.btn-label', submitBtn);
+        const successEl = $('#form-success');
+        const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        function setError(input, errEl, on) {
+          errEl.hidden = !on;
+          if (input) input.setAttribute('aria-invalid', on ? 'true' : 'false');
+        }
+        function validate() {
+          let firstInvalid = null;
+          const name = $('#f-name'), email = $('#f-email'), vision = $('#f-vision'), consent = $('#f-consent');
+
+          const nameBad = name.value.trim().length < 2;
+          setError(name, $('#err-name'), nameBad);
+          if (nameBad && !firstInvalid) firstInvalid = name;
+
+          const emailBad = !EMAIL_RE.test(email.value.trim());
+          setError(email, $('#err-email'), emailBad);
+          if (emailBad && !firstInvalid) firstInvalid = email;
+
+          const visionBad = vision.value.trim().length < 10;
+          setError(vision, $('#err-vision'), visionBad);
+          if (visionBad && !firstInvalid) firstInvalid = vision;
+
+          const consentBad = !consent.checked;
+          setError(consent, $('#err-consent'), consentBad);
+          if (consentBad && !firstInvalid) firstInvalid = consent;
+
+          return firstInvalid;
+        }
+
+        /* clear an error as soon as the line is amended */
+        [['#f-name', '#err-name'], ['#f-email', '#err-email'], ['#f-vision', '#err-vision']].forEach(function (pair) {
+          const input = $(pair[0]), err = $(pair[1]);
+          input.addEventListener('input', function () { setError(input, err, false); });
+        });
+        $('#f-consent').addEventListener('change', function () { setError(this, $('#err-consent'), false); });
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const firstInvalid = validate();
+          if (firstInvalid) { firstInvalid.focus(); return; }
+
+          /* loading state */
+          submitBtn.disabled = true;
+          submitBtn.classList.add('is-loading');
+          submitLabel.textContent = 'Inscribing\u2026';
+
+          setTimeout(function () {
+            /* success state */
+            const name = $('#f-name').value.trim();
+            $('#succ-name').textContent = name || 'friend of the house';
+            $('#succ-ref').textContent = 'LN-2026-' + String(Math.floor(100 + Math.random() * 900));
+            form.hidden = true;
+            successEl.hidden = false;
+            successEl.focus();
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('is-loading');
+            submitLabel.textContent = 'Request an Appointment';
+          }, 1400);
+        });
+
+        $('#success-reset').addEventListener('click', function () {
+          successEl.hidden = true;
+          form.hidden = false;
+          form.reset();
+          $$('.field-error', form).forEach(function (el) { el.hidden = true; });
+          $$('[aria-invalid]', form).forEach(function (el) { el.removeAttribute('aria-invalid'); });
+          $('#f-name').focus();
+        });
+
+        /* ============================================================
+           INIT
+           ============================================================ */
+        document.addEventListener('DOMContentLoaded', function () {
+          if (!location.hash) {
+            try { history.replaceState(null, '', '#/'); } catch (e) { location.hash = '#/'; }
+          }
+          navigate();
+          updateProgress();
+          runwaySync();
+        });
+      })();
+    </script>
+  </body>
+
+  </html>
+
+  <script>
+
+  </script>
+</body>
+
+</html>

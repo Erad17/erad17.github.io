@@ -1,0 +1,4433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: white;
+      /* Ensure the iframe has a white background */
+    }
+  </style>
+</head>
+
+<body>
+  <!DOCTYPE html>
+  <html lang="en" data-theme="day">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noai, noimageai">
+    <meta name="description"
+      content="The Sons of Quixote — a chorus of pro per fathers raising voices in unity. Documentary, dispatches, and the supply table of a movement.">
+    <title>The Protest · The Sons of Quixote</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Special+Elite&display=swap"
+      rel="stylesheet">
+
+    <style>
+      /* ============================================================
+   THE SONS OF QUIXOTE — "printed at a midnight press"
+   Monochrome protest broadside × cinéma vérité
+   ============================================================ */
+
+      /* ---------- 1. TOKENS (20+ custom properties) ---------- */
+      :root {
+        /* palette — day press (newsprint) */
+        --paper: #f2efe6;
+        --paper-2: #e9e5d9;
+        --paper-3: #dcd7c8;
+        --ink: #171512;
+        --ink-2: rgba(23, 21, 18, .72);
+        --ink-3: rgba(23, 21, 18, .5);
+        --line: rgba(23, 21, 18, .32);
+        --line-soft: rgba(23, 21, 18, .15);
+        --pulse: rgba(23, 21, 18, .35);
+        --grain-op: .05;
+
+        /* type */
+        --font-display: 'Anton', Impact, sans-serif;
+        --font-body: 'Libre Franklin', system-ui, sans-serif;
+        --font-mono: 'Special Elite', 'Courier New', monospace;
+
+        --fs-hero: clamp(3rem, 10vw, 7.6rem);
+        --fs-h1: clamp(2.4rem, 6.5vw, 5rem);
+        --fs-h2: clamp(1.85rem, 4.4vw, 3.1rem);
+        --fs-h3: clamp(1.25rem, 2.5vw, 1.7rem);
+        --fs-body: clamp(1rem, .4vw + .95rem, 1.125rem);
+        --fs-small: clamp(.8rem, .3vw + .75rem, .92rem);
+        --fs-micro: clamp(.68rem, .25vw + .64rem, .8rem);
+        --fs-menu: clamp(2rem, 6.5vw, 4.6rem);
+        --fs-ledger: clamp(2rem, 5vw, 3.4rem);
+
+        /* space */
+        --space-1: .5rem;
+        --space-2: 1rem;
+        --space-3: 1.5rem;
+        --space-4: 2.5rem;
+        --space-5: 4rem;
+        --space-6: 6.5rem;
+        --space-7: 9rem;
+
+        /* misc */
+        --header-h: 74px;
+        --maxw: 1180px;
+        --rule: 3px;
+        --rule-thin: 1.5px;
+        --dur-1: .18s;
+        --dur-2: .3s;
+        --dur-3: .55s;
+        --ease-out: cubic-bezier(.22, .61, .21, 1);
+        --ease-expo: cubic-bezier(.19, 1, .22, 1);
+      }
+
+      /* night press — same broadside, black paper */
+      [data-theme="night"] {
+        --paper: #141310;
+        --paper-2: #1c1a15;
+        --paper-3: #27241c;
+        --ink: #ede9db;
+        --ink-2: rgba(237, 233, 219, .72);
+        --ink-3: rgba(237, 233, 219, .5);
+        --line: rgba(237, 233, 219, .34);
+        --line-soft: rgba(237, 233, 219, .15);
+        --pulse: rgba(237, 233, 219, .32);
+        --grain-op: .07;
+      }
+
+      /* ---------- 2. RESET / BASE ---------- */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0
+      }
+
+      html {
+        scroll-behavior: smooth
+      }
+
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font: 400 var(--fs-body)/1.65 var(--font-body);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      body.locked {
+        overflow: hidden
+      }
+
+      img,
+      svg {
+        display: block;
+        max-width: 100%
+      }
+
+      button {
+        font: inherit;
+        color: inherit;
+        background: none;
+        border: none;
+        cursor: pointer
+      }
+
+      a {
+        color: inherit
+      }
+
+      ul {
+        list-style: none
+      }
+
+      ::selection {
+        background: var(--ink);
+        color: var(--paper)
+      }
+
+      :focus-visible {
+        outline: 3px solid var(--ink);
+        outline-offset: 3px
+      }
+
+      h1,
+      h2,
+      h3,
+      .display {
+        font-family: var(--font-display);
+        font-weight: 400;
+        text-transform: uppercase;
+        line-height: .96;
+        letter-spacing: .005em
+      }
+
+      .mono {
+        font-family: var(--font-mono)
+      }
+
+      .micro {
+        font-size: var(--fs-micro);
+        letter-spacing: .12em;
+        text-transform: uppercase
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0
+      }
+
+      ::selection {
+        background: var(--ink-3);
+        color: var(--ink)
+      }
+
+      .skip-link {
+        position: fixed;
+        top: -100px;
+        left: 1rem;
+        z-index: 200;
+        background: var(--ink);
+        color: var(--paper);
+        padding: .7em 1.2em;
+        font: 600 var(--fs-small) var(--font-body);
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        transition: top var(--dur-2) var(--ease-out)
+      }
+
+      .skip-link:focus {
+        top: 1rem
+      }
+
+      /* ---------- 3. AMBIENT TEXTURE (halftone + newsprint grain) ---------- */
+      .grain {
+        position: fixed;
+        inset: 0;
+        z-index: 66;
+        pointer-events: none;
+        background-image:
+          radial-gradient(circle, var(--ink) 1px, transparent 1.35px),
+          url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="180" height="180" filter="url(%23n)" opacity="0.55"/></svg>');
+        background-size: 9px 9px, 180px 180px;
+        opacity: var(--grain-op);
+      }
+
+      /* ---------- 4. MASTHEAD ---------- */
+      .masthead {
+        position: sticky;
+        top: 0;
+        z-index: 80;
+        height: var(--header-h);
+        display: flex;
+        align-items: center;
+        background: var(--paper);
+        border-bottom: var(--rule) solid var(--ink);
+        transition: box-shadow var(--dur-2) var(--ease-out);
+      }
+
+      .masthead.scrolled {
+        box-shadow: 0 4px 0 var(--line-soft)
+      }
+
+      .masthead-in {
+        width: min(var(--maxw), 94vw);
+        margin-inline: auto;
+        display: flex;
+        align-items: center;
+        gap: var(--space-2)
+      }
+
+      .wordmark {
+        display: flex;
+        align-items: center;
+        gap: .7rem;
+        text-decoration: none
+      }
+
+      .wm-glyph {
+        width: 30px;
+        height: 30px;
+        color: var(--ink)
+      }
+
+      .wm-glyph .spin-slow {
+        transform-box: view-box;
+        transform-origin: 12px 12px;
+        animation: spin 26s linear infinite
+      }
+
+      .wm em {
+        display: block;
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .28em;
+        font-style: normal;
+        color: var(--ink-2)
+      }
+
+      .wm strong {
+        display: block;
+        font: 400 clamp(1.05rem, 2vw, 1.35rem)/1 var(--font-display);
+        letter-spacing: .03em;
+        text-transform: uppercase
+      }
+
+      .chapter {
+        margin-left: auto;
+        font-size: var(--fs-micro);
+        letter-spacing: .18em;
+        color: var(--ink-2);
+        white-space: nowrap
+      }
+
+      .mast-actions {
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        margin-left: var(--space-2)
+      }
+
+      .icon-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: .5em;
+        border: 2px solid var(--ink);
+        padding: .55em .9em;
+        font: 600 var(--fs-micro) var(--font-body);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        transition: background var(--dur-1) var(--ease-out), color var(--dur-1) var(--ease-out), transform var(--dur-1) var(--ease-out);
+      }
+
+      .icon-btn:hover {
+        background: var(--ink);
+        color: var(--paper);
+        transform: translate(-1px, -1px)
+      }
+
+      .icon-btn:active {
+        transform: translate(1px, 1px)
+      }
+
+      .theme-ic {
+        width: 14px;
+        height: 14px;
+        border: 2px solid currentColor;
+        border-radius: 50%;
+        background: linear-gradient(90deg, currentColor 50%, transparent 50%)
+      }
+
+      .badge {
+        min-width: 1.7em;
+        text-align: center;
+        padding: .15em .3em;
+        background: var(--ink);
+        color: var(--paper);
+        font: 400 var(--fs-micro) var(--font-mono);
+        border-radius: 2px;
+      }
+
+      .badge.bump {
+        animation: bump .45s var(--ease-out)
+      }
+
+      @keyframes bump {
+        40% {
+          transform: scale(1.45) rotate(-6deg)
+        }
+      }
+
+      .menu-btn .bars {
+        display: inline-grid;
+        gap: 3px
+      }
+
+      .menu-btn .bars i {
+        display: block;
+        width: 18px;
+        height: 2.5px;
+        background: currentColor;
+        transition: transform var(--dur-2) var(--ease-out), opacity var(--dur-2)
+      }
+
+      .menu-btn[aria-expanded="true"] .bars i:nth-child(1) {
+        transform: translateY(5.5px) rotate(45deg)
+      }
+
+      .menu-btn[aria-expanded="true"] .bars i:nth-child(2) {
+        opacity: 0
+      }
+
+      .menu-btn[aria-expanded="true"] .bars i:nth-child(3) {
+        transform: translateY(-5.5px) rotate(-45deg)
+      }
+
+      @media (max-width:860px) {
+        .chapter {
+          display: none
+        }
+      }
+
+      @media (max-width:560px) {
+        .icon-btn .lbl {
+          display: none
+        }
+
+        .wm em {
+          display: none
+        }
+      }
+
+      /* ---------- 5. FULL-SCREEN OVERLAY MENU (protest program / setlist) ---------- */
+      .overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 120;
+        background: var(--paper);
+        display: flex;
+        flex-direction: column;
+        padding: var(--space-3) clamp(1rem, 5vw, 4rem) var(--space-4);
+        transform: translateY(-102%);
+        visibility: hidden;
+        transition: transform .5s var(--ease-expo), visibility 0s .5s;
+        overflow-y: auto;
+      }
+
+      .overlay::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background-image: radial-gradient(circle, var(--ink) 1px, transparent 1.35px);
+        background-size: 11px 11px;
+        opacity: .05
+      }
+
+      .overlay.open {
+        transform: none;
+        visibility: visible;
+        transition: transform .5s var(--ease-expo)
+      }
+
+      .om-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: var(--rule) solid var(--ink);
+        padding-bottom: var(--space-2)
+      }
+
+      .om-top h2 {
+        font-size: var(--fs-h3)
+      }
+
+      .om-close {
+        border: 2px solid var(--ink);
+        padding: .6em 1em;
+        font: 600 var(--fs-micro) var(--font-body);
+        letter-spacing: .16em;
+        transition: background var(--dur-1), color var(--dur-1)
+      }
+
+      .om-close:hover {
+        background: var(--ink);
+        color: var(--paper)
+      }
+
+      .om-list {
+        margin: auto 0;
+        padding: var(--space-3) 0;
+        position: relative;
+        z-index: 1
+      }
+
+      .om-link {
+        display: flex;
+        align-items: baseline;
+        gap: clamp(.6rem, 2vw, 1.4rem);
+        font-family: var(--font-display);
+        font-size: var(--fs-menu);
+        text-transform: uppercase;
+        line-height: 1.02;
+        text-decoration: none;
+        color: var(--ink);
+        border-bottom: 2px solid var(--line);
+        padding: .28em 0;
+        opacity: 0;
+        transform: translateY(26px);
+        transition: transform var(--dur-2) var(--ease-out), padding-left var(--dur-2) var(--ease-out);
+      }
+
+      .overlay.open .om-link {
+        animation: omIn .55s var(--ease-expo) both;
+        animation-delay: calc(var(--i)*70ms + 150ms)
+      }
+
+      @keyframes omIn {
+        from {
+          opacity: 0;
+          transform: translateY(26px)
+        }
+
+        to {
+          opacity: 1;
+          transform: none
+        }
+      }
+
+      .om-link .no {
+        font: 400 clamp(.8rem, 1.6vw, 1.05rem) var(--font-mono);
+        color: var(--ink-3);
+        letter-spacing: .1em
+      }
+
+      .om-link::after {
+        content: "→";
+        margin-left: auto;
+        font-family: var(--font-body);
+        font-weight: 300;
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: opacity var(--dur-2), transform var(--dur-2) var(--ease-out)
+      }
+
+      .om-link:hover,
+      .om-link:focus-visible {
+        padding-left: .5em
+      }
+
+      .om-link:hover::after,
+      .om-link:focus-visible::after {
+        opacity: 1;
+        transform: none
+      }
+
+      .om-link[aria-current="page"] .no::after {
+        content: " ● NOW";
+        color: var(--ink)
+      }
+
+      .om-foot {
+        border-top: var(--rule) solid var(--ink);
+        padding-top: var(--space-2);
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2) var(--space-4);
+        justify-content: space-between;
+        position: relative;
+        z-index: 1
+      }
+
+      .om-foot p {
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--ink-2)
+      }
+
+      /* ---------- 6. CART DRAWER ---------- */
+      .scrim {
+        position: fixed;
+        inset: 0;
+        z-index: 110;
+        background: rgba(0, 0, 0, .45);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity var(--dur-2), visibility 0s var(--dur-2)
+      }
+
+      .scrim.show {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity var(--dur-2)
+      }
+
+      .drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 130;
+        width: min(430px, 94vw);
+        background: var(--paper);
+        border-left: var(--rule) solid var(--ink);
+        display: flex;
+        flex-direction: column;
+        transform: translateX(103%);
+        visibility: hidden;
+        transition: transform .45s var(--ease-expo), visibility 0s .45s;
+      }
+
+      .drawer.open {
+        transform: none;
+        visibility: visible;
+        transition: transform .45s var(--ease-expo)
+      }
+
+      .drawer-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--space-2) var(--space-3);
+        border-bottom: var(--rule) solid var(--ink)
+      }
+
+      .drawer-head h2 {
+        font-size: var(--fs-h3)
+      }
+
+      .drawer-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: var(--space-3)
+      }
+
+      .drawer-foot {
+        border-top: var(--rule) solid var(--ink);
+        padding: var(--space-2) var(--space-3) var(--space-3)
+      }
+
+      .cart-row {
+        display: flex;
+        gap: var(--space-2);
+        align-items: flex-start;
+        border-bottom: var(--rule-thin) solid var(--line-soft);
+        padding: var(--space-2) 0
+      }
+
+      .cart-row h3 {
+        font-size: var(--fs-small);
+        letter-spacing: .04em
+      }
+
+      .cart-row .cr-meta {
+        font-size: var(--fs-micro);
+        color: var(--ink-2)
+      }
+
+      .qty {
+        display: inline-flex;
+        border: 2px solid var(--ink);
+        margin-top: .4rem
+      }
+
+      .qty button {
+        width: 2em;
+        height: 2em;
+        font-weight: 700;
+        transition: background var(--dur-1), color var(--dur-1)
+      }
+
+      .qty button:hover {
+        background: var(--ink);
+        color: var(--paper)
+      }
+
+      .qty output {
+        width: 2.4em;
+        display: grid;
+        place-items: center;
+        font-family: var(--font-mono)
+      }
+
+      .cart-row .cr-price {
+        margin-left: auto;
+        font-family: var(--font-mono);
+        white-space: nowrap
+      }
+
+      .cr-rm {
+        font-size: var(--fs-micro);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        color: var(--ink-2);
+        margin-left: .6rem
+      }
+
+      .cr-rm:hover {
+        color: var(--ink)
+      }
+
+      .subtotal {
+        display: flex;
+        justify-content: space-between;
+        font: 600 var(--fs-small) var(--font-body);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        margin-bottom: .6rem
+      }
+
+      .subtotal output {
+        font-family: var(--font-mono)
+      }
+
+      .drawer-foot .note {
+        font-size: var(--fs-micro);
+        color: var(--ink-2);
+        margin-bottom: var(--space-2);
+        line-height: 1.7
+      }
+
+      .empty {
+        font: 400 var(--fs-small) var(--font-mono);
+        color: var(--ink-2);
+        border: 2px dashed var(--line);
+        padding: var(--space-3);
+        text-align: center;
+        line-height: 1.8
+      }
+
+      /* ---------- 7. BUTTONS / STAMPS / CHIPS ---------- */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .6em;
+        font: 600 var(--fs-small)/1 var(--font-body);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        padding: 1em 1.5em;
+        border: 2.5px solid var(--ink);
+        color: var(--ink);
+        background: transparent;
+        text-decoration: none;
+        box-shadow: 4px 4px 0 var(--ink);
+        transition: transform var(--dur-2) var(--ease-out), box-shadow var(--dur-2) var(--ease-out), background var(--dur-2), color var(--dur-2);
+      }
+
+      .btn:hover {
+        background: var(--ink);
+        color: var(--paper);
+        transform: translate(-2px, -2px);
+        box-shadow: 7px 7px 0 var(--ink)
+      }
+
+      .btn:active {
+        transform: translate(1px, 1px);
+        box-shadow: 2px 2px 0 var(--ink)
+      }
+
+      .btn--solid {
+        background: var(--ink);
+        color: var(--paper)
+      }
+
+      .btn--solid:hover {
+        background: transparent;
+        color: var(--ink)
+      }
+
+      .btn[disabled] {
+        opacity: .55;
+        cursor: wait;
+        transform: none;
+        box-shadow: 4px 4px 0 var(--ink)
+      }
+
+      .btn .spin {
+        width: .9em;
+        height: .9em;
+        border: 2px solid currentColor;
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg)
+        }
+      }
+
+      .stamp {
+        display: inline-block;
+        font: 400 var(--fs-small) var(--font-mono);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        border: 3px double var(--ink);
+        padding: .4em .8em;
+        transform: rotate(-5deg);
+      }
+
+      .stamp--lg {
+        font-size: var(--fs-h3);
+        padding: .35em .7em
+      }
+
+      .stampIn {
+        animation: stampIn .5s var(--ease-out) both
+      }
+
+      @keyframes stampIn {
+        0% {
+          opacity: 0;
+          transform: rotate(-14deg) scale(2.1)
+        }
+
+        70% {
+          transform: rotate(-5deg) scale(.94)
+        }
+
+        100% {
+          opacity: 1;
+          transform: rotate(-5deg) scale(1)
+        }
+      }
+
+      .chip {
+        border: 2px solid var(--ink);
+        padding: .6em 1em;
+        background: transparent;
+        color: var(--ink);
+        font: 600 var(--fs-micro) var(--font-body);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        transition: background var(--dur-1) var(--ease-out), color var(--dur-1) var(--ease-out), transform var(--dur-1) var(--ease-out);
+      }
+
+      .chip:hover {
+        transform: translate(-1px, -1px)
+      }
+
+      .chip[aria-pressed="true"],
+      .chip.active {
+        background: var(--ink);
+        color: var(--paper)
+      }
+
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .5rem
+      }
+
+      /* ---------- 8. VIEWS / ROUTER / REVEALS ---------- */
+      main {
+        min-height: 70vh
+      }
+
+      .view {
+        display: none
+      }
+
+      .view.is-active {
+        display: block;
+        animation: viewIn var(--dur-3) var(--ease-out) both
+      }
+
+      @keyframes viewIn {
+        from {
+          opacity: 0;
+          transform: translateY(16px)
+        }
+
+        to {
+          opacity: 1;
+          transform: none
+        }
+      }
+
+      .wrap {
+        width: min(var(--maxw), 94vw);
+        margin-inline: auto
+      }
+
+      [data-reveal] {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity .65s var(--ease-out), transform .65s var(--ease-out);
+        transition-delay: var(--rd, 0ms)
+      }
+
+      [data-reveal].revealed {
+        opacity: 1;
+        transform: none
+      }
+
+      .sec {
+        padding-block: var(--space-6)
+      }
+
+      .sec-head {
+        display: flex;
+        align-items: baseline;
+        gap: var(--space-2);
+        border-bottom: var(--rule) solid var(--ink);
+        padding-bottom: var(--space-1);
+        margin-bottom: var(--space-4)
+      }
+
+      .sec-head .docket {
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .2em;
+        color: var(--ink-2);
+        white-space: nowrap
+      }
+
+      .sec-head h2 {
+        font-size: var(--fs-h2)
+      }
+
+      .mast {
+        padding: var(--space-5) 0 var(--space-4);
+        border-bottom: var(--rule) solid var(--ink)
+      }
+
+      .mast .docket {
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .24em;
+        color: var(--ink-2);
+        display: block;
+        margin-bottom: var(--space-2)
+      }
+
+      .mast h1 {
+        font-size: var(--fs-h1)
+      }
+
+      .mast .sub {
+        margin-top: var(--space-2);
+        max-width: 56ch;
+        color: var(--ink-2);
+        font-size: var(--fs-body)
+      }
+
+      .rule-double {
+        border-top: var(--rule) solid var(--ink);
+        position: relative;
+        margin-top: var(--space-1)
+      }
+
+      .rule-double::after {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 0;
+        right: 0;
+        border-top: var(--rule-thin) solid var(--ink)
+      }
+
+      /* ---------- 9. HERO — THE PROTEST ---------- */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        border-bottom: var(--rule) solid var(--ink)
+      }
+
+      .hero-in {
+        width: min(var(--maxw), 94vw);
+        margin-inline: auto;
+        padding: var(--space-6) 0 var(--space-5);
+        position: relative;
+        z-index: 2
+      }
+
+      .hero .docket {
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .24em;
+        color: var(--ink-2);
+        display: block;
+        margin-bottom: var(--space-3)
+      }
+
+      .k-lines {
+        font-family: var(--font-display);
+        font-size: var(--fs-hero);
+        line-height: .92;
+        text-transform: uppercase
+      }
+
+      .k-line {
+        display: block;
+        overflow: hidden;
+        padding-bottom: .04em
+      }
+
+      .k-line span {
+        display: inline-block;
+        transform: translateY(112%)
+      }
+
+      .view.is-active .k-line span {
+        animation: lineUp .9s var(--ease-expo) both;
+        animation-delay: calc(var(--i)*.14s + .15s)
+      }
+
+      @keyframes lineUp {
+        from {
+          transform: translateY(112%)
+        }
+
+        to {
+          transform: none
+        }
+      }
+
+      .k-line:last-child span {
+        border-bottom: 6px solid var(--ink)
+      }
+
+      .hero-sub {
+        max-width: 52ch;
+        margin-top: var(--space-3);
+        font-size: clamp(1.02rem, .6vw + .95rem, 1.25rem);
+        color: var(--ink-2)
+      }
+
+      .hero-sub em {
+        font-style: italic;
+        color: var(--ink)
+      }
+
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        margin-top: var(--space-4)
+      }
+
+      .hero-meta {
+        margin-top: var(--space-3);
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .18em;
+        color: var(--ink-3)
+      }
+
+      .hero-mill {
+        position: absolute;
+        right: -4%;
+        top: 50%;
+        transform: translateY(-52%);
+        width: min(44vw, 560px);
+        color: var(--ink);
+        opacity: .9;
+        z-index: 1;
+        pointer-events: none
+      }
+
+      .mill-sails {
+        transform-box: view-box;
+        transform-origin: 260px 232px;
+        animation: spin 48s linear infinite
+      }
+
+      @media (max-width:820px) {
+        .hero-mill {
+          opacity: .16;
+          right: -34%;
+          width: 96vw
+        }
+      }
+
+      /* ticker */
+      .ticker {
+        overflow: hidden;
+        background: var(--ink);
+        color: var(--paper);
+        border-bottom: var(--rule) solid var(--ink)
+      }
+
+      .ticker-track {
+        display: flex;
+        width: max-content;
+        animation: tick 30s linear infinite
+      }
+
+      .ticker-track:hover {
+        animation-play-state: paused
+      }
+
+      .ticker-track p {
+        white-space: nowrap;
+        padding: .65em 0;
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .22em;
+        text-transform: uppercase
+      }
+
+      .ticker-track p b {
+        font-weight: 400;
+        padding: 0 1.2em;
+        opacity: .55
+      }
+
+      @keyframes tick {
+        to {
+          transform: translateX(-50%)
+        }
+      }
+
+      /* ledger */
+      .ledger {
+        border: var(--rule) solid var(--ink);
+        background: var(--paper-2)
+      }
+
+      .ledger-row {
+        display: flex;
+        align-items: baseline;
+        gap: var(--space-2);
+        padding: var(--space-2) var(--space-3);
+        border-bottom: var(--rule-thin) solid var(--line)
+      }
+
+      .ledger-row:last-child {
+        border-bottom: 0
+      }
+
+      .ledger-row .num {
+        font-family: var(--font-display);
+        font-size: var(--fs-ledger);
+        min-width: 2.4ch;
+        line-height: 1
+      }
+
+      .ledger-row .what {
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        color: var(--ink-2)
+      }
+
+      .ledger-row:hover {
+        background: var(--paper-3)
+      }
+
+      .grid-2 {
+        display: grid;
+        gap: var(--space-4);
+        grid-template-columns: 1fr
+      }
+
+      @media (min-width:880px) {
+        .grid-2 {
+          grid-template-columns: 1.25fr .75fr;
+          align-items: start
+        }
+      }
+
+      .prose p+p {
+        margin-top: 1.1em
+      }
+
+      .prose .lead {
+        font-size: clamp(1.1rem, .7vw + 1rem, 1.35rem);
+        line-height: 1.55;
+        font-weight: 500
+      }
+
+      /* numbered ways — asymmetric rows, not cards */
+      .ways {
+        border-top: var(--rule) solid var(--ink)
+      }
+
+      .way {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: var(--space-3);
+        align-items: center;
+        padding: var(--space-3) var(--space-1);
+        border-bottom: var(--rule) solid var(--ink);
+        text-decoration: none;
+        transition: background var(--dur-2) var(--ease-out), padding-left var(--dur-2) var(--ease-out)
+      }
+
+      .way:hover {
+        background: var(--paper-2);
+        padding-left: var(--space-3)
+      }
+
+      .way .no {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 6vw, 4.2rem);
+        color: var(--ink-3);
+        transition: color var(--dur-2)
+      }
+
+      .way:hover .no {
+        color: var(--ink)
+      }
+
+      .way h3 {
+        font-size: var(--fs-h3);
+        margin-bottom: .3rem
+      }
+
+      .way p {
+        color: var(--ink-2);
+        max-width: 60ch;
+        font-size: var(--fs-small)
+      }
+
+      .way .go {
+        font-size: var(--fs-h3);
+        transition: transform var(--dur-2) var(--ease-out)
+      }
+
+      .way:hover .go {
+        transform: translateX(8px)
+      }
+
+      @media (max-width:640px) {
+        .way {
+          grid-template-columns: auto 1fr
+        }
+
+        .way .go {
+          display: none
+        }
+      }
+
+      /* closing band */
+      .band {
+        background: var(--ink);
+        color: var(--paper);
+        padding: var(--space-6) 0;
+        position: relative;
+        overflow: hidden
+      }
+
+      .band::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, var(--paper) 1px, transparent 1.4px);
+        background-size: 10px 10px;
+        opacity: .08
+      }
+
+      .band h2 {
+        font-size: clamp(2.2rem, 7vw, 5.2rem);
+        position: relative
+      }
+
+      .band .btn {
+        margin-top: var(--space-3);
+        box-shadow: 4px 4px 0 var(--paper);
+        border-color: var(--paper);
+        color: var(--paper);
+        position: relative
+      }
+
+      .band .btn:hover {
+        background: var(--paper);
+        color: var(--ink);
+        box-shadow: 7px 7px 0 rgba(242, 239, 230, .35)
+      }
+
+      /* ---------- 10. FILM STILLS ---------- */
+      .stills {
+        display: grid;
+        gap: var(--space-3);
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
+      }
+
+      .still {
+        container-type: inline-size;
+        border: 2.5px solid var(--ink);
+        background: var(--paper-2);
+        transition: transform var(--dur-2) var(--ease-out), box-shadow var(--dur-2) var(--ease-out)
+      }
+
+      .still:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 6px 6px 0 var(--ink)
+      }
+
+      .still-frame {
+        background: var(--ink)
+      }
+
+      .sprockets {
+        height: 16px;
+        background-color: var(--ink);
+        background-image: radial-gradient(circle at center, var(--paper) 3px, transparent 3.4px);
+        background-size: 20px 16px;
+        background-position: center
+      }
+
+      .still-img {
+        aspect-ratio: 4/3;
+        position: relative;
+        overflow: hidden;
+        background: var(--paper-3);
+        color: var(--ink)
+      }
+
+      .still-img .art {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        transition: transform .6s var(--ease-out)
+      }
+
+      .still:hover .art {
+        transform: scale(1.05)
+      }
+
+      .still-img::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, var(--ink) 1px, transparent 1.3px);
+        background-size: 6px 6px;
+        opacity: .14;
+        pointer-events: none
+      }
+
+      .still-no {
+        position: absolute;
+        top: .6rem;
+        left: .7rem;
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .2em;
+        background: var(--paper);
+        border: 1.5px solid var(--ink);
+        padding: .2em .5em;
+        z-index: 2
+      }
+
+      .still figcaption {
+        padding: .9rem 1rem 1rem;
+        border-top: 2.5px solid var(--ink);
+        display: flex;
+        flex-direction: column;
+        gap: .35rem
+      }
+
+      .still-tag {
+        align-self: flex-start;
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .16em;
+        border: 1.5px solid var(--ink);
+        padding: .15em .5em;
+        transform: rotate(-2deg)
+      }
+
+      .still figcaption p {
+        font-size: var(--fs-small);
+        color: var(--ink-2)
+      }
+
+      @container (max-width:280px) {
+        .still figcaption p {
+          font-size: var(--fs-micro)
+        }
+      }
+
+      .still.is-out {
+        display: none
+      }
+
+      /* art variants */
+      .art--rehearsal {
+        background: linear-gradient(180deg, var(--paper) 0%, var(--paper-3) 70%, var(--line) 100%)
+      }
+
+      .art--hearing {
+        background: repeating-linear-gradient(90deg, var(--paper-3) 0 26px, var(--paper-2) 26px 52px)
+      }
+
+      .art--testimony {
+        background: radial-gradient(circle at 50% 38%, var(--paper) 0 22%, var(--paper-3) 23% 60%, var(--line) 100%)
+      }
+
+      .art--victory {
+        background: repeating-conic-gradient(from 0deg at 50% 42%, var(--paper-2) 0 9deg, var(--paper-3) 9deg 18deg)
+      }
+
+      .art--community {
+        background: linear-gradient(115deg, var(--paper) 0 45%, var(--paper-3) 46% 100%)
+      }
+
+      .art--film {
+        background: linear-gradient(200deg, var(--paper-3), var(--paper) 65%)
+      }
+
+      .art svg {
+        position: absolute;
+        inset: auto 0 0 0;
+        width: 100%;
+        height: auto;
+        opacity: .85
+      }
+
+      .art--victory svg,
+      .art--testimony svg {
+        inset: 0;
+        margin: auto;
+        width: 62%;
+        height: 62%
+      }
+
+      /* ---------- 11. AUDIO BENCH ---------- */
+      .bench {
+        display: grid;
+        gap: var(--space-2)
+      }
+
+      .track {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: var(--space-2);
+        align-items: center;
+        border: 2.5px solid var(--ink);
+        background: var(--paper-2);
+        padding: var(--space-2) var(--space-3);
+        transition: box-shadow var(--dur-2) var(--ease-out), transform var(--dur-2) var(--ease-out)
+      }
+
+      .track:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 var(--ink)
+      }
+
+      .tr-play {
+        width: 52px;
+        height: 52px;
+        border: 2.5px solid var(--ink);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 1rem;
+        transition: background var(--dur-1), color var(--dur-1), transform var(--dur-1)
+      }
+
+      .tr-play:hover {
+        background: var(--ink);
+        color: var(--paper);
+        transform: scale(1.06)
+      }
+
+      .tr-title {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        font-size: var(--fs-small);
+        letter-spacing: .05em
+      }
+
+      .tr-wave {
+        display: flex;
+        align-items: center;
+        gap: 2.5px;
+        height: 30px;
+        margin-top: .45rem
+      }
+
+      .tr-wave i {
+        flex: 1;
+        background: var(--ink-3);
+        height: calc(var(--h)*100%);
+        min-height: 3px;
+        transition: background var(--dur-2)
+      }
+
+      .track.playing .tr-wave i {
+        background: var(--ink);
+        animation: eq .9s ease-in-out infinite alternate;
+        animation-delay: var(--d)
+      }
+
+      @keyframes eq {
+        from {
+          transform: scaleY(.35)
+        }
+
+        to {
+          transform: scaleY(1)
+        }
+      }
+
+      .tr-prog {
+        height: 3px;
+        background: var(--line-soft);
+        margin-top: .5rem;
+        position: relative
+      }
+
+      .tr-prog i {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 0;
+        background: var(--ink)
+      }
+
+      .tr-time {
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .1em;
+        color: var(--ink-2);
+        white-space: nowrap
+      }
+
+      @media (max-width:620px) {
+        .track {
+          grid-template-columns: auto 1fr
+        }
+
+        .tr-time {
+          grid-column: 2
+        }
+      }
+
+      /* ---------- 12. DIRECTOR ---------- */
+      .dir-grid {
+        display: grid;
+        gap: var(--space-4);
+        grid-template-columns: 1fr
+      }
+
+      @media (min-width:900px) {
+        .dir-grid {
+          grid-template-columns: .85fr 1.15fr
+        }
+      }
+
+      .portrait {
+        border: var(--rule) solid var(--ink);
+        background: var(--paper-2);
+        position: relative;
+        overflow: hidden
+      }
+
+      .portrait .plate {
+        aspect-ratio: 4/5;
+        position: relative;
+        background: radial-gradient(circle at 50% 30%, var(--paper) 0 30%, var(--paper-3) 75%);
+        display: grid;
+        place-items: center
+      }
+
+      .portrait .plate::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, var(--ink) 1px, transparent 1.3px);
+        background-size: 7px 7px;
+        opacity: .16
+      }
+
+      .portrait svg {
+        width: 62%;
+        color: var(--ink);
+        position: relative;
+        z-index: 1
+      }
+
+      .nameplate {
+        border-top: var(--rule) solid var(--ink);
+        padding: var(--space-2) var(--space-3);
+        background: var(--ink);
+        color: var(--paper)
+      }
+
+      .nameplate h2 {
+        font-size: var(--fs-h2)
+      }
+
+      .nameplate p {
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        opacity: .75;
+        margin-top: .3rem
+      }
+
+      .creditsheet {
+        border: var(--rule) solid var(--ink)
+      }
+
+      .creditsheet header {
+        padding: var(--space-2) var(--space-3);
+        border-bottom: var(--rule) solid var(--ink);
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .22em;
+        text-transform: uppercase;
+        background: var(--paper-2)
+      }
+
+      .credit {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: var(--space-2);
+        padding: var(--space-2) var(--space-3);
+        border-bottom: var(--rule-thin) solid var(--line);
+        transition: background var(--dur-1)
+      }
+
+      .credit:hover {
+        background: var(--paper-2)
+      }
+
+      .credit:last-child {
+        border-bottom: 0
+      }
+
+      .credit .role {
+        font-weight: 600;
+        font-size: var(--fs-small);
+        letter-spacing: .08em;
+        text-transform: uppercase
+      }
+
+      .credit .prod {
+        color: var(--ink-2);
+        font-size: var(--fs-small)
+      }
+
+      .credit .st {
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .12em;
+        align-self: center;
+        white-space: nowrap
+      }
+
+      .timeline {
+        border-left: var(--rule) solid var(--ink);
+        padding-left: var(--space-3);
+        display: grid;
+        gap: var(--space-3);
+        margin-top: var(--space-4)
+      }
+
+      .t-item {
+        position: relative
+      }
+
+      .t-item::before {
+        content: "";
+        position: absolute;
+        left: calc(-1 * var(--space-3) - 9px);
+        top: .4em;
+        width: 12px;
+        height: 12px;
+        background: var(--paper);
+        border: 3px solid var(--ink);
+        transition: background var(--dur-2)
+      }
+
+      .t-item:hover::before {
+        background: var(--ink)
+      }
+
+      .t-item .t-date {
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .2em;
+        color: var(--ink-2)
+      }
+
+      .t-item h3 {
+        font-size: var(--fs-h3);
+        margin: .2rem 0 .3rem
+      }
+
+      .t-item p {
+        color: var(--ink-2);
+        max-width: 62ch;
+        font-size: var(--fs-small)
+      }
+
+      .pull {
+        border-block: var(--rule) solid var(--ink);
+        padding: var(--space-4) 0;
+        margin-block: var(--space-5)
+      }
+
+      .pull blockquote {
+        font: 500 clamp(1.3rem, 3vw, 2rem)/1.35 var(--font-body);
+        font-style: italic;
+        max-width: 34ch
+      }
+
+      .pull cite {
+        display: block;
+        margin-top: var(--space-2);
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        font-style: normal;
+        color: var(--ink-2)
+      }
+
+      /* ---------- 13. CHORUS WALL ---------- */
+      .wall-tools {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--space-3)
+      }
+
+      .voice-count {
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .16em;
+        color: var(--ink-2)
+      }
+
+      .risers {
+        border: var(--rule) solid var(--ink);
+        background: var(--paper-2);
+        padding: var(--space-3);
+        display: grid;
+        gap: var(--space-2);
+        position: relative
+      }
+
+      .risers::before {
+        content: "THE RISERS — LIVE";
+        position: absolute;
+        top: -11px;
+        left: var(--space-3);
+        background: var(--paper);
+        border: 2px solid var(--ink);
+        padding: .15em .7em;
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .2em
+      }
+
+      .riser {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+        border-bottom: 2px solid var(--line-soft);
+        padding-bottom: var(--space-2)
+      }
+
+      .riser:last-child {
+        border-bottom: 0;
+        padding-bottom: 0
+      }
+
+      .seat {
+        flex: 1 1 118px;
+        max-width: 176px;
+        container-type: inline-size;
+        transition: opacity var(--dur-2), filter var(--dur-2)
+      }
+
+      .seat.dimmed {
+        opacity: .2;
+        filter: grayscale(1)
+      }
+
+      .seat-btn {
+        width: 100%;
+        min-height: 92px;
+        border: 2px solid var(--ink);
+        background: var(--paper);
+        padding: .7rem .8rem;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: .35rem;
+        position: relative;
+        transition: transform var(--dur-2) var(--ease-out), box-shadow var(--dur-2) var(--ease-out), background var(--dur-2), color var(--dur-2)
+      }
+
+      .seat-btn:hover {
+        transform: translateY(-4px);
+        box-shadow: 5px 5px 0 var(--ink)
+      }
+
+      .seat-no {
+        font: 400 var(--fs-micro) var(--font-mono);
+        color: var(--ink-3);
+        letter-spacing: .1em
+      }
+
+      .seat-name {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        font-size: clamp(.92rem, 1.4vw, 1.12rem);
+        letter-spacing: .03em;
+        line-height: 1.05
+      }
+
+      .seat-region {
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .14em;
+        color: var(--ink-2);
+        margin-top: auto
+      }
+
+      .seat.speaking .seat-btn {
+        background: var(--ink);
+        color: var(--paper);
+        animation: pulseSeat 1.5s ease-out infinite
+      }
+
+      .seat.speaking .seat-no,
+      .seat.speaking .seat-region {
+        color: var(--paper);
+        opacity: .7
+      }
+
+      @keyframes pulseSeat {
+        0% {
+          box-shadow: 0 0 0 0 var(--pulse)
+        }
+
+        100% {
+          box-shadow: 0 0 0 16px transparent
+        }
+      }
+
+      .seat.new .seat-btn {
+        animation: seatNew 1.6s var(--ease-out)
+      }
+
+      @keyframes seatNew {
+        0% {
+          transform: scale(.7);
+          opacity: 0
+        }
+
+        45% {
+          transform: scale(1.06)
+        }
+
+        100% {
+          transform: scale(1)
+        }
+      }
+
+      .seat--empty .seat-btn {
+        border-style: dashed;
+        background: transparent;
+        cursor: default
+      }
+
+      .seat--empty .seat-wait {
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .14em;
+        color: var(--ink-3);
+        text-transform: uppercase;
+        line-height: 1.6
+      }
+
+      @container (max-width:140px) {
+        .seat-region {
+          display: none
+        }
+
+        .seat-btn {
+          min-height: 76px
+        }
+      }
+
+      .mic-panel {
+        container-type: inline-size;
+        border: var(--rule) solid var(--ink);
+        background: var(--paper);
+        margin-top: var(--space-3);
+        padding: var(--space-3);
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: var(--space-3);
+        align-items: center
+      }
+
+      .mic-ring {
+        width: 64px;
+        height: 64px;
+        border: 3px solid var(--ink);
+        border-radius: 50%;
+        position: relative;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0
+      }
+
+      .mic-ring::before {
+        content: "";
+        width: 14px;
+        height: 14px;
+        background: var(--ink);
+        border-radius: 50%
+      }
+
+      .mic-panel.pulse .mic-ring::after {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        border: 3px solid var(--ink);
+        border-radius: 50%;
+        animation: ring 1.4s var(--ease-out) 2
+      }
+
+      @keyframes ring {
+        from {
+          transform: scale(1);
+          opacity: .8
+        }
+
+        to {
+          transform: scale(2.1);
+          opacity: 0
+        }
+      }
+
+      .mic-label {
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .22em;
+        color: var(--ink-2);
+        text-transform: uppercase
+      }
+
+      .mic-name {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        font-size: var(--fs-h3);
+        margin: .2rem 0 .35rem
+      }
+
+      .mic-quote {
+        font: 500 clamp(1.05rem, .8vw + .95rem, 1.3rem)/1.5 var(--font-body);
+        font-style: italic;
+        max-width: 60ch
+      }
+
+      .mic-meta {
+        margin-top: .5rem;
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .16em;
+        color: var(--ink-3);
+        text-transform: uppercase
+      }
+
+      @container (max-width:480px) {
+        .mic-panel {
+          grid-template-columns: 1fr
+        }
+
+        .mic-ring {
+          width: 48px;
+          height: 48px
+        }
+      }
+
+      /* lyric-sheet form */
+      .sheet {
+        border: var(--rule) solid var(--ink);
+        background: var(--paper-2);
+        padding: var(--space-4);
+        position: relative
+      }
+
+      .sheet::before {
+        content: "";
+        position: absolute;
+        inset: 8px;
+        border: var(--rule-thin) solid var(--line);
+        pointer-events: none
+      }
+
+      .sheet h3 {
+        font-size: var(--fs-h3);
+        margin-bottom: .4rem
+      }
+
+      .sheet .hint {
+        color: var(--ink-2);
+        font-size: var(--fs-small);
+        margin-bottom: var(--space-3);
+        max-width: 60ch
+      }
+
+      .field {
+        display: grid;
+        gap: .4rem;
+        margin-bottom: var(--space-3);
+        position: relative;
+        z-index: 1
+      }
+
+      .field label {
+        font: 600 var(--fs-micro) var(--font-body);
+        letter-spacing: .16em;
+        text-transform: uppercase
+      }
+
+      .field label .opt {
+        color: var(--ink-3);
+        text-transform: none;
+        letter-spacing: .06em
+      }
+
+      .field input,
+      .field select,
+      .field textarea {
+        border: 2px solid var(--ink);
+        background: var(--paper);
+        color: var(--ink);
+        padding: .8em .9em;
+        font: 400 var(--fs-body) var(--font-body);
+        width: 100%;
+        transition: box-shadow var(--dur-1) var(--ease-out), transform var(--dur-1) var(--ease-out);
+        border-radius: 0;
+        appearance: none;
+      }
+
+      .field select {
+        background-image: linear-gradient(45deg, transparent 49%, var(--ink) 50%), linear-gradient(-45deg, transparent 49%, var(--ink) 50%);
+        background-position: calc(100% - 18px) 55%, calc(100% - 12px) 55%;
+        background-size: 6px 6px;
+        background-repeat: no-repeat
+      }
+
+      .field textarea {
+        min-height: 96px;
+        resize: vertical
+      }
+
+      .field input:focus,
+      .field select:focus,
+      .field textarea:focus {
+        box-shadow: 4px 4px 0 var(--line);
+        transform: translate(-1px, -1px)
+      }
+
+      .field.invalid input,
+      .field.invalid select,
+      .field.invalid textarea {
+        box-shadow: 4px 4px 0 var(--ink)
+      }
+
+      .f-err {
+        display: none;
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .08em
+      }
+
+      .f-err::before {
+        content: "✕ "
+      }
+
+      .field.invalid .f-err {
+        display: block
+      }
+
+      .f-count {
+        position: absolute;
+        right: 0;
+        top: 0;
+        font: 400 var(--fs-micro) var(--font-mono);
+        color: var(--ink-3)
+      }
+
+      .consent {
+        display: flex;
+        gap: .9rem;
+        align-items: flex-start;
+        border: 2px solid var(--ink);
+        padding: var(--space-2);
+        background: var(--paper);
+        cursor: pointer
+      }
+
+      .consent input {
+        position: absolute;
+        opacity: 0;
+        width: 1px;
+        height: 1px
+      }
+
+      .switch {
+        flex-shrink: 0;
+        width: 46px;
+        height: 26px;
+        border: 2.5px solid var(--ink);
+        position: relative;
+        transition: background var(--dur-2)
+      }
+
+      .switch::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 16px;
+        height: 16px;
+        background: var(--ink);
+        transition: transform var(--dur-2) var(--ease-out), background var(--dur-2)
+      }
+
+      .consent input:checked~.switch {
+        background: var(--ink)
+      }
+
+      .consent input:checked~.switch::after {
+        transform: translateX(20px);
+        background: var(--paper)
+      }
+
+      .consent input:focus-visible~.switch {
+        outline: 3px solid var(--ink);
+        outline-offset: 3px
+      }
+
+      .consent .c-txt {
+        font-size: var(--fs-small);
+        line-height: 1.6
+      }
+
+      .form-grid {
+        display: grid;
+        gap: 0 var(--space-3);
+        grid-template-columns: 1fr
+      }
+
+      @media (min-width:720px) {
+        .form-grid {
+          grid-template-columns: 1fr 1fr
+        }
+      }
+
+      .form-banner {
+        display: none;
+        border: 2.5px solid var(--ink);
+        padding: var(--space-2);
+        font: 400 var(--fs-small) var(--font-mono);
+        margin-bottom: var(--space-3);
+        box-shadow: 4px 4px 0 var(--ink)
+      }
+
+      .form-banner.show {
+        display: block;
+        animation: viewIn var(--dur-2) var(--ease-out)
+      }
+
+      .success-panel {
+        border: var(--rule) solid var(--ink);
+        background: var(--paper-2);
+        padding: var(--space-4);
+        text-align: left;
+        position: relative
+      }
+
+      .success-panel h3 {
+        font-size: var(--fs-h3);
+        margin: var(--space-2) 0 .5rem
+      }
+
+      .success-panel ol {
+        list-style: decimal inside;
+        color: var(--ink-2);
+        display: grid;
+        gap: .5em;
+        margin-top: var(--space-2);
+        font-size: var(--fs-small)
+      }
+
+      .success-panel .links {
+        display: flex;
+        gap: var(--space-2);
+        flex-wrap: wrap;
+        margin-top: var(--space-3)
+      }
+
+      /* ---------- 14. DISPATCH ---------- */
+      .dispatch {
+        display: grid;
+        gap: var(--space-2)
+      }
+
+      .dispatch-item {
+        container-type: inline-size;
+        border: 2.5px solid var(--ink);
+        background: var(--paper);
+        padding: var(--space-3);
+        display: grid;
+        gap: var(--space-2);
+        transition: transform var(--dur-2) var(--ease-out), box-shadow var(--dur-2) var(--ease-out)
+      }
+
+      .dispatch-item:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 var(--ink)
+      }
+
+      .di-top {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .8rem 1.4rem;
+        align-items: center;
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .14em;
+        color: var(--ink-2);
+        text-transform: uppercase
+      }
+
+      .di-top .dno {
+        background: var(--ink);
+        color: var(--paper);
+        padding: .2em .6em
+      }
+
+      .di-main {
+        display: grid;
+        gap: var(--space-2)
+      }
+
+      @container (min-width:620px) {
+        .di-main {
+          grid-template-columns: 1fr auto;
+          align-items: start
+        }
+      }
+
+      .dispatch-item h3 {
+        font-size: var(--fs-h3);
+        max-width: 34ch
+      }
+
+      .dispatch-item .di-body {
+        color: var(--ink-2);
+        font-size: var(--fs-small);
+        margin-top: .5rem;
+        max-width: 70ch
+      }
+
+      .di-stamp {
+        justify-self: start
+      }
+
+      .dispatch-item.is-out {
+        display: none
+      }
+
+      /* ---------- 15. SUPPLY TABLE ---------- */
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .8rem 1.6rem;
+        border: 2px solid var(--ink);
+        padding: var(--space-2) var(--space-3);
+        margin-bottom: var(--space-4);
+        background: var(--paper-2);
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .12em;
+        text-transform: uppercase
+      }
+
+      .legend i {
+        display: inline-block;
+        width: 16px;
+        height: 12px;
+        border: 1.5px solid var(--ink);
+        vertical-align: -2px;
+        margin-right: .5em
+      }
+
+      .sw.s1,
+      .split .s1 {
+        background: var(--ink)
+      }
+
+      .sw.s2,
+      .split .s2 {
+        background-image: radial-gradient(circle, var(--ink) 1.2px, transparent 1.5px);
+        background-size: 5px 5px
+      }
+
+      .sw.s3,
+      .split .s3 {
+        background-image: repeating-linear-gradient(45deg, var(--ink) 0 2.5px, transparent 2.5px 6px)
+      }
+
+      .supply-list {
+        display: grid;
+        gap: var(--space-3)
+      }
+
+      .supply-item {
+        container-type: inline-size;
+        border: var(--rule) solid var(--ink);
+        background: var(--paper-2);
+        display: grid;
+        grid-template-columns: 1fr;
+        transition: transform var(--dur-2) var(--ease-out), box-shadow var(--dur-2) var(--ease-out)
+      }
+
+      .supply-item:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 7px 7px 0 var(--ink)
+      }
+
+      .item-artbox {
+        border-bottom: var(--rule) solid var(--ink);
+        background: var(--paper-3);
+        position: relative;
+        display: grid;
+        place-items: center;
+        padding: var(--space-3);
+        min-height: 150px
+      }
+
+      .item-artbox::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, var(--ink) 1px, transparent 1.3px);
+        background-size: 8px 8px;
+        opacity: .1
+      }
+
+      .item-art {
+        width: min(110px, 60%);
+        color: var(--ink);
+        position: relative;
+        transition: transform var(--dur-2) var(--ease-out)
+      }
+
+      .supply-item:hover .item-art {
+        transform: rotate(-3deg) scale(1.05)
+      }
+
+      .run {
+        position: absolute;
+        top: .6rem;
+        left: .7rem;
+        font-size: var(--fs-micro);
+        letter-spacing: .14em;
+        background: var(--paper);
+        border: 1.5px solid var(--ink);
+        padding: .2em .55em
+      }
+
+      .item-body {
+        padding: var(--space-3)
+      }
+
+      .item-cat {
+        font-size: var(--fs-micro);
+        letter-spacing: .2em;
+        color: var(--ink-3);
+        text-transform: uppercase
+      }
+
+      .item-title {
+        font-size: var(--fs-h3);
+        margin: .3rem 0 .5rem
+      }
+
+      .item-desc {
+        color: var(--ink-2);
+        font-size: var(--fs-small);
+        max-width: 64ch
+      }
+
+      .item-feature {
+        margin-top: .7rem;
+        font-size: var(--fs-micro);
+        letter-spacing: .1em;
+        color: var(--ink)
+      }
+
+      .split {
+        display: flex;
+        height: 14px;
+        border: 2px solid var(--ink);
+        margin-top: var(--space-2);
+        background: var(--paper)
+      }
+
+      .split i {
+        display: block;
+        height: 100%
+      }
+
+      .split-key {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .4rem 1.2rem;
+        margin-top: .5rem;
+        font-size: var(--fs-micro);
+        letter-spacing: .1em;
+        color: var(--ink-2);
+        text-transform: uppercase
+      }
+
+      .split-key i {
+        display: inline-block;
+        width: 12px;
+        height: 9px;
+        border: 1.5px solid var(--ink);
+        vertical-align: -1px;
+        margin-right: .4em
+      }
+
+      .item-side {
+        border-top: var(--rule) solid var(--ink);
+        padding: var(--space-3);
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        flex-wrap: wrap
+      }
+
+      .price {
+        font-family: var(--font-display);
+        font-size: var(--fs-h2)
+      }
+
+      .item-side .btn {
+        margin-left: auto
+      }
+
+      @container (min-width:640px) {
+        .supply-item {
+          grid-template-columns: 200px 1fr auto;
+          align-items: stretch
+        }
+
+        .item-artbox {
+          border-bottom: 0;
+          border-right: var(--rule) solid var(--ink)
+        }
+
+        .item-side {
+          border-top: 0;
+          border-left: var(--rule) solid var(--ink);
+          flex-direction: column;
+          justify-content: center;
+          min-width: 190px
+        }
+
+        .item-side .btn {
+          margin-left: 0;
+          width: 100%
+        }
+      }
+
+      .skel {
+        border: var(--rule) solid var(--line);
+        height: 230px;
+        background: linear-gradient(90deg, var(--paper-2) 25%, var(--paper-3) 50%, var(--paper-2) 75%);
+        background-size: 200% 100%;
+        animation: shimmer 1.3s linear infinite
+      }
+
+      @keyframes shimmer {
+        to {
+          background-position: -200% 0
+        }
+      }
+
+      /* ---------- 16. JOIN — INTAKE ---------- */
+      .join-shell {
+        max-width: 760px
+      }
+
+      .progress {
+        display: flex;
+        gap: 6px;
+        margin-bottom: var(--space-3)
+      }
+
+      .progress i {
+        flex: 1;
+        height: 8px;
+        border: 2px solid var(--ink);
+        transition: background var(--dur-2) var(--ease-out)
+      }
+
+      .progress i.on {
+        background: var(--ink)
+      }
+
+      .step-label {
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .22em;
+        text-transform: uppercase;
+        color: var(--ink-2);
+        margin-bottom: var(--space-3)
+      }
+
+      .join-step[hidden] {
+        display: none
+      }
+
+      .join-step h2 {
+        font-size: var(--fs-h2);
+        margin-bottom: .4rem
+      }
+
+      .join-step .step-sub {
+        color: var(--ink-2);
+        margin-bottom: var(--space-3);
+        max-width: 56ch
+      }
+
+      .join-nav {
+        display: flex;
+        gap: var(--space-2);
+        margin-top: var(--space-2)
+      }
+
+      .join-nav .btn--ghost {
+        box-shadow: none
+      }
+
+      .join-nav .btn--ghost:hover {
+        box-shadow: 4px 4px 0 var(--ink)
+      }
+
+      .privacy-note {
+        border-left: var(--rule) solid var(--ink);
+        padding: var(--space-2) var(--space-3);
+        background: var(--paper-2);
+        font-size: var(--fs-small);
+        color: var(--ink-2);
+        margin-top: var(--space-4)
+      }
+
+      /* ---------- 17. 404 ---------- */
+      .notfound {
+        padding: var(--space-7) 0;
+        text-align: left
+      }
+
+      .notfound h1 {
+        font-size: clamp(3rem, 11vw, 8rem)
+      }
+
+      .notfound p {
+        margin: var(--space-3) 0 var(--space-4);
+        color: var(--ink-2);
+        max-width: 48ch
+      }
+
+      /* ---------- 18. FOOTER COLOPHON ---------- */
+      .colophon {
+        border-top: var(--rule) solid var(--ink);
+        background: var(--paper-2);
+        margin-top: var(--space-6)
+      }
+
+      .colo-tag {
+        padding: var(--space-5) 0 var(--space-4);
+        border-bottom: var(--rule) solid var(--ink)
+      }
+
+      .colo-tag h2 {
+        font-size: clamp(1.7rem, 5.4vw, 3.6rem)
+      }
+
+      .colo-tag h2 span {
+        display: block;
+        color: var(--ink-3)
+      }
+
+      .colo-grid {
+        display: grid;
+        gap: var(--space-4);
+        padding: var(--space-4) 0;
+        grid-template-columns: 1fr
+      }
+
+      @media (min-width:760px) {
+        .colo-grid {
+          grid-template-columns: 1.2fr 1fr 1.3fr
+        }
+      }
+
+      .colo-grid h3 {
+        font-size: var(--fs-small);
+        letter-spacing: .14em;
+        border-bottom: var(--rule-thin) solid var(--line);
+        padding-bottom: .5rem;
+        margin-bottom: var(--space-2)
+      }
+
+      .colo-grid li {
+        margin-bottom: .6em;
+        font-size: var(--fs-small)
+      }
+
+      .colo-grid a {
+        text-decoration: none;
+        border-bottom: 1.5px solid var(--line);
+        transition: border-color var(--dur-1), padding-left var(--dur-2) var(--ease-out)
+      }
+
+      .colo-grid a:hover {
+        border-color: var(--ink);
+        padding-left: .3em
+      }
+
+      .colo-grid .fine {
+        color: var(--ink-2);
+        font-size: var(--fs-micro);
+        line-height: 1.8
+      }
+
+      .colo-bottom {
+        border-top: var(--rule) solid var(--ink);
+        padding: var(--space-2) 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        justify-content: space-between;
+        font: 400 var(--fs-micro) var(--font-mono);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--ink-2)
+      }
+
+      /* ---------- 19. TOAST ---------- */
+      .toast {
+        position: fixed;
+        left: 1.2rem;
+        bottom: 1.2rem;
+        z-index: 150;
+        max-width: min(360px, 90vw);
+        background: var(--ink);
+        color: var(--paper);
+        border: 2px solid var(--paper);
+        padding: .9em 1.2em;
+        font: 400 var(--fs-small) var(--font-mono);
+        letter-spacing: .06em;
+        box-shadow: 6px 6px 0 var(--pulse);
+        transform: translateY(140%);
+        transition: transform var(--dur-3) var(--ease-expo);
+      }
+
+      .toast.show {
+        transform: none
+      }
+
+      /* ---------- 20. REDUCED MOTION ---------- */
+      @media (prefers-reduced-motion:reduce) {
+        html {
+          scroll-behavior: auto
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: .001s !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: .001s !important
+        }
+
+        .ticker-track {
+          animation: none;
+          transform: none
+        }
+
+        [data-reveal] {
+          opacity: 1 !important;
+          transform: none !important
+        }
+
+        .k-line span {
+          animation: none !important;
+          transform: none !important
+        }
+
+        .mill-sails,
+        .wm-glyph .spin-slow {
+          animation: none !important
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- ================= SVG SYMBOL LIBRARY (woodcut engravings) ================= -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <defs>
+        <symbol id="sym-choir" viewBox="0 0 220 90">
+          <g fill="currentColor">
+            <circle cx="34" cy="26" r="14" />
+            <path d="M12 90 Q12 46 34 46 Q56 46 56 90 Z" />
+            <circle cx="88" cy="18" r="15" />
+            <path d="M64 90 Q64 40 88 40 Q112 40 112 90 Z" />
+            <circle cx="142" cy="24" r="14" />
+            <path d="M120 90 Q120 44 142 44 Q164 44 164 90 Z" />
+            <circle cx="192" cy="30" r="12" />
+            <path d="M172 90 Q172 50 192 50 Q212 50 212 90 Z" />
+          </g>
+        </symbol>
+        <symbol id="sym-columns" viewBox="0 0 220 130">
+          <g fill="currentColor">
+            <path d="M8 34 L110 6 L212 34 Z" />
+            <rect x="14" y="40" width="192" height="8" />
+            <rect x="24" y="54" width="18" height="60" />
+            <rect x="66" y="54" width="18" height="60" />
+            <rect x="108" y="54" width="18" height="60" />
+            <rect x="150" y="54" width="18" height="60" />
+            <rect x="186" y="54" width="18" height="60" />
+            <rect x="10" y="118" width="200" height="10" />
+          </g>
+        </symbol>
+        <symbol id="sym-mic" viewBox="0 0 120 160" fill="none" stroke="currentColor" stroke-width="5">
+          <circle cx="60" cy="38" r="24" />
+          <path d="M44 30 h32 M42 40 h36 M46 50 h28" />
+          <path d="M60 62 v56 M38 118 h44 M60 118 v22 M30 146 h60" />
+        </symbol>
+        <symbol id="sym-gavel" viewBox="0 0 200 150" fill="none" stroke="currentColor" stroke-width="6">
+          <path d="M52 44 L116 18 L130 54 L66 80 Z" fill="currentColor" stroke="none" />
+          <path d="M96 62 L152 118" stroke-width="10" />
+          <rect x="118" y="124" width="72" height="14" fill="currentColor" stroke="none" />
+          <path d="M20 128 h60" stroke-width="4" />
+        </symbol>
+        <symbol id="sym-clap" viewBox="0 0 200 150" fill="none" stroke="currentColor" stroke-width="5">
+          <rect x="16" y="52" width="168" height="82" />
+          <path d="M16 52 L28 18 L196 30 L184 58 Z" fill="currentColor" stroke="none" />
+          <path d="M44 24 l14 30 M84 27 l14 30 M124 30 l14 30" stroke="var(--paper)" stroke-width="6" />
+          <path d="M40 84 h120 M40 104 h84" stroke-width="4" />
+        </symbol>
+        <symbol id="sym-tee" viewBox="0 0 140 140" fill="none" stroke="currentColor" stroke-width="4">
+          <path d="M44 18 L24 34 L36 56 L48 47 L48 122 L92 122 L92 47 L104 56 L116 34 L96 18 L82 24 Q70 34 58 24 Z" />
+          <path d="M70 62 v26 M70 62 l-14 -8 M70 62 l14 -8 M70 62 l-14 12 M70 62 l14 12" stroke-width="3" />
+        </symbol>
+        <symbol id="sym-hoodie" viewBox="0 0 140 140" fill="none" stroke="currentColor" stroke-width="4">
+          <path
+            d="M44 26 L24 42 L36 64 L48 55 L48 124 L92 124 L92 55 L104 64 L116 42 L96 26 Q84 10 70 10 Q56 10 44 26 Z" />
+          <path d="M52 26 Q70 44 88 26 M64 40 v18 M76 40 v18" />
+          <rect x="56" y="88" width="28" height="22" />
+        </symbol>
+        <symbol id="sym-print" viewBox="0 0 140 140" fill="none" stroke="currentColor" stroke-width="4">
+          <rect x="34" y="12" width="72" height="116" />
+          <path d="M46 30 h48 M46 44 h48 M46 58 h30" />
+          <path d="M70 84 v26 M70 84 l-16 -10 M70 84 l16 -10 M70 84 l-16 14 M70 84 l16 14" stroke-width="3" />
+        </symbol>
+        <symbol id="sym-pin" viewBox="0 0 140 140" fill="none" stroke="currentColor" stroke-width="4">
+          <circle cx="70" cy="62" r="38" />
+          <circle cx="70" cy="62" r="28" stroke-width="2.5" />
+          <path d="M70 40 v44 M48 62 h44 M70 62 l-15 -15 M70 62 l15 15" stroke-width="3" />
+          <path d="M70 100 l10 26 M80 126 l6 -10" />
+        </symbol>
+        <symbol id="sym-portrait" viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="4">
+          <circle cx="100" cy="76" r="44" fill="currentColor" stroke="none" />
+          <path d="M30 240 Q30 140 100 140 Q170 140 170 240 Z" fill="currentColor" stroke="none" />
+          <path d="M56 60 Q100 18 144 60 M70 200 h60 M70 214 h60" stroke="var(--paper)" stroke-width="3" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <!-- ================= MASTHEAD ================= -->
+    <header class="masthead" id="masthead">
+      <div class="masthead-in">
+        <a href="#/" class="wordmark" data-nav aria-label="The Sons of Quixote — The Protest (home)">
+          <svg class="wm-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <g class="spin-slow" fill="none" stroke="currentColor" stroke-width="2.4">
+              <path d="M12 12 V2.5 M12 12 H21.5 M12 12 V21.5 M12 12 H2.5" />
+              <path d="M9 4.5 h6 M19.5 9 v6 M15 19.5 h-6 M4.5 15 v-6" stroke-width="1.6" />
+            </g>
+            <circle cx="12" cy="12" r="1.8" fill="currentColor" />
+          </svg>
+          <span class="wm"><em>THE SONS OF</em><strong>Quixote</strong></span>
+        </a>
+        <span class="chapter mono" id="chapterInd" aria-hidden="true">CH. I — THE PROTEST</span>
+        <div class="mast-actions">
+          <button class="icon-btn" id="themeToggle" aria-pressed="false" aria-label="Switch to night press (dark mode)">
+            <span class="theme-ic" aria-hidden="true"></span><span class="lbl" id="themeLabel">Night press</span>
+          </button>
+          <button class="icon-btn" id="cartBtn" aria-label="Open your side of the table (cart)" aria-haspopup="dialog">
+            <span class="lbl">Table</span><span class="badge" id="cartCount">0</span>
+          </button>
+          <button class="icon-btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="overlayMenu"
+            aria-label="Open the program (menu)">
+            <span class="lbl">Menu</span><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= FULL-SCREEN PROGRAM (setlist menu) ================= -->
+    <div class="overlay" id="overlayMenu" role="dialog" aria-modal="true" aria-labelledby="omTitle">
+      <div class="om-top">
+        <h2 id="omTitle">The Program</h2>
+        <button class="om-close" id="omClose">Close ✕</button>
+      </div>
+      <nav class="om-list" aria-label="Movements">
+        <a class="om-link" style="--i:0" href="#/" data-nav><span class="no">MOVEMENT 01</span> The Protest</a>
+        <a class="om-link" style="--i:1" href="#/film" data-nav><span class="no">MOVEMENT 02</span> The Film</a>
+        <a class="om-link" style="--i:2" href="#/director" data-nav><span class="no">MOVEMENT 03</span> The Director</a>
+        <a class="om-link" style="--i:3" href="#/chorus" data-nav><span class="no">MOVEMENT 04</span> The Chorus</a>
+        <a class="om-link" style="--i:4" href="#/supply" data-nav><span class="no">MOVEMENT 05</span> The Supply
+          Table</a>
+        <a class="om-link" style="--i:5" href="#/join" data-nav><span class="no">MOVEMENT 06</span> Join the
+          Movement</a>
+      </nav>
+      <div class="om-foot">
+        <p>Voices raised in unity. Stories shared in truth.</p>
+        <p>San Francisco · Contra Costa · Oakland · Greater Bay</p>
+      </div>
+    </div>
+
+    <!-- ================= CART DRAWER ================= -->
+    <div class="scrim" id="scrim" aria-hidden="true"></div>
+    <aside class="drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <header class="drawer-head">
+        <h2 id="cartTitle">Your Side of the Table</h2>
+        <button class="om-close" id="cartClose">Close ✕</button>
+      </header>
+      <div class="drawer-body">
+        <p class="empty" id="cartEmpty">The table is empty. Every movement needs supplies — take something into the
+          world.</p>
+        <ul id="cartItems"></ul>
+      </div>
+      <footer class="drawer-foot">
+        <div id="cartFootMain">
+          <p class="subtotal"><span>Subtotal</span><output id="cartSubtotal">$0</output></p>
+          <p class="note">100% of proceeds fund rehearsal space, press runs, and the court-support fund. We are
+            grassroots — every dollar is spent with intent.</p>
+          <button class="btn btn--solid" id="checkoutBtn" style="width:100%" disabled>Stamp the order</button>
+        </div>
+        <div class="success-panel" id="cartSuccess" hidden>
+          <span class="stamp stamp--lg stampIn">Order Logged</span>
+          <h3>Receipt stamped.</h3>
+          <p class="mono micro" id="cartOrderNo">RUN Nº —</p>
+          <p style="margin-top:.6rem;color:var(--ink-2);font-size:var(--fs-small)">Your goods ship from the rehearsal
+            room. A chorus member packs every box — usually the second tenor.</p>
+          <div class="links"><button class="btn" id="cartDone">Back to the table</button></div>
+        </div>
+      </footer>
+    </aside>
+
+    <main id="main">
+
+      <!-- ============================================================
+     VIEW 1 — THE PROTEST (home)
+============================================================ -->
+      <section class="view" id="view-protest" aria-labelledby="protest-h">
+        <div class="hero">
+          <!-- slowly turning halftone windmill engraving -->
+          <svg class="hero-mill" viewBox="0 0 520 640" role="img"
+            aria-label="Woodcut engraving of a windmill, sails turning slowly">
+            <defs>
+              <pattern id="hatch" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="7" stroke="currentColor" stroke-width="1.2" />
+              </pattern>
+            </defs>
+            <circle cx="260" cy="232" r="206" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-dasharray="2 12" opacity=".5" />
+            <g class="mill-sails" fill="none" stroke="currentColor">
+              <g id="sail">
+                <line x1="260" y1="232" x2="260" y2="38" stroke-width="6" />
+                <rect x="266" y="46" width="32" height="154" stroke-width="3.5" />
+                <path
+                  d="M277 46 V200 M288 46 V200 M266 65 H298 M266 84 H298 M266 103 H298 M266 122 H298 M266 141 H298 M266 160 H298 M266 179 H298"
+                  stroke-width="1.6" />
+              </g>
+              <use href="#sail" transform="rotate(90 260 232)" />
+              <use href="#sail" transform="rotate(180 260 232)" />
+              <use href="#sail" transform="rotate(270 260 232)" />
+            </g>
+            <path d="M232 258 Q260 208 288 258 Z" fill="currentColor" />
+            <path d="M214 560 L240 256 L280 256 L306 560 Z" fill="url(#hatch)" stroke="currentColor" stroke-width="4" />
+            <rect x="250" y="368" width="20" height="26" fill="none" stroke="currentColor" stroke-width="3" />
+            <path d="M244 560 V514 Q260 498 276 514 V560 Z" fill="var(--paper)" stroke="currentColor"
+              stroke-width="3.5" />
+            <circle cx="260" cy="232" r="11" fill="currentColor" />
+            <path d="M28 560 Q260 538 492 562" fill="none" stroke="currentColor" stroke-width="4" />
+            <path d="M56 578 Q260 560 464 578" fill="none" stroke="currentColor" stroke-width="1.8" />
+            <path d="M96 552 q4 -14 8 0 M120 550 q4 -12 8 0 M420 552 q4 -14 8 0" fill="none" stroke="currentColor"
+              stroke-width="2" />
+            <path d="M84 96 q10 -12 20 0 q10 -12 20 0 M150 70 q8 -10 16 0 q8 -10 16 0" fill="none" stroke="currentColor"
+              stroke-width="2.4" />
+          </svg>
+
+          <div class="hero-in">
+            <span class="docket">EST. CONTRA COSTA COUNTY — SAN FRANCISCO BAY AREA · PRO PER · NO AUDITIONS</span>
+            <h1 class="k-lines" id="protest-h">
+              <span class="k-line"><span style="--i:0">The gavel fell.</span></span>
+              <span class="k-line"><span style="--i:1">We didn't.</span></span>
+              <span class="k-line"><span style="--i:2">We sang.</span></span>
+            </h1>
+            <p class="hero-sub">Twenty-odd self-representing fathers from San Francisco, Contra Costa, Oakland, and the
+              greater Bay Area — rehearsing <em>“The Impossible Dream”</em> from <em>Man of La Mancha</em> until the
+              family-court record hears them.</p>
+            <div class="hero-cta">
+              <a class="btn btn--solid" href="#/chorus">Raise your voice →</a>
+              <a class="btn" href="#/film">Watch the story →</a>
+            </div>
+            <p class="hero-meta">NEXT REHEARSAL — RICHMOND VFW HALL · THURSDAYS 19:30 · FOLDING KEYBOARD PROVIDED</p>
+          </div>
+        </div>
+
+        <div class="ticker" aria-hidden="true">
+          <div class="ticker-track">
+            <p>NO AUDITION — YOUR COURT STORY IS YOUR AUDITION <b>✦</b> VOICES RAISED IN UNITY <b>✦</b> STORIES SHARED
+              IN TRUTH <b>✦</b> 24 SEATS · 14 FILLED <b>✦</b> ONE SONG: “THE IMPOSSIBLE DREAM” <b>✦</b> TILT AT
+              WINDMILLS <b>✦</b></p>
+            <p>NO AUDITION — YOUR COURT STORY IS YOUR AUDITION <b>✦</b> VOICES RAISED IN UNITY <b>✦</b> STORIES SHARED
+              IN TRUTH <b>✦</b> 24 SEATS · 14 FILLED <b>✦</b> ONE SONG: “THE IMPOSSIBLE DREAM” <b>✦</b> TILT AT
+              WINDMILLS <b>✦</b></p>
+          </div>
+        </div>
+        <p class="sr-only">No audition — your court story is your audition. Voices raised in unity. Stories shared in
+          truth.</p>
+
+        <!-- §01 THE MOVEMENT -->
+        <div class="wrap sec">
+          <div class="sec-head" data-reveal>
+            <span class="docket">§ 01 · ON THE RECORD</span>
+            <h2>A protest that happens to sing</h2>
+          </div>
+          <div class="grid-2">
+            <div class="prose" data-reveal>
+              <p class="lead">When Jim Breen walked into Contra Costa Superior Court without a lawyer, he carried a
+                binder of statutes, a baritone he didn't know he had, and one fixed idea: his daughter Clara deserved
+                her father in the room.</p>
+              <p>He won fair, equal access — and learned how heavy the door swings shut behind you. The Sons of Quixote
+                is that door, held open. A chorus of 20 to 25 pro per fathers trading war stories, court forms, and
+                harmony. Proof, sung in four parts, that a man can stand for himself and still never stand alone.</p>
+              <p>We are not a law firm. We are not a grievance machine. We are a rehearsal that spills into the hallway
+                outside Dept. 22, a documentary camera pointed at a system that too often mistakes silence for consent,
+                and a supply table that funds the whole impossible enterprise.</p>
+            </div>
+            <div class="ledger" data-reveal style="--rd:120ms" aria-label="Movement ledger">
+              <div class="ledger-row"><span class="num" data-count="24">0</span><span class="what">Seats in the
+                  risers</span></div>
+              <div class="ledger-row"><span class="num" data-count="14">0</span><span class="what">Voices seated to
+                  date</span></div>
+              <div class="ledger-row"><span class="num" data-count="4">0</span><span class="what">Counties drawn
+                  from</span></div>
+              <div class="ledger-row"><span class="num" data-count="1">0</span><span class="what">Song — “The Impossible
+                  Dream”</span></div>
+              <div class="ledger-row"><span class="num">0</span><span class="what">Auditions. Your story is your
+                  audition.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- §02 EXHIBITS -->
+        <div class="wrap sec" style="padding-top:0">
+          <div class="sec-head" data-reveal>
+            <span class="docket">§ 02 · EXHIBITS FROM THE FILM</span>
+            <h2>Evidence, in frames per second</h2>
+          </div>
+          <div class="stills">
+            <figure class="still" data-reveal>
+              <div class="still-frame">
+                <div class="sprockets"></div>
+                <div class="still-img art--rehearsal"><span class="still-no">EXHIBIT A</span>
+                  <svg class="art" viewBox="0 0 220 90" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+                    <use href="#sym-choir" />
+                  </svg>
+                </div>
+                <div class="sprockets"></div>
+              </div>
+              <figcaption><span class="still-tag">REHEARSAL</span>
+                <p>Thursday, 19:42 — the VFW hall, second run-through, nobody sitting down.</p>
+              </figcaption>
+            </figure>
+            <figure class="still" data-reveal style="--rd:90ms">
+              <div class="still-frame">
+                <div class="sprockets"></div>
+                <div class="still-img art--hearing"><span class="still-no">EXHIBIT B</span>
+                  <svg class="art" viewBox="0 0 220 130" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+                    <use href="#sym-columns" />
+                  </svg>
+                </div>
+                <div class="sprockets"></div>
+              </div>
+              <figcaption><span class="still-tag">HEARING DAY</span>
+                <p>Contra Costa Superior, 07:58 — binders, coffee, and a chorus in the hallway.</p>
+              </figcaption>
+            </figure>
+            <figure class="still" data-reveal style="--rd:180ms">
+              <div class="still-frame">
+                <div class="sprockets"></div>
+                <div class="still-img art--victory"><span class="still-no">EXHIBIT C</span>
+                  <svg class="art" viewBox="0 0 200 150" aria-hidden="true">
+                    <use href="#sym-gavel" />
+                  </svg>
+                </div>
+                <div class="sprockets"></div>
+              </div>
+              <figcaption><span class="still-tag">VICTORY</span>
+                <p>Dept. 3, the moment after — equal time, signed, and sung about twice.</p>
+              </figcaption>
+            </figure>
+          </div>
+          <p style="margin-top:var(--space-3)" data-reveal><a class="btn" href="#/film">Enter the editing room →</a></p>
+        </div>
+
+        <!-- §03 THREE WAYS TO STAND -->
+        <div class="wrap sec" style="padding-top:0">
+          <div class="sec-head" data-reveal>
+            <span class="docket">§ 03 · YOUR PART</span>
+            <h2>Three ways to stand</h2>
+          </div>
+          <div class="ways" data-reveal>
+            <a class="way" href="#/join">
+              <span class="no" aria-hidden="true">01</span>
+              <span>
+                <h3>Take a seat</h3>
+                <p>Join the chorus of pro per fathers rehearsing “The Impossible Dream” as an act of public witness. No
+                  audition — your court story is your audition.</p>
+              </span>
+              <span class="go" aria-hidden="true">→</span>
+            </a>
+            <a class="way" href="#/chorus">
+              <span class="no" aria-hidden="true">02</span>
+              <span>
+                <h3>Go on the record</h3>
+                <p>One line of testimony, your name, your county. It takes a seat on the Chorus Wall beside the men
+                  already singing.</p>
+              </span>
+              <span class="go" aria-hidden="true">→</span>
+            </a>
+            <a class="way" href="#/supply">
+              <span class="no" aria-hidden="true">03</span>
+              <span>
+                <h3>Fund the press run</h3>
+                <p>Tees, broadsides, enamel pins — numbered like protest prints, with every dollar itemized toward the
+                  cause.</p>
+              </span>
+              <span class="go" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- closing band -->
+        <div class="band">
+          <div class="wrap" data-reveal>
+            <h2>The gavel is not<br>the last word.</h2>
+            <a class="btn" href="#/join">Join the movement →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     VIEW 2 — THE FILM
+============================================================ -->
+      <section class="view" id="view-film" aria-labelledby="film-h">
+        <div class="wrap mast">
+          <span class="docket">CH. II · MOVEMENT 02</span>
+          <h1 id="film-h">The Impossible Dream</h1>
+          <p class="sub">A feature-length documentary · in production. Twenty-five fathers, one song from <em>Man of La
+              Mancha</em>, and a camera pointed at a system that too often mistakes silence for consent.</p>
+          <div class="rule-double" aria-hidden="true"></div>
+        </div>
+
+        <div class="wrap sec">
+          <div class="grid-2">
+            <div class="prose" data-reveal>
+              <p class="lead">The film follows the chorus from its first uncertain rehearsal to the night twenty-five
+                pro per fathers sing “The Impossible Dream” in public — and intercuts that crescendo with the dockets,
+                hallways, and waiting rooms where the real score is written.</p>
+              <p>Nothing here is reenacted that can be reclaimed. Testimony is read on camera by the man who lived it.
+                Court documents appear as themselves. The rehearsal audio carries the film the way a score carries a
+                scene — because that is what it is.</p>
+            </div>
+            <div data-reveal style="--rd:120ms">
+              <div class="creditsheet">
+                <header>How the film works</header>
+                <div class="credit">
+                  <div>
+                    <p class="role">Testimony becomes scene</p>
+                    <p class="prod">Fathers read their own records on camera. The transcript is the script.</p>
+                  </div><span class="st">METHOD 01</span>
+                </div>
+                <div class="credit">
+                  <div>
+                    <p class="role">The chorus is the score</p>
+                    <p class="prod">Rehearsal cuts carry the edit — the song grows as the cases do.</p>
+                  </div><span class="st">METHOD 02</span>
+                </div>
+                <div class="credit">
+                  <div>
+                    <p class="role">Participants shape the cut</p>
+                    <p class="prod">A seated editorial board of fathers holds final word on their own stories.</p>
+                  </div><span class="st">METHOD 03</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wrap sec" style="padding-top:0">
+          <div class="sec-head" data-reveal>
+            <span class="docket">EXHIBITS · STILL FRAMES</span>
+            <h2>The evidence room</h2>
+          </div>
+          <div class="chip-row" style="margin-bottom:var(--space-3)" data-reveal role="group"
+            aria-label="Filter stills by state">
+            <button class="chip active" data-still="all" aria-pressed="true">All exhibits</button>
+            <button class="chip" data-still="rehearsal" aria-pressed="false">Rehearsal</button>
+            <button class="chip" data-still="hearing-day" aria-pressed="false">Hearing day</button>
+            <button class="chip" data-still="testimony" aria-pressed="false">Testimony</button>
+            <button class="chip" data-still="victory" aria-pressed="false">Victory</button>
+          </div>
+          <div class="stills" id="stillsGrid">
+            <figure class="still" data-tag="rehearsal" data-reveal>
+              <div class="still-frame">
+                <div class="sprockets"></div>
+                <div class="still-img art--rehearsal"><span class="still-no">EXHIBIT A</span><svg class="art"
+                    viewBox="0 0 220 90" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+                    <use href="#sym-choir" />
+                  </svg></div>
+                <div class="sprockets"></div>
+              </div>
+              <figcaption><span class="still-tag">REHEARSAL</span>
+                <p>First full run-through. Eleven fathers, one keyboard, no missed entries.</p>
+              </figcaption>
+            </figure>
+            <figure class="still" data-tag="hearing-day" data-reveal style="--rd:70ms">
+              <div class="still-frame">
+                <div class="sprockets"></div>
+                <div class="still-img art--hearing"><span class="still-no">EXHIBIT B</span><svg class="art"
+                    viewBox="0 0 220 130" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+                    <use href="#sym-columns" />
+                  </svg></div>
+                <div class="sprockets"></div>
+              </div>
+              <figcaption><span class="still-tag">HEARING DAY</span>
+                <p>Calendar call, Dept. 22. The camera stays in the hallway where the waiting happens.</p>
+              </figcaption>
+            </figure>
+            <figure class="still" data-tag="testimony" data-reveal style="--rd:140ms">
+              <div class="still-frame">
+                <div class="sprockets"></div>
+                <div class="still-img art--testimony"><span class="still-no">EXHIBIT C</span><svg class="art"
+                    viewBox="0 0 120 160" aria-hidden="true">
+                    <use href="#sym-mic" />
+                  </svg></div>
+                <div class="sprockets"></div>
+              </div>
+              <figcaption><span class="still-tag">TESTIMONY</span>
+                <p>Testimony reel, Vol. II — a father reads his own declaration, take one.</p>
+              </figcaption>
+            </figure>
+            <figure class="still" data-tag="victory" data-reveal style="--rd:210ms">
+              <div class="still-frame">
+                <div class="sprockets"></div>
+                <div class="still-img art--victory"><span class="still-no">EXHIBIT D</span><svg class="art"
+                    viewBox="0 0 200 150" aria-hidden="true">
+                    <use href="#sym-gavel" />
+                  </svg></div>
+                <div class="sprockets"></div>
+              </div>
+              <figcaption><span class="still-tag">VICTORY</span>
+                <p>The order signs at 11:04. The hallway finds out at 11:05.</p>
+              </figcaption>
+            </figure>
+            <figure class="still" data-tag="rehearsal" data-reveal style="--rd:280ms">
+              <div class="still-frame">
+                <div class="sprockets"></div>
+                <div class="still-img art--community"><span class="still-no">EXHIBIT E</span><svg class="art"
+                    viewBox="0 0 220 90" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+                    <use href="#sym-choir" />
+                  </svg></div>
+                <div class="sprockets"></div>
+              </div>
+              <figcaption><span class="still-tag">REHEARSAL</span>
+                <p>Sectionals night — basses versus tenors, custody of the bridge unresolved.</p>
+              </figcaption>
+            </figure>
+            <figure class="still" data-tag="testimony" data-reveal style="--rd:350ms">
+              <div class="still-frame">
+                <div class="sprockets"></div>
+                <div class="still-img art--film"><span class="still-no">EXHIBIT F</span><svg class="art"
+                    viewBox="0 0 200 150" aria-hidden="true">
+                    <use href="#sym-clap" />
+                  </svg></div>
+                <div class="sprockets"></div>
+              </div>
+              <figcaption><span class="still-tag">TESTIMONY</span>
+                <p>Camera paperwork, day one. Every participant holds approval over their frame.</p>
+              </figcaption>
+            </figure>
+          </div>
+          <p class="empty" id="stillsEmpty" hidden>No exhibits under this tag yet. The evidence room is still being
+            stocked.</p>
+        </div>
+
+        <div class="wrap sec" style="padding-top:0">
+          <div class="sec-head" data-reveal>
+            <span class="docket">AUDIO BENCH · REHEARSAL CUTS</span>
+            <h2>Press play, quietly</h2>
+          </div>
+          <div class="bench" data-reveal>
+            <div class="track" data-duration="167">
+              <button class="tr-play" aria-pressed="false" aria-label="Play: The Impossible Dream — Rehearsal Cut"><span
+                  class="tr-ic" aria-hidden="true">▶</span></button>
+              <div>
+                <p class="tr-title">“The Impossible Dream” — Rehearsal Cut</p>
+                <div class="tr-wave" aria-hidden="true"></div>
+                <div class="tr-prog" aria-hidden="true"><i></i></div>
+              </div>
+              <span class="tr-time">0:00 / 2:47</span>
+            </div>
+            <div class="track" data-duration="94">
+              <button class="tr-play" aria-pressed="false"
+                aria-label="Play: Voices of the Chorus — Testimony Reel"><span class="tr-ic"
+                  aria-hidden="true">▶</span></button>
+              <div>
+                <p class="tr-title">Voices of the Chorus — Testimony Reel</p>
+                <div class="tr-wave" aria-hidden="true"></div>
+                <div class="tr-prog" aria-hidden="true"><i></i></div>
+              </div>
+              <span class="tr-time">0:00 / 1:34</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="wrap sec" style="padding-top:0">
+          <div class="sec-head" data-reveal>
+            <span class="docket">SCREENING LOG</span>
+            <h2>Where it will be seen</h2>
+          </div>
+          <div class="creditsheet" data-reveal>
+            <header>Docketed screenings</header>
+            <div class="credit">
+              <div>
+                <p class="role">Community preview — Richmond VFW Hall</p>
+                <p class="prod">June 14, 2025 · rough-cut for the chorus and families</p>
+              </div><span class="st">CONFIRMED</span>
+            </div>
+            <div class="credit">
+              <div>
+                <p class="role">Festival circuit — first submissions</p>
+                <p class="prod">September 2025 · documentary features</p>
+              </div><span class="st">IN REVIEW</span>
+            </div>
+            <div class="credit">
+              <div>
+                <p class="role">Contra Costa County Library series</p>
+                <p class="prod">November 2025 · screening + pro per clinic</p>
+              </div><span class="st">SCHEDULED</span>
+            </div>
+            <div class="credit">
+              <div>
+                <p class="role">Bay Area theatrical — to be announced</p>
+                <p class="prod">2026 · one screen, one song, one night at a time</p>
+              </div><span class="st">TBA</span>
+            </div>
+          </div>
+          <p style="margin-top:var(--space-3)" data-reveal><a class="btn btn--solid" href="#/chorus">Share testimony for
+              the film →</a></p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     VIEW 3 — THE DIRECTOR
+============================================================ -->
+      <section class="view" id="view-director" aria-labelledby="director-h">
+        <div class="wrap mast">
+          <span class="docket">CH. III · MOVEMENT 03</span>
+          <h1 id="director-h">The Director</h1>
+          <p class="sub">One father's docket became a movement's storyboard. The man holding the camera has stood
+            exactly where the camera points.</p>
+          <div class="rule-double" aria-hidden="true"></div>
+        </div>
+
+        <div class="wrap sec">
+          <div class="dir-grid">
+            <div data-reveal>
+              <div class="portrait">
+                <div class="plate">
+                  <svg viewBox="0 0 200 240" role="img" aria-label="Halftone portrait plate of Jim Breen">
+                    <use href="#sym-portrait" />
+                  </svg>
+                </div>
+                <div class="nameplate">
+                  <h2>Jim Breen</h2>
+                  <p>Founder · Director · Pro Per Father</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="prose" data-reveal>
+                <p class="lead">Jim Breen represented himself in Contra Costa Superior Court and won fair, equal access
+                  to his daughter Clara. The cost of that win was an education nobody should have to self-fund: civil
+                  procedure at midnight, evidence rules at lunch, appellate timelines on the backs of rehearsal sheets.
+                </p>
+                <p>With documentary credits on file and a hard drive full of testimony reels, Jim turned the lens on the
+                  hallway he'd paced for years — and found twenty-odd fathers pacing it with him. The Sons of Quixote is
+                  his second production: the first was his own case.</p>
+              </div>
+              <div class="pull" data-reveal>
+                <blockquote>“I didn't start a choir because I love to sing. I started one because twenty-five fathers
+                  singing is harder to ignore than one man with a binder.”</blockquote>
+                <cite>— Jim Breen, Dept. 22 hallway, 07:40</cite>
+              </div>
+              <div class="creditsheet" data-reveal>
+                <header>Call sheet — selected credits</header>
+                <div class="credit">
+                  <div>
+                    <p class="role">Director</p>
+                    <p class="prod">“The Impossible Dream” — feature documentary</p>
+                  </div><span class="st">IN PRODUCTION</span>
+                </div>
+                <div class="credit">
+                  <div>
+                    <p class="role">Producer</p>
+                    <p class="prod">Windmill Watch — dispatch films</p>
+                  </div><span class="st">ONGOING</span>
+                </div>
+                <div class="credit">
+                  <div>
+                    <p class="role">Cinematographer</p>
+                    <p class="prod">Testimony Reels, Vols. I–III</p>
+                  </div><span class="st">RELEASED</span>
+                </div>
+                <div class="credit">
+                  <div>
+                    <p class="role">Editor</p>
+                    <p class="prod">“Dept. 22” — short subject</p>
+                  </div><span class="st">FESTIVAL SELECTION</span>
+                </div>
+                <div class="credit">
+                  <div>
+                    <p class="role">Subject</p>
+                    <p class="prod">His own docket — Contra Costa Superior Court</p>
+                  </div><span class="st">RESOLVED</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sec-head" style="margin-top:var(--space-5)" data-reveal>
+            <span class="docket">CASE HISTORY · TIMELINE</span>
+            <h2>From filing to finale</h2>
+          </div>
+          <div class="timeline">
+            <div class="t-item" data-reveal><span class="t-date">DOCKET Nº 2019-1104</span>
+              <h3>The filing</h3>
+              <p>Custody proceedings open in Contra Costa County. Jim appears pro per — no counsel, no roadmap, one
+                conviction.</p>
+            </div>
+            <div class="t-item" data-reveal style="--rd:70ms"><span class="t-date">2020 – 2021</span>
+              <h3>The binders</h3>
+              <p>Self-taught civil procedure in the law library after work. Every motion tabbed, every deadline
+                calendared twice.</p>
+            </div>
+            <div class="t-item" data-reveal style="--rd:140ms"><span class="t-date">DOCKET Nº 2022-0617</span>
+              <h3>The order</h3>
+              <p>The court grants fair, equal access to Clara. Jim shakes the clerk's hand and walks out into the sun
+                like it's a film ending.</p>
+            </div>
+            <div class="t-item" data-reveal style="--rd:210ms"><span class="t-date">DOCKET Nº 2023-0202</span>
+              <h3>The first rehearsal</h3>
+              <p>Six fathers, a folding keyboard, and “The Impossible Dream” at the Richmond VFW hall. Nobody hits the
+                high note. Everybody comes back.</p>
+            </div>
+            <div class="t-item" data-reveal style="--rd:280ms"><span class="t-date">DOCKET Nº 2024-0930</span>
+              <h3>The camera rolls</h3>
+              <p>Documentary production begins. The Chorus Wall opens online; testimony starts arriving from four
+                counties.</p>
+            </div>
+            <div class="t-item" data-reveal style="--rd:350ms"><span class="t-date">NOW</span>
+              <h3>24 seats, 14 filled</h3>
+              <p>The wall grows weekly. The risers are filling. The song is getting louder than the docket.</p>
+            </div>
+          </div>
+
+          <div class="privacy-note" data-reveal>
+            <strong class="micro" style="display:block;margin-bottom:.4rem">Advisory</strong>
+            The Sons of Quixote is a peer-support and arts organization — not a law firm. Nothing on this platform is
+            legal advice, and no attorney-client relationship is created. Bring your binder; we'll bring the baritones.
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     VIEW 4 — THE CHORUS (Chorus Wall + Dispatch)
+============================================================ -->
+      <section class="view" id="view-chorus" aria-labelledby="chorus-h">
+        <div class="wrap mast">
+          <span class="docket">CH. IV · MOVEMENT 04</span>
+          <h1 id="chorus-h">The Chorus Wall</h1>
+          <p class="sub">Every seat below is a father, pro per, on the record. Hover or tap a voice to hear his line at
+            the mic. The empty seats are waiting — one of them is yours.</p>
+          <div class="rule-double" aria-hidden="true"></div>
+        </div>
+
+        <div class="wrap sec">
+          <div class="wall-tools" data-reveal>
+            <div class="chip-row" role="group" aria-label="Filter voices by region">
+              <button class="chip active" data-region="all" aria-pressed="true">All counties</button>
+              <button class="chip" data-region="sf" aria-pressed="false">San Francisco</button>
+              <button class="chip" data-region="cc" aria-pressed="false">Contra Costa</button>
+              <button class="chip" data-region="oak" aria-pressed="false">Oakland</button>
+              <button class="chip" data-region="bay" aria-pressed="false">Greater Bay</button>
+            </div>
+            <p class="voice-count" id="voiceCount" aria-live="polite">14 OF 24 SEATS FILLED</p>
+          </div>
+
+          <div class="risers" id="chorusWall" data-reveal aria-label="The Chorus Wall — interactive choir formation">
+          </div>
+
+          <div class="mic-panel" id="micPanel" data-reveal aria-live="polite">
+            <div class="mic-ring" aria-hidden="true"></div>
+            <div>
+              <p class="mic-label">Now at the mic</p>
+              <p class="mic-name" id="micName">The mic is open</p>
+              <blockquote class="mic-quote" id="micQuote">Choose a voice on the risers. Each one is a real father's line
+                — one breath, one sentence, no cross-examination.</blockquote>
+              <p class="mic-meta" id="micMeta">HOVER · TAP · LISTEN</p>
+            </div>
+          </div>
+
+          <!-- Lyric-sheet submission -->
+          <div class="sheet" style="margin-top:var(--space-5)" data-reveal>
+            <h3>The lyric sheet — add your voice</h3>
+            <p class="hint">One line is enough. It goes to a chorus member for review, then takes the next open seat on
+              the wall. Names are published exactly as you write them; nothing else is shared.</p>
+            <form id="voiceForm" novalidate>
+              <div class="form-banner" id="vfBanner" role="alert"></div>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="vfName">Your name, as you'd like it sung</label>
+                  <input id="vfName" name="name" type="text" autocomplete="name" required aria-describedby="vfNameErr">
+                  <p class="f-err" id="vfNameErr">Give the chorus a name to sing.</p>
+                </div>
+                <div class="field">
+                  <label for="vfRegion">Your county</label>
+                  <select id="vfRegion" name="region" required aria-describedby="vfRegionErr">
+                    <option value="">— Select —</option>
+                    <option value="sf">San Francisco</option>
+                    <option value="cc">Contra Costa</option>
+                    <option value="oak">Oakland</option>
+                    <option value="bay">Greater Bay Area</option>
+                  </select>
+                  <p class="f-err" id="vfRegionErr">Every voice has a home county.</p>
+                </div>
+              </div>
+              <div class="field">
+                <label for="vfLine">Your one line of testimony</label>
+                <span class="f-count" id="vfCount" aria-hidden="true">0 / 140</span>
+                <textarea id="vfLine" name="testimony" maxlength="140" required aria-describedby="vfLineErr"
+                  placeholder="One breath. One sentence. The truth of it."></textarea>
+                <p class="f-err" id="vfLineErr">The mic needs a line — up to 140 characters.</p>
+              </div>
+              <div class="field">
+                <label class="consent" for="vfConsent">
+                  <input type="checkbox" id="vfConsent" required aria-describedby="vfConsentErr">
+                  <span class="switch" aria-hidden="true"></span>
+                  <span class="c-txt">I consent to my name and one line appearing on the Chorus Wall after review.
+                    Everything else stays private.</span>
+                </label>
+                <p class="f-err" id="vfConsentErr">We can't seat you without your consent — that's the whole point.</p>
+              </div>
+              <button class="btn btn--solid" type="submit" id="vfSubmit">Take the mic →</button>
+            </form>
+            <div class="success-panel" id="voiceSuccess" hidden>
+              <span class="stamp stamp--lg stampIn">Received — Pending Review</span>
+              <h3>Your line is on the sheet.</h3>
+              <p style="color:var(--ink-2);font-size:var(--fs-small);max-width:60ch">A chorus member reviews new voices
+                daily. Yours just took the next open seat on the risers — <strong>provisionally seated</strong>, scroll
+                up and find yourself. When it's confirmed, the tag comes off and the seat is yours for good.</p>
+              <div class="links">
+                <button class="btn" id="vfAgain">Submit another voice</button>
+                <a class="btn btn--solid" href="#/join">Join the full chorus →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WINDMILL WATCH — THE DISPATCH -->
+        <div class="wrap sec" style="padding-top:0">
+          <div class="sec-head" data-reveal>
+            <span class="docket">WINDMILL WATCH · THE DISPATCH</span>
+            <h2>News from the front</h2>
+          </div>
+          <p style="max-width:64ch;color:var(--ink-2);margin-bottom:var(--space-3)" data-reveal>Victories, dockets, and
+            dispatches from the family-court front — printed like the protest newsletter it is. Dates are set as docket
+            numbers because that's where they were earned.</p>
+          <div class="chip-row" style="margin-bottom:var(--space-3)" data-reveal role="group"
+            aria-label="Filter dispatches by tag">
+            <button class="chip active" data-dtag="all" aria-pressed="true">All dispatches</button>
+            <button class="chip" data-dtag="access" aria-pressed="false">Access</button>
+            <button class="chip" data-dtag="reunification" aria-pressed="false">Reunification</button>
+            <button class="chip" data-dtag="support" aria-pressed="false">Support</button>
+            <button class="chip" data-dtag="community" aria-pressed="false">Community</button>
+            <button class="chip" data-dtag="workshop" aria-pressed="false">Workshops</button>
+            <button class="chip" data-dtag="film" aria-pressed="false">The Film</button>
+          </div>
+          <div class="dispatch" id="dispatchList" data-reveal></div>
+          <p class="empty" id="dispatchEmpty" hidden>No dispatches under this tag — yet. The record is still being
+            written. Check back after the next calendar call.</p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     VIEW 5 — THE SUPPLY TABLE
+============================================================ -->
+      <section class="view" id="view-supply" aria-labelledby="supply-h">
+        <div class="wrap mast">
+          <span class="docket">CH. V · MOVEMENT 05</span>
+          <h1 id="supply-h">The Supply Table</h1>
+          <p class="sub">Merchandise is how a grassroots movement keeps its lights on. Every item is a numbered press
+            run, and every dollar is accounted for below — printed in the open, like the broadsides we are.</p>
+          <div class="rule-double" aria-hidden="true"></div>
+        </div>
+
+        <div class="wrap sec">
+          <div class="legend" data-reveal aria-label="Where your money goes — legend">
+            <span><i class="sw s1"></i>Print &amp; materials</span>
+            <span><i class="sw s2"></i>Rehearsal space</span>
+            <span><i class="sw s3"></i>Court-support fund</span>
+            <span style="margin-left:auto;color:var(--ink-2)">EVERY DOLLAR, ITEMIZED</span>
+          </div>
+
+          <div class="chip-row" style="margin-bottom:var(--space-3)" data-reveal role="group"
+            aria-label="Filter supplies by category">
+            <button class="chip active" data-cat="all" aria-pressed="true">Everything</button>
+            <button class="chip" data-cat="apparel" aria-pressed="false">Apparel</button>
+            <button class="chip" data-cat="print" aria-pressed="false">Print</button>
+            <button class="chip" data-cat="accessory" aria-pressed="false">Accessories</button>
+            <button class="chip" data-cat="program" aria-pressed="false">Program &amp; Film</button>
+          </div>
+
+          <div class="supply-list" id="supplySkeleton" aria-hidden="true">
+            <div class="skel"></div>
+            <div class="skel"></div>
+            <div class="skel"></div>
+          </div>
+          <div class="supply-list" id="supplyList" aria-live="polite" aria-busy="true"></div>
+          <p class="empty" id="supplyEmpty" hidden>Nothing on the table under this heading. The press run continues —
+            check back soon.</p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     VIEW 6 — JOIN THE MOVEMENT (intake)
+============================================================ -->
+      <section class="view" id="view-join" aria-labelledby="join-h">
+        <div class="wrap mast">
+          <span class="docket">CH. VI · MOVEMENT 06 · INTAKE</span>
+          <h1 id="join-h">On the Record</h1>
+          <p class="sub">Three short movements. Forty-eight hours to a reply. Your information stays inside the
+            organization — published only with your consent, never sold, never shared.</p>
+          <div class="rule-double" aria-hidden="true"></div>
+        </div>
+
+        <div class="wrap sec">
+          <div class="join-shell">
+            <div class="progress" id="joinProgress" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+            <p class="step-label" id="joinStepLabel">Movement I of III — On the record</p>
+
+            <form id="joinForm" novalidate>
+              <div class="form-banner" id="jfBanner" role="alert"></div>
+
+              <!-- STEP 1 -->
+              <div class="join-step" data-step="0">
+                <h2>Who's standing?</h2>
+                <p class="step-sub">Name and contact, so a chorus member can find you. Phone is optional — some of us
+                  prefer paper trails.</p>
+                <div class="field">
+                  <label for="jfName">Full name</label>
+                  <input id="jfName" type="text" autocomplete="name" required aria-describedby="jfNameErr">
+                  <p class="f-err" id="jfNameErr">The record needs your name.</p>
+                </div>
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="jfEmail">Email address</label>
+                    <input id="jfEmail" type="email" autocomplete="email" required aria-describedby="jfEmailErr">
+                    <p class="f-err" id="jfEmailErr">That address won't hold — check the format.</p>
+                  </div>
+                  <div class="field">
+                    <label for="jfPhone">Phone <span class="opt">(optional)</span></label>
+                    <input id="jfPhone" type="tel" autocomplete="tel" aria-describedby="jfPhoneErr">
+                    <p class="f-err" id="jfPhoneErr">Digits only, please — or leave it blank.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- STEP 2 -->
+              <div class="join-step" data-step="1" hidden>
+                <h2>The case, briefly</h2>
+                <p class="step-sub">Enough to point you at the right people. No documents, no details you'd rather keep
+                  out of the first conversation.</p>
+                <div class="field">
+                  <label for="jfConcern">Primary concern</label>
+                  <select id="jfConcern" required aria-describedby="jfConcernErr">
+                    <option value="">— Select —</option>
+                    <option>Fighting for custody / access pro per</option>
+                    <option>Joining the choir</option>
+                    <option>Sharing my story for the documentary</option>
+                    <option>Supporting the movement (merch &amp; donations)</option>
+                    <option>Press &amp; media</option>
+                    <option>Other</option>
+                  </select>
+                  <p class="f-err" id="jfConcernErr">Choose the closest fit — we'll refine it together.</p>
+                </div>
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="jfAges">Ages of your children</label>
+                    <input id="jfAges" type="text" required placeholder="e.g. 6 and 9" aria-describedby="jfAgesErr">
+                    <p class="f-err" id="jfAgesErr">Let us know the ages of your children.</p>
+                  </div>
+                  <div class="field">
+                    <label for="jfTime">Time in family court</label>
+                    <select id="jfTime" required aria-describedby="jfTimeErr">
+                      <option value="">— Select —</option>
+                      <option>&lt; 6 months</option>
+                      <option>6 – 12 months</option>
+                      <option>1 – 2 years</option>
+                      <option>2+ years</option>
+                    </select>
+                    <p class="f-err" id="jfTimeErr">Roughly is fine — pick a bracket.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- STEP 3 -->
+              <div class="join-step" data-step="2" hidden>
+                <h2>Your part in it</h2>
+                <p class="step-sub">Pick every way you want to stand. Then consent — required, revocable, and the whole
+                  philosophy of this organization in one checkbox.</p>
+                <div class="field">
+                  <label id="jfInvLabel">Desired involvement</label>
+                  <div class="chip-row" id="jfInv" role="group" aria-labelledby="jfInvLabel">
+                    <button type="button" class="chip" aria-pressed="false" data-inv="Join the Choir">Join the
+                      choir</button>
+                    <button type="button" class="chip" aria-pressed="false" data-inv="The Documentary">Share my story
+                      for the film</button>
+                    <button type="button" class="chip" aria-pressed="false" data-inv="Chorus Wall">A seat on the Chorus
+                      Wall</button>
+                    <button type="button" class="chip" aria-pressed="false" data-inv="Tilt at Windmills Tee">“Tilt at
+                      Windmills” tee</button>
+                    <button type="button" class="chip" aria-pressed="false" data-inv="Voices Raised Hoodie">“Voices
+                      Raised” hoodie</button>
+                    <button type="button" class="chip" aria-pressed="false" data-inv="Lyric Broadside">Lyric
+                      broadside</button>
+                    <button type="button" class="chip" aria-pressed="false" data-inv="Windmill Enamel Pin">Windmill
+                      enamel pin</button>
+                  </div>
+                  <p class="f-err" id="jfInvErr">Choose at least one way to stand.</p>
+                </div>
+                <div class="field">
+                  <label for="jfNotes">Additional notes <span class="opt">(optional)</span></label>
+                  <textarea id="jfNotes" placeholder="Anything the chorus should know before we call."></textarea>
+                </div>
+                <div class="field" id="jfConsentField">
+                  <label class="consent" for="jfConsent">
+                    <input type="checkbox" id="jfConsent" required aria-describedby="jfConsentErr">
+                    <span class="switch" aria-hidden="true"></span>
+                    <span class="c-txt">I consent to being contacted by The Sons of Quixote about the involvement I
+                      selected. My details are never published without separate consent, and never sold or
+                      shared.</span>
+                  </label>
+                  <p class="f-err" id="jfConsentErr">Consent is required to file this with us.</p>
+                </div>
+              </div>
+
+              <div class="join-nav">
+                <button type="button" class="btn btn--ghost" id="joinBack" hidden>← Back</button>
+                <button type="button" class="btn btn--solid" id="joinNext" style="margin-left:auto">Continue →</button>
+                <button type="submit" class="btn btn--solid" id="joinSubmit" hidden>Submit to the record</button>
+              </div>
+            </form>
+
+            <div class="success-panel" id="joinSuccess" hidden>
+              <span class="stamp stamp--lg stampIn">Received</span>
+              <h3>Filed with the chorus.</h3>
+              <p class="mono micro" id="joinDocket">DOCKET Nº —</p>
+              <ol>
+                <li>Jim or a chorus member replies within 48 hours — usually faster after rehearsal.</li>
+                <li>If you chose the choir, you'll be invited to Thursday, 19:30, Richmond VFW Hall. Bring nothing. Sing
+                  anyway.</li>
+                <li>If you chose the wall or the film, your words go to review — you approve every frame and every line.
+                </li>
+              </ol>
+              <div class="links">
+                <a class="btn" href="#/chorus">Visit the Chorus Wall →</a>
+                <a class="btn" href="#/supply">Outfit yourself →</a>
+              </div>
+            </div>
+
+            <div class="privacy-note">
+              <strong class="micro" style="display:block;margin-bottom:.4rem">Privacy, by design</strong>
+              Your information stays inside the organization. We never publish anything without consent, and we never
+              sell or share contact details. The Sons of Quixote is a peer-support and arts organization — nothing here
+              is legal advice.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     VIEW 404
+============================================================ -->
+      <section class="view" id="view-404" aria-labelledby="nf-h">
+        <div class="wrap notfound">
+          <span class="stamp stamp--lg stampIn">404 — Not in the record</span>
+          <h1 id="nf-h" style="margin-top:var(--space-3)">Motion denied.</h1>
+          <p>The page you're looking for isn't in the record. It may have been struck, sealed, or never filed. The
+            chorus, however, is very much in session.</p>
+          <a class="btn btn--solid" href="#/">Return to the protest →</a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ================= FOOTER COLOPHON ================= -->
+    <footer class="colophon">
+      <div class="wrap colo-tag">
+        <h2>Voices raised in unity.<br><span>Stories shared in truth.</span></h2>
+      </div>
+      <div class="wrap colo-grid">
+        <div>
+          <h3>Contact the rehearsal room</h3>
+          <ul>
+            <li>San Francisco Bay Area, CA<br><span style="color:var(--ink-2)">Serving SF, Contra Costa County, Oakland
+                &amp; the greater Bay Area</span></li>
+            <li><a href="mailto:join@sonsofquixote.org">join@sonsofquixote.org</a></li>
+            <li><a href="tel:+19255550147">+1 (925) 555-0147</a></li>
+            <li style="color:var(--ink-2)">Rehearsals evenings &amp; weekends.<br>Messages answered within 48 hours.
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3>The movements</h3>
+          <ul>
+            <li><a href="#/" data-nav>The Protest</a></li>
+            <li><a href="#/film" data-nav>The Film</a></li>
+            <li><a href="#/director" data-nav>The Director</a></li>
+            <li><a href="#/chorus" data-nav>The Chorus</a></li>
+            <li><a href="#/supply" data-nav>The Supply Table</a></li>
+            <li><a href="#/join" data-nav>Join the Movement</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Fine print</h3>
+          <p class="fine">The Sons of Quixote is a grassroots peer-support and arts organization founded by Jim Breen
+            after his own pro per case in Contra Costa Superior Court. We are not a law firm; nothing on this platform
+            is legal advice, and no attorney-client relationship is created here. Founder's documentary credits
+            documented on IMDB (James Breen). Choir draws pro per fathers from across San Francisco, Contra Costa
+            County, Oakland, and the greater Bay Area.</p>
+        </div>
+      </div>
+      <div class="wrap colo-bottom">
+        <span>© <span id="yr">2026</span> The Sons of Quixote · Contra Costa County roots</span>
+        <span>Set in Anton &amp; Libre Franklin · Printed on the midnight press</span>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="sr-only" id="routeAnnouncer" aria-live="polite"></div>
+    <noscript>
+      <p style="padding:2rem;font-family:monospace">This movement platform requires JavaScript. The chorus is still
+        singing — enable it and join us.</p>
+    </noscript>
+
+    <script>
+      (function () {
+        'use strict';
+
+        /* ================= UTILITIES ================= */
+        const $ = (s, c = document) => c.querySelector(s);
+        const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const store = {
+          get(k, fb) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; } catch (e) { return fb; } },
+          set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { } }
+        };
+        const REGIONS = { sf: 'SAN FRANCISCO', cc: 'CONTRA COSTA', oak: 'OAKLAND', bay: 'GREATER BAY' };
+
+        /* ================= THEME — day press / night press ================= */
+        const themeBtn = $('#themeToggle'), themeLabel = $('#themeLabel');
+        function applyTheme(t) {
+          document.documentElement.setAttribute('data-theme', t);
+          const night = t === 'night';
+          themeBtn.setAttribute('aria-pressed', String(night));
+          themeBtn.setAttribute('aria-label', night ? 'Switch to day press (light mode)' : 'Switch to night press (dark mode)');
+          themeLabel.textContent = night ? 'Day press' : 'Night press';
+          store.set('soq-theme', t);
+        }
+        applyTheme(store.get('soq-theme', 'day'));
+        themeBtn.addEventListener('click', () =>
+          applyTheme(document.documentElement.getAttribute('data-theme') === 'night' ? 'day' : 'night'));
+
+        /* ================= TOAST ================= */
+        const toastEl = $('#toast'); let toastTimer;
+        function toast(msg) {
+          toastEl.textContent = msg;
+          toastEl.classList.add('show');
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2800);
+        }
+
+        /* ================= ROUTER ================= */
+        const ROUTES = {
+          '/': { view: 'view-protest', title: 'The Protest', ch: 'CH. I — THE PROTEST' },
+          '/film': { view: 'view-film', title: 'The Film', ch: 'CH. II — THE FILM' },
+          '/director': { view: 'view-director', title: 'The Director', ch: 'CH. III — THE DIRECTOR' },
+          '/chorus': { view: 'view-chorus', title: 'The Chorus', ch: 'CH. IV — THE CHORUS' },
+          '/supply': { view: 'view-supply', title: 'The Supply Table', ch: 'CH. V — THE SUPPLY TABLE' },
+          '/join': { view: 'view-join', title: 'Join the Movement', ch: 'CH. VI — JOIN THE MOVEMENT' }
+        };
+        const announcer = $('#routeAnnouncer');
+        const chapterInd = $('#chapterInd');
+        const path = () => location.hash.replace(/^#/, '') || '/';
+
+        function route() {
+          const p = path();
+          const meta = ROUTES[p] || null;
+          const viewId = meta ? meta.view : 'view-404';
+
+          $$('.view').forEach(v => v.classList.remove('is-active'));
+          const el = document.getElementById(viewId);
+          void el.offsetWidth;                 // restart entrance animation
+          el.classList.add('is-active');
+
+          // nav active states (overlay + footer)
+          $$('[data-nav]').forEach(a => {
+            const hp = a.getAttribute('href').replace(/^#/, '');
+            if (hp === p) a.setAttribute('aria-current', 'page');
+            else a.removeAttribute('aria-current');
+          });
+
+          chapterInd.textContent = meta ? meta.ch : 'CH. ∅ — MOTION DENIED';
+          document.title = (meta ? meta.title : 'Not Found') + ' · The Sons of Quixote';
+          announcer.textContent = (meta ? meta.title : 'Page not found') + ' — The Sons of Quixote';
+
+          window.scrollTo(0, 0);
+          closeMenu(); closeCart();
+          initReveals(el);
+
+          // per-view hooks
+          if (viewId === 'view-supply') supplyInit();
+          if (viewId === 'view-chorus') { renderChorus(); renderDispatch(); }
+
+          const h = el.querySelector('h1');
+          if (h) { h.setAttribute('tabindex', '-1'); setTimeout(() => h.focus({ preventScroll: true }), 60); }
+        }
+        window.addEventListener('hashchange', route);
+
+        /* ================= SCROLL REVEALS (re-init per view) ================= */
+        const io = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            e.target.classList.add('revealed');
+            io.unobserve(e.target);
+            $$('.num[data-count]', e.target).forEach(runCounter);
+            if (e.target.matches('.num[data-count]')) runCounter(e.target);
+          });
+        }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+
+        function initReveals(scope) {
+          $$('[data-reveal]', scope).forEach((n, i) => {
+            if (!n.style.getPropertyValue('--rd')) n.style.setProperty('--rd', (Math.min(i, 8) * 70) + 'ms');
+            if (reduceMotion) { n.classList.add('revealed'); $$('.num[data-count]', n).forEach(c => c.textContent = c.dataset.count); return; }
+            n.classList.remove('revealed');
+            io.observe(n);
+          });
+        }
+        function runCounter(el) {
+          if (el.dataset.done) return;
+          el.dataset.done = '1';
+          const end = +el.dataset.count;
+          if (reduceMotion || end === 0) { el.textContent = end; return; }
+          const t0 = performance.now(), dur = 900;
+          (function tick(t) {
+            const k = Math.min((t - t0) / dur, 1);
+            el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3)));
+            if (k < 1) requestAnimationFrame(tick);
+          })(t0);
+        }
+
+        /* ================= OVERLAY MENU ================= */
+        const overlay = $('#overlayMenu'), menuBtn = $('#menuBtn'), omClose = $('#omClose');
+        let menuOpen = false, lastFocus = null;
+        function openMenu() {
+          lastFocus = document.activeElement;
+          overlay.classList.add('open');
+          document.body.classList.add('locked');
+          menuBtn.setAttribute('aria-expanded', 'true');
+          menuOpen = true;
+          setTimeout(() => omClose.focus(), 120);
+        }
+        function closeMenu() {
+          if (!menuOpen) return;
+          overlay.classList.remove('open');
+          document.body.classList.remove('locked');
+          menuBtn.setAttribute('aria-expanded', 'false');
+          menuOpen = false;
+          if (lastFocus) lastFocus.focus();
+        }
+        menuBtn.addEventListener('click', () => menuOpen ? closeMenu() : openMenu());
+        omClose.addEventListener('click', closeMenu);
+
+        function trapTab(e, container) {
+          if (e.key !== 'Tab') return;
+          const list = $$('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])', container)
+            .filter(el => el.offsetParent !== null);
+          if (!list.length) return;
+          const first = list[0], last = list[list.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+        document.addEventListener('keydown', e => {
+          if (e.key === 'Escape') { if (menuOpen) closeMenu(); else if (cartOpen) closeCart(); }
+          if (menuOpen) trapTab(e, overlay);
+          if (cartOpen) trapTab(e, drawer);
+        });
+
+        /* ================= CART ================= */
+        const drawer = $('#cartDrawer'), scrim = $('#scrim'), cartBtn = $('#cartBtn'),
+          cartClose = $('#cartClose'), cartItems = $('#cartItems'), cartEmpty = $('#cartEmpty'),
+          cartSubtotal = $('#cartSubtotal'), checkoutBtn = $('#checkoutBtn'),
+          cartCount = $('#cartCount'), cartSuccess = $('#cartSuccess'), cartOrderNo = $('#cartOrderNo'),
+          cartFootMain = $('#cartFootMain');
+        let cart = store.get('soq-cart', {}), cartOpen = false;
+
+        function openCart() {
+          drawer.classList.add('open'); scrim.classList.add('show');
+          document.body.classList.add('locked'); cartOpen = true;
+          cartClose.focus();
+        }
+        function closeCart() {
+          if (!cartOpen) return;
+          drawer.classList.remove('open'); scrim.classList.remove('show');
+          document.body.classList.remove('locked'); cartOpen = false;
+          cartBtn.focus();
+        }
+        cartBtn.addEventListener('click', openCart);
+        cartClose.addEventListener('click', closeCart);
+        scrim.addEventListener('click', closeCart);
+        $('#cartDone').addEventListener('click', () => {
+          closeCart();
+          cartSuccess.hidden = true; cartFootMain.hidden = false; renderCart();
+        });
+
+        function cartQty() { return Object.values(cart).reduce((a, b) => a + b, 0); }
+        function renderCart() {
+          const ids = Object.keys(cart);
+          const n = cartQty();
+          cartCount.textContent = n;
+          cartCount.classList.remove('bump'); void cartCount.offsetWidth;
+          if (n) cartCount.classList.add('bump');
+
+          if (!n) {
+            cartEmpty.hidden = false; cartItems.innerHTML = '';
+            cartSubtotal.textContent = '$0'; checkoutBtn.disabled = true;
+            return;
+          }
+          cartEmpty.hidden = true; checkoutBtn.disabled = false;
+          let total = 0;
+          cartItems.innerHTML = ids.map(id => {
+            const it = CATALOG.find(c => c.id == id); if (!it) return '';
+            const q = cart[id]; total += it.price * q;
+            return `<li class="cart-row">
+      <div>
+        <h3>${it.title}</h3>
+        <p class="cr-meta mono">${it.run}</p>
+        <span class="qty" aria-label="Quantity for ${it.title}">
+          <button data-dec="${id}" aria-label="Decrease quantity">−</button>
+          <output>${q}</output>
+          <button data-inc="${id}" aria-label="Increase quantity">+</button>
+        </span>
+        <button class="cr-rm" data-rm="${id}">remove</button>
+      </div>
+      <span class="cr-price">$${it.price * q}</span>
+    </li>`;
+          }).join('');
+          cartSubtotal.textContent = '$' + total;
+        }
+        cartItems.addEventListener('click', e => {
+          const inc = e.target.closest('[data-inc]'), dec = e.target.closest('[data-dec]'), rm = e.target.closest('[data-rm]');
+          if (inc) { cart[inc.dataset.inc]++; }
+          if (dec) { const id = dec.dataset.dec; cart[id]--; if (cart[id] <= 0) delete cart[id]; }
+          if (rm) { delete cart[rm.dataset.rm]; }
+          if (inc || dec || rm) { store.set('soq-cart', cart); renderCart(); }
+        });
+        checkoutBtn.addEventListener('click', () => {
+          if (!cartQty()) return;
+          checkoutBtn.disabled = true;
+          checkoutBtn.innerHTML = '<span class="spin" aria-hidden="true"></span> Stamping receipt…';
+          setTimeout(() => {
+            cart = {}; store.set('soq-cart', cart);
+            cartOrderNo.textContent = 'RUN Nº ' + String(Math.floor(Math.random() * 900) + 100) + ' / 500 · THANK YOU, FATHER';
+            cartFootMain.hidden = true; cartSuccess.hidden = false;
+            checkoutBtn.innerHTML = 'Stamp the order';
+            renderCart();
+            announcer.textContent = 'Order logged. Thank you for funding the movement.';
+          }, 1400);
+        });
+
+        /* ================= SUPPLY TABLE ================= */
+        const CATALOG = [
+          {
+            id: 1, title: 'Join the Choir', cat: 'program', label: 'PROGRAM', price: 0, run: 'SEATS 24 · FILLED 14',
+            desc: 'One of 20–25 pro per fathers rehearsing “The Impossible Dream” from Man of La Mancha as an act of public witness.',
+            feature: 'NO AUDITION — YOUR COURT STORY IS YOUR AUDITION', art: 'choir', link: '#/join', action: 'Enlist →'
+          },
+          {
+            id: 2, title: 'The Documentary', cat: 'film', label: 'FILM', price: 0, run: 'IN PRODUCTION',
+            desc: 'A feature-length exploration of fatherhood, access, and resilience inside the family court system.',
+            feature: 'PARTICIPANTS SHAPE THE NARRATIVE — TESTIMONY BECOMES SCENE', art: 'clap', link: '#/film', action: 'Watch the story →'
+          },
+          {
+            id: 3, title: '“Tilt at Windmills” Tee', cat: 'apparel', label: 'MERCH — APPAREL', price: 32, run: 'PRESS RUN Nº 003 / 500',
+            desc: 'Heavyweight black cotton tee with a hand-cut woodcut windmill across the chest.',
+            feature: 'EACH RUN NUMBERED LIKE A PROTEST BROADSIDE', art: 'tee',
+            split: [[45, 'PRINT & BLANKS'], [30, 'REHEARSAL SPACE'], [25, 'COURT SUPPORT FUND']]
+          },
+          {
+            id: 4, title: '“Voices Raised” Hoodie', cat: 'apparel', label: 'MERCH — APPAREL', price: 58, run: 'PRESS RUN Nº 002 / 300',
+            desc: 'Off-white heavyweight hoodie with stacked-choir typography running down the sleeve.',
+            feature: 'INSIDE NECK LABEL READS: “FOR THE ONES STILL FIGHTING”', art: 'hoodie',
+            split: [[40, 'PRINT & BLANKS'], [35, 'REHEARSAL SPACE'], [25, 'COURT SUPPORT FUND']]
+          },
+          {
+            id: 5, title: 'The Impossible Dream — Lyric Broadside', cat: 'print', label: 'MERCH — PRINT', price: 24, run: 'PRESS RUN Nº 001 / 250',
+            desc: 'Letterpress-style art print of the song that anchors the movement, set in monumental condensed type.',
+            feature: 'SIGNED BY CHOIR MEMBERS ON REQUEST', art: 'print',
+            split: [[55, 'PAPER & PRESS'], [25, 'REHEARSAL SPACE'], [20, 'COURT SUPPORT FUND']]
+          },
+          {
+            id: 6, title: 'Windmill Enamel Pin', cat: 'accessory', label: 'MERCH — ACCESSORY', price: 12, run: 'PRESS RUN Nº 004 / 1000',
+            desc: 'Matte black-and-white enamel pin — the movement\u2019s sigil.',
+            feature: 'WORN BY FATHERS AT HEARINGS AS QUIET SOLIDARITY', art: 'pin',
+            split: [[50, 'CASTING & ENAMEL'], [25, 'REHEARSAL SPACE'], [25, 'COURT SUPPORT FUND']]
+          }
+        ];
+        const supplyList = $('#supplyList'), supplySkeleton = $('#supplySkeleton'), supplyEmpty = $('#supplyEmpty');
+        let supplyLoaded = false;
+
+        function supplyCard(item, i) {
+          const action = item.price === 0
+            ? `<a class="btn btn--solid" href="${item.link}">${item.action}</a>`
+            : `<button class="btn add-btn" data-add="${item.id}" aria-label="Add ${item.title} to the table, $${item.price}">Add — $${item.price}</button>`;
+          const split = item.split ? `
+    <div class="split" role="img" aria-label="Where your money goes: ${item.split.map(s => s[0] + '% ' + s[1].toLowerCase()).join(', ')}">
+      ${item.split.map((s, idx) => `<i class="s${idx + 1}" style="width:${s[0]}%"></i>`).join('')}
+    </div>
+    <ul class="split-key mono">${item.split.map((s, idx) => `<li><i class="s${idx + 1}"></i>${s[0]}% ${s[1]}</li>`).join('')}</ul>`
+            : `<p class="mono micro" style="margin-top:var(--space-2);color:var(--ink-2)">NO OVERHEAD — VOLUNTEER-RUN</p>`;
+          return `<article class="supply-item" data-cat="${item.cat}" data-reveal style="--rd:${i * 70}ms">
+    <div class="item-artbox">
+      <span class="run mono">${item.run}</span>
+      <svg class="item-art" viewBox="0 0 140 140" aria-hidden="true"><use href="#sym-${item.art}"/></svg>
+    </div>
+    <div class="item-body">
+      <p class="item-cat mono">${item.label}</p>
+      <h3 class="item-title">${item.title}</h3>
+      <p class="item-desc">${item.desc}</p>
+      <p class="item-feature mono">★ ${item.feature}</p>
+      ${split}
+    </div>
+    <div class="item-side">
+      <span class="price">${item.price ? '$' + item.price : 'FREE'}</span>
+      ${action}
+    </div>
+  </article>`;
+        }
+        function supplyInit() {
+          if (supplyLoaded) return;
+          supplyList.setAttribute('aria-busy', 'true');
+          setTimeout(() => {
+            supplySkeleton.hidden = true;
+            supplyList.innerHTML = CATALOG.map(supplyCard).join('');
+            supplyList.setAttribute('aria-busy', 'false');
+            supplyLoaded = true;
+            initReveals(supplyList);
+            bindSupply();
+          }, 750);
+        }
+        function bindSupply() {
+          supplyList.addEventListener('click', e => {
+            const btn = e.target.closest('[data-add]');
+            if (!btn) return;
+            const id = +btn.dataset.add;
+            cart[id] = (cart[id] || 0) + 1;
+            store.set('soq-cart', cart); renderCart();
+            const it = CATALOG.find(c => c.id === id);
+            toast('Added to the table — ' + it.title);
+            const orig = btn.textContent;
+            btn.textContent = 'Added ✓'; btn.disabled = true;
+            setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 1300);
+          });
+          $$('#view-supply [data-cat]').forEach(chip => chip.addEventListener('click', () => {
+            $$('#view-supply [data-cat]').forEach(c => { c.classList.remove('active'); c.setAttribute('aria-pressed', 'false'); });
+            chip.classList.add('active'); chip.setAttribute('aria-pressed', 'true');
+            const cat = chip.dataset.cat; let visible = 0;
+            $$('.supply-item', supplyList).forEach(it => {
+              const show = cat === 'all' || it.dataset.cat === cat;
+              it.style.display = show ? '' : 'none';
+              if (show) visible++;
+            });
+            supplyEmpty.hidden = visible > 0;
+          }));
+        }
+
+        /* ================= CHORUS WALL ================= */
+        const DEFAULT_VOICES = [
+          { name: 'MARCUS T.', region: 'cc', line: 'Fourteen months pro per. I haven\u2019t given up a single Tuesday.' },
+          { name: 'ANDRE B.', region: 'oak', line: 'The form said \u201Cpetitioner.\u201D The mirror says \u201Cfather.\u201D' },
+          { name: 'JIM B.', region: 'cc', line: 'I learned civil procedure for the same reason I learned to sing — for Clara.' },
+          { name: 'DESHON W.', region: 'sf', line: 'I brought a binder to court and a baritone to rehearsal.' },
+          { name: 'RAY M.', region: 'bay', line: 'Two years, eleven continuances, one unbroken promise to my son.' },
+          { name: 'CARLOS G.', region: 'cc', line: 'They scheduled me last. I sang first.' },
+          { name: 'TOMMY L.', region: 'oak', line: 'My daughter draws our house with both doors open now.' },
+          { name: 'WHIT P.', region: 'sf', line: 'Pro per means \u201Cfor yourself.\u201D I do it for her.' },
+          { name: 'JEROME K.', region: 'bay', line: 'The hallway outside Dept. 7 is my stage until the order changes.' },
+          { name: 'SAM O.', region: 'cc', line: 'I trade sleep for statutes and Sundays for visits — worth both.' },
+          { name: 'EDDIE V.', region: 'oak', line: 'First tenor. Second chair at home. Working on it.' },
+          { name: 'NATE F.', region: 'sf', line: 'A gavel is loud. Twenty-five fathers singing is louder.' },
+          { name: 'PAUL D.', region: 'bay', line: 'I filed in propria persona. I stand in my own voice.' },
+          { name: 'MIGUEL S.', region: 'cc', line: 'Equal time isn\u2019t a favor. It\u2019s the whole song.' }
+        ];
+        const SEAT_ROWS = [7, 6, 6, 5];           // 24 seats on the risers
+        let voices = DEFAULT_VOICES.concat(store.get('soq-voices', []));
+        let regionFilter = 'all';
+
+        const wall = $('#chorusWall'), micPanel = $('#micPanel'),
+          micName = $('#micName'), micQuote = $('#micQuote'), micMeta = $('#micMeta'),
+          voiceCount = $('#voiceCount');
+
+        function renderChorus() {
+          let seatNo = 0, html = '';
+          SEAT_ROWS.forEach(rowSize => {
+            html += '<div class="riser">';
+            for (let i = 0; i < rowSize; i++) {
+              seatNo++;
+              const v = voices[seatNo - 1];
+              const dim = v && regionFilter !== 'all' && v.region !== regionFilter ? ' dimmed' : '';
+              if (v) {
+                const prov = v.provisional ? ' <span class="mono" style="font-size:.85em">(PROV.)</span>' : '';
+                html += `<div class="seat${dim}" data-seat="${seatNo}">
+          <button class="seat-btn" data-voice="${seatNo - 1}"
+            aria-label="Seat ${seatNo}: ${v.name}, ${REGIONS[v.region] || v.region}. Hear his line.">
+            <span class="seat-no">SEAT ${String(seatNo).padStart(2, '0')}</span>
+            <span class="seat-name">${v.name}${prov}</span>
+            <span class="seat-region">${REGIONS[v.region] || v.region}</span>
+          </button></div>`;
+              } else {
+                html += `<div class="seat seat--empty${regionFilter !== 'all' ? ' dimmed' : ''}" data-seat="${seatNo}">
+          <span class="seat-btn" aria-label="Seat ${seatNo}: this seat is waiting.">
+            <span class="seat-no">SEAT ${String(seatNo).padStart(2, '0')}</span>
+            <span class="seat-wait">This seat is waiting</span>
+          </span></div>`;
+              }
+            }
+            html += '</div>';
+          });
+          wall.innerHTML = html;
+          const filled = Math.min(voices.length, 24);
+          voiceCount.textContent = regionFilter === 'all'
+            ? `${filled} OF 24 SEATS FILLED`
+            : `${voices.filter(v => v.region === regionFilter).length} VOICES — ${REGIONS[regionFilter]}`;
+        }
+        function speak(btn) {
+          const v = voices[+btn.dataset.voice]; if (!v) return;
+          $$('.seat.speaking', wall).forEach(s => s.classList.remove('speaking'));
+          btn.closest('.seat').classList.add('speaking');
+          micName.textContent = v.name + (v.provisional ? ' — PROVISIONAL' : '');
+          micQuote.textContent = '“' + v.line + '”';
+          micMeta.textContent = (REGIONS[v.region] || v.region) + ' · PRO PER · ON THE RECORD';
+          micPanel.classList.remove('pulse'); void micPanel.offsetWidth;
+          micPanel.classList.add('pulse');
+        }
+        wall.addEventListener('click', e => {
+          const btn = e.target.closest('.seat-btn[data-voice]');
+          if (btn) speak(btn);
+        });
+        wall.addEventListener('mouseover', e => {
+          const btn = e.target.closest('.seat-btn[data-voice]');
+          if (btn && !btn.closest('.seat').classList.contains('speaking')) speak(btn);
+        });
+        wall.addEventListener('focusin', e => {
+          const btn = e.target.closest('.seat-btn[data-voice]');
+          if (btn) speak(btn);
+        });
+        $$('#view-chorus [data-region]').forEach(chip => chip.addEventListener('click', () => {
+          $$('#view-chorus [data-region]').forEach(c => { c.classList.remove('active'); c.setAttribute('aria-pressed', 'false'); });
+          chip.classList.add('active'); chip.setAttribute('aria-pressed', 'true');
+          regionFilter = chip.dataset.region;
+          renderChorus();
+        }));
+
+        /* lyric-sheet submission */
+        const voiceForm = $('#voiceForm'), vfName = $('#vfName'), vfLine = $('#vfLine'),
+          vfRegion = $('#vfRegion'), vfConsent = $('#vfConsent'), vfBanner = $('#vfBanner'),
+          vfSubmit = $('#vfSubmit'), voiceSuccess = $('#voiceSuccess'), vfCount = $('#vfCount');
+
+        vfLine.addEventListener('input', () => vfCount.textContent = vfLine.value.length + ' / 140');
+        function flag(input, on) {
+          const f = input.closest('.field');
+          f.classList.toggle('invalid', on);
+          input.setAttribute('aria-invalid', on ? 'true' : 'false');
+        }
+        voiceForm.addEventListener('submit', e => {
+          e.preventDefault();
+          const bad = [];
+          flag(vfName, vfName.value.trim().length < 2); if (vfName.value.trim().length < 2) bad.push(vfName);
+          flag(vfLine, vfLine.value.trim().length < 4); if (vfLine.value.trim().length < 4) bad.push(vfLine);
+          flag(vfRegion, !vfRegion.value); if (!vfRegion.value) bad.push(vfRegion);
+          flag(vfConsent, !vfConsent.checked); if (!vfConsent.checked) bad.push(vfConsent);
+          if (bad.length) {
+            vfBanner.textContent = '✕ The sheet needs ' + bad.length + ' fix' + (bad.length > 1 ? 'es' : '') + ' before it can be sung. Check the marked fields.';
+            vfBanner.classList.add('show');
+            bad[0].focus();
+            return;
+          }
+          vfBanner.classList.remove('show');
+          vfSubmit.disabled = true;
+          vfSubmit.innerHTML = '<span class="spin" aria-hidden="true"></span> Walking to the risers…';
+          setTimeout(() => {
+            const v = {
+              name: vfName.value.trim().toUpperCase(), region: vfRegion.value,
+              line: vfLine.value.trim(), provisional: true
+            };
+            voices.push(v);
+            const custom = voices.filter(x => x.provisional !== undefined || x.custom);
+            store.set('soq-voices', voices.slice(DEFAULT_VOICES.length).map(x => ({ ...x, custom: true })));
+            voiceForm.hidden = true;
+            voiceSuccess.hidden = false;
+            renderChorus();
+            const idx = voices.length - 1;
+            const seatBtn = wall.querySelector(`[data-voice="${idx}"]`);
+            if (seatBtn) {
+              const seat = seatBtn.closest('.seat');
+              seat.classList.add('new');
+              seat.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+              setTimeout(() => speak(seatBtn), reduceMotion ? 0 : 700);
+            }
+            announcer.textContent = 'Voice received and provisionally seated on the Chorus Wall.';
+            toast('Seated on the risers — welcome to the chorus, ' + v.name);
+          }, 1100);
+        });
+        $('#vfAgain').addEventListener('click', () => {
+          voiceSuccess.hidden = true; voiceForm.hidden = false;
+          voiceForm.reset(); vfCount.textContent = '0 / 140';
+          vfSubmit.disabled = false; vfSubmit.textContent = 'Take the mic →';
+          vfName.focus();
+        });
+
+        /* ================= DISPATCH ================= */
+        const DISPATCH = [
+          {
+            d: 'DOCKET Nº 2025-0417', date: 'APR 17 2025', tag: 'access', tagLabel: 'ACCESS', status: 'VICTORY',
+            title: 'Fourteen months pro per — equal custody in Antioch',
+            body: 'A father who missed neither a payment nor a rehearsal walks out of Dept. 3 with the 50/50 order he filed for himself. The choir sang outside the courthouse. The clerk applauded.'
+          },
+          {
+            d: 'DOCKET Nº 2025-0329', date: 'MAR 29 2025', tag: 'reunification', tagLabel: 'REUNIFICATION', status: 'VICTORY',
+            title: 'After 640 days, Saturdays return to Oakland',
+            body: 'Supervised visits ended. The first unsupervised Saturday concluded with a chorus practice and a kid asleep in the second row.'
+          },
+          {
+            d: 'DOCKET Nº 2025-0512', date: 'MAY 12 2025', tag: 'support', tagLabel: 'SUPPORT', status: 'ONGOING',
+            title: 'Guideline math, checked twice — San Francisco',
+            body: 'A recalculated worksheet finds an overpayment older than the case itself. Correction filed; the chorus waits with coffee and binders.'
+          },
+          {
+            d: 'DOCKET Nº 2025-0220', date: 'FEB 20 2025', tag: 'community', tagLabel: 'COMMUNITY', status: 'DISPATCH',
+            title: 'The choir sings outside Dept. 22',
+            body: 'Twenty-two fathers, one folding keyboard, “The Impossible Dream” at seven a.m. — before calendar call. Nobody was arrested. Everybody was heard.'
+          },
+          {
+            d: 'DOCKET Nº 2025-0603', date: 'JUN 03 2025', tag: 'workshop', tagLabel: 'WORKSHOP', status: 'UPCOMING',
+            title: 'Pro per clinic: evidence binders 101',
+            body: 'Jim Breen teaches the binder method that carried his own case. Richmond VFW Hall, Saturday 10:00. Bring your docket. Leave with a system.'
+          },
+          {
+            d: 'DOCKET Nº 2025-0105', date: 'JAN 05 2025', tag: 'film', tagLabel: 'THE FILM', status: 'IN PRODUCTION',
+            title: 'Camera in the hallway: filming begins',
+            body: 'Principal photography opens on the rehearsal room. Testimony reels Vols. I–III are in the edit; the fathers hold final cut on their own words.'
+          }
+        ];
+        const dispatchList = $('#dispatchList'), dispatchEmpty = $('#dispatchEmpty');
+        function renderDispatch() {
+          dispatchList.innerHTML = DISPATCH.map((d, i) => `
+    <article class="dispatch-item" data-tag="${d.tag}" data-reveal style="--rd:${i * 60}ms">
+      <div class="di-top mono">
+        <span class="dno">${d.d}</span><span>${d.date}</span><span>${d.tagLabel}</span>
+      </div>
+      <div class="di-main">
+        <div>
+          <h3>${d.title}</h3>
+          <p class="di-body">${d.body}</p>
+        </div>
+        <span class="stamp di-stamp">${d.status}</span>
+      </div>
+    </article>`).join('');
+          initReveals(dispatchList);
+        }
+        $$('#view-chorus [data-dtag]').forEach(chip => chip.addEventListener('click', () => {
+          $$('#view-chorus [data-dtag]').forEach(c => { c.classList.remove('active'); c.setAttribute('aria-pressed', 'false'); });
+          chip.classList.add('active'); chip.setAttribute('aria-pressed', 'true');
+          const tag = chip.dataset.dtag; let visible = 0;
+          $$('.dispatch-item', dispatchList).forEach(it => {
+            const show = tag === 'all' || it.dataset.tag === tag;
+            it.classList.toggle('is-out', !show);
+            if (show) visible++;
+          });
+          dispatchEmpty.hidden = visible > 0;
+        }));
+
+        /* ================= STILLS FILTER (film page) ================= */
+        $$('#view-film [data-still]').forEach(chip => chip.addEventListener('click', () => {
+          $$('#view-film [data-still]').forEach(c => { c.classList.remove('active'); c.setAttribute('aria-pressed', 'false'); });
+          chip.classList.add('active'); chip.setAttribute('aria-pressed', 'true');
+          const tag = chip.dataset.still; let visible = 0;
+          $$('#stillsGrid .still').forEach(fig => {
+            const show = tag === 'all' || fig.dataset.tag === tag;
+            fig.classList.toggle('is-out', !show);
+            if (show) visible++;
+          });
+          $('#stillsEmpty').hidden = visible > 0;
+        }));
+
+        /* ================= AUDIO BENCH ================= */
+        const tracks = $$('.track');
+        function buildWaves() {
+          tracks.forEach(tr => {
+            const wave = $('.tr-wave', tr);
+            let bars = '';
+            for (let i = 0; i < 30; i++) {
+              const h = (0.25 + Math.abs(Math.sin(i * 1.7)) * 0.75).toFixed(2);
+              bars += `<i style="--h:${h};--d:${(i % 7) * 90}ms"></i>`;
+            }
+            wave.innerHTML = bars;
+          });
+        }
+        function fmt(s) { return Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0'); }
+        function stopTrack(tr) {
+          tr.classList.remove('playing');
+          const btn = $('.tr-play', tr);
+          btn.setAttribute('aria-pressed', 'false');
+          $('.tr-ic', btn).textContent = '▶';
+          if (tr._timer) { clearInterval(tr._timer); tr._timer = null; }
+        }
+        tracks.forEach(tr => {
+          const dur = +tr.dataset.duration;
+          tr._t = 0;
+          const btn = $('.tr-play', tr), bar = $('.tr-prog i', tr), timeEl = $('.tr-time', tr);
+          btn.addEventListener('click', () => {
+            const wasPlaying = tr.classList.contains('playing');
+            tracks.forEach(stopTrack);
+            if (wasPlaying) return;
+            tr.classList.add('playing');
+            btn.setAttribute('aria-pressed', 'true');
+            $('.tr-ic', btn).textContent = '❚❚';
+            btn.setAttribute('aria-label', btn.getAttribute('aria-label').replace('Play', 'Pause'));
+            tr._timer = setInterval(() => {
+              tr._t++;
+              if (tr._t >= dur) { tr._t = dur; stopTrack(tr); }
+              bar.style.width = (tr._t / dur * 100) + '%';
+              timeEl.textContent = fmt(tr._t) + ' / ' + fmt(dur);
+            }, 1000);
+          });
+        });
+        buildWaves();
+
+        /* ================= JOIN INTAKE (multi-step) ================= */
+        const joinForm = $('#joinForm'), steps = $$('.join-step'),
+          joinBack = $('#joinBack'), joinNext = $('#joinNext'), joinSubmit = $('#joinSubmit'),
+          joinProgress = $('#joinProgress'), joinStepLabel = $('#joinStepLabel'),
+          jfBanner = $('#jfBanner'), joinSuccess = $('#joinSuccess'), joinDocket = $('#joinDocket');
+        const STEP_NAMES = ['On the record', 'The case, briefly', 'Your part in it'];
+        let step = 0;
+
+        function showStep(i) {
+          step = i;
+          steps.forEach((s, idx) => { s.hidden = idx !== i; });
+          $$('i', joinProgress).forEach((bar, idx) => bar.classList.toggle('on', idx <= i));
+          joinStepLabel.textContent = 'Movement ' + 'I II III'.split(' ')[i] + ' of III — ' + STEP_NAMES[i];
+          joinBack.hidden = i === 0;
+          joinNext.hidden = i === steps.length - 1;
+          joinSubmit.hidden = i !== steps.length - 1;
+          const h = steps[i].querySelector('h2');
+          if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+        }
+        joinBack.addEventListener('click', () => showStep(Math.max(0, step - 1)));
+        joinNext.addEventListener('click', () => {
+          if (validateStep(step)) showStep(step + 1);
+        });
+
+        function validateStep(i) {
+          jfBanner.classList.remove('show');
+          let ok = true, first = null;
+          const check = (input, valid) => {
+            flag(input, !valid);
+            if (!valid) { ok = false; first = first || input; }
+          };
+          if (i === 0) {
+            check($('#jfName'), $('#jfName').value.trim().length >= 2);
+            check($('#jfEmail'), /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($('#jfEmail').value.trim()));
+            const ph = $('#jfPhone').value.trim();
+            check($('#jfPhone'), ph === '' || /^[\d\s()+.-]{7,}$/.test(ph));
+          }
+          if (i === 1) {
+            check($('#jfConcern'), !!$('#jfConcern').value);
+            check($('#jfAges'), $('#jfAges').value.trim().length >= 1);
+            check($('#jfTime'), !!$('#jfTime').value);
+          }
+          if (i === 2) {
+            const chosen = $$('#jfInv .chip[aria-pressed="true"]').length > 0;
+            $('#jfInvErr').style.display = chosen ? 'none' : 'block';
+            if (!chosen) { ok = false; first = first || $('#jfInv .chip'); }
+            check($('#jfConsent'), $('#jfConsent').checked);
+          }
+          if (!ok) {
+            jfBanner.textContent = '✕ This movement needs a little more before it can proceed. Check the marked fields.';
+            jfBanner.classList.add('show');
+            if (first) first.focus();
+          }
+          return ok;
+        }
+        $$('#jfInv .chip').forEach(chip => chip.addEventListener('click', () => {
+          const on = chip.getAttribute('aria-pressed') === 'true';
+          chip.setAttribute('aria-pressed', String(!on));
+          $('#jfInvErr').style.display = 'none';
+        }));
+        joinForm.addEventListener('submit', e => {
+          e.preventDefault();
+          if (!validateStep(2)) return;
+          joinSubmit.disabled = true;
+          joinSubmit.innerHTML = '<span class="spin" aria-hidden="true"></span> Filing with the chorus…';
+          setTimeout(() => {
+            joinForm.hidden = true;
+            joinStepLabel.textContent = 'Movement filed — received';
+            $$('i', joinProgress).forEach(b => b.classList.add('on'));
+            joinDocket.textContent = 'DOCKET Nº SOQ-' + new Date().getFullYear() + '-' + (Math.floor(Math.random() * 9000) + 1000);
+            joinSuccess.hidden = false;
+            joinSuccess.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+            joinSuccess.querySelector('h3').setAttribute('tabindex', '-1');
+            joinSuccess.querySelector('h3').focus({ preventScroll: true });
+            announcer.textContent = 'Intake received. Welcome to the movement.';
+          }, 1400);
+        });
+
+        /* ================= HEADER SCROLL + FOOTER YEAR ================= */
+        const masthead = $('#masthead');
+        window.addEventListener('scroll', () => masthead.classList.toggle('scrolled', window.scrollY > 8), { passive: true });
+        $('#yr').textContent = new Date().getFullYear();
+
+        /* ================= BOOT ================= */
+        renderCart();
+        route();
+      })();
+    </script>
+  </body>
+
+  </html>
+
+  <script>
+
+  </script>
+</body>
+
+</html>

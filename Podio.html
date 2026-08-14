@@ -1,0 +1,5785 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: white;
+      /* Ensure the iframe has a white background */
+    }
+  </style>
+</head>
+
+<body>
+  <!DOCTYPE html>
+  <html lang="en" data-theme="dark">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noai, noimageai">
+    <meta name="description"
+      content="Pódio Sports Management — a boutique Portuguese agency curating elite athletes across football, surfing, motorsport and track & field.">
+    <title>Pódio Sports Management — Elite Athlete Roster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet">
+    <style>
+      /* ============================================================
+   PÓDIO SPORTS MANAGEMENT — Editorial Roster Platform
+   Design system: sports-editorial meets luxury talent agency.
+   Deep navy / black base, warm gold accent, sport-coded colors,
+   condensed display type + geometric sans + monospaced data.
+   ============================================================ */
+
+      /* ---------- 1. TOKENS ---------- */
+      :root {
+        /* color — dark (default) */
+        --bg: #070b14;
+        --bg-2: #0b1220;
+        --panel: #0f1828;
+        --panel-2: #152036;
+        --ink: #f2f5fb;
+        --text: #c7d1e3;
+        --muted: #8b98af;
+        --line: rgba(148, 166, 199, .16);
+        --line-strong: rgba(148, 166, 199, .36);
+        --gold: #e2b64f;
+        --gold-strong: #f0c96e;
+        --on-gold: #171104;
+        --gold-ghost: rgba(226, 182, 79, .14);
+        --football: #43d18b;
+        --surfing: #52c7f2;
+        --motorsport: #ff5252;
+        --track: #ff9440;
+        --live: #3fe08f;
+        --danger: #ff6b6b;
+        --ghost-stroke: rgba(148, 166, 199, .22);
+        /* typography */
+        --font-display: 'Bebas Neue', Impact, sans-serif;
+        --font-body: 'DM Sans', system-ui, sans-serif;
+        --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+        --fs-hero: clamp(3.4rem, 10vw, 9rem);
+        --fs-h1: clamp(2.6rem, 6vw, 5rem);
+        --fs-h2: clamp(1.9rem, 3.6vw, 3rem);
+        --fs-h3: clamp(1.25rem, 2vw, 1.55rem);
+        --fs-body: clamp(1rem, .95rem + .3vw, 1.125rem);
+        --fs-small: clamp(.82rem, .8rem + .15vw, .92rem);
+        --fs-mono: clamp(.72rem, .7rem + .15vw, .82rem);
+        --fs-ghost: clamp(7rem, 22vw, 19rem);
+        /* spacing */
+        --sp-1: .5rem;
+        --sp-2: 1rem;
+        --sp-3: 1.5rem;
+        --sp-4: 2.25rem;
+        --sp-5: 3.5rem;
+        --sp-6: 5rem;
+        --sp-7: 7.5rem;
+        /* misc */
+        --r-s: 3px;
+        --r-m: 6px;
+        --shadow-1: 0 10px 30px rgba(2, 6, 16, .45);
+        --shadow-2: 0 24px 60px rgba(2, 6, 16, .6);
+        --header-h: 76px;
+        --ease: cubic-bezier(.22, .9, .26, 1);
+        --dur: .32s;
+        color-scheme: dark;
+      }
+
+      [data-theme="light"] {
+        --bg: #f1f2ec;
+        --bg-2: #e8eae1;
+        --panel: #ffffff;
+        --panel-2: #f5f6f1;
+        --ink: #0c1424;
+        --text: #333d51;
+        --muted: #5d6a82;
+        --line: rgba(12, 20, 36, .14);
+        --line-strong: rgba(12, 20, 36, .34);
+        --gold: #a8761a;
+        --gold-strong: #8a6012;
+        --on-gold: #ffffff;
+        --gold-ghost: rgba(168, 118, 26, .12);
+        --football: #158a53;
+        --surfing: #0e7db4;
+        --motorsport: #d13c3c;
+        --track: #c06a1c;
+        --live: #178a52;
+        --danger: #c43c3c;
+        --ghost-stroke: rgba(12, 20, 36, .18);
+        --shadow-1: 0 10px 30px rgba(20, 30, 55, .12);
+        --shadow-2: 0 24px 60px rgba(20, 30, 55, .2);
+        color-scheme: light;
+      }
+
+      /* ---------- 2. RESET / BASE ---------- */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0
+      }
+
+      [hidden] {
+        display: none !important
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%
+      }
+
+      body {
+        font-family: var(--font-body);
+        font-size: var(--fs-body);
+        line-height: 1.65;
+        color: var(--text);
+        background: var(--bg);
+        overflow-x: hidden;
+      }
+
+      img,
+      svg {
+        display: block;
+        max-width: 100%
+      }
+
+      a {
+        color: inherit
+      }
+
+      button {
+        font: inherit;
+        color: inherit;
+        background: none;
+        border: none;
+        cursor: pointer
+      }
+
+      input,
+      select,
+      textarea {
+        font: inherit;
+        color: inherit
+      }
+
+      ul,
+      ol {
+        list-style: none
+      }
+
+      ::selection {
+        background: var(--gold);
+        color: var(--on-gold)
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 3px;
+        border-radius: 2px
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0
+      }
+
+      .skip-link {
+        position: fixed;
+        top: -60px;
+        left: 16px;
+        z-index: 300;
+        background: var(--gold);
+        color: var(--on-gold);
+        padding: .7em 1.2em;
+        font-weight: 700;
+        border-radius: var(--r-s);
+        transition: top .25s var(--ease)
+      }
+
+      .skip-link:focus {
+        top: 12px
+      }
+
+      .mono {
+        font-family: var(--font-mono);
+        font-variant-numeric: tabular-nums
+      }
+
+      .kicker {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: .22em;
+        text-transform: uppercase;
+        color: var(--gold);
+        display: flex;
+        align-items: center;
+        gap: .7em
+      }
+
+      .kicker::before {
+        content: "";
+        width: 26px;
+        height: 1px;
+        background: var(--gold);
+        flex: none
+      }
+
+      .wrap {
+        width: min(1240px, 100% - clamp(2rem, 6vw, 5rem));
+        margin-inline: auto
+      }
+
+      section.block {
+        padding-block: var(--sp-6)
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        letter-spacing: .015em;
+        color: var(--ink);
+        line-height: 1.02;
+        text-transform: uppercase
+      }
+
+      .sec-head {
+        margin-bottom: var(--sp-4)
+      }
+
+      .sec-title {
+        font-size: var(--fs-h2);
+        margin-top: .35em
+      }
+
+      .sec-title .accent {
+        color: var(--gold)
+      }
+
+      .sec-sub {
+        max-width: 56ch;
+        color: var(--muted);
+        margin-top: .8em
+      }
+
+      /* buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: .6em;
+        font-weight: 700;
+        font-size: var(--fs-small);
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        padding: .95em 1.7em;
+        border-radius: var(--r-s);
+        border: 1px solid transparent;
+        transition: transform var(--dur) var(--ease), background var(--dur), color var(--dur), border-color var(--dur), box-shadow var(--dur);
+        text-decoration: none;
+        cursor: pointer
+      }
+
+      .btn .arr {
+        transition: transform var(--dur) var(--ease)
+      }
+
+      .btn:hover .arr {
+        transform: translateX(4px)
+      }
+
+      .btn-gold {
+        background: var(--gold);
+        color: var(--on-gold)
+      }
+
+      .btn-gold:hover {
+        background: var(--gold-strong);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 26px rgba(226, 182, 79, .28)
+      }
+
+      .btn-ghost {
+        border-color: var(--line-strong);
+        color: var(--ink)
+      }
+
+      .btn-ghost:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+        transform: translateY(-2px)
+      }
+
+      .btn-sm {
+        padding: .6em 1.1em;
+        font-size: var(--fs-mono)
+      }
+
+      .btn:disabled {
+        opacity: .45;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none
+      }
+
+      .btn .spin {
+        width: 1em;
+        height: 1em;
+        border: 2px solid currentColor;
+        border-right-color: transparent;
+        border-radius: 50%;
+        animation: spin .7s linear infinite;
+        display: none
+      }
+
+      .btn.loading .spin {
+        display: inline-block
+      }
+
+      .btn.loading .arr {
+        display: none
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg)
+        }
+      }
+
+      .linklike {
+        color: var(--muted);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        transition: color var(--dur)
+      }
+
+      .linklike:hover {
+        color: var(--gold)
+      }
+
+      /* live dot */
+      .live-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--live);
+        display: inline-block;
+        flex: none;
+        animation: pulse 2s infinite
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(63, 224, 143, .5)
+        }
+
+        70% {
+          box-shadow: 0 0 0 9px rgba(63, 224, 143, 0)
+        }
+
+        100% {
+          box-shadow: 0 0 0 0 rgba(63, 224, 143, 0)
+        }
+      }
+
+      /* reveal system */
+      .reveal {
+        opacity: 0;
+        transform: translateY(26px);
+        transition: opacity .7s var(--ease), transform .7s var(--ease);
+        transition-delay: var(--d, 0s)
+      }
+
+      .reveal.in {
+        opacity: 1;
+        transform: none
+      }
+
+      /* view transitions */
+      .view {
+        display: none
+      }
+
+      .view.active {
+        display: block;
+        animation: viewIn .5s var(--ease) both
+      }
+
+      @keyframes viewIn {
+        from {
+          opacity: 0;
+          transform: translateY(16px)
+        }
+
+        to {
+          opacity: 1;
+          transform: none
+        }
+      }
+
+      /* ambient page texture */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background:
+          radial-gradient(60% 40% at 85% -5%, var(--gold-ghost), transparent 70%),
+          radial-gradient(50% 40% at -10% 100%, rgba(82, 199, 242, .06), transparent 70%);
+      }
+
+      /* ---------- 3. HEADER ---------- */
+      .site-header {
+        position: fixed;
+        inset: 0 0 auto 0;
+        z-index: 100;
+        height: var(--header-h);
+        display: flex;
+        align-items: center;
+        transition: background var(--dur), border-color var(--dur), backdrop-filter var(--dur);
+        border-bottom: 1px solid transparent;
+        --hd-text: #f2f5fb;
+        --hd-muted: rgba(242, 245, 251, .66)
+      }
+
+      .site-header.solid {
+        background: color-mix(in srgb, var(--bg) 88%, transparent);
+        backdrop-filter: blur(12px);
+        border-color: var(--line);
+        --hd-text: var(--ink);
+        --hd-muted: var(--muted)
+      }
+
+      .header-inner {
+        width: min(1360px, 100% - 2.5rem);
+        margin-inline: auto;
+        display: flex;
+        align-items: center;
+        gap: var(--sp-3)
+      }
+
+      .brand {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+        text-decoration: none;
+        color: var(--hd-text)
+      }
+
+      .brand-mark {
+        font-family: var(--font-display);
+        font-size: 1.7rem;
+        letter-spacing: .06em;
+        display: flex;
+        align-items: center;
+        gap: .45em
+      }
+
+      .brand-mark svg {
+        width: 22px;
+        height: 22px
+      }
+
+      .brand-sub {
+        font-family: var(--font-mono);
+        font-size: .58rem;
+        letter-spacing: .34em;
+        color: var(--gold);
+        margin-top: .3em
+      }
+
+      .main-nav {
+        margin-left: auto
+      }
+
+      .main-nav ul {
+        display: flex;
+        align-items: center;
+        gap: clamp(.9rem, 2vw, 2rem)
+      }
+
+      .main-nav a {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: var(--hd-muted);
+        position: relative;
+        padding: .4em 0;
+        transition: color var(--dur)
+      }
+
+      .main-nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 100%;
+        background: var(--gold);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform var(--dur) var(--ease)
+      }
+
+      .main-nav a:hover,
+      .main-nav a.active {
+        color: var(--hd-text)
+      }
+
+      .main-nav a:hover::after,
+      .main-nav a.active::after {
+        transform: scaleX(1)
+      }
+
+      .nav-drop {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: .15rem
+      }
+
+      .drop-toggle {
+        color: var(--hd-muted);
+        padding: .4em .35em;
+        display: flex;
+        transition: color var(--dur), transform var(--dur)
+      }
+
+      .nav-drop.open .drop-toggle {
+        transform: rotate(180deg);
+        color: var(--gold)
+      }
+
+      .drop-panel {
+        position: absolute;
+        top: calc(100% + 14px);
+        right: -12px;
+        width: 320px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-top: 2px solid var(--gold);
+        border-radius: var(--r-m);
+        box-shadow: var(--shadow-2);
+        padding: .5rem;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), visibility 0s var(--dur)
+      }
+
+      .nav-drop.open .drop-panel {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease)
+      }
+
+      .drop-head {
+        font-family: var(--font-mono);
+        font-size: .62rem;
+        letter-spacing: .24em;
+        text-transform: uppercase;
+        color: var(--muted);
+        padding: .7em .8em .5em
+      }
+
+      .drop-item {
+        display: flex;
+        align-items: center;
+        gap: .8rem;
+        padding: .55rem .7rem;
+        border-radius: var(--r-s);
+        text-decoration: none;
+        color: var(--text);
+        transition: background var(--dur), transform var(--dur)
+      }
+
+      .drop-item:hover {
+        background: var(--panel-2);
+        transform: translateX(3px)
+      }
+
+      .drop-ava {
+        width: 38px;
+        height: 38px;
+        flex: none;
+        border-radius: var(--r-s);
+        display: grid;
+        place-items: center;
+        font-family: var(--font-display);
+        font-size: 1rem;
+        color: #08101f;
+        background: linear-gradient(140deg, var(--sc), color-mix(in srgb, var(--sc) 40%, #0a1120))
+      }
+
+      .drop-item b {
+        display: block;
+        color: var(--ink);
+        font-size: .92rem
+      }
+
+      .drop-item small {
+        font-family: var(--font-mono);
+        font-size: .66rem;
+        color: var(--muted)
+      }
+
+      .drop-foot {
+        display: block;
+        margin: .4rem .2rem .2rem;
+        padding: .6em .7em;
+        font-family: var(--font-mono);
+        font-size: .68rem;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        color: var(--gold);
+        text-decoration: none;
+        border-top: 1px solid var(--line);
+        transition: letter-spacing var(--dur)
+      }
+
+      .drop-foot:hover {
+        letter-spacing: .24em
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: .5rem
+      }
+
+      .icon-btn {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border: 1px solid transparent;
+        border-radius: var(--r-s);
+        color: var(--hd-text);
+        transition: border-color var(--dur), color var(--dur), transform var(--dur)
+      }
+
+      .icon-btn:hover {
+        border-color: var(--line-strong);
+        color: var(--gold);
+        transform: translateY(-2px)
+      }
+
+      .icon-btn svg {
+        width: 20px;
+        height: 20px
+      }
+
+      #theme-toggle .sun {
+        display: none
+      }
+
+      [data-theme="light"] #theme-toggle .sun {
+        display: block
+      }
+
+      [data-theme="light"] #theme-toggle .moon {
+        display: none
+      }
+
+      #menu-toggle {
+        display: none
+      }
+
+      @media (max-width:920px) {
+        .main-nav {
+          display: none
+        }
+
+        #menu-toggle {
+          display: grid
+        }
+      }
+
+      /* drawer */
+      .drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: min(360px, 88vw);
+        z-index: 150;
+        background: var(--panel);
+        border-left: 1px solid var(--line);
+        transform: translateX(102%);
+        transition: transform .38s var(--ease);
+        display: flex;
+        flex-direction: column;
+        padding: 1.4rem
+      }
+
+      .drawer.open {
+        transform: none
+      }
+
+      .drawer-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.6rem
+      }
+
+      .drawer-head span {
+        font-family: var(--font-mono);
+        font-size: .68rem;
+        letter-spacing: .28em;
+        color: var(--gold)
+      }
+
+      .drawer nav a {
+        display: block;
+        font-family: var(--font-display);
+        font-size: 2rem;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: var(--ink);
+        padding: .35em 0;
+        border-bottom: 1px solid var(--line);
+        transition: color var(--dur), padding-left var(--dur)
+      }
+
+      .drawer nav a:hover,
+      .drawer nav a.active {
+        color: var(--gold);
+        padding-left: .4em
+      }
+
+      .drawer-foot {
+        margin-top: auto;
+        font-family: var(--font-mono);
+        font-size: .7rem;
+        color: var(--muted);
+        line-height: 2
+      }
+
+      .drawer-foot a {
+        color: var(--gold);
+        text-decoration: none
+      }
+
+      .scrim {
+        position: fixed;
+        inset: 0;
+        z-index: 140;
+        background: rgba(3, 7, 15, .6);
+        backdrop-filter: blur(3px);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity var(--dur), visibility 0s var(--dur)
+      }
+
+      .scrim.show {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity var(--dur)
+      }
+
+      /* ---------- 4. HERO ---------- */
+      .hero {
+        position: relative;
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        background: #070d1a;
+        isolation: isolate
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0 0;
+        height: 180px;
+        background: linear-gradient(to top, var(--bg), transparent);
+        z-index: 3;
+        pointer-events: none
+      }
+
+      .hero-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .9s var(--ease), visibility 0s .9s;
+        display: flex;
+        align-items: center
+      }
+
+      .hero-slide.active {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity .9s var(--ease);
+        z-index: 2
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(90% 70% at 78% 18%, color-mix(in srgb, var(--sc) 20%, transparent), transparent 62%),
+          linear-gradient(118deg, #060b16 28%, #0b1526 62%, color-mix(in srgb, var(--sc) 16%, #0b1526));
+      }
+
+      .hero-bg::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: var(--pat);
+        background-size: 560px;
+        opacity: .55
+      }
+
+      .hero-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right, rgba(5, 9, 17, .88) 22%, rgba(5, 9, 17, .25) 60%, transparent)
+      }
+
+      .pat-football {
+        --pat: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='560'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.07' stroke-width='2'%3E%3Ccircle cx='280' cy='280' r='150'/%3E%3Ccircle cx='280' cy='280' r='8'/%3E%3Cpath d='M0 280h560M90 130v300M470 130v300M90 130H0M90 430H0M470 130h90M470 430h90'/%3E%3C/g%3E%3C/svg%3E")
+      }
+
+      .pat-surfing {
+        --pat: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='280'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.08' stroke-width='2'%3E%3Cpath d='M0 70q70-46 140 0t140 0 140 0 140 0'/%3E%3Cpath d='M0 160q70-46 140 0t140 0 140 0 140 0'/%3E%3Cpath d='M0 250q70-46 140 0t140 0 140 0 140 0'/%3E%3C/g%3E%3C/svg%3E")
+      }
+
+      .pat-motorsport {
+        --pat: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cg stroke='%23ffffff' stroke-opacity='.08' stroke-width='2'%3E%3Cpath d='M-40 340L340-40M-40 240L240-40M60 340L340 60M-40 140L140-40M160 340L340 160'/%3E%3C/g%3E%3Cg fill='%23ffffff' fill-opacity='.06'%3E%3Crect x='0' y='0' width='24' height='24'/%3E%3Crect x='48' y='0' width='24' height='24'/%3E%3Crect x='24' y='24' width='24' height='24'/%3E%3Crect x='72' y='24' width='24' height='24'/%3E%3C/g%3E%3C/svg%3E")
+      }
+
+      .pat-track {
+        --pat: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='560'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.08' stroke-width='2'%3E%3Ccircle cx='0' cy='560' r='120'/%3E%3Ccircle cx='0' cy='560' r='200'/%3E%3Ccircle cx='0' cy='560' r='280'/%3E%3Ccircle cx='0' cy='560' r='360'/%3E%3Ccircle cx='0' cy='560' r='440'/%3E%3Ccircle cx='0' cy='560' r='520'/%3E%3C/g%3E%3C/svg%3E")
+      }
+
+      .hero-ghost {
+        position: absolute;
+        right: -1%;
+        bottom: -6%;
+        font-family: var(--font-display);
+        font-size: clamp(11rem, 34vw, 26rem);
+        line-height: 1;
+        color: transparent;
+        -webkit-text-stroke: 1.5px rgba(255, 255, 255, .13);
+        user-select: none
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 2;
+        width: min(1240px, 100% - 3rem);
+        margin-inline: auto;
+        padding-top: var(--header-h)
+      }
+
+      .hero-copy>* {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity .6s var(--ease), transform .6s var(--ease)
+      }
+
+      .hero-slide.active .hero-copy>* {
+        opacity: 1;
+        transform: none
+      }
+
+      .hero-slide.active .hero-copy>*:nth-child(1) {
+        transition-delay: .15s
+      }
+
+      .hero-slide.active .hero-copy>*:nth-child(2) {
+        transition-delay: .25s
+      }
+
+      .hero-slide.active .hero-copy>*:nth-child(3) {
+        transition-delay: .38s
+      }
+
+      .hero-slide.active .hero-copy>*:nth-child(4) {
+        transition-delay: .5s
+      }
+
+      .hero-kicker {
+        color: var(--gold)
+      }
+
+      .hero-kicker::before {
+        background: var(--gold)
+      }
+
+      .hero-name {
+        font-size: var(--fs-hero);
+        color: #f4f7fd;
+        margin: .1em 0 .25em;
+        text-wrap: balance
+      }
+
+      .hero-name .ln {
+        display: block
+      }
+
+      .hero-name .ln:last-child {
+        color: transparent;
+        -webkit-text-stroke: 1.5px rgba(244, 247, 253, .55)
+      }
+
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.8rem
+      }
+
+      .sport-chip {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: #06101f;
+        background: var(--sc);
+        padding: .5em 1em;
+        transform: skewX(-8deg);
+        font-weight: 600
+      }
+
+      .hero-stat {
+        color: rgba(244, 247, 253, .85);
+        font-size: var(--fs-small);
+        letter-spacing: .06em;
+        border-left: 2px solid var(--sc);
+        padding-left: 1em
+      }
+
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem
+      }
+
+      .hero-ghost-btn {
+        color: #f4f7fd;
+        border-color: rgba(244, 247, 253, .4)
+      }
+
+      .hero-ghost-btn:hover {
+        color: var(--gold);
+        border-color: var(--gold)
+      }
+
+      .hero-rail {
+        position: absolute;
+        right: clamp(1rem, 4vw, 3.4rem);
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 4;
+        display: flex;
+        flex-direction: column;
+        gap: .4rem
+      }
+
+      .hero-rail-item {
+        display: flex;
+        align-items: center;
+        gap: .8em;
+        padding: .55em .7em;
+        font-family: var(--font-mono);
+        font-size: .68rem;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: rgba(244, 247, 253, .55);
+        border-left: 2px solid rgba(244, 247, 253, .2);
+        transition: color var(--dur), border-color var(--dur), background var(--dur);
+        text-align: left
+      }
+
+      .hero-rail-item:hover {
+        color: #fff
+      }
+
+      .hero-rail-item.active {
+        color: var(--gold);
+        border-color: var(--gold);
+        background: linear-gradient(to left, rgba(226, 182, 79, .12), transparent)
+      }
+
+      .hero-rail-item .idx {
+        opacity: .6
+      }
+
+      .hero-foot {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 4
+      }
+
+      .hero-foot-inner {
+        width: min(1240px, 100% - 3rem);
+        margin-inline: auto;
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        padding-bottom: 1.6rem
+      }
+
+      .hero-arrow {
+        width: 46px;
+        height: 46px;
+        border: 1px solid rgba(244, 247, 253, .35);
+        border-radius: var(--r-s);
+        display: grid;
+        place-items: center;
+        color: #f4f7fd;
+        transition: border-color var(--dur), color var(--dur), transform var(--dur)
+      }
+
+      .hero-arrow:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+        transform: translateY(-2px)
+      }
+
+      .hero-bars {
+        display: flex;
+        gap: .6rem;
+        flex: 1;
+        max-width: 340px
+      }
+
+      .hero-bar {
+        flex: 1;
+        height: 3px;
+        background: rgba(244, 247, 253, .22);
+        position: relative;
+        overflow: hidden;
+        border-radius: 2px
+      }
+
+      .hero-bar i {
+        position: absolute;
+        inset: 0;
+        background: var(--gold);
+        transform: scaleX(0);
+        transform-origin: left
+      }
+
+      .hero-bar.active i {
+        animation: barfill 6.5s linear forwards
+      }
+
+      .hero.paused .hero-bar.active i {
+        animation-play-state: paused
+      }
+
+      @keyframes barfill {
+        to {
+          transform: scaleX(1)
+        }
+      }
+
+      .hero-count {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: .2em;
+        color: rgba(244, 247, 253, .7)
+      }
+
+      .hero-count b {
+        color: var(--gold)
+      }
+
+      @media (max-width:920px) {
+        .hero-rail {
+          display: none
+        }
+      }
+
+      /* ---------- 5. TICKER ---------- */
+      .ticker {
+        border-block: 1px solid var(--line);
+        background: var(--bg-2);
+        overflow: hidden;
+        position: relative
+      }
+
+      .ticker::before,
+      .ticker::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 70px;
+        z-index: 2;
+        pointer-events: none
+      }
+
+      .ticker::before {
+        left: 0;
+        background: linear-gradient(to right, var(--bg-2), transparent)
+      }
+
+      .ticker::after {
+        right: 0;
+        background: linear-gradient(to left, var(--bg-2), transparent)
+      }
+
+      .ticker-track {
+        display: flex;
+        width: max-content;
+        animation: tick 38s linear infinite
+      }
+
+      .ticker:hover .ticker-track {
+        animation-play-state: paused
+      }
+
+      .ticker-group {
+        display: flex;
+        align-items: center;
+        gap: 2.6rem;
+        padding: .85rem 1.3rem .85rem 2.6rem;
+        white-space: nowrap
+      }
+
+      .tick-item {
+        display: inline-flex;
+        align-items: center;
+        gap: .7em;
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: .08em;
+        color: var(--muted)
+      }
+
+      .tick-item b {
+        color: var(--ink);
+        font-weight: 600
+      }
+
+      .tick-item .up {
+        color: var(--live)
+      }
+
+      .tick-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--sc);
+        flex: none
+      }
+
+      @keyframes tick {
+        to {
+          transform: translateX(-50%)
+        }
+      }
+
+      /* ---------- 6. HOME SECTIONS ---------- */
+      .manifesto-grid {
+        display: grid;
+        grid-template-columns: 1.1fr .9fr;
+        gap: clamp(2rem, 6vw, 5rem);
+        align-items: start
+      }
+
+      @media (max-width:860px) {
+        .manifesto-grid {
+          grid-template-columns: 1fr
+        }
+      }
+
+      .manifesto {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4.6vw, 3.7rem);
+        line-height: 1.06;
+        text-transform: uppercase;
+        color: var(--ink)
+      }
+
+      .manifesto .hl {
+        color: var(--gold)
+      }
+
+      .manifesto-side p {
+        margin-bottom: 1.2em
+      }
+
+      .manifesto-side .lead {
+        font-size: clamp(1.05rem, 1rem + .4vw, 1.3rem);
+        color: var(--ink)
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1.6rem
+      }
+
+      .stat-band {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border: 1px solid var(--line);
+        background: var(--panel);
+        margin-top: var(--sp-5)
+      }
+
+      .stat-cell {
+        padding: 1.6rem 1.4rem;
+        border-left: 1px solid var(--line)
+      }
+
+      .stat-cell:first-child {
+        border-left: none
+      }
+
+      .stat-num {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+        color: var(--gold);
+        line-height: 1
+      }
+
+      .stat-lbl {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: .5em
+      }
+
+      @media (max-width:760px) {
+        .stat-band {
+          grid-template-columns: 1fr 1fr
+        }
+
+        .stat-cell:nth-child(3) {
+          border-left: none;
+          border-top: 1px solid var(--line)
+        }
+
+        .stat-cell:nth-child(4) {
+          border-top: 1px solid var(--line)
+        }
+      }
+
+      /* featured — asymmetric */
+      .featured-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 1.4rem
+      }
+
+      .featured-grid .feat-card:first-child {
+        grid-row: 1 / span 2
+      }
+
+      @media (max-width:860px) {
+        .featured-grid {
+          grid-template-columns: 1fr
+        }
+
+        .featured-grid .feat-card:first-child {
+          grid-row: auto
+        }
+      }
+
+      .feat-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-height: 280px;
+        border: 1px solid var(--line);
+        border-radius: var(--r-m);
+        overflow: hidden;
+        text-decoration: none;
+        background: var(--panel);
+        transition: transform var(--dur) var(--ease), border-color var(--dur), box-shadow var(--dur)
+      }
+
+      .feat-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--sc);
+        box-shadow: var(--shadow-1)
+      }
+
+      .feat-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(80% 90% at 80% 0%, color-mix(in srgb, var(--sc) 26%, transparent), transparent 60%),
+          linear-gradient(150deg, color-mix(in srgb, var(--sc) 12%, var(--panel)), var(--panel) 70%);
+        transition: transform .6s var(--ease)
+      }
+
+      .feat-card:hover .feat-bg {
+        transform: scale(1.04)
+      }
+
+      .feat-ghost {
+        position: absolute;
+        right: 2%;
+        bottom: -8%;
+        font-family: var(--font-display);
+        font-size: clamp(6rem, 12vw, 11rem);
+        color: transparent;
+        -webkit-text-stroke: 1px var(--ghost-stroke)
+      }
+
+      .feat-body {
+        position: relative;
+        margin-top: auto;
+        padding: 1.6rem;
+        width: 100%
+      }
+
+      .feat-sport {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        color: var(--sc)
+      }
+
+      .feat-name {
+        font-family: var(--font-display);
+        font-size: clamp(1.9rem, 3vw, 2.8rem);
+        color: var(--ink);
+        margin: .15em 0 .2em
+      }
+
+      .feat-stat {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        color: var(--muted)
+      }
+
+      .feat-open {
+        position: absolute;
+        top: 1.2rem;
+        right: 1.2rem;
+        width: 42px;
+        height: 42px;
+        border: 1px solid var(--line-strong);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: var(--ink);
+        transition: background var(--dur), color var(--dur), transform var(--dur) var(--ease)
+      }
+
+      .feat-card:hover .feat-open {
+        background: var(--gold);
+        color: var(--on-gold);
+        border-color: var(--gold);
+        transform: rotate(45deg)
+      }
+
+      .feat-card:first-child .feat-body {
+        padding: 2.2rem
+      }
+
+      .feat-card:first-child .feat-name {
+        font-size: clamp(2.6rem, 4.4vw, 4rem)
+      }
+
+      /* season pulse */
+      .pulse-grid {
+        display: grid;
+        grid-template-columns: 1.1fr .9fr;
+        gap: 1.4rem
+      }
+
+      @media (max-width:860px) {
+        .pulse-grid {
+          grid-template-columns: 1fr
+        }
+      }
+
+      .pulse-panel {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        border-radius: var(--r-m);
+        padding: 1.6rem
+      }
+
+      .pulse-panel h3 {
+        font-size: var(--fs-h3);
+        display: flex;
+        align-items: center;
+        gap: .6em;
+        margin-bottom: 1.2rem
+      }
+
+      .pulse-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: .85rem .6rem;
+        border-top: 1px solid var(--line);
+        transition: background var(--dur), transform var(--dur)
+      }
+
+      .pulse-row:hover {
+        background: var(--panel-2);
+        transform: translateX(4px)
+      }
+
+      .pulse-date {
+        flex: none;
+        width: 56px;
+        text-align: center;
+        border-right: 2px solid var(--sc);
+        padding-right: .8rem
+      }
+
+      .pulse-date b {
+        display: block;
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        color: var(--ink);
+        line-height: 1
+      }
+
+      .pulse-date span {
+        font-family: var(--font-mono);
+        font-size: .62rem;
+        letter-spacing: .2em;
+        color: var(--muted)
+      }
+
+      .pulse-who b {
+        display: block;
+        color: var(--ink)
+      }
+
+      .pulse-who small {
+        font-family: var(--font-mono);
+        font-size: .68rem;
+        color: var(--muted)
+      }
+
+      .pulse-flag {
+        margin-left: auto;
+        font-family: var(--font-mono);
+        font-size: .64rem;
+        letter-spacing: .14em;
+        color: var(--live);
+        display: inline-flex;
+        align-items: center;
+        gap: .4em
+      }
+
+      .result-row {
+        display: flex;
+        align-items: baseline;
+        gap: .9rem;
+        padding: .8rem .6rem;
+        border-top: 1px solid var(--line);
+        transition: background var(--dur)
+      }
+
+      .result-row:hover {
+        background: var(--panel-2)
+      }
+
+      .result-row .tick-dot {
+        align-self: center
+      }
+
+      .result-row b {
+        color: var(--ink)
+      }
+
+      .result-row span {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        color: var(--muted)
+      }
+
+      .result-row .up {
+        margin-left: auto;
+        color: var(--live);
+        font-family: var(--font-mono);
+        font-size: .7rem
+      }
+
+      /* partner band */
+      .partner-band {
+        background: linear-gradient(120deg, var(--gold) 0%, color-mix(in srgb, var(--gold) 80%, #7a5a12) 100%);
+        color: var(--on-gold);
+        position: relative;
+        overflow: hidden
+      }
+
+      .partner-band::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cpath d='M-40 340L340-40M-40 200L200-40M100 340L340 100' stroke='%23000000' stroke-opacity='.08' stroke-width='2'/%3E%3C/svg%3E");
+      }
+
+      .partner-inner {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 2rem;
+        padding-block: var(--sp-5)
+      }
+
+      .partner-inner h2 {
+        font-size: var(--fs-h2);
+        color: var(--on-gold);
+        flex: 1 1 320px
+      }
+
+      .partner-inner p {
+        flex-basis: 100%;
+        max-width: 52ch;
+        font-weight: 500
+      }
+
+      .btn-ink {
+        background: var(--on-gold);
+        color: var(--gold)
+      }
+
+      .btn-ink:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, .3)
+      }
+
+      /* trust strip */
+      .trust-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.4rem;
+        align-items: stretch
+      }
+
+      .trust-item {
+        flex: 1 1 260px;
+        border: 1px solid var(--line);
+        border-left: 3px solid var(--gold);
+        background: var(--panel);
+        padding: 1.3rem 1.5rem;
+        transition: transform var(--dur) var(--ease), border-color var(--dur)
+      }
+
+      .trust-item:hover {
+        transform: translateY(-4px)
+      }
+
+      .trust-item .yr {
+        font-family: var(--font-mono);
+        font-size: .66rem;
+        letter-spacing: .2em;
+        color: var(--gold)
+      }
+
+      .trust-item b {
+        display: block;
+        color: var(--ink);
+        margin: .3em 0 .2em
+      }
+
+      .trust-item small {
+        color: var(--muted)
+      }
+
+      .trust-quote {
+        flex: 1 1 320px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1.3rem 1.5rem;
+        border: 1px solid var(--line);
+        background: var(--panel-2)
+      }
+
+      .trust-quote blockquote {
+        font-family: var(--font-display);
+        font-size: clamp(1.4rem, 2.4vw, 2rem);
+        text-transform: uppercase;
+        color: var(--ink);
+        line-height: 1.15
+      }
+
+      .trust-quote cite {
+        font-family: var(--font-mono);
+        font-size: .68rem;
+        letter-spacing: .18em;
+        color: var(--muted);
+        font-style: normal;
+        margin-top: .8em
+      }
+
+      /* ---------- 7. ROSTER ---------- */
+      .page-head {
+        padding-top: calc(var(--header-h) + var(--sp-5));
+        padding-bottom: var(--sp-4)
+      }
+
+      .page-title {
+        font-size: var(--fs-h1);
+        margin-top: .3em
+      }
+
+      .page-title .ghost-word {
+        color: transparent;
+        -webkit-text-stroke: 1px var(--ghost-stroke)
+      }
+
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        border-block: 1px solid var(--line);
+        padding: 1rem 0;
+        margin-bottom: 2rem;
+        position: sticky;
+        top: var(--header-h);
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(10px);
+        z-index: 20
+      }
+
+      .search-wrap {
+        position: relative;
+        flex: 1 1 220px;
+        max-width: 320px
+      }
+
+      .search-wrap svg {
+        position: absolute;
+        left: .9em;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        color: var(--muted)
+      }
+
+      .search-wrap input {
+        width: 100%;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--r-s);
+        padding: .75em 1em .75em 2.6em;
+        color: var(--ink);
+        transition: border-color var(--dur), box-shadow var(--dur)
+      }
+
+      .search-wrap input:focus {
+        outline: none;
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px var(--gold-ghost)
+      }
+
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .5rem
+      }
+
+      .f-chip {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        padding: .6em 1.1em;
+        border: 1px solid var(--line-strong);
+        border-radius: 99px;
+        color: var(--muted);
+        transition: all var(--dur) var(--ease)
+      }
+
+      .f-chip:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+        transform: translateY(-2px)
+      }
+
+      .f-chip.active {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: var(--on-gold);
+        font-weight: 600
+      }
+
+      .sort-wrap {
+        display: flex;
+        align-items: center;
+        gap: .6em;
+        margin-left: auto
+      }
+
+      .sort-wrap label {
+        font-family: var(--font-mono);
+        font-size: .66rem;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        color: var(--muted)
+      }
+
+      .sort-wrap select {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--r-s);
+        padding: .6em .9em;
+        color: var(--ink);
+        cursor: pointer;
+        transition: border-color var(--dur)
+      }
+
+      .sort-wrap select:hover {
+        border-color: var(--gold)
+      }
+
+      .roster-count {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        color: var(--muted);
+        letter-spacing: .1em
+      }
+
+      .roster-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.4rem;
+        container-type: inline-size
+      }
+
+      .card-wrap {
+        container-type: inline-size
+      }
+
+      .dossier-card {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr;
+        border: 1px solid var(--line);
+        border-radius: var(--r-m);
+        background: var(--panel);
+        overflow: hidden;
+        transition: transform var(--dur) var(--ease), border-color var(--dur), box-shadow var(--dur)
+      }
+
+      .dossier-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--sc);
+        z-index: 2
+      }
+
+      .dossier-card:hover {
+        transform: translateY(-5px);
+        border-color: color-mix(in srgb, var(--sc) 60%, var(--line));
+        box-shadow: var(--shadow-1)
+      }
+
+      .dossier-card.pop-in {
+        animation: popIn .5s var(--ease) both
+      }
+
+      @keyframes popIn {
+        from {
+          opacity: 0;
+          transform: scale(.94)
+        }
+
+        to {
+          opacity: 1;
+          transform: none
+        }
+      }
+
+      .card-portrait {
+        position: relative;
+        min-height: 190px;
+        background:
+          radial-gradient(90% 100% at 85% 0%, color-mix(in srgb, var(--sc) 30%, transparent), transparent 55%),
+          linear-gradient(160deg, color-mix(in srgb, var(--sc) 16%, #0a1120), #0c1526 75%);
+        display: flex;
+        align-items: flex-end;
+        padding: 1.1rem;
+        overflow: hidden
+      }
+
+      .card-portrait .initials {
+        font-family: var(--font-display);
+        font-size: clamp(3.4rem, 6vw, 4.6rem);
+        line-height: .9;
+        color: rgba(255, 255, 255, .92);
+        position: relative;
+        z-index: 1
+      }
+
+      .card-portrait .ghost-num {
+        position: absolute;
+        top: -14%;
+        right: 2%;
+        font-family: var(--font-display);
+        font-size: 7.5rem;
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(255, 255, 255, .2);
+        transition: transform .5s var(--ease)
+      }
+
+      .dossier-card:hover .ghost-num {
+        transform: translateY(6px) scale(1.04)
+      }
+
+      .card-portrait .sport-ico {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        width: 34px;
+        height: 34px;
+        color: var(--sc);
+        z-index: 1
+      }
+
+      .card-portrait .sport-ico svg {
+        width: 100%;
+        height: 100%
+      }
+
+      .card-portrait .trend {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-family: var(--font-mono);
+        font-size: .6rem;
+        letter-spacing: .16em;
+        color: var(--live);
+        background: rgba(4, 10, 20, .6);
+        padding: .4em .8em;
+        border-radius: 99px;
+        z-index: 1
+      }
+
+      .card-body {
+        padding: 1.2rem 1.3rem 1.3rem;
+        display: flex;
+        flex-direction: column;
+        gap: .55rem
+      }
+
+      .card-kicker {
+        font-size: var(--fs-mono);
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        color: var(--muted)
+      }
+
+      .card-name {
+        font-size: clamp(1.6rem, 2.4vw, 2rem)
+      }
+
+      .card-name a {
+        text-decoration: none;
+        color: var(--ink);
+        transition: color var(--dur)
+      }
+
+      .card-name a:hover {
+        color: var(--gold)
+      }
+
+      .card-ticker {
+        font-size: var(--fs-mono);
+        color: var(--sc);
+        display: flex;
+        align-items: center;
+        gap: .6em;
+        letter-spacing: .04em
+      }
+
+      .card-desc {
+        font-size: var(--fs-small);
+        color: var(--muted);
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden
+      }
+
+      .card-foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: .6rem;
+        padding-top: .9rem;
+        border-top: 1px solid var(--line)
+      }
+
+      .card-link {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--gold);
+        text-decoration: none;
+        display: inline-flex;
+        gap: .5em;
+        align-items: center;
+        transition: gap var(--dur)
+      }
+
+      .card-link:hover {
+        gap: .9em
+      }
+
+      .cmp-check {
+        display: inline-flex;
+        align-items: center;
+        gap: .5em;
+        font-family: var(--font-mono);
+        font-size: .66rem;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        cursor: pointer;
+        user-select: none;
+        transition: color var(--dur)
+      }
+
+      .cmp-check:hover {
+        color: var(--ink)
+      }
+
+      .cmp-check input {
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border: 1.5px solid var(--line-strong);
+        border-radius: 3px;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        transition: all var(--dur)
+      }
+
+      .cmp-check input:checked {
+        background: var(--gold);
+        border-color: var(--gold)
+      }
+
+      .cmp-check input:checked::after {
+        content: "✓";
+        font-size: .7rem;
+        font-weight: 800;
+        color: var(--on-gold)
+      }
+
+      @container (min-width: 640px) {
+        .dossier-card {
+          grid-template-columns: 250px 1fr
+        }
+
+        .card-portrait {
+          min-height: 100%
+        }
+      }
+
+      /* skeleton */
+      .sk-card {
+        border: 1px solid var(--line);
+        border-radius: var(--r-m);
+        overflow: hidden;
+        background: var(--panel)
+      }
+
+      .sk {
+        background: linear-gradient(100deg, var(--panel-2) 40%, color-mix(in srgb, var(--panel-2) 40%, var(--panel)) 50%, var(--panel-2) 60%);
+        background-size: 200% 100%;
+        animation: shimmer 1.3s infinite linear
+      }
+
+      @keyframes shimmer {
+        to {
+          background-position: -200% 0
+        }
+      }
+
+      .sk-portrait {
+        height: 190px
+      }
+
+      .sk-line {
+        height: 14px;
+        margin: 14px;
+        border-radius: 3px
+      }
+
+      .sk-line.w60 {
+        width: 60%
+      }
+
+      .sk-line.w40 {
+        width: 40%
+      }
+
+      /* empty state */
+      .empty-state {
+        border: 1px dashed var(--line-strong);
+        border-radius: var(--r-m);
+        padding: 4rem 2rem;
+        text-align: center
+      }
+
+      .empty-state .big {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 5vw, 4rem);
+        color: var(--ink);
+        text-transform: uppercase
+      }
+
+      .empty-state p {
+        color: var(--muted);
+        margin: .6em auto 1.4em;
+        max-width: 44ch
+      }
+
+      /* compare bar */
+      .compare-bar {
+        position: fixed;
+        left: 50%;
+        bottom: 1.4rem;
+        transform: translate(-50%, 150%);
+        z-index: 90;
+        width: min(760px, calc(100% - 2rem));
+        background: var(--panel);
+        border: 1px solid var(--line-strong);
+        border-top: 3px solid var(--gold);
+        border-radius: var(--r-m);
+        box-shadow: var(--shadow-2);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: .8rem;
+        padding: .9rem 1.1rem;
+        visibility: hidden;
+        transition: transform .38s var(--ease), visibility 0s .38s
+      }
+
+      .compare-bar.show {
+        transform: translate(-50%, 0);
+        visibility: visible;
+        transition: transform .38s var(--ease)
+      }
+
+      .cmp-label {
+        font-family: var(--font-mono);
+        font-size: .64rem;
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        color: var(--muted)
+      }
+
+      .cmp-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .5rem;
+        flex: 1
+      }
+
+      .cmp-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: .5em;
+        font-family: var(--font-mono);
+        font-size: .68rem;
+        background: var(--panel-2);
+        border: 1px solid var(--line);
+        border-left: 3px solid var(--sc);
+        padding: .45em .8em;
+        border-radius: var(--r-s);
+        color: var(--ink)
+      }
+
+      .cmp-chip button {
+        color: var(--muted);
+        font-size: .9rem;
+        line-height: 1;
+        transition: color var(--dur)
+      }
+
+      .cmp-chip button:hover {
+        color: var(--danger)
+      }
+
+      /* ---------- 8. MODAL ---------- */
+      .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        display: grid;
+        place-items: center;
+        padding: 1.2rem;
+        background: rgba(3, 7, 15, .7);
+        backdrop-filter: blur(4px);
+        opacity: 0;
+        transition: opacity .28s var(--ease)
+      }
+
+      .modal.open {
+        opacity: 1
+      }
+
+      .modal-panel {
+        width: min(980px, 100%);
+        max-height: 88vh;
+        overflow: auto;
+        background: var(--panel);
+        border: 1px solid var(--line-strong);
+        border-top: 3px solid var(--gold);
+        border-radius: var(--r-m);
+        box-shadow: var(--shadow-2);
+        transform: translateY(24px);
+        transition: transform .32s var(--ease)
+      }
+
+      .modal.open .modal-panel {
+        transform: none
+      }
+
+      .modal-head {
+        position: sticky;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1.2rem 1.6rem;
+        background: var(--panel);
+        border-bottom: 1px solid var(--line);
+        z-index: 2
+      }
+
+      .modal-head h2 {
+        font-size: var(--fs-h3)
+      }
+
+      .modal-body {
+        padding: 1.6rem
+      }
+
+      .cmp-cols {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1.6rem
+      }
+
+      .cmp-col {
+        border: 1px solid var(--line);
+        border-radius: var(--r-s);
+        padding: 1rem;
+        text-align: center
+      }
+
+      .cmp-col .drop-ava {
+        margin: 0 auto .7rem;
+        width: 52px;
+        height: 52px;
+        font-size: 1.3rem
+      }
+
+      .cmp-col b {
+        display: block;
+        color: var(--ink)
+      }
+
+      .cmp-col small {
+        font-family: var(--font-mono);
+        font-size: .64rem;
+        color: var(--muted)
+      }
+
+      .cmp-radar-wrap {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 1.6rem
+      }
+
+      .cmp-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center
+      }
+
+      .cmp-legend span {
+        display: inline-flex;
+        align-items: center;
+        gap: .5em;
+        font-family: var(--font-mono);
+        font-size: .68rem;
+        color: var(--muted)
+      }
+
+      .cmp-legend i {
+        width: 12px;
+        height: 12px;
+        border-radius: 2px;
+        background: var(--lc)
+      }
+
+      .cmp-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: var(--fs-small)
+      }
+
+      .cmp-table th,
+      .cmp-table td {
+        padding: .75rem .9rem;
+        border-top: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top
+      }
+
+      .cmp-table th {
+        font-family: var(--font-mono);
+        font-size: .64rem;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 500
+      }
+
+      .cmp-table td b {
+        color: var(--ink)
+      }
+
+      .cmp-table .num {
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono)
+      }
+
+      @media (max-width:640px) {
+        .cmp-table {
+          display: block;
+          overflow-x: auto
+        }
+      }
+
+      /* ---------- 9. DOSSIER (athlete page) ---------- */
+      .crumb {
+        display: inline-flex;
+        gap: .6em;
+        align-items: center;
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-decoration: none;
+        margin-bottom: 2rem;
+        transition: color var(--dur)
+      }
+
+      .crumb:hover {
+        color: var(--gold)
+      }
+
+      .masthead {
+        container-type: inline-size;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        margin-bottom: var(--sp-5)
+      }
+
+      @container (min-width: 860px) {
+        .masthead {
+          grid-template-columns: 1.25fr .75fr
+        }
+      }
+
+      .mast-copy .kicker {
+        margin-bottom: 1rem
+      }
+
+      .mast-name {
+        font-size: clamp(3rem, 8vw, 6.6rem);
+        line-height: .95
+      }
+
+      .mast-name .ln {
+        display: block
+      }
+
+      .mast-name .ln:last-child {
+        color: transparent;
+        -webkit-text-stroke: 1.5px var(--ghost-stroke)
+      }
+
+      .mast-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .8rem;
+        margin: 1.4rem 0
+      }
+
+      .mast-desc {
+        max-width: 58ch;
+        margin-bottom: 1.6rem
+      }
+
+      .badge-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .6rem
+      }
+
+      .badge {
+        font-family: var(--font-mono);
+        font-size: .66rem;
+        letter-spacing: .08em;
+        border: 1px solid var(--line-strong);
+        border-left: 3px solid var(--gold);
+        padding: .55em .9em;
+        color: var(--ink);
+        background: var(--panel);
+        transition: transform var(--dur), border-color var(--dur)
+      }
+
+      .badge:hover {
+        transform: translateY(-2px);
+        border-color: var(--gold)
+      }
+
+      .mast-visual {
+        position: relative
+      }
+
+      .mast-portrait {
+        position: relative;
+        min-height: 380px;
+        border-radius: var(--r-m);
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background:
+          radial-gradient(90% 80% at 80% 0%, color-mix(in srgb, var(--sc) 32%, transparent), transparent 55%),
+          linear-gradient(165deg, color-mix(in srgb, var(--sc) 18%, #0a1120), #0c1526 78%);
+        display: flex;
+        align-items: flex-end;
+        padding: 1.6rem
+      }
+
+      .mast-portrait .initials {
+        font-family: var(--font-display);
+        font-size: clamp(5rem, 9vw, 7.5rem);
+        line-height: .85;
+        color: rgba(255, 255, 255, .94)
+      }
+
+      .mast-portrait .ghost-num {
+        position: absolute;
+        top: -4%;
+        right: 3%;
+        font-family: var(--font-display);
+        font-size: clamp(8rem, 16vw, 13rem);
+        color: transparent;
+        -webkit-text-stroke: 1.5px rgba(255, 255, 255, .22)
+      }
+
+      .mast-portrait .state-tag {
+        position: absolute;
+        top: 1.2rem;
+        left: 1.2rem;
+        font-family: var(--font-mono);
+        font-size: .62rem;
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        background: rgba(4, 10, 20, .65);
+        color: #fff;
+        padding: .5em 1em;
+        border-radius: 99px
+      }
+
+      .next-card {
+        margin-top: 1rem;
+        border: 1px solid var(--line);
+        border-left: 3px solid var(--sc);
+        background: var(--panel);
+        padding: 1.1rem 1.3rem;
+        display: flex;
+        gap: 1.1rem;
+        align-items: center;
+        transition: transform var(--dur) var(--ease)
+      }
+
+      .next-card:hover {
+        transform: translateX(4px)
+      }
+
+      .next-card .pulse-date b {
+        font-size: 1.9rem
+      }
+
+      .next-card b {
+        display: block;
+        color: var(--ink)
+      }
+
+      .next-card small {
+        font-family: var(--font-mono);
+        font-size: .66rem;
+        color: var(--muted)
+      }
+
+      .stat-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border: 1px solid var(--line);
+        background: var(--panel);
+        margin-bottom: var(--sp-5);
+        container-type: inline-size
+      }
+
+      @container (max-width: 620px) {
+        .stat-row {
+          grid-template-columns: 1fr 1fr
+        }
+      }
+
+      .dossier-cols {
+        display: grid;
+        grid-template-columns: .85fr 1.15fr;
+        gap: 1.4rem;
+        align-items: start;
+        margin-bottom: var(--sp-5)
+      }
+
+      @media (max-width:900px) {
+        .dossier-cols {
+          grid-template-columns: 1fr
+        }
+      }
+
+      .info-panel {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        border-radius: var(--r-m);
+        padding: 1.6rem
+      }
+
+      .info-panel h3 {
+        font-size: var(--fs-h3);
+        margin-bottom: 1rem
+      }
+
+      .vitals {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 1.4rem
+      }
+
+      .vitals div {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: .7rem 0;
+        border-top: 1px solid var(--line)
+      }
+
+      .vitals dt {
+        font-family: var(--font-mono);
+        font-size: .66rem;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        align-self: center
+      }
+
+      .vitals dd {
+        color: var(--ink);
+        font-weight: 600;
+        font-family: var(--font-mono);
+        font-size: var(--fs-mono);
+        text-align: right
+      }
+
+      .radar-card {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        border-radius: var(--r-m);
+        padding: 1.6rem
+      }
+
+      .radar-card h3 {
+        font-size: var(--fs-h3);
+        margin-bottom: .4rem
+      }
+
+      .radar-card .hint {
+        font-family: var(--font-mono);
+        font-size: .66rem;
+        color: var(--muted);
+        letter-spacing: .1em
+      }
+
+      .radar-svg {
+        width: 100%;
+        max-width: 420px;
+        margin: 1rem auto 0
+      }
+
+      .radar-svg text {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: .12em;
+        fill: var(--muted);
+        text-transform: uppercase
+      }
+
+      .radar-series {
+        transform: scale(.25);
+        opacity: 0;
+        transform-box: fill-box;
+        transform-origin: center;
+        transition: transform .9s var(--ease) .2s, opacity .7s var(--ease) .2s
+      }
+
+      .in .radar-series {
+        transform: scale(1);
+        opacity: 1
+      }
+
+      .axis-legend {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: .6rem 1.2rem;
+        margin-top: 1.2rem
+      }
+
+      .axis-legend li {
+        display: flex;
+        justify-content: space-between;
+        gap: .6em;
+        font-family: var(--font-mono);
+        font-size: .66rem;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+        padding-top: .5rem
+      }
+
+      .axis-legend b {
+        color: var(--gold)
+      }
+
+      @media (max-width:520px) {
+        .axis-legend {
+          grid-template-columns: 1fr 1fr
+        }
+      }
+
+      /* timeline */
+      .tl-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.4rem
+      }
+
+      .tl-nav {
+        display: flex;
+        gap: .5rem
+      }
+
+      .timeline {
+        position: relative;
+        overflow-x: auto;
+        padding: 2.2rem 0 1.4rem;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: var(--gold) transparent
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        top: 2.2rem;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--line-strong)
+      }
+
+      .tl-track {
+        display: flex;
+        gap: 1.2rem;
+        min-width: max-content;
+        padding-inline: .2rem
+      }
+
+      .tl-item {
+        position: relative;
+        width: 280px;
+        flex: none;
+        scroll-snap-align: start;
+        padding-top: 2rem
+      }
+
+      .tl-item::before {
+        content: "";
+        position: absolute;
+        top: -7px;
+        left: 0;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 3px solid var(--gold);
+        transition: background var(--dur), transform var(--dur)
+      }
+
+      .tl-item:hover::before {
+        background: var(--gold);
+        transform: scale(1.25)
+      }
+
+      .tl-year {
+        font-family: var(--font-display);
+        font-size: 2.2rem;
+        color: var(--gold);
+        line-height: 1
+      }
+
+      .tl-item h4 {
+        font-family: var(--font-body);
+        font-weight: 700;
+        color: var(--ink);
+        font-size: .98rem;
+        margin: .35em 0 .3em;
+        text-transform: none;
+        letter-spacing: 0
+      }
+
+      .tl-item p {
+        font-size: var(--fs-small);
+        color: var(--muted)
+      }
+
+      .tl-card {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        border-radius: var(--r-s);
+        padding: 1.1rem 1.2rem;
+        transition: transform var(--dur) var(--ease), border-color var(--dur)
+      }
+
+      .tl-item:hover .tl-card {
+        transform: translateY(-4px);
+        border-color: var(--gold)
+      }
+
+      /* gallery */
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 170px;
+        gap: 1rem;
+        margin-bottom: var(--sp-5)
+      }
+
+      .gallery .g-tile:first-child {
+        grid-column: span 2;
+        grid-row: span 2
+      }
+
+      @media (max-width:680px) {
+        .gallery {
+          grid-template-columns: 1fr 1fr;
+          grid-auto-rows: 140px
+        }
+      }
+
+      .g-tile {
+        position: relative;
+        border-radius: var(--r-s);
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background:
+          radial-gradient(80% 90% at 20% 10%, color-mix(in srgb, var(--sc) 26%, transparent), transparent 60%),
+          linear-gradient(150deg, color-mix(in srgb, var(--sc) 14%, #0a1120), #0d1627);
+        display: flex;
+        align-items: flex-end;
+        transition: transform var(--dur) var(--ease)
+      }
+
+      .g-tile:hover {
+        transform: scale(1.015)
+      }
+
+      .g-tile .g-tag {
+        position: absolute;
+        top: .9rem;
+        left: .9rem;
+        font-family: var(--font-mono);
+        font-size: .6rem;
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        background: rgba(4, 10, 20, .65);
+        color: var(--sc);
+        padding: .45em .9em;
+        border-radius: 99px
+      }
+
+      .g-tile .g-cap {
+        padding: 1rem;
+        font-family: var(--font-mono);
+        font-size: .68rem;
+        color: rgba(255, 255, 255, .85);
+        background: linear-gradient(to top, rgba(4, 9, 17, .8), transparent)
+      }
+
+      /* reel */
+      .reel {
+        position: relative;
+        border: 1px solid var(--line);
+        border-radius: var(--r-m);
+        overflow: hidden;
+        aspect-ratio: 16/8;
+        background:
+          radial-gradient(70% 90% at 80% 10%, color-mix(in srgb, var(--sc) 24%, transparent), transparent 60%),
+          linear-gradient(140deg, #0a1322, #060b16);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: var(--sp-5)
+      }
+
+      .reel-play {
+        width: 86px;
+        height: 86px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, .7);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        transition: transform var(--dur) var(--ease), background var(--dur), border-color var(--dur)
+      }
+
+      .reel-play:hover {
+        transform: scale(1.1);
+        background: var(--gold);
+        border-color: var(--gold);
+        color: var(--on-gold)
+      }
+
+      .reel-play svg {
+        width: 26px;
+        height: 26px;
+        margin-left: 3px
+      }
+
+      .reel.playing .reel-play .i-play {
+        display: none
+      }
+
+      .reel:not(.playing) .reel-play .i-pause {
+        display: none
+      }
+
+      .reel-meta {
+        position: absolute;
+        left: 1.4rem;
+        bottom: 2.6rem;
+        color: #fff
+      }
+
+      .reel-meta b {
+        font-family: var(--font-display);
+        font-size: clamp(1.3rem, 2.4vw, 2rem);
+        letter-spacing: .03em;
+        display: block;
+        text-transform: uppercase
+      }
+
+      .reel-meta small {
+        font-family: var(--font-mono);
+        font-size: .66rem;
+        letter-spacing: .16em;
+        color: rgba(255, 255, 255, .7)
+      }
+
+      .reel-eq {
+        position: absolute;
+        right: 1.4rem;
+        bottom: 2.6rem;
+        display: flex;
+        gap: 4px;
+        align-items: flex-end;
+        height: 26px;
+        opacity: 0;
+        transition: opacity var(--dur)
+      }
+
+      .reel.playing .reel-eq {
+        opacity: 1
+      }
+
+      .reel-eq i {
+        width: 4px;
+        background: var(--gold);
+        animation: eq 1s ease-in-out infinite
+      }
+
+      .reel-eq i:nth-child(1) {
+        height: 40%;
+        animation-delay: 0s
+      }
+
+      .reel-eq i:nth-child(2) {
+        height: 90%;
+        animation-delay: .15s
+      }
+
+      .reel-eq i:nth-child(3) {
+        height: 60%;
+        animation-delay: .3s
+      }
+
+      .reel-eq i:nth-child(4) {
+        height: 100%;
+        animation-delay: .45s
+      }
+
+      @keyframes eq {
+
+        0%,
+        100% {
+          transform: scaleY(.4)
+        }
+
+        50% {
+          transform: scaleY(1)
+        }
+      }
+
+      .reel-progress {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 5px;
+        background: rgba(255, 255, 255, .15)
+      }
+
+      .reel-progress i {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: var(--gold)
+      }
+
+      .reel.playing .reel-progress i {
+        animation: reelprog 24s linear forwards
+      }
+
+      @keyframes reelprog {
+        to {
+          width: 100%
+        }
+      }
+
+      /* dossier CTA + prevnext */
+      .book-band {
+        background: var(--gold);
+        color: var(--on-gold);
+        border-radius: var(--r-m);
+        padding: 2.2rem 2.4rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1.6rem;
+        margin-bottom: var(--sp-5);
+        position: relative;
+        overflow: hidden
+      }
+
+      .book-band::after {
+        content: "";
+        position: absolute;
+        right: -40px;
+        top: -40px;
+        width: 220px;
+        height: 220px;
+        border: 2px solid rgba(0, 0, 0, .12);
+        border-radius: 50%
+      }
+
+      .book-band h3 {
+        font-size: var(--fs-h2);
+        color: var(--on-gold);
+        flex: 1 1 280px
+      }
+
+      .prevnext {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border: 1px solid var(--line);
+        border-radius: var(--r-m);
+        overflow: hidden
+      }
+
+      .pn-link {
+        display: flex;
+        flex-direction: column;
+        gap: .3em;
+        padding: 1.6rem 1.8rem;
+        text-decoration: none;
+        transition: background var(--dur)
+      }
+
+      .pn-link:hover {
+        background: var(--panel-2)
+      }
+
+      .pn-link:last-child {
+        border-left: 1px solid var(--line);
+        text-align: right;
+        align-items: flex-end
+      }
+
+      .pn-link small {
+        font-family: var(--font-mono);
+        font-size: .64rem;
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        color: var(--muted)
+      }
+
+      .pn-link b {
+        font-family: var(--font-display);
+        font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+        color: var(--ink);
+        text-transform: uppercase;
+        letter-spacing: .02em;
+        transition: color var(--dur)
+      }
+
+      .pn-link:hover b {
+        color: var(--gold)
+      }
+
+      /* ---------- 10. AGENCY ---------- */
+      .agency-lede {
+        font-family: var(--font-display);
+        font-size: clamp(2.2rem, 5.4vw, 4.4rem);
+        text-transform: uppercase;
+        line-height: 1.04;
+        color: var(--ink);
+        max-width: 20ch
+      }
+
+      .agency-lede .accent {
+        color: var(--gold)
+      }
+
+      .process-row {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: clamp(1.4rem, 4vw, 3.5rem);
+        align-items: start;
+        padding: 2.4rem 0;
+        border-top: 1px solid var(--line-strong);
+        transition: background var(--dur)
+      }
+
+      .process-row:hover {
+        background: var(--panel)
+      }
+
+      .process-row:nth-child(odd) {
+        margin-left: clamp(0rem, 6vw, 5rem)
+      }
+
+      .process-num {
+        font-family: var(--font-display);
+        font-size: clamp(3.4rem, 7vw, 6rem);
+        line-height: .9;
+        color: transparent;
+        -webkit-text-stroke: 1.5px var(--gold)
+      }
+
+      .process-row h3 {
+        font-size: var(--fs-h2);
+        margin-bottom: .4em
+      }
+
+      .process-row p {
+        max-width: 60ch;
+        color: var(--muted)
+      }
+
+      .leader-card {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 2rem;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        border-radius: var(--r-m);
+        padding: 2rem;
+        align-items: center
+      }
+
+      @media (max-width:680px) {
+        .leader-card {
+          grid-template-columns: 1fr
+        }
+      }
+
+      .leader-portrait {
+        position: relative;
+        height: 240px;
+        border-radius: var(--r-s);
+        overflow: hidden;
+        background: radial-gradient(90% 90% at 80% 0%, rgba(226, 182, 79, .35), transparent 55%), linear-gradient(160deg, #131c30, #0a1120);
+        display: flex;
+        align-items: flex-end;
+        padding: 1rem
+      }
+
+      .leader-portrait span {
+        font-family: var(--font-display);
+        font-size: 4rem;
+        color: rgba(255, 255, 255, .92);
+        line-height: .9
+      }
+
+      .leader-card h3 {
+        font-size: var(--fs-h2)
+      }
+
+      .leader-role {
+        font-family: var(--font-mono);
+        font-size: .68rem;
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin: .4em 0 1em
+      }
+
+      .leader-card blockquote {
+        font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+        color: var(--ink);
+        border-left: 3px solid var(--gold);
+        padding-left: 1.1rem;
+        margin-top: 1em;
+        font-weight: 500
+      }
+
+      .office-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.4rem
+      }
+
+      @media (max-width:820px) {
+        .office-grid {
+          grid-template-columns: 1fr
+        }
+      }
+
+      .map-card {
+        border: 1px solid var(--line);
+        border-radius: var(--r-m);
+        overflow: hidden;
+        background: var(--panel);
+        min-height: 300px;
+        position: relative
+      }
+
+      .map-card svg {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        inset: 0
+      }
+
+      .addr-list div {
+        display: flex;
+        gap: 1.2rem;
+        padding: .9rem 0;
+        border-top: 1px solid var(--line)
+      }
+
+      .addr-list dt {
+        font-family: var(--font-mono);
+        font-size: .64rem;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        width: 90px;
+        flex: none;
+        padding-top: .3em
+      }
+
+      .addr-list dd {
+        color: var(--ink)
+      }
+
+      .addr-list a {
+        color: var(--gold);
+        text-decoration: none
+      }
+
+      .addr-list a:hover {
+        text-decoration: underline
+      }
+
+      /* ---------- 11. MATCHMAKER ---------- */
+      .mm-grid {
+        display: grid;
+        grid-template-columns: 1.25fr .75fr;
+        gap: 2rem;
+        align-items: start
+      }
+
+      @media (max-width:900px) {
+        .mm-grid {
+          grid-template-columns: 1fr
+        }
+      }
+
+      .wizard {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        border-radius: var(--r-m);
+        padding: 2rem
+      }
+
+      .wiz-steps {
+        display: flex;
+        gap: .5rem;
+        margin-bottom: 2rem
+      }
+
+      .wiz-steps li {
+        flex: 1;
+        font-family: var(--font-mono);
+        font-size: .62rem;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        border-top: 3px solid var(--line);
+        padding-top: .7em;
+        transition: color var(--dur), border-color var(--dur)
+      }
+
+      .wiz-steps li.on {
+        color: var(--gold);
+        border-color: var(--gold)
+      }
+
+      .wiz-steps li.done {
+        border-color: var(--line-strong);
+        color: var(--ink)
+      }
+
+      .wiz-step {
+        display: none;
+        animation: stepIn .4s var(--ease)
+      }
+
+      .wiz-step.on {
+        display: block
+      }
+
+      @keyframes stepIn {
+        from {
+          opacity: 0;
+          transform: translateX(18px)
+        }
+
+        to {
+          opacity: 1;
+          transform: none
+        }
+      }
+
+      .wiz-step legend {
+        font-family: var(--font-display);
+        font-size: var(--fs-h3);
+        text-transform: uppercase;
+        color: var(--ink);
+        margin-bottom: 1.2rem
+      }
+
+      .opt-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+        gap: .7rem
+      }
+
+      .opt {
+        position: relative
+      }
+
+      .opt input {
+        position: absolute;
+        opacity: 0
+      }
+
+      .opt span {
+        display: flex;
+        flex-direction: column;
+        gap: .2em;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--r-s);
+        padding: 1rem;
+        cursor: pointer;
+        transition: all var(--dur) var(--ease);
+        height: 100%
+      }
+
+      .opt span::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: var(--gold);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform var(--dur) var(--ease)
+      }
+
+      .opt span b {
+        color: var(--ink);
+        font-size: .92rem
+      }
+
+      .opt span small {
+        font-family: var(--font-mono);
+        font-size: .62rem;
+        color: var(--muted);
+        letter-spacing: .06em
+      }
+
+      .opt span:hover {
+        border-color: var(--gold);
+        transform: translateY(-3px)
+      }
+
+      .opt input:checked+span {
+        border-color: var(--gold);
+        background: var(--gold-ghost)
+      }
+
+      .opt input:checked+span::after {
+        transform: scaleX(1)
+      }
+
+      .opt input:focus-visible+span {
+        outline: 2px solid var(--gold);
+        outline-offset: 3px
+      }
+
+      .wiz-nav {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 2rem
+      }
+
+      .mm-side {
+        border: 1px solid var(--line);
+        border-left: 3px solid var(--gold);
+        background: var(--panel-2);
+        padding: 1.6rem;
+        border-radius: var(--r-m)
+      }
+
+      .mm-side h3 {
+        font-size: var(--fs-h3);
+        margin-bottom: 1rem
+      }
+
+      .mm-side li {
+        padding: .7rem 0;
+        border-top: 1px solid var(--line);
+        font-size: var(--fs-small);
+        color: var(--muted);
+        display: flex;
+        gap: .8em
+      }
+
+      .mm-side li b {
+        color: var(--ink)
+      }
+
+      .mm-side li::before {
+        content: "—";
+        color: var(--gold);
+        flex: none
+      }
+
+      .mm-loading {
+        display: grid;
+        gap: 1rem
+      }
+
+      .mm-load-card {
+        border: 1px solid var(--line);
+        border-radius: var(--r-s);
+        padding: 1.4rem;
+        display: grid;
+        gap: .8rem
+      }
+
+      .mm-result {
+        border: 1px solid var(--line);
+        border-left: 4px solid var(--sc);
+        background: var(--panel);
+        border-radius: var(--r-s);
+        padding: 1.4rem 1.6rem;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 1.2rem;
+        align-items: start;
+        animation: stepIn .5s var(--ease) both
+      }
+
+      .mm-result+.mm-result {
+        margin-top: 1rem
+      }
+
+      .mm-rank {
+        font-family: var(--font-display);
+        font-size: 2.6rem;
+        color: var(--gold);
+        line-height: 1
+      }
+
+      .mm-result h4 {
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        text-transform: uppercase;
+        color: var(--ink)
+      }
+
+      .mm-result h4 a {
+        text-decoration: none;
+        transition: color var(--dur)
+      }
+
+      .mm-result h4 a:hover {
+        color: var(--gold)
+      }
+
+      .mm-sport {
+        font-family: var(--font-mono);
+        font-size: .64rem;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        color: var(--sc)
+      }
+
+      .mm-bar {
+        height: 6px;
+        background: var(--panel-2);
+        border-radius: 3px;
+        margin: .7rem 0 .4rem;
+        overflow: hidden
+      }
+
+      .mm-bar i {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: linear-gradient(to right, var(--sc), var(--gold));
+        transition: width 1s var(--ease) .3s
+      }
+
+      .mm-pct {
+        font-family: var(--font-mono);
+        font-size: .68rem;
+        color: var(--muted)
+      }
+
+      .mm-reasons {
+        margin: .6rem 0 .9rem;
+        display: grid;
+        gap: .3rem
+      }
+
+      .mm-reasons li {
+        font-size: var(--fs-small);
+        color: var(--muted);
+        display: flex;
+        gap: .6em
+      }
+
+      .mm-reasons li::before {
+        content: "▸";
+        color: var(--gold)
+      }
+
+      /* ---------- 12. CONTACT ---------- */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: .8fr 1.2fr;
+        gap: 2.4rem;
+        align-items: start
+      }
+
+      @media (max-width:900px) {
+        .contact-grid {
+          grid-template-columns: 1fr
+        }
+      }
+
+      .c-info h2 {
+        font-size: var(--fs-h2);
+        margin-bottom: .6em
+      }
+
+      .c-info>p {
+        color: var(--muted);
+        margin-bottom: 1.6rem;
+        max-width: 40ch
+      }
+
+      .c-form {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        border-radius: var(--r-m);
+        padding: clamp(1.4rem, 3vw, 2.4rem);
+        border-top: 3px solid var(--gold)
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem
+      }
+
+      @media (max-width:640px) {
+        .form-grid {
+          grid-template-columns: 1fr
+        }
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: .45rem
+      }
+
+      .field.full {
+        grid-column: 1 / -1
+      }
+
+      .field label {
+        font-family: var(--font-mono);
+        font-size: .66rem;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        color: var(--muted)
+      }
+
+      .field label .req {
+        color: var(--gold)
+      }
+
+      .field input,
+      .field select,
+      .field textarea {
+        background: var(--bg-2);
+        border: 1px solid var(--line);
+        border-radius: var(--r-s);
+        padding: .85em 1em;
+        color: var(--ink);
+        transition: border-color var(--dur), box-shadow var(--dur);
+        width: 100%
+      }
+
+      .field textarea {
+        min-height: 110px;
+        resize: vertical
+      }
+
+      .field input:focus,
+      .field select:focus,
+      .field textarea:focus {
+        outline: none;
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px var(--gold-ghost)
+      }
+
+      .field.invalid input,
+      .field.invalid select {
+        border-color: var(--danger)
+      }
+
+      .f-err {
+        font-family: var(--font-mono);
+        font-size: .66rem;
+        color: var(--danger);
+        min-height: 1em
+      }
+
+      .chip-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .5rem
+      }
+
+      .chip-group .chip {
+        position: relative
+      }
+
+      .chip-group input {
+        position: absolute;
+        opacity: 0
+      }
+
+      .chip-group span {
+        display: inline-block;
+        font-family: var(--font-mono);
+        font-size: .68rem;
+        letter-spacing: .06em;
+        border: 1px solid var(--line-strong);
+        border-radius: 99px;
+        padding: .55em 1.1em;
+        color: var(--muted);
+        cursor: pointer;
+        transition: all var(--dur)
+      }
+
+      .chip-group span:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+        transform: translateY(-2px)
+      }
+
+      .chip-group input:checked+span {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: var(--on-gold);
+        font-weight: 600
+      }
+
+      .chip-group input:focus-visible+span {
+        outline: 2px solid var(--gold);
+        outline-offset: 3px
+      }
+
+      .consent {
+        display: flex;
+        gap: .9rem;
+        align-items: flex-start;
+        border: 1px solid var(--line);
+        border-radius: var(--r-s);
+        padding: 1rem 1.1rem;
+        background: var(--bg-2)
+      }
+
+      .consent input {
+        appearance: none;
+        width: 44px;
+        height: 24px;
+        border-radius: 99px;
+        background: var(--line-strong);
+        position: relative;
+        cursor: pointer;
+        flex: none;
+        transition: background var(--dur);
+        margin-top: .15em
+      }
+
+      .consent input::after {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #fff;
+        transition: transform var(--dur) var(--ease)
+      }
+
+      .consent input:checked {
+        background: var(--gold)
+      }
+
+      .consent input:checked::after {
+        transform: translateX(20px)
+      }
+
+      .consent label {
+        font-size: var(--fs-small);
+        color: var(--muted);
+        cursor: pointer
+      }
+
+      .consent-hint {
+        font-family: var(--font-mono);
+        font-size: .64rem;
+        color: var(--muted)
+      }
+
+      .form-note {
+        font-family: var(--font-mono);
+        font-size: .64rem;
+        color: var(--muted);
+        margin-top: 1rem
+      }
+
+      .form-success {
+        text-align: center;
+        padding: 2.5rem 1rem;
+        animation: stepIn .5s var(--ease)
+      }
+
+      .form-success .check {
+        width: 74px;
+        height: 74px;
+        margin: 0 auto 1.4rem;
+        border-radius: 50%;
+        background: var(--gold);
+        color: var(--on-gold);
+        display: grid;
+        place-items: center;
+        font-size: 2rem;
+        animation: popIn .5s var(--ease) both
+      }
+
+      .form-success h3 {
+        font-size: var(--fs-h2);
+        margin-bottom: .4em
+      }
+
+      .form-success p {
+        color: var(--muted);
+        max-width: 44ch;
+        margin: 0 auto 1.6rem
+      }
+
+      .form-success .summary {
+        font-family: var(--font-mono);
+        font-size: .72rem;
+        color: var(--ink);
+        border: 1px solid var(--line);
+        border-radius: var(--r-s);
+        display: inline-block;
+        padding: .8em 1.4em;
+        margin-bottom: 1.6rem
+      }
+
+      /* ---------- 13. 404 / FOOTER / TOAST ---------- */
+      .nf {
+        min-height: 70vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding-top: var(--header-h);
+        position: relative;
+        overflow: hidden
+      }
+
+      .nf::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='560'%3E%3Cg fill='none' stroke='%23888888' stroke-opacity='.08' stroke-width='2'%3E%3Ccircle cx='0' cy='560' r='140'/%3E%3Ccircle cx='0' cy='560' r='240'/%3E%3Ccircle cx='0' cy='560' r='340'/%3E%3Ccircle cx='0' cy='560' r='440'/%3E%3C/g%3E%3C/svg%3E")
+      }
+
+      .nf-code {
+        font-family: var(--font-display);
+        font-size: clamp(6rem, 20vw, 14rem);
+        line-height: 1;
+        color: transparent;
+        -webkit-text-stroke: 2px var(--gold);
+        position: relative
+      }
+
+      .nf h2 {
+        font-size: var(--fs-h2);
+        position: relative;
+        margin: .2em 0 .3em
+      }
+
+      .nf p {
+        color: var(--muted);
+        max-width: 44ch;
+        position: relative;
+        margin-bottom: 1.8rem
+      }
+
+      .site-footer {
+        background: #080e1b;
+        color: #a9b5cb;
+        border-top: 1px solid rgba(148, 166, 199, .14);
+        margin-top: var(--sp-6)
+      }
+
+      [data-theme="light"] .site-footer {
+        --line: rgba(148, 166, 199, .16);
+        --muted: #8b98af
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+        gap: 2.4rem;
+        padding-block: var(--sp-5)
+      }
+
+      @media (max-width:900px) {
+        .footer-grid {
+          grid-template-columns: 1fr 1fr
+        }
+      }
+
+      @media (max-width:560px) {
+        .footer-grid {
+          grid-template-columns: 1fr
+        }
+      }
+
+      .site-footer h4 {
+        font-family: var(--font-mono);
+        font-size: .66rem;
+        letter-spacing: .24em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1.2rem;
+        font-weight: 600
+      }
+
+      .site-footer a {
+        color: #c7d1e3;
+        text-decoration: none;
+        transition: color var(--dur), padding-left var(--dur)
+      }
+
+      .site-footer a:hover {
+        color: var(--gold);
+        padding-left: .3em
+      }
+
+      .footer-brand p {
+        font-size: var(--fs-small);
+        max-width: 32ch;
+        margin-top: 1rem
+      }
+
+      .footer-list li {
+        padding: .32em 0
+      }
+
+      .footer-list small {
+        font-family: var(--font-mono);
+        font-size: .62rem;
+        color: var(--muted);
+        margin-left: .6em
+      }
+
+      .footer-contact li {
+        display: flex;
+        gap: .8em;
+        padding: .35em 0;
+        font-size: var(--fs-small)
+      }
+
+      .footer-contact .k {
+        font-family: var(--font-mono);
+        font-size: .62rem;
+        letter-spacing: .14em;
+        color: var(--muted);
+        width: 52px;
+        flex: none;
+        padding-top: .35em;
+        text-transform: uppercase
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(148, 166, 199, .14);
+        padding: 1.2rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        font-family: var(--font-mono);
+        font-size: .66rem;
+        color: var(--muted)
+      }
+
+      .footer-bottom .legal {
+        display: flex;
+        gap: 1.4rem;
+        margin-left: auto
+      }
+
+      #to-top {
+        margin-left: 1rem
+      }
+
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 1.6rem;
+        transform: translate(-50%, 150%);
+        z-index: 250;
+        background: var(--panel);
+        border: 1px solid var(--line-strong);
+        border-left: 4px solid var(--gold);
+        border-radius: var(--r-s);
+        padding: .9em 1.4rem;
+        font-family: var(--font-mono);
+        font-size: .72rem;
+        color: var(--ink);
+        box-shadow: var(--shadow-2);
+        transition: transform .35s var(--ease);
+        max-width: min(480px, 90vw)
+      }
+
+      .toast.show {
+        transform: translate(-50%, 0)
+      }
+
+      /* ---------- 14. REDUCED MOTION ---------- */
+      @media (prefers-reduced-motion: reduce) {
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: .01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: .01ms !important;
+          scroll-behavior: auto !important
+        }
+
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important
+        }
+
+        .ticker-track {
+          animation: none;
+          flex-wrap: wrap
+        }
+
+        .hero-slide {
+          transition: none
+        }
+
+        .radar-series {
+          transform: none;
+          opacity: 1
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <p id="announcer" class="sr-only" role="status" aria-live="polite"></p>
+
+    <!-- ================= HEADER ================= -->
+    <header class="site-header" id="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#/" aria-label="Pódio Sports Management — home">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <rect x="2" y="13" width="6" height="9" />
+              <rect x="9" y="6" width="6" height="16" />
+              <rect x="16" y="10" width="6" height="12" />
+            </svg>
+            PÓDIO
+          </span>
+          <span class="brand-sub">SPORTS MGMT · LISBOA</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Primary">
+          <ul>
+            <li><a href="#/" data-nav="home">Home</a></li>
+            <li class="nav-drop" id="nav-drop">
+              <a href="#/roster" data-nav="roster">Roster</a>
+              <button class="drop-toggle" id="drop-toggle" aria-expanded="false" aria-controls="drop-panel"
+                aria-label="Quick jump to an athlete">
+                <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" />
+                </svg>
+              </button>
+              <div class="drop-panel" id="drop-panel">
+                <p class="drop-head">Quick jump · The Roster</p>
+                <div id="drop-list"><!-- hydrated --></div>
+                <a class="drop-foot" href="#/roster">Open full roster →</a>
+              </div>
+            </li>
+            <li><a href="#/agency" data-nav="agency">Agency</a></li>
+            <li><a href="#/partners" data-nav="partners">Partners</a></li>
+            <li><a href="#/contact" data-nav="contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <button class="icon-btn" id="theme-toggle" aria-label="Toggle color theme" aria-pressed="false">
+            <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              aria-hidden="true">
+              <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z" />
+            </svg>
+            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              aria-hidden="true">
+              <circle cx="12" cy="12" r="4.5" />
+              <path
+                d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8" />
+            </svg>
+          </button>
+          <button class="icon-btn" id="menu-toggle" aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M3 6h18M3 12h18M3 18h12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- mobile drawer -->
+    <div class="scrim" id="scrim"></div>
+    <aside class="drawer" id="drawer" aria-label="Mobile navigation">
+      <div class="drawer-head">
+        <span>PÓDIO · MENU</span>
+        <button class="icon-btn" id="drawer-close" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M5 5l14 14M19 5L5 19" />
+          </svg>
+        </button>
+      </div>
+      <nav aria-label="Mobile primary">
+        <a href="#/" data-nav="home">Home</a>
+        <a href="#/roster" data-nav="roster">Roster</a>
+        <a href="#/agency" data-nav="agency">Agency</a>
+        <a href="#/partners" data-nav="partners">Partners</a>
+        <a href="#/contact" data-nav="contact">Contact</a>
+      </nav>
+      <div class="drawer-foot">
+        Av. da Liberdade 110, Lisboa<br>
+        <a href="mailto:roster@podiosports.pt">roster@podiosports.pt</a><br>
+        Mon–Fri · 09:00–18:00 WET
+      </div>
+    </aside>
+
+    <main id="main">
+
+      <!-- ================= HOME ================= -->
+      <section class="view" id="view-home" aria-label="Home">
+        <h1 class="sr-only">Pódio Sports Management — Elite Athlete Roster</h1>
+
+        <!-- rotating spotlight -->
+        <div class="hero" id="hero" aria-roledescription="carousel" aria-label="Athlete spotlight">
+
+          <article class="hero-slide active" data-sport="football" aria-hidden="false"
+            aria-label="Spotlight: Diogo Ferreira">
+            <div class="hero-bg pat-football" style="--sc:var(--football)" aria-hidden="true"><span
+                class="hero-ghost">08</span></div>
+            <div class="hero-copy">
+              <p class="kicker hero-kicker"><span class="live-dot" aria-hidden="true"></span> Roster · Season 24/25</p>
+              <h2 class="hero-name"><span class="ln">Diogo</span><span class="ln">Ferreira</span></h2>
+              <div class="hero-meta">
+                <span class="sport-chip" style="--sc:var(--football)">Football · Central Midfield</span>
+                <span class="hero-stat mono">47 caps · Portugal U21</span>
+              </div>
+              <div class="hero-cta">
+                <a class="btn btn-gold" href="#/athlete/1">Open dossier <span class="arr"
+                    aria-hidden="true">→</span></a>
+                <a class="btn btn-ghost hero-ghost-btn" href="#/roster">View full roster</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="hero-slide" data-sport="surfing" aria-hidden="true" aria-label="Spotlight: Mariana Costa">
+            <div class="hero-bg pat-surfing" style="--sc:var(--surfing)" aria-hidden="true"><span
+                class="hero-ghost">07</span></div>
+            <div class="hero-copy">
+              <p class="kicker hero-kicker"><span class="live-dot" aria-hidden="true"></span> Roster · Season 24/25</p>
+              <h2 class="hero-name"><span class="ln">Mariana</span><span class="ln">Costa</span></h2>
+              <div class="hero-meta">
+                <span class="sport-chip" style="--sc:var(--surfing)">Surfing · Big Wave</span>
+                <span class="hero-stat mono">Rodeo 2024 Champion · Peak Rank #7</span>
+              </div>
+              <div class="hero-cta">
+                <a class="btn btn-gold" href="#/athlete/2">Open dossier <span class="arr"
+                    aria-hidden="true">→</span></a>
+                <a class="btn btn-ghost hero-ghost-btn" href="#/roster">View full roster</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="hero-slide" data-sport="motorsport" aria-hidden="true" aria-label="Spotlight: Tomás Alves">
+            <div class="hero-bg pat-motorsport" style="--sc:var(--motorsport)" aria-hidden="true"><span
+                class="hero-ghost">21</span></div>
+            <div class="hero-copy">
+              <p class="kicker hero-kicker"><span class="live-dot" aria-hidden="true"></span> Roster · Season 24/25</p>
+              <h2 class="hero-name"><span class="ln">Tomás</span><span class="ln">Alves</span></h2>
+              <div class="hero-meta">
+                <span class="sport-chip" style="--sc:var(--motorsport)">Motorsport · Formula Regional</span>
+                <span class="hero-stat mono">3 podiums · F2 test confirmed</span>
+              </div>
+              <div class="hero-cta">
+                <a class="btn btn-gold" href="#/athlete/3">Open dossier <span class="arr"
+                    aria-hidden="true">→</span></a>
+                <a class="btn btn-ghost hero-ghost-btn" href="#/roster">View full roster</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="hero-slide" data-sport="track" aria-hidden="true" aria-label="Spotlight: Inês Rodrigues">
+            <div class="hero-bg pat-track" style="--sc:var(--track)" aria-hidden="true"><span
+                class="hero-ghost">12</span></div>
+            <div class="hero-copy">
+              <p class="kicker hero-kicker"><span class="live-dot" aria-hidden="true"></span> Roster · Season 24/25</p>
+              <h2 class="hero-name"><span class="ln">Inês</span><span class="ln">Rodrigues</span></h2>
+              <div class="hero-meta">
+                <span class="sport-chip" style="--sc:var(--track)">Track &amp; Field · 400m Hurdles</span>
+                <span class="hero-stat mono">National Record · 54.12s</span>
+              </div>
+              <div class="hero-cta">
+                <a class="btn btn-gold" href="#/athlete/4">Open dossier <span class="arr"
+                    aria-hidden="true">→</span></a>
+                <a class="btn btn-ghost hero-ghost-btn" href="#/roster">View full roster</a>
+              </div>
+            </div>
+          </article>
+
+          <div class="hero-rail" role="group" aria-label="Choose spotlight athlete">
+            <button class="hero-rail-item active" data-goto="0"><span class="idx">01</span> Diogo Ferreira</button>
+            <button class="hero-rail-item" data-goto="1"><span class="idx">02</span> Mariana Costa</button>
+            <button class="hero-rail-item" data-goto="2"><span class="idx">03</span> Tomás Alves</button>
+            <button class="hero-rail-item" data-goto="3"><span class="idx">04</span> Inês Rodrigues</button>
+          </div>
+
+          <div class="hero-foot">
+            <div class="hero-foot-inner">
+              <button class="hero-arrow" id="hero-prev" aria-label="Previous athlete">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  aria-hidden="true">
+                  <path d="M19 12H5m6-7l-7 7 7 7" />
+                </svg>
+              </button>
+              <div class="hero-bars" role="group" aria-label="Spotlight progress">
+                <button class="hero-bar active" data-goto="0"
+                  aria-label="Show spotlight 1: Diogo Ferreira"><i></i></button>
+                <button class="hero-bar" data-goto="1" aria-label="Show spotlight 2: Mariana Costa"><i></i></button>
+                <button class="hero-bar" data-goto="2" aria-label="Show spotlight 3: Tomás Alves"><i></i></button>
+                <button class="hero-bar" data-goto="3" aria-label="Show spotlight 4: Inês Rodrigues"><i></i></button>
+              </div>
+              <button class="hero-arrow" id="hero-next" aria-label="Next athlete">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  aria-hidden="true">
+                  <path d="M5 12h14m-6-7l7 7-7 7" />
+                </svg>
+              </button>
+              <span class="hero-count mono"><b id="hero-idx">01</b> / 04</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- season ticker -->
+        <div class="ticker" aria-label="Latest roster results">
+          <div class="ticker-track" id="ticker-track"><!-- hydrated x2 --></div>
+        </div>
+
+        <!-- manifesto -->
+        <section class="block">
+          <div class="wrap">
+            <div class="manifesto-grid">
+              <div class="reveal">
+                <p class="kicker">The Agency</p>
+                <p class="manifesto" style="margin-top:1rem">Six athletes. Four disciplines. <span class="hl">One
+                    standard.</span></p>
+              </div>
+              <div class="manifesto-side reveal" style="--d:.15s">
+                <p class="lead">Pódio is a boutique sports management firm in Lisbon. We don't sign rosters — we curate
+                  them.</p>
+                <p>Every athlete on this page was chosen for two things: measurable performance, and the character to
+                  carry a brand. Then we build everything around them — contracts, media, sponsorships, appearances —
+                  with the precision of a pit crew and the taste of a gallery.</p>
+                <div class="cta-row">
+                  <a class="btn btn-gold" href="#/roster">Explore athlete dossiers <span class="arr"
+                      aria-hidden="true">→</span></a>
+                  <a class="btn btn-ghost" href="#/agency">Our story</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="stat-band reveal" style="--d:.1s">
+              <div class="stat-cell">
+                <div class="stat-num" data-counter="6" data-pad="2">00</div>
+                <div class="stat-lbl">Rostered athletes</div>
+              </div>
+              <div class="stat-cell">
+                <div class="stat-num" data-counter="4" data-pad="2">00</div>
+                <div class="stat-lbl">Disciplines</div>
+              </div>
+              <div class="stat-cell">
+                <div class="stat-num" data-counter="47" data-suffix="+">0</div>
+                <div class="stat-lbl">International caps</div>
+              </div>
+              <div class="stat-cell">
+                <div class="stat-num" data-counter="15">0</div>
+                <div class="stat-lbl">Podiums &amp; titles</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- featured dossiers -->
+        <section class="block" style="padding-top:0">
+          <div class="wrap">
+            <div class="sec-head reveal">
+              <p class="kicker">01 · Featured Dossiers</p>
+              <h2 class="sec-title">This season's <span class="accent">front page.</span></h2>
+            </div>
+            <div class="featured-grid" id="featured-grid"><!-- hydrated --></div>
+          </div>
+        </section>
+
+        <!-- season pulse -->
+        <section class="block" style="padding-top:0">
+          <div class="wrap">
+            <div class="sec-head reveal">
+              <p class="kicker"><span class="live-dot" aria-hidden="true"></span> 02 · Season Pulse</p>
+              <h2 class="sec-title">Momentum, <span class="accent">measured.</span></h2>
+              <p class="sec-sub">The roster never stands still. Here's what's next, and what just landed.</p>
+            </div>
+            <div class="pulse-grid">
+              <div class="pulse-panel reveal">
+                <h3><span class="live-dot" aria-hidden="true"></span> Next 30 days</h3>
+                <div id="pulse-upcoming"><!-- hydrated --></div>
+              </div>
+              <div class="pulse-panel reveal" style="--d:.12s">
+                <h3>Recent results</h3>
+                <div id="pulse-results"><!-- hydrated --></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- partner band -->
+        <section class="partner-band">
+          <div class="wrap partner-inner">
+            <h2 class="reveal">Put your brand<br>in the frame.</h2>
+            <a class="btn btn-ink reveal" style="--d:.1s" href="#/partners">Open the sponsor matchmaker <span
+                class="arr" aria-hidden="true">→</span></a>
+            <p class="reveal" style="--d:.18s">Three questions. Ninety seconds. A shortlist of athletes whose audience,
+              discipline and story fit your brief — before you ever pick up the phone.</p>
+          </div>
+        </section>
+
+        <!-- trust -->
+        <section class="block">
+          <div class="wrap">
+            <div class="sec-head reveal">
+              <p class="kicker">03 · Recognition</p>
+              <h2 class="sec-title">Taken <span class="accent">seriously.</span></h2>
+            </div>
+            <div class="trust-row">
+              <div class="trust-item reveal"><span class="yr mono">2024</span><b>Finalist — Portuguese Sports Business
+                  Awards</b><small>Best Athlete Agency</small></div>
+              <div class="trust-item reveal" style="--d:.1s"><span class="yr mono">2023–25</span><b>Official Partner —
+                  Surf Portugal Federation</b><small>Multi-season representation agreement</small></div>
+              <div class="trust-quote reveal" style="--d:.18s">
+                <blockquote>"The most curated roster in Portuguese sport."</blockquote>
+                <cite>— SPORTS BUSINESS PT · ANNUAL AGENCY REVIEW</cite>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- ================= ROSTER ================= -->
+      <section class="view" id="view-roster" aria-label="The roster">
+        <div class="wrap">
+          <div class="page-head">
+            <p class="kicker reveal">Dossier Explorer</p>
+            <h1 class="page-title reveal" style="--d:.08s">The <span class="ghost-word">Roster</span></h1>
+            <p class="sec-sub reveal" style="--d:.16s">Filter by discipline, compare up to three athletes side-by-side,
+              and open a full dossier on anyone who catches your eye. Built for scouts, sponsors and the simply curious.
+            </p>
+          </div>
+
+          <div class="toolbar" role="search" aria-label="Roster filters">
+            <div class="search-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" />
+                <path d="M21 21l-4.3-4.3" />
+              </svg>
+              <input type="search" id="roster-search" placeholder="Search athletes…"
+                aria-label="Search athletes by name or keyword">
+            </div>
+            <div class="chip-row" role="group" aria-label="Filter by sport">
+              <button class="f-chip active" data-sport="all" aria-pressed="true">All</button>
+              <button class="f-chip" data-sport="football" aria-pressed="false">Football</button>
+              <button class="f-chip" data-sport="surfing" aria-pressed="false">Surfing</button>
+              <button class="f-chip" data-sport="motorsport" aria-pressed="false">Motorsport</button>
+              <button class="f-chip" data-sport="track" aria-pressed="false">Track &amp; Field</button>
+            </div>
+            <div class="sort-wrap">
+              <label for="roster-sort">Sort</label>
+              <select id="roster-sort">
+                <option value="featured">Featured</option>
+                <option value="name">Name A–Z</option>
+                <option value="age">Age</option>
+                <option value="trending">Trending first</option>
+              </select>
+            </div>
+            <span class="roster-count mono" id="roster-count" aria-live="polite">— dossiers</span>
+          </div>
+
+          <div class="roster-grid" id="roster-grid" aria-live="polite">
+            <!-- skeleton loading state -->
+            <div class="sk-card">
+              <div class="sk sk-portrait"></div>
+              <div class="sk sk-line w60"></div>
+              <div class="sk sk-line w40"></div>
+            </div>
+            <div class="sk-card">
+              <div class="sk sk-portrait"></div>
+              <div class="sk sk-line w60"></div>
+              <div class="sk sk-line w40"></div>
+            </div>
+            <div class="sk-card">
+              <div class="sk sk-portrait"></div>
+              <div class="sk sk-line w60"></div>
+              <div class="sk sk-line w40"></div>
+            </div>
+            <div class="sk-card">
+              <div class="sk sk-portrait"></div>
+              <div class="sk sk-line w60"></div>
+              <div class="sk sk-line w40"></div>
+            </div>
+            <div class="sk-card">
+              <div class="sk sk-portrait"></div>
+              <div class="sk sk-line w60"></div>
+              <div class="sk sk-line w40"></div>
+            </div>
+            <div class="sk-card">
+              <div class="sk sk-portrait"></div>
+              <div class="sk sk-line w60"></div>
+              <div class="sk sk-line w40"></div>
+            </div>
+          </div>
+
+          <div class="empty-state" id="roster-empty" hidden>
+            <p class="big">No matches on this lane</p>
+            <p>No athletes match your current filters. Loosen the search or reset everything and start from the full
+              roster.</p>
+            <button class="btn btn-gold" id="roster-reset">Reset filters</button>
+          </div>
+        </div>
+
+        <!-- compare bar -->
+        <div class="compare-bar" id="compare-bar" aria-label="Athlete comparison tray">
+          <span class="cmp-label">Compare</span>
+          <div class="cmp-chips" id="cmp-chips"></div>
+          <button class="btn btn-gold btn-sm" id="cmp-open" disabled>Compare (0)</button>
+          <button class="btn btn-ghost btn-sm" id="cmp-clear">Clear</button>
+        </div>
+      </section>
+
+      <!-- ================= ATHLETE DOSSIER (dynamic) ================= -->
+      <section class="view" id="view-athlete" aria-label="Athlete dossier">
+        <div class="wrap" id="athlete-root"><!-- rendered by router --></div>
+      </section>
+
+      <!-- ================= AGENCY ================= -->
+      <section class="view" id="view-agency" aria-label="The agency">
+        <div class="wrap">
+          <div class="page-head">
+            <p class="kicker reveal">Est. Lisboa · 2016</p>
+            <h1 class="page-title reveal" style="--d:.08s">The <span class="ghost-word">Agency</span></h1>
+          </div>
+
+          <section class="block" style="padding-top:0">
+            <p class="agency-lede reveal">We don't manage careers. <span class="accent">We build institutions.</span>
+            </p>
+            <div class="manifesto-grid" style="margin-top:2.5rem">
+              <div class="reveal">
+                <p style="max-width:58ch">Pódio was founded on a contrarian idea: that a management firm should
+                  represent fewer athletes, and do more for each one. While agencies chase volume, we spend seasons
+                  watching one athlete before we ever extend a contract — then we build around them with a small, senior
+                  team that answers the phone.</p>
+              </div>
+              <div class="reveal" style="--d:.12s">
+                <p style="max-width:58ch">Our roster spans the pitch, the Atlantic, the grid and the track — four
+                  disciplines, one philosophy. Performance first. Narrative close behind. And every partnership
+                  measured, never improvised.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="block" style="padding-top:0">
+            <div class="sec-head reveal">
+              <p class="kicker">Method</p>
+              <h2 class="sec-title">Three moves. <span class="accent">No shortcuts.</span></h2>
+            </div>
+            <div class="process-row reveal">
+              <div class="process-num" aria-hidden="true">01</div>
+              <div>
+                <h3>Scout</h3>
+                <p>We watch the athletes others haven't found yet — youth academies, regional heats, test days.
+                  Signatures come after seasons of observation, never before. If we approach you, it's because the data
+                  and the eye test already agree.</p>
+              </div>
+            </div>
+            <div class="process-row reveal">
+              <div class="process-num" aria-hidden="true">02</div>
+              <div>
+                <h3>Build</h3>
+                <p>Positioning, media training, contract architecture, language coaching. Each athlete gets a personal
+                  dossier — a living document of performance, story and commercial value — maintained by their dedicated
+                  manager.</p>
+              </div>
+            </div>
+            <div class="process-row reveal">
+              <div class="process-num" aria-hidden="true">03</div>
+              <div>
+                <h3>Elevate</h3>
+                <p>Sponsorships that fit the person. Appearances that respect the calendar. Placements that move the
+                  career forward, not just the invoice. When a Pódio athlete enters a room, the room already knows why.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section class="block" style="padding-top:0">
+            <div class="sec-head reveal">
+              <p class="kicker">Leadership</p>
+              <h2 class="sec-title">At the <span class="accent">desk.</span></h2>
+            </div>
+            <div class="leader-card reveal">
+              <div class="leader-portrait" role="img" aria-label="Stylized portrait placeholder for Ricardo Mendes">
+                <span>RM</span>
+              </div>
+              <div>
+                <h3>Ricardo Mendes</h3>
+                <p class="leader-role">Managing Director · Founder</p>
+                <p>Fifteen years across player agencies in Porto and Madrid before founding Pódio in 2016. Negotiated
+                  40+ professional contracts and two federation partnerships. Still watches every scouting tape himself.
+                </p>
+                <blockquote>"Talent is common. Direction is rare. We sell direction."</blockquote>
+              </div>
+            </div>
+          </section>
+
+          <section class="block" style="padding-top:0">
+            <div class="sec-head reveal">
+              <p class="kicker">Find Us</p>
+              <h2 class="sec-title">Av. da Liberdade, <span class="accent">110.</span></h2>
+            </div>
+            <div class="office-grid">
+              <div class="map-card reveal" role="img"
+                aria-label="Stylized map showing the Pódio office on Avenida da Liberdade, five minutes from Restauradores metro station">
+                <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <rect width="600" height="400" fill="#0b1424" />
+                  <g stroke="rgba(148,166,199,.14)" stroke-width="1.5">
+                    <path d="M0 80h600M0 160h600M0 240h600M0 320h600M100 0v400M220 0v400M340 0v400M460 0v400" />
+                  </g>
+                  <path d="M60 400L300 0" stroke="rgba(226,182,79,.5)" stroke-width="10" stroke-linecap="round" />
+                  <path d="M0 300L600 180" stroke="rgba(82,199,242,.35)" stroke-width="5" />
+                  <circle cx="238" cy="190" r="9" fill="#e2b64f" />
+                  <circle cx="238" cy="190" r="20" fill="none" stroke="#e2b64f" stroke-opacity=".5" />
+                  <text x="258" y="186" fill="#f2f5fb" font-family="IBM Plex Mono, monospace" font-size="13"
+                    letter-spacing="2">PÓDIO HQ</text>
+                  <text x="258" y="204" fill="#8b98af" font-family="IBM Plex Mono, monospace" font-size="10"
+                    letter-spacing="1">AV. DA LIBERDADE 110 · 2º</text>
+                  <rect x="118" y="330" width="12" height="12" fill="#52c7f2" />
+                  <text x="140" y="341" fill="#8b98af" font-family="IBM Plex Mono, monospace" font-size="10"
+                    letter-spacing="1">RESTAURADORES Ⓜ 5 MIN</text>
+                </svg>
+              </div>
+              <div class="reveal" style="--d:.12s">
+                <dl class="addr-list">
+                  <div>
+                    <dt>Address</dt>
+                    <dd>Av. da Liberdade 110, 2º Andar<br>1250-146 Lisboa, Portugal</dd>
+                  </div>
+                  <div>
+                    <dt>Phone</dt>
+                    <dd><a href="tel:+351210000000">+351 21 XXX XXXX</a></dd>
+                  </div>
+                  <div>
+                    <dt>Email</dt>
+                    <dd><a href="mailto:roster@podiosports.pt">roster@podiosports.pt</a></dd>
+                  </div>
+                  <div>
+                    <dt>Hours</dt>
+                    <dd>Mon–Fri · 09:00–18:00 WET<br>Match days: on-call</dd>
+                  </div>
+                  <div>
+                    <dt>Getting here</dt>
+                    <dd>5 min walk from Restauradores metro station. Intercom code: #4200</dd>
+                  </div>
+                </dl>
+                <div class="cta-row">
+                  <a class="btn btn-gold" href="#/contact">Book a meeting <span class="arr"
+                      aria-hidden="true">→</span></a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- ================= PARTNERS / MATCHMAKER ================= -->
+      <section class="view" id="view-partners" aria-label="Partners">
+        <div class="wrap">
+          <div class="page-head">
+            <p class="kicker reveal">Sponsor Matchmaker</p>
+            <h1 class="page-title reveal" style="--d:.08s">Find your <span class="ghost-word">athlete.</span></h1>
+            <p class="sec-sub reveal" style="--d:.16s">Three questions. Ninety seconds. We'll match your brand against
+              the roster by audience, discipline and campaign intent — then put you in the room.</p>
+          </div>
+
+          <div class="mm-grid">
+            <div class="wizard reveal" id="wizard">
+              <ol class="wiz-steps" id="wiz-steps">
+                <li class="on">01 · Industry</li>
+                <li>02 · Audience</li>
+                <li>03 · Goal</li>
+              </ol>
+
+              <form id="mm-form" novalidate>
+                <fieldset class="wiz-step on" data-step="1">
+                  <legend>Where does your brand play?</legend>
+                  <div class="opt-grid">
+                    <label class="opt"><input type="radio" name="mm-industry" value="fashion"><span><b>Fashion &amp;
+                          Apparel</b><small>Streetwear to atelier</small></span></label>
+                    <label class="opt"><input type="radio" name="mm-industry" value="finance"><span><b>Finance &amp;
+                          Insurance</b><small>Retail or private</small></span></label>
+                    <label class="opt"><input type="radio" name="mm-industry"
+                        value="tech"><span><b>Technology</b><small>Hardware, SaaS, apps</small></span></label>
+                    <label class="opt"><input type="radio" name="mm-industry" value="energy"><span><b>Energy &amp;
+                          Sustainability</b><small>Green transition</small></span></label>
+                    <label class="opt"><input type="radio" name="mm-industry" value="food"><span><b>Food &amp;
+                          Beverage</b><small>FMCG and nutrition</small></span></label>
+                    <label class="opt"><input type="radio" name="mm-industry" value="media"><span><b>Media &amp;
+                          Entertainment</b><small>Streaming, publishing</small></span></label>
+                    <label class="opt"><input type="radio" name="mm-industry" value="tourism"><span><b>Tourism &amp;
+                          Hospitality</b><small>Travel, hotels, regions</small></span></label>
+                    <label class="opt"><input type="radio" name="mm-industry" value="automotive"><span><b>Automotive
+                          &amp; Mobility</b><small>OEMs and fleets</small></span></label>
+                  </div>
+                </fieldset>
+
+                <fieldset class="wiz-step" data-step="2">
+                  <legend>Who are you trying to reach?</legend>
+                  <div class="opt-grid">
+                    <label class="opt"><input type="radio" name="mm-audience" value="genz"><span><b>Gen
+                          Z</b><small>13–24 · digital native</small></span></label>
+                    <label class="opt"><input type="radio" name="mm-audience" value="young"><span><b>Young
+                          Adults</b><small>25–34 · urban</small></span></label>
+                    <label class="opt"><input type="radio" name="mm-audience" value="families"><span><b>Families &amp;
+                          Community</b><small>Regional reach</small></span></label>
+                    <label class="opt"><input type="radio" name="mm-audience" value="premium"><span><b>Premium &amp;
+                          Luxury</b><small>High net worth</small></span></label>
+                    <label class="opt"><input type="radio" name="mm-audience" value="b2b"><span><b>B2B &amp;
+                          Corporate</b><small>Decision makers</small></span></label>
+                  </div>
+                </fieldset>
+
+                <fieldset class="wiz-step" data-step="3">
+                  <legend>What should the campaign do?</legend>
+                  <div class="opt-grid">
+                    <label class="opt"><input type="radio" name="mm-goal" value="awareness"><span><b>Brand
+                          Awareness</b><small>Reach and recall</small></span></label>
+                    <label class="opt"><input type="radio" name="mm-goal" value="activation"><span><b>Event
+                          Activation</b><small>On-site presence</small></span></label>
+                    <label class="opt"><input type="radio" name="mm-goal" value="content"><span><b>Content &amp;
+                          Social</b><small>Always-on storytelling</small></span></label>
+                    <label class="opt"><input type="radio" name="mm-goal" value="csr"><span><b>CSR &amp;
+                          Sustainability</b><small>Purpose-led campaigns</small></span></label>
+                  </div>
+                </fieldset>
+
+                <div class="wiz-nav">
+                  <button type="button" class="btn btn-ghost" id="mm-back" disabled>← Back</button>
+                  <button type="button" class="btn btn-gold" id="mm-next" disabled>Next <span class="arr"
+                      aria-hidden="true">→</span></button>
+                </div>
+              </form>
+
+              <div id="mm-results" aria-live="polite"></div>
+            </div>
+
+            <aside class="mm-side reveal" style="--d:.15s">
+              <h3>Why partner with Pódio</h3>
+              <ul>
+                <li><span><b>Curated reach.</b> Six athletes, four disciplines, zero dead weight. Every face we put in
+                    front of you earns its place.</span></li>
+                <li><span><b>Content-first.</b> Our in-house media team ships editorial-grade assets, not logo
+                    slaps.</span></li>
+                <li><span><b>Measured.</b> Every partnership closes with a performance report — impressions,
+                    appearances, sentiment.</span></li>
+                <li><span><b>Recognized.</b> Finalist, Portuguese Sports Business Awards 2024. Official partner, Surf
+                    Portugal Federation.</span></li>
+              </ul>
+              <div class="cta-row" style="margin-top:1.4rem">
+                <a class="btn btn-ghost btn-sm" href="#/contact?topic=sponsorship">Talk to us directly</a>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CONTACT ================= -->
+      <section class="view" id="view-contact" aria-label="Contact">
+        <div class="wrap">
+          <div class="page-head">
+            <p class="kicker reveal">Inquiries</p>
+            <h1 class="page-title reveal" style="--d:.08s">Start the <span class="ghost-word">conversation.</span></h1>
+          </div>
+
+          <div class="contact-grid">
+            <div class="c-info reveal">
+              <h2>The desk answers.</h2>
+              <p>Sponsorships, press, bookings, scouting referrals — one inbox, a real person, within two working days.
+              </p>
+              <dl class="addr-list">
+                <div>
+                  <dt>Email</dt>
+                  <dd><a href="mailto:roster@podiosports.pt">roster@podiosports.pt</a></dd>
+                </div>
+                <div>
+                  <dt>Phone</dt>
+                  <dd><a href="tel:+351210000000">+351 21 XXX XXXX</a></dd>
+                </div>
+                <div>
+                  <dt>Office</dt>
+                  <dd>Av. da Liberdade 110, 2º Andar<br>1250-146 Lisboa</dd>
+                </div>
+                <div>
+                  <dt>Hours</dt>
+                  <dd>Mon–Fri · 09:00–18:00 WET<br>Match days: on-call</dd>
+                </div>
+                <div>
+                  <dt>Note</dt>
+                  <dd>5 min from Restauradores metro. Intercom: #4200</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div class="c-form reveal" style="--d:.12s">
+              <form id="contact-form" novalidate>
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="f-name">Full name <span class="req" aria-hidden="true">*</span></label>
+                    <input id="f-name" name="fullName" type="text" autocomplete="name" required
+                      aria-describedby="e-name">
+                    <p class="f-err" id="e-name" aria-live="polite"></p>
+                  </div>
+                  <div class="field">
+                    <label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
+                    <input id="f-email" name="emailAddress" type="email" autocomplete="email" required
+                      aria-describedby="e-email">
+                    <p class="f-err" id="e-email" aria-live="polite"></p>
+                  </div>
+                  <div class="field">
+                    <label for="f-phone">Phone <span class="req" aria-hidden="true">*</span></label>
+                    <input id="f-phone" name="phoneNumber" type="tel" autocomplete="tel" required
+                      aria-describedby="e-phone">
+                    <p class="f-err" id="e-phone" aria-live="polite"></p>
+                  </div>
+                  <div class="field">
+                    <label for="f-type">Inquiry type <span class="req" aria-hidden="true">*</span></label>
+                    <select id="f-type" name="inquiryType" required aria-describedby="e-type">
+                      <option value="">Select…</option>
+                      <option value="sponsorship">Sponsorship Opportunity</option>
+                      <option value="media">Media &amp; Press</option>
+                      <option value="booking">Booking / Appearance</option>
+                      <option value="scouting">Scouting / Trial Referral</option>
+                      <option value="general">General Inquiry</option>
+                      <option value="other">Other</option>
+                    </select>
+                    <p class="f-err" id="e-type" aria-live="polite"></p>
+                  </div>
+                  <div class="field full">
+                    <label id="chips-label">Athletes of interest</label>
+                    <div class="chip-group" id="athlete-chips" role="group" aria-labelledby="chips-label">
+                      <!-- hydrated -->
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="f-date">Preferred contact date</label>
+                    <input id="f-date" name="preferredContactDate" type="datetime-local">
+                    <p class="f-err"></p>
+                  </div>
+                  <div class="field">
+                    <label for="f-org">Organization <span class="mono"
+                        style="letter-spacing:0;text-transform:none">(optional)</span></label>
+                    <input id="f-org" name="organizationName" type="text" autocomplete="organization">
+                    <p class="f-err"></p>
+                  </div>
+                  <div class="field full">
+                    <label for="f-notes">Additional notes</label>
+                    <textarea id="f-notes" name="additionalNotes"
+                      placeholder="Budget window, campaign dates, deliverables…"></textarea>
+                  </div>
+                  <div class="field full">
+                    <div class="consent">
+                      <input type="checkbox" id="f-consent" required aria-describedby="consent-hint">
+                      <label for="f-consent">I consent to Pódio Sports Management storing this inquiry and contacting me
+                        about it, per their privacy policy. <span class="req" aria-hidden="true">*</span></label>
+                    </div>
+                    <p class="consent-hint" id="consent-hint">Consent is required to enable submission.</p>
+                  </div>
+                </div>
+                <div class="cta-row" style="margin-top:1.6rem">
+                  <button type="submit" class="btn btn-gold" id="f-submit" disabled>
+                    <span class="spin" aria-hidden="true"></span>
+                    Send inquiry <span class="arr" aria-hidden="true">→</span>
+                  </button>
+                </div>
+                <p class="form-note">Prototype note: submissions are simulated — no data leaves this page.</p>
+              </form>
+
+              <div class="form-success" id="form-success" hidden>
+                <div class="check" aria-hidden="true">✓</div>
+                <h3>Inquiry received.</h3>
+                <p id="success-copy">Thank you — the desk will reply within two working days.</p>
+                <p class="summary mono" id="success-summary"></p><br>
+                <button class="btn btn-ghost" id="f-again">Send another inquiry</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 404 ================= -->
+      <section class="view" id="view-404" aria-label="Page not found">
+        <div class="wrap nf">
+          <p class="nf-code" aria-hidden="true">404</p>
+          <h2>This lane is empty.</h2>
+          <p>The page you're looking for was scratched from the program. Head back to the start line or browse the
+            roster instead.</p>
+          <div class="cta-row" style="justify-content:center">
+            <a class="btn btn-gold" href="#/">Back to home <span class="arr" aria-hidden="true">→</span></a>
+            <a class="btn btn-ghost" href="#/roster">Open the roster</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="#/" style="--hd-text:#f2f5fb">
+              <span class="brand-mark">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <rect x="2" y="13" width="6" height="9" />
+                  <rect x="9" y="6" width="6" height="16" />
+                  <rect x="16" y="10" width="6" height="12" />
+                </svg>
+                PÓDIO
+              </span>
+              <span class="brand-sub">SPORTS MGMT · LISBOA</span>
+            </a>
+            <p>A boutique Portuguese agency curating elite athletes across football, surfing, motorsport and track &amp;
+              field.</p>
+          </div>
+          <div>
+            <h4>Explore</h4>
+            <ul class="footer-list">
+              <li><a href="#/">Home</a></li>
+              <li><a href="#/roster">The Roster</a></li>
+              <li><a href="#/agency">The Agency</a></li>
+              <li><a href="#/partners">Sponsor Matchmaker</a></li>
+              <li><a href="#/contact">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>The Roster</h4>
+            <ul class="footer-list">
+              <li><a href="#/athlete/1">Diogo Ferreira <small>FB</small></a></li>
+              <li><a href="#/athlete/2">Mariana Costa <small>SF</small></a></li>
+              <li><a href="#/athlete/3">Tomás Alves <small>MS</small></a></li>
+              <li><a href="#/athlete/4">Inês Rodrigues <small>TF</small></a></li>
+              <li><a href="#/athlete/5">Lucas Pereira <small>FB</small></a></li>
+              <li><a href="#/athlete/6">Sofia Nascimento <small>SF</small></a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>The Desk</h4>
+            <ul class="footer-contact">
+              <li><span class="k">Addr</span><span>Av. da Liberdade 110, 2º Andar, 1250-146 Lisboa</span></li>
+              <li><span class="k">Mail</span><span><a
+                    href="mailto:roster@podiosports.pt">roster@podiosports.pt</a></span></li>
+              <li><span class="k">Tel</span><span><a href="tel:+351210000000">+351 21 XXX XXXX</a></span></li>
+              <li><span class="k">Hours</span><span>Mon–Fri 09:00–18:00 WET · Match days on-call</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 Pódio Sports Management · Lisboa, Portugal</span>
+          <span class="legal">
+            <button class="linklike" data-demo>Privacy</button>
+            <button class="linklike" data-demo>Terms</button>
+            <button class="linklike" data-demo>Press kit</button>
+          </span>
+          <button class="linklike" id="to-top" aria-label="Back to top">↑ Top</button>
+        </div>
+      </div>
+    </footer>
+
+    <!-- compare modal -->
+    <div class="modal" id="compare-modal" role="dialog" aria-modal="true" aria-labelledby="cmp-title" hidden>
+      <div class="modal-panel">
+        <div class="modal-head">
+          <h2 id="cmp-title">Compare dossiers</h2>
+          <button class="icon-btn" data-close aria-label="Close comparison">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M5 5l14 14M19 5L5 19" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body" id="cmp-body"><!-- rendered --></div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      'use strict';
+      /* ================================================================
+         PÓDIO SPORTS MANAGEMENT — application script
+         Sections: data · utils · theme · router · reveals · hero ·
+         hydration · roster explorer · compare · dossier · matchmaker ·
+         contact · header/drawer/dropdown · init
+         ================================================================ */
+
+      /* ---------- DATA ---------- */
+      const ICONS = {
+        football: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5l4.3 3.1-1.6 5H9.3l-1.6-5L12 7.5zM12 3v4.5M20.6 9.6l-4.3 1M17.3 20l-2.6-4.4M9.3 15.6L6.7 20M7.7 10.6l-4.3-1"/></svg>',
+        surfing: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 15c2.5-3 5-3 7.5 0s5 3 7.5 0 4-2.5 5-.5"/><path d="M2 19.5c2.5-3 5-3 7.5 0s5 3 7.5 0 4-2.5 5-.5"/><path d="M13 3c4 1 6.5 4 7 8-4.5.5-8.5-1.5-10-6L13 3z"/></svg>',
+        motorsport: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 16l3-8h10l3 8"/><path d="M2 16h20M7 16v3M17 16v3"/><circle cx="8" cy="8" r="1.4"/><path d="M3 5h4M2 8h3"/></svg>',
+        track: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="15.5" cy="4.5" r="2"/><path d="M13.5 8l-4 2.5 2 3.5-3.5 5M13.5 8l2.5 4 3.5 1M13.5 8L10 21M6 12l-3 1.5"/></svg>'
+      };
+      const SPORTS = {
+        football: { label: 'Football', color: 'var(--football)' },
+        surfing: { label: 'Surfing', color: 'var(--surfing)' },
+        motorsport: { label: 'Motorsport', color: 'var(--motorsport)' },
+        track: { label: 'Track & Field', color: 'var(--track)' }
+      };
+      const AXES = ['Speed', 'Technique', 'Endurance', 'Mental', 'Teamwork', 'Marketability'];
+
+      const ATHLETES = [
+        {
+          id: 1, name: 'Diogo Ferreira', initials: 'DF', num: '08', sport: 'football',
+          discipline: 'Central Midfielder', age: 23, origin: 'Guimarães, PT', club: 'SC Braga B',
+          value: '€2.4M', valueLabel: 'Market value', next: { d: '15', m: 'FEB', event: 'Liga Portugal 2 · vs Estrela Amadora', venue: 'Estádio Municipal de Braga' },
+          ticker: '8G · 12A this season', trending: true,
+          short: 'Portugal U21 playmaker with vision two passes ahead of the game.',
+          desc: 'A central midfielder who reads the game two passes ahead of everyone else on the pitch. Captain material at 23 — composed under pressure, generous on the ball, and ruthless in the final third when it matters. Braga\u2019s academy built his technique; the U21 setup gave him a stage.',
+          badges: ['Portugal U21 international', 'Liga Portugal 2 · Team of the Month ×2', 'SC Braga academy graduate'],
+          vitals: [['Position', 'CM'], ['Age', '23'], ['Height', '1.82 m'], ['Club', 'SC Braga B'], ['Value', '€2.4M'], ['Next', '15 Feb']],
+          radar: [78, 92, 84, 88, 95, 82],
+          milestones: [
+            { y: '2019', t: 'National U17 title', d: 'Starts every match of Braga\u2019s championship run.' },
+            { y: '2021', t: 'Professional debut', d: '82nd-minute appearance in Liga Portugal 2.' },
+            { y: '2023', t: 'Portugal U21 call-up', d: 'First cap in a 3–1 European qualifier win.' },
+            { y: '2024', t: 'Breakout season', d: 'Team of the Season shortlist · 8 goals, 12 assists.' },
+            { y: '2025', t: '47th competitive cap', d: 'Becomes one of the division\u2019s most-watched midfielders.' }
+          ],
+          gallery: [
+            { tag: 'Action', cap: 'Shielding the ball · Matchday 21, Braga' },
+            { tag: 'Portrait', cap: 'Studio session · Season 24/25 kit launch' },
+            { tag: 'Celebration', cap: 'The equalizer · Matchday 14' },
+            { tag: 'Off-field', cap: 'Community clinic · Guimarães' }
+          ],
+          reel: { title: 'Diogo Ferreira — Season Highlights 24/25', dur: '03:12' },
+          fit: { industries: ['finance', 'tech', 'media', 'food'], audiences: ['genz', 'young', 'families'], goals: ['awareness', 'content'] }
+        },
+        {
+          id: 2, name: 'Mariana Costa', initials: 'MC', num: '07', sport: 'surfing',
+          discipline: 'Big-Wave Surfer', age: 26, origin: 'Nazaré, PT', club: 'Independent · Red Bull athlete',
+          value: '#7', valueLabel: 'Surfline Peak Ranking', next: { d: '28', m: 'JAN', event: 'Nazaré Invitational · window opens', venue: 'Praia do Norte, Nazaré' },
+          ticker: 'Rodeo 2024 Champion · Peak Rank #7', trending: true,
+          short: 'Three-time Nazaré finalist riding the biggest waves in Europe.',
+          desc: 'Three-time Nazaré invitational finalist and Rodeo 2024 champion. Mariana paddles into waves most people only photograph — with a calm that has made her the face of European big-wave surfing. Red Bull-sponsored, ocean-conservation vocal, and unshakeable in a two-wave hold-down.',
+          badges: ['Rodeo 2024 Champion', '3× Nazaré Invitational finalist', 'Red Bull-sponsored athlete', 'Ocean conservation advocate'],
+          vitals: [['Discipline', 'Big Wave'], ['Age', '26'], ['Home break', 'Nazaré'], ['Sponsor tier', 'Gold'], ['Peak rank', '#7'], ['Next', '28 Jan']],
+          radar: [85, 90, 92, 96, 70, 94],
+          milestones: [
+            { y: '2018', t: 'First Nazaré tow-in', d: 'Age 19 — youngest woman in the lineup that winter.' },
+            { y: '2021', t: 'Big-wave rookie season', d: 'Full campaign on the international tow circuit.' },
+            { y: '2023', t: 'Nazaré finalist', d: 'Third consecutive final at the invitational.' },
+            { y: '2024', t: 'Rodeo champion', d: 'Takes the title on a 17-metre ride.' },
+            { y: '2025', t: 'Peak Ranking #7', d: 'Career-high on the women\u2019s big-wave world list.' }
+          ],
+          gallery: [
+            { tag: 'Action', cap: '17-metre ride · Rodeo 2024 final' },
+            { tag: 'Portrait', cap: 'Dawn patrol · Praia do Norte' },
+            { tag: 'Celebration', cap: 'Rodeo trophy · Nazaré' },
+            { tag: 'Off-field', cap: 'Ocean cleanup initiative · Peniche' }
+          ],
+          reel: { title: 'Mariana Costa — Nazaré Big Wave Session', dur: '04:47' },
+          fit: { industries: ['energy', 'fashion', 'tourism', 'media'], audiences: ['genz', 'young', 'premium'], goals: ['awareness', 'csr', 'content'] }
+        },
+        {
+          id: 3, name: 'Tomás Alves', initials: 'TA', num: '21', sport: 'motorsport',
+          discipline: 'Formula Regional Driver', age: 21, origin: 'Coimbra, PT', club: 'Pódio Racing / ART GP affiliate',
+          value: 'P2', valueLabel: '2024 Iberian Championship', next: { d: '08', m: 'MAR', event: 'Formula Regional · Round 1', venue: 'Circuit de Barcelona-Catalunya' },
+          ticker: '3 podiums · F2 test confirmed', trending: true,
+          short: 'Iberian F Regional vice-champion with an F2 test on the calendar.',
+          desc: 'Vice-champion of the 2024 Iberian Formula Regional championship with three podiums in his debut season. Precise, analytical, and quick to adapt — Tomás has already completed two confirmed Formula 2 pre-season test days, the fastest Portuguese driver on the single-seater ladder.',
+          badges: ['2024 Iberian F Regional Vice-Champion', '3 podiums · debut season', 'F2 pre-season test ×2 confirmed'],
+          vitals: [['Series', 'Formula Regional'], ['Age', '21'], ['Car no.', '21'], ['Team', 'Pódio / ART aff.'], ['2024 champ.', 'P2'], ['Next', '08 Mar']],
+          radar: [97, 88, 86, 90, 75, 85],
+          milestones: [
+            { y: '2019', t: 'Karting national champion', d: 'Takes the Portuguese junior title at 15.' },
+            { y: '2022', t: 'F4 debut win', d: 'First single-seater season, first victory.' },
+            { y: '2023', t: 'Formula Regional rookie', d: 'Points finish inside the top ten.' },
+            { y: '2024', t: 'Vice-champion', d: 'Three podiums · Iberian F Regional.' },
+            { y: '2025', t: 'F2 test days', d: 'Two pre-season tests with a front-running F2 squad.' }
+          ],
+          gallery: [
+            { tag: 'Action', cap: 'Flat out · Estoril, Round 6' },
+            { tag: 'Portrait', cap: 'Pit lane · pre-season testing' },
+            { tag: 'Celebration', cap: 'Podium · Iberian Round 8' },
+            { tag: 'Off-field', cap: 'Simulator work · Coimbra HQ' }
+          ],
+          reel: { title: 'Tomás Alves — Onboard: Estoril Qualifying Lap', dur: '02:05' },
+          fit: { industries: ['automotive', 'tech', 'finance'], audiences: ['young', 'premium', 'b2b'], goals: ['activation', 'awareness'] }
+        },
+        {
+          id: 4, name: 'Inês Rodrigues', initials: 'IR', num: '12', sport: 'track',
+          discipline: '400m Hurdler', age: 24, origin: 'Pombal, PT', club: 'Sporting CP',
+          value: '54.12s', valueLabel: 'National Record · 400m H', next: { d: '22', m: 'FEB', event: 'European Indoor Trials', venue: 'Pombal, Portugal' },
+          ticker: 'NR 54.12s · 2× National Champion', trending: true,
+          short: 'Portuguese national record holder over 400m hurdles. 54.12 and counting.',
+          desc: 'The fastest Portuguese woman ever over 400 metres of hurdles — 54.12 seconds, a national record set under pressure at the 2023 nationals and defended since. Two-time national champion, World Championships qualifier, and a sports-science graduate who engineers her own race plans.',
+          badges: ['Portuguese NR · 54.12s', '2× National Champion', 'World Championships qualifier', 'BSc Sports Science'],
+          vitals: [['Event', '400m Hurdles'], ['Age', '24'], ['PB', '54.12s'], ['Club', 'Sporting CP'], ['Titles', '2×'], ['Next', '22 Feb']],
+          radar: [95, 86, 90, 93, 72, 78],
+          milestones: [
+            { y: '2018', t: 'First junior title', d: 'National U20 championship over 400mH.' },
+            { y: '2021', t: 'Senior debut', d: 'First senior international selection.' },
+            { y: '2023', t: 'National record', d: '54.12s — rewrites the Portuguese record book.' },
+            { y: '2024', t: 'World Championships qualifier', d: 'Reaches the semifinal on the global stage.' },
+            { y: '2025', t: 'European Indoor selection', d: 'Named to the national squad for the trials.' }
+          ],
+          gallery: [
+            { tag: 'Action', cap: 'Hurdle nine · national record race' },
+            { tag: 'Portrait', cap: 'Track session · Pombal' },
+            { tag: 'Celebration', cap: 'National title · 2024' },
+            { tag: 'Off-field', cap: 'Sports-science lab · race analysis' }
+          ],
+          reel: { title: 'Inês Rodrigues — Record Race Final', dur: '01:38' },
+          fit: { industries: ['food', 'energy', 'media', 'tourism'], audiences: ['genz', 'young', 'families'], goals: ['awareness', 'csr'] }
+        },
+        {
+          id: 5, name: 'Lucas Pereira', initials: 'LP', num: '03', sport: 'football',
+          discipline: 'Left-Back', age: 20, origin: 'Setúbal, PT', club: 'FC Arouca (on loan from Benfica)',
+          value: '€1.1M', valueLabel: 'Market value', next: { d: '18', m: 'FEB', event: 'Liga Portugal · vs Boavista', venue: 'Estádio Municipal de Arouca' },
+          ticker: '14 apps · 92% tackle success', trending: false,
+          short: 'Benfica academy left-back, thriving on loan at Arouca. Pace to burn.',
+          desc: 'A left-back built for the modern game: overlapping pace, a 92% tackle success rate, and recovery speed that erases mistakes before they become chances. A Benfica academy graduate getting real minutes at Arouca — exactly the loan spell his development demanded.',
+          badges: ['Benfica academy product', 'Liga Portugal debut 2024', '92% tackle success rate'],
+          vitals: [['Position', 'LB'], ['Age', '20'], ['Height', '1.78 m'], ['Club', 'FC Arouca'], ['Value', '€1.1M'], ['Next', '18 Feb']],
+          radar: [90, 80, 82, 76, 88, 70],
+          milestones: [
+            { y: '2017', t: 'Benfica academy entry', d: 'Joins the Seixal campus at age 12.' },
+            { y: '2022', t: 'Youth League campaign', d: 'Starts six matches in UEFA Youth League.' },
+            { y: '2024', t: 'Liga Portugal debut', d: 'First top-flight appearance off the bench.' },
+            { y: '2025', t: 'Arouca loan move', d: '14 league appearances in a full first-team role.' }
+          ],
+          gallery: [
+            { tag: 'Action', cap: 'Recovery sprint · Arouca vs Braga' },
+            { tag: 'Portrait', cap: 'Matchday tunnel · Arouca' },
+            { tag: 'Celebration', cap: 'First league assist · Matchday 12' },
+            { tag: 'Off-field', cap: 'Academy visit · Seixal' }
+          ],
+          reel: { title: 'Lucas Pereira — Defensive Highlights 24/25', dur: '02:44' },
+          fit: { industries: ['fashion', 'food', 'tech', 'media'], audiences: ['genz', 'families'], goals: ['content', 'awareness'] }
+        },
+        {
+          id: 6, name: 'Sofia Nascimento', initials: 'SN', num: '34', sport: 'surfing',
+          discipline: 'Shortboarder', age: 22, origin: 'Ericeira, PT', club: 'WSL Challenger Series',
+          value: '#34', valueLabel: 'Women\u2019s CT Ranking', next: { d: '15', m: 'MAR', event: 'WSL Challenger · Gold Coast', venue: 'Snapper Rocks, Australia' },
+          ticker: 'CS semi-finalist · First PT woman on CT', trending: false,
+          short: 'The first Portuguese woman to qualify for a WSL Championship Tour event.',
+          desc: 'Competitive shortboarder and Ericeira local. In 2024 Sofia became the first Portuguese woman to qualify for a WSL Championship Tour event, backed by a Challenger Series semi-final. Progressive above the lip, clinical in heats, and only 22.',
+          badges: ['First PT woman on a CT event', '2024 CS semi-finalist', 'European junior champion 2021'],
+          vitals: [['Discipline', 'Shortboard'], ['Age', '22'], ['Home break', 'Ericeira'], ['CS result', 'SF'], ['CT rank', '#34'], ['Next', '15 Mar']],
+          radar: [88, 91, 87, 85, 68, 88],
+          milestones: [
+            { y: '2021', t: 'European junior title', d: 'Takes the continental U21 crown at 18.' },
+            { y: '2022', t: 'Challenger Series debut', d: 'First full CS campaign.' },
+            { y: '2024', t: 'CS semi-final', d: 'Deep run at the Ericeira leg, home crowd.' },
+            { y: '2024', t: 'CT qualification', d: 'First Portuguese woman into a Championship Tour event.' },
+            { y: '2025', t: 'Gold Coast campaign', d: 'Opens the season on the Australian leg.' }
+          ],
+          gallery: [
+            { tag: 'Action', cap: 'Backside air · Ericeira CS leg' },
+            { tag: 'Portrait', cap: 'Lineup at dawn · Ribeira d\u2019Ilhas' },
+            { tag: 'Celebration', cap: 'Heat win · scores posted' },
+            { tag: 'Off-field', cap: 'Board shaping workshop · Ericeira' }
+          ],
+          reel: { title: 'Sofia Nascimento — Competition Edits 2024', dur: '03:36' },
+          fit: { industries: ['fashion', 'tourism', 'media', 'energy'], audiences: ['genz', 'young'], goals: ['content', 'awareness', 'activation'] }
+        }
+      ];
+
+      const TICKER_ITEMS = [
+        { sport: 'track', html: '<b>Inês Rodrigues</b> 54.12s · NATIONAL RECORD <span class="up">▲</span>' },
+        { sport: 'surfing', html: '<b>Mariana Costa</b> RODEO 2024 CHAMPION <span class="up">▲</span>' },
+        { sport: 'motorsport', html: '<b>Tomás Alves</b> P3 · IBERIAN F REGIONAL RD.8 <span class="up">▲</span>' },
+        { sport: 'football', html: '<b>Diogo Ferreira</b> 1G · 2A · MATCHDAY 21' },
+        { sport: 'surfing', html: '<b>Sofia Nascimento</b> SEMI-FINAL · WSL CS ERICEIRA' },
+        { sport: 'football', html: '<b>Lucas Pereira</b> 92% TACKLE SUCCESS · AROUCA 2–1' }
+      ];
+
+      /* ---------- UTILS ---------- */
+      const $ = (s, r = document) => r.querySelector(s);
+      const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+      const byId = id => ATHLETES.find(a => a.id === id);
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+      const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+      let toastTimer = null;
+      function toast(msg) {
+        const t = $('#toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+      }
+
+      /* ---------- THEME ---------- */
+      function applyTheme(t) {
+        document.documentElement.dataset.theme = t;
+        try { localStorage.setItem('podio-theme', t); } catch (e) { }
+        $('#theme-toggle').setAttribute('aria-pressed', String(t === 'light'));
+      }
+      applyTheme((() => { try { return localStorage.getItem('podio-theme') || 'dark'; } catch (e) { return 'dark'; } })());
+      $('#theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+        toast(next === 'dark' ? 'Lights down — night session.' : 'Daylight mode on.');
+      });
+
+      /* ---------- REVEALS & COUNTERS ---------- */
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (!en.isIntersecting) return;
+          en.target.classList.add('in');
+          io.unobserve(en.target);
+          if (en.target.hasAttribute('data-counter')) runCounter(en.target);
+        });
+      }, { threshold: .16, rootMargin: '0px 0px -6% 0px' });
+
+      function armReveals(root) {
+        $$('.reveal', root).forEach(el => {
+          el.classList.remove('in');
+          if (reduced.matches) {
+            el.classList.add('in');
+            if (el.hasAttribute('data-counter')) setCounterFinal(el);
+          } else {
+            io.observe(el);
+          }
+        });
+      }
+      function setCounterFinal(el) {
+        const t = parseInt(el.dataset.counter, 10);
+        el.textContent = (el.dataset.pad ? String(t).padStart(+el.dataset.pad, '0') : t) + (el.dataset.suffix || '');
+      }
+      function runCounter(el) {
+        const target = parseInt(el.dataset.counter, 10);
+        const pad = el.dataset.pad ? +el.dataset.pad : 0;
+        const suf = el.dataset.suffix || '';
+        const dur = 1100, t0 = performance.now();
+        (function step(now) {
+          const p = Math.min(1, (now - t0) / dur);
+          const eased = 1 - Math.pow(1 - p, 3);
+          const v = Math.round(target * eased);
+          el.textContent = (pad ? String(v).padStart(pad, '0') : v) + suf;
+          if (p < 1) requestAnimationFrame(step);
+        })(t0);
+      }
+
+      /* ---------- ROUTER ---------- */
+      const VIEWS = { home: 'view-home', roster: 'view-roster', athlete: 'view-athlete', agency: 'view-agency', partners: 'view-partners', contact: 'view-contact', notfound: 'view-404' };
+      const TITLES = { home: 'Home', roster: 'The Roster', agency: 'The Agency', partners: 'Partners', contact: 'Contact', notfound: 'Page not found' };
+      let currentView = null;
+
+      function parseHash() {
+        const raw = location.hash.replace(/^#/, '') || '/';
+        const [path, qs = ''] = raw.split('?');
+        return { path: path || '/', params: new URLSearchParams(qs) };
+      }
+
+      function route() {
+        const { path, params } = parseHash();
+        let view = 'notfound', param = null, title = TITLES.notfound;
+
+        if (path === '/') view = 'home';
+        else if (path === '/roster') view = 'roster';
+        else if (path === '/agency') view = 'agency';
+        else if (path === '/partners') view = 'partners';
+        else if (path === '/contact') view = 'contact';
+        else if (/^\/athlete\/\d+$/.test(path)) { view = 'athlete'; param = parseInt(path.split('/')[2], 10); }
+
+        if (view === 'home') title = TITLES.home;
+        if (view === 'athlete') {
+          const a = byId(param);
+          if (a) { title = a.name + ' — Dossier'; }
+          else { view = 'notfound'; }
+        }
+
+        /* dynamic renders */
+        if (view === 'athlete') renderAthlete(param);
+        if (view === 'roster') ensureRosterBuilt();
+        if (view === 'contact') prefillContact(params);
+
+        /* swap views */
+        $$('.view').forEach(v => v.classList.remove('active'));
+        const el = document.getElementById(VIEWS[view]);
+        void el.offsetWidth; /* restart entrance animation */
+        el.classList.add('active');
+        currentView = view;
+
+        /* nav active states */
+        $$('[data-nav]').forEach(a => {
+          const on = a.dataset.nav === view || (view === 'athlete' && a.dataset.nav === 'roster');
+          a.classList.toggle('active', on);
+          if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+        });
+
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        updateHeader();
+        armReveals(el);
+
+        /* hero autoplay only on home */
+        if (view === 'home') heroPlay(); else heroStop();
+
+        /* announce */
+        document.title = 'Pódio Sports Management — ' + title;
+        const ann = $('#announcer');
+        ann.textContent = '';
+        setTimeout(() => { ann.textContent = title + ' page loaded'; }, 80);
+
+        closeDrawer(); closeDrop();
+      }
+      window.addEventListener('hashchange', route);
+
+      /* ---------- HEADER ---------- */
+      const header = $('#site-header');
+      function updateHeader() {
+        const overHero = currentView === 'home' && window.scrollY < 40;
+        header.classList.toggle('solid', !overHero);
+      }
+      window.addEventListener('scroll', updateHeader, { passive: true });
+
+      /* ---------- DRAWER ---------- */
+      const drawer = $('#drawer'), scrim = $('#scrim'), menuBtn = $('#menu-toggle');
+      function openDrawer() {
+        drawer.classList.add('open'); scrim.classList.add('show');
+        menuBtn.setAttribute('aria-expanded', 'true');
+        const first = drawer.querySelector('a'); if (first) first.focus();
+      }
+      function closeDrawer() {
+        drawer.classList.remove('open'); scrim.classList.remove('show');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+      menuBtn.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
+      $('#drawer-close').addEventListener('click', closeDrawer);
+      scrim.addEventListener('click', closeDrawer);
+
+      /* ---------- ROSTER DROPDOWN ---------- */
+      const navDrop = $('#nav-drop'), dropBtn = $('#drop-toggle');
+      function closeDrop() { navDrop.classList.remove('open'); dropBtn.setAttribute('aria-expanded', 'false'); }
+      dropBtn.addEventListener('click', e => {
+        e.preventDefault();
+        const open = navDrop.classList.toggle('open');
+        dropBtn.setAttribute('aria-expanded', String(open));
+        if (open) { const f = $('#drop-panel .drop-item'); if (f) f.focus(); }
+      });
+      document.addEventListener('click', e => { if (!navDrop.contains(e.target)) closeDrop(); });
+
+      /* ---------- HERO ROTATOR ---------- */
+      const hero = $('#hero');
+      const heroSlides = $$('.hero-slide');
+      const heroBars = $$('.hero-bar');
+      const heroRail = $$('.hero-rail-item');
+      let heroIdx = 0, heroTimer = null;
+
+      function heroShow(i) {
+        heroIdx = (i + heroSlides.length) % heroSlides.length;
+        heroSlides.forEach((s, k) => { s.classList.toggle('active', k === heroIdx); s.setAttribute('aria-hidden', String(k !== heroIdx)); });
+        heroBars.forEach((b, k) => b.classList.toggle('active', k === heroIdx));
+        heroRail.forEach((r, k) => r.classList.toggle('active', k === heroIdx));
+        $('#hero-idx').textContent = String(heroIdx + 1).padStart(2, '0');
+        /* restart progress bar animation */
+        const bar = heroBars[heroIdx];
+        bar.classList.remove('active'); void bar.offsetWidth; bar.classList.add('active');
+      }
+      function heroNext() { heroShow(heroIdx + 1); }
+      function heroPrev() { heroShow(heroIdx - 1); }
+      function heroPlay() {
+        heroStop();
+        hero.classList.remove('paused');
+        if (reduced.matches) return;
+        heroTimer = setInterval(heroNext, 6500);
+      }
+      function heroStop() { if (heroTimer) { clearInterval(heroTimer); heroTimer = null; } }
+
+      $('#hero-next').addEventListener('click', () => { heroNext(); heroPlay(); });
+      $('#hero-prev').addEventListener('click', () => { heroPrev(); heroPlay(); });
+      heroBars.forEach(b => b.addEventListener('click', () => { heroShow(+b.dataset.goto); heroPlay(); }));
+      heroRail.forEach(r => r.addEventListener('click', () => { heroShow(+r.dataset.goto); heroPlay(); }));
+      hero.addEventListener('mouseenter', () => { heroStop(); hero.classList.add('paused'); });
+      hero.addEventListener('mouseleave', () => { if (currentView === 'home') heroPlay(); });
+      hero.addEventListener('focusin', () => { heroStop(); hero.classList.add('paused'); });
+      hero.addEventListener('focusout', e => { if (!hero.contains(e.relatedTarget) && currentView === 'home') heroPlay(); });
+
+      /* ---------- HYDRATION: ticker / featured / pulse / dropdown ---------- */
+      function hydrateTicker() {
+        const group = TICKER_ITEMS.map(t =>
+          `<span class="tick-item"><span class="tick-dot" style="--sc:${SPORTS[t.sport].color}"></span>${t.html}</span>`
+        ).join('');
+        $('#ticker-track').innerHTML =
+          `<div class="ticker-group" aria-hidden="false">${group}</div>` +
+          `<div class="ticker-group" aria-hidden="true">${group}</div>`;
+      }
+
+      function featuredCard(a, big) {
+        return `<a class="feat-card reveal" style="--sc:${SPORTS[a.sport].color};--d:${big ? 0 : .12}s" href="#/athlete/${a.id}" aria-label="Open dossier: ${esc(a.name)}, ${SPORTS[a.sport].label}">
+    <div class="feat-bg" aria-hidden="true"></div>
+    <span class="feat-ghost" aria-hidden="true">${a.num}</span>
+    <span class="feat-open" aria-hidden="true">↗</span>
+    <div class="feat-body">
+      <p class="feat-sport">${SPORTS[a.sport].label} · ${esc(a.discipline)}</p>
+      <p class="feat-name">${esc(a.name)}</p>
+      <p class="feat-stat mono">${esc(a.ticker)}</p>
+    </div>
+  </a>`;
+      }
+      function hydrateFeatured() {
+        const big = byId(2), s1 = byId(4), s2 = byId(3);
+        $('#featured-grid').innerHTML = featuredCard(big, true) + featuredCard(s1) + featuredCard(s2);
+      }
+
+      function hydratePulse() {
+        const upcoming = [...ATHLETES].sort((a, b) => +a.next.d - +b.next.d || a.next.m.localeCompare(b.next.m));
+        $('#pulse-upcoming').innerHTML = upcoming.map(a => `
+    <div class="pulse-row">
+      <div class="pulse-date" style="--sc:${SPORTS[a.sport].color}"><b>${a.next.d}</b><span>${a.next.m}</span></div>
+      <div class="pulse-who"><b>${esc(a.name)}</b><small>${esc(a.next.event)} · ${esc(a.next.venue)}</small></div>
+      ${a.trending ? '<span class="pulse-flag"><span class="live-dot" aria-hidden="true"></span>TRENDING</span>' : ''}
+    </div>`).join('');
+        $('#pulse-results').innerHTML = TICKER_ITEMS.map(t => `
+    <div class="result-row"><span class="tick-dot" style="--sc:${SPORTS[t.sport].color}"></span><span>${t.html}</span></div>`).join('');
+      }
+
+      function hydrateDrop() {
+        $('#drop-list').innerHTML = ATHLETES.map(a => `
+    <a class="drop-item" href="#/athlete/${a.id}">
+      <span class="drop-ava" style="--sc:${SPORTS[a.sport].color}" aria-hidden="true">${a.initials}</span>
+      <span><b>${esc(a.name)}</b><small>${SPORTS[a.sport].label} · ${esc(a.ticker)}</small></span>
+    </a>`).join('');
+      }
+
+      /* ---------- ROSTER EXPLORER ---------- */
+      const rosterState = { q: '', sport: 'all', sort: 'featured', selected: new Set() };
+      let rosterBuilt = false;
+
+      function ensureRosterBuilt() {
+        if (rosterBuilt) return;
+        rosterBuilt = true;
+        setTimeout(() => { buildCards(); applyFilters(false); }, 500); /* simulated fetch → skeleton state */
+      }
+
+      function cardTemplate(a) {
+        return `<article class="dossier-card reveal" data-id="${a.id}" style="--sc:${SPORTS[a.sport].color}">
+    <div class="card-portrait" role="img" aria-label="Stylized portrait placeholder — ${esc(a.name)}">
+      <span class="sport-ico">${ICONS[a.sport]}</span>
+      ${a.trending ? '<span class="trend">▲ TRENDING</span>' : ''}
+      <span class="ghost-num" aria-hidden="true">${a.num}</span>
+      <span class="initials" aria-hidden="true">${a.initials}</span>
+    </div>
+    <div class="card-body">
+      <p class="card-kicker mono">${SPORTS[a.sport].label} · ${esc(a.discipline)} · ${a.age}</p>
+      <h3 class="card-name"><a href="#/athlete/${a.id}">${esc(a.name)}</a></h3>
+      <p class="card-ticker mono"><span class="live-dot" aria-hidden="true"></span>${esc(a.ticker)}</p>
+      <p class="card-desc">${esc(a.short)}</p>
+      <div class="card-foot">
+        <a class="card-link" href="#/athlete/${a.id}">Open dossier <span aria-hidden="true">→</span></a>
+        <label class="cmp-check"><input type="checkbox" data-cmp="${a.id}" aria-label="Select ${esc(a.name)} for comparison"> Compare</label>
+      </div>
+    </div>
+  </article>`;
+      }
+
+      function buildCards() {
+        const grid = $('#roster-grid');
+        grid.innerHTML = ATHLETES.map(cardTemplate).join('');
+        $$('#roster-grid input[data-cmp]').forEach(cb => cb.addEventListener('change', () => toggleSelect(+cb.dataset.cmp, cb.checked)));
+      }
+
+      function filteredSorted() {
+        const q = rosterState.q.trim().toLowerCase();
+        let list = ATHLETES.filter(a =>
+          (rosterState.sport === 'all' || a.sport === rosterState.sport) &&
+          (!q || (a.name + ' ' + a.discipline + ' ' + a.club + ' ' + a.ticker).toLowerCase().includes(q))
+        );
+        const s = rosterState.sort;
+        if (s === 'name') list.sort((a, b) => a.name.localeCompare(b.name));
+        else if (s === 'age') list.sort((a, b) => a.age - b.age);
+        else if (s === 'trending') list.sort((a, b) => (b.trending - a.trending) || a.id - b.id);
+        else list.sort((a, b) => a.id - b.id);
+        return list.map(a => a.id);
+      }
+
+      function applyFilters(animate = true) {
+        const grid = $('#roster-grid');
+        const list = filteredSorted();
+        const mutate = () => {
+          $$('.dossier-card', grid).forEach(card => {
+            const on = list.includes(+card.dataset.id);
+            card.hidden = !on;
+          });
+          list.forEach(id => grid.appendChild($(`.dossier-card[data-id="${id}"]`, grid)));
+          $('#roster-empty').hidden = list.length !== 0;
+          $('#roster-count').textContent = list.length + (list.length === 1 ? ' dossier' : ' dossiers');
+        };
+        if (animate && !reduced.matches) flip(grid, mutate); else mutate();
+      }
+
+      /* FLIP layout animation for filter/sort reflow */
+      function flip(container, mutate) {
+        const firstMap = new Map();
+        $$('.dossier-card:not([hidden])', container).forEach(el => firstMap.set(el, el.getBoundingClientRect()));
+        mutate();
+        $$('.dossier-card:not([hidden])', container).forEach(el => {
+          const first = firstMap.get(el);
+          if (!first) {
+            el.classList.add('pop-in');
+            el.addEventListener('animationend', () => el.classList.remove('pop-in'), { once: true });
+            return;
+          }
+          const last = el.getBoundingClientRect();
+          const dx = first.left - last.left, dy = first.top - last.top;
+          if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
+            el.animate(
+              [{ transform: `translate(${dx}px, ${dy}px)` }, { transform: 'translate(0,0)' }],
+              { duration: 480, easing: 'cubic-bezier(.22,.9,.26,1)' }
+            );
+          }
+        });
+      }
+
+      /* toolbar wiring */
+      $('#roster-search').addEventListener('input', e => { rosterState.q = e.target.value; applyFilters(); });
+      $$('.f-chip').forEach(chip => chip.addEventListener('click', () => {
+        $$('.f-chip').forEach(c => { c.classList.remove('active'); c.setAttribute('aria-pressed', 'false'); });
+        chip.classList.add('active'); chip.setAttribute('aria-pressed', 'true');
+        rosterState.sport = chip.dataset.sport;
+        applyFilters();
+      }));
+      $('#roster-sort').addEventListener('change', e => { rosterState.sort = e.target.value; applyFilters(); });
+      $('#roster-reset').addEventListener('click', () => {
+        rosterState.q = ''; rosterState.sport = 'all'; rosterState.sort = 'featured';
+        $('#roster-search').value = ''; $('#roster-sort').value = 'featured';
+        $$('.f-chip').forEach(c => { c.classList.toggle('active', c.dataset.sport === 'all'); c.setAttribute('aria-pressed', String(c.dataset.sport === 'all')); });
+        applyFilters();
+        toast('Filters reset — full roster restored.');
+      });
+
+      /* ---------- COMPARE ---------- */
+      const compareBar = $('#compare-bar'), cmpOpen = $('#cmp-open');
+      const CMP_COLORS = ['#e2b64f', '#52c7f2', '#ff5252'];
+
+      function toggleSelect(id, on) {
+        if (on) {
+          if (rosterState.selected.size >= 3) {
+            const cb = $(`input[data-cmp="${id}"]`); if (cb) cb.checked = false;
+            toast('Comparison is limited to 3 athletes.');
+            return;
+          }
+          rosterState.selected.add(id);
+        } else {
+          rosterState.selected.delete(id);
+        }
+        renderCompareBar();
+      }
+      function renderCompareBar() {
+        const n = rosterState.selected.size;
+        compareBar.classList.toggle('show', n > 0);
+        cmpOpen.disabled = n < 2;
+        cmpOpen.textContent = `Compare (${n})`;
+        $('#cmp-chips').innerHTML = [...rosterState.selected].map(id => {
+          const a = byId(id);
+          return `<span class="cmp-chip" style="--sc:${SPORTS[a.sport].color}">${esc(a.name)}
+      <button data-unselect="${id}" aria-label="Remove ${esc(a.name)} from comparison">×</button></span>`;
+        }).join('');
+        $$('#cmp-chips [data-unselect]').forEach(btn => btn.addEventListener('click', () => {
+          const id = +btn.dataset.unselect;
+          const cb = $(`input[data-cmp="${id}"]`); if (cb) cb.checked = false;
+          toggleSelect(id, false);
+        }));
+      }
+      $('#cmp-clear').addEventListener('click', () => {
+        rosterState.selected.clear();
+        $$('#roster-grid input[data-cmp]').forEach(cb => cb.checked = false);
+        renderCompareBar();
+      });
+      cmpOpen.addEventListener('click', openCompare);
+
+      /* ---------- MODAL ---------- */
+      const cmpModal = $('#compare-modal');
+      let lastFocus = null;
+
+      function openModal(m) {
+        lastFocus = document.activeElement;
+        m.hidden = false;
+        requestAnimationFrame(() => m.classList.add('open'));
+        const close = m.querySelector('[data-close]'); if (close) close.focus();
+        document.addEventListener('keydown', modalKey);
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal(m) {
+        m.classList.remove('open');
+        setTimeout(() => { m.hidden = true; }, 300);
+        document.removeEventListener('keydown', modalKey);
+        document.body.style.overflow = '';
+        if (lastFocus) lastFocus.focus();
+      }
+      function modalKey(e) {
+        if (e.key === 'Escape') { closeModal(cmpModal); return; }
+        if (e.key !== 'Tab') return;
+        const f = $$('a[href], button:not([disabled]), input, select, textarea', cmpModal).filter(el => el.offsetParent !== null);
+        if (!f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { last.focus(); e.preventDefault(); }
+        else if (!e.shiftKey && document.activeElement === last) { first.focus(); e.preventDefault(); }
+      }
+      cmpModal.querySelector('[data-close]').addEventListener('click', () => closeModal(cmpModal));
+      cmpModal.addEventListener('click', e => { if (e.target === cmpModal) closeModal(cmpModal); });
+
+      /* ---------- RADAR ---------- */
+      function radarSVG(series, size = 340) {
+        const cx = size / 2, cy = size / 2, R = size * 0.34;
+        const ang = i => (Math.PI * 2 * i / 6) - Math.PI / 2;
+        const pt = (i, r) => [cx + Math.cos(ang(i)) * r, cy + Math.sin(ang(i)) * r];
+        const poly = (r, vals) => (vals ? vals.map((v, i) => pt(i, r * v / 100)) : [...Array(6)].map((_, i) => pt(i, r)))
+          .map(p => p.map(n => n.toFixed(1)).join(',')).join(' ');
+        let g = '';
+        [.25, .5, .75, 1].forEach(f => { g += `<polygon points="${poly(R * f)}" fill="none" stroke="var(--line)" stroke-width="1"/>`; });
+        for (let i = 0; i < 6; i++) {
+          const [x, y] = pt(i, R);
+          g += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="var(--line)" stroke-width="1"/>`;
+          const [lx, ly] = pt(i, R + 22);
+          g += `<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="middle" dominant-baseline="middle">${AXES[i]}</text>`;
+        }
+        series.forEach(s => {
+          g += `<g class="radar-series"><polygon points="${poly(R, s.values)}" fill="${s.color}" fill-opacity=".16" stroke="${s.color}" stroke-width="2.5" stroke-linejoin="round"/></g>`;
+        });
+        return `<svg class="radar-svg" viewBox="0 0 ${size} ${size}" role="img" aria-label="Performance radar chart: ${series.map(s => s.label).join(', ')}">${g}</svg>`;
+      }
+
+      function openCompare() {
+        const sel = [...rosterState.selected].map(byId);
+        const series = sel.map((a, i) => ({ label: a.name, color: CMP_COLORS[i], values: a.radar }));
+        const rows = [
+          ['Sport', a => SPORTS[a.sport].label],
+          ['Age', a => a.age],
+          ['Discipline', a => a.discipline],
+          ['Season line', a => a.ticker],
+          ['Value / Ranking', a => `${a.value} · ${a.valueLabel}`],
+          ['Next appearance', a => `${a.next.d} ${a.next.m} — ${a.next.event}`],
+          ['Form', a => a.trending ? '<span style="color:var(--live)">▲ Trending</span>' : '—']
+        ];
+        $('#cmp-body').innerHTML = `
+    <div class="cmp-cols">
+      ${sel.map((a, i) => `<div class="cmp-col">
+        <span class="drop-ava" style="--sc:${SPORTS[a.sport].color}" aria-hidden="true">${a.initials}</span>
+        <b>${esc(a.name)}</b><small>${SPORTS[a.sport].label}</small>
+        <div style="margin-top:.7rem"><a class="btn btn-ghost btn-sm" href="#/athlete/${a.id}">Dossier →</a></div>
+      </div>`).join('')}
+    </div>
+    <div class="reveal">${radarSVG(series, 360)}
+      <div class="cmp-legend">${sel.map((a, i) => `<span style="--lc:${CMP_COLORS[i]}"><i aria-hidden="true"></i>${esc(a.name)}</span>`).join('')}</div>
+    </div>
+    <table class="cmp-table" style="margin-top:1.6rem">
+      <thead><tr><th scope="col">Metric</th>${sel.map(a => `<th scope="col">${esc(a.name)}</th>`).join('')}</tr></thead>
+      <tbody>
+        ${rows.map(([label, fn]) => `<tr><th scope="row">${label}</th>${sel.map(a => `<td class="num">${fn(a)}</td>`).join('')}</tr>`).join('')}
+      </tbody>
+    </table>`;
+        openModal(cmpModal);
+        armReveals($('#cmp-body'));
+      }
+
+      /* ---------- ATHLETE DOSSIER ---------- */
+      function renderAthlete(id) {
+        const a = byId(id);
+        if (!a) return;
+        const prev = byId((id + ATHLETES.length - 2) % ATHLETES.length + 1);
+        const next = byId(id % ATHLETES.length + 1);
+        const root = $('#athlete-root');
+
+        root.innerHTML = `
+    <div style="padding-top:calc(var(--header-h) + var(--sp-4))">
+      <a class="crumb reveal" href="#/roster">← Back to roster</a>
+
+      <div class="masthead">
+        <div class="mast-copy reveal">
+          <p class="kicker"><span class="live-dot" aria-hidden="true"></span> Dossier ${String(a.id).padStart(2, '0')} · ${SPORTS[a.sport].label}</p>
+          <h1 class="mast-name"><span class="ln">${esc(a.name.split(' ')[0])}</span><span class="ln">${esc(a.name.split(' ').slice(1).join(' '))}</span></h1>
+          <div class="mast-tags">
+            <span class="sport-chip" style="--sc:${SPORTS[a.sport].color}">${esc(a.discipline)}</span>
+            ${a.trending ? '<span class="badge" style="border-left-color:var(--live)">▲ Trending this season</span>' : ''}
+          </div>
+          <p class="mast-desc">${esc(a.desc)}</p>
+          <div class="badge-row">${a.badges.map(b => `<span class="badge">★ ${esc(b)}</span>`).join('')}</div>
+        </div>
+        <div class="mast-visual reveal" style="--d:.15s">
+          <div class="mast-portrait" style="--sc:${SPORTS[a.sport].color}" role="img" aria-label="Stylized portrait placeholder — ${esc(a.name)}">
+            <span class="state-tag">Portrait · 24/25</span>
+            <span class="ghost-num" aria-hidden="true">${a.num}</span>
+            <span class="initials" aria-hidden="true">${a.initials}</span>
+          </div>
+          <div class="next-card" style="--sc:${SPORTS[a.sport].color}">
+            <div class="pulse-date" style="--sc:${SPORTS[a.sport].color}"><b>${a.next.d}</b><span>${a.next.m}</span></div>
+            <div><b>Next: ${esc(a.next.event)}</b><small>${esc(a.next.venue)}</small></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-row reveal">
+        ${a.vitals.map(([k, v]) => `<div class="stat-cell"><div class="stat-num" style="font-size:clamp(1.5rem,2.6vw,2.2rem)">${esc(v)}</div><div class="stat-lbl">${esc(k)}</div></div>`).join('')}
+      </div>
+
+      <div class="dossier-cols">
+        <div class="info-panel reveal">
+          <h3>Vitals</h3>
+          <dl class="vitals">
+            ${a.vitals.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}
+          </dl>
+          <h3 style="margin-top:1.6rem">Representation notes</h3>
+          <p style="font-size:var(--fs-small);color:var(--muted)">Managed by the Lisbon desk. Available for sponsorships, appearances and media from ${a.next.m} onward, around the competitive calendar. All requests routed through <span class="mono" style="color:var(--gold)">roster@podiosports.pt</span>.</p>
+        </div>
+        <div class="radar-card reveal" style="--d:.12s">
+          <h3>Performance index</h3>
+          <p class="hint mono">SCOUTING GRADE · 0–100 · SIX AXES</p>
+          ${radarSVG([{ label: a.name, color: CMP_COLORS[0], values: a.radar }], 340)}
+          <ul class="axis-legend">
+            ${AXES.map((ax, i) => `<li>${ax}<b>${a.radar[i]}</b></li>`).join('')}
+          </ul>
+        </div>
+      </div>
+
+      <div class="sec-head reveal">
+        <p class="kicker">Career Arc</p>
+        <h2 class="sec-title">Milestones, <span class="accent">in order.</span></h2>
+      </div>
+      <div class="tl-head reveal">
+        <p class="mono" style="font-size:var(--fs-mono);color:var(--muted);letter-spacing:.14em">SCROLL SIDEWAYS →</p>
+        <div class="tl-nav">
+          <button class="hero-arrow" id="tl-prev" aria-label="Scroll timeline backward" style="border-color:var(--line-strong);color:var(--ink)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m6-7l-7 7 7 7"/></svg></button>
+          <button class="hero-arrow" id="tl-next" aria-label="Scroll timeline forward" style="border-color:var(--line-strong);color:var(--ink)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-7l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+      <div class="timeline" id="tl-scroller" tabindex="0" aria-label="Career milestone timeline, horizontally scrollable">
+        <div class="tl-track">
+          ${a.milestones.map((m, i) => `
+            <div class="tl-item reveal" style="--d:${i * .08}s">
+              <div class="tl-card">
+                <div class="tl-year">${m.y}</div>
+                <h4>${esc(m.t)}</h4>
+                <p>${esc(m.d)}</p>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>
+
+      <div class="sec-head reveal" style="margin-top:var(--sp-5)">
+        <p class="kicker">The Reel</p>
+        <h2 class="sec-title">Highlights, <span class="accent">on demand.</span></h2>
+      </div>
+      <div class="reel reveal" id="reel" style="--sc:${SPORTS[a.sport].color}">
+        <button class="reel-play" id="reel-play" aria-pressed="false" aria-label="Play highlight reel: ${esc(a.reel.title)}">
+          <svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l14 8-14 8z"/></svg>
+          <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="4" width="5" height="16"/><rect x="14" y="4" width="5" height="16"/></svg>
+        </button>
+        <div class="reel-meta"><b>${esc(a.reel.title)}</b><small class="mono">HIGHLIGHT REEL · ${a.reel.dur} · PROTOTYPE PLAYER</small></div>
+        <div class="reel-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="reel-progress" aria-hidden="true"><i></i></div>
+      </div>
+
+      <div class="sec-head reveal">
+        <p class="kicker">Gallery</p>
+        <h2 class="sec-title">Four <span class="accent">frames.</span></h2>
+      </div>
+      <div class="gallery" style="--sc:${SPORTS[a.sport].color}">
+        ${a.gallery.map((g, i) => `
+          <figure class="g-tile reveal" style="--d:${i * .07}s" role="img" aria-label="${esc(g.tag)} image placeholder — ${esc(g.cap)}">
+            <span class="g-tag">${esc(g.tag)}</span>
+            <figcaption class="g-cap">${esc(g.cap)}</figcaption>
+          </figure>`).join('')}
+      </div>
+
+      <div class="book-band reveal">
+        <h3>Book ${esc(a.name.split(' ')[0])} for your next campaign.</h3>
+        <a class="btn btn-ink" href="#/contact?athlete=${a.id}&topic=booking">Start an inquiry <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+
+      <nav class="prevnext reveal" aria-label="Adjacent athletes">
+        <a class="pn-link" href="#/athlete/${prev.id}"><small>← Previous dossier</small><b>${esc(prev.name)}</b></a>
+        <a class="pn-link" href="#/athlete/${next.id}"><small>Next dossier →</small><b>${esc(next.name)}</b></a>
+      </nav>
+    </div>`;
+
+        /* wire dossier-specific interactions */
+        const scroller = $('#tl-scroller');
+        $('#tl-prev').addEventListener('click', () => scroller.scrollBy({ left: -340, behavior: reduced.matches ? 'auto' : 'smooth' }));
+        $('#tl-next').addEventListener('click', () => scroller.scrollBy({ left: 340, behavior: reduced.matches ? 'auto' : 'smooth' }));
+
+        const reel = $('#reel'), playBtn = $('#reel-play');
+        playBtn.addEventListener('click', () => {
+          const playing = reel.classList.toggle('playing');
+          playBtn.setAttribute('aria-pressed', String(playing));
+          playBtn.setAttribute('aria-label', (playing ? 'Pause' : 'Play') + ' highlight reel: ' + a.reel.title);
+          toast(playing ? 'Rolling the reel… (prototype player)' : 'Reel paused.');
+        });
+      }
+
+      /* ---------- MATCHMAKER ---------- */
+      const mm = { step: 1 };
+      const mmNext = $('#mm-next'), mmBack = $('#mm-back');
+      const IND_LABELS = { fashion: 'Fashion & Apparel', finance: 'Finance', tech: 'Technology', energy: 'Energy & Sustainability', food: 'Food & Beverage', media: 'Media', tourism: 'Tourism', automotive: 'Automotive' };
+      const AUD_LABELS = { genz: 'Gen Z', young: 'Young Adults', families: 'Families', premium: 'Premium audiences', b2b: 'B2B' };
+      const GOAL_LABELS = { awareness: 'awareness', activation: 'event activation', content: 'content', csr: 'CSR' };
+
+      function mmValue(name) { const el = $(`input[name="${name}"]:checked`); return el ? el.value : null; }
+      function mmRefresh() {
+        $$('.wiz-step').forEach(s => s.classList.toggle('on', +s.dataset.step === mm.step));
+        $$('#wiz-steps li').forEach((li, i) => {
+          li.classList.toggle('on', i + 1 === mm.step);
+          li.classList.toggle('done', i + 1 < mm.step);
+        });
+        mmBack.disabled = mm.step === 1;
+        const val = mmValue('mm-' + ['industry', 'audience', 'goal'][mm.step - 1]);
+        mmNext.innerHTML = mm.step === 3
+          ? 'Reveal matches <span class="arr" aria-hidden="true">→</span>'
+          : 'Next <span class="arr" aria-hidden="true">→</span>';
+        mmNext.disabled = !val;
+      }
+      $('#mm-form').addEventListener('change', mmRefresh);
+      mmBack.addEventListener('click', () => { mm.step = Math.max(1, mm.step - 1); mmRefresh(); });
+      mmNext.addEventListener('click', () => {
+        if (mm.step < 3) { mm.step++; mmRefresh(); return; }
+        runMatchmaker();
+      });
+
+      function scoreAthlete(a, ind, aud, goal) {
+        let s = 0; const reasons = [];
+        if (a.fit.industries.includes(ind)) { s += 3; reasons.push(`${SPORTS[a.sport].label} profile aligns with ${IND_LABELS[ind]} audiences.`); }
+        if (a.fit.audiences.includes(aud)) { s += 2; reasons.push(`Strong pull with ${AUD_LABELS[aud]}.`); }
+        if (a.fit.goals.includes(goal)) { s += 2; reasons.push(`Proven in ${GOAL_LABELS[goal]} campaigns.`); }
+        if (goal === 'csr' && a.sport === 'surfing') { s += 2; reasons.push('Ocean-conservation credibility built in.'); }
+        if (a.trending) { s += 1; reasons.push('Trending upward this season.'); }
+        return { s, reasons };
+      }
+
+      function runMatchmaker() {
+        const ind = mmValue('mm-industry'), aud = mmValue('mm-audience'), goal = mmValue('mm-goal');
+        const out = $('#mm-results');
+        $('#mm-form').hidden = true;
+        out.innerHTML = `<div class="mm-loading" role="status" aria-label="Analyzing the roster">
+    ${[0, 1, 2].map(() => `<div class="mm-load-card"><div class="sk sk-line w40"></div><div class="sk sk-line w60"></div><div class="sk sk-line"></div></div>`).join('')}
+  </div>`;
+        setTimeout(() => {
+          const scored = ATHLETES.map(a => ({ a, ...scoreAthlete(a, ind, aud, goal) }))
+            .filter(r => r.s >= 3)
+            .sort((x, y) => y.s - x.s)
+            .slice(0, 3);
+          if (!scored.length) {
+            out.innerHTML = `<div class="empty-state" style="margin-top:1.6rem">
+        <p class="big">No clean match</p><p>That combination is outside the roster's current sweet spot. Talk to the desk — we'll be honest about fit.</p>
+        <a class="btn btn-gold" href="#/contact?topic=sponsorship">Contact us directly</a></div>`;
+            return;
+          }
+          out.innerHTML = `<h3 style="font-family:var(--font-display);font-size:var(--fs-h3);text-transform:uppercase;color:var(--ink);margin:1.6rem 0 1rem">Your shortlist is in.</h3>` +
+            scored.map((r, i) => {
+              const pct = Math.min(97, 52 + r.s * 6);
+              return `<div class="mm-result" style="--sc:${SPORTS[r.a.sport].color};animation-delay:${i * .1}s">
+          <div class="mm-rank">${String(i + 1).padStart(2, '0')}</div>
+          <div>
+            <h4><a href="#/athlete/${r.a.id}">${esc(r.a.name)}</a></h4>
+            <p class="mm-sport">${SPORTS[r.a.sport].label} · ${esc(r.a.discipline)}</p>
+            <div class="mm-bar"><i data-w="${pct}"></i></div>
+            <p class="mm-pct mono">${pct}% MATCH · ${esc(r.a.ticker)}</p>
+            <ul class="mm-reasons">${r.reasons.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+            <a class="btn btn-gold btn-sm" href="#/contact?athlete=${r.a.id}&topic=sponsorship">Request introduction <span class="arr" aria-hidden="true">→</span></a>
+          </div>
+        </div>`;
+            }).join('') +
+            `<div class="cta-row" style="margin-top:1.6rem"><button class="btn btn-ghost" id="mm-restart">↺ Start over</button></div>`;
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            $$('.mm-bar i', out).forEach(b => b.style.width = b.dataset.w + '%');
+          }));
+          $('#mm-restart').addEventListener('click', () => {
+            $('#mm-form').reset(); $('#mm-form').hidden = false;
+            out.innerHTML = ''; mm.step = 1; mmRefresh();
+          });
+          out.scrollIntoView({ behavior: reduced.matches ? 'auto' : 'smooth', block: 'start' });
+        }, 950);
+      }
+
+      /* ---------- CONTACT ---------- */
+      function hydrateChips() {
+        $('#athlete-chips').innerHTML = ATHLETES.map(a =>
+          `<label class="chip"><input type="checkbox" name="athleteInterest" value="${a.id}"><span>${esc(a.name)}</span></label>`).join('');
+      }
+      function prefillContact(params) {
+        const form = $('#contact-form');
+        form.hidden = false; $('#form-success').hidden = true;
+        $$('#athlete-chips input').forEach(cb => cb.checked = false);
+        const aid = params.get('athlete');
+        if (aid && byId(+aid)) {
+          const cb = $(`#athlete-chips input[value="${aid}"]`);
+          if (cb) cb.checked = true;
+        }
+        const topic = params.get('topic');
+        if (topic) $('#f-type').value = topic;
+      }
+
+      const cForm = $('#contact-form'), cSubmit = $('#f-submit'), cConsent = $('#f-consent');
+      cConsent.addEventListener('change', () => {
+        cSubmit.disabled = !cConsent.checked;
+        $('#consent-hint').textContent = cConsent.checked
+          ? 'Consent granted — you can submit.'
+          : 'Consent is required to enable submission.';
+      });
+
+      function setFieldError(input, msg) {
+        const field = input.closest('.field');
+        const err = field ? field.querySelector('.f-err') : null;
+        if (field) field.classList.toggle('invalid', !!msg);
+        if (err) err.textContent = msg || '';
+        input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      }
+      function validateContact() {
+        let firstBad = null;
+        const check = (input, fn) => {
+          const msg = fn(input.value.trim());
+          setFieldError(input, msg);
+          if (msg && !firstBad) firstBad = input;
+        };
+        check($('#f-name'), v => v.length >= 2 ? '' : 'Please enter your full name.');
+        check($('#f-email'), v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? '' : 'Enter a valid email — e.g. name@brand.com.');
+        check($('#f-phone'), v => /^[+()\d\s.\-]{7,}$/.test(v) ? '' : 'Enter a valid phone number (digits, +, spaces).');
+        check($('#f-type'), v => v ? '' : 'Choose an inquiry type.');
+        if (firstBad) { firstBad.focus(); return false; }
+        return true;
+      }
+      $$('#contact-form input, #contact-form select').forEach(el =>
+        el.addEventListener('blur', () => { if (el.closest('.field')?.classList.contains('invalid')) validateContact(); })
+      );
+
+      cForm.addEventListener('submit', e => {
+        e.preventDefault();
+        if (!cConsent.checked) { toast('Please grant consent to enable submission.'); cConsent.focus(); return; }
+        if (!validateContact()) return;
+        cSubmit.classList.add('loading'); cSubmit.disabled = true;
+        setTimeout(() => {
+          cSubmit.classList.remove('loading');
+          const athletes = $$('#athlete-chips input:checked').map(cb => byId(+cb.value).name);
+          $('#success-summary').textContent =
+            `${$('#f-name').value.trim()} · ${$('#f-type').selectedOptions[0].text}` +
+            (athletes.length ? ` · Re: ${athletes.join(', ')}` : '');
+          cForm.hidden = true;
+          const ok = $('#form-success'); ok.hidden = false;
+          ok.scrollIntoView({ behavior: reduced.matches ? 'auto' : 'smooth', block: 'center' });
+          toast('Inquiry sent — the desk will reply within two working days.');
+        }, 1200);
+      });
+      $('#f-again').addEventListener('click', () => {
+        cForm.reset();
+        cSubmit.disabled = true;
+        $('#consent-hint').textContent = 'Consent is required to enable submission.';
+        $$('.field.invalid', cForm).forEach(f => f.classList.remove('invalid'));
+        $$('.f-err', cForm).forEach(e => e.textContent = '');
+        $('#form-success').hidden = true;
+        cForm.hidden = false;
+        $('#f-name').focus();
+      });
+
+      /* ---------- MISC ---------- */
+      $$('[data-demo]').forEach(b => b.addEventListener('click', () => toast('Prototype build — full pages arrive with the production release.')));
+      $('#to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduced.matches ? 'auto' : 'smooth' }));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeDrawer(); closeDrop(); } });
+
+      /* ---------- INIT ---------- */
+      hydrateTicker();
+      hydrateFeatured();
+      hydratePulse();
+      hydrateDrop();
+      hydrateChips();
+      mmRefresh();
+      route();
+    </script>
+  </body>
+
+  </html>
+
+  <script>
+
+  </script>
+</body>
+
+</html>
