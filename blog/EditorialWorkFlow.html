@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: white;
+      /* Ensure the iframe has a white background */
+    }
+  </style>
+</head>
+
+<body>
+  <!DOCTYPE html>
+  <html lang="en" data-theme="blueprint">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walkthrough 01 · Editorial Workflow Automation · Marho Eradiri</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet">
+    <style>
+      :root {
+        --paper: #0b1d33;
+        --paper-2: #0e2440;
+        --paper-3: #122c4d;
+        --ink: #e9f2fa;
+        --ink-soft: #9fb6cc;
+        --ink-faint: #6b84a0;
+        --line: rgba(233, 242, 250, .28);
+        --line-soft: rgba(233, 242, 250, .13);
+        --cyan: #6fd3f2;
+        --cyan-soft: rgba(111, 211, 242, .35);
+        --cyan-faint: rgba(111, 211, 242, .12);
+        --amber: #ffc255;
+        --amber-deep: #e8a020;
+        --amber-ink: #081527;
+        --accent: #ffc255;
+        --callout-bg: #0e2440;
+        --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+        --text: "IBM Plex Sans", system-ui, sans-serif;
+        --sans: "IBM Plex Sans", system-ui, sans-serif;
+        --serif: "Fraunces", Georgia, serif;
+        --col: 680px;
+        --shadow: 0 22px 60px rgba(2, 8, 20, .55);
+        color-scheme: dark;
+      }
+
+      [data-theme="vellum"] {
+        --paper: #f3efe4;
+        --paper-2: #ece6d6;
+        --paper-3: #e4dcc7;
+        --ink: #14283f;
+        --ink-soft: #3f5872;
+        --ink-faint: #6a7f94;
+        --line: rgba(20, 40, 63, .34);
+        --line-soft: rgba(20, 40, 63, .16);
+        --cyan: #0d7ea6;
+        --cyan-soft: rgba(13, 126, 166, .4);
+        --cyan-faint: rgba(13, 126, 166, .1);
+        --amber: #b25e00;
+        --amber-deep: #8f4b00;
+        --amber-ink: #fff8ec;
+        --accent: #b25e00;
+        --callout-bg: #ffffff;
+        --shadow: 0 18px 44px rgba(60, 50, 20, .18);
+        color-scheme: light;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--text);
+        line-height: 1.6;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+        transition: background .2s, color .2s;
+      }
+
+      .sheet {
+        max-width: 820px;
+        margin: 2rem auto 4rem;
+        padding: 3rem 2.5rem;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        transition: background .2s, border-color .2s;
+      }
+
+      .title-block {
+        border-bottom: 2px solid var(--ink);
+        padding-bottom: 1.25rem;
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        gap: 1rem;
+        transition: border-color .2s;
+      }
+
+      .title-block h1 {
+        font-family: var(--sans);
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: .02em;
+        text-transform: uppercase;
+      }
+
+      .title-block .sheet-id {
+        font-family: var(--mono);
+        font-size: .75rem;
+        color: var(--ink-soft);
+        text-align: right;
+        line-height: 1.4;
+        transition: color .2s;
+      }
+
+      .meta {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: .5rem 2rem;
+        font-family: var(--mono);
+        font-size: .7rem;
+        color: var(--ink-soft);
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        margin-bottom: 2.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--line);
+        transition: color .2s, border-color .2s;
+      }
+
+      .meta span {
+        display: block;
+      }
+
+      .meta strong {
+        display: block;
+        color: var(--ink);
+        font-size: .8rem;
+        transition: color .2s;
+      }
+
+      h2 {
+        font-family: var(--sans);
+        font-size: .85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        color: var(--ink);
+        margin: 2.5rem 0 .75rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--line);
+        transition: color .2s, border-color .2s;
+      }
+
+      h2:first-of-type {
+        border-top: none;
+        margin-top: 0;
+        padding-top: 0;
+      }
+
+      p {
+        margin-bottom: 1rem;
+        max-width: var(--col);
+      }
+
+      ol.steps {
+        list-style: none;
+        counter-reset: step;
+        padding: 0;
+        max-width: var(--col);
+      }
+
+      ol.steps li {
+        counter-increment: step;
+        position: relative;
+        padding-left: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      ol.steps li::before {
+        content: "0" counter(step);
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-family: var(--mono);
+        font-size: .7rem;
+        color: var(--ink-faint);
+        letter-spacing: .04em;
+        transition: color .2s;
+      }
+
+      .callout {
+        background: var(--callout-bg);
+        border: 1px solid var(--line);
+        padding: 1.25rem 1.5rem;
+        margin: 1.5rem 0;
+        max-width: var(--col);
+        transition: background .2s, border-color .2s;
+      }
+
+      .callout p {
+        margin-bottom: .5rem;
+      }
+
+      .callout p:last-child {
+        margin-bottom: 0;
+      }
+
+      .callout .label {
+        font-family: var(--mono);
+        font-size: .65rem;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        color: var(--ink-faint);
+        margin-bottom: .5rem;
+        transition: color .2s;
+      }
+
+      .metrics {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin: 1.5rem 0;
+        font-family: var(--mono);
+        font-size: .75rem;
+      }
+
+      .metrics .metric {
+        border: 1px solid var(--line);
+        padding: .75rem 1rem;
+        background: var(--callout-bg);
+        transition: background .2s, border-color .2s;
+      }
+
+      .metrics .metric .value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent);
+        display: block;
+        transition: color .2s;
+      }
+
+      .metrics .metric .label {
+        font-size: .65rem;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        color: var(--ink-soft);
+        transition: color .2s;
+      }
+
+      blockquote {
+        border-left: 3px solid var(--line);
+        padding-left: 1rem;
+        margin: 1rem 0 1.5rem;
+        color: var(--ink-soft);
+        font-style: italic;
+        max-width: var(--col);
+        transition: color .2s, border-color .2s;
+      }
+
+      table {
+        width: 100%;
+        max-width: var(--col);
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-family: var(--mono);
+        font-size: .75rem;
+      }
+
+      table th {
+        text-align: left;
+        font-size: .65rem;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        color: var(--ink-soft);
+        padding: .5rem .75rem;
+        border-bottom: 2px solid var(--ink);
+        transition: color .2s, border-color .2s;
+      }
+
+      table td {
+        padding: .5rem .75rem;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+        transition: border-color .2s;
+      }
+
+      code {
+        font-family: var(--mono);
+        font-size: .85em;
+        background: var(--callout-bg);
+        padding: .1em .3em;
+        border: 1px solid var(--line);
+        transition: background .2s, border-color .2s;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 2rem;
+        font-family: var(--mono);
+        font-size: .7rem;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        color: var(--ink-soft);
+        text-decoration: none;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: .25rem;
+        transition: color .2s, border-color .2s;
+      }
+
+      .back-link:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+      .sheet-footer {
+        margin-top: 3rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--line);
+        font-family: var(--mono);
+        font-size: .65rem;
+        color: var(--ink-faint);
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: .5rem;
+        transition: color .2s, border-color .2s;
+      }
+
+      .theme-toggle {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background: var(--callout-bg);
+        border: 1px solid var(--line);
+        color: var(--ink);
+        font-family: var(--mono);
+        font-size: .65rem;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        padding: .4rem .75rem;
+        cursor: pointer;
+        transition: background .2s, border-color .2s, color .2s;
+        z-index: 10;
+      }
+
+      .theme-toggle:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      @media (max-width: 600px) {
+        .sheet {
+          padding: 1.5rem;
+          margin: 1rem;
+        }
+
+        .title-block {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .meta {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .metrics {
+          flex-direction: column;
+        }
+
+        table {
+          font-size: .65rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">◐ Theme</button>
+
+    <div class="sheet">
+
+      <div class="title-block">
+        <h1>Editorial Workflow Automation</h1>
+        <div class="sheet-id">
+          WALKTHROUGH 01 OF 04<br>
+          SHEET WT-2026-01<br>
+          REV A
+        </div>
+      </div>
+
+      <div class="meta">
+        <div><span>Project</span><strong>Casualty Actuarial Society</strong></div>
+        <div><span>Role</span><strong>Web Development Analyst</strong></div>
+        <div><span>Period</span><strong>11/2021 – 10/2025</strong></div>
+        <div><span>Drawn by</span><strong>Marho Eradiri</strong></div>
+      </div>
+
+      <h2>§ The Problem</h2>
+      <p>
+        The Casualty Actuarial Society published announcements, professional content, regulatory updates, and research
+        across Drupal and WordPress websites, but the organization was not using either platform as a traditional CMS.
+      </p>
+      <p>
+        The IT team managed all content posting through a HelpDesk ticket queue. Staff across editorial, marketing, and
+        research
+        departments authored their content in Microsoft Word,
+        attached the <code>.docx</code> to a ticket, and waited for IT to post it. IT reviewed every submission before
+        publishing. There were no editorial accounts in the CMS. There was no approval pipeline. There was no draft
+        state. The CMS was being used as a file-attachment endpoint with a human in the middle.
+      </p>
+      <p>
+        The quarterly Actuarial Review was a strong example. The editorial team produced a master Word document. The
+        same <code>.docx</code> used to generate the print PDF, was handed to IT who then published the entire
+        issue, aricle by article, into WordPress. The workflow was designed around
+        Word, not around the CMS.
+      </p>
+
+      <h2>§ How I Diagnosed It</h2>
+      <p>
+        My role at the CAS was centered on managing the HelpDesk and I quickly noticed the pattern. Every piece of
+        content arrived as a Word document
+        attached to a ticket. IT staff spent their days copying, pasting, formatting, and tagging. The CMS was installed
+        and running, but no one outside IT had an account in it.
+      </p>
+      <p>
+        Staff had grown accustomed used to routing everything through IT. They saw the CMS (WordPress, Drupal) as IT's
+        domain. IT was essentially the gatekeepers and as IT priorities shifted toward a new CRM, The system produced a
+        predictable bottleneck. Every piece of content waited in a queue to copy, paste, format, tag, and
+        publish.
+      </p>
+      <p>
+        The quarterly Actuarial Review was a costly bottleneck with strict deadlines. IT was spending entire workdays on
+        a
+        task the
+        editorial team could perform themselves. They had authored the content. They knew the structure. The only
+        missing piece was familiarity with the WordPress admin.
+      </p>
+
+      <h2>§ What I Built</h2>
+
+      <p><strong>Drupal editorial accounts and approval pipelines (shipped).</strong></p>
+      <p>
+        I read the Drupal documentation. The platform supports editorial workflows natively: role-based accounts,
+        content moderation states, and approval pipelines. The solution was not a custom build. It was configuration
+        the platform already supported.
+      </p>
+
+      <p><strong>WordPress user group coaching (shipped).</strong></p>
+      <p>
+        The quarterly Actuarial Review team managed content on a separate WordPress site.
+      </p>
+      <p>
+        I coached the editorial team on the WordPress admin. I presented on how to write posts, apply taxonomy tags, and
+        verify that
+        tagged articles populated correctly on the home page. The team already knew the content. They already knew the
+        structure. They just needed to know the tool and they were relieved to have full control of the publishing
+        pipeline.
+      </p>
+      <p>
+        The result: IT's workload for web postings dropped by 60%. The editorial team now publishes content
+        directly. IT is only brought in to verify tags if something does not populate correctly on a specific page. A
+        spot-check, not a full-cycle dependency.
+      </p>
+
+      <p><strong>Word-to-CMS plugin (designed, not deployed).</strong></p>
+      <p>
+        The cultural inertia behind Word was too strong for a full transition, so I designed a PHP
+        plugin that would ingest a <code>.docx</code> file, map Word styles to CMS content blocks, and create a draft
+        post ready for editorial review. The plugin would preserve the Word-first workflow staff were comfortable with
+        while removing the copy-paste step. The design was complete. Deployment was blocked by organizational
+        priorities. Our business officer preferred to maintain existing processes.
+      </p>
+
+      <h2>§ How I Verified the Results</h2>
+      <p>
+        The Drupal editorial accounts went live, implemented by the vendor to my specification. The WordPress coaching
+        shifted the quarterly Actuarial Review from an IT-owned publishing cycle to an editorial-owned workflow. IT's
+        involvement dropped from full-cycle publishing to occasional tag verification.
+      </p>
+
+      <div class="callout">
+        <div class="label">Technical Stack</div>
+        <p>Drupal 9 (primary editorial platform) · WordPress 5.x (quarterly Actuarial Review) · Composer for dependency
+          management · Git for version control across all environments · Vendor-managed implementation</p>
+      </div>
+
+      <div class="metrics">
+        <div class="metric">
+          <span class="value">60%</span>
+          <span class="label">Reduction in IT handling time per release cycle</span>
+        </div>
+        <div class="metric">
+          <span class="value">16h</span>
+          <span class="label">IT hours saved per quarterly release</span>
+        </div>
+        <div class="metric">
+          <span class="value">3</span>
+          <span class="label">Editorial staff publishing directly</span>
+        </div>
+      </div>
+
+      <h2>§ Judgment Call</h2>
+      <p>
+        I chose a two-pronged approach: train the users who were ready to adopt the CMS, and design a bridge for those
+        who were not. The CMS training shipped first because it produced immediate results with no development overhead.
+        For the Drupal editorial accounts, I read the documentation, designed the workflow, and directed the vendor to
+        implement.
+      </p>
+      <p>
+        The Word-to-CMS plugin was designed as the second phase. A PHP parser for <code>.docx</code> files, leveraging
+        Office Open XML's structured format with predictable style mappings. The plugin would have eliminated the last
+        remaining copy-paste step. Organizational priorities did not align.
+      </p>
+      <p>
+        In a non-technical organization, I have learned to ship the cultural change first and the automation second.
+        Aided by the official Drupal documentation, I pointed our vendor in the right direction and allowed them to do
+        what
+        they
+        did well — implementation — while I owned the diagnosis, the design, and the
+        verification.
+      </p>
+
+
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Before</th>
+            <th>After</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>IT involvement (quarterly review)</td>
+            <td>Full-cycle publishing from master Word doc</td>
+            <td>60% reduction; spot-check tags only if needed</td>
+          </tr>
+          <tr>
+            <td>Content path (Drupal)</td>
+            <td>Word doc → HelpDesk ticket → IT copy-paste → publish</td>
+            <td>Editorial account → draft → review → approve → publish</td>
+          </tr>
+          <tr>
+            <td>Content path (WordPress)</td>
+            <td>Master Word doc → IT publishes entire issue</td>
+            <td>Editorial team publishes directly; IT verifies tags on exception</td>
+          </tr>
+          <tr>
+            <td>Sources of truth</td>
+            <td>Word files, HelpDesk queue, spreadsheet</td>
+            <td>CMS (Drupal for editorial, WordPress for quarterly review)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <a href="index.html" class="back-link">← Return to Portfolio</a>
+
+      <div class="sheet-footer">
+        <span>Walkthrough 01 of 04 · WT-2026-01 · REV A</span>
+        <span>Marho Eradiri · WEB ARCHITECT · DC METRO AREA</span>
+        <span>ISSUED FOR HIRING REVIEW — NOT A TEMPLATE</span>
+      </div>
+
+    </div>
+
+    <script>
+      const TK = "me-theme";
+      let saved = null; try { saved = localStorage.getItem(TK); } catch (e) { }
+      if (saved) {
+        document.documentElement.setAttribute("data-theme", saved);
+      }
+
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute("data-theme");
+        const next = current === "vellum" ? "blueprint" : "vellum";
+        document.documentElement.setAttribute("data-theme", next);
+        try { localStorage.setItem(TK, next); } catch (e) { }
+      }
+    </script>
+
+  </body>
+
+  </html>
+
+  <script>
+
+  </script>
+</body>
+
+</html>
