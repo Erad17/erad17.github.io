@@ -1,0 +1,1604 @@
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Analysis Report — Dolphin Academic Prep</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — extracted from Dolphin Academic Prep prototype
+       ============================================================ */
+    :root {
+      /* Surfaces */
+      --paper: #F3F7F9;
+      --surface: #FFFFFF;
+      --surface-2: #E9F1F4;
+      --surface-3: #DCE9EE;
+      /* Ink */
+      --ink: #0B2233;
+      --ink-soft: #3C566A;
+      --ink-faint: #66808F;
+      /* Brand */
+      --navy: #0B2233;
+      --navy-2: #123A56;
+      --teal: #0E7C86;
+      --teal-2: #12A5B0;
+      --teal-soft: #DFF3F4;
+      --orange: #F4650F;
+      --orange-2: #D9560A;
+      --orange-soft: #FFE7D6;
+      --gold: #F5B301;
+      --ok: #178A5C;
+      --ok-soft: #DDF3E8;
+      --err: #D64545;
+      --err-soft: #FBE7E7;
+      --warn: #B97900;
+      --warn-soft: #FFF3D6;
+      /* Lines */
+      --line: #D3E0E7;
+      --line-soft: #E4EEF2;
+      /* Shape */
+      --r-sm: 6px;
+      --r-md: 12px;
+      --r-lg: 18px;
+      --r-xl: 26px;
+      --r-pill: 999px;
+      /* Shadows */
+      --shadow-1: 0 1px 2px rgba(11, 34, 51, .06), 0 10px 26px -14px rgba(11, 34, 51, .14);
+      --shadow-2: 0 2px 4px rgba(11, 34, 51, .08), 0 24px 52px -22px rgba(11, 34, 51, .25);
+      /* Typography */
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Public Sans", system-ui, -apple-system, sans-serif;
+      --font-mono: "Space Mono", ui-monospace, "Courier New", monospace;
+      --fs-hero: clamp(2.2rem, 3.5vw + .8rem, 3.5rem);
+      --fs-h1: clamp(1.8rem, 2.5vw + .7rem, 2.6rem);
+      --fs-h2: clamp(1.4rem, 1.6vw + .6rem, 1.9rem);
+      --fs-h3: clamp(1.1rem, .7vw + .8rem, 1.35rem);
+      --fs-body: clamp(.95rem, .3vw + .86rem, 1.05rem);
+      --fs-small: clamp(.83rem, .2vw + .77rem, .9rem);
+      --fs-micro: clamp(.7rem, .15vw + .66rem, .78rem);
+      /* Layout */
+      --container: 860px;
+      --sp-1: 4px;
+      --sp-2: 8px;
+      --sp-3: 12px;
+      --sp-4: 16px;
+      --sp-5: 24px;
+      --sp-6: 32px;
+      --sp-7: 48px;
+      --sp-8: 72px;
+      --rule-line: rgba(11, 34, 51, .055);
+    }
+
+    /* ============================================================
+       PRINT RULES
+       ============================================================ */
+    @page {
+      size: letter;
+      margin: 0.7in 0.8in;
+      @bottom-center {
+        content: "Page " counter(page);
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        color: #999;
+      }
+    }
+
+    @page :first {
+      @bottom-center {
+        content: none;
+      }
+    }
+
+    @media print {
+      :root {
+        --paper: #fff;
+        --ink: #111;
+        --ink-soft: #333;
+        --ink-faint: #555;
+        --surface: #fff;
+        --surface-2: #f5f5f5;
+        --surface-3: #e8e8e8;
+        --line: #ccc;
+        --line-soft: #e0e0e0;
+        --teal-soft: #e8f4f5;
+        --orange-soft: #fff0e8;
+        --ok-soft: #e8f5ef;
+        --err-soft: #fce8e8;
+        --warn-soft: #fff8e8;
+        font-size: 10.5pt;
+      }
+      body {
+        background: #fff;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .no-break {
+        page-break-inside: avoid;
+      }
+      table {
+        page-break-inside: avoid;
+      }
+      .cover {
+        page-break-after: always;
+      }
+      .callout, .score-bar-wrap, .stat-card {
+        page-break-inside: avoid;
+      }
+      .site-footer {
+        background: #f5f5f5 !important;
+        color: #333 !important;
+      }
+      .site-footer .brand-name, .site-footer .f-link, .site-footer a {
+        color: #333 !important;
+      }
+      .site-footer h4 {
+        color: #555 !important;
+      }
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font: 400 var(--fs-body)/1.7 var(--font-body);
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 2rem);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -.01em;
+      color: var(--ink);
+    }
+
+    h1 { font-size: var(--fs-h1); }
+    h2 { font-size: var(--fs-h2); margin-top: 2.25rem; margin-bottom: 0.75rem; }
+    h3 { font-size: var(--fs-h3); margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    h4 { font-family: var(--font-body); font-weight: 700; font-size: var(--fs-body); margin-top: 1rem; margin-bottom: 0.35rem; }
+
+    p { margin-bottom: 0.7rem; }
+    a { color: var(--teal); text-underline-offset: 3px; }
+
+    em, i { font-style: italic; }
+    em.tilt { color: var(--teal); }
+    em.warm { color: var(--orange); }
+
+    strong, b { font-weight: 700; }
+
+    ::selection {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    /* ============================================================
+       COVER PAGE
+       ============================================================ */
+    .cover {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(620px 380px at 88% -8%, rgba(18, 165, 176, .12), transparent 60%),
+        radial-gradient(480px 320px at -6% 100%, rgba(244, 101, 15, .10), transparent 60%),
+        var(--paper);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(to bottom, transparent 0 35px, var(--rule-line) 35px 36px);
+      -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 96%);
+      mask-image: linear-gradient(to bottom, #000 55%, transparent 96%);
+    }
+
+    .cover::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: clamp(20px, 6vw, 72px);
+      width: 2px;
+      background: var(--orange);
+      opacity: .12;
+      pointer-events: none;
+    }
+
+    .cover-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 620px;
+      padding: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .cover-logo {
+      max-width: 180px;
+      height: auto;
+      margin: 0 auto var(--sp-5);
+      display: block;
+    }
+
+    .cover-brand {
+      font: 700 clamp(1.4rem, .8vw + 1.2rem, 1.8rem)/1.05 var(--font-display);
+      color: var(--navy);
+      margin-bottom: var(--sp-2);
+      letter-spacing: -.01em;
+    }
+
+    .cover-brand small {
+      display: block;
+      font: 700 var(--fs-small)/1.4 var(--font-mono);
+      letter-spacing: .14em;
+      color: var(--teal);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .cover-title {
+      font-size: var(--fs-hero);
+      font-weight: 600;
+      color: var(--ink);
+      margin: var(--sp-6) 0 var(--sp-3);
+      line-height: 1.1;
+    }
+
+    .cover-title .accent {
+      color: var(--teal);
+      font-style: italic;
+    }
+
+    .cover-domain {
+      font: 700 var(--fs-body)/1.4 var(--font-mono);
+      color: var(--ink-faint);
+      letter-spacing: .06em;
+      margin-bottom: var(--sp-2);
+    }
+
+    .cover-date {
+      font-size: var(--fs-small);
+      color: var(--ink-faint);
+      margin-bottom: var(--sp-5);
+    }
+
+    .cover-by {
+      font: 600 var(--fs-small)/1.5 var(--font-body);
+      color: var(--ink-soft);
+      margin-bottom: var(--sp-5);
+      padding: var(--sp-3) var(--sp-5);
+      border: 1.5px solid var(--line);
+      border-radius: var(--r-pill);
+      display: inline-block;
+      background: var(--surface);
+    }
+
+    .cover-summary {
+      font-size: var(--fs-body);
+      color: var(--ink-soft);
+      max-width: 48ch;
+      margin: var(--sp-5) auto 0;
+      line-height: 1.6;
+    }
+
+    .cover-line {
+      width: 72px;
+      height: 2px;
+      background: var(--orange);
+      margin: 0 auto;
+      border-radius: 2px;
+    }
+
+    /* ============================================================
+       SECTION HEADERS
+       ============================================================ */
+    .section {
+      padding: clamp(40px, 6vw, 72px) 0;
+      position: relative;
+    }
+
+    .section + .section {
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .kicker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font: 700 var(--fs-micro)/1 var(--font-mono);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: var(--sp-4);
+    }
+
+    .kicker::after {
+      content: "";
+      height: 1px;
+      width: 48px;
+      background: var(--teal);
+      opacity: .45;
+    }
+
+    .kicker .k-num {
+      color: var(--orange);
+    }
+
+    .section-head {
+      margin-bottom: clamp(24px, 3.5vw, 40px);
+    }
+
+    .section-head h2 {
+      font-size: var(--fs-h2);
+      margin-top: 0;
+    }
+
+    .section-head p {
+      color: var(--ink-soft);
+      max-width: 58ch;
+    }
+
+    /* ============================================================
+       AT A GLANCE TABLE
+       ============================================================ */
+    .glance-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      font-size: var(--fs-small);
+      box-shadow: var(--shadow-1);
+    }
+
+    .glance-table th,
+    .glance-table td {
+      padding: 11px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .glance-table th {
+      font: 700 var(--fs-micro)/1.4 var(--font-mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      background: var(--surface-2);
+      width: 180px;
+      white-space: nowrap;
+      vertical-align: top;
+    }
+
+    .glance-table td {
+      color: var(--ink);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+
+    .glance-table tr:last-child th,
+    .glance-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .glance-table tbody tr:nth-child(even) {
+      background: var(--surface);
+    }
+
+    .glance-table tbody tr:nth-child(odd) {
+      background: var(--paper);
+    }
+
+    .pill-inline {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: var(--r-pill);
+      font: 700 var(--fs-micro)/1.4 var(--font-mono);
+      letter-spacing: .04em;
+    }
+
+    .pill-pass { background: var(--ok-soft); color: var(--ok); }
+    .pill-fail { background: var(--err-soft); color: var(--err); }
+    .pill-warn { background: var(--warn-soft); color: var(--warn); }
+    .pill-partial { background: var(--warn-soft); color: var(--warn); }
+
+    /* ============================================================
+       CALLOUT BOXES
+       ============================================================ */
+    .callout {
+      border-left: 4px solid var(--teal);
+      background: var(--surface);
+      border-radius: 0 var(--r-md) var(--r-md) 0;
+      padding: var(--sp-4) var(--sp-5);
+      margin: var(--sp-5) 0;
+      box-shadow: var(--shadow-1);
+      border-top: 1px solid var(--line-soft);
+      border-right: 1px solid var(--line-soft);
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .callout h4 {
+      font-family: var(--font-display);
+      font-size: var(--fs-h3);
+      margin-top: 0;
+      margin-bottom: var(--sp-2);
+      color: var(--ink);
+    }
+
+    .callout p {
+      font-size: var(--fs-small);
+      color: var(--ink-soft);
+      margin-bottom: var(--sp-2);
+    }
+
+    .callout .source-ref {
+      font: 600 var(--fs-micro)/1.5 var(--font-mono);
+      color: var(--ink-faint);
+      letter-spacing: .03em;
+    }
+
+    .callout-critical {
+      border-left-color: var(--orange);
+    }
+
+    .callout-good {
+      border-left-color: var(--ok);
+    }
+
+    .callout-info {
+      border-left-color: var(--navy);
+    }
+
+    /* ============================================================
+       OPPORTUNITY SCORE
+       ============================================================ */
+    .score-bar-wrap {
+      margin: var(--sp-6) 0;
+      padding: var(--sp-5);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-1);
+    }
+
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+      margin-bottom: var(--sp-3);
+    }
+
+    .score-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .score-label {
+      font: 700 var(--fs-micro)/1 var(--font-mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      min-width: 130px;
+      text-align: right;
+      flex: none;
+    }
+
+    .score-bar {
+      flex: 1;
+      height: 22px;
+      background: var(--surface-2);
+      border-radius: var(--r-pill);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .score-fill {
+      height: 100%;
+      border-radius: var(--r-pill);
+      transition: width 0.8s ease;
+    }
+
+    .score-fill.current {
+      background: linear-gradient(90deg, var(--teal), var(--teal-2));
+      width: 60%;
+    }
+
+    .score-fill.target {
+      background: linear-gradient(90deg, var(--navy), var(--teal));
+      width: 90%;
+    }
+
+    .score-num {
+      font: 700 var(--fs-body)/1 var(--font-mono);
+      color: var(--ink);
+      min-width: 36px;
+      flex: none;
+    }
+
+    .score-gap {
+      font-size: var(--fs-small);
+      color: var(--ink-soft);
+      margin-top: var(--sp-3);
+      padding-top: var(--sp-3);
+      border-top: 1px dashed var(--line);
+    }
+
+    /* ============================================================
+       STATUS INDICATORS
+       ============================================================ */
+    .status-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: var(--sp-3);
+    }
+
+    .status-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--sp-3);
+      padding: var(--sp-3) var(--sp-4);
+      background: var(--surface);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--r-md);
+      font-size: var(--fs-small);
+    }
+
+    .status-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: none;
+      margin-top: 2px;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .status-icon.pass { background: var(--ok-soft); color: var(--ok); }
+    .status-icon.fail { background: var(--err-soft); color: var(--err); }
+    .status-icon.partial { background: var(--warn-soft); color: var(--warn); }
+    .status-icon.info { background: var(--teal-soft); color: var(--teal); }
+
+    .status-label {
+      font-weight: 600;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .status-detail {
+      color: var(--ink-soft);
+    }
+
+    /* ============================================================
+       TABLES (general)
+       ============================================================ */
+    .data-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      font-size: var(--fs-small);
+      margin: var(--sp-4) 0;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--line-soft);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .data-table th {
+      font: 700 var(--fs-micro)/1.4 var(--font-mono);
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      background: var(--surface-2);
+    }
+
+    .data-table tbody tr:nth-child(even) {
+      background: var(--surface);
+    }
+
+    .data-table tbody tr:nth-child(odd) {
+      background: var(--paper);
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ============================================================
+       SCOPE TIERS TABLE
+       ============================================================ */
+    .scope-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      font-size: var(--fs-small);
+      margin: var(--sp-4) 0;
+      box-shadow: var(--shadow-1);
+    }
+
+    .scope-table th {
+      font: 700 var(--fs-micro)/1.4 var(--font-mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--navy);
+      padding: 12px 16px;
+      text-align: left;
+    }
+
+    .scope-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--line-soft);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+
+    .scope-table tbody tr:nth-child(even) {
+      background: var(--surface);
+    }
+
+    .scope-table tbody tr:nth-child(odd) {
+      background: var(--paper);
+    }
+
+    .scope-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .scope-table .tier-name {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    /* ============================================================
+       BLOCKQUOTE
+       ============================================================ */
+    blockquote {
+      border-left: 3px solid var(--teal);
+      padding: var(--sp-3) var(--sp-5);
+      margin: var(--sp-4) 0;
+      background: var(--teal-soft);
+      border-radius: 0 var(--r-md) var(--r-md) 0;
+      font-style: italic;
+      color: var(--ink-soft);
+    }
+
+    /* ============================================================
+       BACKEND ACCESS BOX
+       ============================================================ */
+    .backend-box {
+      background: var(--surface);
+      border: 2px dashed var(--line);
+      border-radius: var(--r-lg);
+      padding: var(--sp-5) var(--sp-6);
+      margin: var(--sp-6) 0;
+    }
+
+    .backend-box h3 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+    }
+
+    .backend-box h3::before {
+      content: "🔒";
+      font-size: 1.2em;
+    }
+
+    .backend-box ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: var(--sp-2);
+    }
+
+    .backend-box li {
+      padding: var(--sp-2) 0;
+      font-size: var(--fs-small);
+      color: var(--ink-soft);
+      border-bottom: 1px dashed var(--line-soft);
+    }
+
+    .backend-box li:last-child {
+      border-bottom: none;
+    }
+
+    .backend-box li::before {
+      content: "— ";
+      color: var(--ink-faint);
+    }
+
+    .backend-note {
+      font-size: var(--fs-small);
+      font-style: italic;
+      color: var(--ink-faint);
+      margin-top: var(--sp-4);
+      padding-top: var(--sp-3);
+      border-top: 1px solid var(--line);
+    }
+
+    /* ============================================================
+       PRIORITY CARDS
+       ============================================================ */
+    .priority-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      padding: var(--sp-5);
+      margin-bottom: var(--sp-4);
+      box-shadow: var(--shadow-1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .priority-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+
+    .priority-card.p1::before {
+      background: linear-gradient(90deg, var(--orange), var(--orange-2));
+    }
+
+    .priority-card.p2::before {
+      background: linear-gradient(90deg, var(--teal), var(--teal-2));
+    }
+
+    .priority-card.p3::before {
+      background: linear-gradient(90deg, var(--navy), var(--teal));
+    }
+
+    .priority-card .p-tag {
+      display: inline-block;
+      font: 700 var(--fs-micro)/1 var(--font-mono);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: var(--r-pill);
+      margin-bottom: var(--sp-3);
+    }
+
+    .priority-card.p1 .p-tag { background: var(--orange-soft); color: var(--orange); }
+    .priority-card.p2 .p-tag { background: var(--teal-soft); color: var(--teal); }
+    .priority-card.p3 .p-tag { background: var(--surface-2); color: var(--navy); }
+
+    .priority-card h3 {
+      margin-top: 0;
+      font-size: var(--fs-h3);
+    }
+
+    .priority-card .p-what,
+    .priority-card .p-why,
+    .priority-card .p-how {
+      font-size: var(--fs-small);
+      margin-bottom: var(--sp-2);
+    }
+
+    .priority-card .p-label {
+      font: 700 var(--fs-micro)/1.4 var(--font-mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      display: inline-block;
+      min-width: 70px;
+    }
+
+    /* ============================================================
+       PROPOSED APPROACH
+       ============================================================ */
+    .approach-box {
+      background: var(--navy);
+      color: #fff;
+      border-radius: var(--r-lg);
+      padding: var(--sp-5) var(--sp-6);
+      margin: var(--sp-5) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .approach-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(400px 240px at 100% 0%, rgba(244, 101, 15, .25), transparent 70%),
+        radial-gradient(380px 260px at 0% 100%, rgba(18, 165, 176, .3), transparent 70%);
+    }
+
+    .approach-box > * {
+      position: relative;
+    }
+
+    .approach-box h3 {
+      color: #fff;
+      margin-top: 0;
+    }
+
+    .approach-box p {
+      color: rgba(255, 255, 255, .82);
+      font-size: var(--fs-small);
+    }
+
+    .approach-box code {
+      font-family: var(--font-mono);
+      font-size: var(--fs-micro);
+      background: rgba(255, 255, 255, .12);
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    /* ============================================================
+       NEXT STEPS
+       ============================================================ */
+    .next-step {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      padding: var(--sp-5);
+      margin-top: var(--sp-5);
+      box-shadow: var(--shadow-1);
+    }
+
+    .next-step .ns-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--r-md);
+      background: var(--teal-soft);
+      color: var(--teal);
+      display: grid;
+      place-items: center;
+      flex: none;
+      font-size: 1.3rem;
+    }
+
+    .next-step p {
+      margin: 0;
+      font-size: var(--fs-body);
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .site-footer {
+      background: var(--navy);
+      color: rgba(255, 255, 255, .72);
+      margin-top: clamp(40px, 6vw, 72px);
+      padding: var(--sp-5) 0;
+      font-size: var(--fs-micro);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-4);
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .site-footer .footer-brand {
+      font: 600 var(--fs-small)/1.3 var(--font-display);
+      color: #fff;
+    }
+
+    /* ============================================================
+       UTILITY
+       ============================================================ */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    code, .mono {
+      font-family: var(--font-mono);
+    }
+
+    .mono {
+      font-size: var(--fs-micro);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: var(--r-pill);
+      font: 700 var(--fs-micro)/1.4 var(--font-mono);
+      letter-spacing: .04em;
+    }
+
+    .tag-teal { background: var(--teal-soft); color: var(--teal); }
+    .tag-orange { background: var(--orange-soft); color: var(--orange); }
+    .tag-ok { background: var(--ok-soft); color: var(--ok); }
+    .tag-err { background: var(--err-soft); color: var(--err); }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: var(--sp-6) 0;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--line-soft);
+      margin: var(--sp-5) 0;
+    }
+
+    /* ============================================================
+       RESPONSIVE (screen only)
+       ============================================================ */
+    @media (max-width: 640px) {
+      .glance-table th {
+        width: 120px;
+        font-size: 0.65rem;
+      }
+      .glance-table th,
+      .glance-table td {
+        padding: 8px 10px;
+      }
+      .score-label {
+        min-width: 90px;
+        font-size: 0.6rem;
+      }
+      .data-table {
+        font-size: 0.75rem;
+      }
+      .data-table th,
+      .data-table td {
+        padding: 8px 10px;
+      }
+      .backend-box {
+        padding: var(--sp-4);
+      }
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════
+       COVER PAGE
+       ════════════════════════════════════════ -->
+  <section class="cover">
+    <div class="cover-inner">
+      <div class="cover-line" aria-hidden="true"></div>
+      <p class="cover-brand" style="margin-top:var(--sp-5)">Dolphin<small>Academic Prep</small></p>
+      <h1 class="cover-title">Website <span class="accent">Analysis</span> Report</h1>
+      <p class="cover-domain">dolphinacademicprep.com</p>
+      <p class="cover-date">August 23, 2026</p>
+      <p class="cover-by">Prepared by Marho Eradiri — Web Architect</p>
+      <p class="cover-summary">A front-end audit of dolphinacademicprep.com based on source code analysis and visual inspection, with prioritized recommendations for improvement. Evaluated against the Upwork job description for a web designer to complete the site redesign.</p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       PAGE 1 — EXECUTIVE SUMMARY & CURRENT STATE
+       ════════════════════════════════════════ -->
+  <section class="page-break">
+    <div class="container">
+      <p class="kicker"><span class="k-num">01</span> · Executive Summary</p>
+      <h2>1. Executive Summary &amp; Current State</h2>
+
+      <h3>At a Glance</h3>
+      <table class="glance-table">
+        <tbody>
+          <tr>
+            <th>Platform</th>
+            <td>WordPress — detectable from <code>/wp-content/</code>, <code>/wp-includes/</code>, <code>xmlrpc.php</code> paths. Version not exposed in generator tag.</td>
+          </tr>
+          <tr>
+            <th>Theme</th>
+            <td><strong>Twenty Ten</strong> — a WordPress 3.0-era default theme. No child theme in use. Body class: <code>wp-theme-twentyten</code>.</td>
+          </tr>
+          <tr>
+            <th>Key Plugins</th>
+            <td>Elementor 4.2.3, Yoast SEO 28.3, MonsterInsights (GA4), Cyclone Slider 2 (v3.2.0), Essential Addons for Elementor Lite 6.7.3, TablePress 3.3.4, WP Fastest Cache, Bluehost Plugin, All in One Favicon, News Announcement Scroll</td>
+          </tr>
+          <tr>
+            <th>Hosting</th>
+            <td>Bluehost — detectable from <code>bluehost-wordpress-plugin</code> asset path</td>
+          </tr>
+          <tr>
+            <th>SSL</th>
+            <td><span class="pill-inline pill-pass">Yes</span> — all resource URLs use <code>https://</code></td>
+          </tr>
+          <tr>
+            <th>Mobile</th>
+            <td><span class="pill-inline pill-fail">Fail</span> — no <code>&lt;meta name="viewport"&gt;</code> tag. Twenty Ten is a fixed-width (940px) theme.</td>
+          </tr>
+          <tr>
+            <th>Performance Signal</th>
+            <td>jQuery 3.7.1 + jQuery Migrate loaded; Cyclone Slider 2 pulls jQuery Cycle2 + 5 add-ons; no <code>defer</code>/<code>async</code> on most scripts; WP Fastest Cache is active (mitigating factor)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>What's Working</h3>
+
+      <div class="callout callout-good">
+        <h4>1. Solid SEO Foundation</h4>
+        <p>Yoast SEO is configured with proper meta title, description, canonical URL, Open Graph tags, and structured data (Organization, WebPage, BreadcrumbList, WebSite with SearchAction). The JSON-LD schema markup is comprehensive and well-formed — this is rare on a site of this vintage and a genuine asset.</p>
+      </div>
+
+      <div class="callout callout-good">
+        <h4>2. SSL Across the Board</h4>
+        <p>All resource URLs, canonical URLs, and internal links use HTTPS. No mixed-content warnings detected. The MonsterInsights GA4 config includes <code>forceSSL: true</code>.</p>
+      </div>
+
+      <div class="callout callout-good">
+        <h4>3. Clear Service Architecture</h4>
+        <p>The navigation hierarchy — Home → Services (with grade-level breakdowns) → Resources → FAQ → Request Info → Contact — is logical and reflects a real understanding of how families shop for tutoring. The content itself is substantive, with detailed exam schedule pages and featured articles.</p>
+      </div>
+
+      <h3>Critical Issues</h3>
+
+      <div class="callout callout-critical">
+        <h4>1. No Viewport Meta Tag — Site Is Not Mobile-Responsive</h4>
+        <p>The <code>&lt;head&gt;</code> contains no <code>&lt;meta name="viewport"&gt;</code> tag. Mobile browsers render the page at desktop width and zoom out, making text unreadable and navigation unusable on phones. The Twenty Ten theme is a fixed-width (940px) theme from 2010. With roughly 60%+ of tutoring searches happening on mobile, this is costing the business real leads every day. The JD explicitly requires "Desktop, Mobile &amp; Tablet Compatible."</p>
+        <p class="source-ref">Source: viewport meta tag is absent from the entire <code>&lt;head&gt;</code> block.</p>
+      </div>
+
+      <div class="callout callout-critical">
+        <h4>2. No Child Theme — Updates Will Destroy Customizations</h4>
+        <p>The site runs on the Twenty Ten parent theme directly. When WordPress updates the theme, any customizations to <code>functions.php</code>, template files, or the footer will be overwritten. The footer currently shows "Proudly powered by WordPress" — a telltale sign that the previous designer either didn't know how to create a child theme or never finished.</p>
+        <p class="source-ref">Source: <code>#site-generator</code> div contains the anchor: <code>&lt;a href="https://wordpress.org/" class="imprint"&gt;Proudly powered by WordPress.&lt;/a&gt;</code></p>
+      </div>
+
+      <div class="callout callout-critical">
+        <h4>3. Cyclone Slider 2 — Abandoned Plugin</h4>
+        <p>Cyclone Slider 2 (version 3.2.0) loads jQuery Cycle2 and five separate add-on scripts: carousel, swipe, tile, video, plus a Vimeo player. This plugin has not been meaningfully updated in years. It's a performance liability and a security risk. The slider on the homepage is the primary visual element above the fold, and it's powered by abandoned code.</p>
+        <p class="source-ref">Source: 5 separate Cyclone Slider JS files enqueued in the footer, plus <code>jquery.cycle2.min.js</code> and all its add-ons.</p>
+      </div>
+
+      <div class="callout callout-critical">
+        <h4>4. No Client Portal Infrastructure</h4>
+        <p>The JD's most ambitious requirement — a secure web portal with login, six e-signable forms, document uploads, and dual notifications — has zero representation in the current source. There is no membership plugin, no form builder capable of e-signatures, and no document management system. This is the single largest gap between the current site and the stated requirements.</p>
+        <p class="source-ref">Source: no membership plugin, no login form, no e-signature capability detected in enqueued scripts or markup.</p>
+      </div>
+
+      <div class="callout callout-critical">
+        <h4>5. Fragile Build Pipeline</h4>
+        <p>The site is an awkward hybrid: Elementor is installed and the kit is active (post-19418), but the page content is rendered through Twenty Ten's template hierarchy, not Elementor's canvas. The CSS is a mix of Twenty Ten defaults, Elementor styles, Wonder Blocks utilities, and WP Fastest Cache's combined/minified output. The previous designer appears to have started an Elementor migration and stopped mid-way. This makes the site fragile — any change to one layer risks breaking another.</p>
+        <p class="source-ref">Source: <code>elementor-kit-19418</code> is active, but the body uses <code>wp-theme-twentyten</code> template hierarchy.</p>
+      </div>
+
+      <h3>Opportunity Score</h3>
+      <div class="score-bar-wrap">
+        <div class="score-row">
+          <span class="score-label">Current Site</span>
+          <div class="score-bar">
+            <div class="score-fill current"></div>
+          </div>
+          <span class="score-num">6/10</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">Where It Could Be</span>
+          <div class="score-bar">
+            <div class="score-fill target"></div>
+          </div>
+          <span class="score-num">9/10</span>
+        </div>
+        <p class="score-gap">The fundamentals are better than most sites of this vintage — SEO is solid, content is substantive, and the service architecture is clear. But the site is frozen in 2012: not mobile-friendly, running on a 15-year-old default theme, with no portal, and a build pipeline that's half-Elementor and half-classic-theme. The gap from 6 to 9 is achievable because the content and SEO foundation don't need to be rebuilt — the presentation layer, portal, and responsive design do.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       PAGE 2 — FRONT-END AUDIT
+       ════════════════════════════════════════ -->
+  <section class="page-break">
+    <div class="container">
+      <p class="kicker"><span class="k-num">02</span> · Front-End Audit</p>
+      <h2>2. Front-End Audit</h2>
+      <p class="section-head">This page covers only what is visible from source code and visual inspection of the .html files. Server-side configurations, plugin settings, and editorial workflows are not auditable from source alone.</p>
+
+      <h3>Performance</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Metric</th><th>Finding</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CSS files</td>
+            <td>1 combined/minified file via WP Fastest Cache (good), but source reveals ~12 distinct stylesheets before combination</td>
+          </tr>
+          <tr>
+            <td>JS files</td>
+            <td>1 combined/minified file + 12 separate plugin scripts (jQuery, jQuery Migrate, Cycle2 ×5, Cyclone client, Vimeo player, gAnnounce, Elementor lazyload, link prefetcher, eael-general)</td>
+          </tr>
+          <tr>
+            <td>Render-blocking</td>
+            <td>MonsterInsights GA4 script loads in <code>&lt;head&gt;</code> without <code>defer</code>/<code>async</code>. jQuery loads synchronously. Most footer scripts lack <code>defer</code>.</td>
+          </tr>
+          <tr>
+            <td>Inline CSS/JS</td>
+            <td>High volume: <code>wp-emoji-styles</code>, <code>global-styles</code>, <code>nfd-wonder-blocks-utilities</code> (~2,500 lines), <code>custom-background-css</code>, and Elementor rules are all inlined. News Announcement Scroll widget inlines configuration JS with <code>document.write</code>-era patterns.</td>
+          </tr>
+          <tr>
+            <td>Images</td>
+            <td>Homepage header image uses <code>srcset</code> (940w, 300w) — good. Slider images do not use <code>srcset</code> or lazy loading. No WebP/AVIF.</td>
+          </tr>
+          <tr>
+            <td>Caching</td>
+            <td>WP Fastest Cache is active and combining CSS/JS. HTML comment: "WP Fastest Cache file was created in 0.396 seconds" — the cache is working.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p><strong>Verdict:</strong> WP Fastest Cache is doing heavy lifting, but the underlying payload is bloated. Cyclone Slider 2 alone pulls jQuery Cycle2 plus carousel, swipe, tile, and video add-ons — on a homepage that only uses a simple fade transition. The Vimeo player JS loads even though no Vimeo videos appear on the homepage.</p>
+
+      <h3>Accessibility (Baseline Scan)</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Check</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Skip link</td>
+            <td><span class="tag tag-ok">Present</span> — <code>&lt;a href="#content" class="screen-reader-text skip-link"&gt;</code></td>
+          </tr>
+          <tr>
+            <td>Alt text on images</td>
+            <td><span class="tag tag-err">Fail</span> — header branding image has <code>alt=""</code> (empty). Slider images all have <code>alt=""</code>. Favicon <code>&lt;link&gt;</code> tags have no meaningful text alternatives.</td>
+          </tr>
+          <tr>
+            <td>Heading hierarchy</td>
+            <td><span class="tag tag-warn">Partial</span> — the main page heading is an <code>&lt;h2 class="entry-title"&gt;</code>; there is no <code>&lt;h1&gt;</code> on the page. The sidebar widget contains an <code>&lt;h1&gt;</code> used as a phone number (misuse). Widget titles are <code>&lt;h3&gt;</code>.</td>
+          </tr>
+          <tr>
+            <td>Form labels</td>
+            <td><span class="tag tag-warn">Partial</span> — homepage has no visible forms. The "Request Info" page is separate and not auditable from this source.</td>
+          </tr>
+          <tr>
+            <td>ARIA usage</td>
+            <td>Minimal. Skip link and <code>role="navigation"</code> on <code>#access</code> are present. No <code>aria-label</code>, <code>aria-expanded</code>, or <code>aria-current</code> on menu items.</td>
+          </tr>
+          <tr>
+            <td>Color contrast</td>
+            <td>Body uses <code>#e5e5e5</code> background. The accent blue (<code>#0000ff</code>) on white passes contrast checks, but the light-gray-on-white Twenty Ten defaults may fail in widget areas.</td>
+          </tr>
+          <tr>
+            <td>Keyboard navigation</td>
+            <td>No <code>tabindex</code> issues detected. Sub-menus rely on hover — no keyboard-accessible dropdown mechanism.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <blockquote>
+        <strong>This is a baseline scan from source.</strong> Automated tools catch ~30% of WCAG issues. A full audit requires manual testing with assistive technology.
+      </blockquote>
+
+      <h3>SSL &amp; Transport Security</h3>
+      <ul class="status-list">
+        <li><span class="status-icon pass">✓</span><span><span class="status-label">All resource URLs are HTTPS</span><span class="status-detail">No <code>http://</code> references detected in the homepage source.</span></span></li>
+        <li><span class="status-icon pass">✓</span><span><span class="status-label">Canonical URL is HTTPS</span><span class="status-detail"><code>https://www.dolphinacademicprep.com/</code></span></span></li>
+        <li><span class="status-icon pass">✓</span><span><span class="status-label">No mixed-content signals</span><span class="status-detail">All embedded resources reference HTTPS.</span></span></li>
+        <li><span class="status-icon pass">✓</span><span><span class="status-label">GA4 forceSSL enabled</span><span class="status-detail"><code>forceSSL: "true"</code> in MonsterInsights config.</span></span></li>
+        <li><span class="status-icon info">—</span><span><span class="status-label">Cannot verify</span><span class="status-detail">HSTS headers, certificate chain, TLS version — these require server access.</span></span></li>
+      </ul>
+
+      <h3>SEO (Surface)</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Check</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Meta title</td><td><span class="tag tag-ok">Good</span> — 76 chars, keyword-rich, includes location</td></tr>
+          <tr><td>Meta description</td><td><span class="tag tag-ok">Present</span> — 155 chars, includes phone number and location</td></tr>
+          <tr><td>Canonical URL</td><td><span class="tag tag-ok">Present</span> — correctly points to homepage</td></tr>
+          <tr><td>Open Graph</td><td><span class="tag tag-ok">Present</span> — <code>og:title</code>, <code>og:description</code>, <code>og:url</code>, <code>og:locale</code>, <code>og:type</code>, <code>article:publisher</code></td></tr>
+          <tr><td>Twitter Card</td><td><span class="tag tag-warn">Not declared</span> — Yoast should generate this; may be a configuration gap</td></tr>
+          <tr><td>Structured data</td><td><span class="tag tag-ok">Excellent</span> — Yoast-generated JSON-LD: WebPage, BreadcrumbList, WebSite (with SearchAction), Organization (with logo, sameAs for Facebook, Twitter/X, LinkedIn)</td></tr>
+          <tr><td>Robots meta</td><td><span class="tag tag-ok">Good</span> — <code>index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1</code></td></tr>
+          <tr><td>Sitemap</td><td>Not directly referenced in source, but Yoast typically generates at <code>/sitemap_index.xml</code> — cannot confirm from homepage alone</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Code Quality</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Check</th><th>Finding</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Inline vs. external CSS</td><td>Heavy inline CSS — ~2,500 lines of Wonder Blocks utilities alone</td></tr>
+          <tr><td>Plugin count</td><td>At least 10 distinct plugin CSS/JS files loaded; 12+ plugins active</td></tr>
+          <tr><td>Child theme</td><td><span class="tag tag-err">Not in use</span> — body class is <code>wp-theme-twentyten</code></td></tr>
+          <tr><td>Generator tags</td><td><code>&lt;meta name="generator" content="Elementor 4.2.3"&gt;</code> — version number exposed</td></tr>
+          <tr><td>Deprecated libraries</td><td>Cyclone Slider 2 (v3.2.0) is effectively abandoned. jQuery Migrate 3.4.1 is loaded.</td></tr>
+          <tr><td>HTML validity</td><td>Multiple empty widget containers (<code>.widget_black_studio_tinymce</code> with empty <code>.textwidget</code> divs). Speculation rules block present (modern).</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Responsive Design</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Check</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Viewport meta tag</td><td><span class="tag tag-err">Missing</span> — the single most important responsive-design tag is absent</td></tr>
+          <tr><td>Media queries</td><td>Twenty Ten uses <code>@media print</code> only. No responsive breakpoints. Elementor's breakpoints (mobile: 767px, tablet: 1024px) are configured but the page content isn't rendered through Elementor's responsive system.</td></tr>
+          <tr><td>Max-width containers</td><td><code>#wrapper</code> and <code>#branding</code> use fixed widths. Header image is hard-coded at 940px.</td></tr>
+          <tr><td>Mobile menu</td><td><span class="tag tag-err">None</span> — no hamburger menu, no mobile navigation pattern. Menu is a horizontal list that will overflow on small screens.</td></tr>
+          <tr><td>Responsive images</td><td><code>srcset</code> is used on the header image. Slider images do not use it.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Items Requiring Backend Access to Verify</h3>
+      <div class="backend-box">
+        <ul>
+          <li>Form encryption at rest (for the proposed portal)</li>
+          <li>Backup procedure and configuration (Updraft Plus is mentioned in the JD but not detectable from source)</li>
+          <li>Plugin/theme update status and compatibility</li>
+          <li>Server-side performance (PHP execution time, database query count, object caching configuration)</li>
+          <li>Security hardening (Wordfence configuration, file permissions, user roles, login attempt limiting)</li>
+          <li>Editorial workflow — how are "cloned" location pages created and managed?</li>
+          <li>Analytics configuration accuracy (MonsterInsights GA4 property mapping)</li>
+          <li>Parked domain configuration (daptutor.com, .net, .org)</li>
+        </ul>
+        <p class="backend-note"><strong>These items will be audited as the first deliverable after engagement.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       PAGE 3 — RECOMMENDATIONS & NEXT STEPS
+       ════════════════════════════════════════ -->
+  <section class="page-break">
+    <div class="container">
+      <p class="kicker"><span class="k-num">03</span> · Recommendations</p>
+      <h2>3. Recommendations &amp; Next Steps</h2>
+
+      <div class="priority-card p1">
+        <span class="p-tag">Priority 1 — Critical</span>
+        <h3>Rebuild on a Modern, Responsive Foundation</h3>
+        <p class="p-what"><span class="p-label">What:</span> Replace the Twenty Ten theme with a child theme built on a modern, lightweight parent (or a custom lightweight theme) that is fully responsive, accessible, and designed to work with Elementor's template system. Add the viewport meta tag, implement a mobile-first navigation pattern, and ensure all existing content renders correctly across device sizes.</p>
+        <p class="p-why"><span class="p-label">Why:</span> The absence of mobile responsiveness is costing the business leads every day. The Twenty Ten theme is a security and maintenance liability. The half-finished Elementor migration means the site is fragile — any change to one layer risks breaking another.</p>
+        <p class="p-how"><span class="p-label">Approach:</span> The prototype demonstrates a clean-sheet rebuild that preserves the SEO structure, navigation hierarchy, and content while replacing the presentation layer entirely. This approach is faster and more reliable than trying to retrofit responsiveness onto Twenty Ten.</p>
+      </div>
+
+      <div class="priority-card p2">
+        <span class="p-tag">Priority 2 — High Impact</span>
+        <h3>Build the Client Portal</h3>
+        <p class="p-what"><span class="p-label">What:</span> Implement the secure family portal as described in the JD — login with email/password, 6 e-signable forms, document uploads with dual notifications, and session scheduling.</p>
+        <p class="p-why"><span class="p-label">Why:</span> This is the JD's most transformative requirement and the feature that differentiates Dolphin Academic Prep from competitors. It's also the feature with zero current implementation — meaning it's the largest scope item and needs to be started early.</p>
+        <p class="p-how"><span class="p-label">Approach:</span> The prototype demonstrates a portal architecture using form workflows, e-signature capture, document vault, and dashboard. In production, this would be backed by WordPress custom post types, ACF field groups, and a forms plugin with e-signature support (or a custom implementation using the WordPress REST API).</p>
+      </div>
+
+      <div class="priority-card p3">
+        <span class="p-tag">Priority 3 — Quick Win</span>
+        <h3>Remove Cyclone Slider 2 and Replace with Native Elementor Slider</h3>
+        <p class="p-what"><span class="p-label">What:</span> Deactivate Cyclone Slider 2. Rebuild the homepage slider using Elementor's native slider widget or a lightweight, maintained alternative.</p>
+        <p class="p-why"><span class="p-label">Why:</span> Cyclone Slider 2 is abandoned, loads 5+ unnecessary JS files, and is a security risk. Elementor already includes slider functionality. This is a one-hour fix that eliminates a significant performance and security liability.</p>
+        <p class="p-how"><span class="p-label">Approach:</span> Recreate the four slides in Elementor, map the captions, and configure the fade transition. Deactivate and uninstall Cyclone Slider 2. This removes jQuery Cycle2 and all its add-ons from the page load.</p>
+      </div>
+
+      <h3>Proposed Approach</h3>
+      <div class="approach-box">
+        <p>A clean-sheet rebuild on a modern WordPress foundation — lightweight custom theme (or well-structured child theme), Elementor for page building, and a custom portal implementation using WordPress custom post types and the REST API. The prototype demonstrates the recommended direction: a design system built on the <code>Navy/Teal/Orange/Gold</code> palette with <code>Fraunces</code> and <code>Public Sans</code> typography, a holiday capsule system, and a fully interactive portal with e-signature workflows.</p>
+      </div>
+
+      <h3>Scope Tiers</h3>
+      <table class="scope-table">
+        <thead>
+          <tr><th>Tier</th><th>Scope</th><th>Est. Timeline</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tier-name">Recommended</td>
+            <td>Clean-sheet rebuild: responsive theme, all existing content migrated, holiday capsule system, 6 location pages with SEO, social media integration, logo refresh, favicon, child theme, WhatsApp integration, news banner, GA4/sitemap/backup/security confirmed, portal with 6 e-signable forms + document uploads + dual notifications</td>
+            <td class="mono">6–8 weeks</td>
+          </tr>
+          <tr>
+            <td class="tier-name">Full</td>
+            <td>Recommended + parked domain optimization, location-based landing page system (templated, not cloned), advanced portal features (session scheduling, coach assignment, progress dashboards), comprehensive handoff documentation and training session</td>
+            <td class="mono">10–12 weeks</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>What to Do Next</h3>
+      <div class="next-step">
+        <div class="ns-icon" aria-hidden="true">→</div>
+        <p>Review the prototype at the provided preview URL — if this direction works for you, we can schedule a call to discuss scope and timeline.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       BONUS PAGE — REQUIREMENT GAP ANALYSIS
+       ════════════════════════════════════════ -->
+  <section class="page-break">
+    <div class="container">
+      <p class="kicker"><span class="k-num">A1</span> · Bonus — Gap Analysis</p>
+      <h2>Requirement Gap Analysis</h2>
+      <p class="section-head">The following table compares each requirement from the Upwork job description against what is currently visible in the site's source code.</p>
+
+      <h3>What the Client Asked For</h3>
+      <div style="overflow-x:auto">
+        <table class="data-table">
+          <thead>
+            <tr><th>Requirement</th><th>Current Site Status</th><th>Gap</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Finish site with Elementor</td>
+              <td><span class="tag tag-warn">Partial</span></td>
+              <td>Elementor is installed and active, but page content renders through Twenty Ten templates, not Elementor's canvas. The build is a hybrid that needs to be unified.</td>
+            </tr>
+            <tr>
+              <td>Parked domains (daptutor.com/.net/.org)</td>
+              <td><span class="tag tag-warn">Cannot verify</span></td>
+              <td>Parked domain setup requires DNS/hosting access.</td>
+            </tr>
+            <tr>
+              <td>SEO optimization</td>
+              <td><span class="tag tag-ok">Present</span></td>
+              <td>The SEO foundation is solid. Location-based landing pages need work — the current "cloning" approach creates duplicate content risk.</td>
+            </tr>
+            <tr>
+              <td>Responsive for all sizes</td>
+              <td><span class="tag tag-err">Missing</span></td>
+              <td>No viewport meta tag. Twenty Ten is not responsive. This is the most critical gap.</td>
+            </tr>
+            <tr>
+              <td>Social media integration</td>
+              <td><span class="tag tag-warn">Partial</span></td>
+              <td>Facebook, Twitter/X, LinkedIn are in Schema. YouTube, TikTok, Instagram not represented. Links exist in structured data but are not visible on the page.</td>
+            </tr>
+            <tr>
+              <td>Favicon</td>
+              <td><span class="tag tag-ok">Present</span></td>
+              <td>All in One Favicon plugin configured with multiple formats (.ico, .png, .gif, apple-touch-icon). Done.</td>
+            </tr>
+            <tr>
+              <td>Logo cleanup</td>
+              <td><span class="tag tag-warn">Cannot verify</span></td>
+              <td>Logo is present but client wants a refresh — requires design work.</td>
+            </tr>
+            <tr>
+              <td>Holiday page looks</td>
+              <td><span class="tag tag-err">Missing</span></td>
+              <td>No holiday-specific banners or themes. Not implemented. The prototype demonstrates a calendar-driven capsule system.</td>
+            </tr>
+            <tr>
+              <td>Location-based landing pages</td>
+              <td><span class="tag tag-warn">Partial</span></td>
+              <td>Client mentions "cloning" pages manually. The current approach is inefficient and creates duplicate content risks. A templated system is needed.</td>
+            </tr>
+            <tr>
+              <td>Child theme</td>
+              <td><span class="tag tag-err">Missing</span></td>
+              <td>Site runs on Twenty Ten parent theme directly. Updates will overwrite customizations. Critical.</td>
+            </tr>
+            <tr>
+              <td>WhatsApp Chat integration</td>
+              <td><span class="tag tag-err">Missing</span></td>
+              <td>Not visible in source. Not implemented.</td>
+            </tr>
+            <tr>
+              <td>News banner</td>
+              <td><span class="tag tag-warn">Partial</span></td>
+              <td>The News Announcement Scroll widget exists in the sidebar but is not a "news banner" in the header/hero sense.</td>
+            </tr>
+            <tr>
+              <td>Google Analytics, Sitemap, Backup, Security</td>
+              <td><span class="tag tag-warn">Partial</span></td>
+              <td>GA4 is active (MonsterInsights). Sitemap likely active via Yoast. Updraft Plus and Wordfence mentioned but not detectable from source. Confirmation requires backend access.</td>
+            </tr>
+            <tr>
+              <td>Web Portal with Sign in</td>
+              <td><span class="tag tag-err">Missing</span></td>
+              <td>No membership plugin, no login system, no forms with e-signatures. This is the single largest scope item — zero current implementation.</td>
+            </tr>
+            <tr>
+              <td>Forms that fill out/sign online, emailed on completion</td>
+              <td><span class="tag tag-err">Missing</span></td>
+              <td>The "Request Info" page likely uses a basic contact form, but e-signature and document workflows are not present.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Alignment Assessment</h3>
+      <p>The current site has a strong content and SEO foundation — the bones are good. But the presentation layer is frozen in 2012 (no mobile support, ancient theme, no child theme, abandoned slider plugin), and the most transformative JD requirements (client portal, e-signable forms, holiday capsules, location-based landing pages, WhatsApp integration) have zero implementation.</p>
+      <p>The prototype demonstrates that all of these are achievable within a unified design system. The biggest gap is not any single feature — it's the architectural mismatch between the Twenty Ten theme and the Elementor-based future the client is asking for. <strong>A clean-sheet rebuild is the most reliable path.</strong></p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       BONUS PAGE — PROTOTYPE COMPARISON
+       ════════════════════════════════════════ -->
+  <section class="page-break">
+    <div class="container">
+      <p class="kicker"><span class="k-num">A2</span> · Bonus — Prototype Comparison</p>
+      <h2>Prototype Comparison</h2>
+      <p class="section-head">The following table compares the current site against the provided prototype, highlighting specific improvements across every dimension of the project.</p>
+
+      <h3>What the Prototype Changes</h3>
+      <div style="overflow-x:auto">
+        <table class="data-table">
+          <thead>
+            <tr><th>Area</th><th>Current Site</th><th>Prototype</th><th>Impact</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Visual Design</strong></td>
+              <td>Twenty Ten default: gray background (#e5e5e5), blue accent (#0000ff), no brand personality, 940px fixed width</td>
+              <td>Navy/Teal/Orange/Gold palette with Fraunces (display) and Public Sans (body) typography. Layered textures, capsule-themed hero, gradient accents. Full-bleed sections.</td>
+              <td>Transforms the site from "generic WordPress template" to a distinctive, memorable brand. The palette is education-appropriate (navy = trust, teal = growth, orange = energy, gold = achievement).</td>
+            </tr>
+            <tr>
+              <td><strong>Navigation</strong></td>
+              <td>Horizontal dropdown menu, no mobile pattern, sub-menus up to 4 levels deep</td>
+              <td>Sticky header with underline indicators, hamburger drawer for mobile, simplified 5-item primary nav, persistent "Client Login" CTA</td>
+              <td>The 4-level-deep exam schedule menus are a usability problem. The prototype simplifies to a flat structure with search/filter on the Programs page — same information, better access.</td>
+            </tr>
+            <tr>
+              <td><strong>Performance</strong></td>
+              <td>12+ CSS files, jQuery + Migrate + Cycle2 ×5, no viewport meta, no responsive images in slider</td>
+              <td>Single CSS payload (design tokens + components), no jQuery dependency, viewport meta, system font stack with Google Fonts as enhancement, <code>prefers-reduced-motion</code> support</td>
+              <td>Dramatically lighter. The prototype's CSS is a design system, not a patchwork of plugin stylesheets.</td>
+            </tr>
+            <tr>
+              <td><strong>Accessibility</strong></td>
+              <td>Skip link present, but empty alt text, misused heading hierarchy, no ARIA on navigation</td>
+              <td>Skip link, proper heading hierarchy, <code>aria-current</code> on active nav items, <code>aria-expanded</code> on drawer/FAQ, <code>aria-live</code> announcements, focus trapping in modals, keyboard-accessible drawer</td>
+              <td>The prototype treats accessibility as a first-class concern, not an afterthought. The FAQ accordion, location modal, and wizard all have proper ARIA.</td>
+            </tr>
+            <tr>
+              <td><strong>Content Architecture</strong></td>
+              <td>All services in one long page with a slider. Deeply nested exam schedule menus.</td>
+              <td>Programs page with filterable/searchable catalog + estimator tool. Method page with numbered timeline. Locations page with interactive map + modal details.</td>
+              <td>The prototype gives each concept its own view, reducing cognitive load. The estimator turns a static catalog into an interactive planning tool.</td>
+            </tr>
+            <tr>
+              <td><strong>Portal</strong></td>
+              <td>Not present</td>
+              <td>Full login flow, dashboard with sessions/readiness ring/notifications/forms/docs, intake wizard with 4-step e-signature workflow, file upload with progress, toast notifications</td>
+              <td>This is the prototype's centerpiece — it demonstrates the JD's most ambitious requirement in working, interactive form.</td>
+            </tr>
+            <tr>
+              <td><strong>Holiday Capsule System</strong></td>
+              <td>Not present</td>
+              <td>Calendar-driven ribbon banner + hero motif + capsule preview cards, auto-scheduled year-round, preview selector</td>
+              <td>This is a genuinely novel feature that turns a "holiday banner" requirement into a brand differentiator.</td>
+            </tr>
+            <tr>
+              <td><strong>Location Pages</strong></td>
+              <td>"Cloned" pages with manual city changes</td>
+              <td>Templated location system with interactive map, pin details, modal with hours/tutors/next-slot, search/filter</td>
+              <td>Eliminates the duplicate-content risk of cloned pages. One template, six locations, consistent SEO.</td>
+            </tr>
+            <tr>
+              <td><strong>Forms</strong></td>
+              <td>Basic contact form (not visible on homepage)</td>
+              <td>Consultation form with validation, service chip selector, consent checkbox, success panel with reference number and next steps</td>
+              <td>The prototype's form is production-grade — validation, error states, loading states, success state.</td>
+            </tr>
+            <tr>
+              <td><strong>Dark Mode</strong></td>
+              <td>Not present</td>
+              <td>Full light/dark theme toggle with CSS custom properties, persisted to localStorage, <code>prefers-color-scheme</code> detection</td>
+              <td>Not requested in the JD, but demonstrates the design system's flexibility and future-proofing.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Key Improvements</h3>
+
+      <div class="callout callout-good">
+        <h4>1. The Portal Makes the Site a Tool, Not a Brochure</h4>
+        <p>The current site tells visitors what Dolphin does; the prototype lets families <em>do</em> something — sign forms, upload documents, check schedules. This is the difference between a marketing site and a platform. The intake wizard with e-signature capture is the feature that turns the JD's most ambitious requirement from "we'd like this" into "here's how it works."</p>
+      </div>
+
+      <div class="callout callout-good">
+        <h4>2. The Holiday Capsule System Turns a Maintenance Burden into a Brand Asset</h4>
+        <p>The JD asks for ~14 holiday-specific looks per year. Manually updating banners for each holiday is a recipe for outdated content. The prototype's calendar-driven system auto-schedules capsules, changes the hero motif, and lets staff preview any capsule with a dropdown — zero manual intervention after setup.</p>
+      </div>
+
+      <div class="callout callout-good">
+        <h4>3. The Estimator Bridges the Gap Between "Browse Programs" and "Contact Us"</h4>
+        <p>The current site lists services and asks visitors to call. The prototype's Plan &amp; Pace Estimator lets families drag sliders to see their score gap, weekly pacing, recommended coaching load, and suggested program mix — then sends that estimate directly into a consultation request. This is a conversion tool, not just a content page.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-brand">Marho Eradiri — Web Architect</span>
+        <span><a href="mailto:meradiri@gmail.com">meradiri@gmail.com</a></span>
+        <span>Report prepared August 23, 2026</span>
+        <span>Dolphin Academic Prep LLC — Confidential</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+
+							<script>
+                            	
+							</script>
+                        </body>
+                        </html>
+                    
