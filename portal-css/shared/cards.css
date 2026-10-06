@@ -1,0 +1,119 @@
+/* Shared cards (chrome) — the .pcard card kit.
+   Rules routed to widget:resources-grid in .pipeline/01-parse/css-route-map.json
+   but rendered by three components: program-catalog-search-and-grid.twig
+   (programs), coverage-search-and-grid.twig (coverage) and
+   resource-cards-grid.twig (resources). Selectors and declarations are the
+   prototype's, unscoped, in prototype source order — the .pcard:hover and
+   .pcard-top .pill variants ride in global.css (orphan bucket) and win by
+   specificity/order, as in the prototype. Loaded on every page by the shared
+   component glob. Previously scoped to .resource-cards-grid only, which left
+   the programs and coverage cards unstyled. */
+
+.mono {
+	font-family: var(--font-mono);
+}
+
+.pill-teal {
+	background: var(--teal-soft);
+	color: var(--teal);
+}
+
+.pill-navy {
+	background: var(--surface-2);
+	color: var(--ink-soft);
+}
+
+.pcard {
+	container-type: inline-size;
+	background: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--r-lg);
+	overflow: hidden;
+	transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), border-color var(--t-med);
+}
+
+.pcard-accent {
+	height: 5px;
+	background: linear-gradient(90deg, var(--teal), var(--orange));
+}
+
+.pcard-in {
+	padding: 22px;
+	display: grid;
+	gap: 12px;
+}
+
+@container (min-width:440px) {
+	.pcard-in {
+		grid-template-columns: 1fr auto;
+		grid-template-areas: "top feat" "desc desc" "foot foot";
+		align-items: start;
+	}
+
+	.pcard-top {
+		grid-area: top;
+	}
+
+	.pcard-feat {
+		grid-area: feat;
+		max-width: 170px;
+	}
+
+	.pcard-desc {
+		grid-area: desc;
+	}
+
+	.pcard-foot {
+		grid-area: foot;
+	}
+}
+
+.pcard h3 {
+	font-size: var(--fs-h3);
+}
+
+.pcard-desc {
+	color: var(--ink-soft);
+	font-size: var(--fs-small);
+}
+
+.pcard-feat {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	background: var(--orange-soft);
+	color: var(--orange);
+	border-radius: var(--r-md);
+	padding: 10px 13px;
+	font: 600 var(--fs-micro)/1.45 var(--font-body);
+}
+
+.pcard-feat .icon {
+	width: 15px;
+	height: 15px;
+	margin-top: 1px;
+}
+
+.pcard-foot {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	border-top: 1px dashed var(--line);
+	padding-top: 14px;
+}
+
+.pcard-foot .mono {
+	font-size: var(--fs-micro);
+	color: var(--ink-faint);
+}
+
+.pcard-foot .btn {
+	margin-left: auto;
+}
+
+.tag-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-top: 10px;
+}

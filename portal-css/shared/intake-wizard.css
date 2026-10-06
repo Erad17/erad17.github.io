@@ -1,0 +1,86 @@
+/* Intake Wizard (overlay) — component styles.
+   Scoped to .overlay; mounts on [data-component="intake-wizard"].
+   Source: prototype CSS rules [327, 328, 485, 486, 487, 488, 489, 490, 491, 492, 496, 497, 498, 499]. */
+/* Root is the .overlay element (#wiz) — carry data-component="intake-wizard" on it. .field, .ferr, .consent-row, .success-panel and signature-pad styles come from contact form / global CSS. */
+
+.overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 200;
+	display: grid;
+	place-items: center;
+	padding: 18px;
+}
+
+.overlay .overlay-backdrop {
+	position: absolute;
+	inset: 0;
+	background: rgba(7, 20, 30, .55);
+	backdrop-filter: blur(3px);
+	animation: fadeIn .25s var(--ease);
+}
+
+.overlay .wiz-dialog {
+	width: min(720px, 100%);
+}
+
+.overlay .wiz-head {
+	padding: 22px 26px 16px;
+	border-bottom: 1px solid var(--line-soft);
+}
+
+.overlay .wiz-head h3 {
+	font-size: var(--fs-h3);
+}
+
+.overlay .wiz-head p {
+	font-size: var(--fs-micro);
+	color: var(--ink-faint);
+}
+
+.overlay .wiz-steps {
+	display: flex;
+	gap: 6px;
+	margin-top: 16px;
+}
+
+.overlay .wiz-step {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.overlay .wiz-step i {
+	height: 4px;
+	border-radius: var(--r-pill);
+	background: var(--surface-2);
+	transition: background var(--t-med);
+}
+
+.overlay .wiz-step span {
+	font: 700 var(--fs-micro)/1 var(--font-mono);
+	letter-spacing: .08em;
+	color: var(--ink-faint);
+	text-transform: uppercase;
+}
+
+.overlay .wiz-body {
+	padding: 24px 26px;
+	min-height: 300px;
+}
+
+.overlay .wiz-foot {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 16px 26px 24px;
+}
+
+.overlay .wiz-foot .btn {
+	min-width: 128px;
+}
+
+.overlay .wiz-foot .spacer {
+	flex: 1;
+}
