@@ -1647,20 +1647,28 @@
     .detail-stack {
       display: flex;
       flex-wrap: wrap;
-      gap: .35em;
+      gap: var(--sp-2);
       font-family: var(--font-mono);
       font-size: var(--fs-2xs);
-      color: var(--ink-faint);
     }
 
     .detail-stack span {
       display: inline-block;
-      background: var(--paper-3);
-      color: var(--ink-soft);
-      padding: .15em .55em;
-      border-radius: var(--radius);
+      color: var(--cyan);
+      border: 1px solid var(--cyan-soft);
+      padding: .18em .6em;
+      border-radius: 2px;
       white-space: nowrap;
-      letter-spacing: .03em;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    @container (max-width:399px) {
+      .detail-stack span {
+        font-size: calc(var(--fs-2xs) * .82);
+        padding: .1em .45em;
+        letter-spacing: .1em
+      }
     }
 
     .detail-narrative {
@@ -1687,22 +1695,19 @@
       list-style: none;
       display: flex;
       flex-wrap: wrap;
-      gap: .4em;
+      gap: var(--sp-2);
     }
 
     .detail-deliverables li {
       font-family: var(--font-mono);
-      font-size: var(--fs-2xs);
+      font-size: var(--fs-xs);
       color: var(--ink-soft);
-      background: var(--paper-3);
-      padding: .2em .6em;
-      border-radius: var(--radius);
       white-space: nowrap;
     }
 
     .detail-deliverables li::before {
-      content: '• ';
-      color: var(--ink-faint);
+      content: '✓ ';
+      color: var(--success);
     }
 
     .detail-links {
@@ -3468,7 +3473,7 @@
               <div class="detail-deliverables-label">Deliverables</div>
               <ul class="detail-deliverables">
                 <li>Six blocks</li>
-                <li>Delta Scrubber</li>
+                <li>API payload inspector</li>
                 <li>Mock/Live mode</li>
                 <li>Quota governance</li>
               </ul>
