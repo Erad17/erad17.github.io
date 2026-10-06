@@ -1,0 +1,5 @@
+/* Upcoming Sessions Widget — RETIRED.
+   The prototype mock (static SESSIONS getter, render()) was replaced by the
+   server-rendered sessions-widget.twig (dolphin_session CPT); dashboard
+   refreshes run through assets/js/portal-shared.js. This stub only prevents
+   the old mock implementation from being enqueued. Safe to delete. */
