@@ -1556,7 +1556,7 @@
       }
     }
 
-    /* ── A-03 Detail Cards (Enterprise Engagements) ── */
+    /* ── A-03 Detail Cards (Enterprise Solutions) ── */
     .detail-grid {
       display: grid;
       gap: var(--sp-5);
@@ -3296,38 +3296,96 @@
           <h2 class="section-label reveal"><span class="tick">§</span> Technical Walkthroughs · Project Narratives</h2>
           <div class="reveal" style="margin-bottom:var(--sp-5)">
             <div class="wt-tabs" role="tablist" aria-label="Walkthrough selector" id="wtTabs">
-              <button class="wt-tab is-active" role="tab" aria-selected="true" data-wt="0" id="wtTab0">Editorial
+              <button class="wt-tab is-active" role="tab" aria-selected="true" data-wt="0" id="wtTab0">SPA → CMS
+                Pipeline</button>
+              <button class="wt-tab" role="tab" aria-selected="false" data-wt="1" id="wtTab1">Editorial
                 Workflow</button>
-              <button class="wt-tab is-pending" role="tab" aria-selected="false" data-wt="1" id="wtTab1">Analytics
-                Dashboard</button>
-              <button class="wt-tab is-pending" role="tab" aria-selected="false" data-wt="2" id="wtTab2">Event
+              <button class="wt-tab" role="tab" aria-selected="false" data-wt="2" id="wtTab2">Holiday Capsule
+                System</button>
+              <button class="wt-tab" role="tab" aria-selected="false" data-wt="3" id="wtTab3">Content &amp; SEO
+                Architecture</button>
+              <button class="wt-tab is-pending" role="tab" aria-selected="false" data-wt="4" id="wtTab4">Event
                 Microsite</button>
-              <button class="wt-tab is-pending" role="tab" aria-selected="false" data-wt="3" id="wtTab3">SPA →
-                Wagtail</button>
             </div>
             <article class="wt-card" id="wtCard" aria-labelledby="wtCardTitle">
               <div class="p-top">
-                <span class="p-id" id="wtCardId">Editorial Workflow</span>
-                <span class="tag" id="wtCardTag">Documentation</span>
+                <span class="p-id" id="wtCardId">SPA → CMS Pipeline</span>
+                <span class="tag" id="wtCardTag">Architecture</span>
               </div>
-              <h3 id="wtCardTitle">Editorial Workflow Automation</h3>
-              <p class="wt-desc" id="wtCardDesc">How I reduced IT helpdesk ticket volume by 60% at CAS — coaching
-                editors to self-publish, designing a Drupal workflow, and making the case to leadership.</p>
+              <h3 id="wtCardTitle">SPA-to-CMS Conversion Pipeline</h3>
+              <p class="wt-desc" id="wtCardDesc">How a single index.html prototype becomes a production WordPress theme
+                with structured editing — the four-phase extraction pipeline behind every project on this sheet.</p>
               <div class="p-marks" id="wtCardMarks">
                 <span class="tag">WordPress</span>
-                <span class="tag">Drupal</span>
-                <span class="tag">Stakeholder Comms</span>
+                <span class="tag">Python</span>
+                <span class="tag">LLM</span>
+                <span class="tag">Timber/Twig</span>
+                <span class="tag">Carbon Fields</span>
+                <span class="tag">Docker Compose</span>
+                <span class="tag">Composer + Node</span>
+                <span class="tag">Playwright E2E</span>
+                <span class="tag">Idempotent Seed Scripts</span>
               </div>
               <div class="p-foot">
-                <a href="#" class="p-link js-wt-link" id="wtCardLink" data-file="blog/EditorialWorkFlow.html"
-                  data-title="Editorial Workflow Automation">Open Walkthrough →</a>
+                <a href="#" class="p-link js-wt-link" id="wtCardLink" data-file="blog/SPAtoCMS.html"
+                  data-title="SPA-to-CMS Conversion Pipeline">Open Walkthrough →</a>
                 <span class="mono-note">REV A</span>
               </div>
             </article>
           </div>
 
-          <h2 class="section-label reveal"><span class="tick">§</span> Project Cards · Enterprise Engagements</h2>
-          <div class="detail-grid" id="detailGrid"></div>
+          <h2 class="section-label reveal"><span class="tick">§</span> Project Cards · Enterprise Solutions</h2>
+          <p class="gallery-intro reveal">Each independent build is a pitch-ready proposal — a forensic audit, an
+            interactive prototype, and a working CMS build produced without a client contract, presented as what the
+            business could go live with.</p>
+          <div class="detail-grid" id="detailGrid">
+
+            <!-- Detail 01 · Dolphin Academic Prep — hub card for the full document set -->
+            <article class="proj-detail reveal">
+              <div class="detail-header">
+                <span class="detail-num">Detail 01</span>
+                <span class="detail-status">● Complete</span>
+              </div>
+              <div class="detail-name">Dolphin Academic Prep</div>
+              <div class="detail-thumb">
+                <img src="screenshots/dolphinacademicprep.png" alt="Dolphin Academic Prep prototype screenshot"
+                  loading="lazy">
+              </div>
+              <div class="detail-stack">
+                <span>WordPress</span><span>Custom Post Types (CPT)</span><span>Carbon Fields</span><span>Timber V2
+                  (Twig)</span><span>Vue.js</span><span>REST API</span><span>eSignature</span><span>GA4/GTM</span>
+              </div>
+              <div class="detail-narrative">A forensic audit of the live site — 2010 theme, ten-plus plugins,
+                unencrypted forms carrying student data — produced a documented recommendation: <strong>full rebuild
+                  over incremental fix</strong>. Patches would consume 60–70% of the effort and leave a
+                fifteen-year-old foundation. Every structural choice is captured in an eight-decision Architecture
+                Decision Record — <strong>the client goes from maintaining a plugin collection to owning a software
+                  product</strong>. The rebuild delivers a secure family portal, a GA4 analytics console, and a
+                zero-maintenance holiday theming system — detailed in Details 02–04.
+              </div>
+              <div class="detail-deliverables-label">Deliverables</div>
+              <ul class="detail-deliverables">
+                <li>Forensic site audit</li>
+                <li>Interactive prototype</li>
+                <li>Component spec document</li>
+                <li>Administrator guide</li>
+                <li>Live CMS build</li>
+              </ul>
+              <div class="detail-links">
+                <a href="documents/dolphin-case-study.html" class="js-doc-link" data-doc-set="dolphin" data-doc="0">Full
+                  Case Study</a>
+                <a href="documents/dolphin-arch-decision-record.html" class="js-doc-link" data-doc-set="dolphin"
+                  data-doc="1">Architecture Decision Record</a>
+                <a href="documents/dolphin-portal-architecture.html" class="js-doc-link" data-doc-set="dolphin"
+                  data-doc="2">Portal Architecture Appendix</a>
+                <a href="documents/dolphin-editorial-workflow.html" class="js-doc-link" data-doc-set="dolphin"
+                  data-doc="5">Editorial Workflow Guide</a>
+                <a href="#" data-file="DolphinAcademicPrep.html" data-title="Dolphin Academic Prep"
+                  class="js-viewer-link">View Build</a>
+              </div>
+            </article>
+
+          </div>
 
           <h2 class="section-label reveal"><span class="tick">§</span> Interactive Builds · Live Previews</h2>
           <p class="gallery-intro reveal">Production-ready front-end builds — click any thumbnail to open the full
@@ -3335,6 +3393,140 @@
             builds that feed directly into the CMS pipeline.</p>
           <div class="proj-gallery" id="galleryGrid"></div>
 
+          <h2 class="section-label reveal"><span class="tick">§</span> Notable Deliverables</h2>
+          <div class="detail-grid" id="notableGrid">
+
+            <!-- Detail 02 · Portal & Booking Engine -->
+            <article class="proj-detail reveal" data-delay="1">
+              <div class="detail-header">
+                <span class="detail-num">Detail 02</span>
+                <span class="detail-status">● Plugin</span>
+              </div>
+              <div class="detail-name">Portal &amp; Booking Engine</div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--sp-3)">
+                <div class="detail-thumb">
+                  <img src="screenshots/portal-dashboard-family.png"
+                    alt="Family portal dashboard showing sessions, forms, documents and notifications widgets with student switcher"
+                    loading="lazy" style="object-position:top;">
+                </div>
+                <div class="detail-thumb">
+                  <img src="screenshots/admin-spoof-family.png"
+                    alt="Admin spoof mode viewing the family portal with a read-only banner" loading="lazy"
+                    style="object-position:top;">
+                </div>
+              </div>
+              <div class="detail-stack"><span>WordPress</span><span>CPT/ACF</span><span>REST
+                  API</span><span>AES-256</span><span>eSignature</span><span>Timber/Twig</span></div>
+              <div class="detail-narrative">A custom codebase that owns the full data lifecycle — not a form plugin
+                behind a GUI. Three roles: families see only their own data, coaches only their assigned sessions,
+                admins get spoof mode with <strong>read-only enforced at the REST API layer</strong> — every write
+                returns 403. Submissions stored with <strong>AES-256 encryption at rest</strong>; documents live
+                outside the web root, referenced by UUID. Booking concurrency settled at the database level with an
+                atomic <strong>INSERT IGNORE</strong> — one request gets 200, the other 409. <strong>32/32 Playwright
+                  E2E tests passing.</strong>
+              </div>
+              <div class="detail-deliverables-label">Deliverables</div>
+              <ul class="detail-deliverables">
+                <li>Four CPTs</li>
+                <li>Role dashboards</li>
+                <li>Booking engine</li>
+                <li>.ics export</li>
+                <li>Spoof mode</li>
+                <li>E2E tests (32/32)</li>
+              </ul>
+              <div class="detail-links">
+                <a href="documents/dolphin-portal.html" class="js-viewer-link" data-file="documents/dolphin-portal.html"
+                  data-title="Family Portal">View Live Portal</a>
+                <a href="documents/dolphin-portal-architecture.html" class="js-doc-link" data-doc-set="dolphin"
+                  data-doc="2">View Portal Architecture</a>
+              </div>
+            </article>
+
+            <!-- Detail 03 · GA4 Analytics Console -->
+            <article class="proj-detail reveal" data-delay="2">
+              <div class="detail-header">
+                <span class="detail-num">Detail 03</span>
+                <span class="detail-status">● Plugin</span>
+              </div>
+              <div class="detail-name">GA4 Analytics Console</div>
+              <div class="detail-thumb">
+                <img src="screenshots/analytics-console.png"
+                  alt="GA4 Analytics Console showing KPI scorecards, traffic acquisition table, and geographic demographics"
+                  loading="lazy">
+              </div>
+              <div class="detail-stack"><span>GA4 Data API v1</span><span>WordPress
+                  Plugin</span><span>Redis</span><span>PostgreSQL staging</span></div>
+              <div class="detail-narrative">A standalone WordPress plugin on the GA4 Data API v1 — <strong>six
+                  reporting blocks</strong>, every number freshness-labeled and linked to the runReport payload
+                behind it. <strong>Mock/live dual-mode:</strong> the REST endpoint returns an identical JSON shape
+                whether data comes from Google or a deterministic PRNG — demo-ready without credentials,
+                production-ready with them. The Delta Scrubber drives period-over-period comparison through direct
+                manipulation. Quota governance tracks token consumption, cache hit ratio, and per-block freshness —
+                a stale number is always labeled stale. <strong>Replaces MonsterInsights entirely</strong> — no
+                licenses, no vendor lock-in, no upgrade prompts.
+              </div>
+              <div class="detail-deliverables-label">Deliverables</div>
+              <ul class="detail-deliverables">
+                <li>Six blocks</li>
+                <li>Delta Scrubber</li>
+                <li>Mock/Live mode</li>
+                <li>Quota governance</li>
+              </ul>
+              <div class="detail-links">
+                <a href="documents/dolphin-analytics-console-live.html" class="js-viewer-link"
+                  data-file="documents/dolphin-analytics-console-live.html" data-title="GA4 Analytics Console">Open Live
+                  Console (Mock Data)</a>
+                <a href="documents/dolphin-analytics-console.html" class="js-doc-link" data-doc-set="dolphin"
+                  data-doc="3">Read the Appendix</a>
+              </div>
+            </article>
+
+            <!-- Detail 04 · Vue 3 Page Editor -->
+            <article class="proj-detail reveal" data-delay="3">
+              <div class="detail-header">
+                <span class="detail-num">Detail 04</span>
+                <span class="detail-status">● Editor</span>
+              </div>
+              <div class="detail-name">Vue 3 Page Editor</div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--sp-3)">
+                <div class="detail-thumb">
+                  <img src="screenshots/page-editor-landing.png"
+                    alt="Page editor landing screen with the page list for navigating between pages" loading="lazy">
+                </div>
+                <div class="detail-thumb">
+                  <img src="screenshots/page-editor-hero.png"
+                    alt="Hero component editor with sidebar tabs and structured form fields" loading="lazy">
+                </div>
+                <div class="detail-thumb">
+                  <img src="screenshots/page-editor-faq.png"
+                    alt="FAQ accordion repeater edit view with add and reorder controls" loading="lazy">
+                </div>
+              </div>
+              <div class="detail-stack"><span>Vue 3</span><span>Vite</span><span>NuxtUI</span><span>Carbon
+                  Fields</span><span>REST API</span></div>
+              <div class="detail-narrative">A custom page editor replacing Gutenberg — Vue 3, Vite, NuxtUI. Carbon
+                Fields containers define the editable fields for each component; the editor reads those schemas
+                through a custom REST endpoint and renders structured forms in a sidebar + main panel layout.
+                Repeater fields for FAQ items, a page-selector landing screen, and the same Dolphin design tokens —
+                the editor looks like it belongs to the site.</div>
+              <div class="detail-deliverables-label">Deliverables</div>
+              <ul class="detail-deliverables">
+                <li>Component tab editor</li>
+                <li>Page selector landing</li>
+                <li>Repeater fields</li>
+                <li>Carbon Fields REST bridge</li>
+                <li>Design token integration</li>
+              </ul>
+              <div class="detail-links">
+                <a href="documents/dolphin-page-editor-demo.html" class="js-viewer-link"
+                  data-file="documents/dolphin-page-editor-demo.html" data-title="Vue 3 Page Editor">Try the Live
+                  Demo</a>
+                <a href="documents/dolphin-case-study.html" class="js-doc-link" data-doc-set="dolphin" data-doc="0">View
+                  Case Study</a>
+              </div>
+            </article>
+
+          </div>
 
           <div class="tblock-slot"></div>
         </section>
@@ -3567,7 +3759,7 @@
 
       const PROJECTS = [
         { id: "P-01", title: "Sons of Quixote", desc: "Movement platform for a chorus of fathers in propria persona — protest broadside, documentary film, interactive chorus wall, dispatch newsletter, and grassroots intake.", tags: ["Legal", "Intake workflow", "eSignature"], v: "Legal", file: "DonQuixote.html", preview: "screenshots/donquixote.png" },
-        { id: "P-02", title: "Dolphin Academic Prep", desc: "Full brand and secure portal for a 6-location tutoring network — 1-on-1 coaching methodology, family portal with eSignatures and scheduling, across six NYC-area centers.", tags: ["Education", "Family portal", "FERPA-minded"], v: "Education", file: "DolphinAcademicPrep.html", preview: "screenshots/dolphinacademicprep.png", report: "DolphinAcademicPrep-report.html", liveSite: null, stack: ["WordPress", "Elementor", "Vue.js", "CPT/ACF", "REST API", "eSignature", "GA4/GTM"], deliverables: ["Forensic site audit", "Interactive prototype", "Component spec document", "Administrator guide", "Live CMS build"], narrative: "A full CMS integration for an education client, delivered through a <strong>forensic audit → prototype → CPT architecture → turnkey production</strong> pipeline. The project included a <strong>custom Vue.js help desk ticketing plugin</strong> — replicating the same support-ticket workflow I managed at CAS, now packaged as a reusable WordPress plugin. Multi-step e-signature intake forms, a calendar-driven holiday capsule system, and a family portal with encrypted document vault round out the build." },
+        { id: "P-02", title: "Dolphin Academic Prep", desc: "Full brand and secure portal for a 6-location tutoring network — 1-on-1 coaching methodology, family portal with eSignatures and scheduling, across six NYC-area centers.", tags: ["Education", "Family portal", "FERPA-minded"], v: "Education", file: "DolphinAcademicPrep.html", preview: "screenshots/dolphinacademicprep.png", report: "DolphinAcademicPrep-report.html", liveSite: null, stack: ["WordPress", "Custom Post Types (CPT)", "Carbon Fields", "Timber V2 (Twig)", "Vue.js", "REST API", "eSignature", "GA4/GTM"], deliverables: ["Forensic site audit", "Interactive prototype", "Component spec document", "Administrator guide", "Live CMS build"], narrative: "A full CMS integration for an education client, delivered through a <strong>forensic audit → prototype → CPT architecture → turnkey production</strong> pipeline. The project included a <strong>custom Vue.js help desk ticketing plugin</strong> — replicating the same support-ticket workflow I managed at CAS, now packaged as a reusable WordPress plugin. Multi-step e-signature intake forms, a calendar-driven holiday capsule system, and a family portal with encrypted document vault round out the build." },
         { id: "P-04", title: "Pódio Sports", desc: "Full brand and athlete showcase for a Portuguese sports agency — roster with search, compare, and season tracking across football, surfing, motorsport, and track & field.", tags: ["Sports", "Athlete showcase", "Roster"], v: "Sports", file: "Podio.html", preview: "screenshots/podio.png" },
         { id: "P-05", title: "JoeyZaZa", desc: "Full brand and e-commerce site for a New York-style sandwich shop in Perth CBD — interactive menu board, Build-A-Boss sandwich builder, Square-powered ordering, and a catering calculator with quote intake.", tags: ["Hospitality", "E-commerce", "Interactive builder"], v: "Hospitality", file: "JoeyZaZa.html", preview: "screenshots/joeyzaza.png" },
         { id: "P-06", title: "ElenaVoss", desc: "Full brand and artist portfolio for a contemporary fine artist — catalog of original works with gallery filtering, Giclée print availability, artwork detail modal, and commission inquiry intake.", tags: ["Art gallery", "Artist portfolio", "Commission intake"], v: "Art gallery", file: "ElenaVoss.html", preview: "screenshots/elena-voss.png" },
@@ -3687,13 +3879,37 @@
 
       /* prototype viewer */
       const viewerScrim = $("#viewerScrim"), viewerPanel = $("#viewerPanel"), viewerFrame = $("#viewerFrame"), viewerTitle = $("#viewerTitle"), viewerClose = $("#viewerClose"), viewerOpenTab = $("#viewerOpenTab"), viewerPrev = $("#viewerPrev"), viewerNext = $("#viewerNext"), viewerCounter = $("#viewerCounter");
-      let viewerIdx = -1, walkerIdx = -1, lastViewerTrigger = null;
+      let viewerIdx = -1, walkerIdx = -1, docSetKey = null, docIdx = -1, lastViewerTrigger = null;
+
+      /* document sets — detail cards open their documents as paginated modals */
+      const DOC_SETS = {
+        dolphin: {
+          label: "Dolphin Academic Prep",
+          docs: [
+            { file: "documents/dolphin-case-study.html", title: "Full Case Study" },
+            { file: "documents/dolphin-arch-decision-record.html", title: "Architecture Decision Record" },
+            { file: "documents/dolphin-portal-architecture.html", title: "Portal Architecture" },
+            { file: "documents/dolphin-analytics-console.html", title: "Analytics Console" },
+            { file: "documents/dolphin-taxonomy-proposal.html", title: "Coverage Area Taxonomy" },
+            { file: "documents/dolphin-editorial-workflow.html", title: "Editorial Workflow" }
+          ]
+        },
+        imbp: {
+          label: "Integrative Mind-Body Psychiatry",
+          docs: [
+            { file: "documents/imbp-arch-decisions.html", title: "Architecture Decision Record" },
+            { file: "documents/imbp-content-architecture.html", title: "Content Architecture" }
+          ]
+        }
+      };
       function getSplashHTML() {
         return '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0;box-sizing:border-box}body{display:flex;align-items:center;justify-content:center;min-height:100vh;background:#0a1628;font-family:"IBM Plex Sans",system-ui,sans-serif;color:#e9f2fa;text-align:center;padding:2rem}.splash{max-width:420px}.splash .tag{display:inline-block;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.7rem;color:#6b84a0;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(107,132,160,.3);border-radius:4px;padding:.25rem .75rem;margin-bottom:1.5rem}.splash h1{font-size:1.3rem;font-weight:600;margin-bottom:.75rem;color:#e9f2fa}.splash p{font-size:.88rem;line-height:1.6;color:#6b84a0;max-width:340px;margin:0 auto}</style></head><body><div class="splash"><span class="tag">Under Review</span><h1>Walkthrough Under Review</h1><p>This project walkthrough is currently being revised for portfolio submission. Check back soon.</p></div></body></html>';
       }
       function openViewer(file, title) {
         if (!file) return;
         lastViewerTrigger = document.activeElement;
+        docSetKey = null;
+        docIdx = -1;
         viewerIdx = PROJECTS.findIndex(p => p.file === file);
         walkerIdx = WALKTHROUGHS.findIndex(w => w.file === file);
         if (walkerIdx >= 0 && WALKTHROUGHS[walkerIdx].pending) {
@@ -3715,6 +3931,28 @@
         document.body.classList.add("viewer-open");
         viewerClose.focus();
       }
+      function openDocViewer(setKey, idx) {
+        const set = DOC_SETS[setKey];
+        if (!set) return;
+        lastViewerTrigger = document.activeElement;
+        viewerIdx = -1;
+        walkerIdx = -1;
+        docSetKey = setKey;
+        setDocIndex(typeof idx === "number" ? idx : 0);
+        document.body.classList.add("viewer-open");
+        viewerClose.focus();
+      }
+      function setDocIndex(idx) {
+        const set = DOC_SETS[docSetKey];
+        if (!set) return;
+        docIdx = Math.max(0, Math.min(idx, set.docs.length - 1));
+        const d = set.docs[docIdx];
+        viewerFrame.src = d.file;
+        viewerTitle.innerHTML = '<strong>' + set.label + '</strong> · ' + d.title;
+        viewerCounter.textContent = (docIdx + 1) + " / " + set.docs.length;
+        viewerPrev.disabled = docIdx <= 0;
+        viewerNext.disabled = docIdx >= set.docs.length - 1;
+      }
       function updateViewerNav() {
         if (viewerIdx >= 0) {
           const total = PROJECTS.length;
@@ -3731,6 +3969,11 @@
           if (WALKTHROUGHS[walkerIdx].pending) {
             viewerTitle.innerHTML = '<strong>Walkthrough</strong> · Under Review';
           }
+        } else if (docSetKey) {
+          const set = DOC_SETS[docSetKey];
+          viewerCounter.textContent = (docIdx + 1) + " / " + set.docs.length;
+          viewerPrev.disabled = docIdx <= 0;
+          viewerNext.disabled = docIdx >= set.docs.length - 1;
         }
       }
       function navigateViewer(dir) {
@@ -3762,18 +4005,56 @@
           }
           updateViewerNav();
           viewerClose.focus();
+        } else if (docSetKey) {
+          const set = DOC_SETS[docSetKey];
+          const next = docIdx + dir;
+          if (next < 0 || next >= set.docs.length) return;
+          setDocIndex(next);
+          viewerClose.focus();
         }
       }
       function closeViewer() {
         document.body.classList.remove("viewer-open");
-        setTimeout(() => { viewerFrame.src = "about:blank"; viewerIdx = -1; walkerIdx = -1; }, 340);
+        setTimeout(() => { viewerFrame.src = "about:blank"; viewerIdx = -1; walkerIdx = -1; docSetKey = null; docIdx = -1; }, 340);
         if (lastViewerTrigger && lastViewerTrigger.focus) { try { lastViewerTrigger.focus(); } catch (e) { } }
       }
       viewerClose.addEventListener("click", closeViewer);
       viewerScrim.addEventListener("click", closeViewer);
+      /* close viewer when an embedded walkthrough or document asks to return to the portfolio */
+      window.addEventListener("message", e => {
+        if (!e.data || typeof e.data !== "object") return;
+        if (e.data.type === "close-viewer") { closeViewer(); return; }
+        /* an embedded document link asks the modal to paginate its doc set */
+        if (e.data.type === "doc-nav" && e.data.href) {
+          if (!document.body.classList.contains("viewer-open")) return;
+          const resolve = (f, base) => { try { return new URL(f, base).href; } catch (err) { return f; } };
+          let base = viewerFrame.src;
+          try { if (viewerFrame.contentWindow && viewerFrame.contentWindow.location.href) base = viewerFrame.contentWindow.location.href; } catch (err) { }
+          const target = resolve(e.data.href, base);
+          if (docSetKey && DOC_SETS[docSetKey]) {
+            const idx = DOC_SETS[docSetKey].docs.findIndex(d => resolve(d.file, location.href) === target);
+            if (idx >= 0) { setDocIndex(idx); return; }
+          }
+          viewerFrame.src = target;
+        }
+      });
       viewerOpenTab.addEventListener("click", () => { if (viewerFrame.src && viewerFrame.src !== "about:blank") { window.open(viewerFrame.src, "_blank"); } });
       viewerPrev.addEventListener("click", () => navigateViewer(-1));
       viewerNext.addEventListener("click", () => navigateViewer(1));
+      /* Escape inside a same-origin iframe should close the viewer too —
+         the parent keydown handler never fires when focus is in the frame */
+      viewerFrame.addEventListener("load", () => {
+        try {
+          const doc = viewerFrame.contentDocument;
+          if (!doc) return;
+          doc.addEventListener("keydown", e => {
+            if (e.key === "Escape" && document.body.classList.contains("viewer-open")) {
+              e.preventDefault();
+              closeViewer();
+            }
+          });
+        } catch (err) { /* cross-origin frame — the parent handler covers it */ }
+      });
       document.addEventListener("keydown", e => {
         if (!document.body.classList.contains("viewer-open")) return;
         if (e.key === "Escape") { e.preventDefault(); closeViewer(); return; }
@@ -3993,28 +4274,34 @@
       /* ── Walkthrough Tabbed Card ── */
       const WALKTHROUGHS = [
         {
-          id: "WT-01", short: "Editorial Workflow", tag: "Documentation", title: "Editorial Workflow Automation",
+          id: "WT-01", short: "SPA → CMS Pipeline", tag: "Architecture", title: "SPA-to-CMS Conversion Pipeline",
+          desc: "How a single index.html prototype becomes a production WordPress theme with structured editing — the four-phase extraction pipeline behind every project on this sheet.",
+          marks: ["WordPress", "Python", "LLM", "Timber/Twig", "Carbon Fields", "Docker Compose", "Composer + Node", "Playwright E2E", "Idempotent Seed Scripts"],
+          file: "blog/SPAtoCMS.html", rev: "REV A"
+        },
+        {
+          id: "WT-02", short: "Editorial Workflow", tag: "Documentation", title: "Editorial Workflow Automation",
           desc: "How I reduced IT helpdesk ticket volume by 60% at CAS — coaching editors to self-publish, designing a Drupal workflow, and making the case to leadership.",
           marks: ["WordPress", "Drupal", "Stakeholder Comms"],
           file: "blog/EditorialWorkFlow.html", rev: "REV A"
         },
         {
-          id: "WT-02", short: "Analytics Dashboard", tag: "Analytics", title: "Analytics Dashboard Evolution",
-          desc: "From 12 individual Looker Studio reports to one consolidated dashboard — and the WordPress admin plugin that never shipped.",
-          marks: ["GA4", "GTM", "Looker Studio"],
-          file: "blog/GA4AnalyticsDashboard-v1.html", rev: "REV A", pending: true
+          id: "WT-03", short: "Holiday Capsule System", tag: "System Design", title: "Holiday Capsule System",
+          desc: "A calendar-aware theming system that rotates the Dolphin Academic Prep site through 14+ holiday palettes, greetings, and animated motifs — three CSS custom properties, a static JSON calendar, zero server dependencies.",
+          marks: ["CSS Custom Properties", "Vanilla JS", "Zero Dependencies"],
+          file: "blog/HolidayCapsuleSystem.html", rev: "REV A"
         },
         {
-          id: "WT-03", short: "Event Microsite", tag: "Design", title: "Event Microsite Template Design",
+          id: "WT-04", short: "Content & SEO Architecture", tag: "Data Architecture", title: "Content & SEO Architecture",
+          desc: "Yoast replaced by a custom OOP module, and flat geographic pages replaced by a structured coverage_area taxonomy — six canonical URLs where zero existed, with schema.org generated from Carbon Fields data.",
+          marks: ["Taxonomy", "schema.org", "Carbon Fields", "Timber/Twig"],
+          file: "blog/ContentSEOArchitecture.html", rev: "REV A"
+        },
+        {
+          id: "WT-05", short: "Event Microsite", tag: "Design", title: "Event Microsite Template Design",
           desc: "Figma component system → vendor specification → 5 annual events. The design shipped. The self-service workflow did not.",
           marks: ["Figma", "Vendor Mgmt", "Component Design"],
           file: "blog/EventMicrosite.html", rev: "REV A", pending: true
-        },
-        {
-          id: "WT-04", short: "SPA → Wagtail", tag: "Architecture", title: "SPA-to-Wagtail Conversion Pipeline",
-          desc: "Prototype → production CMS in 90 minutes. Deterministic extraction, LLM classification, automated block generation.",
-          marks: ["Wagtail", "Python", "LLM", "Headless CMS"],
-          file: "blog/SPAtoWagtail.html", rev: "REV A", pending: true
         }
       ];
 
@@ -4083,8 +4370,9 @@
       function renderProjects() {
         if (projDone) return; projDone = true;
 
-        /* ── Detail Cards (Enterprise Engagements) ── */
-        const detailProjects = PROJECTS.filter(p => p.report);
+        /* ── Detail Cards (Enterprise Solutions) ── */
+        /* P-02 (Dolphin Academic Prep) renders as static HTML — Detail 01 in #detailGrid, Details 02–05 in #notableGrid — so it is skipped here. */
+        const detailProjects = PROJECTS.filter(p => p.report && p.id !== "P-02");
         let detailHTML = '';
         detailProjects.forEach((p, i) => {
           const thumbHTML = p.preview
@@ -4112,22 +4400,22 @@
             '</article>';
         });
 
-        /* Collapsed placeholder for additional enterprise work */
+        /* Collapsed placeholder for additional enterprise work — appended after the static Dolphin cards */
         const remaining = PROJECTS.filter(p => !p.report);
-        if (detailProjects.length > 0 && remaining.length > 0) {
-          detailHTML += '<article class="proj-detail placeholder reveal" data-delay="' + detailProjects.length + '">' +
+        if (detailProjects.length > 0 || remaining.length > 0) {
+          detailHTML += '<article class="proj-detail placeholder reveal" data-delay="' + (detailProjects.length + 5) + '">' +
             '<div class="detail-header">' +
-            '<span class="detail-num">Details 0' + (detailProjects.length + 1) + '\u20130' + (detailProjects.length + Math.min(remaining.length, 3)) + '</span>' +
+            '<span class="detail-num">Details 0' + (detailProjects.length + 6) + '\u20130' + (detailProjects.length + 5 + Math.min(remaining.length, 3)) + '</span>' +
             '<span class="detail-status">● Available</span>' +
             '</div>' +
             '<div class="detail-name">Additional Enterprise Engagements</div>' +
             '<div class="detail-stack"><span>WordPress</span><span>Elementor</span><span>CPT/ACF</span><span>Timber/Twig</span><span>Headless</span><span>Bricks Builder</span><span>Core Web Vitals</span></div>' +
-            '<div class="detail-narrative">Additional builds available for discussion: an Elementor + CPT/ACF integration for a local service business, a Timber v2 + Twig build with native CPT architecture and zero paid-plugin lock-in, and a headless WordPress exploration. Project sheets provided on request.</div>' +
+            '<div class="detail-narrative">Additional builds available on request: an Elementor + CPT/ACF integration for a local service business, a Timber v2 + Twig build with zero paid-plugin lock-in, and a headless WordPress exploration. Project sheets provided.</div>' +
             '</article>';
         }
 
-        const detailGrid = $("#detailGrid");
-        if (detailGrid) detailGrid.innerHTML = detailHTML;
+        const notableGrid = $("#notableGrid");
+        if (notableGrid) notableGrid.insertAdjacentHTML("beforeend", detailHTML);
 
         /* ── Prototype Gallery (Interactive Builds) ── */
         const galleryHTML = PROJECTS.filter(p => p.id !== "P-02").map(p => {
@@ -4148,8 +4436,16 @@
         if (galleryGrid) galleryGrid.innerHTML = galleryHTML;
       }
 
-      /* Detail card link clicks — open viewer */
+      /* Detail card link clicks — documents open as paginated modals, builds/walkthroughs open the viewer */
       document.addEventListener("click", e => {
+        const docLink = e.target.closest(".js-doc-link");
+        if (docLink) {
+          /* let modified clicks (new tab / new window) fall through to the href */
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+          e.preventDefault();
+          openDocViewer(docLink.dataset.docSet, parseInt(docLink.dataset.doc, 10) || 0);
+          return;
+        }
         const link = e.target.closest(".js-viewer-link, .js-wt-link");
         if (!link) return;
         e.preventDefault();
