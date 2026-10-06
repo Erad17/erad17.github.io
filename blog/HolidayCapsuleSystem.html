@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="blueprint">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walkthrough 03 · Holiday Capsule System · Marho Eradiri</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --paper: #0b1d33;
+            --paper-2: #0e2440;
+            --paper-3: #122c4d;
+            --ink: #e9f2fa;
+            --ink-soft: #9fb6cc;
+            --ink-faint: #6b84a0;
+            --line: rgba(233, 242, 250, .28);
+            --line-soft: rgba(233, 242, 250, .13);
+            --cyan: #6fd3f2;
+            --cyan-soft: rgba(111, 211, 242, .35);
+            --cyan-faint: rgba(111, 211, 242, .12);
+            --amber: #ffc255;
+            --amber-deep: #e8a020;
+            --amber-ink: #081527;
+            --accent: #ffc255;
+            --callout-bg: #0e2440;
+            --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+            --text: "IBM Plex Sans", system-ui, sans-serif;
+            --sans: "IBM Plex Sans", system-ui, sans-serif;
+            --serif: "Fraunces", Georgia, serif;
+            --col: 680px;
+            --shadow: 0 22px 60px rgba(2, 8, 20, .55);
+            color-scheme: dark;
+        }
+
+        [data-theme="vellum"] {
+            --paper: #f3efe4;
+            --paper-2: #ece6d6;
+            --paper-3: #e4dcc7;
+            --ink: #14283f;
+            --ink-soft: #3f5872;
+            --ink-faint: #6a7f94;
+            --line: rgba(20, 40, 63, .34);
+            --line-soft: rgba(20, 40, 63, .16);
+            --cyan: #0d7ea6;
+            --cyan-soft: rgba(13, 126, 166, .4);
+            --cyan-faint: rgba(13, 126, 166, .1);
+            --amber: #b25e00;
+            --amber-deep: #8f4b00;
+            --amber-ink: #fff8ec;
+            --accent: #b25e00;
+            --callout-bg: #ffffff;
+            --shadow: 0 18px 44px rgba(60, 50, 20, .18);
+            color-scheme: light;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--text);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            transition: background .2s, color .2s;
+        }
+
+        .sheet {
+            max-width: 820px;
+            margin: 2rem auto 4rem;
+            padding: 3rem 2.5rem;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+            transition: background .2s, border-color .2s;
+        }
+
+        .title-block {
+            border-bottom: 2px solid var(--ink);
+            padding-bottom: 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 1rem;
+            transition: border-color .2s;
+        }
+
+        .title-block h1 {
+            font-family: var(--sans);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: .02em;
+            text-transform: uppercase;
+        }
+
+        .title-block .sheet-id {
+            font-family: var(--mono);
+            font-size: .75rem;
+            color: var(--ink-soft);
+            text-align: right;
+            line-height: 1.4;
+            transition: color .2s;
+        }
+
+        .meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: .5rem 2rem;
+            font-family: var(--mono);
+            font-size: .7rem;
+            color: var(--ink-soft);
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--line);
+            transition: color .2s, border-color .2s;
+        }
+
+        .meta span {
+            display: block;
+        }
+
+        .meta strong {
+            display: block;
+            color: var(--ink);
+            font-size: .8rem;
+            transition: color .2s;
+        }
+
+        .lede {
+            font-family: var(--serif);
+            font-size: 1.35rem;
+            line-height: 1.45;
+            max-width: 36ch;
+            margin-bottom: 2rem;
+        }
+
+        .lede em {
+            font-style: italic;
+            color: var(--cyan);
+        }
+
+        h2 {
+            font-family: var(--sans);
+            font-size: .85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: var(--ink);
+            margin: 2.5rem 0 .75rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--line);
+            transition: color .2s, border-color .2s;
+        }
+
+        h2:first-of-type {
+            border-top: none;
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            max-width: var(--col);
+        }
+
+        .callout {
+            background: var(--callout-bg);
+            border: 1px solid var(--line);
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            max-width: var(--col);
+            transition: background .2s, border-color .2s;
+        }
+
+        .callout p {
+            margin-bottom: .5rem;
+        }
+
+        .callout p:last-child {
+            margin-bottom: 0;
+        }
+
+        .callout .label {
+            font-family: var(--mono);
+            font-size: .65rem;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: var(--ink-faint);
+            margin-bottom: .5rem;
+            transition: color .2s;
+        }
+
+        .metrics {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+            font-family: var(--mono);
+            font-size: .75rem;
+        }
+
+        .metrics .metric {
+            border: 1px solid var(--line);
+            padding: .75rem 1rem;
+            background: var(--callout-bg);
+            transition: background .2s, border-color .2s;
+        }
+
+        .metrics .metric .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            transition: color .2s;
+        }
+
+        .metrics .metric .label {
+            font-size: .65rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            color: var(--ink-soft);
+            transition: color .2s;
+        }
+
+        table {
+            width: 100%;
+            max-width: var(--col);
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-family: var(--mono);
+            font-size: .75rem;
+        }
+
+        table th {
+            text-align: left;
+            font-size: .65rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            color: var(--ink-soft);
+            padding: .5rem .75rem;
+            border-bottom: 2px solid var(--ink);
+            transition: color .2s, border-color .2s;
+        }
+
+        table td {
+            padding: .5rem .75rem;
+            border-bottom: 1px solid var(--line);
+            vertical-align: top;
+            transition: border-color .2s;
+        }
+
+        table td.chosen {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        table td.rejected {
+            color: var(--ink-faint);
+        }
+
+        code {
+            font-family: var(--mono);
+            font-size: .85em;
+            background: var(--callout-bg);
+            padding: .1em .3em;
+            border: 1px solid var(--line);
+            transition: background .2s, border-color .2s;
+        }
+
+        .code-block {
+            background: var(--paper-3);
+            color: var(--ink);
+            border: 1px solid var(--line);
+            padding: 1rem 1.25rem;
+            margin: 1.5rem 0;
+            max-width: var(--col);
+            font-family: var(--mono);
+            font-size: .72rem;
+            line-height: 1.7;
+            overflow-x: auto;
+            white-space: pre;
+            transition: background .2s, border-color .2s;
+        }
+
+        .code-block .cm {
+            color: var(--ink-faint);
+        }
+
+        .code-block .kw {
+            color: var(--accent);
+        }
+
+        .code-block .str {
+            color: var(--cyan);
+        }
+
+        /* ── capsule swatches ── */
+        .capsule-card {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 1rem;
+            border: 1px solid var(--line);
+            padding: 1rem;
+            margin-bottom: .6rem;
+            max-width: var(--col);
+            align-items: center;
+            transition: border-color .2s;
+        }
+
+        .capsule-card:hover {
+            border-color: var(--cyan-soft);
+        }
+
+        .capsule-swatch {
+            height: 56px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--mono);
+            font-size: .62rem;
+            font-weight: 600;
+            letter-spacing: .06em;
+            color: #fff;
+        }
+
+        .capsule-card h4 {
+            font-family: var(--sans);
+            font-size: .8rem;
+            margin: 0 0 .15rem;
+        }
+
+        .capsule-card p {
+            font-family: var(--mono);
+            font-size: .65rem;
+            color: var(--ink-faint);
+            margin: 0;
+            max-width: none;
+        }
+
+        /* ── flow rows ── */
+        .flow-row {
+            display: grid;
+            grid-template-columns: 36px 1fr;
+            gap: .9rem;
+            padding: .9rem 0;
+            border-bottom: 1px solid var(--line-soft);
+            align-items: start;
+            max-width: var(--col);
+        }
+
+        .flow-row:last-child {
+            border-bottom: none;
+        }
+
+        .flow-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--cyan-soft);
+            color: var(--cyan);
+            display: grid;
+            place-items: center;
+            font-family: var(--mono);
+            font-size: .75rem;
+            font-weight: 600;
+            flex: none;
+        }
+
+        .flow-row strong {
+            display: block;
+            margin-bottom: .15rem;
+        }
+
+        .flow-row p {
+            font-size: .85rem;
+            margin: 0;
+            max-width: none;
+        }
+
+        /* ── self-drawing stage ── */
+        .stage-wrap {
+            position: relative;
+            margin: 1.75rem 0;
+        }
+
+        .stage {
+            position: relative;
+            aspect-ratio: 8/5;
+            border: 1px solid var(--cyan-soft);
+            border-radius: 6px;
+            background: radial-gradient(120% 120% at 30% 20%, var(--paper-3), var(--paper-2));
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .stage svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .hw .draw {
+            fill: none;
+            stroke: var(--cyan);
+            stroke-width: 1.5;
+            stroke-dasharray: 1;
+            stroke-dashoffset: 1;
+            vector-effect: non-scaling-stroke;
+            animation: drawline 1s cubic-bezier(.22, .8, .3, 1) var(--d, 0s) forwards;
+        }
+
+        .hw .thin {
+            stroke-width: 1;
+            opacity: .8;
+        }
+
+        .hw .fill-a {
+            fill: var(--cyan);
+            stroke: none;
+            opacity: 0;
+            animation: fadein .5s ease var(--d, 1.9s) forwards;
+        }
+
+        [data-theme="blueprint"] .hw .fill-a {
+            fill: #4fc3e0;
+        }
+
+        .hw .txt {
+            font-family: var(--mono);
+            fill: var(--cyan);
+            opacity: 0;
+            animation: fadein .6s ease var(--d, 1.4s) forwards;
+        }
+
+        .hw .txt.dim {
+            animation-name: fadein-dim;
+        }
+
+        .hw .txt.txt-on-amber {
+            fill: var(--paper);
+        }
+
+        [data-theme="vellum"] .hw .txt.txt-on-amber {
+            fill: #fff;
+        }
+
+        .hw .txt.amber {
+            fill: var(--amber);
+        }
+
+        @keyframes drawline {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes fadein {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadein-dim {
+            to {
+                opacity: .7;
+            }
+        }
+
+        .anno {
+            position: absolute;
+            font-family: var(--mono);
+            font-size: .62rem;
+            letter-spacing: .14em;
+            color: var(--cyan);
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadein .6s ease 1.8s forwards;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .anno::before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 1px;
+            background: var(--cyan);
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        .anno.a2 {
+            bottom: 3%;
+            right: 3%;
+            color: var(--amber);
+        }
+
+        .anno.a2::before {
+            background: var(--amber);
+        }
+
+        .tblock-note {
+            max-width: var(--col);
+            padding: .75rem 1rem;
+            font-family: var(--mono);
+            font-size: .65rem;
+            color: var(--ink-faint);
+            letter-spacing: .1em;
+            border: 1px dashed var(--line-soft);
+            border-radius: 3px;
+            margin: 1.5rem 0;
+            line-height: 1.8;
+            transition: color .2s, border-color .2s;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            font-family: var(--mono);
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            color: var(--ink-soft);
+            text-decoration: none;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: .25rem;
+            transition: color .2s, border-color .2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .sheet-footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--line);
+            font-family: var(--mono);
+            font-size: .65rem;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: .5rem;
+            transition: color .2s, border-color .2s;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--callout-bg);
+            border: 1px solid var(--line);
+            color: var(--ink);
+            font-family: var(--mono);
+            font-size: .65rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            padding: .4rem .75rem;
+            cursor: pointer;
+            transition: background .2s, border-color .2s, color .2s;
+            z-index: 10;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .hw .draw,
+            .hw .txt,
+            .hw .fill-a,
+            .anno {
+                animation: none;
+            }
+
+            .hw .draw {
+                stroke-dashoffset: 0;
+            }
+
+            .hw .txt,
+            .hw .fill-a,
+            .anno {
+                opacity: 1;
+            }
+
+            .hw .txt.dim {
+                opacity: .7;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .sheet {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+
+            .title-block {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .meta {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .metrics {
+                flex-direction: column;
+            }
+
+            table {
+                font-size: .65rem;
+            }
+
+            .lede {
+                font-size: 1.15rem;
+            }
+
+            .capsule-card {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">◐ Theme</button>
+
+    <div class="sheet">
+
+        <div class="title-block">
+            <h1>Holiday Capsule System</h1>
+            <div class="sheet-id">
+                WALKTHROUGH 03 OF 05<br>
+                SHEET WT-2026-03<br>
+                REV A
+            </div>
+        </div>
+
+        <div class="meta">
+            <div><span>Project</span><strong>Dolphin Academic Prep</strong></div>
+            <div><span>Role</span><strong>Independent Web Architect</strong></div>
+            <div><span>Period</span><strong>10/2025 – Present</strong></div>
+            <div><span>Drawn by</span><strong>Marho Eradiri</strong></div>
+            <div><span>Date</span><strong>10.2026</strong></div>
+            <div><span>Scale</span><strong>1 : 1</strong></div>
+        </div>
+
+        <p class="lede">A calendar-aware theming system that rotates the site through 14+ holidays — with <em>zero
+                server dependencies, zero database queries, and zero ongoing maintenance.</em></p>
+
+        <h2>§ The System</h2>
+
+        <div class="stage-wrap">
+            <div class="stage" role="img"
+                aria-label="Self-drawing blueprint of the holiday capsule system: a static JSON calendar feeds a client-side date checker, which sets three CSS custom properties that drive the hero gradient, capsule ribbon, motif animations, and greeting text.">
+                <svg class="hw" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <rect class="draw" pathLength="1" x="14" y="14" width="772" height="472" rx="6" style="--d:0s" />
+                    <rect class="draw thin" pathLength="1" x="290" y="44" width="220" height="44" rx="4"
+                        style="--d:.2s" />
+                    <text class="txt" x="400" y="66" font-size="13" text-anchor="middle" style="--d:1s">STATIC
+                        CALENDAR</text>
+                    <text class="txt dim" x="400" y="82" font-size="9" text-anchor="middle" style="--d:1.1s">JSON · 14
+                        HOLIDAYS</text>
+                    <path class="draw" pathLength="1" d="M400 92 V110" style="--d:.4s" />
+                    <path class="draw" pathLength="1" d="M394 106 L400 114 L406 106" style="--d:.5s" />
+                    <rect class="draw" pathLength="1" x="70" y="116" width="660" height="100" rx="4" style="--d:.55s" />
+                    <text class="txt" x="86" y="140" font-size="13" style="--d:1.2s">CLIENT-SIDE DATE CHECKER</text>
+                    <rect class="fill-a" x="84" y="150" width="170" height="18" rx="3" style="--d:1.5s" />
+                    <text class="txt txt-on-amber" x="94" y="163" font-size="10" font-weight="600" style="--d:1.6s">runs
+                        once per load</text>
+                    <text class="txt dim" x="268" y="163" font-size="9" style="--d:1.3s">→ no network requests</text>
+                    <text class="txt dim" x="268" y="181" font-size="9" style="--d:1.4s">→ microseconds</text>
+                    <text class="txt amber" x="86" y="203" font-size="10" style="--d:1.35s">MATCH → CAPSULE · NO MATCH
+                        → DEFAULT</text>
+                    <text class="txt" x="420" y="203" font-size="10" style="--d:1.45s">fails to default, never to
+                        broken</text>
+                    <path class="draw" pathLength="1" d="M400 220 V238" style="--d:.7s" />
+                    <path class="draw" pathLength="1" d="M394 234 L400 242 L406 234" style="--d:.8s" />
+                    <rect class="draw" pathLength="1" x="70" y="244" width="660" height="96" rx="4" style="--d:.9s" />
+                    <text class="txt" x="86" y="268" font-size="13" style="--d:1.5s">CSS CUSTOM PROPERTIES</text>
+                    <text class="txt" x="86" y="292" font-size="10" style="--d:1.6s">--cap-a · --cap-b ·
+                        --cap-glow</text>
+                    <text class="txt" x="86" y="314" font-size="10" style="--d:1.7s">three hex codes per holiday</text>
+                    <text class="txt" x="420" y="292" font-size="10" style="--d:1.65s">hero gradient · ribbon ·
+                        accents</text>
+                    <text class="txt" x="420" y="314" font-size="10" style="--d:1.75s">greeting · motif colors</text>
+                    <path class="draw" pathLength="1" d="M400 344 V362" style="--d:1s" />
+                    <path class="draw" pathLength="1" d="M394 358 L400 366 L406 358" style="--d:1.1s" />
+                    <rect class="draw" pathLength="1" x="70" y="368" width="660" height="96" rx="4" style="--d:1.25s" />
+                    <text class="txt" x="86" y="392" font-size="13" style="--d:1.8s">THEMED SURFACES</text>
+                    <text class="txt" x="86" y="416" font-size="10" style="--d:1.9s">hero gradient · capsule
+                        ribbon</text>
+                    <text class="txt" x="86" y="438" font-size="10" style="--d:2s">greeting text · accent colors</text>
+                    <text class="txt" x="420" y="416" font-size="10" style="--d:1.95s">motif animations —
+                        CSS-only</text>
+                    <text class="txt" x="420" y="438" font-size="10" style="--d:2.05s">reduced-motion respected</text>
+                </svg>
+                <span class="anno" style="top:5%;left:4%">FIG 01 — THREE LAYERS, NO SERVER</span>
+                <span class="anno a2">REV A — DRAWN BY Marho Eradiri</span>
+            </div>
+        </div>
+
+        <p><strong>The problem.</strong> The project brief requests "holiday page looks" — themed banners and logos
+            that change for Election Day, Diwali, Thanksgiving, Winter Holidays, Lunar New Year, and nine other
+            observances, scheduled a year in advance. The obvious approaches — a WordPress plugin, a server-side cron
+            job, or a manual process where staff update the homepage before every holiday — all fail in different ways:
+            plugins add database dependencies for a calendar lookup, cron jobs require server access the client
+            shouldn't need, and manual updates will be forgotten by March.</p>
+
+        <p><strong>The answer.</strong> Three layers, none of which require a server:</p>
+
+        <div class="flow-row">
+            <span class="flow-num">1</span>
+            <div>
+                <strong>A static holiday calendar</strong>
+                <p>A JSON object maps 14 holiday definitions to date ranges. Each definition specifies a display name,
+                    greeting message, date window, a two-color gradient palette, and a motif type. The calendar is a
+                    single data structure — editable in any text editor.</p>
+            </div>
+        </div>
+
+        <div class="flow-row">
+            <span class="flow-num">2</span>
+            <div>
+                <strong>A client-side date checker</strong>
+                <p>On page load, a JavaScript function compares the current date against the calendar. If the date
+                    falls within a holiday window, that holiday's palette is applied. If no holiday is active, the
+                    default "Open Enrollment" capsule is used. The check runs once, takes microseconds, and produces no
+                    network requests.</p>
+            </div>
+        </div>
+
+        <div class="flow-row">
+            <span class="flow-num">3</span>
+            <div>
+                <strong>CSS custom properties for theming</strong>
+                <p>Three CSS variables — <code>--cap-a</code>, <code>--cap-b</code>, and <code>--cap-glow</code> —
+                    control every themed element on the page. The hero gradient, the capsule ribbon, the motif
+                    animations, the greeting text, and the accent colors all derive from these three values. Changing a
+                    holiday means changing three hex codes in the calendar JSON.</p>
+            </div>
+        </div>
+
+        <div class="callout">
+            <div class="label">Why Zero Server Dependencies Matters</div>
+            <p>A WordPress plugin that schedules theme changes via cron adds a database table, a settings page, and an
+                update surface — for what is fundamentally a calendar lookup. The holiday schedule is static data. The
+                theming is pure CSS. The entire system has no database queries, no PHP execution, and no impact on page
+                load beyond the initial CSS variable swap. If the system fails, the site renders with its default theme
+                — no PHP errors, no white screen, no broken layout.</p>
+        </div>
+
+        <h2>§ The Capsule Calendar</h2>
+
+        <p>14 holidays. One JSON object. No moving parts.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Capsule</th>
+                    <th>Date Window</th>
+                    <th>Colors</th>
+                    <th>Motif</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Diwali</strong></td>
+                    <td>Oct 25 – Nov 5</td>
+                    <td>#FFB300 → #E65100</td>
+                    <td>Floating diyas (rising lamps)</td>
+                </tr>
+                <tr>
+                    <td><strong>Election Week</strong></td>
+                    <td>Nov 1 – Nov 7</td>
+                    <td>#3B6FE0 → #D64545</td>
+                    <td>Twinkling stars</td>
+                </tr>
+                <tr>
+                    <td><strong>Thanksgiving</strong></td>
+                    <td>Nov 20 – Nov 30</td>
+                    <td>#E08A00 → #9C4A12</td>
+                    <td>Falling leaves</td>
+                </tr>
+                <tr>
+                    <td><strong>Winter Break</strong></td>
+                    <td>Dec 15 – Jan 4</td>
+                    <td>#6FC7E8 → #2B7BB9</td>
+                    <td>Drifting snow</td>
+                </tr>
+                <tr>
+                    <td><strong>Lunar New Year</strong></td>
+                    <td>Jan 20 – Feb 10</td>
+                    <td>#E23B3B → #FFC53D</td>
+                    <td>Swaying lanterns</td>
+                </tr>
+                <tr>
+                    <td><strong>Spring Term</strong></td>
+                    <td>Mar 1 – Mar 25</td>
+                    <td>#3FA66A → #0E7C86</td>
+                    <td>Falling petals</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="color:var(--ink-faint);font-style:italic;">+ Valentine's Day, St. Patrick's
+                        Day, Easter, Memorial Day, President's Day, Independence Day, Labor Day, New Year's — all follow
+                        the same pattern. Default capsule: "Open Enrollment" with navy/teal palette and subtle spark
+                        motif, active year-round when no holiday is in window.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="code-block"><span class="cm">// Holiday calendar — the entire data model</span>
+            <span class="kw">const</span> CAPSULES = [
+            {
+            id: <span class="str">'diwali'</span>,
+            name: <span class="str">'Diwali'</span>,
+            greet: <span class="str">'Wishing you a bright Diwali.'</span>,
+            dates: <span class="str">'Oct 25 – Nov 5'</span>,
+            start: [10, 25], end: [11, 5],
+            a: <span class="str">'#FFB300'</span>, b: <span class="str">'#E65100'</span>,
+            motif: <span class="str">'diya'</span> <span class="cm">// CSS-only animated rising lamps</span>
+            },
+            <span class="cm">// ... 13 more definitions ...</span>
+            {
+            id: <span class="str">'default'</span>,
+            name: <span class="str">'Open Enrollment'</span>,
+            greet: <span class="str">'A calm, coached prep season starts here.'</span>,
+            start: <span class="kw">null</span>, end: <span class="kw">null</span>, <span class="cm">// Always active as
+                fallback</span>
+            a: <span class="str">'#12A5B0'</span>, b: <span class="str">'#F4650F'</span>,
+            motif: <span class="str">'spark'</span>
+            }
+            ];
+        </div>
+
+        <h2>§ The Motif System</h2>
+
+        <p>Pure CSS animation. No JavaScript animation loop. No canvas. Each capsule has a <code>motif</code> property
+            that determines which CSS-only animation plays in the hero section background — decorative particles
+            rendered as styled <code>&lt;span&gt;</code> elements with keyframe animations:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Motif</th>
+                    <th>Visual</th>
+                    <th>Animation</th>
+                    <th>CSS Technique</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>leaf</strong></td>
+                    <td>13×13px teardrop, gradient fill</td>
+                    <td>Fall + rotate over 7–15s</td>
+                    <td><code>@keyframes fall</code> — translateY + rotate</td>
+                </tr>
+                <tr>
+                    <td><strong>snow</strong></td>
+                    <td>7×7px white circle with blur shadow</td>
+                    <td>Gentle drift over 8–12s</td>
+                    <td><code>@keyframes fall</code> — translateY, slower duration</td>
+                </tr>
+                <tr>
+                    <td><strong>diya</strong></td>
+                    <td>10×10px radial gradient with glow</td>
+                    <td>Float upward over 9–14s</td>
+                    <td><code>@keyframes rise</code> — translateY(-660px)</td>
+                </tr>
+                <tr>
+                    <td><strong>petal</strong></td>
+                    <td>10×14px asymmetrical border-radius</td>
+                    <td>Fall + slight horizontal drift</td>
+                    <td><code>@keyframes fall</code> — translateY + rotate</td>
+                </tr>
+                <tr>
+                    <td><strong>star</strong></td>
+                    <td>12×12px clip-path polygon, static position</td>
+                    <td>Twinkle in place</td>
+                    <td><code>@keyframes twinkle</code> — scale + opacity pulse</td>
+                </tr>
+                <tr>
+                    <td><strong>lantern</strong></td>
+                    <td>11×15px rounded rectangle with glow</td>
+                    <td>Gentle sway at anchor point</td>
+                    <td><code>@keyframes sway</code> — rotate ±9° with transform-origin: top</td>
+                </tr>
+                <tr>
+                    <td><strong>spark</strong></td>
+                    <td>5×5px circle with colored shadow</td>
+                    <td>Subtle twinkle, widely scattered</td>
+                    <td><code>@keyframes twinkle</code> — lower opacity range</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>Each motif spawns 14–16 particles positioned randomly across the hero area. Every particle gets a randomized
+            duration (7–15 seconds) and delay (0–9 seconds) so they never move in lockstep. The result looks organic —
+            not like a screensaver from 1998. The entire animation system is approximately 120 lines of CSS.</p>
+
+        <div class="callout">
+            <div class="label">Reduced Motion Support</div>
+            <p>Every animation respects the user's <code>prefers-reduced-motion: reduce</code> media query. When
+                enabled, all motifs are hidden entirely — no falling leaves, no drifting snow, no animated particles of
+                any kind. The color palette and greeting message change, but nothing moves. This is not optional — it's
+                an accessibility requirement, and it's implemented in a single CSS rule.</p>
+        </div>
+
+        <h2>§ Staff Controls</h2>
+
+        <p>Preview any capsule. Override the calendar. No training required.</p>
+
+        <div class="flow-row">
+            <span class="flow-num">1</span>
+            <div>
+                <strong>Gallery strip preview</strong>
+                <p>A row of capsule cards on the homepage lets staff click any holiday to preview it live. The preview
+                    applies the capsule's colors, greeting, and motifs immediately — but only for the current session.
+                    Refreshing the page returns to the calendar's automatic selection. The "Automatic" card is selected
+                    by default.</p>
+            </div>
+        </div>
+
+        <div class="flow-row">
+            <span class="flow-num">2</span>
+            <div>
+                <strong>Dropdown override in the header ribbon</strong>
+                <p>A small dropdown in the capsule ribbon (top of every page) lets staff manually select a capsule.
+                    Selecting "Auto" returns to calendar-driven behavior. Selecting a specific holiday overrides the
+                    calendar for the current session — useful for testing or for extending a holiday theme a few days
+                    beyond its window.</p>
+            </div>
+        </div>
+
+        <p>Both controls are client-side only. They do not persist to the database. They do not affect other visitors.
+            They are preview tools, not content management — the calendar is the source of truth, and staff can look
+            ahead to verify what will display on any given date. These interactions happen on the front end of the site
+            — no wp-admin login required. The people who care about the holiday theming are not necessarily the people
+            who are comfortable in the WordPress admin.</p>
+
+        <h2>§ What This Replaces</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Approach</th>
+                    <th>Assessment</th>
+                    <th>Verdict</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>WordPress plugin (holiday/seasonal theming)</td>
+                    <td>Adds a plugin to the update queue for a feature that is fundamentally a calendar lookup. Most
+                        holiday plugins are designed for e-commerce sale banners, not subtle brand theming. Adds
+                        database tables, settings pages, and compatibility surface.</td>
+                    <td class="rejected">Rejected</td>
+                </tr>
+                <tr>
+                    <td>WordPress cron + theme options</td>
+                    <td>Server-side scheduling with a theme options panel for holiday configuration. More control, but
+                        requires WordPress cron to be reliable (it isn't, without a real cron job). Staff must log into
+                        wp-admin to manage holidays. Couples the feature to the server.</td>
+                    <td class="rejected">Rejected</td>
+                </tr>
+                <tr>
+                    <td>Manual updates (staff edits page before each holiday)</td>
+                    <td>Zero technical complexity. Also zero chance of consistency — holidays will be forgotten, colors
+                        will drift, and the January intern won't know how to configure the Diwali banner.</td>
+                    <td class="rejected">Rejected</td>
+                </tr>
+                <tr>
+                    <td><strong>CSS custom properties + client-side calendar</strong></td>
+                    <td>Zero server dependencies. Zero database queries. Zero plugin update surface. Staff preview any
+                        capsule from the front end. The calendar is a single JSON object editable in any text editor.
+                        The theming is three CSS variables. Adding a holiday means adding an object to an array. The
+                        entire system is approximately 200 lines of CSS and 80 lines of JavaScript.</td>
+                    <td class="chosen">Chosen</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>§ Failure Modes</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Scenario</th>
+                    <th>Behavior</th>
+                    <th>Impact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>JavaScript fails to load (blocked, errored, or disabled)</td>
+                    <td>The calendar check never runs. CSS variables remain at their default values. The site renders
+                        with the default "Open Enrollment" theme.</td>
+                    <td>Zero — the site is fully functional and on-brand.</td>
+                </tr>
+                <tr>
+                    <td>A holiday definition has a malformed date range</td>
+                    <td>The date comparison function skips that capsule and falls through to the default.</td>
+                    <td>Zero — the site degrades to default, not to broken.</td>
+                </tr>
+                <tr>
+                    <td>Two holidays overlap (date range conflict)</td>
+                    <td>The first matching capsule in the array wins. The calendar is ordered by priority — more
+                        specific holidays precede broader ones.</td>
+                    <td>Minor — the wrong holiday displays, but the site remains functional.</td>
+                </tr>
+                <tr>
+                    <td>CSS custom properties are not supported (very old browsers)</td>
+                    <td>The var() calls resolve to nothing. Themed elements render with their fallback inline styles.
+                        The site layout is unaffected.</td>
+                    <td>Zero — the tutoring demographic does not use IE11.</td>
+                </tr>
+                <tr>
+                    <td>Staff selects a preview capsule and forgets to switch back</td>
+                    <td>The preview is session-only. Refreshing the page or opening a new tab returns to
+                        calendar-driven theming. The dropdown always resets to "Auto" on page load.</td>
+                    <td>Zero — previews cannot persist accidentally.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout">
+            <div class="label">Design Principle</div>
+            <p>The system should fail to default, never to broken. Every failure mode results in the site rendering
+                with its standard brand colors. No PHP errors, no white screen, no "holiday plugin requires update"
+                admin notice. The capsule system is a decorative enhancement — when it fails, the site is still a fully
+                functional tutoring platform with its professional brand intact.</p>
+        </div>
+
+        <h2>§ By the Numbers</h2>
+
+        <div class="metrics">
+            <div class="metric">
+                <span class="value">14+</span>
+                <span class="label">Annual observances themed</span>
+            </div>
+            <div class="metric">
+                <span class="value">3</span>
+                <span class="label">CSS variables drive every themed surface</span>
+            </div>
+            <div class="metric">
+                <span class="value">0</span>
+                <span class="label">Server dependencies · DB queries</span>
+            </div>
+            <div class="metric">
+                <span class="value">~280</span>
+                <span class="label">Total lines — 200 CSS + 80 JS</span>
+            </div>
+            <div class="metric">
+                <span class="value">15<span style="font-size:.9em">min</span></span>
+                <span class="label">Annual calendar update effort</span>
+            </div>
+        </div>
+
+        <div class="tblock-note">THE CAPSULE SYSTEM SHIPS IN THE DOLPHIN ACADEMIC PREP BUILD — SEE DETAIL 01 ON SHEET
+            A-03. THE CALENDAR IS A SINGLE JSON OBJECT; THE THEMING IS THREE CSS CUSTOM PROPERTIES; THE FAILURE MODE IS
+            DEFAULT, NEVER BROKEN.</div>
+
+        <a href="../index.html" class="back-link">← Return to Portfolio</a>
+
+        <div class="sheet-footer">
+            <span>Walkthrough 03 of 05 · WT-2026-03 · REV A</span>
+            <span>Marho Eradiri · WEB ARCHITECT · DC METRO AREA</span>
+            <span>ISSUED FOR HIRING REVIEW — NOT A TEMPLATE</span>
+        </div>
+
+    </div>
+
+    <script>
+        const TK = "me-theme";
+        let saved = null; try { saved = localStorage.getItem(TK); } catch (e) { }
+        if (saved) {
+            document.documentElement.setAttribute("data-theme", saved);
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute("data-theme");
+            const next = current === "vellum" ? "blueprint" : "vellum";
+            document.documentElement.setAttribute("data-theme", next);
+            try { localStorage.setItem(TK, next); } catch (e) { }
+        }
+
+        /* When embedded in the portfolio viewer, the back-link closes the modal instead of navigating the iframe */
+        document.addEventListener("click", e => {
+            const link = e.target.closest(".back-link");
+            if (!link) return;
+            if (window.self !== window.top) {
+                e.preventDefault();
+                window.parent.postMessage({ type: "close-viewer" }, "*");
+            }
+        });
+    </script>
+
+</body>
+
+</html>
