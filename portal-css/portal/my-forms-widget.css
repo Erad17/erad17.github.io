@@ -1,6 +1,0 @@
-/* My Forms Widget — RETIRED.
-   The mock JS-data widget was replaced by the server-rendered
-   forms-widget.twig (dolphin_form_entry CPT). Upload, sign and refresh
-   behavior now lives in assets/js/portal-shared.js. This stub only prevents
-   the old mock implementation (forms = […], renderForms(), fake uploads)
-   from being enqueued. Safe to delete. */
