@@ -1,0 +1,33 @@
+/* Portal Dashboard Header (portal) — component styles.
+   Scoped to .dash-top; mounts on [data-component="portal-dashboard-header"].
+   Source: prototype CSS rules [431, 432, 433, 434, 435]. */
+
+.dash-top {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 16px;
+	margin-bottom: var(--sp-6);
+}
+
+.dash-top .avatar {
+	width: 52px;
+	height: 52px;
+	font-size: var(--fs-small);
+}
+
+.dash-top h1 {
+	font-size: var(--fs-h2);
+}
+
+.dash-top .sub {
+	font: 700 var(--fs-micro)/1.5 var(--font-mono);
+	color: var(--ink-faint);
+	letter-spacing: .05em;
+}
+
+.dash-top .actions {
+	margin-left: auto;
+	display: flex;
+	gap: 10px;
+}

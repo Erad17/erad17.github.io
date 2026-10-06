@@ -1,0 +1,34 @@
+/* Documents Widget (portal) — component styles.
+   Scoped to .w-docs (.documents-widget); server-rendered rows (.doc-row from
+   global.css). Upload progress bar fed by portal-shared.js XHR. */
+
+.documents-widget.w-docs {
+	grid-column: span 5;
+}
+
+@media (max-width:980px) {
+	.documents-widget.w-docs {
+		grid-column: span 12;
+	}
+}
+
+.documents-widget h3 .btn {
+	margin-left: auto;
+}
+
+.documents-widget .up-prog {
+	height: 7px;
+	border-radius: var(--r-pill);
+	background: var(--surface-2);
+	overflow: hidden;
+	margin-top: 12px;
+}
+
+.documents-widget .up-prog i {
+	display: block;
+	height: 100%;
+	width: 0;
+	background: linear-gradient(90deg, var(--teal), var(--gold));
+	border-radius: var(--r-pill);
+	transition: width .15s linear;
+}

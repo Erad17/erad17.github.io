@@ -1,0 +1,416 @@
+/* Booking Modal (portal, Part 7) — scoped to .portal-booking-modal, layered
+   on the shared .overlay/.wiz-dialog kit (components/shared/intake-wizard.css)
+   and the widget/base classes in global.css. Covers the student/program/
+   coach card grids, the mode toggle, the 14-day date strip, the slot
+   buttons, the review + confirmation panels and the coach availability
+   preview helpers used across the portal (segtab also serves the student
+   switcher — duplicated rule lives in dashboard.css for that context). */
+
+/* ── Segmented tabs (mode toggle; the student switcher reuses .segtab) ── */
+
+.bk-mode {
+	display: inline-flex;
+	gap: 4px;
+	padding: 4px;
+	background: var(--surface-2, #F4F1EA);
+	border: 1px solid var(--line);
+	border-radius: var(--r-pill, 999px);
+	margin-bottom: 18px;
+}
+
+.segtab {
+	appearance: none;
+	border: 0;
+	background: transparent;
+	padding: 8px 16px;
+	border-radius: var(--r-pill, 999px);
+	font: 600 0.82rem/1 var(--font-mono);
+	letter-spacing: 0.04em;
+	color: var(--ink-soft);
+	cursor: pointer;
+	transition: background var(--t-fast, 0.15s) var(--ease), color var(--t-fast, 0.15s) var(--ease);
+}
+
+.segtab:hover {
+	color: var(--teal);
+}
+
+.segtab[aria-checked="true"],
+.segtab[aria-pressed="true"],
+.segtab.is-active {
+	background: var(--navy);
+	color: #fff;
+}
+
+.segtab[aria-checked="true"]:hover,
+.segtab[aria-pressed="true"]:hover,
+.segtab.is-active:hover {
+	background: var(--teal);
+	color: #fff;
+}
+
+/* ── Step notes + errors ──────────────────────────────────────────────── */
+
+.bk-note {
+	font-size: 0.92rem;
+	color: var(--ink-soft);
+	margin: 0 0 16px;
+}
+
+.bk-panel .ferr.solo {
+	margin: 12px 0 0;
+}
+
+/* ── Card grids (students, coaches) ───────────────────────────────────── */
+
+.bk-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 12px;
+	margin-bottom: 14px;
+}
+
+.bk-card {
+	display: flex;
+	align-items: flex-start;
+	gap: 14px;
+	padding: 14px;
+	background: var(--surface);
+	border: 1.5px solid var(--line);
+	border-radius: var(--r-md, 14px);
+	text-align: left;
+	cursor: pointer;
+	transition: border-color var(--t-fast, 0.15s) var(--ease), transform var(--t-fast, 0.15s) var(--ease), box-shadow var(--t-fast, 0.15s) var(--ease);
+}
+
+.bk-card:hover {
+	border-color: var(--teal);
+	transform: translateY(-1px);
+}
+
+.bk-card.is-selected {
+	border-color: var(--teal);
+	background: var(--teal-soft, #DFF3F4);
+	box-shadow: 0 0 0 1px var(--teal);
+}
+
+.bk-ic,
+.bk-photo {
+	flex: 0 0 auto;
+	width: 52px;
+	height: 52px;
+	border-radius: 50%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font: 700 1.05rem/1 var(--font-display);
+	background: linear-gradient(135deg, var(--navy), var(--teal));
+	color: #fff;
+	object-fit: cover;
+}
+
+.bk-card-copy {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	min-width: 0;
+}
+
+.bk-card-copy > b {
+	font-family: var(--font-display);
+	font-size: 1.02rem;
+}
+
+.bk-card-copy > span {
+	font-size: 0.85rem;
+	color: var(--ink-soft);
+}
+
+.bk-coach .bk-spec {
+	font: 700 0.72rem/1.4 var(--font-mono);
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: var(--teal);
+}
+
+.bk-coach .bk-bio {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	line-height: 1.45;
+}
+
+.bk-next {
+	font-size: 0.8rem;
+	font-weight: 700;
+}
+
+.bk-next.has-slot {
+	color: var(--ok);
+}
+
+.bk-next.no-slot {
+	color: var(--warn);
+}
+
+.bk-card.is-unavailable {
+	order: 10;
+	opacity: 0.85;
+}
+
+/* ── Add-a-student inline form ────────────────────────────────────────── */
+
+.bk-add-form {
+	display: grid;
+	grid-template-columns: 1.4fr 1fr auto;
+	gap: 12px;
+	align-items: start;
+	margin: 12px 0 0;
+	padding: 14px;
+	background: var(--surface-2, #F4F1EA);
+	border: 1px dashed var(--line);
+	border-radius: var(--r-md, 14px);
+}
+
+.bk-add-form .field {
+	margin: 0;
+}
+
+@media (max-width: 720px) {
+	.bk-add-form {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ── Date strip ───────────────────────────────────────────────────────── */
+
+.bk-date-strip {
+	display: flex;
+	gap: 8px;
+	overflow-x: auto;
+	padding: 4px 2px 10px;
+	margin-bottom: 6px;
+	scrollbar-width: thin;
+}
+
+.bk-day {
+	flex: 0 0 auto;
+	width: 86px;
+	padding: 10px 8px;
+	background: var(--surface);
+	border: 1.5px solid var(--line);
+	border-radius: var(--r-md, 14px);
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	align-items: center;
+	cursor: pointer;
+	transition: border-color var(--t-fast, 0.15s) var(--ease), background var(--t-fast, 0.15s) var(--ease);
+}
+
+.bk-day:hover:not(:disabled) {
+	border-color: var(--teal);
+}
+
+.bk-day.is-selected {
+	border-color: var(--teal);
+	background: var(--teal-soft, #DFF3F4);
+	box-shadow: 0 0 0 1px var(--teal);
+}
+
+.bk-day:disabled {
+	cursor: not-allowed;
+	opacity: 0.55;
+	background: repeating-linear-gradient(-45deg, transparent, transparent 6px, rgba(11, 34, 51, 0.04) 6px, rgba(11, 34, 51, 0.04) 12px);
+}
+
+.bk-day-dow {
+	font: 700 0.68rem/1 var(--font-mono);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--ink-soft);
+}
+
+.bk-day-num {
+	font: 700 1.35rem/1 var(--font-display);
+}
+
+.bk-day-meta {
+	font-size: 0.68rem;
+	color: var(--ink-soft);
+	text-align: center;
+	line-height: 1.3;
+}
+
+.bk-dates-loading {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	font-size: 0.88rem;
+	color: var(--ink-soft);
+	padding: 14px 2px;
+}
+
+/* ── Slot buttons ─────────────────────────────────────────────────────── */
+
+.bk-slots-label {
+	font: 700 0.72rem/1.4 var(--font-mono);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--ink-soft);
+	margin: 4px 0 10px;
+}
+
+.bk-slot-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+	gap: 8px;
+}
+
+.bk-slot {
+	width: 100%;
+	font: 600 0.85rem/1.2 var(--font-mono);
+}
+
+.bk-slot.is-selected {
+	background: var(--navy);
+	border-color: var(--navy);
+	color: #fff;
+}
+
+/* ── Review + confirmation ────────────────────────────────────────────── */
+
+.bk-video-note {
+	font-size: 0.88rem;
+	color: var(--teal);
+	font-weight: 600;
+	margin: 0;
+}
+
+.bk-success {
+	text-align: center;
+}
+
+.bk-success h3 {
+	font-family: var(--font-display);
+	font-size: 1.5rem;
+	margin: 10px 0 18px;
+}
+
+.bk-success .review-list {
+	text-align: left;
+	margin-bottom: 20px;
+}
+
+.bk-calendar-btn {
+	display: inline-flex;
+	gap: 10px;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.bk-cal-links {
+	display: flex;
+	gap: 8px;
+	justify-content: center;
+	align-items: center;
+	font-size: 0.88rem;
+	margin-bottom: 18px;
+}
+
+.bk-cal-links a {
+	color: var(--teal);
+	font-weight: 700;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.bk-msg-teaser {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	align-items: center;
+	margin-bottom: 18px;
+}
+
+.bk-msg-teaser .hint {
+	margin: 0;
+}
+
+/* ── Booking section trigger card (dashboard family) ──────────────────── */
+
+.booking-cta-card {
+	display: flex;
+	gap: 18px;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.booking-cta-ic {
+	flex: 0 0 auto;
+	width: 52px;
+	height: 52px;
+	border-radius: var(--r-md, 14px);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--teal-soft, #DFF3F4);
+	color: var(--teal);
+}
+
+.booking-cta-ic .icon {
+	width: 26px;
+	height: 26px;
+}
+
+.booking-cta-card > div {
+	flex: 1 1 260px;
+}
+
+.booking-cta-card p {
+	margin: 4px 0 0;
+	color: var(--ink-soft);
+}
+
+/* ── Session row helpers (sessions-widget badges, Part 10) ────────────── */
+
+.pill-muted {
+	opacity: 0.6;
+}
+
+.sess-when {
+	display: block;
+	font: 700 0.7rem/1.4 var(--font-mono);
+	letter-spacing: 0.05em;
+	color: var(--orange);
+	margin-top: 2px;
+}
+
+.sess.is-past .sess-when {
+	color: var(--ink-soft);
+}
+
+.sess-ics {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	color: var(--teal);
+	margin-left: 6px;
+}
+
+.sess-ics:hover {
+	background: var(--teal-soft, #DFF3F4);
+}
+
+.sess-ics .icon {
+	width: 15px;
+	height: 15px;
+}
+
+.d-block {
+	display: block;
+}

@@ -1,0 +1,90 @@
+/* Intake Wizard (portal) — portal-specific styles layered on the shared
+   .overlay/.wiz-* classes (components/shared/intake-wizard.css, enqueued
+   site-wide). Program checkboxes and panel plumbing live here. */
+
+.portal-intake-wizard .wiz-panel {
+	display: grid;
+	gap: 14px;
+}
+
+.portal-intake-wizard .wiz-readonly-banner {
+	display: flex;
+	gap: 10px;
+	align-items: flex-start;
+	background: var(--warn-soft);
+	border: 1px solid rgba(185, 121, 0, .25);
+	border-left: 4px solid var(--warn);
+	border-radius: var(--r-md);
+	padding: 12px 14px;
+	margin: 18px 26px 0;
+	font-size: var(--fs-small);
+	color: var(--ink);
+	line-height: 1.5;
+}
+
+.portal-intake-wizard .wiz-readonly-banner .icon {
+	width: 18px;
+	height: 18px;
+	color: var(--warn);
+	flex: none;
+	margin-top: 2px;
+}
+
+.portal-intake-wizard .wiz-panel[hidden] {
+	display: none;
+}
+
+.portal-intake-wizard .wiz-note {
+	font-size: var(--fs-small);
+	color: var(--ink-soft);
+}
+
+.portal-intake-wizard .wiz-checks {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 9px;
+}
+
+.portal-intake-wizard .wiz-check {
+	display: inline-flex;
+	gap: 8px;
+	align-items: center;
+	padding: 9px 14px;
+	border: 1px solid var(--line);
+	border-radius: var(--r-pill);
+	background: var(--surface);
+	font-size: var(--fs-small);
+	cursor: pointer;
+	user-select: none;
+	transition: all var(--t-fast);
+}
+
+.portal-intake-wizard .wiz-check:hover {
+	border-color: var(--teal);
+}
+
+.portal-intake-wizard .wiz-check input {
+	accent-color: var(--teal);
+	flex: none;
+}
+
+.portal-intake-wizard .wiz-check:has(input:checked) {
+	background: var(--teal);
+	border-color: var(--teal);
+	color: #fff;
+}
+
+.portal-intake-wizard .wiz-check:has(input:checked) input {
+	accent-color: var(--paper);
+}
+
+.portal-intake-wizard .success-panel .ref {
+	display: inline-block;
+	font: 700 var(--fs-micro)/1 var(--font-mono);
+	letter-spacing: .08em;
+	color: var(--ink-faint);
+	border: 1px solid var(--line);
+	border-radius: var(--r-pill);
+	padding: 7px 12px;
+	margin: 10px 0 14px;
+}

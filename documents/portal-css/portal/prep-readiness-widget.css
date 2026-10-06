@@ -1,0 +1,59 @@
+/* Prep Readiness Widget (portal) — component styles.
+   Scoped to .w-ring; mounts on [data-component="prep-readiness-widget"].
+   Source: prototype CSS rules [440, 457, 458, 459, 460, 461, 462, 463]. */
+
+.w-ring {
+	grid-column: span 3;
+}
+
+@media (max-width:980px) {
+	.w-ring {
+		grid-column: span 12;
+	}
+}
+
+.w-ring .ring-wrap {
+	display: grid;
+	place-items: center;
+	position: relative;
+	padding: 8px 0;
+}
+
+.w-ring .ring-wrap svg {
+	width: 130px;
+	height: 130px;
+	transform: rotate(-90deg);
+}
+
+.w-ring .ring-bg {
+	fill: none;
+	stroke: var(--surface-2);
+	stroke-width: 11;
+}
+
+.w-ring .ring-fg {
+	fill: none;
+	stroke: var(--teal);
+	stroke-width: 11;
+	stroke-linecap: round;
+	stroke-dasharray: 327;
+	stroke-dashoffset: 327;
+	transition: stroke-dashoffset 1.2s var(--ease);
+}
+
+.w-ring .ring-center {
+	position: absolute;
+	text-align: center;
+}
+
+.w-ring .ring-center b {
+	font: 700 clamp(1.5rem, 1.5vw + 1rem, 2rem)/1 var(--font-mono);
+	display: block;
+}
+
+.w-ring .ring-center span {
+	font: 700 var(--fs-micro)/1.6 var(--font-mono);
+	letter-spacing: .1em;
+	color: var(--ink-faint);
+	text-transform: uppercase;
+}
