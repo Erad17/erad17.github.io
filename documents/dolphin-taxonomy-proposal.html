@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: white;
+      /* Ensure the iframe has a white background */
+    }
+  </style>
+</head>
+
+<body>
+  <!DOCTYPE html>
+  <html lang="en" data-theme="light">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Taxonomy Proposal · Dolphin Academic Prep</title>
+    <meta name="description"
+      content="A data-model proposal to replace flat pages with a structured coverage_area taxonomy for local SEO.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet">
+    <style>
+      :root {
+        --paper: #F3F7F9;
+        --surface: #FFFFFF;
+        --surface-2: #E9F1F4;
+        --surface-3: #DCE9EE;
+        --ink: #0B2233;
+        --ink-soft: #3C566A;
+        --ink-faint: #66808F;
+        --navy: #0B2233;
+        --teal: #0E7C86;
+        --teal-2: #12A5B0;
+        --teal-soft: #DFF3F4;
+        --orange: #F4650F;
+        --orange-soft: #FFE7D6;
+        --gold: #F5B301;
+        --line: #D3E0E7;
+        --line-soft: #E4EEF2;
+        --ok: #178A5C;
+        --ok-soft: #DDF3E8;
+        --err: #D64545;
+        --err-soft: #FBE7E7;
+        --warn: #B97900;
+        --warn-soft: #FFF3D6;
+        --shadow-2: 0 2px 4px rgba(11, 34, 51, .08), 0 24px 52px -22px rgba(11, 34, 51, .25);
+        --r-sm: 6px;
+        --r-md: 12px;
+        --r-lg: 18px;
+        --r-xl: 26px;
+        --r-pill: 999px;
+        --font-display: "Fraunces", Georgia, serif;
+        --font-body: "Public Sans", system-ui, -apple-system, sans-serif;
+        --font-mono: "Space Mono", ui-monospace, "Courier New", monospace;
+        --fs-hero: 2.5rem;
+        --fs-h1: 1.8rem;
+        --fs-h2: 1.35rem;
+        --fs-h3: 1.1rem;
+        --fs-body: .95rem;
+        --fs-small: .83rem;
+        --fs-micro: .73rem;
+      }
+
+      @media print {
+        :root {
+          --paper: #fff;
+          --surface: #fff;
+          --surface-2: #f5f7f9;
+          --ink: #0B2233;
+          --fs-body: 10pt;
+          --fs-h1: 17pt;
+          --fs-h2: 13pt;
+        }
+
+        body {
+          background: #fff;
+        }
+
+        .page {
+          box-shadow: none;
+          max-width: 100%;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font: 400 var(--fs-body)/1.65 var(--font-body);
+        color: var(--ink);
+        background: var(--paper);
+        -webkit-font-smoothing: antialiased;
+        display: flex;
+        justify-content: center;
+        padding: 40px 16px;
+      }
+
+      .page {
+        max-width: 800px;
+        width: 100%;
+        background: var(--surface);
+        border-radius: var(--r-xl);
+        box-shadow: var(--shadow-2);
+        overflow: hidden;
+      }
+
+      .cover {
+        position: relative;
+        background: var(--navy);
+        color: #fff;
+        padding: 52px 44px 44px;
+        overflow: hidden;
+      }
+
+      .cover::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(420px 260px at 90% 0%, rgba(18, 165, 176, .35), transparent 70%),
+          radial-gradient(340px 240px at 0% 100%, rgba(244, 101, 15, .28), transparent 70%);
+      }
+
+      .cover>* {
+        position: relative;
+      }
+
+      .cover .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 20px;
+      }
+
+      .cover .tag::before {
+        content: "";
+        width: 28px;
+        height: 1.5px;
+        background: var(--gold);
+      }
+
+      .cover h1 {
+        font: 600 var(--fs-hero)/1.08 var(--font-display);
+        letter-spacing: -.01em;
+        margin-bottom: 12px;
+      }
+
+      .cover h1 em {
+        font-style: italic;
+        color: var(--teal-2);
+      }
+
+      .cover .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        font: 600 var(--fs-small)/1.5 var(--font-mono);
+        color: rgba(255, 255, 255, .65);
+        margin-top: 24px;
+      }
+
+      .cover .meta strong {
+        color: #fff;
+      }
+
+      .content {
+        padding: 44px;
+      }
+
+      @media (max-width: 600px) {
+        .cover {
+          padding: 36px 24px 32px;
+        }
+
+        .content {
+          padding: 28px 20px;
+        }
+
+        .cover h1 {
+          font-size: 2rem;
+        }
+      }
+
+      h2 {
+        font: 600 var(--fs-h2)/1.2 var(--font-display);
+        letter-spacing: -.01em;
+        margin: 40px 0 12px;
+        padding-top: 24px;
+        border-top: 1px solid var(--line-soft);
+        color: var(--navy);
+      }
+
+      h2:first-of-type {
+        margin-top: 0;
+        border-top: none;
+        padding-top: 0;
+      }
+
+      h3 {
+        font: 600 var(--fs-h3)/1.2 var(--font-display);
+        margin: 28px 0 8px;
+        color: var(--navy);
+      }
+
+      p {
+        color: var(--ink-soft);
+        margin-bottom: 14px;
+        max-width: 64ch;
+      }
+
+      strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      em.tilt {
+        font-style: italic;
+        color: var(--teal);
+      }
+
+      .kicker {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 8px;
+      }
+
+      .kicker::after {
+        content: "";
+        height: 1px;
+        width: 42px;
+        background: var(--teal);
+        opacity: .5;
+      }
+
+      .compare {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin: 24px 0;
+      }
+
+      @media (max-width: 600px) {
+        .compare {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .compare-box {
+        border: 1px solid var(--line);
+        border-radius: var(--r-md);
+        overflow: hidden;
+      }
+
+      .compare-box h4 {
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        padding: 12px 15px;
+        margin: 0;
+      }
+
+      .compare-box h4.bad {
+        background: var(--err-soft);
+        color: var(--err);
+      }
+
+      .compare-box h4.good {
+        background: var(--ok-soft);
+        color: var(--ok);
+      }
+
+      .compare-box .inner {
+        padding: 14px 15px;
+        font-size: var(--fs-small);
+        color: var(--ink-soft);
+      }
+
+      .tradeoff {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 16px 0;
+        font-size: var(--fs-small);
+      }
+
+      .tradeoff th {
+        text-align: left;
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--line);
+        background: var(--surface-2);
+      }
+
+      .tradeoff td {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line-soft);
+        vertical-align: top;
+        color: var(--ink-soft);
+      }
+
+      .tradeoff td:first-child {
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      .chosen {
+        color: var(--ok);
+        font-weight: 700;
+      }
+
+      .rejected {
+        color: var(--ink-faint);
+      }
+
+      .code-block {
+        background: var(--navy);
+        color: #DFF3F4;
+        border-radius: var(--r-md);
+        padding: 16px 20px;
+        margin: 16px 0;
+        font: 400 var(--fs-micro)/1.6 var(--font-mono);
+        overflow-x: auto;
+      }
+
+      .code-block .kw {
+        color: var(--gold);
+      }
+
+      .code-block .fn {
+        color: var(--teal-2);
+      }
+
+      .code-block .str {
+        color: var(--orange-soft);
+      }
+
+      .code-block .cm {
+        color: rgba(255, 255, 255, .35);
+      }
+
+      .callout {
+        background: var(--surface-2);
+        border-left: 4px solid var(--teal);
+        border-radius: 0 var(--r-md) var(--r-md) 0;
+        padding: 18px 22px;
+        margin: 24px 0;
+        font-size: var(--fs-small);
+      }
+
+      .callout strong {
+        display: block;
+        margin-bottom: 3px;
+      }
+
+      .doc-footer {
+        background: var(--navy);
+        color: rgba(255, 255, 255, .78);
+        padding: 28px 44px;
+        font: 600 var(--fs-micro)/1.6 var(--font-mono);
+        letter-spacing: .04em;
+      }
+
+      .doc-footer strong {
+        color: #fff;
+      }
+
+      .doc-footer .doc-fine {
+        color: rgba(255, 255, 255, .62);
+      }
+
+      /* back link — returns to the portfolio (closes the modal when embedded) */
+      .doc-back {
+        position: fixed;
+        top: 18px;
+        left: 18px;
+        z-index: 50;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 16px;
+        border-radius: var(--r-pill);
+        background: rgba(11, 34, 51, .92);
+        color: #fff;
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        text-decoration: none;
+        border: 1px solid rgba(255, 255, 255, .18);
+        box-shadow: 0 4px 18px rgba(11, 34, 51, .35);
+        transition: background .2s, border-color .2s, transform .2s;
+      }
+
+      .doc-back:hover {
+        background: var(--teal);
+        border-color: var(--teal);
+        transform: translateY(-1px);
+      }
+
+      @media print {
+        .doc-back {
+          display: none;
+        }
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 6px 12px;
+        border-radius: var(--r-pill);
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .06em;
+      }
+
+      .badge-draft {
+        background: var(--warn-soft);
+        color: var(--warn);
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="page">
+
+      <a href="../index.html#/work" class="doc-back" aria-label="Return to the portfolio">← Portfolio</a>
+
+      <header class="cover">
+        <p class="tag">Data Architecture Proposal</p>
+        <h1>Dolphin Academic Prep<br><em>Coverage Area Taxonomy</em></h1>
+        <p style="position:relative;color:rgba(255,255,255,.72);max-width:54ch;margin-top:8px;">
+          Replacing flat geographic content with a structured, queryable, schema.org-compatible coverage area system —
+          a single taxonomy and template that scales to as many regions as the business adds.
+        </p>
+        <div class="meta">
+          <span>Model: <strong>In-home tutoring</strong></span>
+          <span>Geography: <strong>North/Central NJ &amp; NYC</strong></span>
+          <span>Current: <strong>No structured geo-data</strong></span>
+        </div>
+      </header>
+
+      <div class="content">
+
+        <p class="kicker">1 · Current State</p>
+        <h2>The site is invisible to local search.</h2>
+
+        <p>
+          The business provides <strong>in-home tutoring</strong> across North/Central New Jersey and NYC, with a PO Box
+          address in New York, NY 10028. The contact page includes a coverage-area map image. The services page confirms
+          tutoring from Pre-K through adult across "virtually every subject." The site's Facebook presence and blog
+          content consistently reference <strong>North/Central New Jersey</strong> and <strong>NYC</strong> as the
+          service geography.
+        </p>
+
+        <p>
+          Despite serving a multi-county, two-state territory, the site has <strong>zero location-based landing
+            pages</strong> and no structured geo-data anywhere in the markup. A parent searching "tutoring in
+          Montclair NJ" or "SAT prep Westchester" has no path to this site through local SEO — the business is
+          invisible to the queries that would find it.
+        </p>
+
+        <div class="compare">
+          <div class="compare-box">
+            <h4 class="bad">Current</h4>
+            <div class="inner">
+              <p><strong>No location pages.</strong> Contact page lists address. No city-level content.</p>
+              <p><strong>No schema.org geo-data.</strong> None of the LocalBusiness / areaServed / geo-coordinate markup
+                Google reads.</p>
+              <p><strong>No URL structure for geography.</strong> No /montclair-nj/ or /westchester-ny/ paths.</p>
+            </div>
+          </div>
+          <div class="compare-box">
+            <h4 class="good">Target</h4>
+            <div class="inner">
+              <p><strong>A single taxonomy with six terms.</strong> Each coverage area is a taxonomy term with
+                structured fields.</p>
+              <p><strong>Schema.org LocalBusiness on every term page.</strong> areaServed, address, service area.</p>
+              <p><strong>Canonical URLs:</strong> /coverage/montclair-nj/, /coverage/westchester-ny/</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="kicker">2 · The Taxonomy Model</p>
+        <h2>One taxonomy, six regions, room to grow.</h2>
+
+        <p>
+          The proposal is a <code>coverage_area</code> custom taxonomy registered to the <code>service</code> custom
+          post type. Each term represents a geographic region the business serves. Each term carries structured data via
+          Carbon Fields. A single Twig template renders every term page with schema.org markup.
+        </p>
+
+        <h3>Taxonomy Terms (Planned)</h3>
+
+        <table class="tradeoff">
+          <thead>
+            <tr>
+              <th>Term Slug</th>
+              <th>Label</th>
+              <th>Counties / Boroughs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>north-jersey</td>
+              <td>North Jersey</td>
+              <td>Bergen, Passaic, Essex, Hudson, Morris, Sussex, Warren</td>
+            </tr>
+            <tr>
+              <td>central-jersey</td>
+              <td>Central Jersey</td>
+              <td>Middlesex, Monmouth, Mercer, Somerset, Hunterdon, Union</td>
+            </tr>
+            <tr>
+              <td>nyc-manhattan</td>
+              <td>NYC — Manhattan</td>
+              <td>New York County</td>
+            </tr>
+            <tr>
+              <td>nyc-outer</td>
+              <td>NYC — Brooklyn &amp; Queens</td>
+              <td>Kings, Queens</td>
+            </tr>
+            <tr>
+              <td>staten-island</td>
+              <td>Staten Island</td>
+              <td>Richmond</td>
+            </tr>
+            <tr>
+              <td>westchester-rockland</td>
+              <td>Westchester &amp; Rockland</td>
+              <td>Westchester, Rockland</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Carbon Fields on Each Term</h3>
+
+        <div class="code-block">
+          <span class="cm">// Plugin: dolphin-core/fields/coverage-area-fields.php</span>
+          Container::<span class="fn">make</span>(<span class="str">'term_meta'</span>, <span class="str">'Coverage
+            Details'</span>)
+          -><span class="fn">where</span>(<span class="str">'term_taxonomy'</span>, <span class="str">'='</span>, <span
+            class="str">'coverage_area'</span>)
+          -><span class="fn">add_fields</span>([
+          Field::<span class="fn">make</span>(<span class="str">'text'</span>, <span class="str">'region_name'</span>,
+          <span class="str">'Display Name'</span>),
+          Field::<span class="fn">make</span>(<span class="str">'textarea'</span>, <span class="str">'counties'</span>,
+          <span class="str">'Counties Served'</span>),
+          Field::<span class="fn">make</span>(<span class="str">'textarea'</span>, <span class="str">'zip_codes'</span>,
+          <span class="str">'ZIP Code Range'</span>),
+          Field::<span class="fn">make</span>(<span class="str">'rich_text'</span>, <span
+            class="str">'description'</span>, <span class="str">'Region Description'</span>),
+          Field::<span class="fn">make</span>(<span class="str">'text'</span>, <span class="str">'travel_note'</span>,
+          <span class="str">'Travel / Availability Note'</span>),
+          Field::<span class="fn">make</span>(<span class="str">'complex'</span>, <span
+            class="str">'featured_cities'</span>, <span class="str">'Featured Cities'</span>)
+          -><span class="fn">add_fields</span>([
+          Field::<span class="fn">make</span>(<span class="str">'text'</span>, <span class="str">'city'</span>, <span
+            class="str">'City Name'</span>),
+          Field::<span class="fn">make</span>(<span class="str">'text'</span>, <span
+            class="str">'school_district'</span>, <span class="str">'School District'</span>),
+          ]),
+          ]);
+        </div>
+
+        <p><strong>Rationale.</strong> The <code>featured_cities</code> repeater gives each region page a list of
+          specific cities and school districts — Montclair, Hoboken, Scarsdale, Park Slope — without creating individual
+          pages for each. These are editorial data points that add local relevance without multiplying URLs. The
+          description field allows a unique, SEO-rich paragraph per region.</p>
+
+        <p class="kicker">3 · Template &amp; Schema</p>
+        <h2>One template renders every region.</h2>
+
+        <p>
+          A single Twig template — <code>taxonomy-coverage_area.twig</code> — receives the term object and its Carbon
+          Fields data. The template renders:
+        </p>
+
+        <ul style="color:var(--ink-soft);margin-bottom:14px;padding-left:22px;">
+          <li><strong>Region name, description, counties list</strong> — from Carbon Fields</li>
+          <li><strong>Services available in this region</strong> — queried from the service CPT associated with the term
+          </li>
+          <li><strong>Featured cities with school districts</strong> — from the repeater field</li>
+          <li><strong>Consultation CTA</strong> — prominent, region-specific</li>
+          <li><strong>Schema.org LocalBusiness</strong> — generated from term data in the PHP controller</li>
+        </ul>
+
+        <div class="code-block">
+          <span class="cm">// taxonomy-coverage_area.twig — data prepared by PHP controller</span>
+          {<span class="kw">% extends </span><span class="str">"base.twig"</span> %}
+
+          {<span class="kw">% block </span>content<span class="kw"> %</span>}
+          &lt;article class=<span class="str">"coverage-region"</span>&gt;
+          &lt;h1&gt;{{ term.name }}&lt;/h1&gt;
+          &lt;p class=<span class="str">"region-desc"</span>&gt;{{ term.meta(<span class="str">'description'</span>)
+          }}&lt;/p&gt;
+
+          &lt;div class=<span class="str">"region-meta"</span>&gt;
+          &lt;span&gt;&#x1f4cd; {{ term.meta(<span class="str">'counties'</span>) }}&lt;/span&gt;
+          &lt;span&gt;&#x1f4e6; {{ term.meta(<span class="str">'zip_codes'</span>) }}&lt;/span&gt;
+          &lt;span&gt;&#x1f698; {{ term.meta(<span class="str">'travel_note'</span>) }}&lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;section class=<span class="str">"region-services"</span>&gt;
+          &lt;h2&gt;Services in {{ term.name }}&lt;/h2&gt;
+          {<span class="kw">% for </span>service <span class="kw">in </span>region_services<span class="kw"> %</span>}
+          {<span class="kw">% include </span><span class="str">"partials/service-card.twig"</span> <span class="kw">with
+          </span>{ service: service }<span class="kw"> %</span>}
+          {<span class="kw">% endfor %</span>}
+          &lt;/section&gt;
+
+          {<span class="kw">% if </span>term.meta(<span class="str">'featured_cities'</span>)<span class="kw"> %</span>}
+          &lt;section class=<span class="str">"featured-cities"</span>&gt;
+          &lt;h2&gt;Serving {{ term.name }} families in:&lt;/h2&gt;
+          &lt;ul&gt;
+          {<span class="kw">% for </span>city <span class="kw">in </span>term.meta(<span
+            class="str">'featured_cities'</span>)<span class="kw"> %</span>}
+          &lt;li&gt;{{ city.city }} &mdash; {{ city.school_district }}&lt;/li&gt;
+          {<span class="kw">% endfor %</span>}
+          &lt;/ul&gt;
+          &lt;/section&gt;
+          {<span class="kw">% endif %</span>}
+
+          &lt;div class=<span class="str">"cta-band"</span>&gt;
+          &lt;a href=<span class="str">"/contact"</span>&gt;Request a tutor in {{ term.name }} &rarr;&lt;/a&gt;
+          &lt;/div&gt;
+          &lt;/article&gt;
+          {<span class="kw">% endblock %</span>}
+        </div>
+
+        <p class="kicker">4 · Schema.org Integration</p>
+        <h2>Search engines get structured data, not just text.</h2>
+
+        <p>
+          The PHP controller attached to the taxonomy template generates schema.org markup from the same Carbon Fields
+          data. Each term page carries <code>LocalBusiness</code> markup with <code>areaServed</code> populated from the
+          counties field and <code>address</code> from the business PO Box.
+        </p>
+
+        <div class="code-block">
+          <span class="cm">// Generated on /coverage/north-jersey/</span>
+          {
+          <span class="str">"@context"</span>: <span class="str">"https://schema.org"</span>,
+          <span class="str">"@type"</span>: <span class="str">"LocalBusiness"</span>,
+          <span class="str">"name"</span>: <span class="str">"Dolphin Academic Prep"</span>,
+          <span class="str">"description"</span>: <span class="str">"In-home tutoring in North Jersey"</span>,
+          <span class="str">"url"</span>: <span
+            class="str">"https://www.dolphinacademicprep.com/coverage/north-jersey/"</span>,
+          <span class="str">"telephone"</span>: <span class="str">"+1-646-490-5075"</span>,
+          <span class="str">"address"</span>: {
+          <span class="str">"@type"</span>: <span class="str">"PostalAddress"</span>,
+          <span class="str">"postOfficeBoxNumber"</span>: <span class="str">"P.O. Box 1233"</span>,
+          <span class="str">"addressLocality"</span>: <span class="str">"New York"</span>,
+          <span class="str">"addressRegion"</span>: <span class="str">"NY"</span>,
+          <span class="str">"postalCode"</span>: <span class="str">"10028"</span>
+          },
+          <span class="str">"areaServed"</span>: [
+          { <span class="str">"@type"</span>: <span class="str">"State"</span>, <span class="str">"name"</span>: <span
+            class="str">"New Jersey"</span> },
+          { <span class="str">"@type"</span>: <span class="str">"City"</span>, <span class="str">"name"</span>: <span
+            class="str">"Montclair"</span> },
+          { <span class="str">"@type"</span>: <span class="str">"City"</span>, <span class="str">"name"</span>: <span
+            class="str">"Hoboken"</span> }
+          ]
+          }
+        </div>
+
+        <p>
+          Google gets exactly the signal it reads for "tutoring in Montclair NJ" — and today the site sends none of it.
+          The proposed architecture sends it on every coverage area page, generated automatically from structured
+          fields, so there is no duplicate content, no manual markup, and nothing to drift out of sync.
+        </p>
+
+        <p class="kicker">5 · SEO Impact</p>
+        <h2>Six canonical URLs where zero exist today.</h2>
+
+        <table class="tradeoff">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Current</th>
+              <th>Proposed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Canonical geo-URLs</td>
+              <td class="rejected">0</td>
+              <td class="chosen">6 (one per coverage area)</td>
+            </tr>
+            <tr>
+              <td>Schema.org LocalBusiness</td>
+              <td class="rejected">None</td>
+              <td class="chosen">Generated per term from Carbon Fields</td>
+            </tr>
+            <tr>
+              <td>areaServed structured data</td>
+              <td class="rejected">None</td>
+              <td class="chosen">Counties + cities per region</td>
+            </tr>
+            <tr>
+              <td>Local landing page content</td>
+              <td class="rejected">0 words</td>
+              <td class="chosen">Unique description + city list per region</td>
+            </tr>
+            <tr>
+              <td>Service-to-geography association</td>
+              <td class="rejected">Not queryable</td>
+              <td class="chosen">Taxonomy query: "show services in North Jersey"</td>
+            </tr>
+            <tr>
+              <td>Maintenance burden (new city)</td>
+              <td class="rejected">New page, new content, new URL</td>
+              <td class="chosen">Add city to repeater field. No new URL.</td>
+            </tr>
+            <tr>
+              <td>XML Sitemap entries</td>
+              <td class="rejected">0 geo URLs</td>
+              <td class="chosen">6 term archive URLs, auto-generated</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="kicker">6 · Why a Taxonomy, Not Pages</p>
+        <h2>The data structure matches the business model.</h2>
+
+        <p>
+          A coverage area is not a page — it is a classification. "Does Dolphin serve Montclair?" is answered by
+          "Montclair is in the North Jersey coverage area," which is a taxonomy lookup rather than a page lookup. That
+          distinction matters:
+        </p>
+
+        <table class="tradeoff">
+          <thead>
+            <tr>
+              <th>Approach</th>
+              <th>Assessment</th>
+              <th>Verdict</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Individual pages per city</td>
+              <td>Every new city needs a new page, with content duplication and no canonical URL model. 50+ cities =
+                50+ pages to maintain.</td>
+              <td class="rejected">Rejected</td>
+            </tr>
+            <tr>
+              <td>WordPress multisite per region</td>
+              <td>Massive overhead for an in-home tutoring business. Six WordPress installs, six admin panels, six
+                update cycles.</td>
+              <td class="rejected">Rejected</td>
+            </tr>
+            <tr>
+              <td><strong>coverage_area taxonomy</strong></td>
+              <td>A single taxonomy and template. Add a region = add a term. Add a city = add to the repeater.
+                Schema.org generated from field data. Services queryable by region. Zero duplicate content.</td>
+              <td class="chosen">Chosen</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>
+          The taxonomy model also solves the editorial workflow. A staff member opens the Vue admin panel, selects a
+          coverage area, and edits the counties, featured cities, and description — there is no new page to create, no
+          URL to manage, and no SEO plugin to configure. The template handles everything automatically.
+        </p>
+
+        <div class="callout">
+          <strong>SEO Benefit Summary</strong>
+          Each coverage area term page becomes a local landing page with unique content, schema.org markup, a canonical
+          URL, and an XML sitemap entry — all generated from six taxonomy terms where today there is no structured
+          geo-data at all. A parent searching "tutoring in [city]" now has a path to this site through local SEO
+          signals that do not exist today.
+        </div>
+
+      </div>
+
+      <footer class="doc-footer">
+        <p><strong>Dolphin Academic Prep</strong> · Coverage Area Taxonomy Proposal</p>
+        <p style="margin-top:4px;">Portfolio documentation · October 2026 · <span class="badge badge-draft">DRAFT</span>
+        </p>
+        <p class="doc-fine" style="margin-top:12px;font-size:.7rem;">All findings based on review of the live site at
+          dolphinacademicprep.com and the project brief. Prepared as a portfolio artifact demonstrating structured data
+          architecture for the Senior WordPress Backend Developer role at Teal Media.</p>
+      </footer>
+
+    </div>
+
+    <script>
+      /* When embedded in the portfolio document viewer, the back link closes the modal
+         instead of navigating the iframe; internal document links paginate the doc set. */
+      document.addEventListener("click", e => {
+        const link = e.target.closest("a");
+        if (!link) return;
+        if (window.self !== window.top) {
+          if (link.classList.contains("doc-back")) {
+            e.preventDefault();
+            window.parent.postMessage({ type: "close-viewer" }, "*");
+            return;
+          }
+          const href = link.getAttribute("href");
+          if (href && !href.startsWith("#") && !href.startsWith("http") && link.target !== "_blank") {
+            e.preventDefault();
+            window.parent.postMessage({ type: "doc-nav", href: href }, "*");
+          }
+        }
+      });
+    </script>
+  </body>
+
+  </html>
+
+  <script>
+
+  </script>
+</body>
+
+</html>

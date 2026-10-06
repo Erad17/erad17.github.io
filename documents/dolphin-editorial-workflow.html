@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: white;
+      /* Ensure the iframe has a white background */
+    }
+  </style>
+</head>
+
+<body>
+  <!DOCTYPE html>
+  <html lang="en" data-theme="light">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editorial Workflow Guide · Dolphin Academic Prep</title>
+    <meta name="description"
+      content="How staff manage content day to day — services, coverage areas, FAQs, blog, portal submissions, and holiday capsules.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet">
+    <style>
+      :root {
+        --paper: #F3F7F9;
+        --surface: #FFFFFF;
+        --surface-2: #E9F1F4;
+        --surface-3: #DCE9EE;
+        --ink: #0B2233;
+        --ink-soft: #3C566A;
+        --ink-faint: #66808F;
+        --navy: #0B2233;
+        --teal: #0E7C86;
+        --teal-2: #12A5B0;
+        --teal-soft: #DFF3F4;
+        --orange: #F4650F;
+        --gold: #F5B301;
+        --line: #D3E0E7;
+        --line-soft: #E4EEF2;
+        --ok: #178A5C;
+        --ok-soft: #DDF3E8;
+        --err: #D64545;
+        --err-soft: #FBE7E7;
+        --warn: #B97900;
+        --warn-soft: #FFF3D6;
+        --shadow-2: 0 2px 4px rgba(11, 34, 51, .08), 0 24px 52px -22px rgba(11, 34, 51, .25);
+        --r-sm: 6px;
+        --r-md: 12px;
+        --r-lg: 18px;
+        --r-xl: 26px;
+        --r-pill: 999px;
+        --font-display: "Fraunces", Georgia, serif;
+        --font-body: "Public Sans", system-ui, -apple-system, sans-serif;
+        --font-mono: "Space Mono", ui-monospace, "Courier New", monospace;
+        --fs-hero: 2.5rem;
+        --fs-h1: 1.8rem;
+        --fs-h2: 1.35rem;
+        --fs-h3: 1.1rem;
+        --fs-body: .95rem;
+        --fs-small: .83rem;
+        --fs-micro: .73rem;
+      }
+
+      @media print {
+        :root {
+          --paper: #fff;
+          --surface: #fff;
+          --surface-2: #f5f7f9;
+          --ink: #0B2233;
+          --fs-body: 10pt;
+          --fs-h1: 17pt;
+          --fs-h2: 13pt;
+        }
+
+        body {
+          background: #fff;
+        }
+
+        .page {
+          box-shadow: none;
+          max-width: 100%;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font: 400 var(--fs-body)/1.65 var(--font-body);
+        color: var(--ink);
+        background: var(--paper);
+        -webkit-font-smoothing: antialiased;
+        display: flex;
+        justify-content: center;
+        padding: 40px 16px;
+      }
+
+      .page {
+        max-width: 800px;
+        width: 100%;
+        background: var(--surface);
+        border-radius: var(--r-xl);
+        box-shadow: var(--shadow-2);
+        overflow: hidden;
+      }
+
+      .cover {
+        position: relative;
+        background: var(--navy);
+        color: #fff;
+        padding: 52px 44px 44px;
+        overflow: hidden;
+      }
+
+      .cover::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(420px 260px at 90% 0%, rgba(18, 165, 176, .35), transparent 70%),
+          radial-gradient(340px 240px at 0% 100%, rgba(244, 101, 15, .28), transparent 70%);
+      }
+
+      .cover>* {
+        position: relative;
+      }
+
+      .cover .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 20px;
+      }
+
+      .cover .tag::before {
+        content: "";
+        width: 28px;
+        height: 1.5px;
+        background: var(--gold);
+      }
+
+      .cover h1 {
+        font: 600 var(--fs-hero)/1.08 var(--font-display);
+        letter-spacing: -.01em;
+        margin-bottom: 12px;
+      }
+
+      .cover h1 em {
+        font-style: italic;
+        color: var(--teal-2);
+      }
+
+      .cover .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        font: 600 var(--fs-small)/1.5 var(--font-mono);
+        color: rgba(255, 255, 255, .65);
+        margin-top: 24px;
+      }
+
+      .cover .meta strong {
+        color: #fff;
+      }
+
+      .content {
+        padding: 44px;
+      }
+
+      @media (max-width: 600px) {
+        .cover {
+          padding: 36px 24px 32px;
+        }
+
+        .content {
+          padding: 28px 20px;
+        }
+
+        .cover h1 {
+          font-size: 2rem;
+        }
+      }
+
+      h2 {
+        font: 600 var(--fs-h2)/1.2 var(--font-display);
+        letter-spacing: -.01em;
+        margin: 40px 0 12px;
+        padding-top: 24px;
+        border-top: 1px solid var(--line-soft);
+        color: var(--navy);
+      }
+
+      h2:first-of-type {
+        margin-top: 0;
+        border-top: none;
+        padding-top: 0;
+      }
+
+      h3 {
+        font: 600 var(--fs-h3)/1.2 var(--font-display);
+        margin: 28px 0 8px;
+        color: var(--navy);
+      }
+
+      p {
+        color: var(--ink-soft);
+        margin-bottom: 14px;
+        max-width: 64ch;
+      }
+
+      strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      em.tilt {
+        font-style: italic;
+        color: var(--teal);
+      }
+
+      .kicker {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 8px;
+      }
+
+      .kicker::after {
+        content: "";
+        height: 1px;
+        width: 42px;
+        background: var(--teal);
+        opacity: .5;
+      }
+
+      .content ul,
+      .content ol {
+        color: var(--ink-soft);
+        margin-bottom: 14px;
+        padding-left: 22px;
+      }
+
+      .content li {
+        margin-bottom: 6px;
+      }
+
+      .workflow-card {
+        border: 1px solid var(--line);
+        border-radius: var(--r-lg);
+        margin: 24px 0;
+        overflow: hidden;
+      }
+
+      .workflow-card-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 20px;
+        background: var(--surface-2);
+        border-bottom: 1px solid var(--line-soft);
+      }
+
+      .workflow-card-header .w-num {
+        width: 36px;
+        height: 36px;
+        border-radius: 9px;
+        background: var(--navy);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font: 700 var(--fs-small)/1 var(--font-mono);
+        flex: none;
+      }
+
+      .workflow-card-header h3 {
+        margin: 0;
+        font-size: var(--fs-body);
+        font-weight: 700;
+      }
+
+      .workflow-card-header .who {
+        margin-left: auto;
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .06em;
+        color: var(--teal);
+        padding: 4px 10px;
+        border-radius: var(--r-pill);
+        background: var(--teal-soft);
+      }
+
+      .workflow-card-body {
+        padding: 18px 20px 20px;
+      }
+
+      .step-row {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px dashed var(--line-soft);
+        align-items: start;
+      }
+
+      .step-row:last-child {
+        border-bottom: none;
+      }
+
+      .step-num {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--surface-3);
+        color: var(--ink-soft);
+        display: grid;
+        place-items: center;
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+      }
+
+      .step-row strong {
+        display: block;
+        margin-bottom: 1px;
+        font-size: var(--fs-small);
+      }
+
+      .step-row p {
+        font-size: var(--fs-small);
+        margin: 0;
+      }
+
+      .callout {
+        background: var(--surface-2);
+        border-left: 4px solid var(--teal);
+        border-radius: 0 var(--r-md) var(--r-md) 0;
+        padding: 18px 22px;
+        margin: 24px 0;
+        font-size: var(--fs-small);
+      }
+
+      .callout strong {
+        display: block;
+        margin-bottom: 3px;
+      }
+
+      .tradeoff {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 16px 0;
+        font-size: var(--fs-small);
+      }
+
+      .tradeoff th {
+        text-align: left;
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--line);
+        background: var(--surface-2);
+      }
+
+      .tradeoff td {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line-soft);
+        vertical-align: top;
+        color: var(--ink-soft);
+      }
+
+      .tradeoff td:first-child {
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      .chosen {
+        color: var(--ok);
+        font-weight: 700;
+      }
+
+      .doc-footer {
+        background: var(--navy);
+        color: rgba(255, 255, 255, .78);
+        padding: 28px 44px;
+        font: 600 var(--fs-micro)/1.6 var(--font-mono);
+        letter-spacing: .04em;
+      }
+
+      .doc-footer strong {
+        color: #fff;
+      }
+
+      .doc-footer .doc-fine {
+        color: rgba(255, 255, 255, .62);
+      }
+
+      /* back link — returns to the portfolio (closes the modal when embedded) */
+      .doc-back {
+        position: fixed;
+        top: 18px;
+        left: 18px;
+        z-index: 50;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 16px;
+        border-radius: var(--r-pill);
+        background: rgba(11, 34, 51, .92);
+        color: #fff;
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        text-decoration: none;
+        border: 1px solid rgba(255, 255, 255, .18);
+        box-shadow: 0 4px 18px rgba(11, 34, 51, .35);
+        transition: background .2s, border-color .2s, transform .2s;
+      }
+
+      .doc-back:hover {
+        background: var(--teal);
+        border-color: var(--teal);
+        transform: translateY(-1px);
+      }
+
+      @media print {
+        .doc-back {
+          display: none;
+        }
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 6px 12px;
+        border-radius: var(--r-pill);
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .06em;
+      }
+
+      .badge-draft {
+        background: var(--warn-soft);
+        color: var(--warn);
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="page">
+
+      <a href="../index.html#/work" class="doc-back" aria-label="Return to the portfolio">← Portfolio</a>
+
+      <header class="cover">
+        <p class="tag">Operations Guide</p>
+        <h1>Dolphin Academic Prep<br><em>Editorial Workflow Guide</em></h1>
+        <p style="position:relative;color:rgba(255,255,255,.72);max-width:54ch;margin-top:8px;">
+          How staff manage content day to day — from updating a service description to reviewing a signed intake form —
+          without needing a developer.
+        </p>
+        <div class="meta">
+          <span>Interface: <strong>Vue 3 admin panel</strong></span>
+          <span>Fallback: <strong>Carbon Fields metaboxes</strong></span>
+          <span>Audience: <strong>Non-technical staff</strong></span>
+        </div>
+      </header>
+
+      <div class="content">
+
+        <p class="kicker">Principle</p>
+        <h2>Match the interface to the person managing the content.</h2>
+
+        <p>
+          The current site's editorial workflow is straightforward: log into WordPress, find the right page in the admin
+          menu, edit a WYSIWYG paragraph, and hope the formatting survives. The "Want more info? Call today:
+          646-490-5075" sidebar widget — the most consistent call-to-action on the site — appears on nearly every page
+          via a Black Studio TinyMCE widget, requiring staff to navigate to Appearance → Widgets to modify it. The FAQ
+          content lives in the Ultimate FAQ plugin, siloed from the rest of the site. Contact form submissions arrive
+          via VFB Pro with no structured review workflow and no encryption.
+        </p>
+
+        <p>
+          The rebuild replaces this with <em class="tilt">purpose-built editorial surfaces</em>. Each content type gets
+          an interface designed for the person who will use it, rather than the generic WordPress admin that treats
+          every use case the same and serves none of them particularly well. The Vue admin panel is the primary
+          interface, while the Carbon Fields metaboxes are the fallback — staff can choose either.
+        </p>
+
+        <div class="callout">
+          <strong>The shortest version of the difference:</strong>
+          A staff member updating a service description goes from "Pages → All Pages → find the right page → edit a
+          WYSIWYG block → hope the phone number widget still looks right" to "Practice Manager → Services → click the
+          service → edit the description field → Save."
+        </div>
+
+        <p class="kicker">The Admin Panel</p>
+        <h2>One dashboard for every content type.</h2>
+
+        <p>
+          The Vue admin panel is a single-page application loaded inside the WordPress admin. A staff member logs into
+          WordPress, clicks "Practice Manager" in the sidebar, and sees a dashboard with four cards: Services, Coverage
+          Areas, Form Submissions, and Analytics. Each card shows a count and a link. Clicking a card opens the relevant
+          management view — a PrimeVue DataTable with inline editing via a Dialog component. Everything happens in one
+          interface, with no navigation to "Custom Post Types → Services → Edit," no metabox scrolling, and no separate
+          plugin dashboards for forms and analytics.
+        </p>
+
+        <table class="tradeoff">
+          <thead>
+            <tr>
+              <th>Dashboard Card</th>
+              <th>What It Shows</th>
+              <th>What Staff Can Do</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Services</strong></td>
+              <td>Count of active services, organized by category (Subject Tutoring, Test Prep, College Admissions,
+                Learning Disabilities, Study Skills)</td>
+              <td>Add, edit, or archive services. Each service has structured fields: name, category, grade range,
+                description, pricing tier. Changes appear on the public site immediately.</td>
+            </tr>
+            <tr>
+              <td><strong>Coverage Areas</strong></td>
+              <td>Six coverage regions with county lists and featured cities</td>
+              <td>Edit region descriptions, update county lists, add or remove featured cities from the repeater.
+                Changes appear on /coverage/north-jersey/ and all related pages.</td>
+            </tr>
+            <tr>
+              <td><strong>Form Submissions</strong></td>
+              <td>Recent intake forms, enrollment agreements, accommodation requests — decrypted for authorized viewing
+              </td>
+              <td>Review submissions, countersign forms, mark as processed, export to PDF. Each submission shows the
+                form type, family name, date, and status.</td>
+            </tr>
+            <tr>
+              <td><strong>Analytics</strong></td>
+              <td>Visitors, pageviews, top pages (30-day window, cached daily via GA4 Data API)</td>
+              <td>View metrics with no configuration required — the measurement ID is set once during build.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="kicker">Workflow 1</p>
+        <h2>Updating a Service</h2>
+
+        <div class="workflow-card">
+          <div class="workflow-card-header">
+            <span class="w-num">01</span>
+            <h3>Edit a service description</h3>
+            <span class="who">Staff</span>
+          </div>
+          <div class="workflow-card-body">
+
+            <div class="step-row">
+              <span class="step-num">1</span>
+              <div><strong>Open the admin panel.</strong>
+                <p>Log into WordPress and click "Practice Manager" in the sidebar. The dashboard loads.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">2</span>
+              <div><strong>Click "Services."</strong>
+                <p>The service catalog opens as a sortable, searchable table. Columns: Service Name, Category, Grade
+                  Range, Last Updated.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">3</span>
+              <div><strong>Click the row or the edit icon.</strong>
+                <p>A dialog opens with the service's structured fields: name, category dropdown, grade range, rich-text
+                  description, pricing tier. The Content Quality panel on the right shows readability scores and SEO
+                  heuristics in real time.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">4</span>
+              <div><strong>Edit and save.</strong>
+                <p>Make your changes and click Save. The dialog closes, the table updates, and the public site reflects
+                  the change immediately — no cache flush required (WP Fastest Cache handles this server-side).</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="workflow-card">
+          <div class="workflow-card-header">
+            <span class="w-num">01b</span>
+            <h3>Add a new service</h3>
+            <span class="who">Staff</span>
+          </div>
+          <div class="workflow-card-body">
+
+            <div class="step-row">
+              <span class="step-num">1</span>
+              <div><strong>Click "+ Add Service" in the Services table header.</strong>
+                <p>A blank dialog opens with the same structured fields.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">2</span>
+              <div><strong>Fill in the fields and save.</strong>
+                <p>The new service appears in the table immediately. It also appears on the public Programs page and any
+                  associated Coverage Area pages automatically, with no manual page creation or URL configuration.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <p class="kicker">Workflow 2</p>
+        <h2>Managing Coverage Areas</h2>
+
+        <div class="workflow-card">
+          <div class="workflow-card-header">
+            <span class="w-num">02</span>
+            <h3>Update a coverage region</h3>
+            <span class="who">Staff / Owner</span>
+          </div>
+          <div class="workflow-card-body">
+
+            <div class="step-row">
+              <span class="step-num">1</span>
+              <div><strong>Click "Coverage Areas" on the dashboard.</strong>
+                <p>A table shows six regions: North Jersey, Central Jersey, NYC — Manhattan, NYC — Brooklyn & Queens,
+                  Staten Island, Westchester & Rockland.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">2</span>
+              <div><strong>Click a region to edit.</strong>
+                <p>The dialog shows: region name, counties served (textarea), ZIP code range (textarea), region
+                  description (rich text), travel/availability note, and the featured cities repeater.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">3</span>
+              <div><strong>Add a featured city.</strong>
+                <p>Click "+ Add City" in the repeater and type the city name and school district. The city appears in
+                  the list on the public region page automatically — there is no new URL or page to manage, because the
+                  city is just data now.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">4</span>
+              <div><strong>Save.</strong>
+                <p>The public region page at /coverage/north-jersey/ updates with the new city, refreshed county list,
+                  and any description changes. Schema.org LocalBusiness markup regenerates from the updated field data.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <p class="kicker">Workflow 3</p>
+        <h2>Reviewing Portal Form Submissions</h2>
+
+        <div class="workflow-card">
+          <div class="workflow-card-header">
+            <span class="w-num">03</span>
+            <h3>Review and countersign an intake form</h3>
+            <span class="who">Admin / Owner</span>
+          </div>
+          <div class="workflow-card-body">
+
+            <div class="step-row">
+              <span class="step-num">1</span>
+              <div><strong>Click "Form Submissions" on the dashboard.</strong>
+                <p>A table shows recent submissions: reference number, form type, family name, date submitted, status
+                  (submitted / awaiting signature / signed). An unread badge highlights new submissions.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">2</span>
+              <div><strong>Click a submission to open it.</strong>
+                <p>The encrypted data is decrypted server-side and rendered in a read-only review view. All form fields
+                  are displayed: student name, grade, subjects requested, goals, parent signature. The signature PNG
+                  renders inline.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">3</span>
+              <div><strong>Countersign if needed.</strong>
+                <p>For enrollment agreements or accommodation addenda: click "Countersign" to open a signature pad, and
+                  sign with mouse, touch, or stylus. When you click "Submit," the form status changes to "Signed," and
+                  both the family and the admin receive email confirmation with a PDF attachment. The audit log records
+                  the countersignature with timestamp, IP, and user ID.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">4</span>
+              <div><strong>Mark as processed.</strong>
+                <p>If no countersignature is needed, click "Mark Processed" and the submission moves to the processed
+                  queue, where it remains accessible and searchable.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <p class="kicker">Workflow 4</p>
+        <h2>Writing a Blog Post</h2>
+
+        <div class="workflow-card">
+          <div class="workflow-card-header">
+            <span class="w-num">04</span>
+            <h3>Publish a new article</h3>
+            <span class="who">Staff</span>
+          </div>
+          <div class="workflow-card-body">
+
+            <div class="step-row">
+              <span class="step-num">1</span>
+              <div><strong>Use the standard WordPress post editor.</strong>
+                <p>Blog posts use the native WordPress block editor — the one content type where freeform layout is
+                  appropriate. The Custom SEO module (replacing Yoast) adds inline guidance: meta title length, meta
+                  description preview, readability score from open-source libraries, and keyword usage suggestions — all
+                  rendered in a sidebar panel that matches the Vue admin's design language.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">2</span>
+              <div><strong>Set the category and publish.</strong>
+                <p>Categories match the current site's structure: ARTICLE, HELPFUL HINTS, ANNOUNCEMENTS, BLOG — plus new
+                  categories for SAT/ACT Prep, College Admissions, and Learning Resources. The post appears on the
+                  public blog, in the XML sitemap, and in any category archive.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">3</span>
+              <div><strong>Schema.org Article markup is automatic.</strong>
+                <p>Title, author, publish date, and featured image are rendered as JSON-LD from post data. No additional
+                  plugin configuration required. This is handled by the custom SEO module — the same code that generates
+                  LocalBusiness markup for coverage areas and FAQ markup for the FAQ CPT.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <p class="kicker">Workflow 5</p>
+        <h2>Managing FAQs</h2>
+
+        <div class="workflow-card">
+          <div class="workflow-card-header">
+            <span class="w-num">05</span>
+            <h3>Add or update a frequently asked question</h3>
+            <span class="who">Staff</span>
+          </div>
+          <div class="workflow-card-body">
+
+            <div class="step-row">
+              <span class="step-num">1</span>
+              <div><strong>Click "FAQs" in the admin panel.</strong>
+                <p>A table shows all FAQs organized by category. The current site's FAQ content — including the detailed
+                  response about tutoring subjects from Pre-K to Adult — has been migrated into structured fields during
+                  the rebuild.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">2</span>
+              <div><strong>Click to edit, or click "+ Add FAQ."</strong>
+                <p>Each FAQ has three fields: question, answer (rich text), and category. The public FAQ page renders
+                  them as an accordion with schema.org FAQ markup generated automatically.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">3</span>
+              <div><strong>Save.</strong>
+                <p>The FAQ appears on the public page immediately. Search engines receive structured FAQ data — the same
+                  schema.org type the current site generates via Ultimate FAQ, but now generated from our own CPT
+                  without a plugin dependency.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <p class="kicker">Workflow 6</p>
+        <h2>Holiday Capsule Interaction</h2>
+
+        <div class="workflow-card">
+          <div class="workflow-card-header">
+            <span class="w-num">06</span>
+            <h3>Preview and verify holiday theming</h3>
+            <span class="who">Owner / Marketing</span>
+          </div>
+          <div class="workflow-card-body">
+
+            <div class="step-row">
+              <span class="step-num">1</span>
+              <div><strong>Browse the public site.</strong>
+                <p>The capsule system runs automatically — no login required to see it working. A staff member opens the
+                  homepage and sees whatever holiday capsule is currently active based on the calendar.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">2</span>
+              <div><strong>Preview an upcoming capsule.</strong>
+                <p>Scroll down to the "Holiday Capsule System" gallery strip on the homepage and click any capsule card
+                  (Diwali, Thanksgiving, Winter Break, etc.) to preview it live. Colors, greeting text, and motifs
+                  change immediately. The preview is session-only — refreshing the page returns to the calendar's
+                  automatic selection.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">3</span>
+              <div><strong>Override if needed.</strong>
+                <p>The dropdown in the header ribbon lets staff manually select a capsule to extend a holiday theme or
+                  test a new one. Selecting "Auto" returns to calendar-driven behavior.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <p>
+          These interactions happen on the front end — no wp-admin login required. The people who care about holiday
+          theming (business owner, marketing person) are not necessarily the people comfortable navigating the WordPress
+          admin, so the capsule controls live where those people already are: the public site.
+        </p>
+
+        <p class="kicker">Fallback</p>
+        <h2>What happens if the Vue admin panel is deactivated.</h2>
+
+        <p>
+          Every content type is backed by Carbon Fields, which provides native WordPress metaboxes. If the
+          <code>dolphin-admin</code> plugin is deactivated — intentionally, accidentally, or during troubleshooting —
+          all content remains editable through the standard WordPress admin. The structured fields appear as metaboxes
+          on the post edit screen. The data is identical, the URLs are unchanged, and the public site is unaffected.
+        </p>
+
+        <p>
+          That is not just a nice guarantee on paper. It reflects a design principle: the admin panel is a convenience
+          layer over the data model, not the data model itself. The same principle applies to every custom plugin in the
+          rebuild — portal, SEO, analytics, forms. Each can be deactivated independently without losing data, so the
+          client is never locked in.
+        </p>
+
+        <p class="kicker">The Current Site Contrast</p>
+        <h2>What the rebuild changes about daily operations.</h2>
+
+        <table class="tradeoff">
+          <thead>
+            <tr>
+              <th>Task</th>
+              <th>Current Site</th>
+              <th>Rebuild</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Update a service description</td>
+              <td>Find the right page in Pages → All Pages, edit WYSIWYG, hope formatting holds</td>
+              <td class="chosen">Click Services → click the service → edit structured fields → Save</td>
+            </tr>
+            <tr>
+              <td>Change the phone number in the sidebar</td>
+              <td>Appearance → Widgets → Black Studio TinyMCE → edit widget</td>
+              <td class="chosen">Settings → Business Info → update phone number → Save. The change applies everywhere.
+            </tr>
+            <tr>
+              <td>Add a coverage city</td>
+              <td>No mechanism exists</td>
+              <td class="chosen">Coverage Areas → click region → + Add City in the repeater → Save</td>
+            </tr>
+            <tr>
+              <td>Review a submitted intake form</td>
+              <td>Check email for VFB Pro notification → no structured review</td>
+              <td class="chosen">Form Submissions → click submission → review, countersign, or mark processed</td>
+            </tr>
+            <tr>
+              <td>Publish a blog post</td>
+              <td>Posts → Add New → write → publish. No SEO guidance.</td>
+              <td class="chosen">Same flow, plus inline SEO and readability guidance from the custom module</td>
+            </tr>
+            <tr>
+              <td>Verify holiday theming</td>
+              <td>No system exists — the homepage is updated manually before each holiday.</td>
+              <td class="chosen">Visit the public site. Preview any capsule from the gallery strip. Calendar handles the
+                rest.</td>
+            </tr>
+            <tr>
+              <td>Check site analytics</td>
+              <td>Log into Google Analytics separately, or view MonsterInsights widget in wp-admin</td>
+              <td class="chosen">Dashboard card shows top metrics from GA4 Data API. Link to full GA4 for deep dives.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <footer class="doc-footer">
+        <p><strong>Dolphin Academic Prep</strong> · Editorial Workflow Guide</p>
+        <p style="margin-top:4px;">Portfolio documentation · October 2026 · <span class="badge badge-draft">DRAFT</span>
+        </p>
+        <p class="doc-fine" style="margin-top:12px;font-size:.7rem;">Prepared as a portfolio artifact demonstrating
+          content
+          and editorial workflow design for the Senior WordPress Backend Developer role at Teal Media.</p>
+      </footer>
+
+    </div>
+
+    <script>
+      /* When embedded in the portfolio document viewer, the back link closes the modal
+         instead of navigating the iframe; internal document links paginate the doc set. */
+      document.addEventListener("click", e => {
+        const link = e.target.closest("a");
+        if (!link) return;
+        if (window.self !== window.top) {
+          if (link.classList.contains("doc-back")) {
+            e.preventDefault();
+            window.parent.postMessage({ type: "close-viewer" }, "*");
+            return;
+          }
+          const href = link.getAttribute("href");
+          if (href && !href.startsWith("#") && !href.startsWith("http") && link.target !== "_blank") {
+            e.preventDefault();
+            window.parent.postMessage({ type: "doc-nav", href: href }, "*");
+          }
+        }
+      });
+    </script>
+  </body>
+
+  </html>
+
+  <script>
+
+  </script>
+</body>
+
+</html>

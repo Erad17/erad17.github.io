@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: white;
+      /* Ensure the iframe has a white background */
+    }
+  </style>
+</head>
+
+<body>
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Console · Dolphin Academic Prep</title>
+    <meta name="description"
+      content="Analytics Console appendix for Dolphin Academic Prep — GA4 Data API v1 integration, six reporting blocks, mock/live dual-mode architecture, quota governance, and design doctrine.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet">
+    <style>
+      /* ============================================================
+     DOLPHIN ACADEMIC PREP — Analytics Console Appendix
+     Design tokens from dolphinv2: paper/teal/navy palette,
+     Fraunces + Public Sans + Space Mono.
+     ============================================================ */
+      :root {
+        --paper: #F3F7F9;
+        --surface: #FFFFFF;
+        --surface-2: #E9F1F4;
+        --surface-3: #DCE9EE;
+        --ink: #0B2233;
+        --ink-soft: #3C566A;
+        --ink-faint: #66808F;
+        --navy: #0B2233;
+        --navy-2: #123A56;
+        --teal: #0E7C86;
+        --teal-2: #12A5B0;
+        --teal-soft: #DFF3F4;
+        --orange: #F4650F;
+        --orange-2: #D9560A;
+        --orange-soft: #FFE7D6;
+        --gold: #F5B301;
+        --line: #D3E0E7;
+        --line-soft: #E4EEF2;
+        --ok: #178A5C;
+        --ok-soft: #DDF3E8;
+        --err: #D64545;
+        --err-soft: #FBE7E7;
+        --warn: #B97900;
+        --warn-soft: #FFF3D6;
+        --shadow-1: 0 1px 2px rgba(11, 34, 51, .06), 0 10px 26px -14px rgba(11, 34, 51, .14);
+        --shadow-2: 0 2px 4px rgba(11, 34, 51, .08), 0 24px 52px -22px rgba(11, 34, 51, .25);
+        --r-sm: 6px;
+        --r-md: 12px;
+        --r-lg: 18px;
+        --r-xl: 26px;
+        --r-pill: 999px;
+        --font-display: "Fraunces", Georgia, serif;
+        --font-body: "Public Sans", system-ui, -apple-system, sans-serif;
+        --font-mono: "Space Mono", ui-monospace, "Courier New", monospace;
+        --fs-hero: clamp(2.2rem, 3.5vw + .8rem, 3.6rem);
+        --fs-h1: clamp(1.7rem, 2vw + .7rem, 2.5rem);
+        --fs-h2: clamp(1.3rem, 1.5vw + .5rem, 1.8rem);
+        --fs-h3: clamp(1.1rem, .8vw + .7rem, 1.35rem);
+        --fs-body: clamp(.92rem, .3vw + .85rem, 1.02rem);
+        --fs-small: clamp(.82rem, .2vw + .78rem, .9rem);
+        --fs-micro: clamp(.7rem, .15vw + .68rem, .78rem);
+        --sp-1: clamp(.25rem, .2rem + .2vw, .35rem);
+        --sp-2: clamp(.5rem, .4rem + .3vw, .7rem);
+        --sp-3: clamp(.75rem, .6rem + .5vw, 1.1rem);
+        --sp-4: clamp(1rem, .8rem + .7vw, 1.5rem);
+        --sp-5: clamp(1.5rem, 1.2rem + 1vw, 2.2rem);
+        --sp-6: clamp(2rem, 1.6rem + 1.5vw, 3rem);
+        --sp-7: clamp(2.5rem, 2rem + 2vw, 4rem);
+        --sp-8: clamp(3.5rem, 2.8rem + 2.5vw, 5.5rem);
+        --container: 760px;
+      }
+
+      @media print {
+        :root {
+          --paper: #fff;
+          --surface: #fff;
+          --surface-2: #f7f9fa;
+          --fs-body: 9pt;
+          --fs-h2: 11pt;
+          --fs-h3: 9.5pt;
+        }
+
+        body {
+          background: #fff;
+          padding: 0;
+          margin: 0;
+        }
+
+        .page {
+          box-shadow: none;
+          max-width: 210mm;
+        }
+
+        @page {
+          size: A4;
+          margin: 16mm 14mm;
+        }
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font: 400 var(--fs-body)/1.65 var(--font-body);
+        color: var(--ink);
+        background: var(--paper);
+        -webkit-font-smoothing: antialiased;
+        display: flex;
+        justify-content: center;
+        padding: var(--sp-5) var(--sp-3);
+      }
+
+      .page {
+        width: 100%;
+        max-width: var(--container);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--r-lg);
+        box-shadow: var(--shadow-1);
+        padding: var(--sp-6) var(--sp-5);
+        display: grid;
+        gap: var(--sp-6);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: var(--font-display);
+        font-weight: 600;
+        line-height: 1.15;
+        letter-spacing: -.01em;
+        color: var(--ink);
+      }
+
+      h1 {
+        font-size: var(--fs-h1);
+      }
+
+      h2 {
+        font-size: var(--fs-h2);
+        margin-bottom: var(--sp-2);
+      }
+
+      h3 {
+        font-size: var(--fs-h3);
+        margin-bottom: var(--sp-1);
+      }
+
+      p {
+        color: var(--ink-soft);
+        margin-bottom: var(--sp-3);
+        max-width: 62ch;
+      }
+
+      p strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      a {
+        color: var(--teal);
+        text-underline-offset: 3px;
+      }
+
+      a:hover {
+        color: var(--orange);
+      }
+
+      code,
+      .mono {
+        font-family: var(--font-mono);
+        font-size: .9em;
+        background: var(--surface-2);
+        padding: .15em .4em;
+        border-radius: 3px;
+        color: var(--ink-soft);
+      }
+
+      ul,
+      ol {
+        color: var(--ink-soft);
+        margin-bottom: var(--sp-4);
+        padding-left: 1.4em;
+        display: grid;
+        gap: var(--sp-1);
+      }
+
+      li {
+        line-height: 1.6;
+      }
+
+      li strong {
+        color: var(--ink);
+      }
+
+      ::selection {
+        background: var(--gold);
+        color: var(--navy);
+      }
+
+      /* Cover header */
+      .cover {
+        background: var(--navy);
+        color: #fff;
+        margin: calc(var(--sp-6) * -1) calc(var(--sp-5) * -1) 0;
+        padding: var(--sp-6) var(--sp-5) var(--sp-5);
+        border-radius: var(--r-lg) var(--r-lg) 0 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cover::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--teal), var(--orange), var(--gold));
+      }
+
+      .cover h1 {
+        color: #fff;
+        font-size: var(--fs-hero);
+        margin-bottom: var(--sp-2);
+      }
+
+      .cover p {
+        color: rgba(255, 255, 255, .72);
+        max-width: 54ch;
+      }
+
+      .cover .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--sp-3);
+        margin-top: var(--sp-4);
+        font: 600 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .06em;
+        color: rgba(255, 255, 255, .55);
+      }
+
+      .cover .meta span {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-2);
+      }
+
+      .cover .meta strong {
+        color: rgba(255, 255, 255, .9);
+        font-weight: 700;
+      }
+
+      /* Kicker */
+      .kicker {
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: var(--sp-1);
+      }
+
+      /* Decision block */
+      .decision {
+        border: 1px solid var(--line);
+        border-radius: var(--r-md);
+        background: var(--surface-2);
+        padding: var(--sp-4);
+        margin-bottom: var(--sp-5);
+      }
+
+      .decision-header {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-3);
+        margin-bottom: var(--sp-3);
+        padding-bottom: var(--sp-3);
+        border-bottom: 1px solid var(--line-soft);
+      }
+
+      .d-num {
+        font: 700 var(--fs-body)/1 var(--font-mono);
+        color: var(--teal);
+        min-width: 2em;
+      }
+
+      .decision h3 {
+        margin: 0;
+      }
+
+      /* Tradeoff table */
+      .tradeoff {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: var(--fs-small);
+        margin: var(--sp-4) 0;
+      }
+
+      .tradeoff th {
+        text-align: left;
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        padding: var(--sp-2) var(--sp-3);
+        border-bottom: 1px solid var(--line);
+        background: var(--surface-2);
+      }
+
+      .tradeoff td {
+        padding: var(--sp-2) var(--sp-3);
+        border-bottom: 1px solid var(--line-soft);
+        vertical-align: top;
+        line-height: 1.55;
+      }
+
+      .tradeoff .chosen {
+        color: var(--ok);
+        font-weight: 600;
+      }
+
+      .tradeoff .rejected {
+        color: var(--err);
+      }
+
+      /* Code block */
+      .code-block {
+        background: var(--navy);
+        color: #e9f2fa;
+        border-radius: var(--r-sm);
+        padding: var(--sp-4);
+        margin: var(--sp-4) 0;
+        overflow-x: auto;
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        line-height: 1.7;
+        white-space: pre;
+      }
+
+      .code-block .cm {
+        color: #7fb4e8;
+      }
+
+      .code-block .k {
+        color: #f5b301;
+      }
+
+      .code-block .s {
+        color: var(--ok);
+      }
+
+      .code-block .fn {
+        color: var(--teal-2);
+      }
+
+      /* Callout */
+      .callout {
+        border-left: 3px solid var(--teal);
+        background: var(--teal-soft);
+        border-radius: 0 var(--r-sm) var(--r-sm) 0;
+        padding: var(--sp-3) var(--sp-4);
+        margin: var(--sp-4) 0;
+        font-size: var(--fs-small);
+      }
+
+      .callout strong {
+        display: block;
+        margin-bottom: var(--sp-1);
+        color: var(--navy);
+      }
+
+      /* Block card */
+      .block-card {
+        border: 1px solid var(--line);
+        border-radius: var(--r-md);
+        background: var(--surface-2);
+        padding: var(--sp-4);
+        margin-bottom: var(--sp-4);
+      }
+
+      .block-card-header {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-3);
+        margin-bottom: var(--sp-3);
+      }
+
+      .block-card-header .bc-num {
+        font: 700 var(--fs-h2)/1 var(--font-mono);
+        color: var(--teal);
+      }
+
+      .block-card-header h4 {
+        margin: 0;
+      }
+
+      /* Flow diagram */
+      .flow-diagram {
+        border: 1px solid var(--line);
+        border-radius: var(--r-sm);
+        background: var(--surface-2);
+        padding: var(--sp-4);
+        margin: var(--sp-4) 0;
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        line-height: 1.8;
+        color: var(--ink-faint);
+        white-space: pre;
+      }
+
+      /* Footer */
+      .doc-footer {
+        margin-top: var(--sp-6);
+        padding-top: var(--sp-4);
+        border-top: 1px solid var(--line);
+        font: 500 var(--fs-micro)/1.5 var(--font-mono);
+        color: var(--ink-soft);
+        letter-spacing: .06em;
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--sp-3);
+        justify-content: space-between;
+      }
+
+      .doc-footer strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* back link — returns to the portfolio (closes the modal when embedded) */
+      .doc-back {
+        position: fixed;
+        top: 18px;
+        left: 18px;
+        z-index: 50;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 16px;
+        border-radius: var(--r-pill);
+        background: rgba(11, 34, 51, .92);
+        color: #fff;
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        text-decoration: none;
+        border: 1px solid rgba(255, 255, 255, .18);
+        box-shadow: 0 4px 18px rgba(11, 34, 51, .35);
+        transition: background .2s, border-color .2s, transform .2s;
+      }
+
+      .doc-back:hover {
+        background: var(--teal);
+        border-color: var(--teal);
+        transform: translateY(-1px);
+      }
+
+      @media print {
+        .doc-back {
+          display: none;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          padding: var(--sp-4) var(--sp-3);
+        }
+
+        .cover {
+          margin: calc(var(--sp-4) * -1) calc(var(--sp-3) * -1) 0;
+          padding: var(--sp-4) var(--sp-3);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="page">
+
+      <a href="../index.html#/work" class="doc-back" aria-label="Return to the portfolio">← Portfolio</a>
+
+      <!-- ═══════════════ COVER ═══════════════ -->
+      <header class="cover">
+        <p class="kicker" style="color:var(--gold)">Supporting Document 05</p>
+        <h1>GA4 Analytics Console</h1>
+        <p style="position:relative;color:rgba(255,255,255,.72);max-width:54ch;margin-top:8px;">
+          A standalone WordPress plugin — six reporting blocks with KPI scorecards, traffic acquisition engine, content
+          engagement tracker, geographic demographics, conversion funnel, and quota governance. Mock/live dual-mode
+          architecture. Every number traceable to its runReport payload.
+        </p>
+        <div class="meta">
+          <span>Plugin: <strong>dolphin-analytics</strong></span>
+          <span>API: <strong>GA4 Data API v1</strong></span>
+          <span>Mode: <strong>Mock/Live Dual-Mode</strong></span>
+        </div>
+      </header>
+
+      <!-- ═══════════════ §1 · WHY A STANDALONE PLUGIN ═══════════════ -->
+      <div class="decision">
+        <div class="decision-header">
+          <span class="d-num">01</span>
+          <h3>Six reporting blocks, one window, every number traceable.</h3>
+        </div>
+        <div class="decision-body">
+          <p>
+            The analytics console is a standalone WordPress plugin rather than a dashboard widget, SaaS embed, or
+            Looker Studio iframe. It connects directly to the GA4 Data API v1, caches responses in WordPress transients,
+            and renders six reporting blocks server-side through Timber. The design philosophy: every number carries a
+            freshness label, every visualization links to the runReport payload that produced it, and color is reserved
+            strictly for state (up, down, stale, throttled) rather than decoration.
+          </p>
+
+          <table class="tradeoff">
+            <thead>
+              <tr>
+                <th>Approach</th>
+                <th>Assessment</th>
+                <th>Verdict</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Custom WordPress plugin (chosen)</strong></td>
+                <td>Full architectural control. GA4 Data API v1 integration in PHP using the
+                  <code>google/analytics-data</code> Composer package. Responses cached in WordPress transients keyed by
+                  request fingerprint. Quota tracking per hour. Mock data engine — a deterministic PRNG mirroring the
+                  prototype — serves as fallback when no credentials are configured or the API is unavailable. No
+                  third-party analytics dashboard dependency. No recurring SaaS fees. The plugin is a single PHP file +
+                  Twig template + CSS + JS. Deactivatable without data loss.
+                </td>
+                <td class="chosen">Chosen</td>
+              </tr>
+              <tr>
+                <td>Looker Studio embed</td>
+                <td>Looker Studio provides rich GA4 connectors but requires a separate Google account, embed
+                  authentication, and an iframe boundary that prevents the Delta Scrubber interaction, the Command
+                  Palette integration, and the payload inspector. The data freshness model is opaque — users can't tell
+                  whether they're looking at cached or live data.</td>
+                <td class="rejected">Rejected</td>
+              </tr>
+              <tr>
+                <td>MonsterInsights dashboard</td>
+                <td>MonsterInsights wraps Google's gtag snippet. Its dashboard widget shows summary metrics inside
+                  WordPress admin. It does not provide period-over-period analysis, a delta scrubber for date-range
+                  manipulation, quota governance, or payload provenance. It cannot be customized
+                  beyond its settings panel.</td>
+                <td class="rejected">Rejected — replaced entirely</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══════════════ §2 · MOCK/LIVE DUAL-MODE ═══════════════ -->
+      <p class="kicker">2 · Architecture</p>
+      <h2>Mock/live dual-mode with one JSON shape.</h2>
+
+      <p>
+        The console operates in two modes depending on whether GA4 credentials are configured. The critical
+        architectural decision: the REST endpoint returns the identical JSON shape in both modes, so the JavaScript
+        client has no reason to care whether the numbers came from Google or from a deterministic random number
+        generator.
+      </p>
+
+      <p>
+        <strong>Live mode:</strong> The service account JSON and property ID are stored as WordPress options. The PHP
+        layer instantiates <code>BetaAnalyticsDataClient</code>, builds a <code>RunReportRequest</code> with the
+        requested metrics, dimensions, and date ranges, executes the request, caches the response, and returns
+        <code>source: "live"</code> with a freshness timestamp and token consumption data.
+      </p>
+
+      <p>
+        <strong>Mock mode:</strong> When no credentials are configured — or the API call fails with a 429, 400, or
+        network error — the PHP layer falls back to a deterministic mock engine. This engine mirrors the prototype's
+        JavaScript PRNG (mulberry32, same seed logic), the same static data arrays (KPI_DEFS, CHANNELS, PAGE_PATHS,
+        COUNTRIES, FUNNEL_STEPS), and the same seasonal factor model. The mock engine is bit-exact with the JavaScript
+        version — verified cross-language. The response returns <code>source: "mock"</code> with
+        <code>status: "demo"</code>.
+      </p>
+
+      <div class="flow-diagram">
+        ╔══════════════════════════════════════════════════════════════╗
+        ║ ANALYTICS CONSOLE — DATA FLOW ║
+        ╠══════════════════════════════════════════════════════════════╣
+        ║ ║
+        ║ Browser ──fetch──▶ /dolphin/v1/analytics/report ║
+        ║ │ ║
+        ║ ┌───────┴───────┐ ║
+        ║ │ Credentials? │ ║
+        ║ └───────┬───────┘ ║
+        ║ Yes │ │ No (or API error) ║
+        ║ │ │ ║
+        ║ BetaAnalyticsDataClient Mock Engine ║
+        ║ (google/analytics-data) (mulberry32 PRNG) ║
+        ║ │ │ ║
+        ║ Cache in transient Returns source: "mock" ║
+        ║ Returns source: "live" status: "demo" ║
+        ║ │ │ ║
+        ║ └───────┬───────┘ ║
+        ║ │ ║
+        ║ Same JSON shape ║
+        ║ Client renders identically ║
+        ║ ║
+        ╚══════════════════════════════════════════════════════════════╝
+      </div>
+
+      <div class="callout">
+        <strong>Which mode is active is invisible to the client.</strong>
+        The REST response shape is identical in both modes. The JS client checks <code>json.source</code> — if it's
+        <code>"live"</code> or <code>"cache"</code>, it renders the REST data directly. If it's <code>"mock"</code> or
+        <code>"error_fallback"</code>, it falls back to the client-side mock engine (the original prototype's
+        computeKPIs/computeChannels/etc. functions). The Delta Scrubber, Command Palette, and all
+        interactions work identically in both modes, which means the dashboard is always functional — demo-ready
+        without credentials, production-ready with them.
+      </div>
+
+      <!-- ═══════════════ §3 · THE SIX REPORTING BLOCKS ═══════════════ -->
+      <p class="kicker">3 · Reporting Blocks</p>
+      <h2>Six reporting blocks, one committed window.</h2>
+
+      <div class="block-card">
+        <div class="block-card-header">
+          <span class="bc-num">01</span>
+          <h4>Executive KPI Scorecards</h4>
+        </div>
+        <p>
+          Six headline metrics — activeUsers, sessions, screenPageViews, averageSessionDuration, conversions,
+          totalRevenue — rendered as delta cards with period-over-period comparison. Both windows (current 30 days and
+          previous 30 days) live in a single <code>dateRanges</code> array, so the comparison pair is returned by GA4
+          rather than reconstructed client-side from two separate calls. Each KPI card carries a sparkline (live data in
+          the current range, ghost line for the comparison period), a delta with redundant encoding (triangle shape +
+          plus/minus sign + color — deuteranopia-safe by design), and a source chip showing freshness and provenance.
+        </p>
+      </div>
+
+      <div class="block-card">
+        <div class="block-card-header">
+          <span class="bc-num">02</span>
+          <h4>Traffic Acquisition Engine</h4>
+        </div>
+        <p>
+          <code>sessionDefaultChannelGroup</code> broken out against sessions, engagementRate, and conversions. A
+          volume/quality toggle re-ranks channels without a second API call — channels that are big-but-shallow (Paid
+          Social: 4th on volume, 7th on quality) are exposed by the toggle. Each channel row shows a dual bar: session
+          volume (upper) and quality composite (lower). The filter chain is visible in the block header: "Ranked by
+          sessions — re-ranked from the same response, no second API call." The point is to make the API's cost visible
+          instead of hiding it — the dashboard is upfront about what it asked for.
+        </p>
+      </div>
+
+      <div class="block-card">
+        <div class="block-card-header">
+          <span class="bc-num">03</span>
+          <h4>Content Engagement Tracker</h4>
+        </div>
+        <p>
+          Top 25 landing pages by <code>landingPagePlusQueryString</code> with screenPageViews, engagementRate,
+          averageSessionDuration, and conversions. Hard limit of 25 with explicit offset-based pagination — "Load next
+          25" issues a new request rather than letting an infinite scroll fire unbounded queries, so the table can
+          never spike quota by being scrolled. Each row links to its runReport payload so the number is traceable.
+          Client-side search filters the loaded rows without a request, and columns are sortable with aria-sort
+          indicators. The empty state reads: "GA4 returned zero rows for this filter — that is a real answer, not an
+          error."
+        </p>
+      </div>
+
+      <div class="block-card">
+        <div class="block-card-header">
+          <span class="bc-num">04</span>
+          <h4>Geographic Demographics</h4>
+        </div>
+        <p>
+          Country-level user distribution with drill-through to city. Rendered as a schematic bin map — not a geographic
+          projection — chosen deliberately so a 13-inch laptop reads density without the small-state invisibility
+          problem of a true choropleth. The ranked sidecar list carries the exact figures. Clicking a row drills to city
+          level; the parent row is pinned and the map animates. A "Schematic bin map, not a geographic projection"
+          disclaimer is displayed prominently, because being upfront about how data is represented is part of the
+          design.
+        </p>
+      </div>
+
+      <div class="block-card">
+        <div class="block-card-header">
+          <span class="bc-num">05</span>
+          <h4>Filtered Conversion Funnel</h4>
+        </div>
+        <p>
+          Dolphin-specific events — program_viewed, consultation_requested, intake_submitted, session_booked — rendered
+          as a filtered funnel with strict <code>dimensionFilters</code>. The active <code>notExpression</code> filter
+          chain is visible in the block header ("session_start · first_visit · user_engagement · page_view · scroll ·
+          session_end — excluded from the count") so nobody mistakes a filtered number for a total. Each step shows the
+          absolute count, the percentage-of-sessions drop, and the step conversion rate. The funnel bar shows the drop
+          marker from the prior step. This is the reconciliation point — it's the number most likely to be argued about
+          in a meeting, and the payload recorder makes it traceable.
+        </p>
+        <p style="font-size:var(--fs-small);color:var(--ink-faint);margin-top:var(--sp-2)">
+          Mock ratios: ~600K sessions → ~180K program views → ~24K consultations → ~8K intakes → ~3K booked sessions.
+          These mock ratios mirror realistic tutoring business conversion rates — not ecommerce events.
+        </p>
+      </div>
+
+      <div class="block-card">
+        <div class="block-card-header">
+          <span class="bc-num">06</span>
+          <h4>Quota &amp; Cache Governance</h4>
+        </div>
+        <p>
+          The only block leadership can't turn off. Tracks hourly token consumption against the GA4 quota cap, cache hit
+          ratio, stale-while-revalidate age, per-block freshness, source, and token cost. A per-block freshness ledger
+          shows six blocks with their source (live:BetaAnalyticsDataClient / cache:redis / cache:redis (swr) / live:429
+          → retry), age in seconds, rows returned, and state chip. The quota gauge in the header bar is a first-class
+          instrument — a circle gauge showing percentage consumed with remaining tokens — and it is reporting, not ops
+          trivia. Stale numbers are labeled stale and throttled numbers are labeled throttled, without exception. The
+          design principle: "We would rather show a real number with a freshness label than a polished number nobody can
+          trace."
+        </p>
+      </div>
+
+      <!-- ═══════════════ §4 · DELTA SCRUBBER ═══════════════ -->
+      <p class="kicker">4 · Signature Interaction</p>
+      <h2>The Delta Scrubber teaches period-over-period analysis through direct manipulation.</h2>
+
+      <p>
+        A date-range band rendered on a 365-day sparkline track. The band has two grip handles for resizing and is
+        draggable for repositioning. A comparison band (dashed) follows the current window at a fixed offset. A chain
+        line connects the two windows. A cache coverage strip under the band shows how much of the selected window is
+        served from cache vs. requiring a live API call — the user learns that sub-threshold moves cost nothing because
+        they resolve against Redis.
+      </p>
+
+      <p>
+        <strong>Keyboard accessibility:</strong> Arrow keys shift the window one day. Shift+Arrow resizes by one day.
+        Home/End snap to the full range. Presets (Last 30 vs prev 30, QTD vs prior QTD, BFCM vs same LY, YoY window)
+        provide common comparison windows. Every interaction updates the header window readout and the scrubber foot —
+        showing the current state chip (live/cached/stale/throttled), the preset name, and the cost hint.
+      </p>
+
+      <p>
+        <strong>The interaction teaches cost.</strong> While dragging, the cache coverage updates live. The scrubber
+        foot updates: "cache:redis · age 412s" on a cached window, "committing batchRunReports…" on a live request. The
+        projected token cost for the selected window is shown in the scrubber foot. The cost model becomes something
+        you feel while dragging rather than something you read about — small moves are free and large moves cost
+        tokens, and the scrubber shows you which is which without a trip to the documentation.
+      </p>
+
+      <!-- ═══════════════ §5 · COMMAND PALETTE ═══════════════ -->
+      <p class="kicker">5 · Command Palette</p>
+      <h2>⌘K indexes every metric, dimension, property, and action.</h2>
+
+      <p>
+        The Command Palette (⌘K) indexes every metric (activeUsers, sessions, screenPageViews, averageSessionDuration,
+        conversions, totalRevenue), every dimension (sessionDefaultChannelGroup, landingPagePlusQueryString, eventName,
+        country, city), every property, every payload recording, every preset, and every action (force revalidate,
+        toggle theme, copy deep link). Results are grouped by category (Views, Metrics, Dimensions, Properties,
+        Payloads, Actions) with icons and subtitles. Arrow keys navigate, Enter selects, and Escape dismisses. The
+        palette is the fastest way to jump from any metric to its block.
+      </p>
+
+      <!-- ═══════════════ §6 · DESIGN DOCTRINE ═══════════════ -->
+      <p class="kicker">6 · Design Doctrine</p>
+      <h2>Color is reserved for state.</h2>
+
+      <p>
+        The console's design philosophy is documented in its own "Design Doctrine" page. The key principles:
+      </p>
+
+      <ul>
+        <li><strong>Color reserved strictly for state.</strong> Up (green), down (red), stale (amber), throttled
+          (orange). When everything is highlighted, nothing is — so the paper/teal/navy palette does the everyday work
+          and color carries the signal.</li>
+        <li><strong>Tabular numerals on every figure.</strong> Columns that don't align are columns that get misread.
+          Every KPI value, every table cell, every delta uses <code>font-variant-numeric: tabular-nums</code>.</li>
+        <li><strong>Delta encoding that survives deuteranopia.</strong> Roughly one in twelve men has a red-green color
+          vision deficiency. Every delta carries three redundant channels: shape (triangle up, triangle down, bar for
+          flat), sign (explicit + or −), and color — plus a text alternative announced to screen readers.</li>
+        <li><strong>Hairline rules instead of card shadows.</strong> Shadows imply hierarchy the data doesn't have.
+          Hairline borders group without ranking. The data is dense but legible.</li>
+        <li><strong>Honesty about data quality.</strong> Every block displays its source and last-refreshed timestamp.
+          Partial states are surfaced as partial: if three blocks are live and two are degraded, the header says so
+          rather than showing a uniformly confident page.</li>
+        <li><strong>Deep-linkability.</strong> Any window and property scope serializes to a URL:
+          <code>?from=&to=&cmp=&prop=</code>. An executive can paste the exact view they're arguing about into Slack and
+          the recipient lands on the same numbers.
+        </li>
+      </ul>
+
+      <!-- ═══════════════ §7 · PAYLOAD RECORDER ═══════════════ -->
+      <p class="kicker">7 · Payload Flight Recorder</p>
+      <h2>Every visualization carries a payload button wired to the recorder.</h2>
+
+      <p>
+        The payload inspector drawer records every GA4 API request: the full request body, the full response, a diff
+        against the last successful request for the same block, and flight metadata (HTTP status, latency, source,
+        tokens consumed, attempt count, cache status, window, property). The drawer has four tabs: Request
+        (syntax-highlighted JSON), Response (same), Diff vs last (added/removed/changed lines), and Flight Log (metadata
+        grid).
+      </p>
+
+      <p>
+        The payload recorder exists because "trust in a number is a function of seeing where it came from," so it ships
+        as a first-class feature rather than a debug tool tucked behind a flag. The recorder view on the dedicated
+        Payloads page lists all four recorded requests as cards with thumbnails, titles, paths, and metadata. Selecting
+        a card loads the full recording in the payload viewer, which can copy the request JSON to clipboard or download
+        it as a .json file.
+      </p>
+
+      <!-- ═══════════════ §8 · REST API DESIGN ═══════════════ -->
+      <p class="kicker">8 · REST API Design</p>
+      <h2>The PHP layer handles GA4 auth, caching, and quota. The JS never talks to Google directly.</h2>
+
+      <div class="code-block"><span class="cm">// Plugin: dolphin-analytics — REST endpoint handler</span>
+
+        <span class="k">public function</span> <span class="fn">handle_report</span>(<span class="n">$request</span>) {
+        <span class="n">$metrics</span> = <span class="n">explode</span>(<span class="s">','</span>, <span
+          class="n">$request</span>->get_param(<span class="s">'metrics'</span>));
+        <span class="n">$dimensions</span> = <span class="n">$request</span>->get_param(<span
+          class="s">'dimensions'</span>)
+        ? <span class="n">explode</span>(<span class="s">','</span>, <span class="n">$request</span>->get_param(<span
+          class="s">'dimensions'</span>))
+        : [];
+        <span class="n">$startDate</span> = <span class="n">$request</span>->get_param(<span
+          class="s">'startDate'</span>);
+        <span class="n">$endDate</span> = <span class="n">$request</span>->get_param(<span class="s">'endDate'</span>);
+
+        <span class="cm">// Build request fingerprint for caching</span>
+        <span class="n">$fingerprint</span> = <span class="n">md5</span>(<span class="n">json_encode</span>([<span
+          class="n">$metrics</span>, <span class="n">$dimensions</span>, <span class="n">$startDate</span>, <span
+          class="n">$endDate</span>]));
+
+        <span class="cm">// Try cache first</span>
+        <span class="n">$cached</span> = <span class="n">get_transient</span>(<span class="s">'dolphin_ga4_'</span> .
+        <span class="n">$fingerprint</span>);
+        <span class="k">if</span> (<span class="n">$cached</span> !== <span class="k">false</span>) {
+        <span class="n">$cached</span>[<span class="s">'source'</span>] = <span class="s">'cache'</span>;
+        <span class="k">return</span> <span class="n">rest_ensure_response</span>(<span class="n">$cached</span>);
+        }
+
+        <span class="cm">// Attempt live GA4 call</span>
+        <span class="k">try</span> {
+        <span class="n">$client</span> = <span class="n">$this</span>-><span class="fn">get_client</span>(); <span
+          class="cm">// BetaAnalyticsDataClient</span>
+        <span class="n">$response</span> = <span class="n">$client</span>-><span class="fn">runReport</span>([...]);
+        <span class="n">$data</span> = <span class="n">$this</span>-><span class="fn">transform_response</span>(<span
+          class="n">$response</span>);
+        <span class="n">$data</span>[<span class="s">'source'</span>] = <span class="s">'live'</span>;
+        <span class="n">$data</span>[<span class="s">'lastRefreshed'</span>] = <span class="n">time</span>();
+
+        <span class="cm">// Cache for configured TTL</span>
+        <span class="n">$ttl</span> = <span class="n">get_option</span>(<span class="s">'dolphin_ga4_cache_ttl'</span>,
+        <span class="n">900</span>);
+        <span class="n">set_transient</span>(<span class="s">'dolphin_ga4_'</span> . <span
+          class="n">$fingerprint</span>, <span class="n">$data</span>, <span class="n">$ttl</span>);
+
+        <span class="cm">// Track quota consumption</span>
+        <span class="n">$this</span>-><span class="fn">track_quota</span>(<span class="n">$response</span>);
+
+        <span class="k">return</span> <span class="n">rest_ensure_response</span>(<span class="n">$data</span>);
+        } <span class="k">catch</span> (<span class="n">Exception</span> <span class="n">$e</span>) {
+        <span class="cm">// Fallback to mock data</span>
+        <span class="k">return</span> <span class="n">rest_ensure_response</span>(<span class="n">$this</span>-><span
+          class="fn">mock_report</span>(<span class="n">$metrics</span>, <span class="n">$dimensions</span>, <span
+          class="n">$startDate</span>, <span class="n">$endDate</span>));
+        }
+        }
+      </div>
+
+      <!-- ═══════════════ §9 · KEY METRICS ═══════════════ -->
+      <p class="kicker">9 · Key Metrics</p>
+      <h2>Replaced MonsterInsights. Integrated with the GA4 Data API v1. No third-party analytics dependency.</h2>
+
+      <table class="tradeoff">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>MonsterInsights</th>
+            <th>Custom Console</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>GA4 script injection</td>
+            <td>Plugin wraps gtag snippet with account setup wizard</td>
+            <td>Single <code>wp_head</code> action callback. No wizard.</td>
+          </tr>
+          <tr>
+            <td>Dashboard reporting</td>
+            <td>Widget inside WordPress admin</td>
+            <td>Standalone full-page console with six reporting blocks</td>
+          </tr>
+          <tr>
+            <td>Period-over-period analysis</td>
+            <td>Not available</td>
+            <td>Dual dateRanges in a single runReport. Delta Scrubber with direct manipulation</td>
+          </tr>
+          <tr>
+            <td>Quota governance</td>
+            <td>Not available</td>
+            <td>Hourly token tracking, cache hit ratio, per-block freshness ledger</td>
+          </tr>
+          <tr>
+            <td>Payload provenance</td>
+            <td>Not available</td>
+            <td>Every visualization links to its runReport payload. Recorder stores request/response/diff</td>
+          </tr>
+          <tr>
+            <td>Mock mode</td>
+            <td>Not available</td>
+            <td>Deterministic mock engine. Works without credentials. Verified bit-exact with JS PRNG</td>
+          </tr>
+          <tr>
+            <td>Design system</td>
+            <td>Plugin UI</td>
+            <td>Dolphin design tokens. Deuteranopia-safe delta encoding. Reduced-motion support</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <strong>Replaces MonsterInsights entirely.</strong>
+        The GA4 measurement script is a single <code>wp_head</code> callback — a plugin is not required for this. The
+        dashboard metrics, period-over-period analysis, quota governance, and payload provenance are all built into the
+        custom console. The client owns their analytics infrastructure, with no plugin licenses, vendor lock-in, or
+        upgrade prompts to worry about.
+      </div>
+
+      <!-- ═══════════════ FOOTER ═══════════════ -->
+      <footer class="doc-footer">
+        <span><strong>Dolphin Academic Prep</strong> · Analytics Console Appendix</span>
+        <span>Supporting Document 05 · October 2026</span>
+      </footer>
+
+    </div>
+
+    <script>
+      /* When embedded in the portfolio document viewer, the back link closes the modal
+         instead of navigating the iframe; internal document links paginate the doc set. */
+      document.addEventListener("click", e => {
+        const link = e.target.closest("a");
+        if (!link) return;
+        if (window.self !== window.top) {
+          if (link.classList.contains("doc-back")) {
+            e.preventDefault();
+            window.parent.postMessage({ type: "close-viewer" }, "*");
+            return;
+          }
+          const href = link.getAttribute("href");
+          if (href && !href.startsWith("#") && !href.startsWith("http") && link.target !== "_blank") {
+            e.preventDefault();
+            window.parent.postMessage({ type: "doc-nav", href: href }, "*");
+          }
+        }
+      });
+    </script>
+
+  </body>
+
+  </html>
+
+  <script>
+
+  </script>
+</body>
+
+</html>

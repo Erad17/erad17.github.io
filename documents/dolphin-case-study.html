@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Study · Dolphin Academic Prep</title>
+  <meta name="description"
+    content="Full case study for the Dolphin Academic Prep WordPress rebuild — the audit, the architecture, the portal system, the analytics console, the page editor, the SEO architecture, and the holiday capsule system.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ============================================================
+     DOLPHIN ACADEMIC PREP — Full Case Study
+     Same design language as the appendix documents: paper/teal/navy
+     palette, Fraunces + Public Sans + Space Mono, A4 print layout.
+     ============================================================ */
+    :root {
+      --paper: #F3F7F9;
+      --surface: #FFFFFF;
+      --surface-2: #E9F1F4;
+      --surface-3: #DCE9EE;
+      --ink: #0B2233;
+      --ink-soft: #3C566A;
+      --ink-faint: #66808F;
+      --navy: #0B2233;
+      --navy-2: #123A56;
+      --teal: #0E7C86;
+      --teal-2: #12A5B0;
+      --teal-soft: #DFF3F4;
+      --orange: #F4650F;
+      --orange-2: #D9560A;
+      --orange-soft: #FFE7D6;
+      --gold: #F5B301;
+      --line: #D3E0E7;
+      --line-soft: #E4EEF2;
+      --ok: #178A5C;
+      --ok-soft: #DDF3E8;
+      --err: #D64545;
+      --err-soft: #FBE7E7;
+      --warn: #B97900;
+      --warn-soft: #FFF3D6;
+      --shadow-1: 0 1px 2px rgba(11, 34, 51, .06), 0 10px 26px -14px rgba(11, 34, 51, .14);
+      --shadow-2: 0 2px 4px rgba(11, 34, 51, .08), 0 24px 52px -22px rgba(11, 34, 51, .25);
+      --r-sm: 6px;
+      --r-md: 12px;
+      --r-lg: 18px;
+      --r-xl: 26px;
+      --r-pill: 999px;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Public Sans", system-ui, -apple-system, sans-serif;
+      --font-mono: "Space Mono", ui-monospace, "Courier New", monospace;
+      --fs-hero: 2.5rem;
+      --fs-h1: 1.8rem;
+      --fs-h2: 1.35rem;
+      --fs-h3: 1.05rem;
+      --fs-body: .95rem;
+      --fs-small: .83rem;
+      --fs-micro: .73rem;
+    }
+
+    /* ============ A4 print layout ============ */
+    @media print {
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      :root {
+        --paper: #fff;
+        --surface: #fff;
+        --surface-2: #f5f7f9;
+        --fs-body: 10pt;
+        --fs-h1: 17pt;
+        --fs-h2: 13pt;
+        --fs-h3: 11pt;
+      }
+
+      body {
+        background: #fff;
+        padding: 0;
+        margin: 0;
+        display: block;
+      }
+
+      .page {
+        box-shadow: none;
+        max-width: 210mm;
+        margin: 0 auto;
+        border-radius: 0;
+      }
+
+      .figure,
+      .figure-grid,
+      .callout,
+      .code-block,
+      .tradeoff,
+      .adr-row,
+      .flow-diagram {
+        break-inside: avoid;
+      }
+
+      .section-label,
+      h2,
+      h3 {
+        break-after: avoid;
+      }
+
+      .cover {
+        border-radius: 0;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font: 400 var(--fs-body)/1.65 var(--font-body);
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+
+    .page {
+      max-width: 820px;
+      width: 100%;
+      background: var(--surface);
+      border-radius: var(--r-xl);
+      box-shadow: var(--shadow-2);
+      overflow: hidden;
+    }
+
+    /* ============ navy letterhead ============ */
+    .cover {
+      position: relative;
+      background: var(--navy);
+      color: #fff;
+      padding: 52px 44px 44px;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(420px 260px at 90% 0%, rgba(18, 165, 176, .35), transparent 70%),
+        radial-gradient(340px 240px at 0% 100%, rgba(244, 101, 15, .28), transparent 70%);
+    }
+
+    .cover::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--teal), var(--orange), var(--gold));
+    }
+
+    .cover>* {
+      position: relative;
+    }
+
+    .cover .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font: 700 var(--fs-micro)/1 var(--font-mono);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .cover .tag::before {
+      content: "";
+      width: 28px;
+      height: 1.5px;
+      background: var(--gold);
+    }
+
+    .cover h1 {
+      font: 600 var(--fs-hero)/1.08 var(--font-display);
+      letter-spacing: -.01em;
+      margin-bottom: 12px;
+    }
+
+    .cover h1 em {
+      font-style: italic;
+      color: var(--teal-2);
+    }
+
+    .cover .lede {
+      color: rgba(255, 255, 255, .72);
+      max-width: 54ch;
+      margin-top: 8px;
+    }
+
+    .cover .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font: 600 var(--fs-small)/1.5 var(--font-mono);
+      color: rgba(255, 255, 255, .65);
+      margin-top: 24px;
+    }
+
+    .cover .meta strong {
+      color: #fff;
+    }
+
+    .content {
+      padding: 44px;
+    }
+
+    @media (max-width: 600px) {
+      .cover {
+        padding: 36px 24px 32px;
+      }
+
+      .content {
+        padding: 28px 20px;
+      }
+
+      .cover h1 {
+        font-size: 2rem;
+      }
+    }
+
+    /* ============ section dividers ============ */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font: 700 var(--fs-micro)/1 var(--font-mono);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin: 52px 0 10px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-label::after {
+      content: "";
+      height: 1px;
+      width: 42px;
+      background: var(--teal);
+      opacity: .5;
+    }
+
+    .section-label:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    h2 {
+      font: 600 var(--fs-h2)/1.2 var(--font-display);
+      letter-spacing: -.01em;
+      margin: 0 0 14px;
+      color: var(--navy);
+    }
+
+    h3 {
+      font: 600 var(--fs-h3)/1.2 var(--font-display);
+      margin: 26px 0 8px;
+      color: var(--navy);
+    }
+
+    p {
+      color: var(--ink-soft);
+      margin-bottom: 14px;
+      max-width: 66ch;
+    }
+
+    strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    em.tilt {
+      font-style: italic;
+      color: var(--teal);
+    }
+
+    a {
+      color: var(--teal);
+      text-underline-offset: 3px;
+    }
+
+    a:hover {
+      color: var(--orange);
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: .88em;
+      background: var(--surface-2);
+      padding: .15em .4em;
+      border-radius: 3px;
+      color: var(--ink-soft);
+    }
+
+    .content ul,
+    .content ol {
+      color: var(--ink-soft);
+      margin-bottom: 14px;
+      padding-left: 22px;
+    }
+
+    .content li {
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+
+    .content li strong {
+      color: var(--ink);
+    }
+
+    /* ============ tables ============ */
+    .tradeoff {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: var(--fs-small);
+    }
+
+    .tradeoff th {
+      text-align: left;
+      font: 700 var(--fs-micro)/1 var(--font-mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      padding: 10px 12px;
+      border-bottom: 2px solid var(--line);
+      background: var(--surface-2);
+    }
+
+    .tradeoff td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line-soft);
+      vertical-align: top;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+
+    .tradeoff td:first-child {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .chosen {
+      color: var(--ok);
+      font-weight: 700;
+    }
+
+    .rejected {
+      color: var(--ink-faint);
+    }
+
+    /* ============ ADR highlight rows ============ */
+    .adr-list {
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      margin: 20px 0;
+    }
+
+    .adr-row {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 14px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line-soft);
+      background: var(--surface);
+    }
+
+    .adr-row:last-child {
+      border-bottom: none;
+    }
+
+    .adr-row:nth-child(odd) {
+      background: #FAFDFE;
+    }
+
+    .adr-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: var(--navy);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font: 700 var(--fs-small)/1 var(--font-mono);
+    }
+
+    .adr-row h3 {
+      margin: 2px 0 4px;
+      font-size: var(--fs-body);
+      font-weight: 700;
+      font-family: var(--font-body);
+    }
+
+    .adr-row p {
+      margin: 0;
+      font-size: var(--fs-small);
+      max-width: none;
+    }
+
+    /* ============ figures ============ */
+    .figure {
+      margin: 22px 0;
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .figure figcaption {
+      padding: 10px 14px;
+      border-top: 1px solid var(--line-soft);
+      background: var(--surface-2);
+      font: 600 var(--fs-micro)/1.5 var(--font-mono);
+      letter-spacing: .05em;
+      color: var(--ink-soft);
+    }
+
+    .figure .fig-no {
+      color: var(--teal);
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    .figure-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 22px 0;
+    }
+
+    .figure-grid .figure {
+      margin: 0;
+    }
+
+    @media (max-width: 640px) {
+      .figure-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============ code blocks ============ */
+    .code-block {
+      background: var(--navy);
+      color: #e9f2fa;
+      border-radius: var(--r-sm);
+      padding: 18px 20px;
+      margin: 18px 0;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: var(--fs-micro);
+      line-height: 1.7;
+      white-space: pre;
+    }
+
+    .code-block .cm {
+      color: #7fb4e8;
+    }
+
+    .code-block .k {
+      color: #f5b301;
+    }
+
+    .code-block .s {
+      color: #6fd39a;
+    }
+
+    .code-block .n {
+      color: #12A5B0;
+    }
+
+    /* ============ callouts ============ */
+    .callout {
+      background: var(--surface-2);
+      border-left: 4px solid var(--teal);
+      border-radius: 0 var(--r-md) var(--r-md) 0;
+      padding: 18px 22px;
+      margin: 24px 0;
+      font-size: var(--fs-small);
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .callout.warm {
+      border-left-color: var(--orange);
+      background: var(--orange-soft);
+    }
+
+    .callout.warm strong {
+      color: var(--orange-2);
+    }
+
+    .callout.quote {
+      border-left-color: var(--gold);
+      background: var(--warn-soft);
+      font-family: var(--font-display);
+      font-size: var(--fs-h3);
+      font-style: italic;
+      color: var(--navy);
+      line-height: 1.45;
+    }
+
+    .callout.quote strong {
+      display: block;
+      font: 700 var(--fs-micro)/1 var(--font-mono);
+      font-style: normal;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--warn);
+      margin-bottom: 8px;
+    }
+
+    /* ============ data flow diagram ============ */
+    .flow-diagram {
+      border: 1px solid var(--line);
+      border-radius: var(--r-sm);
+      background: var(--surface-2);
+      padding: 16px 18px;
+      margin: 18px 0;
+      font-family: var(--font-mono);
+      font-size: var(--fs-micro);
+      line-height: 1.8;
+      color: var(--ink-faint);
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    /* ============ footer ============ */
+    .doc-footer {
+      background: var(--navy);
+      color: rgba(255, 255, 255, .78);
+      padding: 28px 44px;
+      font: 600 var(--fs-micro)/1.6 var(--font-mono);
+      letter-spacing: .04em;
+    }
+
+    .doc-footer strong {
+      color: #fff;
+    }
+
+    .doc-footer .sheet-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: space-between;
+    }
+
+    .doc-footer .note {
+      margin-top: 12px;
+      font-weight: 400;
+      font-size: .7rem;
+      color: rgba(255, 255, 255, .62);
+      max-width: 72ch;
+    }
+
+    /* back link — returns to the portfolio (closes the modal when embedded) */
+    .doc-back {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      z-index: 50;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: var(--r-pill);
+      background: rgba(11, 34, 51, .92);
+      color: #fff;
+      font: 700 var(--fs-micro)/1 var(--font-mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, .18);
+      box-shadow: 0 4px 18px rgba(11, 34, 51, .35);
+      transition: background .2s, border-color .2s, transform .2s;
+    }
+
+    .doc-back:hover {
+      background: var(--teal);
+      border-color: var(--teal);
+      transform: translateY(-1px);
+    }
+
+    @media print {
+      .doc-back {
+        display: none;
+      }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 11px;
+      border-radius: var(--r-pill);
+      font: 700 var(--fs-micro)/1 var(--font-mono);
+      letter-spacing: .06em;
+      background: var(--warn-soft);
+      color: var(--warn);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <a href="../index.html#/work" class="doc-back" aria-label="Return to the portfolio">← Portfolio</a>
+
+    <!-- ═══════════════ LETTERHEAD ═══════════════ -->
+    <header class="cover">
+      <p class="tag">Case Study · Deep Dive</p>
+      <h1>Dolphin Academic Prep<br><em>The Complete Rebuild</em></h1>
+      <p class="lede">
+        From a 2010 default theme with ten accumulated plugins to a client-owned platform —
+        custom family portal, GA4 analytics console, Vue 3 page editor, taxonomy-driven local
+        SEO, and a calendar-aware theming system. The full story, end to end.
+      </p>
+      <div class="meta">
+        <span>Project: <strong>dolphinacademicprep.com</strong></span>
+        <span>Stack: <strong>Timber v2 · Carbon Fields · Vue 3</strong></span>
+        <span>Verification: <strong>32/32 E2E tests</strong></span>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <!-- ═══════════════ §1 · THE AUDIT ═══════════════ -->
+      <p class="section-label">§1 · The Audit</p>
+      <h2>A fifteen-year-old foundation with a plugin collection on top.</h2>
+
+      <p>
+        The engagement began with a forensic audit of the live site. What it found: a
+        <strong>Twenty Ten theme</strong> — WordPress's default from 2010 — with
+        <strong>Elementor + Essential Addons</strong> layered on top for page building, and no
+        child theme, meaning every core update risked overwriting customizations. Beneath the
+        theme sat <strong>ten or more active plugins</strong>, each an update cycle and a
+        compatibility surface the owner inherited without understanding. Contact forms ran
+        through <strong>VFB Pro with no encryption at rest</strong> — student data transmitted
+        and stored in the clear. <strong>Yoast SEO v28.4</strong> was installed, but there was
+        nothing to optimize: service descriptions were WYSIWYG paragraphs, contact details were
+        inline text, and FAQs lived siloed in the Ultimate FAQ plugin. The blog contained roughly
+        <strong>sixty auto-posted tweets from 2012–2014</strong> reformatted as articles under
+        categories like "SOCIAL MEDIA STREAMS" and "WORD OF THE DAY" — a maintenance surface
+        delivering zero business value.
+      </p>
+
+      <table class="tradeoff">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Before — Audited</th>
+            <th>After — Rebuild</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Theme</td>
+            <td class="rejected">Twenty Ten (2010) + Elementor + Essential Addons, no child theme, pre-HTML5 markup</td>
+            <td class="chosen">Timber v2 + Twig, version-controlled templates</td>
+          </tr>
+          <tr>
+            <td>Plugins</td>
+            <td class="rejected">10+ active — each an update cycle and compatibility surface</td>
+            <td class="chosen">4–5 purpose-built modules (cache, security, backup, portal, admin)</td>
+          </tr>
+          <tr>
+            <td>Forms</td>
+            <td class="rejected">VFB Pro — no encryption at rest, no structured review workflow</td>
+            <td class="chosen">Encrypted portal forms — AES-256 at rest, audit trails</td>
+          </tr>
+          <tr>
+            <td>SEO</td>
+            <td class="rejected">Yoast installed, nothing structured to optimize — zero geo-data, zero schema.org</td>
+            <td class="chosen">Schema.org generated from CPT data, six canonical coverage URLs</td>
+          </tr>
+          <tr>
+            <td>Blog</td>
+            <td class="rejected">~60 auto-posted tweets (2012–2014) formatted as posts</td>
+            <td class="chosen">Curated editorial content with schema.org Article markup</td>
+          </tr>
+          <tr>
+            <td>Portal</td>
+            <td class="rejected">None — no auth, no e-signatures, no document vault</td>
+            <td class="chosen">Family / coach / admin portal with spoof mode</td>
+          </tr>
+          <tr>
+            <td>Hosting</td>
+            <td class="rejected">Bluehost/Newfold — host-injected scripts the client can't control</td>
+            <td class="chosen">SiteGround or WP Engine, client-owned account, Git deploys</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout warm">
+        <strong>The recommendation: full rebuild, not incremental fix.</strong>
+        Patching the existing stack — child theme, plugin swaps, content cleanup — would consume
+        an estimated <strong>60–70% of the effort of a full rebuild</strong> while leaving a
+        fifteen-year-old foundation underneath and the structural debt unresolved. The marginal
+        cost of doing it right, roughly 30% more effort, amortized over the decade-long life of
+        the site, made the rebuild the least expensive decision.
+      </div>
+
+      <!-- ═══════════════ §2 · ARCHITECTURE ═══════════════ -->
+      <p class="section-label">§2 · Architecture</p>
+      <h2>Eight decisions. One coherent platform.</h2>
+
+      <p>
+        Every structural choice in the rebuild is documented in a separate
+        <a href="dolphin-arch-decision-record.html">Architecture Decision Record</a> with
+        alternatives considered, rationale, and tradeoffs. What follows is the highlight reel —
+        the strongest decisions first.
+      </p>
+
+      <div class="adr-list">
+        <div class="adr-row">
+          <span class="adr-num">01</span>
+          <div>
+            <h3>Timber v2 + Twig over Elementor — no page builder</h3>
+            <p>PHP controllers prepare data; Twig templates render it. Templates are readable by any developer
+              inheriting the codebase — open <code>single-service.twig</code> and read the structure directly. Zero
+              page-builder lock-in; the client owns every file in their hosting account.</p>
+          </div>
+        </div>
+        <div class="adr-row">
+          <span class="adr-num">02</span>
+          <div>
+            <h3>Custom OOP modules over Yoast, MonsterInsights, and VFB Pro</h3>
+            <p>Six third-party plugins replaced by purpose-built code. Yoast's meta tags, sitemaps, and schema generate
+              from Carbon Fields data the site already owns; MonsterInsights' gtag snippet is a single
+              <code>wp_head</code> callback; VFB Pro becomes an encrypted form engine. What remains as plugins is
+              infrastructure — cache, security, backup — not features.
+            </p>
+          </div>
+        </div>
+        <div class="adr-row">
+          <span class="adr-num">03</span>
+          <div>
+            <h3>Full rebuild over incremental fix</h3>
+            <p>The audit's central call. Incremental patches would burn 60–70% of rebuild effort while leaving the 2010
+              markup, the Elementor dependency, and the absent portal unresolved. The rebuild retires the debt in one
+              motion.</p>
+          </div>
+        </div>
+        <div class="adr-row">
+          <span class="adr-num">04</span>
+          <div>
+            <h3>Custom post types + Carbon Fields over WYSIWYG pages</h3>
+            <p>Services, coverage areas, FAQs, and team members become structured, queryable data. Field definitions
+              live in version-controlled PHP — no GUI drift, no JSON sync step. Schema.org markup renders from the same
+              fields: no duplication, no drift.</p>
+          </div>
+        </div>
+        <div class="adr-row">
+          <span class="adr-num">05</span>
+          <div>
+            <h3>Coverage area taxonomy over city pages</h3>
+            <p>One <code>coverage_area</code> taxonomy, six region terms, one Twig template. Canonical URLs generate
+              from terms; schema.org LocalBusiness renders on every region page. Adding a city is a repeater entry, not
+              a new page to maintain.</p>
+          </div>
+        </div>
+        <div class="adr-row">
+          <span class="adr-num">06</span>
+          <div>
+            <h3>Dedicated portal plugin over form-builder SaaS</h3>
+            <p>Authentication, AES-256 encrypted submissions, canvas e-signatures with audit trails, a document vault
+              outside the web root, and dual notifications — one auditable codebase owning the full data lifecycle.
+              FERPA-minded by design, even though FERPA doesn't technically apply to tutoring companies.</p>
+          </div>
+        </div>
+        <div class="adr-row">
+          <span class="adr-num">07</span>
+          <div>
+            <h3>Vue 3 admin panel over default wp-admin</h3>
+            <p>Purpose-built dashboards per content type, loaded as a deactivatable plugin. If it is ever switched off,
+              every field remains editable through Carbon Fields' native metaboxes — the panel is a convenience layer
+              over the data model, not the data model itself.</p>
+          </div>
+        </div>
+        <div class="adr-row">
+          <span class="adr-num">08</span>
+          <div>
+            <h3>Holiday capsules via CSS custom properties — zero server dependencies</h3>
+            <p>Fourteen-plus observances themed by three CSS variables and a client-side calendar. No plugin, no cron,
+              no database queries. The system fails to the default brand, never to a white screen.</p>
+          </div>
+        </div>
+      </div>
+
+      <p>
+        The remaining decision — hosting and deployment — moves the site from Bluehost/Newfold
+        (whose platform injects MutationObserver code on every page, host-level behavior the
+        client never requested) to SiteGround or WP Engine with the account in the client's
+        name, Git-based deployment, server-level caching, and verified backup restores.
+      </p>
+
+      <!-- ═══════════════ §3 · THE PORTAL SYSTEM ═══════════════ -->
+      <p class="section-label">§3 · The Portal System</p>
+      <h2>The centerpiece: four CPTs, three roles, zero double-books.</h2>
+
+      <p>
+        The portal is not a form plugin configured through a GUI — it is a custom
+        <code>dolphin-portal</code> plugin that owns the full data lifecycle. Four custom post
+        types (<code>dolphin_session</code>, <code>dolphin_form_entry</code>,
+        <code>dolphin_document</code>, <code>dolphin_notification</code>) plus a student model
+        linking every record to a specific student. Custom REST endpoints under
+        <code>/dolphin/v1/</code>. Role-based dashboards rendered server-side through Timber —
+        the portal lives on the same WordPress install as the marketing site, sharing the same
+        design tokens and data layer.
+      </p>
+
+      <figure class="figure">
+        <img src="../screenshots/portal-dashboard-family.png"
+          alt="Family portal dashboard with sidebar navigation, student switcher, and widget grid showing sessions, forms, documents, and notifications.">
+        <figcaption><span class="fig-no">FIG 01</span> Family dashboard — sidebar navigation, student switcher, and
+          widget grid for sessions, forms, documents, and notifications.</figcaption>
+      </figure>
+
+      <h3>Three roles, three dashboards.</h3>
+
+      <table class="tradeoff">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Reads</th>
+            <th>Writes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>dolphin_family</strong></td>
+            <td>Own sessions, forms, documents, notifications</td>
+            <td>Book and reschedule sessions, upload documents, sign forms</td>
+          </tr>
+          <tr>
+            <td><strong>dolphin_coach</strong></td>
+            <td>Assigned sessions, assigned students</td>
+            <td>Session notes (own sessions only), availability settings</td>
+          </tr>
+          <tr>
+            <td><strong>dolphin_admin</strong></td>
+            <td>Everything</td>
+            <td>Everything — plus spoof mode, read-only, view-as any user</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        <strong>Spoof mode is enforced at the REST API layer, not the UI.</strong> When an admin
+        activates spoof mode, a flag is stored in user meta and every REST endpoint checks it
+        before executing a write. The admin sees exactly what the target user sees — their
+        sessions, their forms, their documents — and nothing more. All POST, PUT, and DELETE
+        requests return <strong>403 while spoofing</strong>. Zero accidental writes. Zero audit
+        trail contamination.
+      </p>
+
+      <div class="figure-grid">
+        <figure class="figure">
+          <img src="../screenshots/admin-spoof-family.png"
+            alt="Admin spoofing a family account — the family dashboard rendered with a read-only banner.">
+          <figcaption><span class="fig-no">FIG 03</span> Spoof as family — read-only banner, writes blocked at the API.
+          </figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="../screenshots/admin-spoof-coach.png"
+            alt="Admin spoofing a coach account — the coach dashboard with today's sessions and availability.">
+          <figcaption><span class="fig-no">FIG 04</span> Spoof as coach — the coach's view, verbatim.</figcaption>
+        </figure>
+      </div>
+
+      <h3>The booking flow.</h3>
+
+      <p>
+        A family books in five steps: student, program, coach, date and time, confirm. Programs
+        filter by the student's grade — a family cannot book SAT Prep for a seventh grader.
+        Confirmed sessions generate an <code>.ics</code> calendar file with Google Calendar and
+        Outlook links.
+      </p>
+
+      <div class="figure-grid">
+        <figure class="figure">
+          <img src="../screenshots/booking-modal-step1.png"
+            alt="Booking modal step one — student selection with grade level.">
+          <figcaption><span class="fig-no">FIG 02A</span> Booking step 1 — student selection.</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="../screenshots/booking-modal-step2.png"
+            alt="Booking modal step two — program selection filtered by student grade.">
+          <figcaption><span class="fig-no">FIG 02B</span> Booking step 2 — program selection, grade-filtered.
+          </figcaption>
+        </figure>
+      </div>
+
+      <h3>Concurrency: two families, one slot, zero double-books.</h3>
+
+      <p>
+        Two families click "Book" at the same time for the same coach at the same slot. Two
+        requests arrive simultaneously at <code>POST /dolphin/v1/booking</code>. The system must
+        let exactly one through and reject the other with a clear message.
+      </p>
+
+      <p>
+        <strong>The first approach — WordPress transients — failed.</strong> Set a transient,
+        check it on the next request. The problem: WordPress's per-request object cache. A
+        <code>get_option()</code> miss gets cached in memory, so the second concurrent request
+        believes the lock doesn't exist. Both requests succeed. Double-book.
+      </p>
+
+      <p>
+        <strong>The fix: raw SQL <code>INSERT IGNORE</code>.</strong> Bypass the object cache
+        entirely and write directly to <code>wp_options</code>. The lock holder inserts a row
+        with a 10-second expiry; the loser's insert is silently ignored by the database's own
+        atomicity. One request returns <strong>200</strong> with a session ID and
+        <code>.ics</code> URL. The other returns <strong>409</strong> — <em>"That time was just
+          taken. Please pick another."</em> Every time.
+      </p>
+
+      <div class="code-block"><span class="cm">// Plugin: dolphin-portal — Booking REST endpoint</span>
+        <span class="cm">// Atomic lock acquisition — bypasses WP object cache entirely</span>
+
+        <span class="k">global</span> <span class="n">$wpdb</span>;
+        <span class="n">$slot_key</span> = <span class="n">$date</span> . <span class="s">'T'</span> . <span
+          class="n">$start_dt</span>->format(<span class="s">'Hi'</span>);
+        <span class="n">$lock_key</span> = <span class="s">'dolphin_booking_lock_'</span> . <span
+          class="n">$coach_id</span> . <span class="s">'_'</span> . <span class="n">$slot_key</span>;
+        <span class="n">$now</span> = <span class="n">time</span>();
+
+        <span class="n">$inserted</span> = <span class="n">$wpdb</span>->query(<span class="n">$wpdb</span>->prepare(
+        <span class="s">"INSERT IGNORE INTO {$wpdb->options}
+          (option_name, option_value, autoload) VALUES (%s, %s, 'no')"</span>,
+        <span class="n">$lock_key</span>,
+        (string) (<span class="n">$now</span> + <span class="n">10</span>)
+        ));
+
+        <span class="k">if</span> (<span class="n">1</span> !== <span class="n">$inserted</span>) {
+        <span class="n">$existing</span> = <span class="n">$wpdb</span>->get_var(<span class="n">$wpdb</span>->prepare(
+        <span class="s">"SELECT option_value FROM {$wpdb->options}
+          WHERE option_name = %s"</span>,
+        <span class="n">$lock_key</span>
+        ));
+        <span class="k">if</span> (<span class="n">is_numeric</span>(<span class="n">$existing</span>) && (int) <span
+          class="n">$existing</span> > <span class="n">$now</span>) {
+        <span class="k">return new</span> <span class="n">WP_Error</span>(
+        <span class="s">'dolphin_booking_locked'</span>,
+        <span class="s">'That time was just taken. Please pick another.'</span>,
+        [<span class="s">'status'</span> => <span class="n">409</span>]
+        );
+        }
+        <span class="cm">// Stale lock — take it over</span>
+        <span class="n">$wpdb</span>->update(<span class="n">$wpdb</span>->options,
+        [<span class="s">'option_value'</span> => (string) (<span class="n">$now</span> + <span class="n">10</span>)],
+        [<span class="s">'option_name'</span> => <span class="n">$lock_key</span>]
+        );
+        }
+      </div>
+
+      <div class="callout">
+        <strong>Verified with parallel curl, not browser sessions.</strong>
+        Browser keep-alive sockets serialize concurrent requests — they would never trigger the
+        race. The E2E test fires two POSTs from separate TCP sockets with
+        <code>curl &amp; curl &amp; wait</code>. One consistently returns 200; the other
+        consistently returns 409. <strong>32/32 Playwright E2E tests passing</strong>, including
+        concurrent booking, availability validation, spoof enforcement, and the full intake
+        wizard. Every assertion maps to a business rule: a family cannot book SAT Prep for a
+        7th grader; a coach cannot write notes on an unassigned session; an admin in spoof mode
+        cannot submit an intake form.
+      </div>
+
+      <h3>Slot generation: 15-minute increments, buffer-enforced, UTC-safe.</h3>
+
+      <p>
+        The <code>GET /dolphin/v1/availability-slots</code> endpoint walks each coach
+        availability block in 15-minute increments. A candidate slot qualifies only if it
+        satisfies all six conditions:
+      </p>
+
+      <table class="tradeoff">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Condition</th>
+            <th>Enforcement</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Full session duration fits inside the block</td>
+            <td>Slot end ≤ block end</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Minimum lead time respected</td>
+            <td>Slot start ≥ <code>min_lead_time_minutes</code> from now</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>No overlapping session</td>
+            <td>Existing sessions with status confirmed / pending / rescheduled</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Buffer applied on both sides</td>
+            <td>Travel buffer for in-person, standard buffer for video</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Date not blocked</td>
+            <td>Coach blocked-dates list</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Within booking horizon</td>
+            <td>Configurable forward window</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        All comparisons run in UTC; results return as <code>HH:MM</code> in site timezone plus
+        ISO-8601 UTC, capped at 40 slots. The compute-heavy work stays server-side — the client
+        never does timezone math.
+      </p>
+
+      <h3>Encryption &amp; compliance.</h3>
+
+      <p>
+        FERPA applies to institutions receiving federal funding — not private tutoring
+        companies. The portal is built to FERPA principles anyway, because the families using
+        it have the same expectations:
+      </p>
+
+      <ul>
+        <li><strong>AES-256 encryption at rest</strong> for all form submissions, keyed from WordPress salts.</li>
+        <li><strong>Files stored outside the web root</strong>, referenced by UUID rather than filename, MIME-checked on
+          upload.</li>
+        <li><strong>Audit trails</strong> — every signature, upload, and submission recorded with timestamp and user;
+          post revisions provide immutable history.</li>
+        <li><strong>Data portability</strong> — families can request a structured export; no proprietary lock-in.</li>
+        <li><strong>Key rotation</strong> — a WP-CLI command re-encrypts old submissions without data loss if the key is
+          ever compromised.</li>
+      </ul>
+
+      <div class="flow-diagram">
+        ╔══════════════════════════════════════════════════════════╗
+        ║ FORM SUBMISSION → ENCRYPTION → STORAGE FLOW ║
+        ╠══════════════════════════════════════════════════════════╣
+        ║ ║
+        ║ Browser ──TLS 1.3──▶ WordPress ──AES-256──▶ post_meta ║
+        ║ (canvas sig) (wp_salt) (_-prefixed) ║
+        ║ ║
+        ║ Document ──MIME check──▶ /_portal/documents/{uuid} ║
+        ║ (outside web root) ║
+        ║ ║
+        ╚══════════════════════════════════════════════════════════╝
+      </div>
+
+      <!-- ═══════════════ §4 · THE ANALYTICS CONSOLE ═══════════════ -->
+      <p class="section-label">§4 · The Analytics Console</p>
+      <h2>Six reporting blocks. Every number traceable. MonsterInsights replaced.</h2>
+
+      <figure class="figure">
+        <img src="../screenshots/analytics-console.png"
+          alt="Analytics console — sidebar navigation, KPI scorecards, traffic acquisition table, and geographic demographics blocks.">
+        <figcaption><span class="fig-no">FIG 05</span> The analytics console — KPI scorecards, traffic acquisition, and
+          geographic demographics.</figcaption>
+      </figure>
+
+      <p>
+        A standalone <code>dolphin-analytics</code> plugin connects directly to the
+        <strong>GA4 Data API v1</strong>, caches responses in WordPress transients, and renders
+        six reporting blocks server-side through Timber. The design philosophy: every number
+        carries a freshness label, every visualization links to the <code>runReport</code>
+        payload that produced it, and color is reserved strictly for state — up, down, stale,
+        throttled — never decoration.
+      </p>
+
+      <table class="tradeoff">
+        <thead>
+          <tr>
+            <th>Block</th>
+            <th>What It Reports</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>01 · Executive KPI Scorecards</strong></td>
+            <td>Six headline metrics with period-over-period deltas, sparklines, and deuteranopia-safe delta encoding
+              (shape + sign + color).</td>
+          </tr>
+          <tr>
+            <td><strong>02 · Traffic Acquisition Engine</strong></td>
+            <td>Channel volume vs. quality — a toggle re-ranks channels from the same response, exposing big-but-shallow
+              sources.</td>
+          </tr>
+          <tr>
+            <td><strong>03 · Content Engagement Tracker</strong></td>
+            <td>Top 25 landing pages with hard pagination — the table can never spike quota by being scrolled.</td>
+          </tr>
+          <tr>
+            <td><strong>04 · Geographic Demographics</strong></td>
+            <td>Country-level distribution with city drill-through, rendered as a schematic bin map with a ranked
+              sidecar.</td>
+          </tr>
+          <tr>
+            <td><strong>05 · Filtered Conversion Funnel</strong></td>
+            <td>Dolphin-specific events — program_viewed → consultation_requested → intake_submitted → session_booked —
+              with the filter chain visible in the header.</td>
+          </tr>
+          <tr>
+            <td><strong>06 · Quota &amp; Cache Governance</strong></td>
+            <td>Hourly token consumption, cache hit ratio, per-block freshness ledger. The one block leadership can't
+              turn off.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Signature interactions.</h3>
+
+      <ul>
+        <li><strong>Delta Scrubber.</strong> A draggable, resizable date-range band on a 365-day track with a dashed
+          comparison window. Both windows travel in a single <code>dateRanges</code> array, so the comparison pair comes
+          back from GA4 in one call. A cache-coverage strip under the band teaches API cost as a felt experience — small
+          moves resolve against cache and cost nothing; large moves commit live requests.</li>
+        <li><strong>Command Palette (⌘K).</strong> Indexes every metric, dimension, property, payload recording, preset,
+          and action — the fastest path from any number to its block.</li>
+      </ul>
+
+      <p>
+        <strong>Mock/live dual-mode.</strong> The REST endpoint returns an identical JSON shape
+        whether the numbers came from Google or from a deterministic mock engine (mulberry32,
+        bit-exact with the prototype's JavaScript PRNG). The client never knows which mode is
+        active — demo-ready without credentials, production-ready with them.
+      </p>
+
+      <div class="callout warm">
+        <strong>Known issue, documented.</strong>
+        The mock-mode banner does not render even though mock data flows correctly — a Twig
+        template check mismatch. The data pipeline is sound; the label is missing. One-line fix,
+        tracked in the issue log rather than hidden.
+      </div>
+
+      <!-- ═══════════════ §5 · THE PAGE EDITOR ═══════════════ -->
+      <p class="section-label">§5 · The Page Editor</p>
+      <h2>Vue 3 + Carbon Fields. Gutenberg replaced.</h2>
+
+      <figure class="figure">
+        <img src="../screenshots/page-editor-landing.png"
+          alt="Page editor landing screen — a list of editable pages with component counts.">
+        <figcaption><span class="fig-no">FIG 06</span> Page editor landing — the page selector, the entry point for
+          content editing.</figcaption>
+      </figure>
+
+      <p>
+        The page editor is a <strong>Vue 3 + Vite</strong> application built on the
+        <strong>NuxtUI</strong> component library. Carbon Fields page-level containers define
+        the editable fields for each page component; the editor reads those container schemas
+        through a custom REST endpoint and renders them as structured forms. Nothing is
+        freeform — a Hero component exposes its headline, subhead, and CTA fields; an FAQ
+        accordion exposes its repeater.
+      </p>
+
+      <div class="figure-grid">
+        <figure class="figure">
+          <img src="../screenshots/page-editor-hero.png"
+            alt="Page editor — Hero component with component tabs in the left sidebar and structured form fields in the main area.">
+          <figcaption><span class="fig-no">FIG 07</span> Hero component editor — component tabs left, structured fields
+            center.</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="../screenshots/page-editor-faq.png"
+            alt="Page editor — FAQ accordion repeater edit view with question and answer rows.">
+          <figcaption><span class="fig-no">FIG 08</span> FAQ accordion — repeater rows for question and answer pairs.
+          </figcaption>
+        </figure>
+      </div>
+
+      <p>
+        The layout is consistent across every page: <strong>component tabs in the left
+          sidebar</strong>, <strong>structured form fields in the main content area</strong>, and
+        a <strong>page selector landing screen</strong> for navigating between pages. A staff
+        member picks a page, picks a component, edits fields, saves. No block canvas, no
+        layout decisions, no WYSIWYG archaeology.
+      </p>
+
+      <p>
+        The editor uses the site's own design tokens — the same teal/navy palette, the same
+        Public Sans and Fraunces stack. The tool that edits the site looks like the site it
+        edits. Staff never context-switch between a WordPress admin aesthetic and the brand
+        they are maintaining.
+      </p>
+
+      <!-- ═══════════════ §6 · CONTENT & SEO ═══════════════ -->
+      <p class="section-label">§6 · Content &amp; SEO Architecture</p>
+      <h2>Six canonical URLs where zero existed.</h2>
+
+      <p>
+        The business serves in-home tutoring across North/Central New Jersey and NYC — a
+        multi-county, two-state territory — yet the audited site had <strong>zero location-based
+          landing pages</strong> and no structured geo-data anywhere in the markup. A parent
+        searching "tutoring in Montclair NJ" had no path to the site. The rebuild replaces flat
+        geographic content with a <code>coverage_area</code> taxonomy: <strong>six coverage
+          regions</strong>, each a term carrying counties, ZIP ranges, a unique description, and a
+        featured-cities repeater. A single Twig template renders every region page with
+        <strong>schema.org LocalBusiness</strong> markup — <code>areaServed</code> populated
+        from the counties field — and <strong>canonical URLs generated from the taxonomy
+          terms</strong>: <code>/coverage/north-jersey/</code>, <code>/coverage/westchester-rockland/</code>,
+        and so on. City-specific landing content with unique metadata comes from the repeater —
+        Montclair, Hoboken, Scarsdale, Park Slope — without multiplying URLs.
+      </p>
+
+      <div class="callout">
+        <strong>The 404 counterpoint.</strong>
+        A missing region should not 404. A parent landing on a coverage URL the business
+        doesn't yet serve should find a page that says <em>"we don't serve this area
+          yet"</em> — capturing the demand, signaling expansion, and keeping the URL structure
+        honest. Dead ends lose leads; honest landing pages collect them.
+      </div>
+
+      <h3>The editorial workflow.</h3>
+
+      <p>
+        Staff manage <strong>structured fields, not WYSIWYG content blocks</strong>. Updating a
+        service description goes from "Pages → All Pages → find the page → edit a WYSIWYG
+        block → hope the phone number widget still looks right" to "Practice Manager →
+        Services → click the service → edit the description field → Save." The origin story is
+        the same discipline proven at CAS: coaching content teams onto structured, guarded
+        workflows cut <strong>IT helpdesk ticket volume by 60%</strong>. The Dolphin editorial
+        interface applies the identical principle — role-appropriate surfaces, publishing
+        guardrails, and structured data that cannot be formatted into breakage.
+      </p>
+
+      <h3>The plugin replacement table.</h3>
+
+      <table class="tradeoff">
+        <thead>
+          <tr>
+            <th>Retired Plugin</th>
+            <th>Replaced By</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Yoast SEO v28.4</td>
+            <td class="chosen">Schema.org + meta generated from CPT data; XML sitemap via template + rewrites</td>
+          </tr>
+          <tr>
+            <td>MonsterInsights v11.2.0</td>
+            <td class="chosen">GA4 analytics console — six blocks, quota governance, payload provenance</td>
+          </tr>
+          <tr>
+            <td>VFB Pro</td>
+            <td class="chosen">Encrypted portal forms — AES-256 at rest, audit trails</td>
+          </tr>
+          <tr>
+            <td>Elementor + Essential Addons</td>
+            <td class="chosen">Timber/Twig templates, version-controlled</td>
+          </tr>
+          <tr>
+            <td>Ultimate FAQ</td>
+            <td class="chosen">Custom accordion component — FAQ CPT with schema.org markup</td>
+          </tr>
+          <tr>
+            <td>Black Studio TinyMCE</td>
+            <td class="chosen">Structured fields — Carbon Fields theme options</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ═══════════════ §7 · THE HOLIDAY CAPSULE SYSTEM ═══════════════ -->
+      <p class="section-label">§7 · The Holiday Capsule System</p>
+      <h2>Three CSS variables. Fourteen observances. Zero servers.</h2>
+
+      <p>
+        The brief requested holiday-themed page looks for <strong>14+ observances</strong> —
+        Election Day, Diwali, Thanksgiving, Winter Holidays, Lunar New Year, and more —
+        scheduled a year in advance. The build: three CSS custom properties
+        (<code>--cap-a</code>, <code>--cap-b</code>, <code>--cap-glow</code>) themed by a
+        client-side JavaScript calendar that auto-detects the current date against a holiday
+        schedule. Changing a holiday means changing three hex codes in a JSON object. No
+        plugin, no cron, no database queries, no server dependencies of any kind.
+      </p>
+
+      <p>
+        <strong>Motif animations</strong> — falling leaves, drifting snow, swaying petals,
+        floating diyas, stars, lanterns, sparks — are pure CSS keyframes on styled
+        <code>&lt;span&gt;</code> elements, every one gated behind
+        <code>prefers-reduced-motion</code>. <strong>Staff control</strong> lives on the front
+        end: a dropdown in the header ribbon for manual override, and a gallery strip on the
+        homepage for previewing any capsule live (session-only — refresh returns to the
+        calendar's automatic selection).
+      </p>
+
+      <p>
+        Cross-component coordination runs through the <code>applyCapsule()</code> event bus:
+        the capsule ribbon, the hero greeting, the motif stage, and the capsule gallery all
+        listen for the same event and re-theme in lockstep. One function call, four surfaces,
+        zero drift.
+      </p>
+
+      <div class="callout quote">
+        <strong>From the Architecture Decision Record</strong>
+        "The capsule system is not a visual flourish. It is an architectural decision."
+      </div>
+
+      <p>
+        The failure mode is the quietest part of the design: if the calendar misses, the date
+        comparison falls through to the default capsule and the site renders with its standard
+        brand. No PHP errors, no white screen, no "holiday plugin requires update" admin
+        notice. The system fails to default — never to broken.
+      </p>
+
+      <!-- ═══════════════ §8 · KEY METRICS ═══════════════ -->
+      <p class="section-label">§8 · Key Metrics</p>
+      <h2>The rebuild by the numbers.</h2>
+
+      <table class="tradeoff">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Plugins replaced with custom code</td>
+            <td class="chosen">6 — Yoast, MonsterInsights, VFB Pro, Elementor + Essential Addons, Ultimate FAQ, Black
+              Studio TinyMCE</td>
+          </tr>
+          <tr>
+            <td>Custom post types</td>
+            <td class="chosen">4 — session, form_entry, document, notification</td>
+          </tr>
+          <tr>
+            <td>User roles</td>
+            <td class="chosen">3 — family, coach, admin — with read-only spoof mode</td>
+          </tr>
+          <tr>
+            <td>Booking flow</td>
+            <td class="chosen">5 steps with atomic concurrency protection — one 200, one 409, every time</td>
+          </tr>
+          <tr>
+            <td>E2E tests</td>
+            <td class="chosen">32/32 Playwright tests passing</td>
+          </tr>
+          <tr>
+            <td>Analytics console</td>
+            <td class="chosen">6 reporting blocks on the GA4 Data API v1, mock/live dual-mode</td>
+          </tr>
+          <tr>
+            <td>Page editor</td>
+            <td class="chosen">Vue 3 + Vite + NuxtUI, replacing Gutenberg</td>
+          </tr>
+          <tr>
+            <td>Holiday capsule system</td>
+            <td class="chosen">14+ observances, zero server dependencies</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        The through-line of every number above: the client goes from maintaining a plugin
+        collection to owning a software product. Every module can be audited, versioned, and
+        deactivated independently with zero data loss. The business goes from maintaining a
+        website to operating a platform.
+      </p>
+
+    </div>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="doc-footer">
+      <div class="sheet-row">
+        <span><strong>Dolphin Academic Prep</strong> · Full Case Study</span>
+        <span>Sheet DCS-01 · Rev A · 2026-10-05 · <span class="badge">DRAFT</span></span>
+      </div>
+      <p class="note">
+        Companion documents: Architecture Decision Record · Portal Architecture · Analytics
+        Console · Coverage Area Taxonomy Proposal · Editorial Workflow Guide. Linked from
+        Detail 01 (A-03) of portfolio set CV-2026-01. Prepared as a portfolio artifact
+        demonstrating full-lifecycle WordPress architecture for the Senior WordPress Backend
+        Developer role at Teal Media.
+      </p>
+    </footer>
+
+  </div>
+
+  <script>
+    /* When embedded in the portfolio document viewer, the back link closes the modal
+       instead of navigating the iframe; internal document links paginate the doc set. */
+    document.addEventListener("click", e => {
+      const link = e.target.closest("a");
+      if (!link) return;
+      if (window.self !== window.top) {
+        if (link.classList.contains("doc-back")) {
+          e.preventDefault();
+          window.parent.postMessage({ type: "close-viewer" }, "*");
+          return;
+        }
+        const href = link.getAttribute("href");
+        if (href && !href.startsWith("#") && !href.startsWith("http") && link.target !== "_blank") {
+          e.preventDefault();
+          window.parent.postMessage({ type: "doc-nav", href: href }, "*");
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: white;
+      /* Ensure the iframe has a white background */
+    }
+  </style>
+</head>
+
+<body>
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Architecture · Dolphin Academic Prep</title>
+    <meta name="description"
+      content="Portal architecture appendix for Dolphin Academic Prep — custom WordPress plugin, role-based access, AES-256 encryption, e-signatures, and booking engine.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet">
+    <style>
+      /* ============================================================
+     DOLPHIN ACADEMIC PREP — Portal Architecture Appendix
+     Design tokens from dolphinv2: paper/teal/navy palette,
+     Fraunces + Public Sans + Space Mono.
+     ============================================================ */
+      :root {
+        --paper: #F3F7F9;
+        --surface: #FFFFFF;
+        --surface-2: #E9F1F4;
+        --surface-3: #DCE9EE;
+        --ink: #0B2233;
+        --ink-soft: #3C566A;
+        --ink-faint: #66808F;
+        --navy: #0B2233;
+        --navy-2: #123A56;
+        --teal: #0E7C86;
+        --teal-2: #12A5B0;
+        --teal-soft: #DFF3F4;
+        --orange: #F4650F;
+        --orange-2: #D9560A;
+        --orange-soft: #FFE7D6;
+        --gold: #F5B301;
+        --line: #D3E0E7;
+        --line-soft: #E4EEF2;
+        --ok: #178A5C;
+        --ok-soft: #DDF3E8;
+        --err: #D64545;
+        --err-soft: #FBE7E7;
+        --warn: #B97900;
+        --warn-soft: #FFF3D6;
+        --shadow-1: 0 1px 2px rgba(11, 34, 51, .06), 0 10px 26px -14px rgba(11, 34, 51, .14);
+        --shadow-2: 0 2px 4px rgba(11, 34, 51, .08), 0 24px 52px -22px rgba(11, 34, 51, .25);
+        --r-sm: 6px;
+        --r-md: 12px;
+        --r-lg: 18px;
+        --r-xl: 26px;
+        --r-pill: 999px;
+        --font-display: "Fraunces", Georgia, serif;
+        --font-body: "Public Sans", system-ui, -apple-system, sans-serif;
+        --font-mono: "Space Mono", ui-monospace, "Courier New", monospace;
+        --fs-hero: clamp(2.2rem, 3.5vw + .8rem, 3.6rem);
+        --fs-h1: clamp(1.7rem, 2vw + .7rem, 2.5rem);
+        --fs-h2: clamp(1.3rem, 1.5vw + .5rem, 1.8rem);
+        --fs-h3: clamp(1.1rem, .8vw + .7rem, 1.35rem);
+        --fs-body: clamp(.92rem, .3vw + .85rem, 1.02rem);
+        --fs-small: clamp(.82rem, .2vw + .78rem, .9rem);
+        --fs-micro: clamp(.7rem, .15vw + .68rem, .78rem);
+        --sp-1: clamp(.25rem, .2rem + .2vw, .35rem);
+        --sp-2: clamp(.5rem, .4rem + .3vw, .7rem);
+        --sp-3: clamp(.75rem, .6rem + .5vw, 1.1rem);
+        --sp-4: clamp(1rem, .8rem + .7vw, 1.5rem);
+        --sp-5: clamp(1.5rem, 1.2rem + 1vw, 2.2rem);
+        --sp-6: clamp(2rem, 1.6rem + 1.5vw, 3rem);
+        --sp-7: clamp(2.5rem, 2rem + 2vw, 4rem);
+        --sp-8: clamp(3.5rem, 2.8rem + 2.5vw, 5.5rem);
+        --container: 760px;
+      }
+
+      @media print {
+        :root {
+          --paper: #fff;
+          --surface: #fff;
+          --surface-2: #f7f9fa;
+          --fs-body: 9pt;
+          --fs-h2: 11pt;
+          --fs-h3: 9.5pt;
+        }
+
+        body {
+          background: #fff;
+          padding: 0;
+          margin: 0;
+        }
+
+        .page {
+          box-shadow: none;
+          max-width: 210mm;
+        }
+
+        @page {
+          size: A4;
+          margin: 16mm 14mm;
+        }
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font: 400 var(--fs-body)/1.65 var(--font-body);
+        color: var(--ink);
+        background: var(--paper);
+        -webkit-font-smoothing: antialiased;
+        display: flex;
+        justify-content: center;
+        padding: var(--sp-5) var(--sp-3);
+      }
+
+      .page {
+        width: 100%;
+        max-width: var(--container);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--r-lg);
+        box-shadow: var(--shadow-1);
+        padding: var(--sp-6) var(--sp-5);
+        display: grid;
+        gap: var(--sp-6);
+      }
+
+      /* Typography */
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: var(--font-display);
+        font-weight: 600;
+        line-height: 1.15;
+        letter-spacing: -.01em;
+        color: var(--ink);
+      }
+
+      h1 {
+        font-size: var(--fs-h1);
+      }
+
+      h2 {
+        font-size: var(--fs-h2);
+        margin-bottom: var(--sp-2);
+      }
+
+      h3 {
+        font-size: var(--fs-h3);
+        margin-bottom: var(--sp-1);
+      }
+
+      p {
+        color: var(--ink-soft);
+        margin-bottom: var(--sp-3);
+        max-width: 62ch;
+      }
+
+      p strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      a {
+        color: var(--teal);
+        text-underline-offset: 3px;
+      }
+
+      a:hover {
+        color: var(--orange);
+      }
+
+      code,
+      .mono {
+        font-family: var(--font-mono);
+        font-size: .9em;
+        background: var(--surface-2);
+        padding: .15em .4em;
+        border-radius: 3px;
+        color: var(--ink-soft);
+      }
+
+      ul,
+      ol {
+        color: var(--ink-soft);
+        margin-bottom: var(--sp-4);
+        padding-left: 1.4em;
+        display: grid;
+        gap: var(--sp-1);
+      }
+
+      li {
+        line-height: 1.6;
+      }
+
+      li strong {
+        color: var(--ink);
+      }
+
+      ::selection {
+        background: var(--gold);
+        color: var(--navy);
+      }
+
+      /* Cover header */
+      .cover {
+        background: var(--navy);
+        color: #fff;
+        margin: calc(var(--sp-6) * -1) calc(var(--sp-5) * -1) 0;
+        padding: var(--sp-6) var(--sp-5) var(--sp-5);
+        border-radius: var(--r-lg) var(--r-lg) 0 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cover::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--teal), var(--orange), var(--gold));
+      }
+
+      .cover h1 {
+        color: #fff;
+        font-size: var(--fs-hero);
+        margin-bottom: var(--sp-2);
+      }
+
+      .cover p {
+        color: rgba(255, 255, 255, .72);
+        max-width: 54ch;
+      }
+
+      .cover .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--sp-3);
+        margin-top: var(--sp-4);
+        font: 600 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .06em;
+        color: rgba(255, 255, 255, .55);
+      }
+
+      .cover .meta span {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-2);
+      }
+
+      .cover .meta strong {
+        color: rgba(255, 255, 255, .9);
+        font-weight: 700;
+      }
+
+      /* Kicker */
+      .kicker {
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: var(--sp-1);
+      }
+
+      /* Decision block */
+      .decision {
+        border: 1px solid var(--line);
+        border-radius: var(--r-md);
+        background: var(--surface-2);
+        padding: var(--sp-4);
+        margin-bottom: var(--sp-5);
+      }
+
+      .decision-header {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-3);
+        margin-bottom: var(--sp-3);
+        padding-bottom: var(--sp-3);
+        border-bottom: 1px solid var(--line-soft);
+      }
+
+      .d-num {
+        font: 700 var(--fs-body)/1 var(--font-mono);
+        color: var(--teal);
+        min-width: 2em;
+      }
+
+      .decision h3 {
+        margin: 0;
+      }
+
+      /* Tradeoff table */
+      .tradeoff {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: var(--fs-small);
+        margin: var(--sp-4) 0;
+      }
+
+      .tradeoff th {
+        text-align: left;
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        padding: var(--sp-2) var(--sp-3);
+        border-bottom: 1px solid var(--line);
+        background: var(--surface-2);
+      }
+
+      .tradeoff td {
+        padding: var(--sp-2) var(--sp-3);
+        border-bottom: 1px solid var(--line-soft);
+        vertical-align: top;
+        line-height: 1.55;
+      }
+
+      .tradeoff .chosen {
+        color: var(--ok);
+        font-weight: 600;
+      }
+
+      .tradeoff .rejected {
+        color: var(--err);
+      }
+
+      /* Code block */
+      .code-block {
+        background: var(--navy);
+        color: #e9f2fa;
+        border-radius: var(--r-sm);
+        padding: var(--sp-4);
+        margin: var(--sp-4) 0;
+        overflow-x: auto;
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        line-height: 1.7;
+        white-space: pre;
+      }
+
+      .code-block .cm {
+        color: #7fb4e8;
+      }
+
+      .code-block .k {
+        color: #f5b301;
+      }
+
+      .code-block .s {
+        color: var(--ok);
+      }
+
+      .code-block .n {
+        color: var(--teal-2);
+      }
+
+      /* Callout */
+      .callout {
+        border-left: 3px solid var(--teal);
+        background: var(--teal-soft);
+        border-radius: 0 var(--r-sm) var(--r-sm) 0;
+        padding: var(--sp-3) var(--sp-4);
+        margin: var(--sp-4) 0;
+        font-size: var(--fs-small);
+      }
+
+      .callout strong {
+        display: block;
+        margin-bottom: var(--sp-1);
+        color: var(--navy);
+      }
+
+      /* Data flow diagram */
+      .flow-diagram {
+        border: 1px solid var(--line);
+        border-radius: var(--r-sm);
+        background: var(--surface-2);
+        padding: var(--sp-4);
+        margin: var(--sp-4) 0;
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        line-height: 1.8;
+        color: var(--ink-faint);
+        white-space: pre;
+      }
+
+      /* Footer */
+      .doc-footer {
+        margin-top: var(--sp-6);
+        padding-top: var(--sp-4);
+        border-top: 1px solid var(--line);
+        font: 500 var(--fs-micro)/1.5 var(--font-mono);
+        color: var(--ink-soft);
+        letter-spacing: .06em;
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--sp-3);
+        justify-content: space-between;
+      }
+
+      .doc-footer strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* back link — returns to the portfolio (closes the modal when embedded) */
+      .doc-back {
+        position: fixed;
+        top: 18px;
+        left: 18px;
+        z-index: 50;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 16px;
+        border-radius: var(--r-pill);
+        background: rgba(11, 34, 51, .92);
+        color: #fff;
+        font: 700 var(--fs-micro)/1 var(--font-mono);
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        text-decoration: none;
+        border: 1px solid rgba(255, 255, 255, .18);
+        box-shadow: 0 4px 18px rgba(11, 34, 51, .35);
+        transition: background .2s, border-color .2s, transform .2s;
+      }
+
+      .doc-back:hover {
+        background: var(--teal);
+        border-color: var(--teal);
+        transform: translateY(-1px);
+      }
+
+      @media print {
+        .doc-back {
+          display: none;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          padding: var(--sp-4) var(--sp-3);
+        }
+
+        .cover {
+          margin: calc(var(--sp-4) * -1) calc(var(--sp-3) * -1) 0;
+          padding: var(--sp-4) var(--sp-3);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="page">
+
+      <a href="../index.html#/work" class="doc-back" aria-label="Return to the portfolio">← Portfolio</a>
+
+      <!-- ═══════════════ COVER ═══════════════ -->
+      <header class="cover">
+        <p class="kicker" style="color:var(--gold)">Supporting Document 04</p>
+        <h1>Portal Architecture</h1>
+        <p style="position:relative;color:rgba(255,255,255,.72);max-width:54ch;margin-top:8px;">
+          A dedicated WordPress plugin for secure family accounts — authentication, encrypted form submission,
+          e-signatures with audit trails, document vault, and dual-notification system.
+        </p>
+        <div class="meta">
+          <span>Plugin: <strong>dolphin-portal</strong></span>
+          <span>Encryption: <strong>AES-256 at rest</strong></span>
+          <span>Compliance: <strong>FERPA-minded</strong></span>
+        </div>
+      </header>
+
+      <!-- ═══════════════ §1 · WHY A DEDICATED PLUGIN ═══════════════ -->
+      <div class="decision">
+        <div class="decision-header">
+          <span class="d-num">01</span>
+          <h3>Why a dedicated plugin.</h3>
+        </div>
+        <div class="decision-body">
+          <p>
+            The portal is a custom codebase that owns the full data lifecycle — authentication, encrypted form
+            submission, e-signatures with audit trails, document vault, and dual-notification system. It registers four
+            custom post types behind custom REST endpoints, with role-based access for families, coaches, and
+            administrators. Submissions are encrypted with AES-256 at rest, and uploaded files live outside the web
+            root.
+          </p>
+
+          <table class="tradeoff">
+            <thead>
+              <tr>
+                <th>Approach</th>
+                <th>Assessment</th>
+                <th>Verdict</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Custom plugin (chosen)</strong></td>
+                <td>Full architectural control, and no per-user licensing costs or vendor lock-in. Encryption that can
+                  be audited rather than trusted as a black box. Every data flow is documented and every permission
+                  check is explicit. The plugin ships as a single PHP file — zero external dependencies beyond Carbon
+                  Fields and Timber, both already in the theme stack.</td>
+                <td class="chosen">Chosen</td>
+              </tr>
+              <tr>
+                <td>Gravity Forms / Formidable</td>
+                <td>Powerful form builders with mature ecosystems. However, student data flows through a third-party
+                  plugin with its own storage model, encryption guarantees, and update cycle. The licensing model
+                  charges per site — a recurring cost for what is effectively a data entry surface. Forms alone do not
+                  provide authentication, dashboards, or role-based access.</td>
+                <td class="rejected">Rejected</td>
+              </tr>
+              <tr>
+                <td>MemberPress / Restrict Content Pro</td>
+                <td>Membership plugins handle authentication and role-based access but are not designed for custom
+                  portal workflows. Student data, encrypted submissions, and e-signatures would require extensive
+                  customization on top of a membership framework. The plugin becomes a dependency that constrains the
+                  data model rather than serving it.</td>
+                <td class="rejected">Rejected</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══════════════ §2 · ROLE ARCHITECTURE ═══════════════ -->
+      <p class="kicker">2 · Access Control</p>
+      <h2>Three roles, three dashboards.</h2>
+
+      <p>
+        Each role has its own dashboard view rendered server-side via Timber. The portal plugin registers three
+        WordPress roles with granular capabilities mapped to custom post types. The <code>portal.twig</code> template
+        handles both unauthenticated (login form) and authenticated (role-based dashboard) states. Because the portal
+        shares its design tokens, rendering stack, and Carbon Fields data layer with the marketing site, it runs on the
+        same WordPress install rather than as a separate app.
+      </p>
+
+      <table class="tradeoff">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Inherits From</th>
+            <th>Read</th>
+            <th>Write</th>
+            <th>Spoof</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>dolphin_family</strong></td>
+            <td>subscriber</td>
+            <td>Own sessions, own forms, own documents, own notifications</td>
+            <td>Book sessions, reschedule own sessions, upload documents, sign forms</td>
+            <td style="color:var(--ink-faint)">—</td>
+          </tr>
+          <tr>
+            <td><strong>dolphin_coach</strong></td>
+            <td>editor</td>
+            <td>Assigned sessions, assigned students</td>
+            <td>Session notes (own sessions only), availability settings</td>
+            <td style="color:var(--ink-faint)">—</td>
+          </tr>
+          <tr>
+            <td><strong>dolphin_admin</strong></td>
+            <td>administrator</td>
+            <td>Everything</td>
+            <td>Everything</td>
+            <td class="chosen">Yes — read-only, view-as any user, zero write capability</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <strong>Spoof mode: read-only enforced at the REST API layer.</strong>
+        When an admin activates spoof mode, a flag is stored in WordPress user meta. Every REST endpoint checks this
+        flag before executing write operations. The admin sees exactly what the target user sees — their sessions, their
+        forms, their documents — and nothing more, and because all POST, PUT, and DELETE requests return 403 while
+        spoofing, there is no PHI exposure, no accidental writes, and no audit trail contamination.
+      </div>
+
+      <!-- ═══════════════ §3 · DATA ARCHITECTURE ═══════════════ -->
+      <p class="kicker">3 · Data Architecture</p>
+      <h2>Four CPTs, one authentication system, one student model.</h2>
+
+      <p>
+        The portal registers four custom post types — <code>dolphin_session</code>, <code>dolphin_form_entry</code>,
+        <code>dolphin_document</code>, and <code>dolphin_notification</code> — plus a fifth
+        (<code>dolphin_student</code>) added in Step 2a to link every session, form, document, and notification to a
+        specific student. All post types use <code>public => false</code>, <code>show_ui => true</code>, and
+        <code>show_in_rest => true</code>. Carbon Fields containers define every meta field. Storage is
+        <code>_</code>-prefixed — the same convention used by the seed data — so Carbon Fields' <code>meta_query</code>
+        rewriting applies to all dashboard queries.
+      </p>
+
+      <table class="tradeoff">
+        <thead>
+          <tr>
+            <th>CPT</th>
+            <th>Key Fields</th>
+            <th>Linked To</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>dolphin_session</code></td>
+            <td>student_id, coach_id, service_id, session_date, duration, mode, location, status, notes, family_notes
+            </td>
+            <td>Student, Coach, Service</td>
+          </tr>
+          <tr>
+            <td><code>dolphin_form_entry</code></td>
+            <td>student_id, form_type, status, signature_data, signature_date, countersignature_data,
+              countersignature_date, form_data (JSON)</td>
+            <td>Student</td>
+          </tr>
+          <tr>
+            <td><code>dolphin_document</code></td>
+            <td>student_id, file (attachment ID), session_id, form_id</td>
+            <td>Student, Session, Form</td>
+          </tr>
+          <tr>
+            <td><code>dolphin_notification</code></td>
+            <td>type, message, icon, is_read, related_session_id, related_form_id, sender_id, reply_to</td>
+            <td>Session, Form</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ═══════════════ §4 · ENCRYPTION & COMPLIANCE ═══════════════ -->
+      <p class="kicker">4 · Encryption &amp; Compliance</p>
+      <h2>Designed to FERPA principles, even though FERPA doesn't apply.</h2>
+
+      <p>
+        FERPA (Family Educational Rights and Privacy Act) applies to educational institutions that receive federal
+        funding — public schools, not private tutoring companies. However, the portal is designed to FERPA principles
+        because the families using it have the same expectations:
+      </p>
+
+      <ul>
+        <li><strong>Data minimization.</strong> Forms collect only what's needed for educational services. No marketing
+          fields appear on intake or enrollment forms.</li>
+        <li><strong>Access controls.</strong> Role-based. A coach sees only their assigned families, and a family sees
+          only their own data. Admin spoof mode is read-only.</li>
+        <li><strong>Encryption at rest.</strong> All form submissions are stored with AES-256 encryption. Files are
+          stored outside the web root, referenced by UUID rather than filename.</li>
+        <li><strong>Audit trails.</strong> Every signature, file upload, and form submission is recorded with timestamp
+          and user. WordPress post revisions provide immutable history.</li>
+        <li><strong>Data portability.</strong> Families can request their data as a structured export. Admins can export
+          any record. No proprietary format lock-in.</li>
+        <li><strong>Breach response.</strong> If the encryption key is compromised, it can be rotated via a WP-CLI
+          command. Old submissions are re-encrypted without data loss.</li>
+      </ul>
+
+      <div class="flow-diagram">
+        ╔══════════════════════════════════════════════════════════╗
+        ║ FORM SUBMISSION → ENCRYPTION → STORAGE FLOW ║
+        ╠══════════════════════════════════════════════════════════╣
+        ║ ║
+        ║ Browser ──TLS 1.3──▶ WordPress ──AES-256──▶ post_meta ║
+        ║ (canvas sig) (wp_salt) (_-prefixed) ║
+        ║ ║
+        ║ Document ──MIME check──▶ /_portal/documents/{uuid} ║
+        ║ (outside web root) ║
+        ║ ║
+        ╚══════════════════════════════════════════════════════════╝
+      </div>
+
+      <!-- ═══════════════ §5 · BOOKING ENGINE ═══════════════ -->
+      <p class="kicker">5 · Booking Engine</p>
+      <h2>Two families, one slot, zero double-books.</h2>
+
+      <p>
+        A family selects a student, a program, a coach, and a time. The system checks coach availability, enforces
+        buffers between sessions, filters programs by student grade, and prevents double-booking with an atomic database
+        lock. Confirmed sessions generate an <code>.ics</code> calendar file with Google Calendar and Outlook links.
+      </p>
+
+      <p class="kicker" style="margin-top:var(--sp-4)">Concurrency</p>
+
+      <p>
+        Two families click "Book" at the same time for the same coach at the same slot. Two requests arrive
+        simultaneously at <code>POST /dolphin/v1/booking</code>. The system must let exactly one through and reject the
+        other with a clear message.
+      </p>
+
+      <p>
+        <strong>First approach: WordPress transients.</strong>
+        <code>set_transient('dolphin_booking_lock_{coach_id}_{slot}', time() + 10, 10)</code>. Set a transient, check it
+        on the next request. The problem: WordPress's per-request object cache. A <code>get_option()</code> miss gets
+        cached in memory. The second concurrent request thinks the lock doesn't exist — the transient was set but the
+        object cache hasn't been invalidated. Both requests succeed, and the slot is double-booked.
+      </p>
+
+      <p>
+        <strong>The fix: Raw SQL INSERT IGNORE.</strong> Bypass WordPress's caching layer entirely. Write directly to
+        the <code>wp_options</code> table with an atomic <code>INSERT IGNORE</code>, so the object cache never gets a
+        chance to lie about whether a lock exists. The lock holder inserts a row with a 10-second expiry; the loser's
+        insert is silently ignored, and a subsequent read confirms the lock exists. The loser gets HTTP 409 with
+        <em>"That time was just taken. Please pick another."</em>
+      </p>
+
+      <div class="code-block"><span class="cm">// Plugin: dolphin-portal — Booking REST endpoint</span>
+        <span class="cm">// Atomic lock acquisition — bypasses WP object cache entirely</span>
+
+        <span class="k">global</span> <span class="n">$wpdb</span>;
+        <span class="n">$slot_key</span> = <span class="n">$date</span> . <span class="s">'T'</span> . <span
+          class="n">$start_dt</span>->format(<span class="s">'Hi'</span>);
+        <span class="n">$lock_key</span> = <span class="s">'dolphin_booking_lock_'</span> . <span
+          class="n">$coach_id</span> . <span class="s">'_'</span> . <span class="n">$slot_key</span>;
+        <span class="n">$now</span> = <span class="n">time</span>();
+
+        <span class="n">$inserted</span> = <span class="n">$wpdb</span>->query(<span class="n">$wpdb</span>->prepare(
+        <span class="s">"INSERT IGNORE INTO {$wpdb->options}
+          (option_name, option_value, autoload) VALUES (%s, %s, 'no')"</span>,
+        <span class="n">$lock_key</span>,
+        (string) (<span class="n">$now</span> + <span class="n">10</span>)
+        ));
+
+        <span class="k">if</span> (<span class="n">1</span> !== <span class="n">$inserted</span>) {
+        <span class="n">$existing</span> = <span class="n">$wpdb</span>->get_var(<span class="n">$wpdb</span>->prepare(
+        <span class="s">"SELECT option_value FROM {$wpdb->options}
+          WHERE option_name = %s"</span>,
+        <span class="n">$lock_key</span>
+        ));
+        <span class="k">if</span> (<span class="n">is_numeric</span>(<span class="n">$existing</span>) && (int) <span
+          class="n">$existing</span> > <span class="n">$now</span>) {
+        <span class="k">return new</span> <span class="n">WP_Error</span>(
+        <span class="s">'dolphin_booking_locked'</span>,
+        <span class="s">'That time was just taken. Please pick another.'</span>,
+        [<span class="s">'status'</span> => <span class="n">409</span>]
+        );
+        }
+        <span class="cm">// Stale lock — take it over</span>
+        <span class="n">$wpdb</span>->update(<span class="n">$wpdb</span>->options,
+        [<span class="s">'option_value'</span> => (string) (<span class="n">$now</span> + <span class="n">10</span>)],
+        [<span class="s">'option_name'</span> => <span class="n">$lock_key</span>]
+        );
+        }
+      </div>
+
+      <div class="callout">
+        <strong>Verified with parallel curl, not browser sessions.</strong>
+        Browser keep-alive sockets serialize concurrent requests, so they would never trigger the race condition. The
+        E2E test uses <code>curl &amp; curl &amp; wait</code> to fire two POSTs from separate TCP sockets: one
+        consistently returns 200 with a session ID and <code>.ics</code> URL, while the other consistently returns 409
+        with "That time was just taken." 32/32 Playwright E2E tests passing, including concurrent booking, availability
+        validation, spoof enforcement, and intake wizard full flow.
+      </div>
+
+      <!-- ═══════════════ §6 · SLOT GENERATION ═══════════════ -->
+      <p class="kicker">6 · Slot Generation</p>
+      <h2>15-minute increments, buffer-enforced, UTC-safe.</h2>
+
+      <p>
+        The <code>GET /dolphin/v1/availability-slots</code> endpoint walks from the coach's availability block start
+        time in 15-minute increments. A candidate slot qualifies only if it satisfies six conditions — the full session
+        duration fits inside the block, the slot start is at least <code>min_lead_time_minutes</code> from now, no
+        overlapping existing sessions with status confirmed/pending/rescheduled exist, the applicable buffer (travel for
+        in-person, standard for video) applies on both sides, the date is not a blocked date, and the date is within the
+        booking horizon. All comparisons in UTC. Returns <code>start</code>/<code>end</code> as <code>HH:MM</code> in
+        site timezone plus ISO-8601 UTC. Capped at 40 slots. Compute-heavy work done server-side so the client never
+        does timezone math.
+      </p>
+
+      <!-- ═══════════════ §7 · FORM ENGINE ═══════════════ -->
+      <p class="kicker">7 · Form Engine</p>
+      <h2>Form definitions as PHP classes. Submissions encrypted at rest.</h2>
+
+      <p>
+        Each form (student intake, SAT accommodations, enrollment, etc.) is a PHP class extending a
+        <code>Portal_Form</code> base. The base class handles rendering, validation, submission storage, and
+        notification dispatch. Individual forms define their fields and validation rules:
+      </p>
+
+      <div class="code-block"><span class="cm">// Plugin: dolphin-portal/src/Forms/IntakeForm.php</span>
+
+        <span class="k">class</span> <span class="n">IntakeForm</span> <span class="k">extends</span> <span
+          class="n">Portal_Form</span> {
+        <span class="k">protected</span> <span class="n">$form_type</span> = <span class="s">'intake'</span>;
+        <span class="k">protected</span> <span class="n">$requires_signature</span> = <span class="n">true</span>;
+
+        <span class="k">public function</span> <span class="n">fields</span>() {
+        <span class="k">return</span> [
+        <span class="s">'student_name'</span> => [<span class="s">'type'</span> => <span class="s">'text'</span>, <span
+          class="s">'required'</span> => <span class="n">true</span>],
+        <span class="s">'student_email'</span> => [<span class="s">'type'</span> => <span class="s">'email'</span>,
+        <span class="s">'required'</span> => <span class="n">true</span>],
+        <span class="s">'student_phone'</span> => [<span class="s">'type'</span> => <span class="s">'tel'</span>, <span
+          class="s">'required'</span> => <span class="n">true</span>],
+        <span class="s">'concern'</span> => [<span class="s">'type'</span> => <span class="s">'select'</span>, <span
+          class="s">'required'</span> => <span class="n">true</span>,
+        <span class="s">'options'</span> => <span class="n">CONCERNS</span>],
+        <span class="s">'programs'</span> => [<span class="s">'type'</span> => <span class="s">'multi_checkbox'</span>,
+        <span class="s">'options_callback'</span> => <span class="s">'get_programs'</span>],
+        ];
+        }
+
+        <span class="k">protected function</span> <span class="n">handle_submission</span>(<span class="n">$data</span>)
+        {
+        <span class="n">$data</span>[<span class="s">'signature_data'</span>] = <span class="n">$this</span>->encrypt(
+        <span class="n">$data</span>[<span class="s">'signature_data'</span>]
+        );
+        <span class="n">$post_id</span> = <span class="n">wp_insert_post</span>([
+        <span class="s">'post_type'</span> => <span class="s">'dolphin_form_entry'</span>,
+        <span class="s">'post_title'</span> => <span class="s">'Intake — '</span> . <span class="n">$data</span>[<span
+          class="s">'student_name'</span>],
+        <span class="s">'post_status'</span> => <span class="s">'publish'</span>,
+        ]);
+        <span class="cm">// Carbon Fields stores _-prefixed meta — same convention as seed data</span>
+        <span class="n">carbon_set_post_meta</span>(<span class="n">$post_id</span>, <span class="s">'form_type'</span>,
+        <span class="s">'intake'</span>);
+        <span class="n">carbon_set_post_meta</span>(<span class="n">$post_id</span>, <span class="s">'status'</span>,
+        <span class="s">'submitted'</span>);
+        <span class="n">carbon_set_post_meta</span>(<span class="n">$post_id</span>, <span class="s">'form_data'</span>,
+        <span class="n">json_encode</span>(<span class="n">$data</span>));
+
+        <span class="n">$this</span>->dispatch_notifications(<span class="n">$post_id</span>, <span
+          class="n">$data</span>);
+        <span class="k">return</span> <span class="n">$post_id</span>;
+        }
+        }
+      </div>
+
+      <!-- ═══════════════ §8 · INTEGRATION ═══════════════ -->
+      <p class="kicker">8 · Integration</p>
+      <h2>Same install, same stack as the marketing site.</h2>
+
+      <p>
+        The portal lives on the same WordPress install as the marketing site, sharing its design tokens, its
+        Timber/Twig rendering, and its Carbon Fields data layer. The portal plugin is a single file —
+        <code>dolphin-portal.php</code> — required from <code>functions.php</code>, so there is no separate server, no
+        microservice, and no authentication bridge to maintain.
+      </p>
+
+      <p>
+        The <code>portal.twig</code> page template handles both states: unauthenticated (login form rendered via the
+        existing <code>portal-login</code> Twig component) and authenticated (role-based dashboard with sidebar
+        navigation, student switcher, and widget grid). The intake wizard reuses the same overlay component pattern as
+        the holiday capsule gallery, and the booking modal reuses the same focus-trap pattern. The reuse is deliberate
+        — the same patterns carry through every surface, which keeps the architecture consistent rather than just the
+        visuals.
+      </p>
+
+      <p>
+        Portal widgets (sessions, forms, documents, notifications) are server-rendered Twig partials that query CPTs
+        filtered by the current user. The page template passes data to components via
+        <code>{% include "components/portal/..." with { variable: value } %}</code>. Components never query data
+        directly — they receive everything from the parent context. This is the same pattern used across the entire
+        theme, from the marketing site to the portal dashboard to the analytics console.
+      </p>
+
+      <!-- ═══════════════ §9 · TESTING ═══════════════ -->
+      <p class="kicker">9 · Testing</p>
+      <h2>32/32 E2E tests. Concurrent booking verified at the database level.</h2>
+
+      <p>
+        The portal's Playwright E2E suite covers the full user lifecycle across all three roles:
+      </p>
+
+      <ul>
+        <li><strong>Family workflow:</strong> login → dashboard → student switcher → booking modal (5 steps, grade
+          filtering, coach cards, date strip) → confirmation with .ics download → intake wizard (4 steps, validation,
+          typed and drawn signatures) → dashboard refresh → sign form → upload document → dismiss notification.</li>
+        <li><strong>Coach workflow:</strong> login → today's sessions → session notes (rich text, HTML sanitization) →
+          availability editor (Mon–Sun grid, blocked dates, save validation) → 7-day preview with capacity line.</li>
+        <li><strong>Admin workflow:</strong> login → stats dashboard → session filters (client-side, no page reload) →
+          form filters → spoof as family (read-only enforcement, 403 on writes, wizard opens but submit disabled) →
+          spoof as coach → exit spoof.</li>
+        <li><strong>Concurrent booking:</strong> parallel curl — one 200, one 409. The transient lock approach failed
+          because the object cache poisoned the miss; the INSERT IGNORE approach succeeded because it is atomic at the
+          database level. The transient failure took an afternoon to diagnose, which is about what you'd expect for a
+          bug that only appears when two requests land within the same cache window.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Every test assertion maps to a business rule.</strong>
+        A family cannot book SAT Prep for a 7th grader, a coach cannot write notes on an unassigned session, and an
+        admin in spoof mode cannot submit an intake form. Availability save rejects overlapping blocks with
+        field-level errors. These are not unit tests — they are business rules verified end-to-end through the actual
+        WordPress REST API at real localhost ports.
+      </div>
+
+      <!-- ═══════════════ FOOTER ═══════════════ -->
+      <footer class="doc-footer">
+        <span><strong>Dolphin Academic Prep</strong> · Portal Architecture Appendix</span>
+        <span>Supporting Document 04 · October 2026</span>
+      </footer>
+
+    </div>
+
+    <script>
+      /* When embedded in the portfolio document viewer, the back link closes the modal
+         instead of navigating the iframe; internal document links paginate the doc set. */
+      document.addEventListener("click", e => {
+        const link = e.target.closest("a");
+        if (!link) return;
+        if (window.self !== window.top) {
+          if (link.classList.contains("doc-back")) {
+            e.preventDefault();
+            window.parent.postMessage({ type: "close-viewer" }, "*");
+            return;
+          }
+          const href = link.getAttribute("href");
+          if (href && !href.startsWith("#") && !href.startsWith("http") && link.target !== "_blank") {
+            e.preventDefault();
+            window.parent.postMessage({ type: "doc-nav", href: href }, "*");
+          }
+        }
+      });
+    </script>
+  </body>
+
+  </html>
+
+  <script>
+
+  </script>
+</body>
+
+</html>
