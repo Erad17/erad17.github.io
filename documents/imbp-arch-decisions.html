@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: white;
+            /* Ensure the iframe has a white background */
+        }
+    </style>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en" data-theme="light">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Architecture Decision Record · Integrative Mind-Body Psychiatry</title>
+        <meta name="description"
+            content="Mini architecture decision record for the Integrative Mind-Body Psychiatry WordPress build — the circadian phase system, the serial essay CPT, and clinical configuration as theme options. Three decisions where the same SPA→CMS pipeline produced different answers than Dolphin Academic Prep.">
+        <style>
+            /* ═══════════════════════════════════════════════════════════════════════
+         INTEGRATIVE MIND-BODY PSYCHIATRY — Mini Architecture Decision Record
+         Same A4 document layout as the Dolphin appendices, skinned with the
+         integrative-psych.html design tokens: paper canvas, pine & sage,
+         glacier blue, gold-leaf hairline. Serif display (Iowan Old Style
+         stack) + system sans, exactly as the prototype's typography.
+         ─────────────────────────────────────────────────────────────────────
+         1. Tokens   2. Page & print   3. Cover   4. Letter body & sections
+         5. Decisions & tables   6. Code & diagrams   7. Footer
+         ═══════════════════════════════════════════════════════════════════════ */
+
+            /* ── 1. TOKENS (from integrative-psych.html) ─────────────────────────── */
+            :root {
+                --paper: #FBFAF6;
+                --paper-2: #F5F3EC;
+                --paper-3: #EDEAE0;
+                --ink: #1C2A24;
+                --ink-soft: #46554D;
+                --ink-faint: #74847B;
+                --pine: #1F3D33;
+                --pine-deep: #13251F;
+                --pine-lift: #2C5546;
+                --sage: #7E9C7B;
+                --sage-soft: #C9D6C3;
+                --sage-wash: #EAF0E7;
+                --glacier: #5F93AC;
+                --glacier-soft: #D3E4EC;
+                --glacier-wash: #EDF4F8;
+                --gold: #A9822B;
+                --gold-soft: #E3D3A6;
+                --gold-wash: #F7F0DD;
+                --danger: #96382B;
+                --danger-wash: #FBEDEA;
+                --success: #3A6E4C;
+                --success-wash: #EAF3EC;
+                --warning: #8A6212;
+                --warning-wash: #F7F0DD;
+                --hairline: rgba(31, 61, 51, .14);
+                --hairline-strong: rgba(31, 61, 51, .26);
+                --surface: #FFFFFF;
+                --shadow-2: 0 2px 6px rgba(19, 37, 31, .07), 0 16px 40px rgba(19, 37, 31, .09);
+                --r-sm: 6px;
+                --r-md: 12px;
+                --r-lg: 20px;
+                --r-xl: 26px;
+                --r-pill: 999px;
+                --font-serif: "Iowan Old Style", "Hoefler Text", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
+                --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+                --fs-hero: 2.5rem;
+                --fs-h1: 1.8rem;
+                --fs-h2: 1.35rem;
+                --fs-h3: 1.1rem;
+                --fs-body: .95rem;
+                --fs-small: .83rem;
+                --fs-micro: .73rem;
+                --lh-tight: 1.08;
+                --lh-body: 1.62;
+                --ls-wide: .14em;
+                --ls-wider: .22em;
+            }
+
+            /* ── 2. PAGE & A4 PRINT LAYOUT ────────────────────────────────────────── */
+            @media print {
+                @page {
+                    size: A4;
+                    margin: 16mm 14mm;
+                }
+
+                :root {
+                    --paper: #fff;
+                    --surface: #fff;
+                    --paper-2: #f5f3ec;
+                    --fs-body: 10pt;
+                    --fs-h1: 17pt;
+                    --fs-h2: 13pt;
+                    --fs-h3: 11pt;
+                }
+
+                body {
+                    background: #fff;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .page {
+                    box-shadow: none;
+                    max-width: 100%;
+                    border-radius: 0;
+                }
+
+                .cover {
+                    border-radius: 0;
+                }
+
+                .decision,
+                .tradeoff,
+                .code-block,
+                .highlight-box,
+                .flow-diagram {
+                    break-inside: avoid;
+                }
+
+                .section-label,
+                h2,
+                h3 {
+                    break-after: avoid;
+                }
+            }
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font: 400 var(--fs-body)/var(--lh-body) var(--font-sans);
+                color: var(--ink);
+                background: var(--paper);
+                -webkit-font-smoothing: antialiased;
+                display: flex;
+                justify-content: center;
+                padding: 40px 16px;
+            }
+
+            .page {
+                max-width: 800px;
+                width: 100%;
+                background: var(--surface);
+                border-radius: var(--r-xl);
+                box-shadow: var(--shadow-2);
+                overflow: hidden;
+            }
+
+            /* ── 3. COVER — pine letterhead with gradient accent bar ──────────────── */
+            .cover {
+                position: relative;
+                background: var(--pine-deep);
+                color: #fff;
+                padding: 52px 44px 44px;
+                overflow: hidden;
+            }
+
+            .cover::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(420px 260px at 90% 0%, rgba(95, 147, 172, .30), transparent 70%),
+                    radial-gradient(340px 240px at 0% 100%, rgba(126, 156, 123, .24), transparent 70%);
+            }
+
+            .cover::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, var(--sage), var(--glacier), var(--gold));
+            }
+
+            .cover>* {
+                position: relative;
+            }
+
+            .cover .tag {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font: 650 var(--fs-micro)/1 var(--font-sans);
+                letter-spacing: var(--ls-wider);
+                text-transform: uppercase;
+                color: var(--gold-soft);
+                margin-bottom: 20px;
+            }
+
+            .cover .tag::before {
+                content: "";
+                width: 28px;
+                height: 1.5px;
+                background: var(--gold-soft);
+            }
+
+            .cover h1 {
+                font: 600 var(--fs-hero)/var(--lh-tight) var(--font-serif);
+                letter-spacing: -.01em;
+                margin-bottom: 12px;
+            }
+
+            .cover h1 em {
+                font-style: italic;
+                color: var(--glacier);
+            }
+
+            .cover .lede {
+                color: rgba(251, 250, 246, .72);
+                max-width: 54ch;
+                margin-top: 8px;
+            }
+
+            .cover .meta {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 18px;
+                font: 600 var(--fs-small)/1.5 var(--font-sans);
+                letter-spacing: var(--ls-wide);
+                text-transform: uppercase;
+                color: rgba(251, 250, 246, .6);
+                margin-top: 24px;
+            }
+
+            .cover .meta strong {
+                color: #fff;
+            }
+
+            /* ── 4. LETTER BODY & SECTION LABELS ──────────────────────────────────── */
+            .letter-body {
+                padding: 44px;
+            }
+
+            @media (max-width:600px) {
+                .cover {
+                    padding: 36px 24px 32px;
+                }
+
+                .letter-body {
+                    padding: 28px 20px;
+                }
+
+                .cover h1 {
+                    font-size: 2rem;
+                }
+            }
+
+            h2 {
+                font: 600 var(--fs-h2)/1.2 var(--font-serif);
+                letter-spacing: -.01em;
+                margin: 40px 0 12px;
+                padding-top: 24px;
+                border-top: 1px solid var(--hairline);
+                color: var(--pine);
+            }
+
+            h2:first-of-type {
+                margin-top: 0;
+                border-top: none;
+                padding-top: 0;
+            }
+
+            h3 {
+                font: 600 var(--fs-h3)/1.2 var(--font-serif);
+                margin: 28px 0 8px;
+                color: var(--pine);
+            }
+
+            p {
+                color: var(--ink-soft);
+                margin-bottom: 14px;
+                max-width: 64ch;
+            }
+
+            strong {
+                color: var(--ink);
+                font-weight: 600;
+            }
+
+            em.tilt {
+                font-style: italic;
+                color: var(--glacier);
+            }
+
+            .letter-body ul,
+            .letter-body ol {
+                color: var(--ink-soft);
+                margin-bottom: 14px;
+                padding-left: 22px;
+            }
+
+            .letter-body li {
+                margin-bottom: 6px;
+            }
+
+            .letter-body li strong {
+                color: var(--ink);
+            }
+
+            code {
+                font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+                font-size: .88em;
+                background: var(--paper-2);
+                padding: .15em .4em;
+                border-radius: 3px;
+                color: var(--ink-soft);
+            }
+
+            /* Section label — the prototype's eyebrow pattern (sans, micro, wide, gold) */
+            .section-label {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font: 650 var(--fs-micro)/1 var(--font-sans);
+                letter-spacing: var(--ls-wider);
+                text-transform: uppercase;
+                color: var(--gold);
+                margin-bottom: 8px;
+            }
+
+            .section-label::after {
+                content: "";
+                height: 1px;
+                width: 42px;
+                background: var(--gold);
+                opacity: .5;
+            }
+
+            /* Highlight box — sage wash, pine hairline rail */
+            .highlight-box {
+                background: var(--sage-wash);
+                border-left: 4px solid var(--pine);
+                border-radius: 0 var(--r-md) var(--r-md) 0;
+                padding: 18px 22px;
+                margin: 24px 0;
+                font-size: var(--fs-small);
+            }
+
+            .highlight-box strong {
+                display: block;
+                margin-bottom: 3px;
+                color: var(--pine);
+            }
+
+            .highlight-box--glacier {
+                background: var(--glacier-wash);
+                border-left-color: var(--glacier);
+            }
+
+            .highlight-box--gold {
+                background: var(--gold-wash);
+                border-left-color: var(--gold);
+            }
+
+            /* ── 5. DECISION BLOCKS & TRADEOFF TABLES ─────────────────────────────── */
+            .decision {
+                border: 1px solid var(--hairline);
+                border-radius: var(--r-lg);
+                margin: 24px 0;
+                overflow: hidden;
+            }
+
+            .decision-header {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 16px 20px;
+                background: var(--paper-2);
+                border-bottom: 1px solid var(--hairline);
+            }
+
+            .decision-header .d-num {
+                width: 36px;
+                height: 36px;
+                border-radius: 9px;
+                background: var(--pine);
+                color: #fff;
+                display: grid;
+                place-items: center;
+                font: 700 var(--fs-small)/1 var(--font-sans);
+                flex: none;
+            }
+
+            .decision-header h3 {
+                margin: 0;
+                font-size: var(--fs-body);
+                font-weight: 600;
+                font-family: var(--font-serif);
+            }
+
+            .decision-body {
+                padding: 18px 20px 20px;
+            }
+
+            .tradeoff {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 16px 0;
+                font-size: var(--fs-small);
+            }
+
+            .tradeoff th {
+                text-align: left;
+                font: 650 var(--fs-micro)/1 var(--font-sans);
+                letter-spacing: var(--ls-wide);
+                text-transform: uppercase;
+                color: var(--ink-faint);
+                padding: 10px 12px;
+                border-bottom: 2px solid var(--hairline);
+                background: var(--paper-2);
+            }
+
+            .tradeoff td {
+                padding: 10px 12px;
+                border-bottom: 1px solid var(--hairline);
+                vertical-align: top;
+                color: var(--ink-soft);
+            }
+
+            .tradeoff td:first-child {
+                font-weight: 600;
+                color: var(--ink);
+            }
+
+            .chosen {
+                color: var(--success);
+                font-weight: 700;
+            }
+
+            .rejected {
+                color: var(--ink-faint);
+            }
+
+            /* ── 6. CODE BLOCKS & FLOW DIAGRAMS ───────────────────────────────────── */
+            .code-block {
+                background: var(--pine-deep);
+                color: var(--glacier-soft);
+                border-radius: var(--r-md);
+                padding: 16px 20px;
+                margin: 16px 0;
+                font: 400 var(--fs-micro)/1.6 ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+                overflow-x: auto;
+                white-space: pre;
+            }
+
+            .code-block .kw {
+                color: var(--gold-soft);
+            }
+
+            .code-block .fn {
+                color: var(--glacier);
+            }
+
+            .code-block .str {
+                color: var(--sage-soft);
+            }
+
+            .code-block .cm {
+                color: rgba(251, 250, 246, .38);
+            }
+
+            .flow-diagram {
+                border: 1px solid var(--hairline);
+                border-radius: var(--r-sm);
+                background: var(--paper-2);
+                padding: 16px 20px;
+                margin: 16px 0;
+                font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+                font-size: var(--fs-micro);
+                line-height: 1.8;
+                color: var(--ink-faint);
+                white-space: pre;
+                overflow-x: auto;
+            }
+
+            /* ── 7. DOCUMENT FOOTER ────────────────────────────────────────────────── */
+            .doc-footer {
+                background: var(--pine-deep);
+                color: rgba(251, 250, 246, .78);
+                padding: 28px 44px;
+                font: 600 var(--fs-micro)/1.6 var(--font-sans);
+                letter-spacing: var(--ls-wide);
+            }
+
+            .doc-footer strong {
+                color: #fff;
+            }
+
+            .doc-footer .doc-fine {
+                color: rgba(251, 250, 246, .62);
+            }
+
+            .doc-footer a {
+                color: var(--glacier);
+                text-decoration: none;
+            }
+
+            .doc-footer a:hover {
+                color: var(--gold-soft);
+            }
+
+            /* back link — returns to the portfolio (closes the modal when embedded) */
+            .doc-back {
+                position: fixed;
+                top: 18px;
+                left: 18px;
+                z-index: 50;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 9px 16px;
+                border-radius: var(--r-pill);
+                background: rgba(19, 37, 31, .92);
+                color: #fff;
+                font: 700 var(--fs-micro)/1 var(--font-sans);
+                letter-spacing: var(--ls-wide);
+                text-transform: uppercase;
+                text-decoration: none;
+                border: 1px solid rgba(251, 250, 246, .22);
+                box-shadow: 0 4px 18px rgba(19, 37, 31, .35);
+                transition: background .2s, border-color .2s, transform .2s;
+            }
+
+            .doc-back:hover {
+                background: var(--pine-lift);
+                border-color: var(--pine-lift);
+                transform: translateY(-1px);
+            }
+
+            @media print {
+                .doc-back {
+                    display: none;
+                }
+            }
+
+            .badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 7px;
+                padding: 6px 12px;
+                border-radius: var(--r-pill);
+                font: 700 var(--fs-micro)/1 var(--font-sans);
+                letter-spacing: .06em;
+            }
+
+            .badge-draft {
+                background: var(--warning-wash);
+                color: var(--warning);
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="page">
+
+            <a href="../index.html#/work" class="doc-back" aria-label="Return to the portfolio">← Portfolio</a>
+
+            <!-- ═══════════════ COVER ═══════════════ -->
+            <header class="cover">
+                <p class="tag">Architecture Decision Record</p>
+                <h1>Integrative Mind-Body Psychiatry<br><em>Rebuild Architecture</em></h1>
+                <p class="lede">
+                    Three decisions where this build deliberately diverges from Dolphin Academic Prep — the circadian
+                    phase
+                    system, the serial essay content model, and clinical configuration as theme options. Same SPA→CMS
+                    pipeline,
+                    different answers, because the prototype asked different questions.
+                </p>
+                <div class="meta">
+                    <span>Project: <strong>Integrative Mind-Body Psychiatry</strong></span>
+                    <span>Prototype: <strong>integrative-psych.html</strong></span>
+                    <span>Stack: <strong>Timber v2 + Carbon Fields</strong></span>
+                </div>
+            </header>
+
+            <div class="letter-body">
+
+                <!-- ═══════════════ CONTEXT ═══════════════ -->
+                <p class="section-label">Context</p>
+                <h2>A clinical journal, not a tutoring site.</h2>
+
+                <p>
+                    The prototype is an <strong>editorial clinical journal</strong> — paper canvas, pine &amp; sage,
+                    glacier
+                    blue, gold-leaf hairlines — for a solo telehealth psychiatry practice serving Utah. It arrived as a
+                    single
+                    monolithic SPA: nine hash-routed views, 829 DOM nodes, 485 CSS rules, 82 JavaScript functions, and a
+                    circadian design system that shifts the ambient palette with the visitor's local time.
+                </p>
+
+                <p>
+                    Like Dolphin Academic Prep, this theme was produced by the <strong>SPA→CMS pipeline</strong> — the
+                    deterministic Phase&nbsp;1 parser, the AI section-map inference, and the Phase&nbsp;2/3 generators
+                    emitted
+                    the same artifact set: <code>section-map.json</code>, <code>css-route-map.json</code>, CPT
+                    registrations
+                    (<code>includes/cpts.php</code>), the Twig component library under <code>views/</code>, scoped
+                    per-component
+                    CSS and JS, <code>global.css</code> + <code>shared.js</code>, and the Phase&nbsp;3 seeders. Pipeline
+                    methodology is documented in the <a href="SPA→CMS Pipeline.html">SPA→CMS Pipeline</a> appendix; this
+                    record
+                    covers only the decisions specific to this project.
+                </p>
+
+                <div class="highlight-box">
+                    <strong>Why a mini ADR.</strong>
+                    Dolphin's rebuild needed eight decisions to escape a fifteen-year-old theme and ten plugins. This
+                    build
+                    started from a clean, well-structured prototype — so the interesting decisions are not "what to
+                    replace"
+                    but <em class="tilt">how to preserve what the prototype already got right</em> while making it
+                    editable.
+                    Three decisions carry that weight.
+                </div>
+
+                <!-- ═══════════════ DECISION 1 ═══════════════ -->
+                <p class="section-label">Decision 1</p>
+                <h2>Circadian Phase System Over Static Theme</h2>
+
+                <div class="decision">
+                    <div class="decision-header">
+                        <span class="d-num">01</span>
+                        <h3>CSS custom properties on :root, driven by a client-side phaseForHour() — no server
+                            dependency</h3>
+                    </div>
+                    <div class="decision-body">
+
+                        <p><strong>Context.</strong> The prototype carries five circadian phases — dawn, morning,
+                            midday, dusk,
+                            night — that shift three ambient tokens (<code>--ambient-a</code>, <code>--ambient-b</code>,
+                            <code>--ambient-c</code>) on <code>:root</code> based on the visitor's local hour. The hero
+                            landscape
+                            art, the phase label, and the footer's "tonight" copy all follow the phase. Unlike Dolphin's
+                            holiday
+                            capsule system — date-based, discrete, tied to specific observances — this is a
+                            <strong>continuous
+                                ambient system</strong>: every visitor, every day, sees the light of their own hour.
+                        </p>
+
+                        <p><strong>Decision.</strong> Implement exactly as the prototype does: a
+                            <code>phaseForHour()</code>
+                            function in <code>shared.js</code> resolves the hour into a phase key,
+                            <code>applyPhase()</code> sets
+                            the <code>data-phase</code> attribute on <code>&lt;html&gt;</code>, and the phase tokens
+                            re-resolve
+                            through the CSS cascade — no style recalculation, no class swapping. Dark mode
+                            <strong>stacks on top of
+                                the phase tokens</strong> rather than replacing them
+                            (<code>[data-theme="dark"][data-phase="dusk"]</code> overrides <code>--ambient-a</code>
+                            alone), so night
+                            reading keeps a trace of the hour. A five-minute interval re-checks the phase;
+                            <code>applyPhase()</code>
+                            emits <code>phase:change</code> on the event bus so components can react without polling.
+                        </p>
+
+                        <div class="code-block"><span class="cm">// assets/js/shared.js — Phase 2d (prototype §3, ported
+                                verbatim)</span>
+                            <span class="kw">function</span> <span class="fn">phaseForHour</span>(h) {
+                            <span class="kw">if</span> (h &gt;= 5 &amp;&amp; h &lt; 9) <span class="kw">return</span> {
+                            key: <span class="str">'dawn'</span>, label: <span class="str">'dawn'</span>, greeting:
+                            <span class="str">'Good morning'</span> };
+                            <span class="kw">if</span> (h &gt;= 9 &amp;&amp; h &lt; 12) <span class="kw">return</span> {
+                            key: <span class="str">'morning'</span>, label: <span class="str">'morning'</span>,
+                            greeting: <span class="str">'Good morning'</span> };
+                            <span class="kw">if</span> (h &gt;= 12 &amp;&amp; h &lt; 17) <span class="kw">return</span>
+                            { key: <span class="str">'midday'</span>, label: <span class="str">'midday'</span>,
+                            greeting: <span class="str">'Good afternoon'</span> };
+                            <span class="kw">if</span> (h &gt;= 17 &amp;&amp; h &lt; 20) <span class="kw">return</span>
+                            { key: <span class="str">'dusk'</span>, label: <span class="str">'dusk'</span>, greeting:
+                            <span class="str">'Good evening'</span> };
+                            <span class="kw">return</span> { key: <span class="str">'night'</span>, label: <span
+                                class="str">'night'</span>, greeting: <span class="str">"It's late"</span> };
+                            }
+
+                            <span class="kw">function</span> <span class="fn">applyPhase</span>(force, root) {
+                            <span class="kw">const</span> p = phaseForHour(<span class="kw">new</span>
+                            Date().getHours());
+                            <span class="kw">if</span> (!force &amp;&amp; currentPhase === p.key) <span
+                                class="kw">return</span>;
+                            currentPhase = p.key;
+                            document.documentElement.setAttribute(<span class="str">'data-phase'</span>, p.key);
+                            <span class="cm">// … phase label, hero art variant, tonight copy, [data-art] landscapes
+                                …</span>
+                            <span class="fn">emit</span>(<span class="str">'phase:change'</span>, { phase: p.key, label:
+                            p.label, greeting: p.greeting });
+                            }
+
+                            setInterval(() =&gt; applyPhase(<span class="kw">false</span>), 300000); <span class="cm">//
+                                circadian re-check every 5 min</span>
+                        </div>
+
+                        <p><strong>Alternative rejected: server-side theme selection via PHP time check.</strong>
+                            Rendering the
+                            phase server-side would let PHP stamp <code>data-phase</code> at request time — but the
+                            prototype
+                            already had the client-side system working, and porting it would add PHP complexity for zero
+                            design
+                            gain. Worse, it would interact badly with page caching: a dusk-stamped page cached at
+                            7&nbsp;p.m. and
+                            served at 9&nbsp;p.m. shows the wrong light. The client-side clock is also the <em
+                                class="tilt">visitor's</em>
+                            clock — a Utah patient reading at 10&nbsp;p.m. gets night regardless of where the server
+                            lives.</p>
+
+                        <p><strong>The Dolphin comparison.</strong> This is the same technique as Dolphin's holiday
+                            capsule
+                            system (Decision&nbsp;7 in its ADR) with a different scheduling model. Both write CSS custom
+                            properties
+                            on <code>:root</code>, both fail to the default brand when anything breaks, both have zero
+                            server
+                            dependencies. The capsule system switches discrete palettes on calendar dates —
+                            fourteen-plus
+                            observances a year; the circadian system interpolates across five hourly bands, every day,
+                            forever.
+                            Same tool, different time constant.</p>
+
+                        <table class="tradeoff">
+                            <thead>
+                                <tr>
+                                    <th>Approach</th>
+                                    <th>Scheduling</th>
+                                    <th>Assessment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Circadian phases (chosen)</strong></td>
+                                    <td>Continuous — five hourly bands, client clock</td>
+                                    <td class="chosen">Preserves the prototype's ambient design verbatim; cache-safe
+                                        (phase resolves
+                                        after paint); dark mode stacks on the phase tokens; zero server dependency.</td>
+                                </tr>
+                                <tr>
+                                    <td>Holiday capsules (Dolphin's model)</td>
+                                    <td>Discrete — calendar dates, specific observances</td>
+                                    <td class="rejected">Wrong fit for a daily-reading clinical journal — the light
+                                        should follow the
+                                        hour, not the calendar. Would discard the prototype's core ambient concept.</td>
+                                </tr>
+                                <tr>
+                                    <td>Server-side PHP phase</td>
+                                    <td>Continuous — server clock at render time</td>
+                                    <td class="rejected">Adds PHP complexity to a solved client-side problem; page-cache
+                                        fragmentation
+                                        serves stale phases; the server's timezone is the wrong reference frame for
+                                        telehealth patients.</td>
+                                </tr>
+                                <tr>
+                                    <td>Static theme</td>
+                                    <td>None</td>
+                                    <td class="rejected">Loses the signature design behavior — the site would no longer
+                                        "know what
+                                        time it is for you," which the copy leans on ("It is already evening where you
+                                        are…").</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <!-- ═══════════════ DECISION 2 ═══════════════ -->
+                <p class="section-label">Decision 2</p>
+                <h2>Serial Essay CPT with Native post_content</h2>
+
+                <div class="decision">
+                    <div class="decision-header">
+                        <span class="d-num">02</span>
+                        <h3>WordPress post_content for the essay body, Carbon Fields for the folio metadata</h3>
+                    </div>
+                    <div class="decision-body">
+
+                        <p><strong>Context.</strong> The practice's signature content is thirteen serial essays across
+                            two series
+                            — nine of thirty perimenopause days, four of twelve relationships days — each with body
+                            paragraphs, a
+                            dek, a pull quote, a margin note, and topic-domain tags. Unlike Dolphin's portal form
+                            entries
+                            (structured fields, encrypted at rest), essays are <strong>editorial content</strong>:
+                            long-form,
+                            sequential, published almost daily, and meant to be read in order — "day 9 assumes you read
+                            day 3."</p>
+
+                        <p><strong>Decision.</strong> Use WordPress's native <code>post_content</code> for the essay
+                            body — the
+                            prototype's <code>body[]</code> array maps one element per paragraph, joined on blank lines,
+                            and the
+                            essay template splits it back with <code>wpautop()</code> applied per part. Everything
+                            folio-specific
+                            is Carbon Fields metadata: <code>series</code> (a select storing the series slug),
+                            <code>day</code>,
+                            <code>read</code>, <code>dek</code>, <code>pull</code> (injected after the third paragraph),
+                            <code>margin{label,text}</code>, and <code>domains</code> (a set feeding the archive search
+                            haystack).
+                            Timber resolves the single view by CPT slug — <code>single-imbp_essay</code> renders
+                            <code>views/pages/essay.twig</code> — and the post slug maps directly onto the SPA hash
+                            route:
+                            <code>#/essays/the-3-am-wake-up</code> becomes <code>/essays/the-3-am-wake-up/</code>.
+                        </p>
+
+                        <div class="code-block"><span class="cm">// includes/cpts.php — Phase 2a (abridged)</span>
+                            <span class="fn">register_post_type</span>( <span class="str">'imbp_essay'</span>, [
+                            <span class="cm">// body[] → post_content: one prototype array element per paragraph.</span>
+                            <span class="str">'supports'</span> =&gt; [ <span class="str">'title'</span>, <span
+                                class="str">'editor'</span>, <span class="str">'revisions'</span> ],
+                            <span class="str">'has_archive'</span> =&gt; <span class="kw">false</span>, <span
+                                class="cm">// the #/essays page renders the grids</span>
+                            <span class="str">'rewrite'</span> =&gt; [ <span class="str">'slug'</span> =&gt; <span
+                                class="str">'essays'</span>, <span class="str">'with_front'</span> =&gt; <span
+                                class="kw">false</span> ],
+                            ] );
+
+                            Container::<span class="fn">make</span>( <span class="str">'post_meta'</span>, <span
+                                class="str">'Essay Details'</span> )
+                            -&gt;<span class="fn">where</span>( <span class="str">'post_type'</span>, <span
+                                class="str">'='</span>, <span class="str">'imbp_essay'</span> )
+                            -&gt;<span class="fn">add_fields</span>( [
+                            Field::<span class="fn">make</span>( <span class="str">'select'</span>, <span
+                                class="str">'series'</span>, <span class="str">'Series'</span> ) <span class="cm">//
+                                stores the series slug — the join key</span>
+                            -&gt;<span class="fn">add_options</span>( <span class="fn">get_series_options</span>() ),
+                            Field::<span class="fn">make</span>( <span class="str">'text'</span>, <span
+                                class="str">'day'</span>, <span class="str">'Day number'</span> ),
+                            Field::<span class="fn">make</span>( <span class="str">'textarea'</span>, <span
+                                class="str">'dek'</span>, <span class="str">'Dek'</span> ),
+                            Field::<span class="fn">make</span>( <span class="str">'textarea'</span>, <span
+                                class="str">'pull'</span>, <span class="str">'Pull quote'</span> ),
+                            Field::<span class="fn">make</span>( <span class="str">'complex'</span>, <span
+                                class="str">'margin'</span>, <span class="str">'Margin note'</span> ),
+                            Field::<span class="fn">make</span>( <span class="str">'set'</span>, <span
+                                class="str">'domains'</span>, <span class="str">'Topic domains'</span> ),
+                            ] );
+                        </div>
+
+                        <p><strong>Alternative rejected: a Carbon Fields complex repeater for body paragraphs.</strong>
+                            A
+                            repeater would keep every folio field in one metabox — but <code>post_content</code> gives
+                            editors the
+                            WordPress editor they already know, native revisions on every save (an audit trail for
+                            clinical
+                            writing), and integration with any future SEO or feed plugin that expects real content
+                            rather than
+                            meta. The body is the essay; it should not be metadata.</p>
+
+                        <p><strong>The parse-map miss.</strong> The Phase&nbsp;1 section map did not detect the
+                            <code>SERIES</code> array at all — it is a keyed lookup object rather than a rendered list,
+                            so neither
+                            the repeater detector nor the data-array scan caught it. The Phase&nbsp;2a agent discovered
+                            it reading
+                            the JS source while mapping field keys, and registered <code>imbp_series</code> as a CPT
+                            because the
+                            essay architecture cannot function without it: essays join on the series slug, and the index
+                            cards,
+                            archive grouping, and folio progress tracker all read series totals. The miss and its
+                            recovery are
+                            recorded in the <code>cpts.php</code> header so the discrepancy is traceable, not silent.
+                        </p>
+
+                        <table class="tradeoff">
+                            <thead>
+                                <tr>
+                                    <th>Approach</th>
+                                    <th>Assessment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Native post_content + Carbon metadata (chosen)</strong></td>
+                                    <td class="chosen">Editors get the editor they know; revisions come free; the body
+                                        is first-class
+                                        content for search, feeds, and future SEO tooling; the pull quote and margin
+                                        note stay structured
+                                        and position-stable in the template.</td>
+                                </tr>
+                                <tr>
+                                    <td>Carbon Fields repeater for body paragraphs</td>
+                                    <td class="rejected">Uniform metabox, but the essay body becomes meta — no native
+                                        revisions, no
+                                        editor familiarity, no feed/SEO surface, and paragraph-level wpautop handling
+                                        must be reimplemented.</td>
+                                </tr>
+                                <tr>
+                                    <td>Custom tables</td>
+                                    <td class="rejected">Maximum control, maximum cost — hand-rolled admin UI, no REST,
+                                        no revision
+                                        history, and a migration burden the practice gains nothing from.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <!-- ═══════════════ DECISION 3 ═══════════════ -->
+                <p class="section-label">Decision 3</p>
+                <h2>Reflection Map as Theme Options, Not CPT</h2>
+
+                <div class="decision">
+                    <div class="decision-header">
+                        <span class="d-num">03</span>
+                        <h3>Clinical configuration lives in a Carbon Fields theme-options container — scored entirely
+                            client-side</h3>
+                    </div>
+                    <div class="decision-body">
+
+                        <p><strong>Context.</strong> The Root-Cause Reflection Map is the practice's signature tool:
+                            eight
+                            questions, thirty-three answer options, each option carrying per-system weights (sleep,
+                            mood, hormones,
+                            gut, stress), a ring assignment (mind / body / gut), and — on the final history question — a
+                            care-lane
+                            routing key. It renders the visitor's answers as a living mind-body-gut pattern and a lane
+                            recommendation. This is <strong>clinical configuration</strong>: it changes infrequently,
+                            and when it
+                            changes, it changes with intent.</p>
+
+                        <p><strong>Decision.</strong> Store it as a Carbon Fields <strong>Theme Options</strong>
+                            container
+                            ("Root-Cause Reflection Map"), not as a CPT. The prototype's nested weight map —
+                            <code>o.w{sleep,mood,hormones,gut,stress}</code> — is flattened to <code>w_*</code> number
+                            sub-fields
+                            (0–3, an absent key equals 0) so the editor presents one row per weight rather than a nested
+                            object.
+                            The container is localized to <code>window.IntegrstivFinis</code> via
+                            <code>wp_localize_script()</code>, and the scoring engine (<code>maxWeights</code>,
+                            <code>score</code>, <code>careLane</code>, <code>results</code>) runs entirely in the
+                            browser. The
+                            prototype's own privacy copy is the contract: <em class="tilt">client-side only — nothing
+                                stored or
+                                transmitted.</em>
+                        </p>
+
+                        <div class="code-block"><span class="cm">// includes/cpts.php — "Root-Cause Reflection Map"
+                                theme options (abridged)</span>
+                            Container::<span class="fn">make</span>( <span class="str">'theme_options'</span>, <span
+                                class="str">'Root-Cause Reflection Map'</span> )
+                            -&gt;<span class="fn">add_fields</span>( [
+                            Field::<span class="fn">make</span>( <span class="str">'complex'</span>, <span
+                                class="str">'questions'</span>, <span class="str">'Questions'</span> )
+                            -&gt;<span class="fn">add_fields</span>( [
+                            Field::<span class="fn">make</span>( <span class="str">'text'</span>, <span
+                                class="str">'tag'</span>, <span class="str">'Tag'</span> ),
+                            Field::<span class="fn">make</span>( <span class="str">'select'</span>, <span
+                                class="str">'ring'</span>, <span class="str">'Ring'</span> ), <span class="cm">// mind |
+                                body | gut</span>
+                            Field::<span class="fn">make</span>( <span class="str">'textarea'</span>, <span
+                                class="str">'q'</span>, <span class="str">'Question text'</span> ),
+                            Field::<span class="fn">make</span>( <span class="str">'complex'</span>, <span
+                                class="str">'opts'</span>, <span class="str">'Answer options'</span> )
+                            -&gt;<span class="fn">add_fields</span>( [
+                            Field::<span class="fn">make</span>( <span class="str">'text'</span>, <span
+                                class="str">'l'</span>, <span class="str">'Option label'</span> ),
+                            Field::<span class="fn">make</span>( <span class="str">'text'</span>, <span
+                                class="str">'w_sleep'</span>, <span class="str">'Weight — sleep'</span> ), <span
+                                class="cm">// 0–3</span>
+                            Field::<span class="fn">make</span>( <span class="str">'text'</span>, <span
+                                class="str">'w_mood'</span>, <span class="str">'Weight — mood'</span> ),
+                            <span class="cm">// … w_hormones · w_gut · w_stress …</span>
+                            Field::<span class="fn">make</span>( <span class="str">'select'</span>, <span
+                                class="str">'lane'</span>, <span class="str">'Care-lane routing'</span> ),
+                            ] ),
+                            ] ),
+                            ] );
+                        </div>
+
+                        <p><strong>Alternative rejected: a CPT for questions with answers as child posts.</strong> The
+                            reflection
+                            map is behavioral configuration, not editorial content. Clinicians update weights; daily
+                            content
+                            editors never touch it. A CPT would add an admin archive, a public rewrite slug, and REST
+                            exposure for
+                            data that must never leave the page — the opposite of the privacy posture. Theme options
+                            keep it in
+                            one screen, editable with clinical intent, and out of every public surface.</p>
+
+                        <table class="tradeoff">
+                            <thead>
+                                <tr>
+                                    <th>Approach</th>
+                                    <th>Assessment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Theme Options container (chosen)</strong></td>
+                                    <td class="chosen">One screen for the whole instrument; flattened weights are
+                                        reviewable at a
+                                        glance; localized to the client and scored in-browser — zero PHI transmission,
+                                        nothing stored.</td>
+                                </tr>
+                                <tr>
+                                    <td>CPT with child answer posts</td>
+                                    <td class="rejected">Editorial machinery (archive, rewrite slugs, REST routes) for
+                                        configuration
+                                        data; public surfaces for clinical weights; a join model for what is
+                                        fundamentally one screen.</td>
+                                </tr>
+                                <tr>
+                                    <td>Hardcoded in JavaScript</td>
+                                    <td class="rejected">Faithful to the prototype, but weight changes become developer
+                                        tasks — and
+                                        the practice loses the ability to tune its own instrument.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="highlight-box highlight-box--glacier">
+                            <strong>The privacy posture is architectural, not procedural.</strong>
+                            The intake form submits to an external endpoint and the site's own copy states that nothing
+                            written
+                            there is stored in the website's database. The reflection map extends the same posture: the
+                            weights
+                            live in theme options, the scoring runs client-side, and no answer ever touches a WordPress
+                            table.
+                            Where Dolphin's portal encrypts student data at rest, this build keeps patient-adjacent data
+                            out of
+                            the database entirely — the lighter compliance surface a marketing site for a practice can
+                            hold.
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ═══════════════ SUMMARY ═══════════════ -->
+                <p class="section-label">Summary</p>
+                <h2>How this build diverges from Dolphin.</h2>
+
+                <p>
+                    The pipeline is identical; the answers are not. The table below is the delta — every row is a place
+                    where
+                    the same pipeline question ("how should this prototype behavior become WordPress?") got a different
+                    answer
+                    because the domain demanded it.
+                </p>
+
+                <table class="tradeoff">
+                    <thead>
+                        <tr>
+                            <th>Dimension</th>
+                            <th>Dolphin Academic Prep</th>
+                            <th>Integrative Mind-Body Psychiatry</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Ambient theming</strong></td>
+                            <td>Holiday capsules — 14+ date-based observances, discrete palettes</td>
+                            <td>Circadian phases — five hourly bands, continuous, dark-mode-stacked</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Editorial body</strong></td>
+                            <td>Structured CPT fields (services, coverage areas, FAQs)</td>
+                            <td>Native <code>post_content</code> + Carbon folio metadata (dek, pull quote, margin note)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Clinical config</strong></td>
+                            <td>Portal settings, spoof mode in user meta</td>
+                            <td>Reflection weights in theme options, scored client-side</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Signature tool</strong></td>
+                            <td>Booking engine with atomic database locks</td>
+                            <td>Root-Cause Reflection Map with weighted mind-body-gut scoring</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Compliance surface</strong></td>
+                            <td>FERPA-minded portal — AES-256 at rest, audit trails</td>
+                            <td>HIPAA-aware marketing site — no PHI in the database at all</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CPTs registered</strong></td>
+                            <td>9</td>
+                            <td>4 (essay, series, service, resource)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight-box highlight-box--gold">
+                    <strong>Same pipeline, different answers.</strong>
+                    None of these decisions required pipeline customization. The circadian system was extracted as a
+                    shared
+                    utility exactly as the capsule system was; the essay model came from the same data-array
+                    classification
+                    rules; the reflection container came from the same configuration-vs-editorial test. The pipeline
+                    asks the
+                    questions — the prototype's own architecture supplies the answers.
+                </div>
+
+            </div>
+
+            <!-- ═══════════════ FOOTER ═══════════════ -->
+            <footer class="doc-footer">
+                <p><strong>Integrative Mind-Body Psychiatry</strong> · Architecture Decision Record</p>
+                <p style="margin-top:4px;">Portfolio documentation · October 2026 · <span
+                        class="badge badge-draft">DRAFT</span></p>
+                <p class="doc-fine" style="margin-top:12px;font-size:.7rem;">Produced by the SPA→CMS pipeline —
+                    methodology in
+                    the
+                    <a href="SPA→CMS Pipeline.html">SPA→CMS Pipeline</a> appendix. All decisions based on the
+                    integrative-psych.html prototype and the .pipeline artifacts (section-map.json, css-route-map.json,
+                    includes/cpts.php). Prepared as a portfolio artifact.
+                </p>
+            </footer>
+
+        </div>
+
+        <script>
+            /* When embedded in the portfolio document viewer, the back link closes the modal
+               instead of navigating the iframe; internal document links paginate the doc set. */
+            document.addEventListener("click", e => {
+                const link = e.target.closest("a");
+                if (!link) return;
+                if (window.self !== window.top) {
+                    if (link.classList.contains("doc-back")) {
+                        e.preventDefault();
+                        window.parent.postMessage({ type: "close-viewer" }, "*");
+                        return;
+                    }
+                    const href = link.getAttribute("href");
+                    if (href && !href.startsWith("#") && !href.startsWith("http") && link.target !== "_blank") {
+                        e.preventDefault();
+                        window.parent.postMessage({ type: "doc-nav", href: href }, "*");
+                    }
+                }
+            });
+        </script>
+    </body>
+
+    </html>
+
+    <script>
+
+    </script>
+</body>
+
+</html>

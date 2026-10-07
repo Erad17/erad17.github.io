@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: white;
+            /* Ensure the iframe has a white background */
+        }
+    </style>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en" data-theme="light">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Content Architecture · Integrative Mind-Body Psychiatry</title>
+        <meta name="description"
+            content="Content architecture appendix for Integrative Mind-Body Psychiatry — four CPTs, two theme-option containers, the series join key, the Care-Lane Compass, and the client-side Root-Cause Reflection Map.">
+        <style>
+            /* ═══════════════════════════════════════════════════════════════════════
+         INTEGRATIVE MIND-BODY PSYCHIATRY — Content Architecture Appendix
+         Same A4 document layout as the Dolphin appendices, skinned with the
+         integrative-psych.html design tokens: paper canvas, pine & sage,
+         glacier blue, gold-leaf hairline. Serif display (Iowan Old Style
+         stack) + system sans, exactly as the prototype's typography.
+         ─────────────────────────────────────────────────────────────────────
+         1. Tokens   2. Page & print   3. Cover   4. Letter body & sections
+         5. Tables & cards   6. Code & diagrams   7. Footer
+         ═══════════════════════════════════════════════════════════════════════ */
+
+            /* ── 1. TOKENS (from integrative-psych.html) ─────────────────────────── */
+            :root {
+                --paper: #FBFAF6;
+                --paper-2: #F5F3EC;
+                --paper-3: #EDEAE0;
+                --ink: #1C2A24;
+                --ink-soft: #46554D;
+                --ink-faint: #74847B;
+                --pine: #1F3D33;
+                --pine-deep: #13251F;
+                --pine-lift: #2C5546;
+                --sage: #7E9C7B;
+                --sage-soft: #C9D6C3;
+                --sage-wash: #EAF0E7;
+                --glacier: #5F93AC;
+                --glacier-soft: #D3E4EC;
+                --glacier-wash: #EDF4F8;
+                --gold: #A9822B;
+                --gold-soft: #E3D3A6;
+                --gold-wash: #F7F0DD;
+                --danger: #96382B;
+                --danger-wash: #FBEDEA;
+                --success: #3A6E4C;
+                --success-wash: #EAF3EC;
+                --warning: #8A6212;
+                --warning-wash: #F7F0DD;
+                --hairline: rgba(31, 61, 51, .14);
+                --hairline-strong: rgba(31, 61, 51, .26);
+                --surface: #FFFFFF;
+                --shadow-2: 0 2px 6px rgba(19, 37, 31, .07), 0 16px 40px rgba(19, 37, 31, .09);
+                --r-sm: 6px;
+                --r-md: 12px;
+                --r-lg: 20px;
+                --r-xl: 26px;
+                --r-pill: 999px;
+                --font-serif: "Iowan Old Style", "Hoefler Text", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
+                --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+                --fs-hero: 2.5rem;
+                --fs-h1: 1.8rem;
+                --fs-h2: 1.35rem;
+                --fs-h3: 1.1rem;
+                --fs-body: .95rem;
+                --fs-small: .83rem;
+                --fs-micro: .73rem;
+                --lh-tight: 1.08;
+                --lh-body: 1.62;
+                --ls-wide: .14em;
+                --ls-wider: .22em;
+            }
+
+            /* ── 2. PAGE & A4 PRINT LAYOUT ────────────────────────────────────────── */
+            @media print {
+                @page {
+                    size: A4;
+                    margin: 16mm 14mm;
+                }
+
+                :root {
+                    --paper: #fff;
+                    --surface: #fff;
+                    --paper-2: #f5f3ec;
+                    --fs-body: 10pt;
+                    --fs-h1: 17pt;
+                    --fs-h2: 13pt;
+                    --fs-h3: 11pt;
+                }
+
+                body {
+                    background: #fff;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .page {
+                    box-shadow: none;
+                    max-width: 100%;
+                    border-radius: 0;
+                }
+
+                .cover {
+                    border-radius: 0;
+                }
+
+                .cpt-card,
+                .tradeoff,
+                .code-block,
+                .highlight-box,
+                .flow-diagram {
+                    break-inside: avoid;
+                }
+
+                .section-label,
+                h2,
+                h3 {
+                    break-after: avoid;
+                }
+            }
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font: 400 var(--fs-body)/var(--lh-body) var(--font-sans);
+                color: var(--ink);
+                background: var(--paper);
+                -webkit-font-smoothing: antialiased;
+                display: flex;
+                justify-content: center;
+                padding: 40px 16px;
+            }
+
+            .page {
+                max-width: 800px;
+                width: 100%;
+                background: var(--surface);
+                border-radius: var(--r-xl);
+                box-shadow: var(--shadow-2);
+                overflow: hidden;
+            }
+
+            /* ── 3. COVER — pine letterhead with gradient accent bar ──────────────── */
+            .cover {
+                position: relative;
+                background: var(--pine-deep);
+                color: #fff;
+                padding: 52px 44px 44px;
+                overflow: hidden;
+            }
+
+            .cover::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(420px 260px at 90% 0%, rgba(95, 147, 172, .30), transparent 70%),
+                    radial-gradient(340px 240px at 0% 100%, rgba(126, 156, 123, .24), transparent 70%);
+            }
+
+            .cover::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, var(--sage), var(--glacier), var(--gold));
+            }
+
+            .cover>* {
+                position: relative;
+            }
+
+            .cover .tag {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font: 650 var(--fs-micro)/1 var(--font-sans);
+                letter-spacing: var(--ls-wider);
+                text-transform: uppercase;
+                color: var(--gold-soft);
+                margin-bottom: 20px;
+            }
+
+            .cover .tag::before {
+                content: "";
+                width: 28px;
+                height: 1.5px;
+                background: var(--gold-soft);
+            }
+
+            .cover h1 {
+                font: 600 var(--fs-hero)/var(--lh-tight) var(--font-serif);
+                letter-spacing: -.01em;
+                margin-bottom: 12px;
+            }
+
+            .cover h1 em {
+                font-style: italic;
+                color: var(--glacier);
+            }
+
+            .cover .lede {
+                color: rgba(251, 250, 246, .72);
+                max-width: 54ch;
+                margin-top: 8px;
+            }
+
+            .cover .meta {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 18px;
+                font: 600 var(--fs-small)/1.5 var(--font-sans);
+                letter-spacing: var(--ls-wide);
+                text-transform: uppercase;
+                color: rgba(251, 250, 246, .6);
+                margin-top: 24px;
+            }
+
+            .cover .meta strong {
+                color: #fff;
+            }
+
+            /* ── 4. LETTER BODY & SECTION LABELS ──────────────────────────────────── */
+            .letter-body {
+                padding: 44px;
+            }
+
+            @media (max-width:600px) {
+                .cover {
+                    padding: 36px 24px 32px;
+                }
+
+                .letter-body {
+                    padding: 28px 20px;
+                }
+
+                .cover h1 {
+                    font-size: 2rem;
+                }
+            }
+
+            h2 {
+                font: 600 var(--fs-h2)/1.2 var(--font-serif);
+                letter-spacing: -.01em;
+                margin: 40px 0 12px;
+                padding-top: 24px;
+                border-top: 1px solid var(--hairline);
+                color: var(--pine);
+            }
+
+            h2:first-of-type {
+                margin-top: 0;
+                border-top: none;
+                padding-top: 0;
+            }
+
+            h3 {
+                font: 600 var(--fs-h3)/1.2 var(--font-serif);
+                margin: 28px 0 8px;
+                color: var(--pine);
+            }
+
+            p {
+                color: var(--ink-soft);
+                margin-bottom: 14px;
+                max-width: 64ch;
+            }
+
+            strong {
+                color: var(--ink);
+                font-weight: 600;
+            }
+
+            em.tilt {
+                font-style: italic;
+                color: var(--glacier);
+            }
+
+            .letter-body ul,
+            .letter-body ol {
+                color: var(--ink-soft);
+                margin-bottom: 14px;
+                padding-left: 22px;
+            }
+
+            .letter-body li {
+                margin-bottom: 6px;
+            }
+
+            .letter-body li strong {
+                color: var(--ink);
+            }
+
+            code {
+                font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+                font-size: .88em;
+                background: var(--paper-2);
+                padding: .15em .4em;
+                border-radius: 3px;
+                color: var(--ink-soft);
+            }
+
+            /* Section label — the prototype's eyebrow pattern (sans, micro, wide, gold) */
+            .section-label {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font: 650 var(--fs-micro)/1 var(--font-sans);
+                letter-spacing: var(--ls-wider);
+                text-transform: uppercase;
+                color: var(--gold);
+                margin-bottom: 8px;
+            }
+
+            .section-label::after {
+                content: "";
+                height: 1px;
+                width: 42px;
+                background: var(--gold);
+                opacity: .5;
+            }
+
+            /* Highlight box — sage wash, pine hairline rail */
+            .highlight-box {
+                background: var(--sage-wash);
+                border-left: 4px solid var(--pine);
+                border-radius: 0 var(--r-md) var(--r-md) 0;
+                padding: 18px 22px;
+                margin: 24px 0;
+                font-size: var(--fs-small);
+            }
+
+            .highlight-box strong {
+                display: block;
+                margin-bottom: 3px;
+                color: var(--pine);
+            }
+
+            .highlight-box--glacier {
+                background: var(--glacier-wash);
+                border-left-color: var(--glacier);
+            }
+
+            .highlight-box--gold {
+                background: var(--gold-wash);
+                border-left-color: var(--gold);
+            }
+
+            /* ── 5. CPT CARDS & TRADEOFF TABLES ───────────────────────────────────── */
+            .cpt-card {
+                border: 1px solid var(--hairline);
+                border-radius: var(--r-lg);
+                margin: 24px 0;
+                overflow: hidden;
+            }
+
+            .cpt-card-header {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 16px 20px;
+                background: var(--paper-2);
+                border-bottom: 1px solid var(--hairline);
+            }
+
+            .cpt-card-header .c-num {
+                width: 36px;
+                height: 36px;
+                border-radius: 9px;
+                background: var(--pine);
+                color: #fff;
+                display: grid;
+                place-items: center;
+                font: 700 var(--fs-small)/1 var(--font-sans);
+                flex: none;
+            }
+
+            .cpt-card-header h3 {
+                margin: 0;
+                font-size: var(--fs-body);
+                font-weight: 600;
+                font-family: var(--font-serif);
+            }
+
+            .cpt-card-header .count {
+                margin-left: auto;
+                font: 650 var(--fs-micro)/1 var(--font-sans);
+                letter-spacing: var(--ls-wide);
+                text-transform: uppercase;
+                color: var(--glacier);
+                padding: 4px 10px;
+                border-radius: var(--r-pill);
+                background: var(--glacier-wash);
+            }
+
+            .cpt-card-body {
+                padding: 18px 20px 20px;
+            }
+
+            .tradeoff {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 16px 0;
+                font-size: var(--fs-small);
+            }
+
+            .tradeoff th {
+                text-align: left;
+                font: 650 var(--fs-micro)/1 var(--font-sans);
+                letter-spacing: var(--ls-wide);
+                text-transform: uppercase;
+                color: var(--ink-faint);
+                padding: 10px 12px;
+                border-bottom: 2px solid var(--hairline);
+                background: var(--paper-2);
+            }
+
+            .tradeoff td {
+                padding: 10px 12px;
+                border-bottom: 1px solid var(--hairline);
+                vertical-align: top;
+                color: var(--ink-soft);
+            }
+
+            .tradeoff td:first-child {
+                font-weight: 600;
+                color: var(--ink);
+            }
+
+            .chosen {
+                color: var(--success);
+                font-weight: 700;
+            }
+
+            .rejected {
+                color: var(--ink-faint);
+            }
+
+            /* ── 6. CODE BLOCKS & FLOW DIAGRAMS ───────────────────────────────────── */
+            .code-block {
+                background: var(--pine-deep);
+                color: var(--glacier-soft);
+                border-radius: var(--r-md);
+                padding: 16px 20px;
+                margin: 16px 0;
+                font: 400 var(--fs-micro)/1.6 ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+                overflow-x: auto;
+                white-space: pre;
+            }
+
+            .code-block .kw {
+                color: var(--gold-soft);
+            }
+
+            .code-block .fn {
+                color: var(--glacier);
+            }
+
+            .code-block .str {
+                color: var(--sage-soft);
+            }
+
+            .code-block .cm {
+                color: rgba(251, 250, 246, .38);
+            }
+
+            .flow-diagram {
+                border: 1px solid var(--hairline);
+                border-radius: var(--r-sm);
+                background: var(--paper-2);
+                padding: 16px 20px;
+                margin: 16px 0;
+                font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+                font-size: var(--fs-micro);
+                line-height: 1.8;
+                color: var(--ink-faint);
+                white-space: pre;
+                overflow-x: auto;
+            }
+
+            /* ── 7. DOCUMENT FOOTER ────────────────────────────────────────────────── */
+            .doc-footer {
+                background: var(--pine-deep);
+                color: rgba(251, 250, 246, .78);
+                padding: 28px 44px;
+                font: 600 var(--fs-micro)/1.6 var(--font-sans);
+                letter-spacing: var(--ls-wide);
+            }
+
+            .doc-footer strong {
+                color: #fff;
+            }
+
+            .doc-footer .doc-fine {
+                color: rgba(251, 250, 246, .62);
+            }
+
+            .doc-footer a {
+                color: var(--glacier);
+                text-decoration: none;
+            }
+
+            .doc-footer a:hover {
+                color: var(--gold-soft);
+            }
+
+            /* back link — returns to the portfolio (closes the modal when embedded) */
+            .doc-back {
+                position: fixed;
+                top: 18px;
+                left: 18px;
+                z-index: 50;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 9px 16px;
+                border-radius: var(--r-pill);
+                background: rgba(19, 37, 31, .92);
+                color: #fff;
+                font: 700 var(--fs-micro)/1 var(--font-sans);
+                letter-spacing: var(--ls-wide);
+                text-transform: uppercase;
+                text-decoration: none;
+                border: 1px solid rgba(251, 250, 246, .22);
+                box-shadow: 0 4px 18px rgba(19, 37, 31, .35);
+                transition: background .2s, border-color .2s, transform .2s;
+            }
+
+            .doc-back:hover {
+                background: var(--pine-lift);
+                border-color: var(--pine-lift);
+                transform: translateY(-1px);
+            }
+
+            @media print {
+                .doc-back {
+                    display: none;
+                }
+            }
+
+            .badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 7px;
+                padding: 6px 12px;
+                border-radius: var(--r-pill);
+                font: 700 var(--fs-micro)/1 var(--font-sans);
+                letter-spacing: .06em;
+            }
+
+            .badge-draft {
+                background: var(--warning-wash);
+                color: var(--warning);
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="page">
+
+            <a href="../index.html#/work" class="doc-back" aria-label="Return to the portfolio">← Portfolio</a>
+
+            <!-- ═══════════════ COVER ═══════════════ -->
+            <header class="cover">
+                <p class="tag">Content Architecture</p>
+                <h1>Integrative Mind-Body Psychiatry<br><em>Content Architecture</em></h1>
+                <p class="lede">
+                    How the prototype's JavaScript data arrays became a WordPress content model — four CPTs, two
+                    theme-option
+                    containers, one join key, and a clinical instrument that never touches the database.
+                </p>
+                <div class="meta">
+                    <span>CPTs: <strong>4</strong></span>
+                    <span>Theme options: <strong>2 containers</strong></span>
+                    <span>Seeded posts: <strong>26</strong></span>
+                </div>
+            </header>
+
+            <div class="letter-body">
+
+                <!-- ═══════════════ INTRO ═══════════════ -->
+                <p class="section-label">Overview</p>
+                <h2>From data arrays to a content model.</h2>
+
+                <p>
+                    The prototype held its content in JavaScript array literals — <code>SERIES</code>,
+                    <code>ESSAYS</code>,
+                    <code>SERVICES</code>, <code>RESOURCES</code>, <code>INSURERS</code>, <code>REFLECTION</code> —
+                    rendered
+                    client-side by builder functions. The SPA→CMS pipeline's Phase&nbsp;2a classified each array with
+                    the same
+                    test used across all three projects: <em class="tilt">editorial content becomes a CPT, configuration
+                        becomes theme options, transient data stays out of the CMS.</em> This document records what that
+                    test
+                    produced here, and where the pipeline had to adapt.
+                </p>
+
+                <p>
+                    The full pipeline methodology — deterministic parsing, AI section-map inference, CPT registration,
+                    Twig
+                    component generation, and event bus wiring — is documented in the <a
+                        href="SPA→CMS Pipeline.html">SPA→CMS
+                        Pipeline</a> appendix. This project ran the identical pipeline as Dolphin Academic Prep and the
+                    Portfolio build; the outputs below are the project-specific artifacts:
+                    <code>section-map.json</code>,
+                    <code>css-route-map.json</code>, <code>includes/cpts.php</code>, the Twig component library under
+                    <code>views/</code>, and the Phase&nbsp;3 seeders.
+                </p>
+
+                <div class="flow-diagram">
+                    ╔══════════════════════════════════════════════════════════════════╗
+                    ║ CONTENT MODEL — PROTOTYPE ARRAY → WORDPRESS ║
+                    ╠══════════════════════════════════════════════════════════════════╣
+                    ║ ║
+                    ║ SERIES (keyed object) ──▶ imbp_series CPT 2 posts ║
+                    ║ ESSAYS (13 items) ──▶ imbp_essay CPT 13 posts ║
+                    ║ SERVICES (6 items) ──▶ imbp_service CPT 6 posts ║
+                    ║ RESOURCES (5 items) ──▶ imbp_resource CPT 5 posts ║
+                    ║ ║
+                    ║ INSURERS + HEADWAY_URL ──▶ "Care-Lane Compass" options ║
+                    ║ REFLECTION (8 questions) ──▶ "Root-Cause Reflection" options ║
+                    ║ ║
+                    ║ QUOTES 0 entries observed — no CPT registered ║
+                    ║ LANE_ACCENT / LAND design tokens — ported to CSS, not CMS ║
+                    ║ ROUTES SPA routing table — replaced by Phase 3b pages ║
+                    ║ ║
+                    ╚══════════════════════════════════════════════════════════════════╝</div>
+
+                <!-- ═══════════════ §1 · CPT DESIGN ═══════════════ -->
+                <p class="section-label">1 · CPT Design</p>
+                <h2>Four post types, one join key.</h2>
+
+                <p>
+                    Every CPT registers with <code>show_in_rest =&gt; true</code> and
+                    <code>has_archive =&gt; false</code> —
+                    the SPA page routes (<code>#/essays</code>, <code>#/services</code>, …) become WordPress pages in
+                    Phase&nbsp;3b, and the grids render <em class="tilt">on those pages</em>. CPT rewrite slugs provide
+                    only
+                    the single views, which coexist with the pages without rule collisions.
+                </p>
+
+                <div class="cpt-card">
+                    <div class="cpt-card-header">
+                        <span class="c-num">01</span>
+                        <h3>imbp_essay — Serial Essays</h3>
+                        <span class="count">13 entries</span>
+                    </div>
+                    <div class="cpt-card-body">
+                        <p>
+                            Nine perimenopause installments (days 1–30) and four relationships installments (days 1–12).
+                            The
+                            <strong>body lives in native <code>post_content</code></strong> — the prototype's
+                            <code>body[]</code> array maps one element per paragraph, joined on blank lines; the essay
+                            template
+                            splits it back and applies <code>wpautop()</code> per part. Carbon Fields carry the folio
+                            metadata:
+                            <code>series</code> (select, stores the series slug), <code>day</code>, <code>read</code>,
+                            <code>dek</code>, <code>pull</code> (injected after the third paragraph),
+                            <code>margin{label,text}</code>,
+                            and <code>domains</code> (a set of sleep / mood / stress / hormones / gut feeding the
+                            archive search
+                            haystack).
+                        </p>
+                        <p>
+                            <strong>The post slug maps to the SPA hash route.</strong>
+                            <code>#/essays/the-3-am-wake-up</code>
+                            becomes <code>/essays/the-3-am-wake-up/</code> — the Phase&nbsp;3a seeder transcribes the
+                            prototype
+                            slugs verbatim, so every deep link in the prototype resolves to the same essay in the CMS.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="cpt-card">
+                    <div class="cpt-card-header">
+                        <span class="c-num">02</span>
+                        <h3>imbp_series — Essay Series</h3>
+                        <span class="count">2 entries</span>
+                    </div>
+                    <div class="cpt-card-body">
+                        <p>
+                            <em>The Perimenopause Series</em> (30 planned, art: dawn) and <em>The Relationships
+                                Series</em> (12
+                            planned, art: glacier), both "In progress." Carbon Fields: <code>total</code> (the
+                            denominator of the
+                            progress bars), <code>art</code> (landscape variant select), <code>standfirst</code>, and
+                            <code>status</code>.
+                        </p>
+                        <p>
+                            <strong>The post slug is the join key.</strong> Series posts <em class="tilt">must</em> use
+                            the
+                            prototype key as their slug — <code>post_name = 'peri'</code> matches
+                            <code>ESSAYS[].series = 'peri'</code> — because every essay's <code>series</code> field
+                            stores the
+                            series slug, and the index cards, archive grouping, and folio progress tracker all join on
+                            it. The
+                            essay→series select in the admin builds its options from published series posts
+                            (<code>get_series_options()</code>), so the join can never silently drift.
+                        </p>
+                        <div class="code-block"><span class="cm">// views/pages/essay.twig — the join, in Twig</span>
+                            {% set series_key = fn(<span class="str">'carbon_get_post_meta'</span>, essay.id, <span
+                                class="str">'series'</span>) %}
+                            {% set series_post = fn(<span class="str">'Timber::get_post'</span>, {
+                            post_type: <span class="str">'imbp_series'</span>,
+                            <span class="cm">// post_name = the prototype key ('peri' / 'rel') — the join key</span>
+                            name: series_key,
+                            } ) %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cpt-card">
+                    <div class="cpt-card-header">
+                        <span class="c-num">03</span>
+                        <h3>imbp_service — Services</h3>
+                        <span class="count">6 entries</span>
+                    </div>
+                    <div class="cpt-card-body">
+                        <p>
+                            The six care offerings, from Initial Psychiatric Evaluation ($250, 60&nbsp;min) to Children
+                            &amp;
+                            Adolescent Care (ages 5–18). Carbon Fields: <code>category</code>, <code>duration</code>,
+                            <code>price</code>, <code>description</code>, <code>unique_feature</code>,
+                            <code>includes{item}</code> (the disclosure bullet list), and the
+                            <strong><code>lanes</code></strong>
+                            set — <code>insurance</code> / <code>cash</code> / <code>pediatric</code>.
+                        </p>
+                        <p>
+                            <strong>The <code>lanes</code> set drives the Care-Lane Compass.</strong> Lane B (cash-pay)
+                            lists
+                            exactly the services whose lanes include <code>cash</code> — the same filter the prototype's
+                            <code>SERVICES.filter(s =&gt; s.lanes.includes('cash'))</code> performed client-side, now a
+                            <code>Timber::get_posts</code> meta query server-side. The services page's filter chips
+                            (All / Insurance / Cash-pay / Children &amp; teens) match on the same field via
+                            <code>data-lanes</code> attributes. The pediatric lane carries the age-appropriate
+                            filtering: the
+                            prototype's <code>minGrade</code>-style age gating (ages 5–18) is expressed through the
+                            <code>pediatric</code> lane membership and the service's own copy, exactly as the prototype
+                            rendered
+                            it.
+                        </p>
+                        <p>
+                            Cross-component: the intake form consumes every service — the <code>desiredService</code>
+                            checkboxes
+                            and the <code>#service-choices</code> pre-selection read the native post ID, which the
+                            seeder claims
+                            from the prototype's numeric ids via <code>import_id</code> parity.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="cpt-card">
+                    <div class="cpt-card-header">
+                        <span class="c-num">04</span>
+                        <h3>imbp_resource — Apothecary Shelf</h3>
+                        <span class="count">5 entries</span>
+                    </div>
+                    <div class="cpt-card-body">
+                        <p>
+                            The five downloadable jars — The 3&nbsp;A.M.&nbsp;Protocol, The Lab Panel Checklist, and
+                            three more.
+                            Carbon Fields: <code>kind</code> (micro-label), <code>tags</code> (badge set),
+                            <code>blurb</code>,
+                            <code>meta</code>, and <code>file</code> (an attachment field added for the real asset — the
+                            prototype's download button was a stub that toasted "in production this triggers the PDF
+                            download").
+                        </p>
+                        <p>
+                            <strong>The <code>fill</code> field stores CSS custom property tokens.</strong> Each jar's
+                            SVG color
+                            is a select whose values are <code>var(--glacier)</code>, <code>var(--gold)</code>,
+                            <code>var(--sage)</code>, <code>var(--pine)</code> — kept verbatim so the token wiring
+                            resolves
+                            against <code>global.css</code> and the jars follow the circadian cascade. The prototype's
+                            <code>jarSVG()</code> utility reads the token; the CMS stores it as data, not as a hardcoded
+                            hex.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ═══════════════ §2 · THEME OPTIONS ═══════════════ -->
+                <p class="section-label">2 · Theme Options Design</p>
+                <h2>Configuration, not content.</h2>
+
+                <p>
+                    Two arrays failed the editorial test and became Carbon Fields theme-options containers — screens a
+                    clinician or practice manager edits with intent, not daily content workflow.
+                </p>
+
+                <h3>Care-Lane Compass</h3>
+
+                <p>
+                    <strong><code>INSURERS</code> + <code>HEADWAY_URL</code></strong> in one container. The prototype's
+                    <code>INSURERS</code> is a flat array of nine carrier-name strings — Aetna, BCBS, Carelon, Cigna,
+                    Optum,
+                    Oscar, Oxford, Regence, SelectHealth — with no per-item metadata, consumed exclusively by
+                    <code>mountCompass()</code>. The container keeps add/remove in the editor (a <code>complex</code>
+                    field
+                    with one <code>name</code> sub-field per row) plus the Headway booking URL that the "Open Headway
+                    booking" CTA targets.
+                </p>
+
+                <p>
+                    <strong><code>mountCompass()</code> is a shared component, mounted twice.</strong> The section map's
+                    cross-widget dependencies flagged it: the same compass renders at <code>#compass-home</code> on the
+                    homepage and <code>#compass-main</code> on the Insurance &amp; Booking page. Phase&nbsp;2b first
+                    built it
+                    as a home component, then <em class="tilt">promoted it to
+                        <code>views/components/shared/care-lane-compass.twig</code></em> when the Insurance page build
+                    identified the second mount — both pages now include the shared component with their own wrapper and
+                    section-head copy. The render half of <code>mountCompass()</code> moved server-side into Twig; the
+                    interaction half (insurer chip status, the not-sure disclosure) stayed client-side as
+                    <code>care-lane-compass.js</code>.
+                </p>
+
+                <div class="code-block"><span class="cm">// views/pages/home.twig + views/pages/insurance.twig — one
+                        component, two mounts</span>
+                    {% include <span class="str">"components/shared/care-lane-compass.twig"</span> with {
+                    uid: <span class="str">'cl-home'</span>, <span class="cm">// or 'cl-main' — unique aria-id
+                        prefix</span>
+                    mount_id: <span class="str">'compass-home'</span>, <span class="cm">// or 'compass-main' (prototype
+                        div id)</span>
+                    eyebrow: <span class="str">'The Care-Lane Compass'</span>,
+                    heading: <span class="str">'Will my insurance cover this?'</span>,
+                    insurers: insurers, <span class="cm">// theme option rows</span>
+                    cash_services: cash_services, <span class="cm">// imbp_service where lanes ∋ 'cash'</span>
+                    headway_url: headway_url,
+                    } %}</div>
+
+                <h3>Root-Cause Reflection Map</h3>
+
+                <p>
+                    <strong>Eight questions, thirty-three answer options, one flattened weight system.</strong> The
+                    prototype's <code>REFLECTION</code> array nests a weight map inside every option —
+                    <code>o.w{sleep,mood,hormones,gut,stress}</code> — which Carbon Fields flattens to
+                    <strong><code>w_sleep</code>, <code>w_mood</code>, <code>w_hormones</code>, <code>w_gut</code>,
+                        <code>w_stress</code></strong> number sub-fields (0–3; an absent prototype key seeds as explicit
+                    0).
+                    Each question also carries a <code>ring</code> assignment (mind / body / gut — the seeded set: body,
+                    mind,
+                    mind, gut, body, mind, body, mind) and each option an optional <code>lane</code> routing key
+                    (<code>new</code>, <code>med</code>, <code>therapy</code>, <code>stuck</code>,
+                    <code>functional</code> —
+                    consumed by <code>careLane()</code> on the final history question only).
+                </p>
+
+                <p>
+                    <strong>Client-side only — nothing stored or transmitted.</strong> The container is localized to
+                    <code>window.IntegrstivFinis</code> via <code>wp_localize_script()</code>, and the scoring engine
+                    (<code>maxWeights</code>, <code>score</code>, <code>ringLoad</code>, <code>careLane</code>,
+                    <code>results</code>) runs entirely in the browser. No answer, no weight total, and no pattern ever
+                    reaches a WordPress table, a REST route, or a log. The overlay opens through the event bus — the
+                    hero
+                    emits <code>reflection:open</code>, the overlay subscribes — so the trigger and the instrument stay
+                    decoupled.
+                </p>
+
+                <div class="highlight-box highlight-box--glacier">
+                    <strong>Why options and not a CPT.</strong>
+                    The reflection map is behavioral configuration: clinicians update weights, not daily content
+                    editors. A
+                    CPT would add an admin archive, public rewrite slugs, and REST exposure for data that must never
+                    leave
+                    the page. One options screen keeps the whole instrument reviewable at a glance — and out of every
+                    public
+                    surface. The full decision record is in the <a href="imbp-arch-decisions.html">Architecture Decision
+                        Record</a>, Decision&nbsp;3.
+                </div>
+
+                <!-- ═══════════════ §3 · PIPELINE ADAPTATION ═══════════════ -->
+                <p class="section-label">3 · Pipeline Adaptation</p>
+                <h2>Where the pipeline earned its keep.</h2>
+
+                <p>
+                    The section map correctly identified <strong>42 components across 9 pages</strong> (33 page widgets,
+                    6
+                    chrome, 3 overlays), <strong>7 data arrays</strong> (six detected plus <code>SERIES</code>,
+                    recovered in
+                    Phase&nbsp;2a), and the circadian cross-component dependencies — <code>phaseForHour</code> /
+                    <code>applyPhase</code> were routed to <code>global_js</code> and ported into <code>shared.js</code>
+                    verbatim, with <code>phase:change</code> on the event bus. But three episodes required the pipeline
+                    to
+                    adapt rather than merely execute, and each is traceable in the artifacts.
+                </p>
+
+                <h3>The wrapper-SPA bug, again.</h3>
+
+                <p>
+                    The prototype arrived wrapped in an outer document — an outer <code>&lt;style&gt;</code> containing
+                    a
+                    single <code>body</code> rule (the iframe-white background), masking the real stylesheet of 485
+                    rules
+                    inside the nested document. The Phase&nbsp;1 parser's style-block selection had already been
+                    hardened for
+                    this on Dolphin's prototypes — <strong>same parser fix, different symptom</strong>: there the
+                    wrapper
+                    masked the script blocks (the parser selects the largest <code>&lt;script&gt;</code>, not the
+                    first);
+                    here it masked the CSS. The fix held without modification, and the parse completed with all 485
+                    rules
+                    extracted and 191 matched to DOM nodes.
+                </p>
+
+                <h3>The compass_home routing corruption.</h3>
+
+                <p>
+                    The CSS router assigns each rule to a widget bucket by counting how many widget ranges its matched
+                    DOM
+                    nodes fall into. The <code>compass_home</code> widget's DOM range was <em class="tilt">too
+                        wide</em> — it swallowed 131 site-wide rules that belonged to a dozen other components: the
+                    footer
+                    colophon, the folio heads, the timeline, the crisis rail, the intake form, the reflection overlay.
+                    Left
+                    as routed, those rules would have shipped inside one component's scoped CSS file and broken every
+                    other
+                    component that referenced them.
+                </p>
+
+                <p>
+                    The Phase&nbsp;2c agent caught it against the component contracts and <strong>reassigned the rules
+                        per
+                        component</strong>: 26 to <code>shared/shared.css</code>, 23 to the intake form, 12 to the
+                    footer
+                    colophon, and the remaining 70 distributed across nineteen more component files — each reassignment
+                    documented in the receiving file's header comment ("css-route-map bucket 'compass_home' — Phase 2c
+                    extracts"). The hero bucket had the same failure at smaller scale: its range swallowed the serial
+                    essays
+                    rail, whose rules were reassigned to <code>home/serial-essays-rail.css</code> per the Phase&nbsp;2b
+                    component contract.
+                </p>
+
+                <div class="flow-diagram">
+                    ╔══════════════════════════════════════════════════════════════════╗
+                    ║ CSS ROUTING — THE compass_home CORRECTION ║
+                    ╠══════════════════════════════════════════════════════════════════╣
+                    ║ ║
+                    ║ Phase 1 router: compass_home range too wide ║
+                    ║ └──▶ 131 site-wide rules bucketed to one widget ║
+                    ║ ║
+                    ║ Phase 2c agent: rules reassigned per component contract ║
+                    ║ ├──▶ shared/shared.css 26 rules ║
+                    ║ ├──▶ contact/intake-form.css 23 rules ║
+                    ║ ├──▶ shared/site-footer-colophon 12 rules ║
+                    ║ ├──▶ about/about-lede-section 8 rules ║
+                    ║ ├──▶ shared/reflection-overlay 7 rules ║
+                    ║ └──▶ 17 more component files 55 rules ║
+                    ║ ║
+                    ║ Every reassignment documented in the receiving file header. ║
+                    ║ Final accounting: 485 rules → 30 component files + global.css ║
+                    ║ (161 widget · 239 orphan · 20 shared · 43 source-only · 22 ║
+                    ║ global/orphan emitted by Phase 2d) ║
+                    ║ ║
+                    ╚══════════════════════════════════════════════════════════════════╝</div>
+
+                <h3>The SERIES miss.</h3>
+
+                <p>
+                    The Phase&nbsp;1 section map did not detect the <code>SERIES</code> array — a keyed lookup object
+                    rather
+                    than a rendered list, invisible to both the repeater detector and the data-array scan. The
+                    Phase&nbsp;2a
+                    agent found it reading the JS source while mapping field keys, registered
+                    <code>imbp_series</code> as a CPT, and recorded the miss in the <code>cpts.php</code> header
+                    alongside
+                    the other parse-map corrections: <code>JARS</code> is actually <code>RESOURCES</code>,
+                    <code>QUESTIONS</code> is actually <code>REFLECTION</code>, <code>ESSAYS</code> uses
+                    <code>dek</code>/<code>read</code>/<code>domains</code> rather than the guessed
+                    <code>excerpt</code>/<code>readTime</code>/<code>tags</code>. The policy throughout: <strong>the
+                        source
+                        wins</strong>, and every discrepancy is written down, not silently normalized.
+                </p>
+
+                <div class="highlight-box highlight-box--gold">
+                    <strong>The pattern across all three episodes.</strong>
+                    The deterministic phases produce ground truth; the agent phases verify it against the source and the
+                    component contracts; every correction is documented in the artifact that carries it. The pipeline
+                    did
+                    not need new code to handle this prototype — it needed the judgment layers it already had, and a
+                    paper
+                    trail.
+                </div>
+
+                <!-- ═══════════════ §4 · KEY METRICS ═══════════════ -->
+                <p class="section-label">4 · Key Metrics</p>
+                <h2>The content model by the numbers.</h2>
+
+                <table class="tradeoff">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>CPTs registered</strong></td>
+                            <td>4 — imbp_essay, imbp_series, imbp_service, imbp_resource</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Theme-option containers</strong></td>
+                            <td>2 — Care-Lane Compass, Root-Cause Reflection Map</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Seeded posts</strong></td>
+                            <td>26 — 13 essays, 2 series, 6 services, 5 resources</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Seeded theme options</strong></td>
+                            <td>9 insurer rows + headway_url · 8 questions / 33 options</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Components generated</strong></td>
+                            <td>42 across 9 pages (33 widgets · 6 chrome · 3 overlays)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CSS rules routed</strong></td>
+                            <td>485 → 30 component files + global.css</td>
+                        </tr>
+                        <tr>
+                            <td><strong>compass_home rules reassigned</strong></td>
+                            <td>131 across 22 component files</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PHI stored in WordPress</strong></td>
+                            <td>0 — reflection scored client-side; intake submits to an external endpoint</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <!-- ═══════════════ FOOTER ═══════════════ -->
+            <footer class="doc-footer">
+                <p><strong>Integrative Mind-Body Psychiatry</strong> · Content Architecture</p>
+                <p style="margin-top:4px;">Portfolio documentation · October 2026 · <span
+                        class="badge badge-draft">DRAFT</span></p>
+                <p class="doc-fine" style="margin-top:12px;font-size:.7rem;">Produced by the SPA→CMS pipeline —
+                    methodology in
+                    the
+                    <a href="SPA→CMS Pipeline.html">SPA→CMS Pipeline</a> appendix; decisions in the <a
+                        href="imbp-arch-decisions.html">Architecture Decision Record</a>. All counts verified against
+                    .pipeline/01-parse/section-map.json, .pipeline/02-components/manifest.json, includes/cpts.php, and
+                    spaToCMS/phase3/seed_cpts.php. Prepared as a portfolio artifact.
+                </p>
+            </footer>
+
+        </div>
+
+        <script>
+            /* When embedded in the portfolio document viewer, the back link closes the modal
+               instead of navigating the iframe; internal document links paginate the doc set. */
+            document.addEventListener("click", e => {
+                const link = e.target.closest("a");
+                if (!link) return;
+                if (window.self !== window.top) {
+                    if (link.classList.contains("doc-back")) {
+                        e.preventDefault();
+                        window.parent.postMessage({ type: "close-viewer" }, "*");
+                        return;
+                    }
+                    const href = link.getAttribute("href");
+                    if (href && !href.startsWith("#") && !href.startsWith("http") && link.target !== "_blank") {
+                        e.preventDefault();
+                        window.parent.postMessage({ type: "doc-nav", href: href }, "*");
+                    }
+                }
+            });
+        </script>
+    </body>
+
+    </html>
+
+    <script>
+
+    </script>
+</body>
+
+</html>
