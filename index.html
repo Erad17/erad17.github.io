@@ -1609,6 +1609,12 @@
       color: var(--ink);
     }
 
+    .detail-thumbs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: var(--sp-3)
+    }
+
     .detail-thumb {
       width: 100%;
       aspect-ratio: 16 / 9;
@@ -1623,6 +1629,45 @@
       font-family: var(--font-mono);
       font-size: var(--fs-2xs);
       letter-spacing: .05em;
+      position: relative;
+      cursor: zoom-in;
+      transition: border-color var(--dur-1) var(--ease-out), transform var(--dur-1) var(--ease-out)
+    }
+
+    .detail-thumb:hover {
+      border-color: var(--cyan-soft);
+      transform: translateY(-1px)
+    }
+
+    .detail-thumb::after {
+      content: "\2922  ENLARGE";
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: .35em .5em;
+      background: color-mix(in srgb, var(--paper) 82%, transparent);
+      color: var(--amber);
+      font-family: var(--font-mono);
+      font-size: var(--fs-2xs);
+      letter-spacing: .14em;
+      text-align: center;
+      opacity: 0;
+      transition: opacity var(--dur-1) var(--ease-out);
+      pointer-events: none
+    }
+
+    .detail-thumb:hover::after,
+    .detail-thumb:focus-visible::after {
+      opacity: 1
+    }
+
+    .detail-thumb:disabled,
+    .detail-thumb.detail-thumb-fallback {
+      cursor: default
+    }
+
+    .detail-thumb:disabled::after,
+    .detail-thumb.detail-thumb-fallback::after {
+      content: none
     }
 
     .detail-thumb img {
@@ -1739,7 +1784,31 @@
       font-size: var(--fs-2xs);
     }
 
+    /* Flagship card — the headline build of this set */
+    .proj-detail.is-flagship {
+      border-color: var(--amber);
+      box-shadow: 0 0 0 1px var(--amber), 0 14px 40px color-mix(in srgb, var(--amber) 14%, transparent);
+      background:
+        linear-gradient(180deg, color-mix(in srgb, var(--amber) 6%, transparent), transparent 140px),
+        var(--paper-2);
+    }
 
+    .proj-detail.is-flagship .detail-num {
+      color: var(--amber);
+    }
+
+    .detail-flag {
+      font-family: var(--font-mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--amber-ink);
+      background: var(--amber);
+      border-radius: 2px;
+      padding: .25em .6em;
+      transform: rotate(-2deg);
+    }
 
     /* Detail card placeholder (collapsed enterprise work) */
     .proj-detail.placeholder {
@@ -2414,6 +2483,38 @@
       letter-spacing: .08em;
       min-width: 4em;
       text-align: center
+    }
+
+    .gs-lightbox .lb-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: var(--sp-2);
+      padding: 0 var(--sp-4) var(--sp-3)
+    }
+
+    .gs-lightbox .lb-links[hidden] {
+      display: none
+    }
+
+    .gs-lightbox .lb-links a {
+      font-family: var(--font-mono);
+      font-size: var(--fs-2xs);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: var(--border-w) solid var(--line);
+      border-radius: var(--radius);
+      padding: .5em .8em;
+      background: var(--paper-2);
+      color: var(--ink-soft);
+      transition: border-color var(--dur-1) var(--ease-out), color var(--dur-1) var(--ease-out)
+    }
+
+    .gs-lightbox .lb-links a:hover {
+      border-color: var(--amber);
+      color: var(--amber)
     }
 
     .hire-form {
@@ -3345,17 +3446,71 @@
             business could go live with.</p>
           <div class="detail-grid" id="detailGrid">
 
-            <!-- Detail 01 · Dolphin Academic Prep — hub card for the full document set -->
-            <article class="proj-detail reveal">
+            <!-- Detail 01 · TA Help Desk — flagship card for the set -->
+            <article class="proj-detail is-flagship reveal">
               <div class="detail-header">
                 <span class="detail-num">Detail 01</span>
+                <span class="detail-flag">Flagship · Live</span>
+                <span class="detail-status">● Live</span>
+              </div>
+              <div class="detail-name">TA Help Desk — Ticketing, Routing &amp; SLA Engine</div>
+              <div class="detail-thumbs">
+                <button type="button" class="detail-thumb"
+                  aria-label="Enlarge screenshot: help desk agent console queue view">
+                  <img src="screenshots/helpdesk-console.png"
+                    alt="Help desk agent console queue view: sidebar with Clinical, Records and Technical queues, an SLA overview panel, and a ticket table with status, priority, queue, assignee and SLA countdown columns"
+                    loading="lazy">
+                </button>
+                <button type="button" class="detail-thumb"
+                  aria-label="Enlarge screenshot: help desk ticket detail view">
+                  <img src="screenshots/helpdesk-ticket-detail.png"
+                    alt="Help desk ticket detail view: SLA progress bar with time remaining, reply thread with internal-notes toggle, and an agent actions panel"
+                    loading="lazy">
+                </button>
+              </div>
+              <div class="detail-stack">
+                <span>WordPress Plugin</span><span>Custom Tables · PDO/MariaDB</span><span>REST
+                  helpdesk/v1</span><span>Nuxt 4 + Pinia</span><span>SLA 24/48/72h</span><span>Role-Based
+                  Access</span><span>Audit Trail</span><span>WCAG 2.2 AA</span>
+              </div>
+              <div class="detail-narrative">Ticketing built from both sides of the counter. At CAS I ran membership
+                communications through a help desk workflow and <strong>cut IT ticket volume 60%</strong> by fixing
+                the process rather than the tooling; I then built the other side as original work for this
+                application — <strong>a custom WordPress plugin with its own relational schema</strong>,
+                category-to-queue routing, priority-driven 24/48/72-hour first-response clocks, role-based access
+                and a full audit trail, fronted by a Nuxt agent console. The public deployment is a demonstration
+                build — <strong>seeded with mock data matched to the patterns inferred for this assignment</strong>
+                — so a reviewer can exercise routing and SLA behaviour end to end without credentials.
+              </div>
+              <div class="detail-deliverables-label">Deliverables</div>
+              <ul class="detail-deliverables">
+                <li>Relational schema (6 tables)</li>
+                <li>Category → queue routing</li>
+                <li>24/48/72h SLA engine</li>
+                <li>Role-based access + audit trail</li>
+                <li>Nuxt 4 agent console</li>
+                <li>117 runtime assertions</li>
+              </ul>
+              <div class="detail-links">
+                <a href="https://wp.marho.app/helpdesk/" target="_blank" rel="noopener">Landing &amp; Demo
+                  Credentials</a>
+                <a href="https://wp.marho.app/helpdesk/portal/" target="_blank" rel="noopener">Open Live Console
+                  (Mock Data)</a>
+              </div>
+            </article>
+
+            <!-- Detail 02 · Dolphin Academic Prep — hub card for the full document set -->
+            <article class="proj-detail reveal">
+              <div class="detail-header">
+                <span class="detail-num">Detail 02</span>
                 <span class="detail-status">● Complete</span>
               </div>
               <div class="detail-name">Dolphin Academic Prep</div>
-              <div class="detail-thumb">
+              <button type="button" class="detail-thumb"
+                aria-label="Enlarge screenshot: Dolphin Academic Prep prototype">
                 <img src="screenshots/dolphinacademicprep.png" alt="Dolphin Academic Prep prototype screenshot"
                   loading="lazy">
-              </div>
+              </button>
               <div class="detail-stack">
                 <span>WordPress</span><span>Custom Post Types (CPT)</span><span>Carbon Fields</span><span>Timber V2
                   (Twig)</span><span>Vue.js</span><span>REST API</span><span>eSignature</span><span>GA4/GTM</span>
@@ -3401,24 +3556,24 @@
           <h2 class="section-label reveal"><span class="tick">§</span> Notable Deliverables</h2>
           <div class="detail-grid" id="notableGrid">
 
-            <!-- Detail 02 · Portal & Booking Engine -->
+            <!-- Detail 03 · Portal & Booking Engine -->
             <article class="proj-detail reveal" data-delay="1">
               <div class="detail-header">
-                <span class="detail-num">Detail 02</span>
+                <span class="detail-num">Detail 03</span>
                 <span class="detail-status">● Plugin</span>
               </div>
               <div class="detail-name">Portal &amp; Booking Engine</div>
-              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--sp-3)">
-                <div class="detail-thumb">
+              <div class="detail-thumbs">
+                <button type="button" class="detail-thumb" aria-label="Enlarge screenshot: family portal dashboard">
                   <img src="screenshots/portal-dashboard-family.png"
                     alt="Family portal dashboard showing sessions, forms, documents and notifications widgets with student switcher"
                     loading="lazy" style="object-position:top;">
-                </div>
-                <div class="detail-thumb">
+                </button>
+                <button type="button" class="detail-thumb" aria-label="Enlarge screenshot: admin spoof mode">
                   <img src="screenshots/admin-spoof-family.png"
                     alt="Admin spoof mode viewing the family portal with a read-only banner" loading="lazy"
                     style="object-position:top;">
-                </div>
+                </button>
               </div>
               <div class="detail-stack"><span>WordPress</span><span>CPT/ACF</span><span>REST
                   API</span><span>AES-256</span><span>eSignature</span><span>Timber/Twig</span></div>
@@ -3447,25 +3602,26 @@
               </div>
             </article>
 
-            <!-- Detail 03 · GA4 Analytics Console -->
+            <!-- Detail 04 · GA4 Analytics Console -->
             <article class="proj-detail reveal" data-delay="2">
               <div class="detail-header">
-                <span class="detail-num">Detail 03</span>
+                <span class="detail-num">Detail 04</span>
                 <span class="detail-status">● Plugin</span>
               </div>
               <div class="detail-name">GA4 Analytics Console</div>
-              <div class="detail-thumb">
+              <button type="button" class="detail-thumb" aria-label="Enlarge screenshot: GA4 Analytics Console">
                 <img src="screenshots/analytics-console.png"
                   alt="GA4 Analytics Console showing KPI scorecards, traffic acquisition table, and geographic demographics"
                   loading="lazy">
-              </div>
+              </button>
               <div class="detail-stack"><span>GA4 Data API v1</span><span>WordPress
                   Plugin</span><span>Redis</span><span>PostgreSQL staging</span></div>
               <div class="detail-narrative">A standalone WordPress plugin on the GA4 Data API v1 — <strong>six
                   reporting blocks</strong>, every number freshness-labeled and linked to the runReport payload
                 behind it. <strong>Mock/live dual-mode:</strong> the REST endpoint returns an identical JSON shape
                 whether data comes from Google or a deterministic PRNG — demo-ready without credentials,
-                production-ready with them. Quota governance tracks token consumption, cache hit ratio, and per-block freshness —
+                production-ready with them. Quota governance tracks token consumption, cache hit ratio, and per-block
+                freshness —
                 a stale number is always labeled stale. <strong>Replaces MonsterInsights entirely</strong> — no
                 licenses, no vendor lock-in, no upgrade prompts.
               </div>
@@ -3485,26 +3641,27 @@
               </div>
             </article>
 
-            <!-- Detail 04 · Vue 3 Page Editor -->
+            <!-- Detail 05 · Vue 3 Page Editor -->
             <article class="proj-detail reveal" data-delay="3">
               <div class="detail-header">
-                <span class="detail-num">Detail 04</span>
+                <span class="detail-num">Detail 05</span>
                 <span class="detail-status">● Editor</span>
               </div>
               <div class="detail-name">Vue 3 Page Editor</div>
-              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--sp-3)">
-                <div class="detail-thumb">
+              <div class="detail-thumbs">
+                <button type="button" class="detail-thumb" aria-label="Enlarge screenshot: page editor landing screen">
                   <img src="screenshots/page-editor-landing.png"
                     alt="Page editor landing screen with the page list for navigating between pages" loading="lazy">
-                </div>
-                <div class="detail-thumb">
+                </button>
+                <button type="button" class="detail-thumb" aria-label="Enlarge screenshot: hero component editor">
                   <img src="screenshots/page-editor-hero.png"
                     alt="Hero component editor with sidebar tabs and structured form fields" loading="lazy">
-                </div>
-                <div class="detail-thumb">
+                </button>
+                <button type="button" class="detail-thumb"
+                  aria-label="Enlarge screenshot: FAQ accordion repeater edit view">
                   <img src="screenshots/page-editor-faq.png"
                     alt="FAQ accordion repeater edit view with add and reorder controls" loading="lazy">
-                </div>
+                </button>
               </div>
               <div class="detail-stack"><span>Vue 3</span><span>Vite</span><span>NuxtUI</span><span>Carbon
                   Fields</span><span>REST API</span></div>
@@ -3642,10 +3799,12 @@
       <img src="" alt="" id="lbImg">
     </div>
     <div class="lb-foot">
-      <button type="button" class="lb-prev" aria-label="Previous graphic">◀ Prev</button>
+      <button type="button" class="lb-prev" aria-label="Previous image">◀ Prev</button>
       <span class="lb-counter" aria-live="polite">— / —</span>
-      <button type="button" class="lb-next" aria-label="Next graphic">Next ▶</button>
+      <button type="button" class="lb-next" aria-label="Next image">Next ▶</button>
+      <button type="button" class="lb-full" aria-label="Open full size in new tab">⤢ Full size</button>
     </div>
+    <div class="lb-links" id="lbLinks" hidden></div>
   </div>
 
   <!-- prototype viewer -->
@@ -3762,11 +3921,13 @@
       ];
 
       const PROJECTS = [
-        { id: "P-01", title: "Sons of Quixote", desc: "Movement platform for a chorus of fathers in propria persona — protest broadside, documentary film, interactive chorus wall, dispatch newsletter, and grassroots intake.", tags: ["Legal", "Intake workflow", "eSignature"], v: "Legal", file: "DonQuixote.html", preview: "screenshots/donquixote.png" },
-        { id: "P-02", title: "Dolphin Academic Prep", desc: "Full brand and secure portal for a 6-location tutoring network — 1-on-1 coaching methodology, family portal with eSignatures and scheduling, across six NYC-area centers.", tags: ["Education", "Family portal", "FERPA-minded"], v: "Education", file: "DolphinAcademicPrep.html", preview: "screenshots/dolphinacademicprep.png", report: "DolphinAcademicPrep-report.html", liveSite: null, stack: ["WordPress", "Custom Post Types (CPT)", "Carbon Fields", "Timber V2 (Twig)", "Vue.js", "REST API", "eSignature", "GA4/GTM"], deliverables: ["Forensic site audit", "Interactive prototype", "Component spec document", "Administrator guide", "Live CMS build"], narrative: "A full CMS integration for an education client, delivered through a <strong>forensic audit → prototype → CPT architecture → turnkey production</strong> pipeline. The project included a <strong>custom Vue.js help desk ticketing plugin</strong> — replicating the same support-ticket workflow I managed at CAS, now packaged as a reusable WordPress plugin. Multi-step e-signature intake forms, a calendar-driven holiday capsule system, and a family portal with encrypted document vault round out the build." },
-        { id: "P-04", title: "Pódio Sports", desc: "Full brand and athlete showcase for a Portuguese sports agency — roster with search, compare, and season tracking across football, surfing, motorsport, and track & field.", tags: ["Sports", "Athlete showcase", "Roster"], v: "Sports", file: "Podio.html", preview: "screenshots/podio.png" },
-        { id: "P-05", title: "JoeyZaZa", desc: "Full brand and e-commerce site for a New York-style sandwich shop in Perth CBD — interactive menu board, Build-A-Boss sandwich builder, Square-powered ordering, and a catering calculator with quote intake.", tags: ["Hospitality", "E-commerce", "Interactive builder"], v: "Hospitality", file: "JoeyZaZa.html", preview: "screenshots/joeyzaza.png" },
-        { id: "P-06", title: "ElenaVoss", desc: "Full brand and artist portfolio for a contemporary fine artist — catalog of original works with gallery filtering, Giclée print availability, artwork detail modal, and commission inquiry intake.", tags: ["Art gallery", "Artist portfolio", "Commission intake"], v: "Art gallery", file: "ElenaVoss.html", preview: "screenshots/elena-voss.png" },
+        { id: "P-01", title: "Root & Bloom Psychiatry", desc: "Whole-person telehealth psychiatry prototype for a fictional Utah practice — circadian five-phase ambient design system with night mode, serial-essay journal with series progress, Care-Lane insurance/cash compass, and a client-side eight-question Root-Cause Reflection Map.", tags: ["Healthcare", "Design system", "SPA"], v: "Health", file: "RootAndBloom.html", preview: "screenshots/rootandbloom.png" },
+        { id: "P-02", title: "Sons of Quixote", desc: "Movement platform for a chorus of fathers in propria persona — protest broadside, documentary film, interactive chorus wall, dispatch newsletter, and grassroots intake.", tags: ["Legal", "Intake workflow", "eSignature"], v: "Legal", file: "DonQuixote.html", preview: "screenshots/donquixote.png" },
+        { id: "P-03", title: "Dolphin Academic Prep", staticDetail: true, desc: "Full brand and secure portal for a 6-location tutoring network — 1-on-1 coaching methodology, family portal with eSignatures and scheduling, across six NYC-area centers.", tags: ["Education", "Family portal", "FERPA-minded"], v: "Education", file: "DolphinAcademicPrep.html", preview: "screenshots/dolphinacademicprep.png", report: "DolphinAcademicPrep-report.html", liveSite: null, stack: ["WordPress", "Custom Post Types (CPT)", "Carbon Fields", "Timber V2 (Twig)", "Vue.js", "REST API", "eSignature", "GA4/GTM"], deliverables: ["Forensic site audit", "Interactive prototype", "Component spec document", "Administrator guide", "Live CMS build"], narrative: "A full CMS integration for an education client, delivered through a <strong>forensic audit → prototype → CPT architecture → turnkey production</strong> pipeline. The project included a <strong>custom Vue.js help desk ticketing plugin</strong> — replicating the same support-ticket workflow I managed at CAS, now packaged as a reusable WordPress plugin. Multi-step e-signature intake forms, a calendar-driven holiday capsule system, and a family portal with encrypted document vault round out the build. The support-ticket workflow managed at CAS later became a standalone build — see the TA Help Desk card (Detail 01)." },
+        { id: "P-04", title: "TA Help Desk", staticDetail: true, desc: "Custom WordPress help desk plugin with its own relational schema, category-to-queue routing, priority-driven 24/48/72-hour SLA engine, role-based access and audit trail — fronted by a Nuxt 4 agent console.", tags: ["Ticketing", "SLA engine", "RBAC"], v: "Public health", file: null, preview: "screenshots/helpdesk-console.png", liveSite: "https://wp.marho.app/helpdesk/", stack: ["WordPress Plugin", "Custom Tables · PDO/MariaDB", "REST helpdesk/v1", "Nuxt 4 + Pinia", "SLA 24/48/72h", "Role-Based Access", "Audit Trail"], deliverables: ["Relational schema (6 tables)", "Category → queue routing", "24/48/72h SLA engine", "Role-based access + audit trail", "Nuxt 4 agent console", "117 runtime assertions"], narrative: "Built from both sides of the counter: at CAS I ran membership communications through a help desk workflow and <strong>cut IT ticket volume 60%</strong> by fixing the process rather than the tooling. The plugin is the other side — <strong>its own relational schema</strong>, routing, priority-driven SLA clocks and an audit trail, fronted by a Nuxt agent console. The public deployment is a demonstration build seeded with mock data matched to the patterns inferred for this assignment." },
+        { id: "P-05", title: "Pódio Sports", desc: "Full brand and athlete showcase for a Portuguese sports agency — roster with search, compare, and season tracking across football, surfing, motorsport, and track & field.", tags: ["Sports", "Athlete showcase", "Roster"], v: "Sports", file: "Podio.html", preview: "screenshots/podio.png" },
+        { id: "P-06", title: "JoeyZaZa", desc: "Full brand and e-commerce site for a New York-style sandwich shop in Perth CBD — interactive menu board, Build-A-Boss sandwich builder, Square-powered ordering, and a catering calculator with quote intake.", tags: ["Hospitality", "E-commerce", "Interactive builder"], v: "Hospitality", file: "JoeyZaZa.html", preview: "screenshots/joeyzaza.png" },
+        { id: "P-07", title: "ElenaVoss", desc: "Full brand and artist portfolio for a contemporary fine artist — catalog of original works with gallery filtering, Giclée print availability, artwork detail modal, and commission inquiry intake.", tags: ["Art gallery", "Artist portfolio", "Commission intake"], v: "Art gallery", file: "ElenaVoss.html", preview: "screenshots/elena-voss.png" },
         { id: "P-08", title: "LabelNoir", desc: "Full brand SPA for a Parisian haute couture web engineering atelier — runway collection showcase, archive with filterable table, crafts ledger, and salon booking intake.", tags: ["Apparel", "Showcase", "Intake"], v: "Apparel", file: "LabelNoir.html", preview: "screenshots/labelnoir.png" },
         { id: "P-09", title: "StepDeck", desc: "Browser-native groovebox and MIDI controller faceplate with a hardware-style instrument panel, synth/drum engines, 16-step sequencer, and bidirectional CC sync.", tags: ["Web Audio", "MIDI", "Groovebox"], v: "Music", file: "StepDeck.html", preview: "screenshots/stepdeck.png" },
         { id: "P-10", title: "AlpineVolt", desc: "Full brand and SPA for a premium e-bike rental and sales fleet in Slovenia's Koroška region — Ride Match recommendation engine, fleet catalog with search/filter, trailhead shop, and booking flow.", tags: ["Outdoors", "E-commerce", "Ride matching"], v: "Outdoors", file: "AlpineVolt.html", preview: "screenshots/alpinevolt.png" },
@@ -4223,19 +4384,43 @@
       const lbNext = $(".lb-next", lb);
       const lbCounter = $(".lb-counter", lb);
       const lbClose = $("#lbClose");
+      const lbFull = $(".lb-full", lb);
+      const lbLinks = $("#lbLinks");
+      const lbTitle = $(".lb-title", lb);
       let lbIdx = 0;
       let lbTrigger = null;
+      let lbSet = { title: "Graphic Preview", images: [], links: [] };
 
-      function updateLightbox() {
-        lbImg.src = GRAPHICS[lbIdx];
-        lbImg.alt = "Graphic " + (lbIdx + 1) + " of " + GRAPHICS.length;
-        lbCounter.textContent = (lbIdx + 1) + " / " + GRAPHICS.length;
-        lbPrev.disabled = lbIdx === 0;
-        lbNext.disabled = lbIdx === GRAPHICS.length - 1;
+      function graphicsSet() {
+        return {
+          title: "Graphic Preview",
+          images: GRAPHICS.map((src, i) => ({ src: src, alt: "Graphic " + (i + 1) + " of " + GRAPHICS.length })),
+          links: []
+        };
       }
 
-      function openLightbox(index) {
-        lbIdx = index;
+      function updateLightbox() {
+        const imgs = lbSet.images;
+        const cur = imgs[lbIdx] || { src: "", alt: "" };
+        lbImg.src = cur.src;
+        lbImg.alt = cur.alt || ("Image " + (lbIdx + 1) + " of " + imgs.length);
+        lbCounter.textContent = (lbIdx + 1) + " / " + imgs.length;
+        lbPrev.disabled = lbIdx === 0;
+        lbNext.disabled = lbIdx === imgs.length - 1;
+      }
+
+      function renderLbLinks() {
+        lbLinks.innerHTML = lbSet.links.map(l =>
+          '<a href="' + l.href + '"' + (l.external ? ' target="_blank" rel="noopener"' : '') + '>' + l.label + '</a>'
+        ).join("");
+        lbLinks.hidden = !lbSet.links.length;
+      }
+
+      function openLightbox(index, set) {
+        lbSet = set || graphicsSet();
+        lbIdx = Math.max(0, Math.min(index, lbSet.images.length - 1));
+        lbTitle.textContent = lbSet.title;
+        renderLbLinks();
         lbTrigger = document.activeElement;
         lb.classList.add("is-open");
         document.body.style.overflow = "hidden";
@@ -4250,13 +4435,18 @@
       }
 
       function lbGo(dir) {
-        lbIdx = (lbIdx + dir + GRAPHICS.length) % GRAPHICS.length;
+        const n = lbSet.images.length;
+        lbIdx = (lbIdx + dir + n) % n;
         updateLightbox();
       }
 
       lbPrev.addEventListener("click", () => lbGo(-1));
       lbNext.addEventListener("click", () => lbGo(1));
       lbClose.addEventListener("click", closeLightbox);
+      lbFull.addEventListener("click", () => {
+        const cur = lbSet.images[lbIdx];
+        if (cur) window.open(cur.src, "_blank", "noopener");
+      });
 
       lb.addEventListener("click", e => {
         if (e.target === lb) closeLightbox();
@@ -4268,12 +4458,34 @@
         if (e.key === "ArrowLeft" && !lbPrev.disabled) { e.preventDefault(); lbGo(-1); return; }
         if (e.key === "ArrowRight" && !lbNext.disabled) { e.preventDefault(); lbGo(1); return; }
         if (e.key === "Tab") {
-          const f = $$("button", lb).filter(x => !x.disabled);
+          const f = $$("button, a[href]", lb).filter(x => !x.disabled && !x.closest("[hidden]"));
           if (!f.length) return;
           if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
           else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
         }
       });
+
+      /* detail-card thumbnails → lightbox with per-card image set + card links */
+      const workView = $("#view-work");
+      if (workView) {
+        workView.addEventListener("click", e => {
+          const thumb = e.target.closest(".detail-thumb");
+          if (!thumb || thumb.disabled || !workView.contains(thumb)) return;
+          const img = $("img", thumb);
+          if (!img) return;
+          const card = thumb.closest("article.proj-detail");
+          if (!card) return;
+          const imgs = $$(".detail-thumb img", card).map(el => ({ src: el.getAttribute("src"), alt: el.alt }));
+          const idx = imgs.findIndex(im => im.src === img.getAttribute("src"));
+          const name = $(".detail-name", card);
+          const links = $$(".detail-links a", card).map(a => ({
+            href: a.getAttribute("href"),
+            label: a.textContent.trim(),
+            external: a.target === "_blank" || /^(https?:)?\/\//i.test(a.getAttribute("href") || "")
+          }));
+          openLightbox(idx < 0 ? 0 : idx, { title: name ? name.textContent.trim() : "Preview", images: imgs, links: links });
+        });
+      }
 
       /* ── Walkthrough Tabbed Card ── */
       const WALKTHROUGHS = [
@@ -4375,13 +4587,13 @@
         if (projDone) return; projDone = true;
 
         /* ── Detail Cards (Enterprise Solutions) ── */
-        /* P-02 (Dolphin Academic Prep) renders as static HTML — Detail 01 in #detailGrid, Details 02–05 in #notableGrid — so it is skipped here. */
-        const detailProjects = PROJECTS.filter(p => p.report && p.id !== "P-02");
+        /* Projects flagged staticDetail (Dolphin Academic Prep, TA Help Desk) render as static HTML — Details 01–02 in #detailGrid, Details 03–05 in #notableGrid — so both are skipped here. */
+        const detailProjects = PROJECTS.filter(p => p.report && !p.staticDetail);
         let detailHTML = '';
         detailProjects.forEach((p, i) => {
           const thumbHTML = p.preview
-            ? '<img src="' + p.preview + '" alt="' + p.title + ' prototype screenshot" loading="lazy" onerror="this.style.display=\'none\';this.parentElement.classList.add(\'detail-thumb-fallback\');this.parentElement.textContent=\'THUMBNAIL \u2014 ' + p.title.replace(/'/g, "\\'") + ' PROTOTYPE\';">'
-            : '<div class="detail-thumb-fallback">THUMBNAIL — ' + p.title + ' PROTOTYPE</div>';
+            ? '<img src="' + p.preview + '" alt="' + p.title + ' prototype screenshot" loading="lazy" onerror="var b=this.parentElement;b.classList.add(\'detail-thumb-fallback\');b.disabled=true;b.setAttribute(\'aria-hidden\',\'true\');b.removeAttribute(\'aria-label\');b.textContent=\'THUMBNAIL \u2014 ' + p.title.replace(/'/g, "\\'") + ' PROTOTYPE\';">'
+            : '<div class="detail-thumb detail-thumb-fallback" aria-hidden="true">THUMBNAIL — ' + p.title + ' PROTOTYPE</div>';
           const stackHTML = p.stack ? p.stack.map(s => '<span>' + s + '</span>').join('') : '';
           const deliverablesHTML = p.deliverables ? p.deliverables.map(d => '<li>' + d + '</li>').join('') : '';
           const reportLink = p.report
@@ -4393,7 +4605,7 @@
             '<span class="detail-status">● Complete</span>' +
             '</div>' +
             '<div class="detail-name">' + p.title + '</div>' +
-            '<div class="detail-thumb">' + thumbHTML + '</div>' +
+            '<button type="button" class="detail-thumb" aria-label="Enlarge screenshot: ' + p.title.replace(/"/g, '&quot;') + '">' + thumbHTML + '</button>' +
             '<div class="detail-stack">' + stackHTML + '</div>' +
             '<div class="detail-narrative">' + (p.narrative || p.desc) + '</div>' +
             (p.deliverables ? '<div class="detail-deliverables-label">Deliverables</div><ul class="detail-deliverables">' + deliverablesHTML + '</ul>' : '') +
@@ -4422,7 +4634,8 @@
         if (notableGrid) notableGrid.insertAdjacentHTML("beforeend", detailHTML);
 
         /* ── Prototype Gallery (Interactive Builds) ── */
-        const galleryHTML = PROJECTS.filter(p => p.id !== "P-02").map(p => {
+        /* staticDetail projects are gallery-excluded: Dolphin renders as detail cards, and TA Help Desk's live console is external (no local prototype file). */
+        const galleryHTML = PROJECTS.filter(p => !p.staticDetail).map(p => {
           if (p.preview) {
             return '<div class="gallery-item reveal" data-file="' + p.file + '" data-title="' + p.title.replace(/"/g, '&quot;') + '" tabindex="0" role="button" aria-label="Open ' + p.title + ' prototype">' +
               '<img src="' + p.preview + '" alt="' + p.title + '" loading="lazy" onerror="var p=this.parentElement;p.classList.add(\'gallery-item-placeholder\');p.removeAttribute(\'tabindex\');p.removeAttribute(\'role\');p.removeAttribute(\'data-file\');p.removeAttribute(\'data-title\');p.style.cursor=\'default\';this.style.display=\'none\';p.innerHTML=\'<span>' + p.id + '</span><span>' + p.title + '</span>\';">' +
