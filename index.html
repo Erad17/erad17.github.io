@@ -16,13 +16,112 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow, noai, noimageai">
   <meta name="description"
-    content="Marho Eradiri — Web Architect, Washington DC Metro Area. 10 years across WordPress, Drupal, Wagtail/Django, GA4 and accessibility. Portfolio drawing set CV-2026-01.">
+    content="Marho Eradiri — Web Architect, Washington DC Metro Area — available in Toronto, Ottawa and Montréal. 10 years across WordPress, Drupal, Wagtail/Django, GA4 and accessibility. Portfolio drawing set CV-2026-01.">
   <title>Marho Eradiri — Web Architect · Portfolio Set CV-2026-01</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
     rel="stylesheet">
+
+  <script>
+    /* ============================================================
+       REGION RESOLVER — runs synchronously before first paint.
+
+       Why inline and why in <head>: most applications arrive on the
+       bare URL with no query string, so the first frame IS the first
+       impression. Resolving here means the CA palette and copy are
+       already applied when the first pixel is painted — no flash of
+       the wrong edition, no layout shift from swapped text.
+
+       Precedence (highest first):
+         1. ?region=ca|us  — explicit, persisted, locks the value
+         2. localStorage   — a previous explicit choice, or a cache of
+                             an inferred result
+         3. heuristic      — IANA timezone / language region (offline,
+                             zero network, correct for a recruiter on a
+                             Canadian laptop)
+         4. IP geolocation — deferred to stage 2, never blocks paint
+         5. default        — "us"
+       ============================================================ */
+    (function () {
+      var KEY = "me-region";
+      var CA_ZONES = {
+        "America/Toronto": 1, "America/Vancouver": 1, "America/Edmonton": 1,
+        "America/Winnipeg": 1, "America/Regina": 1, "America/Halifax": 1,
+        "America/St_Johns": 1, "America/Moncton": 1, "America/Thunder_Bay": 1,
+        "America/Nipigon": 1, "America/Rainy_River": 1, "America/Atikokan": 1,
+        "America/Glace_Bay": 1, "America/Goose_Bay": 1, "America/Iqaluit": 1,
+        "America/Rankin_Inlet": 1, "America/Resolute": 1, "America/Yellowknife": 1,
+        "America/Cambridge_Bay": 1, "America/Inuvik": 1, "America/Whitehorse": 1,
+        "America/Dawson": 1, "America/Dawson_Creek": 1, "America/Creston": 1,
+        "America/Fort_Nelson": 1, "America/Pangnirtung": 1, "America/Swift_Current": 1
+      };
+
+      function readStore() {
+        try { return JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) { return null; }
+      }
+      function writeStore(v, src) {
+        try { localStorage.setItem(KEY, JSON.stringify({ v: v, src: src })); } catch (e) { }
+      }
+
+      /* Detect a Canadian signal without any network request. Returns
+         "ca" | "us" | null (null = inconclusive, defer to stage 2). */
+      function heuristic() {
+        try {
+          var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+          if (tz) {
+            if (CA_ZONES[tz]) return "ca";
+            /* Any other resolvable zone is a real answer, not a gap —
+               a Detroit recruiter on America/Detroit should get US. */
+            return "us";
+          }
+        } catch (e) { }
+        try {
+          var lang = navigator.language || "";
+          if (typeof Intl.Locale === "function") {
+            var region = new Intl.Locale(lang).region;
+            if (region) return region === "CA" ? "ca" : "us";
+          }
+          if (/[-_]CA$/i.test(lang)) return "ca";
+          if (/[-_]US$/i.test(lang)) return "us";
+        } catch (e) { }
+        return null;
+      }
+
+      /* Resolve synchronously. */
+      var region = "us", source = "default", inconclusive = false;
+      var stored = readStore();
+      var param = null;
+      try { param = new URLSearchParams(location.search).get("region"); } catch (e) { }
+
+      if (param === "ca" || param === "us") {
+        region = param; source = "explicit"; writeStore(region, source);
+      } else if (stored && (stored.v === "ca" || stored.v === "us")) {
+        region = stored.v; source = stored.src || "explicit";
+      } else {
+        var guess = heuristic();
+        if (guess) { region = guess; source = "heuristic"; writeStore(region, source); }
+        else { inconclusive = true; }
+      }
+
+      document.documentElement.setAttribute("data-region", region);
+      document.documentElement.lang = region === "ca" ? "en-CA" : "en-US";
+
+      /* Theme is read here too. applyTheme() otherwise runs at the end of
+         <body>, which means the light theme flashes on every load for a
+         vellum visitor. Three lines, paid once. */
+      try {
+        var theme = localStorage.getItem("me-theme");
+        document.documentElement.setAttribute("data-theme", theme === "vellum" ? "vellum" : "blueprint");
+      } catch (e) { }
+
+      /* Hand the state to the body scripts without a second localStorage read.
+         deferred is true only when the heuristic genuinely had no answer —
+         that is the sole case where a network round-trip is justified. */
+      window.__REGION__ = { region: region, source: source, deferred: inconclusive };
+    })();
+  </script>
   <style>
     /* ============ tokens ============ */
     :root {
@@ -101,6 +200,53 @@
       color-scheme: light;
     }
 
+    /* ============ CA region palette ============
+       Region is a presentation default set on <html data-region>. Same specificity
+       as the vellum block above (0,1,1), so source order matters: this block comes
+       later and would win for a CA+vellum visitor, which is why the two-attribute
+       rule below restates every property. Keep the pair in sync. */
+
+    html[data-region="ca"] {
+      --paper: #2a0e13;
+      --paper-2: #321319;
+      --paper-3: #3d1c22;
+      --ink: #fbf0ea;
+      --ink-soft: #c8a49f;
+      --ink-faint: #9d7a77;
+      --line: rgba(251, 240, 234, .28);
+      --line-soft: rgba(251, 240, 234, .13);
+      --cyan: #f08a7e;
+      --cyan-soft: rgba(240, 138, 126, .35);
+      --cyan-faint: rgba(240, 138, 126, .12);
+      --amber-ink: #2a0e13;
+      --danger: #ff5d50;
+      --grid: rgba(240, 138, 126, .06);
+      --grid-strong: rgba(240, 138, 126, .12);
+      --sheet-shadow: 0 22px 60px rgba(2, 8, 20, .55);
+      color-scheme: dark;
+    }
+
+    /* cream ground, deep red accent — 5.9:1 on --paper for --cyan */
+    html[data-theme="vellum"][data-region="ca"] {
+      --paper: #f3efe4;
+      --paper-2: #ece6d6;
+      --paper-3: #e4dcc7;
+      --ink: #14283f;
+      --ink-soft: #3f5872;
+      --ink-faint: #6a7f94;
+      --line: rgba(20, 40, 63, .34);
+      --line-soft: rgba(20, 40, 63, .16);
+      --cyan: #a5321f;
+      --cyan-soft: rgba(165, 50, 31, .4);
+      --cyan-faint: rgba(165, 50, 31, .1);
+      --amber-ink: #fff8ec;
+      --danger: #b23c2e;
+      --grid: rgba(165, 50, 31, .07);
+      --grid-strong: rgba(165, 50, 31, .14);
+      --sheet-shadow: 0 18px 44px rgba(60, 50, 20, .18);
+      color-scheme: light;
+    }
+
     /* ============ base ============ */
     *,
     *::before,
@@ -173,6 +319,41 @@
       clip: rect(0 0 0 0);
       white-space: nowrap;
       border: 0
+    }
+
+    /* ============ region ============
+       Copy is swapped by JS from the REGION_COPY dictionary, keyed on data-copy.
+       The markup's default text is the US string, so with JS off the page renders
+       exactly as it did before the region layer existed. CA-only blocks use the
+       hidden attribute for the same reason — no display:none class to unlearn. */
+
+    [data-ca-only][hidden],
+    [data-us-only][hidden] {
+      display: none !important
+    }
+
+    .region-ctl {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 0
+    }
+
+    .region-ctl .rc-side {
+      font-family: var(--font-mono);
+      font-size: var(--fs-xs);
+      letter-spacing: .1em;
+      padding: .2em .45em;
+      border-radius: 2px;
+      color: var(--ink-faint);
+      white-space: nowrap;
+      transition: background var(--dur-1) var(--ease-out), color var(--dur-1) var(--ease-out)
+    }
+
+    .region-ctl .rc-side.rc-active {
+      background: var(--amber);
+      color: var(--amber-ink);
+      font-weight: 600
     }
 
     .skip-link {
@@ -891,6 +1072,10 @@
 
     html[data-theme="blueprint"] .hw .fill-a {
       fill: #4fc3e0
+    }
+
+    html[data-region="ca"][data-theme="blueprint"] .hw .fill-a {
+      fill: #ff6b5c
     }
 
     .hw .txt {
@@ -3085,7 +3270,7 @@
         <img class="b-portrait" src="profile.PNG" alt="Marho Eradiri" loading="lazy">
         <div class="b-sub">
           <span class="b-title">Web Architect</span>
-          <span class="b-loc">DC Metro Area</span>
+          <span class="b-loc" data-copy="railLoc">DC Metro Area</span>
         </div>
       </div>
       <div class="rail-title">Sheet Index · CV-2026-01</div>
@@ -3115,9 +3300,9 @@
       </div>
       <div class="rail-foot">
         <strong>Marho Eradiri</strong><br>
-        WASHINGTON DC METRO AREA<br>
+        <span data-copy="railFootLoc">WASHINGTON DC METRO AREA</span><br>
         <a href="mailto:meradiri@gmail.com" style="color:var(--cyan);text-decoration:none">meradiri@gmail.com</a><br>
-        REMOTE · ET HOURS (flexible)
+        <span data-copy="railFootHours">REMOTE · ET HOURS (flexible)</span>
       </div>
     </aside>
 
@@ -3125,6 +3310,13 @@
       <header class="topbar">
         <span class="proj">DRAWING SET: <b>PERSONAL PORTFOLIO</b> · SHEET CV-2026-01 · ISSUED FOR HIRING REVIEW</span>
         <span class="spacer"></span>
+        <div class="region-ctl" role="group" aria-label="Hiring region">
+          <button class="icon-btn js-region" type="button" id="regionBtn"
+            aria-label="Hiring region: United States. Switch to Canadian edition.">
+            <span class="rc-side rc-us rc-active" aria-hidden="true">US</span>
+            <span class="rc-side rc-ca" aria-hidden="true">⇄ CA</span>
+          </button>
+        </div>
         <button class="icon-btn js-theme" type="button" aria-pressed="false"
           aria-label="Toggle vellum light drafting mode">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -3156,9 +3348,9 @@
           </header>
           <div class="cover">
             <div class="meta-row reveal">
-              <span class="tag">SHEET A-01 · CV-2026-01</span>
-              <span class="tag tag-amber">OPEN TO WEB DEVELOPER ROLES</span>
-              <span class="mono-note">SCALE 1:1 · DC METRO AREA · REMOTE</span>
+              <span class="tag" data-copy="setTag">SHEET A-01 · CV-2026-01</span>
+              <span class="tag tag-amber" data-copy="openTag">OPEN TO WEB DEVELOPER ROLES</span>
+              <span class="mono-note" data-copy="coverLoc">SCALE 1:1 · DC METRO AREA · REMOTE</span>
             </div>
             <h2 class="reveal" data-delay="1">I build websites where the design intent <em>survives production.</em>
             </h2>
@@ -3216,11 +3408,19 @@
                   aria-hidden="true">→</span></a>
             </div>
 
-            <div class="avail reveal" data-delay="3">
+            <div class="avail reveal" data-delay="3" data-us-only>
               <span class="pulse" aria-hidden="true"></span>
               <span style="font-family:var(--font-mono);font-size:var(--fs-sm);letter-spacing:.08em"><b>AVAILABLE
                   NOW</b> — full-time, contract, or part-time web development roles. Remote-first, Eastern Time,
                 US-based (Washington DC Metro Area).</span>
+            </div>
+
+            <div class="avail reveal" data-delay="3" data-ca-only hidden>
+              <span class="pulse" aria-hidden="true"></span>
+              <span style="font-family:var(--font-mono);font-size:var(--fs-sm);letter-spacing:.08em"><b>AVAILABLE
+                  NOW</b> — full-time, contract, or part-time web development roles. Available to work in Canada; no
+                sponsorship required. Based in Washington, DC — available in Toronto, Ottawa, and Montréal,
+                remote-first on Eastern Time.</span>
             </div>
 
             <h2 class="section-label reveal"><span class="tick">§</span> Measurements at a Glance</h2>
@@ -3250,6 +3450,11 @@
           </header>
           <p class="lede reveal" style="margin-bottom:var(--sp-5)">Ten years, four teams — <em>the same standard on
               every sheet.</em></p>
+          <div class="fit-note reveal" data-ca-only hidden style="margin-bottom:var(--sp-5)">
+            <b>Work authorization</b> — available to work in Canada; no sponsorship or LMIA required. Based in
+            Washington, DC, remote-first on Eastern Time and comfortable with ET/PT overlap for Canadian teams.
+            Available to work from Toronto, Ottawa, or Montréal.
+          </div>
           <div class="timeline">
             <article class="job reveal">
               <div class="job-head">
@@ -3739,8 +3944,9 @@
       </main>
 
       <footer class="site-footer">
-        <span>© 2026 Marho Eradiri · <span class="rotating-title">Web Architect</span> · WASHINGTON DC METRO AREA ·
-          DRAWING SET CV-2026-01</span>
+        <span>© 2026 Marho Eradiri · <span class="rotating-title">Web Architect</span> · <span
+            data-copy="footLoc">WASHINGTON DC METRO AREA</span> ·
+          DRAWING SET <span data-copy="setNo">CV-2026-01</span></span>
         <span class="f-amber">ISSUED FOR HIRING REVIEW</span>
       </footer>
     </div>
@@ -3786,7 +3992,17 @@
         </div>
       </div>
     </div>
-    <p class="mono-note" style="margin-top:var(--sp-3)">meradiri@gmail.com · DC METRO AREA</p>
+    <p class="mono-note" style="margin-top:var(--sp-3)">meradiri@gmail.com · <span data-copy="drawerLoc">DC METRO
+        AREA</span></p>
+    <div class="region-ctl" role="group" aria-label="Hiring region"
+      style="margin-top:var(--sp-3);display:flex;justify-content:space-between;align-items:center;gap:var(--sp-3)">
+      <span class="mono-note">HIRING REGION</span>
+      <button class="icon-btn js-region" type="button"
+        aria-label="Hiring region: United States. Switch to Canadian edition.">
+        <span class="rc-side rc-us rc-active" aria-hidden="true">US</span>
+        <span class="rc-side rc-ca" aria-hidden="true">⇄ CA</span>
+      </button>
+    </div>
   </div>
   <div class="toast" id="toast" aria-hidden="true"></div>
 
@@ -3971,11 +4187,12 @@
         slot.innerHTML = '<footer class="tblock reveal" aria-label="Title block for sheet ' + s.num + '"><dl class="tblock-grid">' +
           '<div class="tblock-cell"><dt>Name</dt><dd>Marho Eradiri</dd></div>' +
           '<div class="tblock-cell"><dt>Sheet</dt><dd>' + s.num + ' · ' + s.name.toUpperCase() + '</dd></div>' +
-          '<div class="tblock-cell"><dt>Set</dt><dd>CV-2026-01</dd></div>' +
+          '<div class="tblock-cell"><dt>Set</dt><dd data-copy="setNo">CV-2026-01</dd></div>' +
+          '<div class="tblock-cell"><dt>Auth</dt><dd data-copy="authCell">OPEN TO WEB DEVELOPER ROLES</dd></div>' +
           '<div class="tblock-cell"><dt>Scale</dt><dd>1:1</dd></div>' +
           '<div class="tblock-cell"><dt>Date</dt><dd>' + dateStr + '</dd></div>' +
           '<div class="tblock-cell"><dt>Revision</dt><dd class="rev tb-rev-cell">—</dd></div>' +
-          '</dl><div class="tblock-note">PERSONAL PORTFOLIO · DRAWING SET CV-2026-01 </div></footer>';
+          '</dl><div class="tblock-note">PERSONAL PORTFOLIO · DRAWING SET <span data-copy="setNo">CV-2026-01</span></div></footer>';
       });
 
       /* reveals */
@@ -4727,6 +4944,148 @@
           document.body.classList.remove("is-changing-title");
         }, 350);
       }, 4000);
+    })();
+  </script>
+
+  <script>
+    /* ============================================================
+       REGION BINDER — applies the resolved region to the document.
+
+       Reads the state the head resolver left on window.__REGION__, so
+       there is exactly one localStorage read and one source of truth.
+       With JS off none of this runs: the markup keeps its US strings
+       and every [data-ca-only] block stays hidden.
+       ============================================================ */
+    (function () {
+      "use strict";
+      const KEY = "me-region";
+      const state = window.__REGION__ || { region: "us", source: "default" };
+      let region = state.region;
+
+      /* US strings live in the markup as the default; only the CA
+         strings need to be carried here. Adding a key here without a
+         matching data-copy attribute is inert, and vice versa the
+         element keeps its authored text. */
+      const COPY = {
+        ca: {
+          railLoc: "DC-BASED · TORONTO / OTTAWA / MONTRÉAL",
+          railFootLoc: "AVAILABLE IN CANADA · NO SPONSORSHIP",
+          railFootHours: "REMOTE · ET HOURS",
+          coverLoc: "SCALE 1:1 · WASHINGTON, DC · AVAILABLE IN CANADA",
+          setTag: "SHEET A-01 · CV-2026-01-CA",
+          openTag: "OPEN TO CANADIAN ROLES",
+          footLoc: "TORONTO · OTTAWA · MONTRÉAL",
+          setNo: "CV-2026-01-CA",
+          authCell: "CANADIAN ROLES · NO SPONSORSHIP",
+          drawerLoc: "CANADA"
+        }
+      };
+
+      const els = Array.from(document.querySelectorAll("[data-copy]"));
+      const US_TEXT = new Map();
+      els.forEach(el => { US_TEXT.set(el, el.textContent); });
+
+      const caOnly = Array.from(document.querySelectorAll("[data-ca-only]"));
+      const usOnly = Array.from(document.querySelectorAll("[data-us-only]"));
+
+      function applyText() {
+        if (region === "ca") {
+          const dict = COPY.ca;
+          els.forEach(el => {
+            const key = el.getAttribute("data-copy");
+            if (dict[key] != null) el.textContent = dict[key];
+            else el.textContent = US_TEXT.get(el);
+          });
+        } else {
+          els.forEach(el => { el.textContent = US_TEXT.get(el); });
+        }
+      }
+
+      function applyBlocks() {
+        /* hidden attribute rather than a class, so the no-JS default is
+           "CA blocks invisible" without any CSS having to run. */
+        caOnly.forEach(el => { el.hidden = region !== "ca"; });
+        usOnly.forEach(el => { el.hidden = region === "ca"; });
+      }
+
+      function applyControl() {
+        document.querySelectorAll(".js-region").forEach(btn => {
+          const isCA = region === "ca";
+          const us = btn.querySelector(".rc-us");
+          const ca = btn.querySelector(".rc-ca");
+          if (us) {
+            us.classList.toggle("rc-active", !isCA);
+            us.setAttribute("aria-hidden", "true");
+          }
+          if (ca) {
+            ca.classList.toggle("rc-active", isCA);
+            ca.setAttribute("aria-hidden", "true");
+          }
+          btn.setAttribute("aria-pressed", String(isCA));
+          btn.setAttribute("aria-label", isCA
+            ? "Hiring region: Canada. Switch to United States edition."
+            : "Hiring region: United States. Switch to Canadian edition.");
+        });
+      }
+
+      function setRegion(next, source) {
+        region = next;
+        document.documentElement.setAttribute("data-region", next);
+        document.documentElement.lang = next === "ca" ? "en-CA" : "en-US";
+        applyText();
+        applyBlocks();
+        applyControl();
+        document.dispatchEvent(new CustomEvent("regionchange", { detail: { region: next, source: source } }));
+      }
+
+      /* The head resolver already set data-region; re-apply text and
+         blocks here because they are outside its scope. */
+      setRegion(region, state.source);
+
+      document.querySelectorAll(".js-region").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const next = region === "ca" ? "us" : "ca";
+          try { localStorage.setItem(KEY, JSON.stringify({ v: next, src: "explicit" })); } catch (e) { }
+          setRegion(next, "explicit");
+
+          const live = document.getElementById("announcer");
+          if (live) live.textContent = next === "ca"
+            ? "Canadian edition. Work authorization stated, location updated."
+            : "US edition restored.";
+        });
+      });
+
+      /* ── Stage 2: IP geolocation ──────────────────────────────────
+         Only runs when the heuristic was inconclusive, and only ever
+         upgrades us -> ca. A visitor who chose a region explicitly is
+         never overridden, and a CA result is never flipped back.
+
+         */
+      if (!state.deferred) return;
+      if (state.source === "explicit") return;
+      let cached = null;
+      try { cached = sessionStorage.getItem("me-region-ip"); } catch (e) { }
+
+      function upgrade(next) {
+        if (next !== "ca" || region === "ca") return;
+        try { localStorage.setItem(KEY, JSON.stringify({ v: "ca", src: "ip" })); } catch (e) { }
+        setRegion("ca", "ip");
+        const live = document.getElementById("announcer");
+        if (live) live.textContent = "Canadian edition applied based on connection location. Use the region control to switch.";
+      }
+
+      if (cached === "1") { upgrade("ca"); return; }
+      if (cached === "0") return;
+
+      fetch("https://ipwho.is/", { signal: AbortSignal.timeout ? AbortSignal.timeout(1500) : undefined })
+        .then(r => r.ok ? r.json() : null)
+        .then(d => {
+          const code = d && d.country_code;
+          if (!code) throw new Error("no country code");
+          try { sessionStorage.setItem("me-region-ip", code === "CA" ? "1" : "0"); } catch (e) { }
+          upgrade(code === "CA" ? "ca" : "us");
+        })
+        .catch(() => { /* offline, blocked, or rate-limited — stage 1 stands */ });
     })();
   </script>
 </body>
